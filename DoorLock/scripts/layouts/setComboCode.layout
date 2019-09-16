@@ -1,0 +1,100 @@
+WindowWidgetClass CodelockInitiate {
+ clipchildren 0
+ size 277 211.25
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ style rover_sim_black_2
+ {
+  PanelWidgetClass outlinePanel {
+   ignorepointer 1
+   color 0.5608 0.0706 0.0706 1
+   position 0.005 0.005
+   size 0.99 0.99
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style Outline
+   {
+    ButtonWidgetClass btnCancelPin {
+     color 0.5608 0.0706 0.0706 1
+     position 0.01888 5.46188
+     size 25 25
+     halign right_ref
+     hexactpos 0
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Default
+     text "X"
+     text_proportion 0.5
+     font "gui/fonts/metron"
+    }
+    TextWidgetClass txtSetPin {
+     ignorepointer 1
+     position 0 12
+     size 0.76126 34.67
+     halign center_ref
+     hexactpos 0
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     text "SET PASSCODE"
+     font "gui/fonts/metron"
+     "exact text" 0
+     text_proportion 0.75
+     "text halign" center
+     "text valign" center
+    }
+    EditBoxWidgetClass edtPinCode {
+     color 0.5608 0.0706 0.0706 1
+     position 0 7
+     size 245.37001 69.98
+     halign center_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DefaultBorder
+     "limit visible" 0
+     "exact text" 0
+     font "gui/fonts/sdf_metronlight72"
+     "text sharpness" 3
+    }
+    ButtonWidgetClass btnEnterPin {
+     color 0.5608 0.0706 0.0706 1
+     position 0.26397 14.4135
+     size 0.8954 35.89
+     halign center_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style Default
+     text "INITIATE LOCK"
+     text_proportion 0.5
+     font "gui/fonts/metron"
+     switch normal
+    }
+    PanelWidgetClass seperatorPanel {
+     ignorepointer 1
+     color 0.5608 0.0706 0.0706 1
+     position 0 57
+     size 250 2.5
+     halign center_ref
+     hexactpos 0
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,103 @@
+WindowWidgetClass enterComboCode {
+ clipchildren 0
+ position 0 -21.043
+ size 277 198.164
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ style rover_sim_black_2
+ {
+  PanelWidgetClass outlinePanel {
+   ignorepointer 1
+   color 0.5608 0.0706 0.0706 1
+   position 0.0057 0.0013
+   size 0.99 0.99
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style Outline
+   {
+    ButtonWidgetClass btnCancelPin {
+     color 0.5608 0.0706 0.0706 1
+     position 0.015 4.3178
+     size 25 25
+     halign right_ref
+     hexactpos 0
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Default
+     text "X"
+     text_proportion 0.5
+     font "gui/fonts/metron"
+    }
+    TextWidgetClass txtEnterPin {
+     ignorepointer 1
+     position 0 11
+     size 0.71132 34.67
+     halign center_ref
+     hexactpos 0
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     text "ENTER PASSCODE"
+     font "gui/fonts/metron"
+     "exact text" 0
+     text_proportion 0.75
+     "text halign" center
+     "text valign" center
+    }
+    EditBoxWidgetClass edtPinCode {
+     color 0.5608 0.0706 0.0706 1
+     position 0 75
+     size 245.37001 69.98
+     halign center_ref
+     hexactpos 0
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     scaled 1
+     style DefaultBorder
+     "no focus" 0
+     "next left" ""
+     "limit visible" 0
+     "exact text" 0
+     font "gui/fonts/sdf_metronlight72"
+     "text sharpness" 3
+    }
+    PanelWidgetClass seperatorPanel {
+     ignorepointer 1
+     color 0.5608 0.0706 0.0706 1
+     position 0 56
+     size 250 2.5
+     halign center_ref
+     hexactpos 0
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+    }
+    ButtonWidgetClass btnEnterPin {
+     keepsafezone 0
+     color 0.5608 0.0706 0.0706 1
+     position 14.6889 9.54739
+     size 0.89478 35.89
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style Default
+     text "OPEN DOOR"
+     text_proportion 0.5
+     font "gui/fonts/metron"
+    }
+   }
+  }
+ }
+}

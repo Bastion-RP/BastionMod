@@ -1,0 +1,917 @@
+FrameWidgetClass rootFrame {
+ position 0 0
+ size 1 1
+ halign center_ref
+ valign center_ref
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ {
+  ImageWidgetClass imgBackground {
+   ignorepointer 1
+   size 1 1
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   imageTexture "Spawn/scripts/layouts/bastion_background.edds"
+   stretch 1
+   {
+    PlayerPreviewWidgetClass plyPreview {
+     ignorepointer 1
+     position 0.1 -0.1
+     size 0.25 0.65
+     halign center_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+    }
+    PanelWidgetClass pnlCiv0 {
+     ignorepointer 1
+     position 0.012 0.21
+     size 0.12 0.08
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style editor_quad
+     {
+      ButtonWidgetClass btnSelect0 {
+       visible 1
+       ignorepointer 0
+       color 0 0 0 0.6902
+       position -0.00106 -0.00282
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Colorable
+       "no focus" 1
+       "text color" 0.6078 0.6078 0.6078 1
+       switch toggle
+      }
+      TextWidgetClass txtSurvivor0 {
+       inheritalpha 0
+       ignorepointer 1
+       position 0.02 0.01
+       size 0.97394 0.35012
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Normal
+       text "Survivor 1"
+       "exact text" 0
+      }
+      PanelWidgetClass pnlLine0 {
+       ignorepointer 1
+       position 0.06 0.3
+       size 0.4 0.02
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+      }
+      ImageWidgetClass imgHealth0 {
+       clipchildren 0
+       ignorepointer 1
+       position 0.03 0.42
+       size 24 24
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       image0 ""
+       imageTexture ""
+       mode blend
+       "src alpha" 1
+       stretch 1
+       "Transition width" 1
+      }
+      ImageWidgetClass imgBlood0 {
+       ignorepointer 1
+       position 0.03 0.6882
+       size 24 25
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       imageTexture ""
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+      }
+      ImageWidgetClass imgWater0 {
+       ignorepointer 1
+       position 0.4164 0.42
+       size 17 24
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       imageTexture ""
+       mode blend
+       "src alpha" 1
+       stretch 1
+      }
+      ImageWidgetClass imgEnergy0 {
+       ignorepointer 1
+       position 0.40444 0.7
+       size 24 23
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       imageTexture ""
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+      }
+      TextWidgetClass txtHealth0 {
+       ignorepointer 1
+       position 0.15 0.42
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtBlood0 {
+       ignorepointer 1
+       position 0.15 0.7
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtEnergy0 {
+       ignorepointer 1
+       position 0.53 0.7
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtWater0 {
+       ignorepointer 1
+       position 0.53 0.42
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+     }
+    }
+    TextWidgetClass txtSelect {
+     ignorepointer 1
+     position 0.01 0.15356
+     size 0.20853 0.04926
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Bold
+     text "Select Character"
+     "exact text" 0
+     {
+      PanelWidgetClass pnlLine {
+       ignorepointer 1
+       position 0.0152 0.74301
+       size 0.78271 0.02406
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+      }
+     }
+    }
+    PanelWidgetClass pnlSpawn {
+     ignorepointer 1
+     position 0.1 0.28
+     size 0.08 0.05
+     halign center_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Outline
+     {
+      ButtonWidgetClass btnSpawn {
+       color 0 0 0 0.6667
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Colorable
+       "no focus" 1
+       "text color" 0.6078 0.6078 0.6078 1
+       switch normal
+      }
+      RichTextWidgetClass txtSpawn {
+       ignorepointer 1
+       position -0.03 -0.07
+       size 0.8 0.8
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style DayZBold
+       text "SPAWN"
+       "text halign" center
+       "text valign" center
+      }
+     }
+    }
+    PanelWidgetClass pnlCiv1 {
+     ignorepointer 1
+     position 0.012 0.3
+     size 0.12 0.08
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style editor_quad
+     {
+      ButtonWidgetClass btnSelect1 {
+       visible 1
+       ignorepointer 0
+       color 0 0 0 0.6902
+       position -0.00106 -0.00282
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Colorable
+       "no focus" 1
+       "text color" 0.6078 0.6078 0.6078 1
+       switch toggle
+      }
+      TextWidgetClass txtSurvivor1 {
+       inheritalpha 0
+       ignorepointer 1
+       position 0.02 0.01
+       size 0.97394 0.35012
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Normal
+       text "Survivor 2"
+       "exact text" 0
+      }
+      PanelWidgetClass pnlLine1 {
+       ignorepointer 1
+       position 0.06 0.3
+       size 0.4 0.02
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+      }
+      ImageWidgetClass imgHealth1 {
+       clipchildren 0
+       ignorepointer 1
+       position 0.03 0.42
+       size 24 24
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       image0 ""
+       mode blend
+       "src alpha" 1
+       stretch 1
+       "Transition width" 1
+      }
+      ImageWidgetClass imgBlood1 {
+       ignorepointer 1
+       position 0.03 0.6882
+       size 24 25
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+      }
+      ImageWidgetClass imgWater1 {
+       ignorepointer 1
+       position 0.4164 0.42
+       size 17 24
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       mode blend
+       "src alpha" 1
+       stretch 1
+      }
+      ImageWidgetClass imgEnergy1 {
+       ignorepointer 1
+       position 0.40444 0.7
+       size 24 23
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+      }
+      TextWidgetClass txtHealth1 {
+       ignorepointer 1
+       position 0.15 0.42
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtBlood1 {
+       ignorepointer 1
+       position 0.15 0.7
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtEnergy1 {
+       ignorepointer 1
+       position 0.53 0.7
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtWater1 {
+       ignorepointer 1
+       position 0.53 0.42
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+     }
+    }
+    PanelWidgetClass pnlCiv2 {
+     ignorepointer 1
+     position 0.012 0.39
+     size 0.12 0.08
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style editor_quad
+     {
+      ButtonWidgetClass btnSelect2 {
+       visible 1
+       ignorepointer 0
+       color 0 0 0 0.6902
+       position -0.00106 -0.00282
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Colorable
+       "no focus" 1
+       "text color" 0.6078 0.6078 0.6078 1
+       switch toggle
+      }
+      TextWidgetClass txtSurvivor2 {
+       inheritalpha 0
+       ignorepointer 1
+       position 0.02 0.01
+       size 0.97394 0.35012
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Normal
+       text "Survivor 3"
+       "exact text" 0
+      }
+      PanelWidgetClass pnlLine2 {
+       ignorepointer 1
+       position 0.06 0.3
+       size 0.4 0.02
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+      }
+      ImageWidgetClass imgHealth2 {
+       clipchildren 0
+       ignorepointer 1
+       position 0.03 0.42
+       size 24 24
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       image0 ""
+       mode blend
+       "src alpha" 1
+       stretch 1
+       "Transition width" 1
+      }
+      ImageWidgetClass imgBlood2 {
+       ignorepointer 1
+       position 0.03 0.6882
+       size 24 25
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+      }
+      ImageWidgetClass imgWater2 {
+       ignorepointer 1
+       position 0.4164 0.42
+       size 17 24
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       mode blend
+       "src alpha" 1
+       stretch 1
+      }
+      ImageWidgetClass imgEnergy2 {
+       ignorepointer 1
+       position 0.40444 0.7
+       size 24 23
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+      }
+      TextWidgetClass txtHealth2 {
+       ignorepointer 1
+       position 0.15 0.42
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtBlood2 {
+       ignorepointer 1
+       position 0.15 0.7
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtEnergy2 {
+       ignorepointer 1
+       position 0.53 0.7
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtWater2 {
+       ignorepointer 1
+       position 0.53 0.42
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+     }
+    }
+    PanelWidgetClass pnlCiv3 {
+     ignorepointer 1
+     position 0.012 0.48
+     size 0.12 0.08
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style editor_quad
+     {
+      ButtonWidgetClass btnSelect3 {
+       visible 1
+       ignorepointer 0
+       color 0 0 0 0.6902
+       position -0.00106 -0.00282
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Colorable
+       "no focus" 1
+       "text color" 0.6078 0.6078 0.6078 1
+       switch toggle
+      }
+      TextWidgetClass txtSurvivor3 {
+       inheritalpha 0
+       ignorepointer 1
+       position 0.02 0.01
+       size 0.97394 0.35012
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Normal
+       text "Survivor 4"
+       "exact text" 0
+      }
+      PanelWidgetClass pnlLine3 {
+       ignorepointer 1
+       position 0.06 0.3
+       size 0.4 0.02
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+      }
+      ImageWidgetClass imgHealth3 {
+       clipchildren 0
+       ignorepointer 1
+       position 0.03 0.42
+       size 24 24
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       image0 ""
+       mode blend
+       "src alpha" 1
+       stretch 1
+       "Transition width" 1
+      }
+      ImageWidgetClass imgBlood3 {
+       ignorepointer 1
+       position 0.03 0.6882
+       size 24 25
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+      }
+      ImageWidgetClass imgWater3 {
+       ignorepointer 1
+       position 0.4164 0.42
+       size 17 24
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       mode blend
+       "src alpha" 1
+       stretch 1
+      }
+      ImageWidgetClass imgEnergy3 {
+       ignorepointer 1
+       position 0.40444 0.7
+       size 24 23
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+      }
+      TextWidgetClass txtHealth3 {
+       ignorepointer 1
+       position 0.15 0.42
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtBlood3 {
+       ignorepointer 1
+       position 0.15 0.7
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtEnergy3 {
+       ignorepointer 1
+       position 0.53 0.7
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtWater3 {
+       ignorepointer 1
+       position 0.53 0.42
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+     }
+    }
+    PanelWidgetClass pnlCiv4 {
+     ignorepointer 1
+     position 0.012 0.57
+     size 0.12 0.08
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style editor_quad
+     {
+      ButtonWidgetClass btnSelect4 {
+       visible 1
+       ignorepointer 0
+       color 0 0 0 0.6902
+       position -0.00106 -0.00282
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Colorable
+       "no focus" 1
+       "text color" 0.6078 0.6078 0.6078 1
+       switch toggle
+      }
+      TextWidgetClass txtSurvivor4 {
+       inheritalpha 0
+       ignorepointer 1
+       position 0.02 0.01
+       size 0.97394 0.35012
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Normal
+       text "Survivor 5"
+       "exact text" 0
+      }
+      PanelWidgetClass pnlLine4 {
+       ignorepointer 1
+       position 0.06 0.3
+       size 0.4 0.02
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+      }
+      ImageWidgetClass imgHealth4 {
+       clipchildren 0
+       ignorepointer 1
+       position 0.03 0.42
+       size 24 24
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       image0 ""
+       mode blend
+       "src alpha" 1
+       stretch 1
+       "Transition width" 1
+      }
+      ImageWidgetClass imgBlood4 {
+       ignorepointer 1
+       position 0.03 0.6882
+       size 24 25
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+      }
+      ImageWidgetClass imgWater4 {
+       ignorepointer 1
+       position 0.4164 0.42
+       size 17 24
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       mode blend
+       "src alpha" 1
+       stretch 1
+      }
+      ImageWidgetClass imgEnergy4 {
+       ignorepointer 1
+       position 0.40444 0.7
+       size 24 23
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+      }
+      TextWidgetClass txtHealth4 {
+       ignorepointer 1
+       position 0.15 0.42
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtBlood4 {
+       ignorepointer 1
+       position 0.15 0.7
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtEnergy4 {
+       ignorepointer 1
+       position 0.53 0.7
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+      TextWidgetClass txtWater4 {
+       ignorepointer 1
+       position 0.53 0.42
+       size 39 22
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "0%"
+       "exact text" 1
+       "size to text h" 0
+       "text halign" right
+       "text valign" center
+      }
+     }
+    }
+   }
+  }
+  ImageWidgetClass imgLogo {
+   ignorepointer 1
+   position 0.01089 0.015
+   size 0.2 0.08
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   image0 ""
+   mode blend
+   "src alpha" 1
+   stretch 1
+  }
+ }
+}
