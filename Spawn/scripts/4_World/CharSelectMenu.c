@@ -48,6 +48,12 @@ class CharSelect : UIScriptedMenu {
 
 	override void OnHide() {
 		GetGame().GetInput().ResetGameFocus();
+		ResetValues();
+	}
+
+	void ResetValues() {
+		m_Loadouts = null;
+		m_SurvivorButtons = null;
 	}
 
 	void SetImages() {
@@ -75,6 +81,7 @@ class CharSelect : UIScriptedMenu {
 		Widget localWidget;
 		RichTextWidget localTxt;
 		ButtonWidget localButton;
+		TextWidget localText;
 
 		for (int i = 0; i < 5; i++) {
 			SavePlayer player;
@@ -98,6 +105,9 @@ class CharSelect : UIScriptedMenu {
 				Print("Player not found!");
 				continue;
 			}
+
+			localText = m_Root.FindAnyWidget("txtSurvivor" + i);
+			localText.SetText("Survivor " + (i + 1));
 
 			localButton = m_Root.FindAnyWidget("btnSelect" + i);
 			m_SurvivorButtons.Insert(localButton);
@@ -150,11 +160,13 @@ class CharSelect : UIScriptedMenu {
 					for (i = 0; i < m_SurvivorButtons.Count(); i++) {
 						if (m_SurvivorButtons[i].GetState()) {
 							btnSelected = i;
+							Print("Button selected found | " + i);
 							break;
 						}
 					}
 
 					if (btnSelected > -1) {
+						Print("Button selected | " + btnSelected);
 						g_Game.GetUIManager().HideScriptedMenu(this);
 						g_Game.ContinueSpawn(btnSelected);
 					}

@@ -91,11 +91,16 @@ modded class PlayerBase {
 
 			tempObject.SetType(localEntity.GetType());
 			tempObject.SetHealth(localItem.GetHealth("", ""));
-			tempObject.SetSlot(il.GetSlot());
-			tempObject.SetIdx(il.GetIdx());
-			tempObject.SetRow(il.GetRow());
-			tempObject.SetCol(il.GetCol());
-			tempObject.SetFlip(il.GetFlip());
+
+			if (localItem == GetHumanInventory().GetEntityInHands()) {
+				tempObject.SetHands();
+			} else {
+				tempObject.SetSlot(il.GetSlot());
+				tempObject.SetIdx(il.GetIdx());
+				tempObject.SetRow(il.GetRow());
+				tempObject.SetCol(il.GetCol());
+				tempObject.SetFlip(il.GetFlip());
+			}
 
 			if (Class.CastTo(localAmmo, localEntity)) {
 				tempObject.SetQuantity(localAmmo.GetAmmoCount());

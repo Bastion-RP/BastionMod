@@ -8,11 +8,14 @@ class SaveObject {
 	int m_Col;
 	bool m_Flip;
 	bool m_InHands;
-	bool m_IsAttachment;
 	ref array<ref SaveObject> m_Children;
 
 	void SaveObject() {
 		m_Children = new array<ref SaveObject>();
+	}
+
+	ref array<ref SaveObject> GetChildren() {
+		return m_Children;
 	}
 
 	string GetType() {
@@ -27,8 +30,28 @@ class SaveObject {
 		return m_Quantity;
 	}
 
-	bool IsAttachment() {
-		return m_IsAttachment;
+	int GetSlot() {
+		return m_Slot;
+	}
+
+	int GetIndex() {
+		return m_Idx;
+	}
+
+	int GetRow() {
+		return m_Row;
+	}
+
+	int GetCol() {
+		return m_Col;
+	}
+
+	int GetFlip() {
+		return m_Flip;
+	}
+
+	bool IsInHands() {
+		return m_InHands;
 	}
 
 	void SetType(string type) {
@@ -63,12 +86,8 @@ class SaveObject {
 		m_Flip = flip;
 	}
 
-	void IsInHands() {
+	void SetHands() {
 		m_InHands = true;
-	}
-
-	void SetAttachment(bool isAttachment) {
-		m_IsAttachment = isAttachment;
 	}
 
 	void SetChildren(ref array<ref SaveObject> children) {
