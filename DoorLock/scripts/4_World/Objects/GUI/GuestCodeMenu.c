@@ -81,7 +81,7 @@ class GuestCodeMenu extends UIScriptedMenu
             else 
                 m_PlainText = m_PlainText.Substring( 0, boxLength );
 
-            box_EditPin.SetText( OVTGlobalFunctions.ConvertToStars( boxText ) );
+            box_EditPin.SetText( BSTGlobalFunctions.ConvertToStars( boxText ) );
 
             return true;
         }
