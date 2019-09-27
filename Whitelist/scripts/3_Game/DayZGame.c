@@ -1,5 +1,6 @@
 modded class DayZGame
 {
+	ref PlayerIdMenu m_PlayerIdMenu;
 	private ref array<string> m_BSTWhitelist;
 	private bool m_BSTIsWhitelisted;
 
