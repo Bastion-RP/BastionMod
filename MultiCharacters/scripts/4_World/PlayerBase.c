@@ -1,11 +1,10 @@
 modded class PlayerBase {
 	ref FileSerializer m_FileSerializer = new FileSerializer();
 	ref array<ref MagObject> m_MagsToReload = new array<ref MagObject>();
-	int m_PlayerIndex;
+	int m_PlayerIndex = -1;
 
 	override void OnStoreSave(ParamsWriteContext ctx) {
-		if (!this) return;
-		Print(m_DebugPrefix + "Saving player inventory | playerid=" + GetIdentity().GetPlainId());
+		if (m_PlayerIndex == -1) return;
 		// Don't save the inventory since there's no use. Not using the DB for players anyways.
 		SaveInventory();
 	}
@@ -45,6 +44,8 @@ modded class PlayerBase {
 
 	void SaveInventory() {
 		if (!GetGame().IsServer()) return;
+
+		Print("Saving player inventory! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + m_PlayerIndex);
 
 		SavePlayer m_SavePlayer = new SavePlayer();
 		array<EntityAI> m_EnumeratedInventory = new array<EntityAI>();
@@ -156,7 +157,7 @@ modded class PlayerBase {
 		if (!FileExist(playerDir))
 			MakeDirectory(playerDir);
 
-		// Use this for viewing it in plain-text for debugging. This function fucking sucks for anything else. Use file serializer instead.
+		// Use this for viewing it in plain-text for debugging. This function sucks for anything else. Use file serializer instead.
 		JsonFileLoader<ref SavePlayer>.JsonSaveFile(playerDir + "\\" + m_PlayerIndex + m_BSTFileType, m_SavePlayer);
 	}
 
@@ -184,6 +185,7 @@ modded class PlayerBase {
 	}
 
 	void SetPlayerIndex(int playerIndex) {
+		Print("Setting player index! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + m_PlayerIndex);
 		m_PlayerIndex = playerIndex;
 	}
 }

@@ -1,4 +1,6 @@
 modded class MissionBase extends MissionBaseWorld {
+
+
 	override UIScriptedMenu CreateScriptedMenu(int id) {
 		UIScriptedMenu menu = null;
 		menu = super.CreateScriptedMenu(id);

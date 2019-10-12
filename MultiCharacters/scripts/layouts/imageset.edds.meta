@@ -1,7 +1,7 @@
 MetaFileClass {
  Name "{DDED52144405D492}MultiCharacters/scripts/layouts/imageset.edds"
- Author "trevorpc"
- ChangeDate -616732881
+ Author "desktop-93433la"
+ ChangeDate 860219202
  Configurations {
   TGAResourceClass PC {
    SourceFile "imageset.tga"

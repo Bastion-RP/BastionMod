@@ -1,9 +1,11 @@
 modded class DayZGame {
-	ref FileSerializer m_FileSerializer = new FileSerializer();
-	ref array<ref SavePlayer> m_Loadouts;
-	ref array<string> m_Whitelist;
-	bool m_CheckedDirs;
-	int m_BtnSelected;
+	protected ref FileSerializer m_FileSerializer = new FileSerializer();
+	protected ref array<ref SavePlayer> m_Loadouts;
+	protected ref array<string> m_Whitelist;
+	protected ref CharSelect mcMainMenu;
+	protected bool m_CheckedDirs;
+	protected int m_BtnSelected;
+	protected string selectedSurvivor;
 
 	void DayZGame() {
 		m_CheckedDirs = false;
@@ -12,6 +14,30 @@ modded class DayZGame {
 
 	ref array<ref SavePlayer> GetLoadouts() {
 		return m_Loadouts;
+	}
+
+	void GetLoadouts(PlayerIdentity sender) {
+		for (int i = 0; i < 6; i++) {
+			string dir = m_LoadoutDir + "\\" + sender.GetPlainId() + "\\" + i + m_BSTFileType;
+			if (FileExist(dir)) {
+				ref SavePlayer player;
+				JsonFileLoader<ref SavePlayer>.JsonLoadFile(dir, player);
+				loadoutParam param = new loadoutParam(player);
+				RPCSingleParam(null, MultiCharRPC.CLIENT_GRAB_LOADOUTS, param, true, sender);
+			}
+		}
+		LoadWhitelist();
+		bool isWhitelisted = IsWhitelisted(sender.GetPlainId());
+
+		Print(m_DebugPrefix + "Sending whitelist bool to client playerId=" + sender.GetPlainId() + " | value=" + isWhitelisted);
+		
+		Param2<bool, string> whitelistParam = new Param2<bool, string>(isWhitelisted, sender.GetPlainId());
+		
+		RPCSingleParam(null, MultiCharRPC.CLIENT_SHOW_MENU, whitelistParam, true, sender);
+	}
+
+	void SetSelectedSurvivor(string survivor) {
+		selectedSurvivor = survivor;
 	}
 
 	override void CheckDir() {
@@ -77,8 +103,14 @@ modded class DayZGame {
 
 	void ShowMenu() {
 		Print(m_DebugPrefix + "Showing character selection menu!");
+
+	/* 	if (!mcMainMenu) {
+			mcMainMenu = new CharSelect();
+			mcMainMenu.SetID(MultiCharMenu.MENU_SPAWN);
+		} */
 		GetUIManager().HideMenu(MultiCharMenu.MENU_WAIT);
 		GetUIManager().EnterScriptedMenu(MultiCharMenu.MENU_SPAWN, null);
+		//GetUIManager().EnterScriptedMenu(MultiCharMenu.MENU_CHAR_SELECT, null);
 	}
 
 	void ContinueSpawn() {
@@ -87,6 +119,9 @@ modded class DayZGame {
 
 		ref Param playerIndex = new Param1<int>(m_BtnSelected);
 		params.Insert(playerIndex);
+
+		ref Param survivor = new Param1<string>(selectedSurvivor);
+		params.Insert(survivor);
 
 		StoreLoginData(params);
 	}
@@ -105,7 +140,6 @@ modded class DayZGame {
 					CheckDir();
 
 				GetLoadouts(sender);
-				//RPCSingleParam( null, 9119111912, null, true, sender );
 				break;
 			}
 			case MultiCharRPC.CLIENT_GRAB_LOADOUTS:
@@ -118,33 +152,14 @@ modded class DayZGame {
 			}
 			case MultiCharRPC.CLIENT_SHOW_MENU:
 			{
-				Param1<bool> whitelistData
+				Param2<bool, string> whitelistData;
 				ctx.Read(whitelistData);
 
 				m_BSTIsWhitelisted = whitelistData.param1;
+				m_PlayerIdMenu = new PlayerIdMenu(whitelistData.param2);
 				ShowMenu();
 				break;
 			}
 		}
-	}
-
-	void GetLoadouts(PlayerIdentity sender) {
-		for (int i = 0; i < 6; i++) {
-			string dir = m_LoadoutDir + "\\" + sender.GetPlainId() + "\\" + i + m_BSTFileType;
-			if (FileExist(dir)) {
-				ref SavePlayer player;
-				JsonFileLoader<ref SavePlayer>.JsonLoadFile(dir, player);
-				loadoutParam param = new loadoutParam(player);
-				RPCSingleParam(null, MultiCharRPC.CLIENT_GRAB_LOADOUTS, param, true, sender);
-			}
-		}
-		LoadWhitelist();
-		bool isWhitelisted = IsWhitelisted(sender.GetPlainId());
-
-		Print(m_DebugPrefix + "Sending whitelist bool to client playerId=" + sender.GetPlainId() + " | value=" + isWhitelisted);
-		
-		Param1<bool> whitelistParam = new Param1<bool>(isWhitelisted);
-		
-		RPCSingleParam(null, MultiCharRPC.CLIENT_SHOW_MENU, whitelistParam, true, sender);
 	}
 }

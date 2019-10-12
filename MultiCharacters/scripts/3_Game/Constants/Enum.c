@@ -14,5 +14,6 @@ enum MultiCharMenu {
 	start = 1928371,
 
 	MENU_WAIT,
-	MENU_SPAWN
+	MENU_SPAWN,
+	MENU_CHAR_SELECT
 }

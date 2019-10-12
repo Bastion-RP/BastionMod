@@ -30,7 +30,7 @@ FrameWidgetClass rootFrame {
      style Colorable
      "no focus" 1
      "text color" 0.6078 0.6078 0.6078 1
-     switch toggle
+     switch once
     }
     TextWidgetClass txtSurvivor {
      inheritalpha 0
