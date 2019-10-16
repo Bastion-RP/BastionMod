@@ -1,45 +1,60 @@
 modded class DayZGame
 {
 	ref PlayerIdMenu m_PlayerIdMenu;
-	private ref array<string> m_BSTWhitelist;
-	private bool m_BSTIsWhitelisted;
+	private bool bstIsWhitelisted;
+	private bool hasRequestedWhitelisting;
 
 	void DayZGame() {
-		m_BSTIsWhitelisted = false;
+		bstIsWhitelisted = false;
+	}
+
+	override void StoreLoginData() {
+		// Make RPC call to server to grab whitelist information
+		if (!hasRequestedWhitelisting) {
+			RPCSingleParam(null, -19815223, null, true);
+			hasRequestedWhitelisting = true;
+		}
+		else if (bstIsWhitelisted) {
+			super.StoreLoginData();
+		}
 	}
 
 	void CheckDir() {
-		if (!FileExist(m_BSTProfileDir)) {
-			MakeDirectory(m_BSTProfileDir);
+		if (!FileExist(BSTWConst.bstProfileDir)) {
+			MakeDirectory(BSTWConst.bstProfileDir);
 		}
 
-        if (!FileExist(m_BSTWhitelistDir)) {
-			JsonFileLoader<array<string>>.JsonSaveFile(m_BSTWhitelistDir, new array<string>());
+        if (!FileExist(BSTWConst.bstWhitelistDir)) {
+			JsonFileLoader<array<string>>.JsonSaveFile(BSTWConst.bstWhitelistDir, new array<string>());
 		}
     }
 
 	void SetWhitelisted(bool whitelisted) {
-		m_BSTIsWhitelisted = whitelisted;
-	}
-
-	void LoadWhitelist() {
-		if(!IsServer()) return;
-
-		m_BSTWhitelist = new array<string>();
-		JsonFileLoader<array<string>>.JsonLoadFile(m_BSTWhitelistDir, m_BSTWhitelist);
+		if (whitelisted) {
+			bstIsWhitelisted = whitelisted
+			StoreLoginData();
+		} else {
+			DisconnectSessionForce();
+		}
 	}
 
 	bool IsWhitelisted() {
-		return m_BSTIsWhitelisted;
+		return bstIsWhitelisted;
 	}
-	
-	bool IsWhitelisted(string playerID) {
-		int index = m_BSTWhitelist.Find(playerID);
 
-		if (index == -1) {
-			return false;
-		} else {
-			return true;
+	override void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx) {
+		super.OnRPC(sender, target, rpc_type, ctx);
+
+		if (!IsServer()) {
+			switch (rpc_type) {
+				case BSTWRPC.RPC_CLIENT_SETWHITELIST:
+				{
+					Param1<bool> whitelistData;
+					ctx.Read(whitelistData);
+
+					SetWhitelisted(whitelistData.param1);
+				}
+			}
 		}
 	}
 }
