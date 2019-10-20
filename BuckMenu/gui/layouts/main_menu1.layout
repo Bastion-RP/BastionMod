@@ -1,0 +1,540 @@
+FrameWidgetClass main_menu_root {
+ visible 1
+ ignorepointer 1
+ position 0 0
+ size 1 1
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ priority 951
+ {
+  ImageWidgetClass bastion_logo {
+   visible 1
+   clipchildren 0
+   ignorepointer 1
+   position 0.02905 0.07649
+   size 250 56
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   scaled 0
+   fixaspect fixwidth
+   priority 2
+   image0 ""
+   imageTexture "{313CE7671B51C3D9}images/bastionlogo.edds"
+   mode additive
+   "src alpha" 1
+   stretch 0
+   "Transition width" 0.093
+  }
+  FrameWidgetClass character_rotation_frame {
+   position 100 0
+   size 0.3 1
+   halign center_ref
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   priority 2
+  }
+  ImageWidgetClass vignette {
+   visible 1
+   ignorepointer 0
+   color 0 0 0 0.7843
+   position 0 0
+   size 1.0006 1
+   halign center_ref
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   priority 1
+   imageTexture "{E6B3EF816E067499}Gui/textures/inventory_bgvignette.edds"
+   mode blend
+   "src alpha" 1
+   "no wrap" 1
+   stretch 1
+   filter 0
+   nocache 1
+   {
+    TextWidgetClass Welcome {
+     ignorepointer 1
+     position 67.3717 278.02298
+     size 0.11125 0.02976
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     text "Welcome Back,"
+     font "gui/fonts/Metron22"
+     "size to text h" 0
+     "size to text v" 0
+    }
+    TextWidgetClass Home {
+     ignorepointer 1
+     position 67.9472 242.888
+     size 0.08 0.036
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     style Bold
+     text "HOME"
+    }
+    TextWidgetClass PlayBastion {
+     clipchildren 0
+     ignorepointer 1
+     position 68.35001 340.12698
+     size 0.1192 0.0856
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     draggable 0
+     style Bold
+     text "PLAY BASTIONRP"
+     font "gui/fonts/Metron-Bold28"
+     "exact text" 0
+     text_proportion 0.1
+     "size to text h" 0
+    }
+    ButtonWidgetClass Settings {
+     clipchildren 0
+     position 449.87799 598.43207
+     size 0.114 0.037
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      TextWidgetClass SettingsText {
+       clipchildren 0
+       ignorepointer 1
+       position 100.789 8.31441
+       size 0.537 0.908
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "SETTINGS"
+       font "gui/fonts/Metron-Bold28"
+       "text halign" right
+      }
+     }
+    }
+    ButtonWidgetClass Game {
+     clipchildren 0
+     position 449.94601 644.01202
+     size 0.114 0.037
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      TextWidgetClass GameText {
+       clipchildren 0
+       ignorepointer 1
+       position 160.847 8.0144
+       size 57.3967 23.6549
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style Bold
+       text "GAME"
+       "text halign" right
+      }
+     }
+    }
+    ButtonWidgetClass Video {
+     clipchildren 0
+     position 449.88797 689.69098
+     size 0.114 0.037
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      TextWidgetClass VideoText {
+       clipchildren 0
+       ignorepointer 1
+       position 156.19901 8.6784
+       size 62.7087 24.9829
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style Bold
+       text "VIDEO"
+       "text halign" right
+      }
+     }
+    }
+    ButtonWidgetClass Sounds {
+     clipchildren 0
+     position 449.763 735.37
+     size 0.114 0.037
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      TextWidgetClass SoundsText {
+       clipchildren 0
+       ignorepointer 1
+       position 137.284 7.40956
+       size 82.228 24.2007
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style Bold
+       text "SOUNDS"
+       "text halign" right
+      }
+     }
+    }
+    ButtonWidgetClass Controls {
+     clipchildren 0
+     position 449.59 780.58502
+     size 0.114 0.037
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      TextWidgetClass ControlsText {
+       clipchildren 0
+       ignorepointer 1
+       position 114.87 11.5736
+       size 103.74 28.9669
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style Bold
+       text "CONTROLS"
+       "text halign" right
+      }
+     }
+    }
+    ButtonWidgetClass ExitGame {
+     clipchildren 0
+     position 449.65601 828.328
+     size 0.114 0.037
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      TextWidgetClass ExitGameText {
+       clipchildren 0
+       ignorepointer 1
+       position 88.29419 7.10156
+       size 129.56599 26.8691
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "EXIT GAME"
+       font "gui/fonts/Metron-Bold28"
+       "text halign" right
+      }
+     }
+    }
+    ImageWidgetClass NewsBox {
+     clipchildren 0
+     ignorepointer 1
+     position 63.8623 722.63
+     size 0.192 0.133
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     imageTexture "{633B51906BF65743}images/NewsBlock.edds"
+     stretch 1
+    }
+    ButtonWidgetClass viewall {
+     clipchildren 0
+     color 0.2039 0.2039 0.2039 1
+     position 407.57202 489.81
+     size 0.146 0.084
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     scaled 1
+     style Default
+     {
+      TextWidgetClass TextWidget1 {
+       clipchildren 0
+       ignorepointer 1
+       position 30.134 26.8
+       size 231.60001 33.9
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "VIEW ALL SERVERS"
+       font "gui/fonts/Metron-Bold28"
+      }
+     }
+    }
+    ButtonWidgetClass play {
+     clipchildren 0
+     color 0.2039 0.2039 0.2039 1
+     position 45.67 489.806
+     size 0.146 0.084
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      TextWidgetClass TextWidget0 {
+       clipchildren 0
+       ignorepointer 1
+       position 21.104 26.8049
+       size 228.31599 33.9
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "PLAY LAST SERVER"
+       font "gui/fonts/Metron-Bold28"
+      }
+     }
+    }
+    ButtonWidgetClass VisitForums {
+     clipchildren 0
+     color 0.2039 0.2039 0.2039 1
+     position 229.024 649.05402
+     size 0.106 0.065
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      TextWidgetClass Visitforums {
+       clipchildren 0
+       ignorepointer 1
+       position 28.8891 17.9889
+       size 193.12801 33.9
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "VISIT FORUMS"
+       font "gui/fonts/Metron-Bold28"
+       "size to text h" 1
+       "size to text v" 1
+      }
+     }
+    }
+    TextWidgetClass ForumsTXT {
+     clipchildren 0
+     ignorepointer 1
+     position 69.188 610.828
+     size 0.056 0.026
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     text "FORUMS"
+     font "gui/fonts/Metron-Bold28"
+    }
+    TextWidgetClass LinkedAccount {
+     clipchildren 0
+     ignorepointer 1
+     position 68.9737 649.15399
+     size 0.074 0.01907
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     scaled 1
+     text "Linked Account -"
+     font "gui/fonts/Metron16"
+    }
+    ButtonWidgetClass ChangeChar {
+     color 0.2039 0.2039 0.2039 1
+     position 1501.28992 494.09
+     size 0.146 0.084
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      TextWidgetClass TextWidget2 {
+       clipchildren 0
+       ignorepointer 1
+       position 17.1331 27.2089
+       size 0.897 0.374
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "CHANGE CHARACTER"
+       font "gui/fonts/Metron-Bold28"
+      }
+     }
+    }
+    ButtonWidgetClass ViewStats {
+     color 0.2039 0.2039 0.2039 1
+     position 1503.77991 608.73804
+     size 0.146 0.084
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      TextWidgetClass TextWidget3 {
+       clipchildren 0
+       ignorepointer 1
+       position 43.6931 28.8689
+       size 0.707 0.374
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "VIEW ALL STATS"
+       font "gui/fonts/Metron-Bold28"
+      }
+     }
+    }
+    TextWidgetClass FirstName {
+     clipchildren 0
+     ignorepointer 1
+     position 1443.34009 215.04399
+     size 0.071 0.05
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     text "Grisha "
+     font "gui/fonts/Metron48"
+    }
+    TextWidgetClass " LastName" {
+     clipchildren 0
+     ignorepointer 1
+     position 1638.08997 218.18401
+     size 0.088 0.046
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     text "Petrov"
+     font "gui/fonts/Metron-Bold48"
+    }
+    FrameWidgetClass StatsFrme {
+     ignorepointer 1
+     position 1400.44006 297.76602
+     size 0.25464 0.131
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      TextWidgetClass Location {
+       clipchildren 0
+       ignorepointer 1
+       position 5.84856 6.81573
+       size 0.201 0.164
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "Location"
+       "text halign" center
+      }
+      TextWidgetClass TextWidget4 {
+       ignorepointer 1
+       position 6.144 31.21
+       size 0.524 0.196
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "East End District"
+       font "gui/fonts/Metron-Bold22"
+      }
+      TextWidgetClass Playtime {
+       ignorepointer 1
+       position 262.74902 6.82
+       size 0.201 0.164
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "Playtime"
+       "text halign" center
+      }
+      TextWidgetClass PlaytimeTXT {
+       clipchildren 0
+       ignorepointer 1
+       position 262.75 31.21
+       size 0.329 0.192
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "86H 33M"
+       font "gui/fonts/Metron-Bold22"
+      }
+      TextWidgetClass Location0 {
+       clipchildren 0
+       ignorepointer 1
+       position -0.21001 79.6118
+       size 0.295 0.164
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "Ration Cards"
+       "text halign" center
+      }
+      TextWidgetClass Playtime0 {
+       clipchildren 0
+       ignorepointer 1
+       position 262.75 77.18999
+       size 0.29343 0.18917
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "Citizen Class"
+       "text halign" center
+      }
+      TextWidgetClass TextWidget5 {
+       ignorepointer 1
+       position 6.144 99.3
+       size 0.351 0.196
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "39"
+       font "gui/fonts/Metron-Bold22"
+      }
+      TextWidgetClass PlaytimeTXT0 {
+       ignorepointer 1
+       position 262.75 99.3
+       size 0.329 0.196
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "25"
+       font "gui/fonts/Metron-Bold22"
+      }
+     }
+    }
+   }
+  }
+ }
+}
