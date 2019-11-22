@@ -5,17 +5,17 @@ class BastionBankingMenu : UIScriptedMenu {
     protected ref ScrollWidget scroller;
     protected ref GridSpacerWidget outerGrid, activeGrid;
     protected ref array<ref Widget> arrayWidgets, arrayActiveGridWidgets;
-    protected ref array<string> previousEntry;
+    protected ref array<string> arrayPreviousEntry;
     protected ref map<string, string> mapCommands;
     protected PlayerBase player;
-    protected string userDir, password;
-    protected bool isLoggingIn, isRegistering;
-    protected int bankId;
+    protected string userDir, password, cmdUsed;
+    protected bool isLoggingIn, isRegistering, isConfirming, isConfirmed;
+    protected int bankId, inputAmount;
 
     override Widget Init() {
         arrayWidgets = new array<ref Widget>();
         arrayActiveGridWidgets = new array<ref Widget>();
-        previousEntry = new array<string>();
+        arrayPreviousEntry = new array<string>();
 
         wRoot = GetGame().GetWorkspace().CreateWidgets("BastionBanking\\gui\\layouts\\BastionCLI.layout");
         scroller = ScrollWidget.Cast(wRoot.FindAnyWidget("barScroll"));
@@ -48,7 +48,6 @@ class BastionBankingMenu : UIScriptedMenu {
                     password += boxText;
                     activeInputBox.SetText(string.Empty);
                 }
-                Print("ONCHANGE password=" + password);
             }
             return true;
         }
@@ -142,6 +141,16 @@ class BastionBankingMenu : UIScriptedMenu {
         }
     }
 
+    void SetConfirmation(string error) {
+        isConfirming = true;
+
+        CreateInputGrid(error);
+    }
+
+    void SetAmount(int amount) {
+        inputAmount = amount;
+    }
+
     private void CheckGridSize() {
         if (arrayActiveGridWidgets.Count() >= 100) {
             Print("Creating new grid");
@@ -152,6 +161,10 @@ class BastionBankingMenu : UIScriptedMenu {
     }
 
     void HandleEnterKey() {
+        string inputText = activeInputBox.GetText();
+        inputText.ToLower();
+        inputText.Trim();
+
         if (isLoggingIn || isRegistering) {
             if (password != string.Empty) {
                 if (isLoggingIn) {
@@ -172,11 +185,24 @@ class BastionBankingMenu : UIScriptedMenu {
             isLoggingIn = false;
             isRegistering = false;
             password = string.Empty;
-        } else {
-            if (activeInputBox.GetText() == string.Empty) {
+        } else if (isConfirming) {
+            if (inputText == "y" || inputText == "yes") {
+                //isConfirmed = true;
+                //isConfirming = false;
+
+                CommandHandler(cmdUsed + " " + inputAmount);
+            } else if (inputText == "n" || inputText == "no") {
+                isConfirming = false;
+
                 CreateInputGrid();
             } else {
-                CommandHandler(activeInputBox.GetText());
+                CreateInputGrid("Are you sure? (Y/N):");
+            }
+        } else {
+            if (inputText == string.Empty) {
+                CreateInputGrid();
+            } else {
+                CommandHandler(inputText);
             }
         }
         ScrollToBottom();
@@ -207,12 +233,11 @@ class BastionBankingMenu : UIScriptedMenu {
     void CommandHandler(string input) {
         ref array<string> splitInput = new array<string>();
         Param1<int> params;
-        string cmd;
-        int amount;
+        string cmd, amountStr;
 
+        arrayPreviousEntry.Insert(input);
         input.Split(" ", splitInput);
         cmd = splitInput[0];
-        cmd.ToLower();
 
         switch (cmd) {
             case "help":
@@ -236,39 +261,74 @@ class BastionBankingMenu : UIScriptedMenu {
                 }
             case "deposit":
                 {
-                    amount = splitInput[1].ToInt();
-                    if (amount <= 0) {
+                    amountStr = splitInput[1];
+                    inputAmount = amountStr.ToInt();
+
+                    if (amountStr == "all" || inputAmount > 0) {
+                        if (amountStr == "all") {
+                            inputAmount = -1
+                        }
+                        activeInputBox = null;
+                        auto paramsDeposit = new Param2<int, bool>(inputAmount, isConfirming);
+
+                        CreateTextGrid("Depositing Rations...", true);
+                        SetFocus(null);
+                        GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_DEPOSIT, paramsDeposit, true);
+
+                        if (isConfirming) {
+                            isConfirming = false;
+                        } else {
+                            cmdUsed = cmd;
+                        }
+                    } else {
                         CreateTextGrid("Invalid amount entered!", true);
                         CreateInputGrid();
-                    } else {
-                        CreateTextGrid("Depositing Rations...");
-                        SetFocus(null);
-                        activeInputBox = null;
-
-                        params = new Param1<int>(amount);
-                        GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_DEPOSIT, params, true);
                     }
                     break;
                 }
             case "withdraw":
                 {
-                    amount = splitInput[1].ToInt();
-                    if (amount <= 0) {
+                    inputAmount = splitInput[1].ToInt();
+
+                    if (inputAmount <= 0) {
                         CreateTextGrid("Invalid amount entered!", true);
                         CreateInputGrid();
                     } else {
-                        CreateTextGrid("Withdrawing Rations...");
+                        CreateTextGrid("Withdrawing Rations...", true);
                         SetFocus(null);
                         activeInputBox = null;
 
-                        params = new Param1<int>(amount);
+                        params = new Param1<int>(inputAmount);
                         GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_WITHDRAW, params, true);
+                    }
+                    break;
+                }
+            case "transfer":
+                {
+                    inputAmount = splitInput[1].ToInt();
+
+                    if (inputAmount <= 1) {
+                        CreateTextGrid("Invalid amount entered! Must be greater than 1!", true);
+                        CreateInputGrid();
+                    } else {
+                        activeInputBox = null;
+                        auto paramsTransfer = new Param2<int, bool>(inputAmount, isConfirming);
+
+                        CreateTextGrid("Transferring...", true)
+                        SetFocus(null);
+                        GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_TRANSFER, paramsTransfer, true);
+
+                        if (isConfirming) {
+                            isConfirming = false;
+                        } else {
+                            cmdUsed = cmd;
+                        }
                     }
                     break;
                 }
             case "balance":
                 {
-                    CreateTextGrid("Retrieving account balance...");
+                    CreateTextGrid("Retrieving account balance...", true);
                     SetFocus(null);
                     activeInputBox = null;
 
@@ -288,7 +348,7 @@ class BastionBankingMenu : UIScriptedMenu {
                 }
             case "logout":
                 {
-                    CreateTextGrid("Logging Out...");
+                    CreateTextGrid("Logging Out...", true);
                     SetFocus(null);
                     activeInputBox = null;
 

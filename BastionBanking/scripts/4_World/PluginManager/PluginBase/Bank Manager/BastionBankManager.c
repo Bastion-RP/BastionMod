@@ -19,7 +19,7 @@ class BastionBankManager : PluginBase {
         return arrayItems;
     }
 
-    bool CanDeposit(PlayerBase player, int amount, out ref array<ItemBase> outItems) {
+    bool CanDeposit(PlayerBase player, int amount, out ref array<ItemBase> outItems, out int outAmount) {
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return false; }
 
         ref array<ItemBase> arrayItems = GetMoneyInInventory(player);
@@ -29,6 +29,11 @@ class BastionBankManager : PluginBase {
 
             foreach (ItemBase item : arrayItems) {
                 itemCount += item.GetQuantity();
+            }
+            if (amount == -1) {
+                outAmount = itemCount;
+                outItems = arrayItems;
+                return true;
             }
             if (itemCount >= amount) {
                 outItems = arrayItems;

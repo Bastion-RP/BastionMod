@@ -1,12 +1,15 @@
 class BastionPlayerAccount {
-    string path;
-    int bankId;
-    int income;
+    private string path, jobPosition;
+    private int bankId;
 
-    void BastionPlayerAccount(string dir, int id, int i) {
+    void BastionPlayerAccount(string dir, int id,) {
         path = dir;
         bankId = id;
-        income = i;
+        jobPosition = "unemployed";
+    }
+
+    void SetJobPosition(string position) {
+        jobPosition = position;
     }
 
     string GetPath() {
@@ -17,7 +20,7 @@ class BastionPlayerAccount {
         return bankId;
     }
 
-    int GetIncome() {
-        return income;
+    string GetJobPosition() {
+        return jobPosition;
     }
 }

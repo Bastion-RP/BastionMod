@@ -2,18 +2,22 @@ class BastionAccountManager : PluginBase {
     // Don't store accounts in memory, load them when necessary.
     // Account username will be the account id
     // Password will be set by the user
-    private ref map<string, ref BastionBankAccount> mapAccountLogins;
+    private ref map<ref PlayerBase, ref BastionBankAccount> mapAccountLogins;
+    private ref map<string, int> mapJobWages;
     private ref BastionAccountTracker accountTracker;
 
     void BastionAccountManager() {
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
 
         accountTracker = new BastionAccountTracker();
-        mapAccountLogins = new map<string, ref BastionBankAccount>();
+        mapAccountLogins = new map<ref PlayerBase, ref BastionBankAccount>();
+        mapJobWages = new map<string, int>();
 
         GetDayZGame().Event_OnRPC.Insert(AccountManagerRPC);
         LoadTracker();
+        LoadWages();
         CheckDirectories();
+        GetGame().GameScript.Call(this, "LoginTimeoutLoop", null);
     }
     // REMEMBER:::::::::::------------------------------------------------------------------------------------------------------------------------
     // FOR PASSIVE INCOME::: CREATE AN INCOME LOOP ON PLAYERBASE ON ONCONNECT AND LOAD ADD MONEY THEN SAVE FILE
@@ -26,6 +30,8 @@ class BastionAccountManager : PluginBase {
     }
 
     void CheckDirectories() {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
+
         if (!FileExist(BBConst.profileDir)) {
             MakeDirectory(BBConst.profileDir);
         }
@@ -40,7 +46,22 @@ class BastionAccountManager : PluginBase {
         }
     }
 
+    void LoadWages() {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
+
+        if (!FileExist(BBConst.wagesDir)) {
+            mapJobWages.Insert("unemployed", 1);
+            mapJobWages.Insert("example1", 2);
+            mapJobWages.Insert("example2", 3);
+            JsonFileLoader<ref map<string, int>>.JsonSaveFile(BBConst.wagesDir, mapJobWages);
+        } else {
+            JsonFileLoader<ref map<string, int>>.JsonLoadFile(BBConst.wagesDir, mapJobWages);
+        }
+    }
+
     void LoadTracker() {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
+
         if (!FileExist(BBConst.trackerDir)) {
             accountTracker = new BastionAccountTracker();
             JsonFileLoader<ref BastionAccountTracker>.JsonSaveFile(BBConst.trackerDir, accountTracker);
@@ -74,7 +95,7 @@ class BastionAccountManager : PluginBase {
                     if (player) {
                         if (CanCreateNewAccount(player, bankId)) {
                             CreateAccount(player, password, bankId, bankAccount);
-                            Login(player.GetIdentity().GetPlainId(), bankAccount);
+                            Login(player, bankAccount);
 
                             type = "registersuccess";
                             error = bankAccount.GetId().ToString();
@@ -101,15 +122,15 @@ class BastionAccountManager : PluginBase {
                     password = dataLogin.param2;
 
                     if (player) {
-                        if (mapAccountLogins.Contains(player.GetIdentity().GetPlainId())) {
+                        if (mapAccountLogins.Contains(player)) {
                             type = "invalid";
                             error = ", you are already logged in!";
                         } else {
                             if (CanLogin(player, bankId, password, bankAccount)) {
-                                Login(player.GetIdentity().GetPlainId(), bankAccount);
-                                
+                                Login(player, bankAccount);
+
                                 type = "loginsuccess";
-                                error = "" + bankAccount.GetId() + "|" + bankAccount.GetFunds() + "|" + bankAccount.GetOverflowFunds();
+                                error = "" + bankAccount.GetId() + " " + bankAccount.GetFunds() + " " + bankAccount.GetOverflowFunds();
                             } else {
                                 type = "loginfail";
                                 error = "Invalid Password or AccountId";
@@ -125,7 +146,8 @@ class BastionAccountManager : PluginBase {
                     player = PlayerBase.Cast(target);
 
                     if (player) {
-                        if (CanLogout(player.GetIdentity().GetPlainId())) {
+                        if (CanLogout(player)) {
+                            Logout(player);
                             error = "Goodbye, ";
                         } else {
                             error = "You are not logged in!";
@@ -138,6 +160,37 @@ class BastionAccountManager : PluginBase {
         }
     }
 
+    void LoginTimeoutLoop() {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
+
+        ref array<BastionBankAccount> accountArray = new array<BastionBankAccount>();
+        PlayerBase localPlayer;
+        int accountTimeout;
+
+        while (true) {
+            accountArray = mapAccountLogins.GetValueArray();
+
+            foreach (BastionBankAccount account : accountArray) {
+                accountTimeout = account.GetTimeout();
+
+                if (accountTimeout <= 0) {
+                    localPlayer = mapAccountLogins.GetKeyByValue(account);
+
+                    if (localPlayer) {
+                        Logout(localPlayer);
+
+                        auto params = new Param2<string, string>("logintimeout", ", you have been logged out due to inactivity!");
+                        GetGame().RPCSingleParam(localPlayer, BSTBankRPC.RPC_CLIENT_ERROR, params, true, localPlayer.GetIdentity());
+                        delete account;
+                        continue;
+                    }
+                }
+                account.SetTimeout(accountTimeout - 1);
+            }
+            Sleep(1000);
+        }
+    }
+
     bool CanCreateNewAccount(PlayerBase player, out int bankId) {
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return false; }
 
@@ -145,29 +198,16 @@ class BastionAccountManager : PluginBase {
         string playerAccountDir;
         string playerId = player.GetIdentity().GetPlainId();
         string playerDir = BBConst.playerDir + "\\" + playerId;
+        ref BastionPlayerAccount playerAccount = player.GetBastionPlayerAccount();
 
-        if (FileExist(playerDir)) {
-            playerAccountDir = playerDir + "\\" + playerIndex + BBConst.fileType;
+        if (playerAccount) {
+            string accountDir = playerAccount.GetPath();
 
-            if (FileExist(playerAccountDir)) {
-                BastionPlayerAccount playerAccount;
-                string accountDir;
-
-                JsonFileLoader<BastionPlayerAccount>.JsonLoadFile(playerAccountDir, playerAccount);
-                accountDir = playerAccount.GetPath();
-
-                if (FileExist(accountDir)) {
-                    return false;
-                } else {
-                    bankId = playerAccount.GetId();
-                }
-                delete playerAccount;
-            } else {
-                bankId = (accountTracker.GetTotalAccounts() + 1);
+            if (!FileExist(accountDir)) {
+                bankId = playerAccount.GetId();
+                return true;
             }
-        } else {
-            MakeDirectory(playerDir);
-            bankId = (accountTracker.GetTotalAccounts() + 1);
+            return false;
         }
         bankId = (accountTracker.GetTotalAccounts() + 1);
         return true;
@@ -175,40 +215,32 @@ class BastionAccountManager : PluginBase {
 
     void CreateAccount(PlayerBase player, string password, int id, out ref BastionBankAccount account) {
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
-        // Find their playerId and player index. Load that file, check if an account exists. If exists, don't create an account
-        // if it doesn't, create account.
-        ref BastionBankAccount bankAccount;
-        BastionPlayerAccount playerAccount;
-        int playerIndex = player.GetIndex();
-        string bankAccountDir;
-        string playerId = player.GetIdentity().GetPlainId();
-        string playerDir = BBConst.playerDir + "\\" + playerId + "\\" + player.GetIndex() + BBConst.fileType;
 
-        bankAccountDir = BBConst.accountDir + "\\" + id + BBConst.fileType;
+        ref BastionBankAccount bankAccount;
+        ref BastionPlayerAccount playerAccount;
+        int playerIndex = player.GetIndex();
+        string bankAccountDir = BBConst.accountDir + "\\" + id + BBConst.fileType;
+        string playerId = player.GetIdentity().GetPlainId();
+        string playerDir = BBConst.playerDir + "\\" + playerId;
+        string playerAccountDir = playerDir + "\\" + player.GetIndex() + BBConst.fileType;
+
+        if (!FileExist(playerDir)) {
+            MakeDirectory(playerDir);
+        }
         bankAccount = new BastionBankAccount(id, playerId, password);
-        playerAccount = new BastionPlayerAccount(bankAccountDir, id, 1);
-        JsonFileLoader<ref BastionBankAccount>.JsonSaveFile(bankAccountDir, bankAccount);
+        playerAccount = new BastionPlayerAccount(bankAccountDir, id);
+        JsonFileLoader<BastionBankAccount>.JsonSaveFile(bankAccountDir, bankAccount);
         JsonFileLoader<BastionPlayerAccount>.JsonSaveFile(playerDir, playerAccount);
+
+        player.SetBastionPlayerAccount(playerAccount);
         accountTracker.AddAccount();
         account = bankAccount;
-
-        delete playerAccount;
     }
 
     bool CanLogin(PlayerBase player, int accountId, string password, out ref BastionBankAccount account) {
-        BastionPlayerAccount playerAccount;
-        ref BastionBankAccount bankAccount;
-        string playerAccountDir = BBConst.playerDir + "\\" + player.GetIdentity().GetPlainId() + "\\" + player.GetIndex() + BBConst.fileType;
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return false; }
 
-        if (accountId == -1) {
-            if (!FileExist(playerAccountDir)) {
-                return false;
-            }
-            JsonFileLoader<BastionPlayerAccount>.JsonLoadFile(playerAccountDir, playerAccount);
-            accountId = playerAccount.GetId();
-            delete playerAccount;
-        }
-        bankAccount = FindAccount(accountId);
+        ref BastionBankAccount bankAccount = FindAccount(player, accountId);
 
         if (bankAccount) {
             if (bankAccount.GetPassword() == password) {
@@ -219,45 +251,62 @@ class BastionAccountManager : PluginBase {
         return false;
     }
 
-    void Login(string playerId, ref BastionBankAccount account) {
+    void Login(ref PlayerBase player, ref BastionBankAccount account) {
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
 
-        account.SetTimeout(60);
-        mapAccountLogins.Insert(playerId, account);
+        ResetAccountTimeout(account);
+        mapAccountLogins.Insert(player, account);
     }
 
-    bool CanLogout(string playerId) {
-        // Remove object from map containing logged in accounts
-        // Send rpc to client confirming logout
+    bool CanLogout(ref PlayerBase player) {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return false; }
+
+        return mapAccountLogins.Contains(player);
+    }
+
+    void Logout(ref PlayerBase player) {
         ref BastionBankAccount account;
-        string error;
 
-        if (mapAccountLogins.Find(playerId, account)) {
+        if (mapAccountLogins.Find(player, account)) {
             delete account;
-            mapAccountLogins.Remove(playerId);
-            return true;
+            mapAccountLogins.Remove(player);
         }
-        return false;
     }
 
-    void ResetAccountTimeout(string playerId) {
-        ref BastionBankAccount account = GetLoggedInAccount(playerId);
+    void ResetAccountTimeout(ref BastionBankAccount account) {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
 
         if (account) {
-            account.SetTimeout(60);
+            account.SetTimeout(GetBBankConfig().GetLoginTimeout());
         }
     }
 
     void Deposit(ref BastionBankAccount account, int amount) {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
+
         string accountDir = BBConst.accountDir + "\\" + account.GetId() + BBConst.fileType;
+        int funds, fundsCap, difference;
 
         if (FileExist(accountDir)) {
-            account.Deposit(amount);
+            funds = account.GetFunds();
+            fundsCap = GetBBankConfig().GetFundsCap()
+
+            if ((funds + amount) > fundsCap) {
+                difference = fundsCap - funds;
+                amount -= difference;
+
+                account.Deposit(difference);
+                account.DepositOverflow(amount);
+            } else {
+                account.Deposit(amount);
+            }
             JsonFileLoader<ref BastionBankAccount>.JsonSaveFile(accountDir, account);
         }
     }
 
     void Withdraw(ref BastionBankAccount account, int amount) {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
+
         string accountDir = BBConst.accountDir + "\\" + account.GetId() + BBConst.fileType;
 
         if (FileExist(accountDir)) {
@@ -266,16 +315,89 @@ class BastionAccountManager : PluginBase {
         }
     }
 
-    // Combine this garbage into one function
+    void Transfer(ref BastionBankAccount account, int amount) {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
 
-    ref BastionBankAccount GetLoggedInAccount(string playerId) {
+        string accountDir = BBConst.accountDir + "\\" + account.GetId() + BBConst.fileType;
+        int transferAmount;
+
+        if (FileExist(accountDir)) {
+            transferAmount = Math.Round((amount * (1 - GetBBankConfig().GetTransferFee())));
+
+            account.WithdrawOverflow(amount);
+            account.Deposit(transferAmount);
+            JsonFileLoader<ref BastionBankAccount>.JsonSaveFile(accountDir, account);
+        }
+    }
+
+    int GetWageByPlayerBase(ref PlayerBase player) {
+        BastionPlayerAccount playerAccount = player.GetBastionPlayerAccount();
+        string playerAccountDir = BBConst.playerDir + "\\" + player.GetIdentity().GetPlainId() + "\\" + player.GetIndex() + BBConst.fileType;
+        string position;
+        int wage;
+
+        LoadWages();
+
+        if (playerAccount) {
+            position = playerAccount.GetJobPosition();
+            mapJobWages.Find(position, wage);
+        }
+        return wage;
+    }
+
+    ref BastionBankAccount FindAccount(ref PlayerBase player, int accountId = -1) {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return null; }
+
+        ref BastionBankAccount bankAccount;
+
+        bankAccount = GetLoggedInAccount(player);
+        if (bankAccount) {
+            return bankAccount;
+        }
+        if (accountId == -1) {
+            bankAccount = GetAccountByPlayerBase(player);
+            return bankAccount;
+        } else {
+            bankAccount = GetAccountById(accountId)
+        }
+        return bankAccount;
+    }
+
+    ref BastionBankAccount GetAccountByPlayerBase(ref PlayerBase player) {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return null; }
+
+        ref BastionPlayerAccount playerAccount = player.GetBastionPlayerAccount();
+        ref BastionBankAccount bankAccount;
+        int accountId;
+
+        if (playerAccount) {
+            accountId = playerAccount.GetId();
+            bankAccount = GetAccountById(accountId);
+        }
+        return bankAccount;
+    }
+
+    ref BastionBankAccount GetLoggedInAccount(ref PlayerBase player) {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return null; }
+
         ref BastionBankAccount account;
+        string accountDir;
 
-        mapAccountLogins.Find(playerId, account);
+        if (mapAccountLogins.Find(player, account)) {
+            accountDir = BBConst.accountDir + "\\" + account.GetId() + BBConst.fileType;
+
+            if (FileExist(accountDir)) {
+                JsonFileLoader<BastionBankAccount>.JsonLoadFile(accountDir, account);
+            } else {
+                Logout(player);
+            }
+        }
         return account;
     }
 
-    ref BastionBankAccount FindAccount(int accountId) {
+    ref BastionBankAccount GetAccountById(int accountId) {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return null; }
+
         ref BastionBankAccount account;
         string accountDir = BBConst.accountDir + "\\" + accountId + BBConst.fileType;
 
@@ -286,6 +408,8 @@ class BastionAccountManager : PluginBase {
     }
 
     ref BastionAccountTracker GetStatTracker() {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return null; }
+
         return accountTracker;
     }
 }

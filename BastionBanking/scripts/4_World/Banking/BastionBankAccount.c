@@ -13,8 +13,16 @@ class BastionBankAccount {
         funds += amount;
     }
 
+    void DepositOverflow(int amount) {
+        overflow += amount;
+    }
+
     void Withdraw(int amount) {
         funds -= amount;
+    }
+
+    void WithdrawOverflow(int amount) {
+        overflow -= amount;
     }
 
     void SetTimeout(int t) {
