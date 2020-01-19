@@ -104,9 +104,9 @@ class BastionCCTVMenu : UIScriptedMenu {
         input.OverrideAimChangeX( true, 0 );
         input.OverrideAimChangeY( true, 0 );
 
-        chromAber.SetParam( "PowerX", 0.007 );
-        chromAber.SetParam( "PowerY", 0.007 );
-        PPEffects.SetVignette( 0.06, -10, -10, -10 );
+        chromAber.SetParam( "PowerX", 0.008 );
+        chromAber.SetParam( "PowerY", 0.008 );
+        // PPEffects.SetVignette( 0.06, -100, -100, -100 );
 
         switchCamera(0);
     }
