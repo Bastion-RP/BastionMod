@@ -1,10 +1,8 @@
 class BastionCCTVCam : Camera {
-	private float currentZoom = 1.0;
     private float targetZoom = 1.0;
 
 	void BastionCCTVCam() {
 		SetEventMask( EntityEvent.FRAME );
-        currentZoom = GetCurrentFOV();
         targetZoom = GetCurrentFOV();
 	}
 
@@ -16,8 +14,8 @@ class BastionCCTVCam : Camera {
 
 		if ( mwheelup != 0.0 ) {
 			targetZoom -= mwheelup * 0.02;
-			if ( targetZoom < 0.01 )  {
-				targetZoom = 0.01;
+			if ( targetZoom < 0.2 )  {
+				targetZoom = 0.2;
 			}
 		}
 		if ( mwheeldown != 0.0 ) {
@@ -27,7 +25,6 @@ class BastionCCTVCam : Camera {
 			}
 		}
         if ( GetCurrentFOV() != targetZoom )  {
-            // currentZoom = Math.Lerp( currentZoom, targetZoom, timeSlice * 5.0 );
             SetFOV( targetZoom );
         }
 
