@@ -5,8 +5,17 @@ modded class MissionGameplay {
         m_bastionCCTV = new BastionCCTV();
     }
 
-    override UIScriptedMenu CreateScriptedMenu(int id) {
-        UIScriptedMenu menu = super.CreateScriptedMenu(id);
+    override void OnKeyPress( int key ) {
+        super.OnKeyPress( key );
+
+        BastionCCTVMenu menu = BastionCCTVMenu.Cast(GetUIManager().GetMenu());
+        if ( menu ) {
+            menu.OnKeyPress( key );
+        }
+    }
+
+    override UIScriptedMenu CreateScriptedMenu( int id ) {
+        UIScriptedMenu menu = super.CreateScriptedMenu( id );
         if ( !menu ) {
             switch ( id ) {
                 case BastionCCTVEnum.CCTVMenu:
