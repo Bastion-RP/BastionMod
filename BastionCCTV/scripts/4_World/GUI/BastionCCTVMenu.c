@@ -1,18 +1,10 @@
 class BastionCCTVMenu : UIScriptedMenu {
-    autoptr array<ref CCTVCamera> cameras;
     protected int currentCameraIndex = 0;
     Material chromAber;
 
     override Widget Init() {
         m_id = BastionCCTVEnum.CCTVMenu;
         chromAber = GetGame().GetWorld().GetMaterial("graphics/materials/postprocess/chromaber");
-
-        cameras = new array<ref CCTVCamera>();
-        // Should somehow get the locations from the server back to the clients probably
-        cameras.Insert( new CCTVCamera("5025.65 20 2363.44", 0, 0, 0, true) );
-        cameras.Insert( new CCTVCamera("6025.65 250 4363.44", 270, -20, 0, false) );
-        cameras.Insert( new CCTVCamera("6018.26 300 10256.4", 270, -10, 0, true) );
-
         layoutRoot = GetGame().GetWorkspace().CreateWidgets("BastionCCTV\\gui\\layouts\\BastionCCTV.layout");
         return layoutRoot;
     }
@@ -31,25 +23,25 @@ class BastionCCTVMenu : UIScriptedMenu {
         GetGame().GetUIManager().ShowUICursor( false );
         GetGame().GetInput().ResetGameFocus();
     }
+
     void RPCClose() {
         GetRPCManager().SendRPC( "BastionCCTV", "LeaveCCTV", new Param, true, NULL, GetPlayer() );
     }
 
     void switchCamera(int delta) {
-        CCTVCamera oldCamera = cameras.Get( currentCameraIndex );
+        int cameraCount = BastionCCTV.m_cameras.Count();
+        if (cameraCount == 0) {
+            RPCClose();
+            GetGame().GetUIManager().HideScriptedMenu( this );
+        }
         int newIndex = currentCameraIndex + delta;
         if (newIndex < 0) {
-            newIndex = cameras.Count() + newIndex;
+            newIndex = cameraCount + newIndex;
         }
-        currentCameraIndex = newIndex % cameras.Count();
-        CCTVCamera camera = cameras.Get( currentCameraIndex );
+        currentCameraIndex = newIndex % cameraCount;
+        CCTVCamera camera = BastionCCTV.m_cameras.Get( currentCameraIndex );
 
-        vector direction = vector.Zero;
-        direction[0] = camera.GetStartingAngle();
-        direction[1] = camera.GetPitch();
-        direction[2] = camera.GetRoll();
-
-		GetRPCManager().SendRPC( "BastionCCTV", "SwitchCCTV", new Param2<vector, vector>( camera.GetPosition(), direction ), true, NULL, GetPlayer() );
+		GetRPCManager().SendRPC( "BastionCCTV", "SwitchCCTV", new Param2<vector, vector>( camera.GetPosition(), camera.GetDirection() ), true, NULL, GetPlayer() );
 
         if ( camera.GetCanRotate() ) {
             EnableControls();
@@ -106,7 +98,6 @@ class BastionCCTVMenu : UIScriptedMenu {
 
         chromAber.SetParam( "PowerX", 0.008 );
         chromAber.SetParam( "PowerY", 0.008 );
-        // PPEffects.SetVignette( 0.06, -100, -100, -100 );
 
         switchCamera(0);
     }

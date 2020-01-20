@@ -2,12 +2,35 @@ class BastionCCTV
 {
     Camera m_camera;
 	autoptr TStringVectorMap m_CCTVUsers = new TStringVectorMap;
+    static autoptr array<ref CCTVCamera> m_cameras;
 
     void BastionCCTV() {
+        m_cameras = new array<ref CCTVCamera>();
+
         GetRPCManager().AddRPC( "BastionCCTV", "EnterCCTV",              this, SingeplayerExecutionType.Client );
         GetRPCManager().AddRPC( "BastionCCTV", "LeaveCCTV",              this, SingeplayerExecutionType.Client );
         GetRPCManager().AddRPC( "BastionCCTV", "SwitchCCTV",             this, SingeplayerExecutionType.Client );
         GetRPCManager().AddRPC( "BastionCCTV", "PlayerToCameraPosition", this, SingeplayerExecutionType.Client );
+        GetRPCManager().AddRPC( "BastionCCTV", "ReceiveCameraData",      this, SingeplayerExecutionType.Client );
+    }
+
+    static void AddCamera( vector position, int yaw, int pitch, int roll, bool canRotate ) {
+        m_cameras.Insert( new CCTVCamera( position, yaw, pitch, roll, canRotate ) );
+    }
+
+    void ReceiveCameraData( CallType type, ref ParamsReadContext ctx, ref PlayerIdentity sender, ref Object target ) {
+        Param5<vector, int, int, int, bool> data;
+        if ( !ctx.Read( data ) ) return;
+
+        if ( type == CallType.Client ) {
+            vector position = data.param1;
+            int yaw = data.param2;
+            int pitch = data.param3;
+            int roll = data.param4;
+            bool canRotate = data.param5;
+
+            AddCamera( position, yaw, pitch, roll, canRotate );
+        }
     }
 
 	void LeaveCCTV( CallType type, ref ParamsReadContext ctx, ref PlayerIdentity sender, ref Object target ) {
