@@ -17,6 +17,10 @@ modded class MainMenu
 	protected TextWidget 	m_TimeSurvivedValue;
 	protected TextWidget  m_CitizenClass;
 	protected TextWidget  m_NewsButtonText;
+	protected TextWidget  m_NoUIDWarning;
+	protected TextWidget  m_RationCardsValue;
+	protected TextWidget  m_LastServer;
+	protected TextWidget  m_LocationValue;
 
 	protected ImageWidget m_logoWidget;
 	protected ImageWidget m_newsWidget;
@@ -26,6 +30,8 @@ modded class MainMenu
   protected ref PlayerData									 m_PlayerData;
   protected autoptr array<ref CharacterData> m_Characters;
 	protected ref NewsData 										 m_NewsData;
+	protected ref StoredData									 m_StoredData;
+	protected bool														 m_hasStoredData;
 
 	override Widget Init()
  	{
@@ -57,6 +63,13 @@ modded class MainMenu
     m_TimeSurvivedValue  			= layoutRoot.FindAnyWidget( "PlaytimeTXT" );
 		m_CitizenClass						= layoutRoot.FindAnyWidget( "CitizenClassValue" );
 		m_NewsButtonText					= layoutRoot.FindAnyWidget( "NewsButtonText" );
+		m_NoUIDWarning					  = layoutRoot.FindAnyWidget( "NoUIDWarning" );
+		m_RationCardsValue				= layoutRoot.FindAnyWidget( "RationCardsValue" );
+		m_LastServer							= layoutRoot.FindAnyWidget( "LastServer" );
+		m_LocationValue						= layoutRoot.FindAnyWidget( "LocationValue" );
+
+		m_hasStoredData = LoadStoredData();
+		m_NoUIDWarning.Show( !m_hasStoredData );
 
  		if( m_ScenePC )
  		{
@@ -86,6 +99,14 @@ modded class MainMenu
 */
  		return layoutRoot;
  	}
+
+	bool LoadStoredData()
+	{
+		// TODO: Load saved file here
+		m_StoredData = new StoredData("76561198115443414", "BKG-023 Korolgrad", 123, "BastionRP | DayZ Roleplay | S1");
+
+		return true;
+	}
 
   CURLCore FetchCurlCore()
 	{
@@ -119,8 +140,10 @@ modded class MainMenu
 */
 		m_NewsData = new NewsData("SITREP 009 | 2/14/2020 | Surveillance", "https://bastionrp.com/forums/topic/486-sitrep-009-2142020-surveillance/");
 
+		if (!m_hasStoredData) return false;
+
 		// TODO: Get this from a file which we save when on a server
-		string steamId = "76561198115443414";
+		string steamId = m_StoredData.GetSteamId();
 		Print( "GET " + apiBase + "characters.php?steam_id=" + steamId );
 
 		string_data = api.GET_now( "characters.php?steam_id=" + steamId );
@@ -147,13 +170,25 @@ modded class MainMenu
 	{
 		Print("###### Loading Character Details From API ######");
 
-		if (!LoadAPIData()) return;
+		if (!LoadAPIData()) {
+			m_FirstName.SetText( "" );
+			m_LastName.SetText( "" );
+			m_RationCardsValue.SetText( "N/A" );
+			m_CitizenClass.SetText( "N/A" );
+			m_LocationValue.SetText( "N/A" );
+			m_TimeSurvivedValue.SetText( "N/A" );
+			return;
+		}
 
 		m_NewsButtonText.SetText( m_NewsData.GetTitle() );
 
 		auto player_name = m_PlayerData.GetName();
 		m_Welcome.SetText( "Welcome back, " + player_name + "!" );
 		m_ForumsAccount.SetText( "Linked account - " + player_name );
+		m_ForumsAccount.SetText( "Linked account - " + player_name );
+		m_RationCardsValue.SetText( "" + m_StoredData.GetRations() );
+		m_LastServer.SetText( m_StoredData.GetLastServer() );
+		m_LocationValue.SetText( m_StoredData.GetLocation() );
 
 		if (m_Characters && m_Characters.Count() > 0) {
 			auto firstChar = m_Characters.Get(0);
