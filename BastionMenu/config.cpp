@@ -1,6 +1,6 @@
 class CfgPatches
 {
-	class Menu
+	class BastionMenu
 	{
 		units[]={};
 		weapons[]={};
@@ -14,7 +14,7 @@ class CfgPatches
 
 class CfgMods
 {
-	class Menu
+	class BastionMenu
 	{
 		dir = "BastionMenu";
 		picture = "";
@@ -23,7 +23,7 @@ class CfgMods
 		hidePicture = 1;
 		name = "BastionRP Menu";
 		credits = "0";
-		author = "Buckeyes";
+		author = "Buckeyes & Kerkkoh";
 		authorID = "0"; 
 		version = "1.0"; 
 		extra = 0;
@@ -34,12 +34,12 @@ class CfgMods
 			class gameScriptModule
 			{
 				value = "";
-				files[] = {"Menu/scripts/3_Game"};
+				files[] = {"BastionMenu/scripts/3_Game"};
 			};
 			class missionScriptModule
 			{
 				value = "";
-				files[] = {"Menu/scripts/5_Mission"};
+				files[] = {"BastionMenu/scripts/5_Mission"};
 			};
 		};
 	};

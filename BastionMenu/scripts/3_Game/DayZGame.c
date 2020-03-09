@@ -1,10 +1,10 @@
-const string backgroundPath = "Menu/gui/images/bastion_background.edds";
-const string maskPath = "Menu/gui/images/bastion_backgroundmask.edds";
-const string logoPath = "Menu/gui/images/bastionlogo.edds";
+const string backgroundPath = "BastionMenu/gui/images/bastion_background.edds";
+const string maskPath = "BastionMenu/gui/images/bastion_backgroundmask.edds";
+const string logoPath = "BastionMenu/gui/images/bastionlogo.edds";
 
 
 modded class LoadingScreen
-
+{
 	void LoadingScreen(DayZGame game) 
 	{
 		m_ImageBackground.LoadImageFile(0, backgroundPath);
@@ -16,11 +16,13 @@ modded class LoadingScreen
 
 		m_ImageLogoCorner.SetSize(380, 100);
 		m_ImageLogoMid.SetSize(380, 100);
-		
+
+		m_ModdedWarning.Show( false );
+
 		ProgressAsync.SetUserData(m_ImageBackground);
 		ProgressAsync.SetUserData(m_ImageLogoCorner);
 	}
-
+}
 modded class LoginQueueBase {
 	
 	override Widget Init() {
