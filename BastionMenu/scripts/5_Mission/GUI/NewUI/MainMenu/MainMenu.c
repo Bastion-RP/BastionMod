@@ -128,17 +128,16 @@ modded class MainMenu
 		CURLContext api = curlCore.GetCURLContext(apiBase);
 		JsonSerializer js = new JsonSerializer();
 
-/*
-		TODO: Fetch latest announcement here
-
-		string_data = api.GET_now( "announcements.php" );
+		Print( "GET " + apiBase + "forum.php?last_post=24" );
+		string_data = api.GET_now( "forum.php?last_post=24" );
 		ok = js.ReadFromString( m_NewsData, string_data, error );
 		if (!ok) {
 			Print(error);
 			return false;
 		}
-*/
-		m_NewsData = new NewsData("SITREP 009 | 2/14/2020 | Surveillance", "https://bastionrp.com/forums/topic/486-sitrep-009-2142020-surveillance/");
+
+		// Print(m_NewsData.GetTitle());
+		// Print(m_NewsData.GetLink());
 
 		if (!m_hasStoredData) return false;
 
@@ -155,8 +154,9 @@ modded class MainMenu
 
 		auto player_id = m_PlayerData.GetId();
 		
-		Print( "GET " + apiBase + "https://bastionrp.com/api/characters.php?player_id=" + player_id );
+		Print( "GET " + apiBase + "characters.php?player_id=" + player_id );
 		string_data = api.GET_now( "characters.php?player_id=" + player_id );
+		Print(string_data);
 		ok = js.ReadFromString( m_Characters, string_data, error );
 		if (!ok) {
 			Print(error);
@@ -191,10 +191,16 @@ modded class MainMenu
 		m_LocationValue.SetText( m_StoredData.GetLocation() );
 
 		if (m_Characters && m_Characters.Count() > 0) {
-			auto firstChar = m_Characters.Get(0);
-			m_FirstName.SetText( firstChar.GetFirstName() );
-			m_LastName.SetText( firstChar.GetLastName() );
-			m_CitizenClass.SetText( firstChar.GetCitizenClass() );
+			auto activeChar = m_Characters.Get(0);
+			foreach (auto candidate : m_Characters) {
+				if (candidate.GetActive()) {
+					activeChar = candidate;
+					break;
+				}
+			}
+			m_FirstName.SetText( activeChar.GetFirstName() );
+			m_LastName.SetText( activeChar.GetLastName() );
+			m_CitizenClass.SetText( activeChar.GetCitizenClass() );
 		}
 
 		Print("###### Loaded Character Data From API ######");
@@ -222,6 +228,7 @@ modded class MainMenu
 			else if ( w == m_NewsButton )
 			{
 				string link = m_NewsData.GetLink();
+				Print(link);
 				if (!link) {
 					link = "https://bastionrp.com/forums/forum/24-announcements/";
 				}
