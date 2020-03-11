@@ -11,26 +11,6 @@ FrameWidgetClass main_menu_root {
  vexactsize 0
  priority 951
  {
-  ImageWidgetClass bastion_logo {
-   visible 1
-   clipchildren 0
-   ignorepointer 1
-   position 0.029 0.0765
-   size 250 56
-   hexactpos 0
-   vexactpos 0
-   hexactsize 1
-   vexactsize 1
-   scaled 0
-   fixaspect fixwidth
-   priority 2
-   image0 ""
-   imageTexture "{180DA68312A30F70}BastionMenu/gui/images/bastionlogo.edds"
-   mode blend
-   "src alpha" 1
-   stretch 0
-   "Transition width" 0.093
-  }
   FrameWidgetClass character_rotation_frame {
    position 134.48799 0
    size 0.32153 1
@@ -87,7 +67,7 @@ FrameWidgetClass main_menu_root {
         TextWidgetClass TextWidget2 {
          clipchildren 0
          ignorepointer 1
-         size 0.568 0.5295
+         size 0.568 0.6495
          halign center_ref
          valign center_ref
          hexactpos 0
@@ -126,7 +106,7 @@ FrameWidgetClass main_menu_root {
         TextWidgetClass ViewStatsTXT {
          clipchildren 0
          ignorepointer 1
-         size 0.448 0.54415
+         size 0.448 0.6542
          halign center_ref
          valign center_ref
          hexactpos 0
@@ -145,8 +125,8 @@ FrameWidgetClass main_menu_root {
     FrameWidgetClass StatsFrme {
      visible 1
      ignorepointer 1
-     position 70 196.34
-     size 0.23 0.24
+     position 90.80801 196.34
+     size 0.21916 0.24
      halign right_ref
      hexactpos 1
      vexactpos 1
@@ -479,7 +459,7 @@ FrameWidgetClass main_menu_root {
        clipchildren 0
        ignorepointer 1
        position 0.01 0.02
-       size 0.248 0.1
+       size 0.248 0.14
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -601,7 +581,7 @@ FrameWidgetClass main_menu_root {
        clipchildren 0
        ignorepointer 1
        position 0.01 0.32367
-       size 0.248 0.13927
+       size 0.248 0.14
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -794,6 +774,38 @@ FrameWidgetClass main_menu_root {
      text "To see stats and account details, please connect to our servers!"
      "size to text h" 0
      "size to text v" 0
+    }
+    FrameWidgetClass LogoFrame {
+     ignorepointer 1
+     position 70 81.5761
+     size 0.37 0.1023
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     {
+      ImageWidgetClass bastion_logo {
+       visible 1
+       clipchildren 0
+       ignorepointer 1
+       position 0.01 0.06
+       size 2.273 0.579
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       scaled 0
+       fixaspect fixwidth
+       priority 2
+       image0 ""
+       imageTexture "{180DA68312A30F70}BastionMenu/gui/images/bastionlogo.edds"
+       mode blend
+       "src alpha" 1
+       "no wrap" 0
+       stretch 1
+       "Transition width" 0.093
+      }
+     }
     }
    }
   }
