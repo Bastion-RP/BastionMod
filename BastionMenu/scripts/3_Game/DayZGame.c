@@ -39,6 +39,7 @@ modded class LoginQueueBase {
 }
 modded class LoginTimeBase {
 	
+	// TODO: Redo this, it's throwing an error on loading img file (null pointer)
 	override Widget Init() {
 		Widget w = super.Init();
 		ImageWidget imageWidgetBackground = ImageWidget.Cast( layoutRoot.FindAnyWidget("Background") );

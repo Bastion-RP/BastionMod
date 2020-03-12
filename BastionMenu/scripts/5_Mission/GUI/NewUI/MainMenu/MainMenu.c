@@ -74,6 +74,8 @@ modded class MainMenu
  		{
  			m_ScenePC.ResetIntroCamera();
 			SetCharacterDetails();
+			if ( m_NewsData )
+				m_NewsButtonText.SetText( m_NewsData.GetTitle() );
     }
 
  		GetGame().GetUIManager().ScreenFadeOut(0);
@@ -94,8 +96,7 @@ modded class MainMenu
 
 	bool LoadStoredData()
 	{
-		// TODO: Load saved file here
-		StoredDataHook storedDataHook = MissionGameplay.Cast( GetGame().GetMission() ).m_StoredDataHook;
+		StoredDataHook storedDataHook = MissionGameplay.GetStoredDataHook();
 		return storedDataHook.LoadData();
 	}
 
@@ -129,9 +130,8 @@ modded class MainMenu
 
 		if (!m_hasStoredData) return false;
 
-		StoredData storedData = MissionGameplay.Cast(GetGame().GetMission()).m_StoredDataHook.m_storedData;
+		StoredData storedData = MissionGameplay.GetStoredDataHook().m_storedData;
 
-		// TODO: Get this from a file which we save when on a server
 		string steamId = storedData.GetSteamId();
 		Print( "GET " + apiBase + "characters.php?steam_id=" + steamId );
 
@@ -166,20 +166,19 @@ modded class MainMenu
 			m_RationCardsValue.SetText( "N/A" );
 			m_CitizenClass.SetText( "N/A" );
 			m_LocationValue.SetText( "N/A" );
-			m_TimeSurvivedValue.SetText( "N/A" );
+			m_LastServer.SetText( "No last server on record" );
+			m_Play.Enable( false );
 			return;
 		}
 
-		m_NewsButtonText.SetText( m_NewsData.GetTitle() );
-
-		auto storedData = GetGame().GetMission().m_StoredDataHook.m_storedData;
+		auto storedData = MissionGameplay.GetStoredDataHook().m_storedData;
 
 		auto player_name = m_PlayerData.GetName();
 		m_Welcome.SetText( "Welcome back, " + player_name + "!" );
 		m_ForumsAccount.SetText( "Linked account - " + player_name );
 		m_RationCardsValue.SetText( "" + storedData.GetRations() );
-		m_LastServer.SetText( storedData.GetLastServer() );
 		m_LocationValue.SetText( storedData.GetLocation() );
+		m_LastServer.SetText( storedData.GetLastServer() );
 
 		if (m_Characters && m_Characters.Count() > 0) {
 			auto activeChar = m_Characters.Get(0);

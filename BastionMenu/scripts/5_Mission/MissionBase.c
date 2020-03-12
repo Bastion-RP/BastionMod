@@ -1,5 +1,13 @@
 modded class MissionGameplay {
-  private autoptr StoredDataHook m_StoredDataHook;
+  static ref StoredDataHook m_StoredDataHook;
+
+  static ref StoredDataHook GetStoredDataHook()
+  {
+    if ( !m_StoredDataHook )
+      m_StoredDataHook = new StoredDataHook();
+
+    return m_StoredDataHook;
+  }
 
   void MissionGameplay() {
     m_StoredDataHook = new StoredDataHook();
@@ -11,24 +19,27 @@ modded class MissionServer {
 
   void StoredDataToClient( PlayerBase player )
   {
-    BastionBankAccount account = GetBankAccountManager().FindAccount(player);
-    
+    // TODO: Test with a player that actually has a bank account
+    BastionAccountManager manager = GetBankAccountManager();
+
     int balance = 0;
-    if (account)
-      balance = account.GetFunds();
+    if (manager) {
+      BastionBankAccount account = manager.FindAccount(player);
+      if (account)
+        balance = account.GetFunds();
+    }
+
+    string steam = player.GetIdentity().GetPlainId();
+
+    // TODO: Ask if this is ok or if we should try something else
+    string serverName = "BastionRP | S1";
+    if (IsCLIParam("serverName"))
+      GetCLIParam("serverName", serverName)
     
-    Print(account);
-    Print(balance);
-
-    auto data = new Param2<string, int>( player.GetIdentity().GetPlainId(), balance );
-    GetRPCManager().SendRPC( "BastionMenu", "ReceiveStoredData", data, true, identity );
+    auto data = new Param3<int, string, string>( balance, steam, serverName );
+    GetRPCManager().SendRPC( "BastionMenu", "ReceiveStoredData", data, true, player.GetIdentity() );
   }
 
-	override void InvokeOnDisconnect( PlayerBase player )
-	{
-    StoredDataToClient( player );
-    super.InvokeOnDisconnect( player );    
-  }
   override void InvokeOnConnect( PlayerBase player, PlayerIdentity identity ) {
     super.InvokeOnConnect( player, identity );
     StoredDataToClient( player );
