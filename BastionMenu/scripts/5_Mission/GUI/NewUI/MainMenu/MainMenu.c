@@ -30,7 +30,6 @@ modded class MainMenu
   protected ref PlayerData									 m_PlayerData;
   protected autoptr array<ref CharacterData> m_Characters;
 	protected ref NewsData 										 m_NewsData;
-	protected ref StoredData									 m_StoredData;
 	protected bool														 m_hasStoredData;
 
 	override Widget Init()
@@ -90,22 +89,14 @@ modded class MainMenu
 
 		Class.CastTo(m_newsWidget, layoutRoot.FindAnyWidget("NewsBox"));
 		m_newsWidget.LoadImageFile( 0, "BastionMenu/gui/images/009Block.edds" );
-/*
-		Class.CastTo(m_playWidget, layoutRoot.FindAnyWidget("PlayLastIMG"));
-		m_playWidget.LoadImageFile( 0, "BastionMenu/gui/images/PlayLastServer.edds" );
-
-		Class.CastTo(m_viewWidget, layoutRoot.FindAnyWidget("ViewAllIMG"));
-		m_viewWidget.LoadImageFile( 0, "BastionMenu/gui/images/ViewAllServers.edds" );
-*/
  		return layoutRoot;
  	}
 
 	bool LoadStoredData()
 	{
 		// TODO: Load saved file here
-		m_StoredData = new StoredData("76561198115443414", "BKG-023 Korolgrad", 123, "BastionRP | DayZ Roleplay | S1");
-
-		return true;
+		StoredDataHook storedDataHook = MissionGameplay.Cast( GetGame().GetMission() ).m_StoredDataHook;
+		return storedDataHook.LoadData();
 	}
 
   CURLCore FetchCurlCore()
@@ -136,13 +127,12 @@ modded class MainMenu
 			return false;
 		}
 
-		// Print(m_NewsData.GetTitle());
-		// Print(m_NewsData.GetLink());
-
 		if (!m_hasStoredData) return false;
 
+		StoredData storedData = MissionGameplay.Cast(GetGame().GetMission()).m_StoredDataHook.m_storedData;
+
 		// TODO: Get this from a file which we save when on a server
-		string steamId = m_StoredData.GetSteamId();
+		string steamId = storedData.GetSteamId();
 		Print( "GET " + apiBase + "characters.php?steam_id=" + steamId );
 
 		string_data = api.GET_now( "characters.php?steam_id=" + steamId );
@@ -152,7 +142,7 @@ modded class MainMenu
 			return false;
 		}
 
-		auto player_id = m_PlayerData.GetId();
+		string player_id = m_PlayerData.GetId();
 		
 		Print( "GET " + apiBase + "characters.php?player_id=" + player_id );
 		string_data = api.GET_now( "characters.php?player_id=" + player_id );
@@ -182,13 +172,14 @@ modded class MainMenu
 
 		m_NewsButtonText.SetText( m_NewsData.GetTitle() );
 
+		auto storedData = GetGame().GetMission().m_StoredDataHook.m_storedData;
+
 		auto player_name = m_PlayerData.GetName();
 		m_Welcome.SetText( "Welcome back, " + player_name + "!" );
 		m_ForumsAccount.SetText( "Linked account - " + player_name );
-		m_ForumsAccount.SetText( "Linked account - " + player_name );
-		m_RationCardsValue.SetText( "" + m_StoredData.GetRations() );
-		m_LastServer.SetText( m_StoredData.GetLastServer() );
-		m_LocationValue.SetText( m_StoredData.GetLocation() );
+		m_RationCardsValue.SetText( "" + storedData.GetRations() );
+		m_LastServer.SetText( storedData.GetLastServer() );
+		m_LocationValue.SetText( storedData.GetLocation() );
 
 		if (m_Characters && m_Characters.Count() > 0) {
 			auto activeChar = m_Characters.Get(0);
