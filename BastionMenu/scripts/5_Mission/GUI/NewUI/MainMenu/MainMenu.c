@@ -21,6 +21,7 @@ modded class MainMenu
 	protected TextWidget  m_RationCardsValue;
 	protected TextWidget  m_LastServer;
 	protected TextWidget  m_LocationValue;
+	protected TextWidget  m_AllServers;
 
 	protected ImageWidget m_logoWidget;
 	protected ImageWidget m_newsWidget;
@@ -66,6 +67,7 @@ modded class MainMenu
 		m_RationCardsValue				= layoutRoot.FindAnyWidget( "RationCardsValue" );
 		m_LastServer							= layoutRoot.FindAnyWidget( "LastServer" );
 		m_LocationValue						= layoutRoot.FindAnyWidget( "LocationValue" );
+		m_AllServers							= layoutRoot.FindAnyWidget( "AllServers" );
 
 		m_hasStoredData = LoadStoredData();
 		m_NoUIDWarning.Show( !m_hasStoredData );
@@ -160,6 +162,9 @@ modded class MainMenu
 	{
 		Print("###### Loading Character Details From API ######");
 
+		// TODO: Find all servers with BastionRP in their name and show count here
+		m_AllServers.SetText( "1 BastionRP Server Online" );
+
 		if (!LoadAPIData()) {
 			m_FirstName.SetText( "" );
 			m_LastName.SetText( "" );
@@ -250,7 +255,7 @@ modded class MainMenu
         OpenReturnSettings().SkipTabs(3);
 				return true;
 			}
-			else if( w == m_Play )
+			else if( w == m_Play && m_hasStoredData )
 			{
 				m_LastFocusedButton = m_Play;
 				Play();

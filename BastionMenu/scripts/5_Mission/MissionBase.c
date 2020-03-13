@@ -31,7 +31,6 @@ modded class MissionServer {
 
     string steam = player.GetIdentity().GetPlainId();
 
-    // TODO: Ask if this is ok or if we should try something else
     string serverName = "BastionRP | S1";
     if (IsCLIParam("serverName"))
       GetCLIParam("serverName", serverName)
