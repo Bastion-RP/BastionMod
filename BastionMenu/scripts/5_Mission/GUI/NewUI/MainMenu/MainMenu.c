@@ -28,7 +28,7 @@ modded class MainMenu
 	protected ImageWidget	m_viewWidget;
 	protected ImageWidget	m_playWidget;
 
-  protected ref PlayerData									 m_PlayerData;
+  protected ref MenuPlayerData							 m_PlayerData;
   protected autoptr array<ref CharacterData> m_Characters;
 	protected ref NewsData 										 m_NewsData;
 	protected bool														 m_hasStoredData;
@@ -54,7 +54,7 @@ modded class MainMenu
  		m_ScenePC						 			= m_Mission.GetIntroScenePC();
 
 		m_Stats						   			= new MainMenuStats( layoutRoot.FindAnyWidget( "StatsFrme" ) );
-    m_PlayerData         			= new PlayerData;
+    m_PlayerData         			= new MenuPlayerData;
 
 		m_FirstName					 			= layoutRoot.FindAnyWidget( "FirstName" );
 		m_LastName					 			= layoutRoot.FindAnyWidget( "LastName" );
