@@ -5,9 +5,10 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = {};
+		requiredAddons[] = {"BastionBanking"};
 	};
 };
+
 class CfgMods
 {
 	class BastionRation
@@ -43,5 +44,24 @@ class CfgMods
 				files[] = {"BastionRation/scripts/5_Mission"};
 			};
 		};
+	};
+};
+
+class CfgVehicles
+{	
+	class Inventory_Base;
+
+	class BST_VendingMachine: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Vending Machine";
+		descriptionShort = "Vending Machine";
+		model = "\DZ\structures\furniture\Eletrical_appliances\vending_machine\vending_machine.p3d"; 
+		weight = 5000;
+		itemBehaviour = 0;
+		itemSize[] = { 5, 5 };
+		carveNavmesh = 1;
+		bounding="BSphere";
+		physLayer="item_large";
 	};
 };

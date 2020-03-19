@@ -86,7 +86,7 @@ class BastionBankingMenu : UIScriptedMenu {
         GetGame().GetUIManager().ShowCursor(false);
         GetGame().GetUIManager().ShowUICursor(false);
         GetGame().GetInput().ResetGameFocus();
-        GetGame().GetMission().PlayerControlEnable();
+        GetGame().GetMission().PlayerControlEnable(true);
         GetGame().GetMission().GetHud().Show(true);
         Cleanup();
     }
