@@ -1,11 +1,17 @@
 class ActionExchange: ActionInteractBase
 {
+	private int m_Ammount;
+
+	private ref array< ItemBase > m_Items;
+
 	private ref BastionBankAccount m_BankingAccount;
 
     private BST_VendingMachine m_VendingMachine;
 
 	void ActionExchange( )
 	{
+		m_Items = new ref array< ItemBase >;
+
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_ATTACHITEM;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
 		m_HUDCursorIcon = CursorIcons.OpenDoors;
@@ -83,19 +89,21 @@ class ActionExchange: ActionInteractBase
 		{
 			if ( GetGame().IsServer( ) )
 			{
+				m_Items.Clear();
+
 				m_BankingAccount = GetBankAccountManager().GetAccountByPlayerBase( action_data.m_Player );
 
 				if ( !m_BankingAccount )
 					return;
 
-				if ( m_BankingAccount.GetFunds() < m_VendingMachine.GetPrice() )
+				if ( GetBankAccountManager().CanDeposit( action_data.m_Player, m_VendingMachine.GetPrice(), m_Items, m_Ammount ) )
 				{
-					NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
-					return;
+					GetBankAccountManager().RemoveCurrency( m_Items, m_VendingMachine.GetPrice() );
 				}
 				else
 				{
-					GetBankAccountManager().Withdraw( m_BankingAccount, m_VendingMachine.GetPrice() )
+					NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
+					return;
 				}
 			}
 		}
