@@ -45,7 +45,7 @@ class ActionExchange: ActionInteractBase
 				}
 				else
 				{
-					// TODO: Take funds away here
+					GetBankAccountManager().Withdraw( m_BankingAccount, m_VendingMachine.GetPrice() )
 				}
 			}
 		}
@@ -95,7 +95,7 @@ class ActionExchange: ActionInteractBase
 				}
 				else
 				{
-					// TODO: Take funds away here
+					GetBankAccountManager().Withdraw( m_BankingAccount, m_VendingMachine.GetPrice() )
 				}
 			}
 		}
