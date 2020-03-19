@@ -30,6 +30,16 @@ class BST_VendingMachine extends ItemBase
         m_Price = price;
     }
 
+    int GetPrice()
+    {
+        return m_Price;
+    }
+
+    string GetRation()
+    {
+        return m_Ration;
+    }
+
     override bool CanPutIntoHands(EntityAI parent)
 	{
         return false;

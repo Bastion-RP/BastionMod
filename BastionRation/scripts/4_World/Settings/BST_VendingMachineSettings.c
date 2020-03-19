@@ -23,7 +23,7 @@ class BST_VendingMachineLocations
 
     void Defaults( )
     {
-        VendingMachineSettings.Insert( new BST_VendingMachineSettings( Vector( 11900, 140, 12485 ), "Apple", 1 ) );
+        VendingMachineSettings.Insert( new BST_VendingMachineSettings( Vector( 11900, 140, 12485 ), "BoxCerealCrunchin", 1 ) );
 
         if ( !FileExist( "$profile:Bastion\\Rations\\" ) )
 		{
