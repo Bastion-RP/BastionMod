@@ -60,7 +60,7 @@ class ActionExchange: ActionInteractBase
 					obj = GetGame().CreateObject( m_VendingMachine.GetRation(), action_data.m_Player.GetPosition() );
 				}
 
-				NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "Bought 1 AION for" + m_VendingMachine.GetPrice() + " credits.", "set:dayz_gui image:icon_x");
+				NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "Bought 1 AION for" + m_VendingMachine.GetPrice() + " credits.", "set:dayz_gui image:iconHungry0");
 			}
 		}
 	}
@@ -86,7 +86,7 @@ class ActionExchange: ActionInteractBase
 			obj = GetGame().CreateObject( m_VendingMachine.GetRation(), action_data.m_Player.GetPosition() );
 		}
 
-		NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "Bought 1 AION for" + m_VendingMachine.GetPrice() + " credits.", "set:dayz_gui image:icon_x");
+		NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "Bought 1 AION for" + m_VendingMachine.GetPrice() + " credits.", "set:dayz_gui image:iconHungry0");
 	}
 }
 
