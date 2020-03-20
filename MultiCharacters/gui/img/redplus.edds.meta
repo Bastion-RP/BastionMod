@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{8322BBD5D44597BB}MultiCharacters/gui/img/redplus.edds"
+ Author "bryanpc"
+ ChangeDate 1630873714
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "redplus.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

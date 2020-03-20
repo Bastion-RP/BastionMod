@@ -1,16 +1,9 @@
 modded class MissionServer {
-	ref array<vector> m_SpawnPoints;
-	ref array<vector> m_NCCSpawnPoints;
-	PlayerBase m_player;
-	ref SavePlayer m_SavePlayer;
-	int m_PlayerIndex;
-	string newSurvivorString;
-	string dir;
-	bool isWhitelisted;
+	private ref array<vector> multiCharactersSpawnPoints;
 
 	void MissionServer() {
-		JsonFileLoader<ref array<vector>>.JsonLoadFile(m_NCCSpawnPointDir, m_NCCSpawnPoints);
-		JsonFileLoader<ref array<vector>>.JsonLoadFile(m_SpawnPointDir, m_SpawnPoints);
+		//JsonFileLoader<ref array<vector>>.JsonLoadFile(m_NCCSpawnPointDir, m_NCCSpawnPoints);
+		JsonFileLoader<ref array<vector>>.JsonLoadFile(MCConst.spawnPointDir, multiCharactersSpawnPoints);
 	}
 
 	override void OnClientPrepareEvent(PlayerIdentity identity, out bool useDB, out vector pos, out float yaw, out int preloadTimeout) {
@@ -23,57 +16,65 @@ modded class MissionServer {
 		}
 	}
 
-	void ProcessLoginData(ParamsReadContext ctx, out int playerIndex, out string survivorString) {
-		ref Param1<int> indexParam = new Param1<int>(-1);
-		if (ctx.Read(indexParam)) {
-			playerIndex = indexParam.param1;
-		}
+	void ProcessLoginData(ParamsReadContext ctx, PlayerIdentity sender, out int characterId, out string characterType, out string characterName) {
+		Print("[DEBUG] Reading login data");
+		ref Param1<int> dataCharacterId = new Param1<int>(-1);
+		ref Param1<string> dataCharacterType = new Param1<string>("");
+		ref Param1<string> dataCharacterName = new Param1<string>("");
 
-		ref Param1<string> survivorStringParam = new Param1<string>("");
-		if (ctx.Read(survivorStringParam)) {
-			survivorString = survivorStringParam.param1;
+		if (ctx.Read(dataCharacterId)) {
+			characterId = dataCharacterId.param1;
 		}
+		if (ctx.Read(dataCharacterType)) {
+			characterType = dataCharacterType.param1;
+		}
+		if (ctx.Read(dataCharacterName)) {
+			characterName = dataCharacterName.param1;
+		}
+		if (characterName == string.Empty) {
+			GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, sender);
+		}
+		Print("[DEBUG] Read");
+	}
+	
+	void EquipCharacter(PlayerBase player)
+	{
+		EntityAI item = player.GetInventory().CreateInInventory(topsArray.GetRandomElement());
+		EntityAI item2 = player.GetInventory().CreateInInventory(pantsArray.GetRandomElement());
+		EntityAI item3 = player.GetInventory().CreateInInventory(shoesArray.GetRandomElement());
+		
+		StartingEquipSetup(player, false);
 	}
 
-	void BuildInventory() {
-		ref array<ref SaveObject> inventory;
-		int inventorySize;
+	void BuildInventory(PlayerBase newPlayer, SavePlayer savePlayer) {
+		if (savePlayer) {
+			ref array<ref SaveObject> arrayInventory = savePlayer.GetInventory()
+			Print(MCConst.debugPrefix + "Spawning previous player loadout playername=" + newPlayer.GetIdentity().GetName() + " | playerIndex=" + newPlayer.GetCharacterId());
 
-		if (m_SavePlayer) {
-			Print(m_DebugPrefix + "Spawning previous player loadout playername=" + m_player.GetIdentity().GetName() + " | playerIndex=" + m_PlayerIndex);
+			foreach (SaveObject saveObject : arrayInventory) {
+				array<ref SaveObject> arrayChildren = saveObject.GetChildren();
+				EntityAI parent;
 
-			inventory = m_SavePlayer.GetInventory();
-			inventorySize = inventory.Count();
-
-			SetValues(m_SavePlayer);
-
-			for (int i = 0; i < inventorySize; i++) {
-				ref SaveObject objectToCreate = inventory[i];
-				ref array<ref SaveObject> children = objectToCreate.GetChildren();
-				ref EntityAI parent;
-
-				if (objectToCreate.IsInHands()) {
-					parent = m_player.GetHumanInventory().CreateInHands(objectToCreate.GetType());
+				if (saveObject.IsInHands()) {
+					parent = newPlayer.GetHumanInventory().CreateInHands(saveObject.GetType());
 				} else {
-					parent = m_player.GetInventory().CreateInInventory(objectToCreate.GetType());
+					parent = newPlayer.GetInventory().CreateInInventory(saveObject.GetType());
 				}
+				parent.SetHealth("", "Health", saveObject.GetHealth());
+				SetItemQuantity(parent, saveObject.GetQuantity());
 
-				parent.SetHealth("", "Health", objectToCreate.GetHealth());
-				SetItemQuantity(parent, objectToCreate.GetQuantity());
-
-				for (int j = 0; j < children.Count(); j++) {
-					CreateObjectChildren(parent, children[j]);
+				foreach (SaveObject childObject : arrayChildren) {
+					CreateObjectChildren(newPlayer, parent, childObject);
 				}
 			}
-			m_player.SpawnMissingMags();
+			newPlayer.SpawnMissingMags();
 		} else {
-			EquipCharacter();
+			EquipCharacter(newPlayer);
 		}
-		m_player.SaveInventory();
 	}
 
-	void CreateObjectChildren(ref EntityAI parent, ref SaveObject objectToCreate) {
-		ref array<ref SaveObject> children = objectToCreate.GetChildren();
+	void CreateObjectChildren(PlayerBase player, EntityAI parent, SaveObject objectToCreate) {
+		array<ref SaveObject> children = objectToCreate.GetChildren();
 		Weapon_Base localWeapon;
 		Magazine localAmmo;
 		ItemBase localItem;
@@ -94,27 +95,24 @@ modded class MissionServer {
 		} else {
 			localParent = parent.GetInventory().CreateAttachmentEx(type, slot);
 		}
-
 		if (!localParent) {
-			Print(m_DebugPrefix + "Could not spawn item type=" + type + " | playername=" + m_player.GetIdentity().GetName() + " | Exiting...");
+			Print(MCConst.debugPrefix + "Could not spawn item type=" + type + " | playername=" + player.GetIdentity().GetName() + " | Exiting...");
 			return;
 		}
-
 		localParent.SetHealth("", "Health", objectToCreate.GetHealth());
 
 		if (slot != -1) {
 			if (Class.CastTo(localAmmo, localParent)) {
 				MagObject mag = new MagObject(localAmmo.GetType(), quant);
-				m_player.InsertMag(mag);
+				player.InsertMag(mag);
 				localParent.Delete();
 				return;
 			}
 		} else {
 			SetItemQuantity(localParent, quant, slot);
 		}
-
-		for (int i = 0; i < children.Count(); i++) {
-			CreateObjectChildren(localParent, children[i]);
+		foreach (SaveObject saveObject : children) {
+			CreateObjectChildren(player, localParent, saveObject);
 		}
 	}
 
@@ -129,8 +127,8 @@ modded class MissionServer {
 		}
 	}
 
-	void SetValues(SavePlayer savePlayer) {
-		Print(m_DebugPrefix + "Setting player values playername=" + m_player.GetIdentity().GetName() + " | playerIndex=" + m_PlayerIndex);
+	void SetPlayerStats(PlayerBase player, SavePlayer savePlayer) {
+		Print(MCConst.debugPrefix + "Setting player values playername=" + player.GetIdentity().GetName() + " | playerIndex=" + player.GetCharacterId());
 
 		float health, blood, shock, water, energy, playerWater, playerEnergy;
 		health = savePlayer.GetHealth();
@@ -139,66 +137,55 @@ modded class MissionServer {
 		water = savePlayer.GetWater();
 		energy = savePlayer.GetEnergy();
 
-		m_player.SetHealth("", "Health", health);
-		m_player.SetHealth("", "Blood", blood);
-		m_player.SetHealth("GlobalHealth", "Shock", shock);
-		m_player.GetStatWater().Set(water);
-		m_player.GetStatEnergy().Set(energy);
+		player.SetHealth("", "Health", health);
+		player.SetHealth("", "Blood", blood);
+		player.SetHealth("GlobalHealth", "Shock", shock);
+		player.GetStatWater().Set(water);
+		player.GetStatEnergy().Set(energy);
 	}
 
-	PlayerBase CreateNewPlayer(PlayerIdentity identity, vector pos, ParamsReadContext ctx, string characterName) {
-		Entity playerEnt;
-		playerEnt = GetGame().CreatePlayer(identity, characterName, pos, 0, "NONE");//Creates random player
-		Class.CastTo(m_player, playerEnt);
+	PlayerBase CreateNewPlayer(PlayerIdentity identity, vector pos, ParamsReadContext ctx, string characterType) {
+		PlayerBase newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, characterType, pos, 0, "NONE"));
 
-		if (m_PlayerIndex == 5 && !isWhitelisted) {
-			Print(m_DebugPrefix + "Player not whitelisted yet chose whitelisted slot! playername=" + identity.GetName() + " | playerId=" + identity.GetPlainId());
-			m_player.SetHealth("", "Health", 0);
-			DeleteFile(dir);
-		}
-		if (m_SavePlayer) {
-			Print(m_DebugPrefix + "Setting player position to previous position playername=" + identity.GetName() + " | playerId=" + identity.GetPlainId());
-			m_player.SetPosition(pos);
-		}
-
-		GetGame().SelectPlayer(identity, m_player);
-		m_player.SetPlayerIndex(m_PlayerIndex);
+		GetGame().SelectPlayer(identity, newPlayer);
 	
-		return m_player;
+		return newPlayer;
 	}
 
 	PlayerBase OnClientNewEvent(PlayerIdentity identity, vector pos, ParamsReadContext ctx) {
-		ProcessLoginData(ctx, m_PlayerIndex, newSurvivorString);
+		PlayerBase newPlayer;
+		SavePlayer savePlayer;
+		vector playerPos;
+		int characterId;
+		string characterType, characterName, saveDir;
 
-		string characterName;
-		int rndIndex;
-		m_SavePlayer = null;
-		dir = m_LoadoutDir + "\\" + identity.GetPlainId() + "\\" + m_PlayerIndex + m_BSTFileType;
-		isWhitelisted = g_Game.IsWhitelisted(identity.GetPlainId());
+		ProcessLoginData(ctx, identity, characterId, characterType, characterName);
+		saveDir = MCConst.loadoutDir + "\\" + identity.GetPlainId() + "\\" + characterId + MCConst.fileType;
 
-		JsonFileLoader<ref SavePlayer>.JsonLoadFile(dir, m_SavePlayer);
+		if (FileExist(saveDir)) {
+			JsonFileLoader<SavePlayer>.JsonLoadFile(saveDir, savePlayer);
 
-		if (m_SavePlayer) {
-			characterName = m_SavePlayer.GetType();
-			pos = m_SavePlayer.GetPos();
+			if (savePlayer) {
+				characterType = savePlayer.GetType();
+				playerPos = savePlayer.GetPos();
+			}
 		} else {
-			if (newSurvivorString != "") {
-				characterName = newSurvivorString;
-			} else {
-				characterName = GetGame().CreateRandomPlayer();
+			if (characterType == string.Empty) {
+				characterType = GetGame().CreateRandomPlayer();
 			}
-
-			if (m_PlayerIndex == 5 && isWhitelisted) {
-				Print(m_DebugPrefix + "Spawning player as whitelisted NCC! playername=" + identity.GetName() + " | playerId=" + identity.GetPlainId());
-				pos = m_NCCSpawnPoints.GetRandomElement();
-			} else {
-				pos = m_SpawnPoints.GetRandomElement();
-			}
+			playerPos = multiCharactersSpawnPoints.GetRandomElement();
 		}
+		newPlayer = CreateNewPlayer(identity, playerPos, ctx, characterType);
 
-		CreateNewPlayer(identity, pos, ctx, characterName);
-		BuildInventory();
+		if (savePlayer) {
+			SetPlayerStats(newPlayer, savePlayer);
+			newPlayer.SetPosition(playerPos);
+		}
+		newPlayer.SetCharacterName(characterName);
+		newPlayer.SetCharacterId(characterId);
+		BuildInventory(newPlayer, savePlayer);
+		newPlayer.SaveInventory();
 		
-		return m_player;
+		return newPlayer;
 	}
 }

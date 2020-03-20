@@ -1,6 +1,4 @@
-modded class MissionBase extends MissionBaseWorld {
-
-
+modded class MissionBase {
 	override UIScriptedMenu CreateScriptedMenu(int id) {
 		UIScriptedMenu menu = null;
 		menu = super.CreateScriptedMenu(id);
@@ -14,7 +12,7 @@ modded class MissionBase extends MissionBaseWorld {
 					}
 				case MultiCharMenu.MENU_SPAWN:
 					{
-						menu = new CharSelect();
+						menu = new MultiCharactersMenu();
 						break;
 					}
 			}
@@ -22,7 +20,6 @@ modded class MissionBase extends MissionBaseWorld {
 				menu.SetID(id);
 			}
 		}
-
 		return menu;
 	}
 }

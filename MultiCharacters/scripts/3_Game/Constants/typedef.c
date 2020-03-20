@@ -1,1 +1,0 @@
-typedef Param1<ref SavePlayer> loadoutParam;

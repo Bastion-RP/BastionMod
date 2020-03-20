@@ -1,11 +1,17 @@
 modded class PlayerBase {
-	ref FileSerializer m_FileSerializer = new FileSerializer();
-	ref array<ref MagObject> m_MagsToReload = new array<ref MagObject>();
-	int m_PlayerIndex = -1;
+	private ref FileSerializer m_FileSerializer;
+	private ref array<ref MagObject> m_MagsToReload;
+	private int multicharactersPlayerId;
+	private string multicharactersPlayerName;
+
+	void PlayerBase() {
+		m_MagsToReload = new array<ref MagObject>();
+		m_FileSerializer = new FileSerializer();
+		multicharactersPlayerId = -1;
+	}
 
 	override void OnStoreSave(ParamsWriteContext ctx) {
-		if (m_PlayerIndex == -1) return;
-		// Don't save the inventory since there's no use. Not using the DB for players anyways.
+		if (multicharactersPlayerId == -1) { return; }
 		SaveInventory();
 	}
 
@@ -14,7 +20,10 @@ modded class PlayerBase {
 	}
 
 	void SpawnMissingMags() {
-		Print(m_DebugPrefix + "Spawning mags in player inventory instead of weapon! playername=" + this.GetIdentity().GetName() + " | playerId=" + this.GetIdentity().GetPlainId());
+		Print(MCConst.debugPrefix + "Spawning mags in player inventory instead of weapon! playername=" + this.GetIdentity().GetName() + " | playerId=" + this.GetIdentity().GetPlainId());
+		if (!m_MagsToReload) {
+			m_MagsToReload = new array<ref MagObject>();
+		}
 		int magCount = m_MagsToReload.Count();
 		for(int i = 0; i < magCount; i++) {
 			InventoryLocation loc = new InventoryLocation();
@@ -26,12 +35,11 @@ modded class PlayerBase {
 			if (GetInventory().FindFirstFreeLocationForNewEntity(type, FindInventoryLocationType.CARGO, loc)) {
 				localItem = loc.GetParent().GetInventory().CreateEntityInCargoEx(type, loc.GetIdx(), loc.GetRow(), loc.GetCol(), loc.GetFlip());
 			}
-
 			if (localItem) {
-				Print(m_DebugPrefix + "Found item, casting as mag!");
+				Print(MCConst.debugPrefix + "Found item, casting as mag!");
 				localMag = Magazine.Cast(localItem);
 				if (localMag) {
-					Print(m_DebugPrefix + "Found mag, setting ammo count!");
+					Print(MCConst.debugPrefix + "Found mag, setting ammo count!");
 					localMag.ServerSetAmmoCount(count);
 				}
 			}
@@ -40,16 +48,16 @@ modded class PlayerBase {
 			Param1<int> param = new Param1<int>(magCount);
 			g_Game.RPCSingleParam(this, MultiCharRPC.CLIENT_SPAWN_MAG, param, true, this.GetIdentity());
 		}
+		delete m_MagsToReload;
 	}
 
 	void SaveInventory() {
 		if (!GetGame().IsServer()) return;
 
-		Print("Saving player inventory! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + m_PlayerIndex);
+		Print("Saving player inventory! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
 
 		SavePlayer m_SavePlayer = new SavePlayer();
 		array<EntityAI> m_EnumeratedInventory = new array<EntityAI>();
-		array<EntityAI> m_InOrder = new array<EntityAI>();
 		array<ref SaveObject> m_SaveObjects = new array<ref SaveObject>();
 		array<ref SaveObject> m_RootChildren = new array<ref SaveObject>();
 		array<ref SaveObject> m_ChildChildren = new array<ref SaveObject>();
@@ -143,7 +151,8 @@ modded class PlayerBase {
 		}
 
 		// Set needed values for the player
-		m_SavePlayer.SetIndex(m_PlayerIndex);
+		m_SavePlayer.SetCharacterName(multicharactersPlayerName);
+		m_SavePlayer.SetCharacterId(multicharactersPlayerId);
 		m_SavePlayer.SetType(GetType());
 		m_SavePlayer.SetPos(GetPosition());
 		m_SavePlayer.SetInventory(m_SaveObjects);
@@ -153,39 +162,40 @@ modded class PlayerBase {
 		m_SavePlayer.SetWater(GetStatWater().Get());
 		m_SavePlayer.SetEnergy(GetStatEnergy().Get());
 
-		string playerDir = m_LoadoutDir + "\\" + GetIdentity().GetPlainId();
+		string playerDir = MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId();
 		if (!FileExist(playerDir))
 			MakeDirectory(playerDir);
 
 		// Use this for viewing it in plain-text for debugging. This function sucks for anything else. Use file serializer instead.
-		JsonFileLoader<ref SavePlayer>.JsonSaveFile(playerDir + "\\" + m_PlayerIndex + m_BSTFileType, m_SavePlayer);
-	}
+		JsonFileLoader<ref SavePlayer>.JsonSaveFile(playerDir + "\\" + multicharactersPlayerId + MCConst.fileType, m_SavePlayer);
 
-	override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx) {
-		super.OnRPC(sender, rpc_type, ctx);
-
-		if (rpc_type == MultiCharRPC.CLIENT_SPAWN_MAG) {
-			Param1<int> magCount;
-			ctx.Read(magCount);
-
-			int magsRemoved = magCount.param1;
-			NotificationSystem.AddNotification(NotificationType.NOTIFICATIONS_END, 10, "" + magsRemoved + " mag(s) were removed from your weapon(s)\n and placed into your inventory!" );
-		}
+		delete m_SavePlayer;
+		delete m_EnumeratedInventory;
+		delete m_SaveObjects;
+		delete m_RootChildren;
+		delete m_ChildChildren;
 	}
 
 	override void EEKilled(Object killer) { 
 		super.EEKilled(killer);
 
-		Print(m_DebugPrefix + this.GetIdentity().GetName() + " died, killing player at index=" + m_PlayerIndex);
+		Print(MCConst.debugPrefix + this.GetIdentity().GetName() + " died, killing player at index=" + multicharactersPlayerId);
 
-		string playerDir = m_LoadoutDir + "\\" + GetIdentity().GetPlainId();
-		SavePlayer tempPlayer;
-
-		DeleteFile(playerDir + "\\" + m_PlayerIndex + m_BSTFileType);
+		string playerDir = MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId();
+		DeleteFile(playerDir + "\\" + multicharactersPlayerId + MCConst.fileType);
 	}
 
-	void SetPlayerIndex(int playerIndex) {
-		Print("Setting player index! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + m_PlayerIndex);
-		m_PlayerIndex = playerIndex;
+	void SetCharacterId(int multicharactersPlayerId) {
+		Print("Setting player index! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
+		this.multicharactersPlayerId = multicharactersPlayerId;
+	}
+
+	void SetCharacterName(string multicharactersPlayerName) {
+		Print("Setting player name! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
+		this.multicharactersPlayerName = multicharactersPlayerName;
+	}
+
+	int GetCharacterId() {
+		return multicharactersPlayerId;
 	}
 }

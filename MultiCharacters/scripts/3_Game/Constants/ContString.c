@@ -1,4 +1,10 @@
-static const string m_LoadoutDir = "$profile:\\Bastion\\Loadouts";
-static const string m_SpawnPointDir = "$profile:\\Bastion\\SpawnPoints.json";
-static const string m_NCCSpawnPointDir = "$profile:\\Bastion\\NCCSpawnPoints.json";
-static const string m_DebugPrefix= "[MULTICHAR DEBUG] ";
+class MCConst {
+    static const string loadoutDir = "$profile:\\Bastion\\Loadouts";
+    static const string spawnPointDir = "$profile:\\Bastion\\SpawnPoints.json";
+    static const string debugPrefix = "[MULTICHAR DEBUG] ";
+    static const string fileType = ".json";
+}
+
+class MCCurlConst {
+    static const string memberId = "member_id";
+}
