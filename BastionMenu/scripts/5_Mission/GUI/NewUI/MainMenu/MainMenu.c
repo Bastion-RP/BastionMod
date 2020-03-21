@@ -8,6 +8,7 @@ modded class MainMenu
 	protected Widget 		  m_SettingsVideo;
 	protected Widget	    m_SettingsControls;
 	protected Widget      m_NewsButton;
+	protected Widget      m_StatsButton;
 
 	protected TextWidget 	m_Player;
 	protected TextWidget 	m_FirstName;
@@ -17,15 +18,21 @@ modded class MainMenu
 	protected TextWidget 	m_TimeSurvivedValue;
 	protected TextWidget  m_CitizenClass;
 	protected TextWidget  m_NewsButtonText;
+	protected TextWidget  m_NoUIDWarning;
+	protected TextWidget  m_RationCardsValue;
+	protected TextWidget  m_LastServer;
+	protected TextWidget  m_LocationValue;
+	protected TextWidget  m_AllServers;
 
 	protected ImageWidget m_logoWidget;
 	protected ImageWidget m_newsWidget;
 	protected ImageWidget	m_viewWidget;
 	protected ImageWidget	m_playWidget;
 
-  protected ref PlayerData									 m_PlayerData;
+  protected ref MenuPlayerData							 m_PlayerData;
   protected autoptr array<ref CharacterData> m_Characters;
 	protected ref NewsData 										 m_NewsData;
+	protected bool														 m_hasStoredData;
 
 	override Widget Init()
  	{
@@ -42,26 +49,38 @@ modded class MainMenu
 		m_SettingsButton 		 			= layoutRoot.FindAnyWidget( "Settings" );
 		m_CustomizeCharacter      = layoutRoot.FindAnyWidget( "ChangeChar" );
 		m_CharacterRotationFrame	= layoutRoot.FindAnyWidget( "character_rotation_frame" );
-		m_Player						 			= layoutRoot.FindAnyWidget( "Player" );
 		m_NewsButton							= layoutRoot.FindAnyWidget( "NewsButton" );
+		m_StatsButton							= layoutRoot.FindAnyWidget( "ViewStats" );
  		m_Mission						 			= MissionMainMenu.Cast( GetGame().GetMission());
  		m_ScenePC						 			= m_Mission.GetIntroScenePC();
+		m_StatsButton.Enable( false );
 
 		m_Stats						   			= new MainMenuStats( layoutRoot.FindAnyWidget( "StatsFrme" ) );
-    m_PlayerData         			= new PlayerData;
+    m_PlayerData         			= new MenuPlayerData;
 
-		m_FirstName					 			= layoutRoot.FindAnyWidget( "FirstName" );
-		m_LastName					 			= layoutRoot.FindAnyWidget( "LastName" );
-		m_Welcome			 						= layoutRoot.FindAnyWidget( "Welcome" );
-		m_ForumsAccount			 			= layoutRoot.FindAnyWidget( "LinkedAccount" );
-    m_TimeSurvivedValue  			= layoutRoot.FindAnyWidget( "PlaytimeTXT" );
-		m_CitizenClass						= layoutRoot.FindAnyWidget( "CitizenClassValue" );
-		m_NewsButtonText					= layoutRoot.FindAnyWidget( "NewsButtonText" );
+		m_Player						 			= TextWidget.Cast( layoutRoot.FindAnyWidget( "Player" ) );
+		m_FirstName					 			= TextWidget.Cast( layoutRoot.FindAnyWidget( "FirstName" ) );
+		m_LastName					 			= TextWidget.Cast( layoutRoot.FindAnyWidget( "LastName" ) );
+		m_Welcome			 						= TextWidget.Cast( layoutRoot.FindAnyWidget( "Welcome" ) );
+		m_ForumsAccount			 			= TextWidget.Cast( layoutRoot.FindAnyWidget( "LinkedAccount" ) );
+    m_TimeSurvivedValue  			= TextWidget.Cast( layoutRoot.FindAnyWidget( "PlaytimeTXT" ) );
+		m_CitizenClass						= TextWidget.Cast( layoutRoot.FindAnyWidget( "CitizenClassValue" ) );
+		m_NewsButtonText					= TextWidget.Cast( layoutRoot.FindAnyWidget( "NewsButtonText" ) );
+		m_NoUIDWarning					  = TextWidget.Cast( layoutRoot.FindAnyWidget( "NoUIDWarning" ) );
+		m_RationCardsValue				= TextWidget.Cast( layoutRoot.FindAnyWidget( "RationCardsValue" ) );
+		m_LastServer							= TextWidget.Cast( layoutRoot.FindAnyWidget( "LastServer" ) );
+		m_LocationValue						= TextWidget.Cast( layoutRoot.FindAnyWidget( "LocationValue" ) );
+		m_AllServers							= TextWidget.Cast( layoutRoot.FindAnyWidget( "AllServers" ) );
+
+		m_hasStoredData = LoadStoredData();
+		m_NoUIDWarning.Show( !m_hasStoredData );
 
  		if( m_ScenePC )
  		{
  			m_ScenePC.ResetIntroCamera();
 			SetCharacterDetails();
+			if ( m_NewsData )
+				m_NewsButtonText.SetText( m_NewsData.GetTitle() );
     }
 
  		GetGame().GetUIManager().ScreenFadeOut(0);
@@ -77,15 +96,14 @@ modded class MainMenu
 
 		Class.CastTo(m_newsWidget, layoutRoot.FindAnyWidget("NewsBox"));
 		m_newsWidget.LoadImageFile( 0, "BastionMenu/gui/images/009Block.edds" );
-/*
-		Class.CastTo(m_playWidget, layoutRoot.FindAnyWidget("PlayLastIMG"));
-		m_playWidget.LoadImageFile( 0, "BastionMenu/gui/images/PlayLastServer.edds" );
-
-		Class.CastTo(m_viewWidget, layoutRoot.FindAnyWidget("ViewAllIMG"));
-		m_viewWidget.LoadImageFile( 0, "BastionMenu/gui/images/ViewAllServers.edds" );
-*/
  		return layoutRoot;
  	}
+
+	bool LoadStoredData()
+	{
+		StoredDataHook storedDataHook = MissionGameplay.GetStoredDataHook();
+		return storedDataHook.LoadData();
+	}
 
   CURLCore FetchCurlCore()
 	{
@@ -107,21 +125,20 @@ modded class MainMenu
 		CURLContext api = curlCore.GetCURLContext(apiBase);
 		JsonSerializer js = new JsonSerializer();
 
-/*
-		TODO: Fetch latest announcement here
-
-		string_data = api.GET_now( "announcements.php" );
+		// Print( "GET " + apiBase + "forum.php?last_post=24" );
+		string_data = api.GET_now( "forum.php?last_post=24" );
 		ok = js.ReadFromString( m_NewsData, string_data, error );
 		if (!ok) {
 			Print(error);
 			return false;
 		}
-*/
-		m_NewsData = new NewsData("SITREP 009 | 2/14/2020 | Surveillance", "https://bastionrp.com/forums/topic/486-sitrep-009-2142020-surveillance/");
 
-		// TODO: Get this from a file which we save when on a server
-		string steamId = "76561198115443414";
-		Print( "GET " + apiBase + "characters.php?steam_id=" + steamId );
+		if (!m_hasStoredData) return false;
+
+		StoredData storedData = MissionGameplay.GetStoredDataHook().m_storedData;
+
+		string steamId = storedData.GetSteamId();
+		// Print( "GET " + apiBase + "characters.php?steam_id=" + steamId );
 
 		string_data = api.GET_now( "characters.php?steam_id=" + steamId );
 		ok = js.ReadFromString( m_PlayerData, string_data, error );
@@ -130,9 +147,9 @@ modded class MainMenu
 			return false;
 		}
 
-		auto player_id = m_PlayerData.GetId();
+		string player_id = m_PlayerData.GetId();
 		
-		Print( "GET " + apiBase + "https://bastionrp.com/api/characters.php?player_id=" + player_id );
+		// Print( "GET " + apiBase + "characters.php?player_id=" + player_id );
 		string_data = api.GET_now( "characters.php?player_id=" + player_id );
 		ok = js.ReadFromString( m_Characters, string_data, error );
 		if (!ok) {
@@ -147,19 +164,41 @@ modded class MainMenu
 	{
 		Print("###### Loading Character Details From API ######");
 
-		if (!LoadAPIData()) return;
+		// TODO: Find all servers with BastionRP in their name and show count here
+		m_AllServers.SetText( "1 BastionRP Server Online" );
 
-		m_NewsButtonText.SetText( m_NewsData.GetTitle() );
+		if (!LoadAPIData()) {
+			m_FirstName.SetText( "" );
+			m_LastName.SetText( "" );
+			m_RationCardsValue.SetText( "N/A" );
+			m_CitizenClass.SetText( "N/A" );
+			m_LocationValue.SetText( "N/A" );
+			m_LastServer.SetText( "No last server on record" );
+			m_Play.Enable( false );
+			Print("###### No data for main menu to show ######");
+			return;
+		}
+
+		auto storedData = MissionGameplay.GetStoredDataHook().m_storedData;
 
 		auto player_name = m_PlayerData.GetName();
 		m_Welcome.SetText( "Welcome back, " + player_name + "!" );
 		m_ForumsAccount.SetText( "Linked account - " + player_name );
+		m_RationCardsValue.SetText( "" + storedData.GetRations() );
+		m_LocationValue.SetText( storedData.GetLocation() );
+		m_LastServer.SetText( storedData.GetLastServer() );
 
 		if (m_Characters && m_Characters.Count() > 0) {
-			auto firstChar = m_Characters.Get(0);
-			m_FirstName.SetText( firstChar.GetFirstName() );
-			m_LastName.SetText( firstChar.GetLastName() );
-			m_CitizenClass.SetText( firstChar.GetCitizenClass() );
+			auto activeChar = m_Characters.Get(0);
+			foreach (auto candidate : m_Characters) {
+				if (candidate.GetActive()) {
+					activeChar = candidate;
+					break;
+				}
+			}
+			m_FirstName.SetText( activeChar.GetFirstName() );
+			m_LastName.SetText( activeChar.GetLastName() );
+			m_CitizenClass.SetText( activeChar.GetCitizenClass() );
 		}
 
 		Print("###### Loaded Character Data From API ######");
@@ -218,7 +257,7 @@ modded class MainMenu
         OpenReturnSettings().SkipTabs(3);
 				return true;
 			}
-			else if( w == m_Play )
+			else if( w == m_Play && m_hasStoredData )
 			{
 				m_LastFocusedButton = m_Play;
 				Play();

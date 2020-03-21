@@ -2,7 +2,6 @@ const string backgroundPath = "BastionMenu/gui/images/bastion_background.edds";
 const string maskPath = "BastionMenu/gui/images/bastion_backgroundmask.edds";
 const string logoPath = "BastionMenu/gui/images/bastionlogo.edds";
 
-
 modded class LoadingScreen
 {
 	void LoadingScreen(DayZGame game) 
@@ -23,31 +22,23 @@ modded class LoadingScreen
 		ProgressAsync.SetUserData(m_ImageLogoCorner);
 	}
 }
+
 modded class LoginQueueBase {
-	
 	override Widget Init() {
 		Widget w = super.Init();
 		ImageWidget imageWidgetBackground = ImageWidget.Cast( layoutRoot.FindAnyWidget("Background") );
 		imageWidgetBackground.LoadImageFile(0, backgroundPath);
 		imageWidgetBackground.LoadMaskTexture(maskPath);
-		
-		ImageWidget imageLogoCorner = ImageWidget.Cast( layoutRoot.FindAnyWidget("ImageLogoCorner"));
-
-		imageLogoCorner.LoadImageFile(0, logoPath);
 		return w;
 	}
 }
+
 modded class LoginTimeBase {
-	
 	override Widget Init() {
 		Widget w = super.Init();
 		ImageWidget imageWidgetBackground = ImageWidget.Cast( layoutRoot.FindAnyWidget("Background") );
 		imageWidgetBackground.LoadImageFile(0, backgroundPath);
 		imageWidgetBackground.LoadMaskTexture(maskPath);
-		
-		ImageWidget imageLogoCorner = ImageWidget.Cast( layoutRoot.FindAnyWidget("ImageLogoCorner"));
-
-		imageLogoCorner.LoadImageFile(0, logoPath);
 		return w;
 	}
 	
