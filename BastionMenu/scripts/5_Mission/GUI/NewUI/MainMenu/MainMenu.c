@@ -8,6 +8,7 @@ modded class MainMenu
 	protected Widget 		  m_SettingsVideo;
 	protected Widget	    m_SettingsControls;
 	protected Widget      m_NewsButton;
+	protected Widget      m_StatsButton;
 
 	protected TextWidget 	m_Player;
 	protected TextWidget 	m_FirstName;
@@ -48,26 +49,28 @@ modded class MainMenu
 		m_SettingsButton 		 			= layoutRoot.FindAnyWidget( "Settings" );
 		m_CustomizeCharacter      = layoutRoot.FindAnyWidget( "ChangeChar" );
 		m_CharacterRotationFrame	= layoutRoot.FindAnyWidget( "character_rotation_frame" );
-		m_Player						 			= layoutRoot.FindAnyWidget( "Player" );
 		m_NewsButton							= layoutRoot.FindAnyWidget( "NewsButton" );
+		m_StatsButton							= layoutRoot.FindAnyWidget( "ViewStats" );
  		m_Mission						 			= MissionMainMenu.Cast( GetGame().GetMission());
  		m_ScenePC						 			= m_Mission.GetIntroScenePC();
+		m_StatsButton.Enable( false );
 
 		m_Stats						   			= new MainMenuStats( layoutRoot.FindAnyWidget( "StatsFrme" ) );
     m_PlayerData         			= new MenuPlayerData;
 
-		m_FirstName					 			= layoutRoot.FindAnyWidget( "FirstName" );
-		m_LastName					 			= layoutRoot.FindAnyWidget( "LastName" );
-		m_Welcome			 						= layoutRoot.FindAnyWidget( "Welcome" );
-		m_ForumsAccount			 			= layoutRoot.FindAnyWidget( "LinkedAccount" );
-    m_TimeSurvivedValue  			= layoutRoot.FindAnyWidget( "PlaytimeTXT" );
-		m_CitizenClass						= layoutRoot.FindAnyWidget( "CitizenClassValue" );
-		m_NewsButtonText					= layoutRoot.FindAnyWidget( "NewsButtonText" );
-		m_NoUIDWarning					  = layoutRoot.FindAnyWidget( "NoUIDWarning" );
-		m_RationCardsValue				= layoutRoot.FindAnyWidget( "RationCardsValue" );
-		m_LastServer							= layoutRoot.FindAnyWidget( "LastServer" );
-		m_LocationValue						= layoutRoot.FindAnyWidget( "LocationValue" );
-		m_AllServers							= layoutRoot.FindAnyWidget( "AllServers" );
+		m_Player						 			= TextWidget.Cast( layoutRoot.FindAnyWidget( "Player" ) );
+		m_FirstName					 			= TextWidget.Cast( layoutRoot.FindAnyWidget( "FirstName" ) );
+		m_LastName					 			= TextWidget.Cast( layoutRoot.FindAnyWidget( "LastName" ) );
+		m_Welcome			 						= TextWidget.Cast( layoutRoot.FindAnyWidget( "Welcome" ) );
+		m_ForumsAccount			 			= TextWidget.Cast( layoutRoot.FindAnyWidget( "LinkedAccount" ) );
+    m_TimeSurvivedValue  			= TextWidget.Cast( layoutRoot.FindAnyWidget( "PlaytimeTXT" ) );
+		m_CitizenClass						= TextWidget.Cast( layoutRoot.FindAnyWidget( "CitizenClassValue" ) );
+		m_NewsButtonText					= TextWidget.Cast( layoutRoot.FindAnyWidget( "NewsButtonText" ) );
+		m_NoUIDWarning					  = TextWidget.Cast( layoutRoot.FindAnyWidget( "NoUIDWarning" ) );
+		m_RationCardsValue				= TextWidget.Cast( layoutRoot.FindAnyWidget( "RationCardsValue" ) );
+		m_LastServer							= TextWidget.Cast( layoutRoot.FindAnyWidget( "LastServer" ) );
+		m_LocationValue						= TextWidget.Cast( layoutRoot.FindAnyWidget( "LocationValue" ) );
+		m_AllServers							= TextWidget.Cast( layoutRoot.FindAnyWidget( "AllServers" ) );
 
 		m_hasStoredData = LoadStoredData();
 		m_NoUIDWarning.Show( !m_hasStoredData );
@@ -122,7 +125,7 @@ modded class MainMenu
 		CURLContext api = curlCore.GetCURLContext(apiBase);
 		JsonSerializer js = new JsonSerializer();
 
-		Print( "GET " + apiBase + "forum.php?last_post=24" );
+		// Print( "GET " + apiBase + "forum.php?last_post=24" );
 		string_data = api.GET_now( "forum.php?last_post=24" );
 		ok = js.ReadFromString( m_NewsData, string_data, error );
 		if (!ok) {
@@ -135,7 +138,7 @@ modded class MainMenu
 		StoredData storedData = MissionGameplay.GetStoredDataHook().m_storedData;
 
 		string steamId = storedData.GetSteamId();
-		Print( "GET " + apiBase + "characters.php?steam_id=" + steamId );
+		// Print( "GET " + apiBase + "characters.php?steam_id=" + steamId );
 
 		string_data = api.GET_now( "characters.php?steam_id=" + steamId );
 		ok = js.ReadFromString( m_PlayerData, string_data, error );
@@ -146,9 +149,8 @@ modded class MainMenu
 
 		string player_id = m_PlayerData.GetId();
 		
-		Print( "GET " + apiBase + "characters.php?player_id=" + player_id );
+		// Print( "GET " + apiBase + "characters.php?player_id=" + player_id );
 		string_data = api.GET_now( "characters.php?player_id=" + player_id );
-		Print(string_data);
 		ok = js.ReadFromString( m_Characters, string_data, error );
 		if (!ok) {
 			Print(error);
@@ -173,6 +175,7 @@ modded class MainMenu
 			m_LocationValue.SetText( "N/A" );
 			m_LastServer.SetText( "No last server on record" );
 			m_Play.Enable( false );
+			Print("###### No data for main menu to show ######");
 			return;
 		}
 
@@ -223,7 +226,6 @@ modded class MainMenu
 			else if ( w == m_NewsButton )
 			{
 				string link = m_NewsData.GetLink();
-				Print(link);
 				if (!link) {
 					link = "https://bastionrp.com/forums/forum/24-announcements/";
 				}

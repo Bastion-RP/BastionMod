@@ -20,10 +20,10 @@ class StoredDataHook
 		// Most likely the best idea is to divide the map into grids or overlapping circles
 		// Could also specify main city area as a circle and anything else is considered wilderness etc.
 
-		Print(steam);
+		/*Print(steam);
 		Print(position);
 		Print(rations);
-		Print(currentServer);
+		Print(currentServer);*/
 
 		if (steam.Length() == 0) return;
 

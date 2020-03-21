@@ -31,12 +31,18 @@ modded class MissionServer {
 
     string steam = player.GetIdentity().GetPlainId();
 
-    string serverName = "BastionRP | S1";
+    string serverName = "BastionRP";
     if (IsCLIParam("serverName"))
-      GetCLIParam("serverName", serverName)
+      GetCLIParam("serverName", serverName);
     
     auto data = new Param3<int, string, string>( balance, steam, serverName );
     GetRPCManager().SendRPC( "BastionMenu", "ReceiveStoredData", data, true, player.GetIdentity() );
+  }
+
+  override void OnClientDisconnectedEvent(PlayerIdentity identity, PlayerBase player, int logoutTime, bool authFailed)
+  {
+    StoredDataToClient( player );
+    super.OnClientDisconnectedEvent( identity, player, logoutTime, authFailed );
   }
 
   override void InvokeOnConnect( PlayerBase player, PlayerIdentity identity ) {
