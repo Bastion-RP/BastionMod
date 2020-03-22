@@ -324,7 +324,7 @@
 					SavePlayer selectedPlayer = null;
 
 					if (btnSelectedCS > -1) {
-						Print("Button selected | " + btnSelectedCS);
+						Print(MCConst.debugPrefix + "Button selected | " + btnSelectedCS);
 						g_Game.SetSurvivorIndex(btnSelectedCS);
 						g_Game.SetSelectedSurvivor(selectedSurvivor);
 						g_Game.ShowCountDown();

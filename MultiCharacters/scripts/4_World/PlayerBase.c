@@ -52,9 +52,8 @@ modded class PlayerBase {
 	}
 
 	void SaveInventory() {
-		if (!GetGame().IsServer()) return;
-
-		Print("Saving player inventory! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
+		if (!GetGame().IsServer() || !GetGame().IsMultiplayer() || !GetIdentity() || !IsAlive()) { return; }
+		Print(MCConst.debugPrefix + "Saving player inventory! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
 
 		SavePlayer m_SavePlayer = new SavePlayer();
 		array<EntityAI> m_EnumeratedInventory = new array<EntityAI>();
@@ -186,12 +185,12 @@ modded class PlayerBase {
 	}
 
 	void SetCharacterId(int multicharactersPlayerId) {
-		Print("Setting player index! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
+		Print(MCConst.debugPrefix + "Setting player index! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
 		this.multicharactersPlayerId = multicharactersPlayerId;
 	}
 
 	void SetCharacterName(string multicharactersPlayerName) {
-		Print("Setting player name! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
+		Print(MCConst.debugPrefix + "Setting player name! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
 		this.multicharactersPlayerName = multicharactersPlayerName;
 	}
 

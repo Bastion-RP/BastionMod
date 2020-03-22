@@ -17,11 +17,11 @@ class MultiCharactersClientRPCHandler : PluginBase {
         switch (rpc_type) {
             case MultiCharRPC.CLIENT_GRAB_LOADOUTS:
                 {
-                    Print("MultiCharactersClientRPCHandler | CLIENT_GRAB_LOADOUTS | Received!");
+                    Print(MCConst.debugPrefix + "MultiCharactersClientRPCHandler | CLIENT_GRAB_LOADOUTS | Received!");
                     Param1<array<ref SavePlayer>> dataGrabLoadouts;
 
                     if (!ctx.Read(dataGrabLoadouts)) { return; }
-                    Print("MultiCharactersClientRPCHandler | CLIENT_GRAB_LOADOUTS | Data read!");
+                    Print(MCConst.debugPrefix + "MultiCharactersClientRPCHandler | CLIENT_GRAB_LOADOUTS | Data read!");
                     GetMultiCharactersClientManager().SetLoadouts(dataGrabLoadouts.param1);
                     GetGame().GetUIManager().HideMenu(MultiCharMenu.MENU_WAIT);
                     GetGame().GetUIManager().EnterScriptedMenu(MultiCharMenu.MENU_SPAWN, null);

@@ -37,6 +37,6 @@ class MultiCharactersCharacterId {
     }
 
     void PrintData() {
-        Print("[DEBUG] MultiCharactersCharacterId | id=" + id + " | active=" + active + " | first_name=" + first_name + " | last_name=" + last_name + " | citizen_class=" + citizen_class + " | date_of_birth=" + date_of_birth + " | sex=" + sex + " | race=" + race);
+        Print(MCConst.debugPrefix + "MultiCharactersCharacterId | id=" + id + " | active=" + active + " | first_name=" + first_name + " | last_name=" + last_name + " | citizen_class=" + citizen_class + " | date_of_birth=" + date_of_birth + " | sex=" + sex + " | race=" + race);
     }
 }

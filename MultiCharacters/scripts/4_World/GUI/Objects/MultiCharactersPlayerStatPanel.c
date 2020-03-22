@@ -31,7 +31,7 @@ class MultiCharactersPlayerStatPanel {
     }
 
     void ~MultiCharactersPlayerStatPanel() {
-        Print("[DEBUG] Deleting survivor stat panel");
+        Print(MCConst.debugPrefix + "Deleting survivor stat panel");
         if (wRoot) {
             wRoot.Unlink();
         }
@@ -96,12 +96,12 @@ class MultiCharactersPlayerStatPanel {
             EntityAI newItem;
 
             if (saveObject.IsInHands()) {
-                Print("[DEBUG] Save object is in hands!!!");
+                Print(MCConst.debugPrefix + "Save object is in hands!!!");
                 newItem = dayzPlayer.GetHumanInventory().CreateInHands(saveObject.GetType())
             } else {
 			    newItem = dayzPlayer.GetInventory().CreateInInventory(saveObject.GetType());
             }
-            Print("[DEBUG] Item created=" + newItem);
+            Print(MCConst.debugPrefix + "Item created=" + newItem);
         }
     }
 

@@ -17,7 +17,7 @@ modded class MissionServer {
 	}
 
 	void ProcessLoginData(ParamsReadContext ctx, PlayerIdentity sender, out int characterId, out string characterType, out string characterName) {
-		Print("[DEBUG] Reading login data");
+		Print(MCConst.debugPrefix + "Reading login data");
 		ref Param1<int> dataCharacterId = new Param1<int>(-1);
 		ref Param1<string> dataCharacterType = new Param1<string>("");
 		ref Param1<string> dataCharacterName = new Param1<string>("");
@@ -34,7 +34,7 @@ modded class MissionServer {
 		if (characterName == string.Empty) {
 			GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, sender);
 		}
-		Print("[DEBUG] Read");
+		Print(MCConst.debugPrefix + "Read");
 	}
 	
 	void EquipCharacter(PlayerBase player)

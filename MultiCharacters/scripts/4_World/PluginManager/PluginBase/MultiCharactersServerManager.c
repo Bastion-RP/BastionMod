@@ -28,6 +28,7 @@ class MultiCharactersServerManager : PluginBase {
         array<MultiCharactersCharacterId> arrayCurlData;
         map<string, string> curlData;
         string data, error;
+        bool dataFound;
 
         curlCore = CreateCURLCore();
         mcCurl = new MultiCharactersCURL();
@@ -35,7 +36,7 @@ class MultiCharactersServerManager : PluginBase {
         data = ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_STEAM_ID + sender.GetPlainId());
 
         if (jsSerializer.ReadFromString(curlData, data, error)) {
-            Print("First read from string: " + curlData);
+            Print(MCConst.debugPrefix + "First read from string: " + curlData);
             if (curlData.Contains(MCCurlConst.memberId)) {
                 data = ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_MEMBER_ID + curlData.Get(MCCurlConst.memberId));
 
@@ -46,7 +47,7 @@ class MultiCharactersServerManager : PluginBase {
                         if (characterData.IsActive()) {
                             SavePlayer savePlayer;
                             string savePlayerDir = MCConst.loadoutDir + "\\" + sender.GetPlainId() + "\\" + characterData.GetCharacterId() + MCConst.fileType;
-                            Print("[DEBUG] SAVE DATA DIR | " + savePlayerDir);
+                            Print(MCConst.debugPrefix + "SAVE DATA DIR | " + savePlayerDir);
                             characterData.PrintData();
 
                             if (FileExist(savePlayerDir)) {
@@ -61,56 +62,21 @@ class MultiCharactersServerManager : PluginBase {
                         }
                     }
                     if (savePlayerArray.Count() > 0) {
+                        dataFound = true;
                         auto params = new Param1<array<ref SavePlayer>>(savePlayerArray);
 		                //PlayerBase newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(sender, "SurvivorF_Gabi", "0 0 0", 0, "NONE"));
 
                         GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_GRAB_LOADOUTS, params, true, sender);
 		                //GetGame().SelectPlayer(sender, newPlayer);
                     } else {
-                        GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, sender);
                     }
                 }
             }
-            Print("Found web member, " + data);
-
+        }
+        if (!dataFound) {
+            GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, sender);
         }
     }
-
-/*     void ProcessCURLData(string data) {
-        Print("[DEBUG] Processing CURL data");
-        array<MultiCharactersCharacterId> arrayWebCharacters;
-        MultiCharactersPlayerId webMember;
-        string error;
-
-        if (jsSerializer.ReadFromString(webMember, data, error)) {
-            Print("[DEBUG] Found member by steam id! " + error);
-            if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) {
-                clientMemberId
-            }
-            SendMultiCharactersCURLRequest(MultiCharactersCURLEndpoints.ENDPOINT_BY_MEMBER_ID, webMember.GetMemberId());
-        } else if (jsSerializer.ReadFromString(arrayWebCharacters, data, error)) {
-            Print("[DEBUG] Found characters by member id! " + error);
-            GetPlayerLoadouts(arrayWebCharacters);
-        }
-    }
-
-    void GetPlayerLoadouts(array<MultiCharactersCharacterId> arrayWebCharacters) {
-        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) {
-            array<string> characterIds = new array<string>();
-            auto rpc_params = new array<ref Param>();
-            string memberId;
-            Print("[DEBUG] Getting player loadouts!");
-
-            foreach (MultiCharactersCharacterId webCharacter : arrayWebCharacters) {
-                webCharacter.PrintData();
-                characterIds.Insert(webCharacter.GetCharacterId());
-            }
-            RPCSingleParam(null, MultiCharRPC.SERVER_GRAB_LOADOUTS, params, true);
-        }
-    }
-
-    int GetWebMemberIdBySteamId(string steam64Id) {
-    } */
 }
 
 MultiCharactersServerManager GetMultiCharactersServerManager() {

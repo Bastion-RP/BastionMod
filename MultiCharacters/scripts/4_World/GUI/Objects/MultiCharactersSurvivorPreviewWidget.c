@@ -16,7 +16,7 @@ class MultiCharactersSurvivorPreviewWidget {
     }
 
     void ~MultiCharactersSurvivorPreviewWidget() {
-        Print("[DEBUG] Deleting survivor preview widget");
+        Print(MCConst.debugPrefix + "Deleting survivor preview widget");
         if (wRoot) {
             wRoot.Unlink();
             delete wRoot;

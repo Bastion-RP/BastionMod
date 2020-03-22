@@ -21,7 +21,7 @@ class MultiCharactersSurvivorSelector {
     }
 
     void ~MultiCharactersSurvivorSelector() {
-        Print("[DEBUG] Deleting survivor selector widget");
+        Print(MCConst.debugPrefix + "Deleting survivor selector widget");
         if (wRoot) {
             wRoot.Unlink();
             delete wRoot;

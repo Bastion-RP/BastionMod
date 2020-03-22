@@ -2,11 +2,11 @@ class MultiCharactersCURL : CURLCallback {
     static ref ScriptInvoker multiCharactersData = new ScriptInvoker();
 
     override void OnError(int errorCode) {
-        Print("Error Code:" + errorCode);
+        Print(MCConst.debugPrefix + "Error Code:" + errorCode);
     }
 
     override void OnTimeout() {
-        Print("Request Timeout");
+        Print(MCConst.debugPrefix + "Request Timeout");
     }
 
     override void OnSuccess(string data, int dataSize) {
