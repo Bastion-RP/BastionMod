@@ -46,8 +46,8 @@ class ActionExchange: ActionInteractBase
 
 				if ( m_BankingAccount.GetFunds() < m_VendingMachine.GetPrice() )
 				{
-					NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
-					return;
+					NotificationSystem.SendNotificationToPlayerExtended(player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
+					return false;
 				}
 				else
 				{
@@ -96,9 +96,9 @@ class ActionExchange: ActionInteractBase
 				if ( !m_BankingAccount )
 					return;
 
-				if ( GetBankAccountManager().CanDeposit( action_data.m_Player, m_VendingMachine.GetPrice(), m_Items, m_Ammount ) )
+				if ( GetBankManager().CanDeposit( action_data.m_Player, m_VendingMachine.GetPrice(), m_Items, m_Ammount ) )
 				{
-					GetBankAccountManager().RemoveCurrency( m_Items, m_VendingMachine.GetPrice() );
+					GetBankManager().RemoveCurrency( m_Items, m_VendingMachine.GetPrice() );
 				}
 				else
 				{
