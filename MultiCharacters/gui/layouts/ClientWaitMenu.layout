@@ -30,7 +30,7 @@ FrameWidgetClass root {
      hexactsize 0
      vexactsize 0
      style DayZBold
-     text "Waiting For Data From Server..."
+     text "Initializing..."
      "text halign" center
      "text valign" center
     }

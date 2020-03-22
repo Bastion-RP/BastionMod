@@ -1,15 +1,9 @@
 class SavePlayer {
+	private ref array<ref SaveObject> arrayInventory;
 	private int characterId;
 	private bool isDead;
-	private string survivorName;
-	private string survivorType;
-	private float healthLevel;
-	private float bloodLevel;
-	private float shockLevel;
-	private float waterLevel;
-	private float energyLevel;
-	private vector position;
-	private ref array<ref SaveObject> arrayInventory;
+	private string survivorName, survivorType, position, direction, orientation;
+	private float healthLevel, bloodLevel, shockLevel, waterLevel, energyLevel;
 
 	void SavePlayer() {
 		arrayInventory = new array<ref SaveObject>();
@@ -20,7 +14,15 @@ class SavePlayer {
 	}
 
 	vector GetPos() {
-		return position;
+		return position.ToVector();
+	}
+
+	vector GetDirection() {
+		return direction.ToVector();
+	}
+
+	vector GetOrientation() {
+		return orientation.ToVector();
 	}
 
 	bool IsDead() {
@@ -100,7 +102,15 @@ class SavePlayer {
 	}
 
 	void SetPos(vector position) {
-		this.position = position;
+		this.position = "" + position[0] + " " + position[1] + " " + position[2];
+	}
+
+	void SetDirection(vector direction) {
+		this.direction = "" + direction[0] + " " + direction[1] + " " + direction[2];
+	}
+
+	void SetOrientation(vector orientation) {
+		this.orientation = "" + orientation[0] + " " + orientation[1] + " " + orientation[2];
 	}
 
 	void SetInventory(ref array<ref SaveObject> arrayInventory) {

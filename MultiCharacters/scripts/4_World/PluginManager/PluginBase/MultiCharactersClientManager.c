@@ -1,16 +1,19 @@
 class MultiCharactersClientManager : PluginBase {
-	protected ref FileSerializer jsFileSerializer;
 	private ref array<ref SavePlayer> arrayLoadouts;
+	private ref MultiCharactersInitMenu menuInit;
+	private bool isInitialized;
 
 	void MultiCharactersClientManager() {
+		GetDayZGame().multicharactersSpawnInvoker.Insert(InitClient);
+		isInitialized = false;
 		arrayLoadouts = new array<ref SavePlayer>();
-		jsFileSerializer = new FileSerializer();
 	}
 
     void Init() {
+		delete menuInit;
 		delete arrayLoadouts;
-
-        arrayLoadouts = new array<ref SavePlayer>();
+		isInitialized = false;
+		arrayLoadouts = new array<ref SavePlayer>();
     }
 
 	ref array<ref SavePlayer> GetLoadouts() {
@@ -18,8 +21,43 @@ class MultiCharactersClientManager : PluginBase {
 	}
 
 	void SetLoadouts(ref array<ref SavePlayer> arrayLoadouts) {
-		Init();
+		delete this.arrayLoadouts;
+
+		this.arrayLoadouts = new array<ref SavePlayer>();
 		this.arrayLoadouts = arrayLoadouts;
+	}
+
+	void InitClient() {
+		Print(MCConst.debugPrefix + "MultiCharactersClientManager | InitClient | Initializing client! " + isInitialized);
+
+		if (menuInit) {
+			delete menuInit;
+		}
+		menuInit = new MultiCharactersInitMenu();
+
+		menuInit.Initializing();
+
+		if (!isInitialized) {
+			Print(MCConst.debugPrefix + "MultiCharactersClientManager | InitClient | Client not initialized, sending rpc to server!");
+			menuInit.Loading();
+			GetDayZGame().ContinueSpawn(true);
+		} else {
+			Print(MCConst.debugPrefix + "MultiCharactersClientManager | InitClient | Client initialized, grabbing loadouts!");
+			menuInit.DataWaiting();
+			GetGame().RPCSingleParam(null, MultiCharRPC.SERVER_GRAB_LOADOUTS, null, true);
+		}
+	}
+
+	void HideInitMenu() {
+		delete menuInit;
+	}
+
+	void SetInitialized(bool isInitialized) {
+		this.isInitialized = isInitialized;
+	}
+
+	bool IsInitialized() {
+		return isInitialized;
 	}
 }
 

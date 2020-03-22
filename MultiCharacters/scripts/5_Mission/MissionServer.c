@@ -1,11 +1,4 @@
 modded class MissionServer {
-	private ref array<vector> multiCharactersSpawnPoints;
-
-	void MissionServer() {
-		//JsonFileLoader<ref array<vector>>.JsonLoadFile(m_NCCSpawnPointDir, m_NCCSpawnPoints);
-		JsonFileLoader<ref array<vector>>.JsonLoadFile(MCConst.spawnPointDir, multiCharactersSpawnPoints);
-	}
-
 	override void OnClientPrepareEvent(PlayerIdentity identity, out bool useDB, out vector pos, out float yaw, out int preloadTimeout) {
 		// Don't use the database for spawning players. This ensures that the game will spawn a new character every single time they spawn in.
 		useDB = false;
@@ -16,42 +9,11 @@ modded class MissionServer {
 		}
 	}
 
-	void ProcessLoginData(ParamsReadContext ctx, PlayerIdentity sender, out int characterId, out string characterType, out string characterName) {
-		Print(MCConst.debugPrefix + "Reading login data");
-		ref Param1<int> dataCharacterId = new Param1<int>(-1);
-		ref Param1<string> dataCharacterType = new Param1<string>("");
-		ref Param1<string> dataCharacterName = new Param1<string>("");
-
-		if (ctx.Read(dataCharacterId)) {
-			characterId = dataCharacterId.param1;
-		}
-		if (ctx.Read(dataCharacterType)) {
-			characterType = dataCharacterType.param1;
-		}
-		if (ctx.Read(dataCharacterName)) {
-			characterName = dataCharacterName.param1;
-		}
-		if (characterName == string.Empty) {
-			GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, sender);
-		}
-		Print(MCConst.debugPrefix + "Read");
-	}
-	
-	void EquipCharacter(PlayerBase player)
-	{
-		EntityAI item = player.GetInventory().CreateInInventory(topsArray.GetRandomElement());
-		EntityAI item2 = player.GetInventory().CreateInInventory(pantsArray.GetRandomElement());
-		EntityAI item3 = player.GetInventory().CreateInInventory(shoesArray.GetRandomElement());
-		
-		StartingEquipSetup(player, false);
-	}
-
 	void BuildInventory(PlayerBase newPlayer, SavePlayer savePlayer) {
-		if (savePlayer) {
-			ref array<ref SaveObject> arrayInventory = savePlayer.GetInventory()
-			Print(MCConst.debugPrefix + "Spawning previous player loadout playername=" + newPlayer.GetIdentity().GetName() + " | playerIndex=" + newPlayer.GetCharacterId());
+		ref array<ref SaveObject> arrayInventory = savePlayer.GetInventory();
 
-			foreach (SaveObject saveObject : arrayInventory) {
+		foreach (SaveObject saveObject : arrayInventory) {
+			if (saveObject) {
 				array<ref SaveObject> arrayChildren = saveObject.GetChildren();
 				EntityAI parent;
 
@@ -67,10 +29,8 @@ modded class MissionServer {
 					CreateObjectChildren(newPlayer, parent, childObject);
 				}
 			}
-			newPlayer.SpawnMissingMags();
-		} else {
-			EquipCharacter(newPlayer);
 		}
+		newPlayer.SpawnMissingMags();
 	}
 
 	void CreateObjectChildren(PlayerBase player, EntityAI parent, SaveObject objectToCreate) {
@@ -127,10 +87,12 @@ modded class MissionServer {
 		}
 	}
 
-	void SetPlayerStats(PlayerBase player, SavePlayer savePlayer) {
-		Print(MCConst.debugPrefix + "Setting player values playername=" + player.GetIdentity().GetName() + " | playerIndex=" + player.GetCharacterId());
-
+	void LoadPlayer(PlayerBase player, SavePlayer savePlayer) {
+		vector position, direction, orientation;
 		float health, blood, shock, water, energy, playerWater, playerEnergy;
+		position = savePlayer.GetPos();
+		direction = savePlayer.GetDirection();
+		orientation = savePlayer.GetOrientation();
 		health = savePlayer.GetHealth();
 		blood = savePlayer.GetBlood();
 		shock = savePlayer.GetShock();
@@ -142,49 +104,63 @@ modded class MissionServer {
 		player.SetHealth("GlobalHealth", "Shock", shock);
 		player.GetStatWater().Set(water);
 		player.GetStatEnergy().Set(energy);
-	}
-
-	PlayerBase CreateNewPlayer(PlayerIdentity identity, vector pos, ParamsReadContext ctx, string characterType) {
-		PlayerBase newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, characterType, pos, 0, "NONE"));
-
-		GetGame().SelectPlayer(identity, newPlayer);
-	
-		return newPlayer;
+		player.SetPosition(savePlayer.GetPos());
+		player.SetDirection(savePlayer.GetDirection());
+		player.SetOrientation(savePlayer.GetOrientation());
+		BuildInventory(player, savePlayer);
 	}
 
 	PlayerBase OnClientNewEvent(PlayerIdentity identity, vector pos, ParamsReadContext ctx) {
+		// Read data from client
+		Param1<int> dataCharacterId;
+		Param1<bool> dataIsInitializing;
+		Param1<string> dataCharacterType, dataCharacterName;
+
+		if (!ctx.Read(dataCharacterId) || !ctx.Read(dataCharacterType) || !ctx.Read(dataCharacterName) || !ctx.Read(dataIsInitializing)) {
+        	Print(MCConst.debugPrefix + "MissionServer | OnClientNewEvent | Data not found! Disconnecting client! id=" + identity.GetPlainId());
+			GetGame().DisconnectPlayer(identity);
+			GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, identity);
+		}
+		if (dataIsInitializing.param1) {
+        	Print(MCConst.debugPrefix + "MissionServer | OnClientNewEvent | Initializing client! id=" + identity.GetPlainId())
+			PlayerBase initPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, GetGame().CreateRandomPlayer(), "0 0 0", 0, "NONE"));
+
+			GetGame().SelectPlayer(identity, initPlayer);
+			initPlayer.SetHealth("", "Health", 0);
+			GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_FINISH_INITIALIZATION, null, true, identity);
+			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().ObjectDelete, 5000, false, initPlayer);
+			return initPlayer;
+		}
+		Print(MCConst.debugPrefix + "MissionServer | OnClientNewEvent | Loading client! id=" + identity.GetPlainId())
 		PlayerBase newPlayer;
 		SavePlayer savePlayer;
-		vector playerPos;
-		int characterId;
-		string characterType, characterName, saveDir;
-
-		ProcessLoginData(ctx, identity, characterId, characterType, characterName);
-		saveDir = MCConst.loadoutDir + "\\" + identity.GetPlainId() + "\\" + characterId + MCConst.fileType;
+		string saveDir = MCConst.loadoutDir + "\\" + identity.GetPlainId() + "\\" + dataCharacterId.param1 + MCConst.fileType;
 
 		if (FileExist(saveDir)) {
 			JsonFileLoader<SavePlayer>.JsonLoadFile(saveDir, savePlayer);
 
 			if (savePlayer) {
-				characterType = savePlayer.GetType();
-				playerPos = savePlayer.GetPos();
+				newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, savePlayer.GetType(), savePlayer.GetPos(), 0, "NONE"));
+
+				LoadPlayer(newPlayer, savePlayer);
 			}
 		} else {
-			if (characterType == string.Empty) {
-				characterType = GetGame().CreateRandomPlayer();
-			}
-			playerPos = multiCharactersSpawnPoints.GetRandomElement();
-		}
-		newPlayer = CreateNewPlayer(identity, playerPos, ctx, characterType);
+			vector spawnPos = GetMultiCharactersServerManager().GetRandomSpawnpoint();
 
-		if (savePlayer) {
-			SetPlayerStats(newPlayer, savePlayer);
-			newPlayer.SetPosition(playerPos);
+			if (spawnPos == vector.Zero) {
+				spawnPos = GetMultiCharactersServerManager().GetRandomSpawnpoint();
+			}
+			newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, dataCharacterType.param1, spawnPos, 0, "NONE"));
+
+			newPlayer.GetInventory().CreateInInventory(topsArray.GetRandomElement());
+			newPlayer.GetInventory().CreateInInventory(pantsArray.GetRandomElement());
+			newPlayer.GetInventory().CreateInInventory(shoesArray.GetRandomElement());
+			StartingEquipSetup(newPlayer, false);
 		}
-		newPlayer.SetCharacterName(characterName);
-		newPlayer.SetCharacterId(characterId);
-		BuildInventory(newPlayer, savePlayer);
+		newPlayer.SetCharacterName(dataCharacterName.param1);
+		newPlayer.SetCharacterId(dataCharacterId.param1);
 		newPlayer.SaveInventory();
+		GetGame().SelectPlayer(identity, newPlayer);
 		
 		return newPlayer;
 	}

@@ -1,9 +1,11 @@
 class MultiCharactersServerManager : PluginBase {
     protected ref JsonSerializer jsSerializer;
+    protected ref array<string> spawnPoints;
     protected string clientMemberId;
 
     void MultiCharactersServerManager() {
         jsSerializer = new JsonSerializer();
+        spawnPoints = new array<string>();
 
         CheckDirectories();
     }
@@ -13,8 +15,10 @@ class MultiCharactersServerManager : PluginBase {
 			MakeDirectory(MCConst.loadoutDir);
 		}
 		if (!FileExist(MCConst.spawnPointDir)) {
-			JsonFileLoader<array<vector>>.JsonSaveFile(MCConst.spawnPointDir, DefaultSpawns());
-		}
+			JsonFileLoader<array<string>>.JsonSaveFile(MCConst.spawnPointDir, MultiCharactersDefaultSpawns());
+		} else {
+			JsonFileLoader<array<string>>.JsonLoadFile(MCConst.spawnPointDir, spawnPoints);
+        }
     }
 
     void GetPlayerLoadouts(PlayerIdentity sender) {
@@ -74,8 +78,13 @@ class MultiCharactersServerManager : PluginBase {
             }
         }
         if (!dataFound) {
+			GetGame().DisconnectPlayer(sender);
             GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, sender);
         }
+    }
+
+    vector GetRandomSpawnpoint() {
+        return spawnPoints.GetRandomElement().ToVector();
     }
 }
 

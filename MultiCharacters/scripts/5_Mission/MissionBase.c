@@ -5,11 +5,6 @@ modded class MissionBase {
 
 		if (!menu) {
 			switch (id) {
-				case MultiCharMenu.MENU_WAIT:
-					{
-						menu = new MenuWaitForServer();
-						break;
-					}
 				case MultiCharMenu.MENU_SPAWN:
 					{
 						menu = new MultiCharactersMenu();

@@ -154,6 +154,8 @@ modded class PlayerBase {
 		m_SavePlayer.SetCharacterId(multicharactersPlayerId);
 		m_SavePlayer.SetType(GetType());
 		m_SavePlayer.SetPos(GetPosition());
+		m_SavePlayer.SetDirection(GetDirection());
+		m_SavePlayer.SetOrientation(GetOrientation());
 		m_SavePlayer.SetInventory(m_SaveObjects);
 		m_SavePlayer.SetHealth(GetHealth("", "Health"));
 		m_SavePlayer.SetBlood(GetHealth("", "Blood"));
@@ -185,12 +187,10 @@ modded class PlayerBase {
 	}
 
 	void SetCharacterId(int multicharactersPlayerId) {
-		Print(MCConst.debugPrefix + "Setting player index! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
 		this.multicharactersPlayerId = multicharactersPlayerId;
 	}
 
 	void SetCharacterName(string multicharactersPlayerName) {
-		Print(MCConst.debugPrefix + "Setting player name! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
 		this.multicharactersPlayerName = multicharactersPlayerName;
 	}
 

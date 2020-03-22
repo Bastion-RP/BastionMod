@@ -1,10 +1,11 @@
 modded class DayZGame {
-	protected ref FileSerializer m_FileSerializer = new FileSerializer();
+	static ref ScriptInvoker multicharactersSpawnInvoker;
 	private int multicharactersSelectedCharacterId;
 	private string multicharactersSelectedSurvivorType;
 	private string multicharactersSelectedSurvivorName;
 
 	void DayZGame() {
+		multicharactersSpawnInvoker = new ScriptInvoker();
 		multicharactersSelectedCharacterId = -1;
 	}
 
@@ -29,8 +30,9 @@ modded class DayZGame {
 	}
 
 	void StoreLoginData() {
-		GetUIManager().EnterScriptedMenu(MultiCharMenu.MENU_WAIT, null);
-		RPCSingleParam(null, MultiCharRPC.SERVER_GRAB_LOADOUTS, null, true);
+		// Make this a script invoked method
+		Print(MCConst.debugPrefix + "DayZGame | StoreLoginData | Invoking spawn!");
+		multicharactersSpawnInvoker.Invoke();
 	}
 
 	override void CancelLoginTimeCountdown() {
@@ -50,8 +52,7 @@ modded class DayZGame {
 	}
 
 	void SpawnCountdown() {
-		m_LoginTime--
-		if (m_LoginTime <= 0) {
+		if (--m_LoginTime <= 0) {
 			GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(this.SpawnCountdown);
 			GetGame().GetUIManager().ScreenFadeOut(0);
 			ContinueSpawn();
@@ -67,16 +68,18 @@ modded class DayZGame {
 		return;
 	}
 
-	void ContinueSpawn() {
+	void ContinueSpawn(bool init = false) {
 		Print(MCConst.debugPrefix + "Continuing spawn!");
-		ref array<ref Param> params = new array<ref Param>;
-		ref Param characterId = new Param1<int>(multicharactersSelectedCharacterId);
-		ref Param characterType = new Param1<string>(multicharactersSelectedSurvivorType);
-		ref Param characterName = new Param1<string>(multicharactersSelectedSurvivorName);
+		array<ref Param> params = new array<ref Param>();
+		Param characterId = new Param1<int>(multicharactersSelectedCharacterId);
+		Param isInitializing = new Param1<bool>(init);
+		Param characterType = new Param1<string>(multicharactersSelectedSurvivorType);
+		Param characterName = new Param1<string>(multicharactersSelectedSurvivorName);
 
 		params.Insert(characterId);
 		params.Insert(characterType);
 		params.Insert(characterName);
+		params.Insert(isInitializing);
 		StoreLoginData(params);
 	}
 }

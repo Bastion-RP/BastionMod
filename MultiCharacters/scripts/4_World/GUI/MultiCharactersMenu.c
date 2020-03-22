@@ -77,6 +77,7 @@ class MultiCharactersMenu : UIScriptedMenu {
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
         GetGame().GetUIManager().ShowCursor(true);
         GetGame().GetMission().GetHud().Show(false);
+        GetGame().GetUIManager().ScreenFadeOut(0);
     }
 
     override void OnHide() {
