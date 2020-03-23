@@ -1,6 +1,6 @@
 class SavePlayer {
 	private ref array<ref SaveObject> arrayInventory;
-	private int characterId;
+	private int characterId, characterClass;
 	private bool isDead;
 	private string survivorName, survivorType, position, direction, orientation;
 	private float healthLevel, bloodLevel, shockLevel, waterLevel, energyLevel;
@@ -31,6 +31,10 @@ class SavePlayer {
 
 	int GetCharacterId() {
 		return characterId;
+	}
+
+	int GetCharacterClass() {
+		return characterClass;
 	}
 
 	string GetName() {
@@ -67,6 +71,10 @@ class SavePlayer {
 
 	void SetCharacterId(int characterId) {
 		this.characterId = characterId;
+	}
+
+	void SetCharacterClass(int characterClass) {
+		this.characterClass = characterClass;
 	}
 
 	void SetDead(bool isDead) {

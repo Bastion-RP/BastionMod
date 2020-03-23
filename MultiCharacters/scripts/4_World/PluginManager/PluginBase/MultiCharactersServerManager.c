@@ -1,11 +1,13 @@
 class MultiCharactersServerManager : PluginBase {
     protected ref JsonSerializer jsSerializer;
     protected ref array<string> spawnPoints;
+    protected ref array<string> isfSpawnPoints;
     protected string clientMemberId;
 
     void MultiCharactersServerManager() {
         jsSerializer = new JsonSerializer();
         spawnPoints = new array<string>();
+        isfSpawnPoints = new array<string>();
 
         CheckDirectories();
     }
@@ -15,9 +17,16 @@ class MultiCharactersServerManager : PluginBase {
 			MakeDirectory(MCConst.loadoutDir);
 		}
 		if (!FileExist(MCConst.spawnPointDir)) {
-			JsonFileLoader<array<string>>.JsonSaveFile(MCConst.spawnPointDir, MultiCharactersDefaultSpawns());
+            spawnPoints = MultiCharactersDefaultSpawns();
+			JsonFileLoader<array<string>>.JsonSaveFile(MCConst.spawnPointDir, spawnPoints);
 		} else {
 			JsonFileLoader<array<string>>.JsonLoadFile(MCConst.spawnPointDir, spawnPoints);
+        }
+		if (!FileExist(MCConst.isfSpawnPointDir)) {
+            isfSpawnPoints = MultiCharactersDefaultISFSpawns();
+			JsonFileLoader<array<string>>.JsonSaveFile(MCConst.isfSpawnPointDir, isfSpawnPoints);
+		} else {
+			JsonFileLoader<array<string>>.JsonLoadFile(MCConst.isfSpawnPointDir, isfSpawnPoints);
         }
     }
 
@@ -29,55 +38,40 @@ class MultiCharactersServerManager : PluginBase {
         CURLCore curlCore;
         MultiCharactersCURL mcCurl;
         CURLContext ctx;
-        array<MultiCharactersCharacterId> arrayCurlData;
-        map<string, string> curlData;
+        array<MultiCharactersCharacterId> arrayCharacterData;
+        map<string, string> steamData;
         string data, error;
         bool dataFound;
 
         curlCore = CreateCURLCore();
         mcCurl = new MultiCharactersCURL();
         ctx = curlCore.GetCURLContext("https://bastionrp.com/api/");
-        data = ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_STEAM_ID + sender.GetPlainId());
+        if (jsSerializer.ReadFromString(steamData, ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_STEAM_ID + sender.GetPlainId()), error) && steamData.Contains(MCCurlConst.memberId) && jsSerializer.ReadFromString(arrayCharacterData, ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_MEMBER_ID + steamData.Get(MCCurlConst.memberId)), error) && arrayCharacterData.Count() > 0) {
+            auto savePlayerArray = new array<ref SavePlayer>();
+            
+            foreach (MultiCharactersCharacterId characterData : arrayCharacterData) {
+                if (characterData.IsActive()) {
+                    SavePlayer savePlayer;
+                    string savePlayerDir = MCConst.loadoutDir + "\\" + sender.GetPlainId() + "\\" + characterData.GetCharacterId() + MCConst.fileType;
+                    Print(MCConst.debugPrefix + "SAVE DATA DIR | " + savePlayerDir);
+                    characterData.PrintData();
 
-        if (jsSerializer.ReadFromString(curlData, data, error)) {
-            Print(MCConst.debugPrefix + "First read from string: " + curlData);
-            if (curlData.Contains(MCCurlConst.memberId)) {
-                data = ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_MEMBER_ID + curlData.Get(MCCurlConst.memberId));
-
-                if (jsSerializer.ReadFromString(arrayCurlData, data, error)) {
-                    auto savePlayerArray = new array<ref SavePlayer>();
-                    
-                    foreach (MultiCharactersCharacterId characterData : arrayCurlData) {
-                        if (characterData.IsActive()) {
-                            SavePlayer savePlayer;
-                            string savePlayerDir = MCConst.loadoutDir + "\\" + sender.GetPlainId() + "\\" + characterData.GetCharacterId() + MCConst.fileType;
-                            Print(MCConst.debugPrefix + "SAVE DATA DIR | " + savePlayerDir);
-                            characterData.PrintData();
-
-                            if (FileExist(savePlayerDir)) {
-				                JsonFileLoader<SavePlayer>.JsonLoadFile(savePlayerDir, savePlayer);
-                            } else {
-                                savePlayer = new SavePlayer();
-                                savePlayer.SetDead(true);
-                                savePlayer.SetCharacterId(characterData.GetCharacterId().ToInt());
-                                savePlayer.SetName(characterData.GetFirstName() + " " + characterData.GetLastName());
-                            }
-                            savePlayerArray.Insert(savePlayer);
-                        }
-                    }
-                    if (savePlayerArray.Count() > 0) {
-                        dataFound = true;
-                        auto params = new Param1<array<ref SavePlayer>>(savePlayerArray);
-		                //PlayerBase newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(sender, "SurvivorF_Gabi", "0 0 0", 0, "NONE"));
-
-                        GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_GRAB_LOADOUTS, params, true, sender);
-		                //GetGame().SelectPlayer(sender, newPlayer);
+                    if (FileExist(savePlayerDir)) {
+                        JsonFileLoader<SavePlayer>.JsonLoadFile(savePlayerDir, savePlayer);
                     } else {
+                        savePlayer = new SavePlayer();
+                        savePlayer.SetDead(true);
+                        savePlayer.SetCharacterClass(characterData.GetCitizenClass().ToInt());
+                        savePlayer.SetCharacterId(characterData.GetCharacterId().ToInt());
+                        savePlayer.SetName(characterData.GetFirstName() + " " + characterData.GetLastName());
                     }
+                    savePlayerArray.Insert(savePlayer);
                 }
             }
-        }
-        if (!dataFound) {
+            auto params = new Param1<array<ref SavePlayer>>(savePlayerArray);
+
+            GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_GRAB_LOADOUTS, params, true, sender);
+        } else {
 			GetGame().DisconnectPlayer(sender);
             GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, sender);
         }
@@ -85,6 +79,10 @@ class MultiCharactersServerManager : PluginBase {
 
     vector GetRandomSpawnpoint() {
         return spawnPoints.GetRandomElement().ToVector();
+    }
+
+    vector GetRandomISFSpawnpoint() {
+        return isfSpawnPoints.GetRandomElement().ToVector();
     }
 }
 

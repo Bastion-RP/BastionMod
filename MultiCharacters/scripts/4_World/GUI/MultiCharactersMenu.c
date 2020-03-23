@@ -2,12 +2,10 @@ class MultiCharactersMenu : UIScriptedMenu {
     private ref MultiCharactersSurvivorSelector wSurvivorSelector;
     private ref MultiCharactersSurvivorCreator wSurvivorCreator;
 
-    // Widgets for Selector Menu
     protected ref Widget wRoot;
     protected ref Widget wSurvivorSelectRoot;
     protected Camera playerCamera;
-
-    // Widgets for Creation Menu
+    protected int characterId;
 
     override Widget Init() {
         wRoot = GetGame().GetWorkspace().CreateWidgets("MultiCharacters\\gui\\layouts\\CharacterMenu.layout");

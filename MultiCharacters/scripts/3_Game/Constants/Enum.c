@@ -2,6 +2,7 @@ enum MultiCharRPC {
 	// Server RPCs
 	SERVER_GRAB_LOADOUTS = -5165189,
 	SERVER_INIT_CLIENT,
+	SERVER_SPAWN_CLIENT,
 
 	// Client RPCs
 	CLIENT_GRAB_LOADOUTS,
@@ -9,6 +10,14 @@ enum MultiCharRPC {
 	CLIENT_SPAWN_MAG,
 	CLIENT_DISCONNECT,
 	CLIENT_FINISH_INITIALIZATION
+}
+
+enum BastionClasses {
+	A = 1,
+	B,
+	C,
+	D,
+	S
 }
 
 enum MultiCharMenu {

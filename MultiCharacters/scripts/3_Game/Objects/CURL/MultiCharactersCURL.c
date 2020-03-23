@@ -17,23 +17,6 @@ class MultiCharactersCURL : CURLCallback {
     }
 }
 
-static void SendMultiCharactersCURLRequest(string endpoint) {
-    CURLCore curlCore = CreateCURLCore();
-    MultiCharactersCURL mcCurl = new MultiCharactersCURL();
-    CURLContext ctx = curlCore.GetCURLContext("https://bastionrp.com/api/");
-
-    ctx.GET(mcCurl, endpoint);
-}
-
-static void SendMultiCharactersCURLRequest(string endpoint, string id) {
-    CURLCore curlCore = CreateCURLCore();
-    MultiCharactersCURL mcCurl = new MultiCharactersCURL();
-    CURLContext ctx = curlCore.GetCURLContext("https://bastionrp.com/api/");
-
-    ctx.GET(mcCurl, endpoint + id);
-}
-
-
 class MultiCharactersCURLEndpoints {
     const static string ENDPOINT_BY_CHARACTER_ID = "characters.php?character_id=";
     const static string ENDPOINT_BY_STEAM_ID = "characters.php?steam_id=";

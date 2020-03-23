@@ -1,13 +1,14 @@
 modded class PlayerBase {
 	private ref FileSerializer m_FileSerializer;
 	private ref array<ref MagObject> m_MagsToReload;
-	private int multicharactersPlayerId;
+	private int multicharactersPlayerId, multicharactersPlayerClass;
 	private string multicharactersPlayerName;
 
 	void PlayerBase() {
 		m_MagsToReload = new array<ref MagObject>();
 		m_FileSerializer = new FileSerializer();
 		multicharactersPlayerId = -1;
+		multicharactersPlayerClass = -1;
 	}
 
 	override void OnStoreSave(ParamsWriteContext ctx) {
@@ -20,7 +21,6 @@ modded class PlayerBase {
 	}
 
 	void SpawnMissingMags() {
-		Print(MCConst.debugPrefix + "Spawning mags in player inventory instead of weapon! playername=" + this.GetIdentity().GetName() + " | playerId=" + this.GetIdentity().GetPlainId());
 		if (!m_MagsToReload) {
 			m_MagsToReload = new array<ref MagObject>();
 		}
@@ -186,15 +186,19 @@ modded class PlayerBase {
 		DeleteFile(playerDir + "\\" + multicharactersPlayerId + MCConst.fileType);
 	}
 
-	void SetCharacterId(int multicharactersPlayerId) {
+	void SetMultiCharacterStats(int multicharactersPlayerId, string multicharactersPlayerName, int multicharactersPlayerClass) {
 		this.multicharactersPlayerId = multicharactersPlayerId;
-	}
-
-	void SetCharacterName(string multicharactersPlayerName) {
+		this.multicharactersPlayerClass = multicharactersPlayerClass;
 		this.multicharactersPlayerName = multicharactersPlayerName;
+
+		Print(MCConst.debugPrefix + "Setting character identifiers! id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass + " | name=" + multicharactersPlayerName);
 	}
 
-	int GetCharacterId() {
+	int GetMultiCharactersPlayerId() {
+		return multicharactersPlayerId;
+	}
+
+	int GetMultiCharactersPlayerClass() {
 		return multicharactersPlayerId;
 	}
 }

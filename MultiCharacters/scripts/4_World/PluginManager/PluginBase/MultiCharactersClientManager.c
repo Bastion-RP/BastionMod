@@ -1,6 +1,8 @@
 class MultiCharactersClientManager : PluginBase {
 	private ref array<ref SavePlayer> arrayLoadouts;
 	private ref MultiCharactersInitMenu menuInit;
+	private int selectedSurvivorId;
+	private string selectedSurvivorType;
 	private bool isInitialized;
 
 	void MultiCharactersClientManager() {

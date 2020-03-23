@@ -69,16 +69,14 @@ modded class DayZGame {
 	}
 
 	void ContinueSpawn(bool init = false) {
-		Print(MCConst.debugPrefix + "Continuing spawn!");
+		Print(MCConst.debugPrefix + "Continuing spawn! Initialize client? " + init);
 		array<ref Param> params = new array<ref Param>();
 		Param characterId = new Param1<int>(multicharactersSelectedCharacterId);
-		Param isInitializing = new Param1<bool>(init);
 		Param characterType = new Param1<string>(multicharactersSelectedSurvivorType);
-		Param characterName = new Param1<string>(multicharactersSelectedSurvivorName);
+		Param isInitializing = new Param1<bool>(init);
 
 		params.Insert(characterId);
 		params.Insert(characterType);
-		params.Insert(characterName);
 		params.Insert(isInitializing);
 		StoreLoginData(params);
 	}
