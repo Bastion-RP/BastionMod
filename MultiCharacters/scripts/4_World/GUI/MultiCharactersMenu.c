@@ -7,20 +7,47 @@ class MultiCharactersMenu : UIScriptedMenu {
     protected Camera playerCamera;
     protected int characterId;
 
+    void ~MultiCharactersMenu() {
+        if (wSurvivorCreator) {
+            delete wSurvivorCreator;
+        }
+        if (wSurvivorSelector) {
+            delete wSurvivorSelector;
+        }
+    }
+
     override Widget Init() {
+        Print("CREATING SELECT MENU");
+        InitScene();
+        
         wRoot = GetGame().GetWorkspace().CreateWidgets("MultiCharacters\\gui\\layouts\\CharacterMenu.layout");
         wSurvivorCreator = new MultiCharactersSurvivorCreator(wRoot);
         wSurvivorSelector = new MultiCharactersSurvivorSelector(wRoot);
 
-        InitCamera();
-        wRoot.Show(false);
         return wRoot;
     }
 
-    void InitCamera() {
+    void InitScene() {
+        string rootPath, scenePath, childName;
+        int count, index;
+        float fov, pos_x, pos_z, pos_y;
+        vector target, camDir, position;
+
+        rootPath = "cfgCharacterScenes " + GetGame().GetWorldName();
+        count = g_Game.ConfigGetChildrenCount(rootPath);
+        index = Math.RandomInt(0, count - 1);
+
+        GetGame().ConfigGetChildName(rootPath, index, childName);
         GetGame().ObjectDelete(playerCamera);
-        playerCamera = Camera.Cast(g_Game.CreateObject("staticcamera", vector.Zero, true));
+
+        scenePath = rootPath + " " + childName;
+        position = SwapYZ(GetGame().ConfigGetVector(scenePath + " position"));
+        target = SwapYZ(GetGame().ConfigGetVector(scenePath + " target"));
+        playerCamera = Camera.Cast(GetGame().CreateObject("staticcamera", SnapToGround(position), true, false, false));
+
         playerCamera.SetActive(true);
+        playerCamera.LookAt(target);
+        Print("SETTING POSITIONS | camera pos=" + position);
     }
 
     override bool OnClick(Widget w, int x, int y, int button) {
@@ -43,7 +70,7 @@ class MultiCharactersMenu : UIScriptedMenu {
             MultiCharactersPlayerStatPanel statPanel = wSurvivorSelector.GetStatPanel(w);
 
             wSurvivorSelector.OnMouseButtonUp(w);
-            
+
             if (statPanel && statPanel.GetSavePlayer().IsDead()) {
                 wSurvivorCreator.Show();
             }
@@ -67,6 +94,29 @@ class MultiCharactersMenu : UIScriptedMenu {
             wSurvivorSelector.OnMouseLeave(w);
         }
         return true;
+    }
+
+    vector GetCameraPosition() {
+        return playerCamera.GetPosition();
+    }
+
+    protected vector SwapYZ(vector vec) {
+        vector tmp;
+        tmp[0] = vec[0];
+        tmp[1] = vec[2];
+        tmp[2] = vec[1];
+
+        return tmp;
+    }
+
+    protected vector SnapToGround(vector pos) {
+        float pos_x = pos[0];
+        float pos_z = pos[2];
+        float pos_y = GetGame().SurfaceY(pos_x, pos_z);
+        vector tmp_pos = Vector(pos_x, pos_y, pos_z);
+        tmp_pos[1] = tmp_pos[1] + pos[1];
+
+        return tmp_pos;
     }
 
     override void OnShow() {

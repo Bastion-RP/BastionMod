@@ -5,12 +5,17 @@ class MultiCharactersSurvivorPreviewWidget {
     private bool isSelected;
 
     void MultiCharactersSurvivorPreviewWidget(Widget wParent, string survivorType) {
+        vector cameraPos, characterPos;
         this.wParent = wParent;
         wRoot = GetGame().GetWorkspace().CreateWidgets("MultiCharacters\\gui\\layouts\\SurvivorPreviewWidget.layout", wParent);
         wSurvivorPreview = PlayerPreviewWidget.Cast(wRoot.FindAnyWidget("survivorPreview"));
-        dayzPlayer = GetGame().CreateObject(survivorType, vector.Zero, true);
         pnlBG = wRoot.FindAnyWidget("pnlBG");
+        cameraPos = GetMultiCharactersClientManager().GetSelectMenu().GetCameraPosition()
+        characterPos = ("" + cameraPos[0] + " " + (cameraPos[1] + 3) + " " + cameraPos[2]).ToVector();
+        dayzPlayer = GetGame().CreateObject(survivorType, characterPos, true);
 
+        Print(MCConst.debugPrefix + " | inactive pos=" + characterPos);
+        dayzPlayer.SetPosition(characterPos);
         wSurvivorPreview.SetPlayer(dayzPlayer);
         pnlBG.Show(false);
     }

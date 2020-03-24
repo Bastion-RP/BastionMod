@@ -33,8 +33,8 @@ FrameWidgetClass rootFrame {
   FrameWidgetClass charFrame {
    visible 1
    ignorepointer 1
-   position 0.1 0
-   size 0.25 0.75
+   position 0.15 0
+   size 0.35 0.9
    halign center_ref
    valign center_ref
    hexactpos 0

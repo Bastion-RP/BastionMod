@@ -19,7 +19,3 @@ enum BastionClasses {
 	D,
 	S
 }
-
-enum MultiCharMenu {
-	MENU_SPAWN
-}

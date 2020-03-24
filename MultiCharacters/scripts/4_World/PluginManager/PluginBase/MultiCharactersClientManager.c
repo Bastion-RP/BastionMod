@@ -1,6 +1,7 @@
 class MultiCharactersClientManager : PluginBase {
 	private ref array<ref SavePlayer> arrayLoadouts;
 	private ref MultiCharactersInitMenu menuInit;
+	private ref MultiCharactersMenu menuSelect;
 	private int selectedSurvivorId;
 	private string selectedSurvivorType;
 	private bool isInitialized;
@@ -13,6 +14,7 @@ class MultiCharactersClientManager : PluginBase {
 
     void Init() {
 		delete menuInit;
+		delete menuSelect;
 		delete arrayLoadouts;
 		isInitialized = false;
 		arrayLoadouts = new array<ref SavePlayer>();
@@ -50,12 +52,24 @@ class MultiCharactersClientManager : PluginBase {
 		}
 	}
 
+	void ShowSelectMenu() {
+		delete menuSelect;
+
+		menuSelect = new MultiCharactersMenu();
+		
+		GetGame().GetUIManager().ShowScriptedMenu(menuSelect, null);
+	}
+
 	void HideInitMenu() {
 		delete menuInit;
 	}
 
 	void SetInitialized(bool isInitialized) {
 		this.isInitialized = isInitialized;
+	}
+
+	MultiCharactersMenu GetSelectMenu() {
+		return menuSelect;
 	}
 
 	bool IsInitialized() {

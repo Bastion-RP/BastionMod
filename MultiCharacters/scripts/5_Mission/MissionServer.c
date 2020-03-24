@@ -107,7 +107,7 @@ modded class MissionServer {
 					newPlayer.GetInventory().CreateInInventory(shoesArray.GetRandomElement());
 					StartingEquipSetup(newPlayer, false);
 				}
-				newPlayer.SetMultiCharacterStats(characterId, webCharData.GetFirstName() + webCharData.GetLastName(), webCharData.GetCitizenClass().ToInt());
+				newPlayer.SetMultiCharacterStats(characterId, webCharData.GetFirstName() + " " + webCharData.GetLastName(), webCharData.GetCitizenClass().ToInt());
 				newPlayer.SaveInventory();
 				GetGame().SelectPlayer(identity, newPlayer);
 				FinishSpawningClient(identity, newPlayer);
@@ -127,7 +127,6 @@ modded class MissionServer {
 		GetGame().SelectPlayer(identity, player);
 		FinishSpawningClient(identity, player);
 		player.SetHealth("", "Health", 0);
-		GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_FINISH_INITIALIZATION, null, true, identity);
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().ObjectDelete, 5000, false, player);
 	}
 

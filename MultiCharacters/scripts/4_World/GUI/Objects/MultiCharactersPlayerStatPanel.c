@@ -3,6 +3,7 @@ class MultiCharactersPlayerStatPanel {
     private ref TextWidget txtRespawn, txtName, txtHealth, txtBlood, txtEnergy, txtWater;
     private ref SavePlayer savePlayer;
     private DayZPlayer dayzPlayer
+    private vector characterPos;
     private bool isSelected;
 
     // Consts
@@ -12,6 +13,7 @@ class MultiCharactersPlayerStatPanel {
 	private const int maxWater = 5000;
 
     void MultiCharactersPlayerStatPanel(Widget wParent, SavePlayer savePlayer) {
+        vector cameraPos, characterPos;
         this.wParent = wParent;
         this.savePlayer = savePlayer;
         wRoot = GetGame().GetWorkspace().CreateWidgets("MultiCharacters\\gui\\layouts\\SurvivorStatWidget.layout", wParent);
@@ -23,9 +25,12 @@ class MultiCharactersPlayerStatPanel {
         txtWater = TextWidget.Cast(wRoot.FindAnyWidget("txtWater"));
         pnlStats = wRoot.FindAnyWidget("pnlStats");
         pnlBorder = wRoot.FindAnyWidget("pnlBorder");
-        dayzPlayer = GetGame().CreateObject(savePlayer.GetType(), vector.Zero, true);
+        cameraPos = GetMultiCharactersClientManager().GetSelectMenu().GetCameraPosition()
+        characterPos = ("" + cameraPos[0] + " " + (cameraPos[1] + 3) + " " + cameraPos[2]).ToVector();
+        dayzPlayer = GetGame().CreateObject(savePlayer.GetType(), characterPos, true);
 
         Init();
+        dayzPlayer.SetPosition(characterPos);
         txtName.SetText(savePlayer.GetName());
         wRoot.Show(true);
     }
