@@ -110,12 +110,12 @@ class Stage0
 };
 class Stage1
 {
-	texture = "BastionRPitems\Guns\CSP9\data\dayz_nohq.paa";
+	texture = "BastionMod\Guns\CSP9\data\dayz_nohq.paa";
 	texGen = "1";
 };
 class Stage5
 {
-	texture = "BastionRPitems\Guns\CSP9\data\dayz_smdi.paa";
+	texture = "BastionMod\Guns\CSP9\data\dayz_smdi.paa";
 	texGen = "5";
 };
 class Stage6
@@ -130,6 +130,6 @@ class Stage7
 };
 class Stage8
 {
-	texture = "BastionRPitems\Guns\CSP9\data\dayz_e_co.paa";
+	texture = "BastionMod\Guns\CSP9\data\dayz_e_co.paa";
 	texGen = "0";
 };

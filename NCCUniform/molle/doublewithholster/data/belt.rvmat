@@ -8,7 +8,7 @@ PixelShaderID="Super";
 VertexShaderID="Super";
 class Stage1
 {
-	texture="BastionRPitems\NCCUniform\patrolbelt\data\dayz_nohq.paa";
+	texture="BastionMod\NCCUniform\patrolbelt\data\dayz_nohq.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -56,7 +56,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="BastionRPitems\NCCUniform\patrolbelt\data\dayz_smdi.paa";
+	texture="BastionMod\NCCUniform\patrolbelt\data\dayz_smdi.paa";
 	uvSource="tex";
 	class uvTransform
 	{
