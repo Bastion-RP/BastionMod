@@ -1,21 +1,21 @@
 modded class PlayerBase {
     private ref BastionPlayerAccount bastionPlayerAccount;
-    private int m_PlayerIndex;
 
-    ref BastionPlayerAccount GetBastionPlayerAccount() {
+    void ~PlayerBase() {
+        if (bastionPlayerAccount) {
+            delete bastionPlayerAccount;
+        }
+    }
+
+    BastionPlayerAccount GetBastionPlayerAccount() {
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return null; }
 
+        Print("[DEBUG] PlayerBase | GetBastionPlayerAccount | Getting player account | " + bastionPlayerAccount);
         return bastionPlayerAccount;
     }
 
-    int GetIndex() {
-        return m_PlayerIndex;
-    }
-
     void DepositPassiveIncome() {
-        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
-
-        ref BastionBankAccount account = GetBankAccountManager().GetAccountByPlayerBase(this);
+        BastionBankAccount account = GetBankAccountManager().GetAccountByPlayerBase(this);
         int wage = GetBankAccountManager().GetWageByPlayerBase(this);
 
         if (account) {
@@ -25,33 +25,36 @@ modded class PlayerBase {
         }
     }
 
-    void SetBastionPlayerAccount(ref BastionPlayerAccount account) {
+    void SetBastionPlayerAccount(BastionPlayerAccount account) {
         bastionPlayerAccount = account;
     }
 
     void LoadBastionPlayerAccount() {
-        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
+        string playerAccountDir = BBConst.playerDir + "\\" + GetIdentity().GetPlainId() + "\\" + multicharactersPlayerId + BBConst.fileType;
 
-        string playerAccountDir = BBConst.playerDir + "\\" + this.GetIdentity().GetPlainId() + "\\" + m_PlayerIndex + BBConst.fileType;
+        Print("[DEBUG] PlayerBase | LoadBastionPlayerAccount | Loading account | dir=" + playerAccountDir);
 
         if (FileExist(playerAccountDir)) {
             JsonFileLoader<BastionPlayerAccount>.JsonLoadFile(playerAccountDir, bastionPlayerAccount);
-            // Validate the file
-
-            if (bastionPlayerAccount.GetJobPosition() == string.Empty) {
-                bastionPlayerAccount.SetJobPosition("unemployed");
-                JsonFileLoader<ref BastionPlayerAccount>.JsonSaveFile(playerAccountDir, bastionPlayerAccount);
-            }
+            bastionPlayerAccount.Validate();
+            JsonFileLoader<BastionPlayerAccount>.JsonSaveFile(playerAccountDir, bastionPlayerAccount);
+            Print("[DEBUG] PlayerBase | LoadBastionPlayerAccount | File exists! Loading account | " + bastionPlayerAccount);
         }
     }
     override void EEKilled(Object killer) {
         super.EEKilled(killer);
         GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(this.DepositPassiveIncome);
+        
+        if (bastionPlayerAccount) {
+            delete bastionPlayerAccount;
+        }
     }
 
     override void OnConnect() {
-        LoadBastionPlayerAccount();
-        GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.DepositPassiveIncome, GetBBankConfig().GetPassivePayInterval() * 60000, true);
+        if (GetGame().IsServer() && GetGame().IsMultiplayer()) {
+            LoadBastionPlayerAccount();
+            GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.DepositPassiveIncome, GetBBankConfig().GetConfig().GetPassivePayInterval() * 60000, true);
+        }
         super.OnConnect();
     }
 

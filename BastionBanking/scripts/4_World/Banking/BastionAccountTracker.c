@@ -11,7 +11,7 @@ class BastionAccountTracker {
     }
 
     void SaveTracker() {
-        JsonFileLoader<BastionAccountTracker>.JsonSaveFile("$profile:\\Bastion\\Banking\\StatTracking.bastion", this);
+        JsonFileLoader<BastionAccountTracker>.JsonSaveFile(BBConst.trackerDir, this);
     }
 
     int GetTotalAccounts() {

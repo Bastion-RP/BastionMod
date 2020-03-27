@@ -1,7 +1,7 @@
 class BastionBankAccount {
     // Create a inherited class of this so I can store logintimeout without saving it to json
     private string ownerId, password;
-    private int bankId, funds, overflow, loginTimeout;
+    private int bankId, funds, overflow;
     
     void BastionBankAccount(int id, string playerId, string pass) {
         bankId = id;
@@ -25,10 +25,6 @@ class BastionBankAccount {
         overflow -= amount;
     }
 
-    void SetTimeout(int t) {
-        loginTimeout = t;
-    }
-
     string GetPassword() {
         return password;
     }
@@ -47,9 +43,5 @@ class BastionBankAccount {
 
     int GetId() {
         return bankId;
-    }
-
-    int GetTimeout() {
-        return loginTimeout;
     }
 }
