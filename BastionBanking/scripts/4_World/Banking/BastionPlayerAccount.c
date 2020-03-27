@@ -5,7 +5,13 @@ class BastionPlayerAccount {
     void BastionPlayerAccount(string dir, int id,) {
         path = dir;
         bankId = id;
-        jobPosition = "unemployed";
+        jobPosition = GetBBankConfig().GetConfig().GetDefaultJobPosition();
+    }
+
+    void Validate() {
+        if (jobPosition == string.Empty) {
+            jobPosition = GetBBankConfig().GetConfig().GetDefaultJobPosition();
+        }
     }
 
     void SetJobPosition(string position) {

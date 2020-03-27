@@ -43,19 +43,18 @@ FrameWidgetClass main_menu_root {
    filter 0
    nocache 1
    {
-    ButtonWidgetClass ChangeChar {
+    ButtonWidgetClass ViewCharacter {
      color 0.7922 0.7922 0.7922 1
-     position 120 483.56201
-     size 0.19031 0.045
+     position 120 470
+     size 0.2031 0.063
      halign right_ref
      hexactpos 1
      vexactpos 1
      hexactsize 0
      vexactsize 0
      {
-      ImageWidgetClass ChangeCharBG {
+      ImageWidgetClass ViewCharacterBG {
        ignorepointer 1
-       position 0 0
        size 1 1
        hexactpos 1
        vexactpos 1
@@ -67,7 +66,7 @@ FrameWidgetClass main_menu_root {
        "no wrap" 1
        stretch 1
       }
-      TextWidgetClass TextWidget2 {
+      TextWidgetClass ViewCharacterTXT {
        clipchildren 0
        ignorepointer 1
        size 0.568 0.6495
@@ -77,51 +76,11 @@ FrameWidgetClass main_menu_root {
        vexactpos 0
        hexactsize 0
        vexactsize 0
-       text "CHANGE CHARACTER"
+       text "VIEW CHARACTER"
        font "gui/fonts/Metron-Bold28"
        "size to text h" 1
        "size to text v" 1
-      }
-     }
-    }
-    ButtonWidgetClass ViewStats {
-     color 0.7922 0.7922 0.7922 1
-     position 120 541.33801
-     size 0.18975 0.045
-     halign right_ref
-     hexactpos 1
-     vexactpos 1
-     hexactsize 0
-     vexactsize 0
-     {
-      ImageWidgetClass ViewStatsBG {
-       ignorepointer 1
-       position 0 0
-       size 1 1
-       hexactpos 1
-       vexactpos 1
-       hexactsize 0
-       vexactsize 0
-       imageTexture "{8C2C4D7E2C629740}BastionMenu/gui/images/btn.edds"
-       mode blend
-       "src alpha" 1
-       "no wrap" 1
-       stretch 1
-      }
-      TextWidgetClass ViewStatsTXT {
-       clipchildren 0
-       ignorepointer 1
-       size 0.448 0.6542
-       halign center_ref
-       valign center_ref
-       hexactpos 0
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       text "VIEW ALL STATS"
-       font "gui/fonts/Metron-Bold28"
-       "size to text h" 1
-       "size to text v" 1
+       "text valign" center
       }
      }
     }
@@ -193,7 +152,7 @@ FrameWidgetClass main_menu_root {
        vexactpos 0
        hexactsize 0
        vexactsize 0
-       text "Ration Cards"
+       text "Credits"
        font "gui/fonts/Metron-Bold22"
       }
       TextWidgetClass RationCardsValue {

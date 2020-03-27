@@ -20,16 +20,86 @@ class BankingServerRPC : PluginBase {
         }
         if (!sender) { return; }
 
-        ref BastionBankAccount bankAccount;
+        ref BastionActiveBankAccount bankAccount;
         ref array<ItemBase> arrayItems;
-        Param2<string, string> params;
+        map<string, string> errorData = new map<string, string>();
+        Param2<int, map<string, string>> params;
         PlayerBase player;
-        string error, type;
-        int amount, transferAmount, outAmount, amountDeposited, bankFunds, fundsCap, overflowFunds, difference;
+        int enumType, amount, transferAmount, outAmount, amountDeposited, bankFunds, fundsCap, overflowFunds, difference, bankId;
         float transferFee;
         bool isConfirmed;
+        string password;
 
         switch (rpc_type) {
+            case BSTBankRPC.RPC_SERVER_REGISTERACCOUNT:
+                {
+                    Param1<string> dataRegister;
+                    if (!ctx.Read(dataRegister)) { return; }
+
+                    player = PlayerBase.Cast(target);
+                    password = dataRegister.param1;
+
+                    if (player) {
+                        if (GetBankAccountManager().CanCreateNewAccount(player, bankId)) {
+                            enumType = BBRPCTypes.ACCOUNT_REGISTER;
+
+                            GetBankAccountManager().CreateAccount(player, password, bankId, bankAccount);
+                            GetBankAccountManager().Login(player, bankAccount);
+                            errorData.Insert(BBConst.ACCOUNT_ID, "" + bankAccount.GetId());
+                        } else {
+                            enumType = BBRPCTypes.ERROR_ALREADY_REGISTERED;
+                        }
+                        params = new Param2<int, map<string, string>>(enumType, errorData);
+                        GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
+                    }
+                    break;
+                }
+            case BSTBankRPC.RPC_SERVER_ACCOUNTLOGIN:
+                {
+                    Param2<int, string> dataLogin;
+                    if (!ctx.Read(dataLogin)) { return; }
+
+                    player = PlayerBase.Cast(target);
+                    bankId = dataLogin.param1;
+                    password = dataLogin.param2;
+
+                    if (player) {
+                        if (GetBankAccountManager().GetLoggedInAccounts().Contains(player)) {
+                            enumType = BBRPCTypes.ERROR_LOGGED_IN;
+                        } else {
+                            if (GetBankAccountManager().CanLogin(player, bankId, password, bankAccount)) {
+                                enumType = BBRPCTypes.ACCOUNT_LOGIN;
+
+                                GetBankAccountManager().Login(player, bankAccount);
+                                errorData.Insert(BBConst.ACCOUNT_ID, "" + bankAccount.GetId());
+                                errorData.Insert(BBConst.ACCOUNT_FUNDS, "" + bankAccount.GetFunds());
+                                errorData.Insert(BBConst.ACCOUNT_OVERFLOW, "" + bankAccount.GetOverflowFunds());
+                            } else {
+                                enumType = BBRPCTypes.ERROR_INVALID_LOGIN;
+                            }
+                        }
+                        params = new Param2<int, map<string, string>>(enumType, errorData);
+                        GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
+                    }
+                    break;
+                }
+            case BSTBankRPC.RPC_SERVER_ACCOUNTLOGOUT:
+                {
+                    player = PlayerBase.Cast(target);
+
+                    if (player) {
+                        if (GetBankAccountManager().CanLogout(player)) {
+                            enumType = BBRPCTypes.ACCOUNT_LOGOUT;
+
+                            GetBankAccountManager().Logout(player);
+                        } else {
+                            enumType = BBRPCTypes.ERROR_NO_LOGIN;
+                        }
+                        params = new Param2<int, map<string, string>>(enumType, errorData);
+                        GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
+                    }
+                    break;
+                }
             case BSTBankRPC.RPC_SERVER_GETBALANCE:
                 {
                     player = PlayerBase.Cast(target);
@@ -38,15 +108,15 @@ class BankingServerRPC : PluginBase {
                         bankAccount = GetBankAccountManager().GetLoggedInAccount(player);
 
                         if (bankAccount) {
-                            GetBankAccountManager().ResetAccountTimeout(bankAccount);
+                            enumType = BBRPCTypes.ACCOUNT_GET_BALANCE;
 
-                            type = "balance";
-                            error = "Funds: " + bankAccount.GetFunds() + " || Overflow: " + bankAccount.GetOverflowFunds();
+                            bankAccount.ResetTimeout();
+                            errorData.Insert(BBConst.ACCOUNT_FUNDS, "" + bankAccount.GetFunds());
+                            errorData.Insert(BBConst.ACCOUNT_OVERFLOW, "" + bankAccount.GetOverflowFunds());
                         } else {
-                            type = "notloggedin";
-                            error = "You are not logged into an account!";
+                            enumType = BBRPCTypes.ERROR_NO_LOGIN;
                         }
-                        params = new Param2<string, string>(type, error);
+                        params = new Param2<int, map<string, string>>(enumType, errorData);
                         GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
                     }
                     break;
@@ -64,7 +134,7 @@ class BankingServerRPC : PluginBase {
                         bankAccount = GetBankAccountManager().GetLoggedInAccount(player);
 
                         if (bankAccount) {
-                            GetBankAccountManager().ResetAccountTimeout(bankAccount);
+                            bankAccount.ResetTimeout();
 
                             if (GetBankManager().CanDeposit(player, amount, arrayItems, outAmount)) {
                                 if (amount == -1) {
@@ -72,14 +142,15 @@ class BankingServerRPC : PluginBase {
                                 }
                                 if (!isConfirmed) {
                                     bankFunds = bankAccount.GetFunds();
-                                    fundsCap = GetBBankConfig().GetFundsCap()
+                                    fundsCap = GetBBankConfig().GetConfig().GetBankFundsCap();
 
                                     if (bankFunds + amount > fundsCap) {
                                         difference = fundsCap - bankFunds;
                                         amount -= difference;
-                                        type = "depositoverflow";
-                                        error = "" + amount;
-                                        params = new Param2<string, string>(type, error);
+
+                                        errorData.Insert(BBConst.ACCOUNT_TO_OVERFLOW, "" + amount);
+
+                                        params = new Param2<int, map<string, string>>(BBRPCTypes.ERROR_ACCEPT_OVERFLOW, errorData);
 
                                         GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
                                         return;
@@ -87,17 +158,19 @@ class BankingServerRPC : PluginBase {
                                 }
                                 GetBankManager().RemoveCurrency(arrayItems, amount);
                                 GetBankAccountManager().Deposit(bankAccount, amount);
-                                type = "deposit";
-                                error = "Rations Successfully Deposited: " + amount;
+                                enumType = BBRPCTypes.ACCOUNT_DEPOSIT;
+
+                                errorData.Insert(BBConst.ACCOUNT_FUNDS, "" + bankAccount.GetFunds());
+                                errorData.Insert(BBConst.ACCOUNT_OVERFLOW, "" + bankAccount.GetOverflowFunds());
+                                errorData.Insert(BBConst.ACCOUNT_DEPOSITED, "" + amount);
                             } else {
-                                type = "invalid";
-                                error = "You do not have '" + amount + "' rations!";
+                                enumType = BBRPCTypes.ERROR_NO_FUNDS_DEPOSIT;
+                                errorData.Insert(BBConst.ACCOUNT_DEPOSITED, "" + amount);
                             }
                         } else {
-                            type = "notloggedin";
-                            error = "You are not logged into an account!";
+                            enumType = BBRPCTypes.ERROR_NO_LOGIN;
                         }
-                        params = new Param2<string, string>(type, error);
+                        params = new Param2<int, map<string, string>>(enumType, errorData);
                         GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
                     }
                     break;
@@ -114,22 +187,25 @@ class BankingServerRPC : PluginBase {
                         bankAccount = GetBankAccountManager().GetLoggedInAccount(player);
 
                         if (bankAccount) {
-                            GetBankAccountManager().ResetAccountTimeout(bankAccount);
+                            bankAccount.ResetTimeout();
 
                             if (bankAccount.GetFunds() < amount) {
-                                type = "invalid";
-                                error = "There is not " + amount + " rations in the account!";
+                                enumType = BBRPCTypes.ERROR_NO_FUNDS_WITHDRAW;
+
+                                errorData.Insert(BBConst.ACCOUNT_FUNDS, "" + bankAccount.GetFunds());
+                                errorData.Insert(BBConst.ACCOUNT_OVERFLOW, "" + bankAccount.GetOverflowFunds());
+                                errorData.Insert(BBConst.ACCOUNT_WITHDRAW, "" + amount);
                             } else {
                                 GetBankManager().AddCurrency(player, amount);
                                 GetBankAccountManager().Withdraw(bankAccount, amount);
-                                type = "withdraw";
-                                error = "Rations Successfully Withdrew: " + amount;
+
+                                enumType = BBRPCTypes.ACCOUNT_WITHDRAW;
+                                errorData.Insert(BBConst.ACCOUNT_WITHDRAW, "" + amount);
                             }
                         } else {
-                            type = "notloggedin";
-                            error = "You are not logged into an account!";
+                            enumType = BBRPCTypes.ERROR_NO_LOGIN;
                         }
-                        params = new Param2<string, string>(type, error);
+                        params = new Param2<int, map<string, string>>(enumType, errorData);
                         GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
                     }
                     break;
@@ -149,46 +225,51 @@ class BankingServerRPC : PluginBase {
                         if (bankAccount) {
                             overflowFunds = bankAccount.GetOverflowFunds();
                             bankFunds = bankAccount.GetFunds();
-                            fundsCap = GetBBankConfig().GetFundsCap()
-                            transferFee = GetBBankConfig().GetTransferFee()
-                            Print("amount=" + amount);
-                            Print("transferFee=" + transferFee)
-                            Print("transferAmount=" + Math.Round((amount * (1 - transferFee))))
+                            fundsCap = GetBBankConfig().GetConfig().GetBankFundsCap();
+                            transferFee = GetBBankConfig().GetConfig().GetOverflowTransferFee();
                             transferAmount = Math.Round((amount * (1 - transferFee)));
                             difference = fundsCap - bankFunds;
 
-                            GetBankAccountManager().ResetAccountTimeout(bankAccount);
+                            bankAccount.ResetTimeout();
 
                             if (overflowFunds < amount) {
-                                type = "transferinvalid";
-                                error = "There is not " + amount + " rations in the account!";
+                                enumType = BBRPCTypes.ERROR_NO_FUNDS_TRANSFER;
+                                errorData.Insert(BBConst.ACCOUNT_OVERFLOW, "" + amount);
                             } else {
                                 if (!isConfirmed) {
                                     if ((bankFunds + transferAmount) > fundsCap) {
                                         amount = Math.Round((difference / (1 - transferFee)));
                                         transferAmount = Math.Round((amount * (1 - transferFee)));
-                                        type = "transferoverflow";
-                                        error = "" + transferFee + " " + transferAmount + " " + amount + " " + difference;
+                                        enumType = BBRPCTypes.ACCOUNT_TRANSFER_CAPPED;
+
+                                        errorData.Insert(BBConst.ACCOUNT_TRANSFER_FEE, "" + transferFee);
+                                        errorData.Insert(BBConst.ACCOUNT_TRANSFER_AMOUNT, "" + transferAmount);
+                                        errorData.Insert(BBConst.ACCOUNT_TRANSFER_DIFFERENCE, "" + difference);
+                                        errorData.Insert(BBConst.ACCOUNT_FUNDS, "" + amount);
                                     } else {
-                                        type = "transferconfirm";
-                                        error = "" + transferFee + " " + transferAmount + " " + amount;
+                                        enumType = BBRPCTypes.ERROR_ACCEPT_TRANSFER;
+
+                                        errorData.Insert(BBConst.ACCOUNT_TRANSFER_FEE, "" + transferFee);
+                                        errorData.Insert(BBConst.ACCOUNT_TRANSFER_AMOUNT, "" + transferAmount);
+                                        errorData.Insert(BBConst.ACCOUNT_FUNDS, "" + amount);
                                     }
                                 } else {
+                                    enumType = BBRPCTypes.ACCOUNT_TRANSFER;
+
                                     if ((bankFunds + transferAmount) > fundsCap) {
                                         amount = Math.Round((difference / (1 - transferFee)));
-                                        error = "" + difference + " rations sucessfully deposited to balance!";
+
+                                        errorData.Insert(BBConst.ACCOUNT_TRANSFER_AMOUNT, "" + difference);
                                     } else {
-                                        error = "" + transferAmount + " rations sucessfully deposited to balance!";
+                                        errorData.Insert(BBConst.ACCOUNT_TRANSFER_AMOUNT, "" + transferAmount);
                                     }
-                                    type = "transfersuccess";
                                     GetBankAccountManager().Transfer(bankAccount, amount);
                                 }
                             }
                         } else {
-                            type = "notloggedin";
-                            error = "You are not logged into an account!";
+                            enumType = BBRPCTypes.ERROR_NO_LOGIN;
                         }
-                        params = new Param2<string, string>(type, error);
+                        params = new Param2<int, map<string, string>>(enumType, errorData);
                         GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
                     }
                     break;

@@ -37,7 +37,7 @@ class CharacterData
     bool   GetActive() { return ( active == "1" ); }
     string GetFirstName() { return first_name; }
     string GetLastName() { return last_name; }
-    string GetCitizenClass() { return citizen_class; }
+    string GetCitizenClass() { return BASTION_CITIZEN_CLASSES[citizen_class.ToInt() - 1]; }
     string GetDOB() { return date_of_birth; }
     string GetSex() { return sex; }
     string GetRace() { return race; }

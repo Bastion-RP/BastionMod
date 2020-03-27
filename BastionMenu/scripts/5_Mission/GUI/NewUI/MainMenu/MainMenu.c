@@ -8,7 +8,7 @@ modded class MainMenu
 	protected Widget 		  m_SettingsVideo;
 	protected Widget	    m_SettingsControls;
 	protected Widget      m_NewsButton;
-	protected Widget      m_StatsButton;
+	protected Widget			m_ViewCharacter;
 
 	protected TextWidget 	m_Player;
 	protected TextWidget 	m_FirstName;
@@ -47,13 +47,11 @@ modded class MainMenu
 		m_SettingsControls	 			= layoutRoot.FindAnyWidget( "Controls" );
 		m_ChooseServer			 			= layoutRoot.FindAnyWidget( "viewall" );
 		m_SettingsButton 		 			= layoutRoot.FindAnyWidget( "Settings" );
-		m_CustomizeCharacter      = layoutRoot.FindAnyWidget( "ChangeChar" );
+		m_ViewCharacter      			= layoutRoot.FindAnyWidget( "ViewCharacter" );
 		m_CharacterRotationFrame	= layoutRoot.FindAnyWidget( "character_rotation_frame" );
 		m_NewsButton							= layoutRoot.FindAnyWidget( "NewsButton" );
-		m_StatsButton							= layoutRoot.FindAnyWidget( "ViewStats" );
  		m_Mission						 			= MissionMainMenu.Cast( GetGame().GetMission());
  		m_ScenePC						 			= m_Mission.GetIntroScenePC();
-		m_StatsButton.Enable( false );
 
 		m_Stats						   			= new MainMenuStats( layoutRoot.FindAnyWidget( "StatsFrme" ) );
     m_PlayerData         			= new MenuPlayerData;
@@ -120,13 +118,12 @@ modded class MainMenu
 	{
 		string string_data, error;
 		bool ok;
-		string apiBase = "https://bastionrp.com/api/";
+		string apiBase = BASTION_API_ENDPOINT;
 		CURLCore curlCore = FetchCurlCore();
 		CURLContext api = curlCore.GetCURLContext(apiBase);
 		JsonSerializer js = new JsonSerializer();
 
-		// Print( "GET " + apiBase + "forum.php?last_post=24" );
-		string_data = api.GET_now( "forum.php?last_post=24" );
+		string_data = api.GET_now( BASTION_API_ANNOUNCEMENTS );
 		ok = js.ReadFromString( m_NewsData, string_data, error );
 		if (!ok) {
 			Print(error);
@@ -138,9 +135,8 @@ modded class MainMenu
 		StoredData storedData = MissionGameplay.GetStoredDataHook().m_storedData;
 
 		string steamId = storedData.GetSteamId();
-		// Print( "GET " + apiBase + "characters.php?steam_id=" + steamId );
 
-		string_data = api.GET_now( "characters.php?steam_id=" + steamId );
+		string_data = api.GET_now( BASTION_API_CHARACTERS_STEAM + steamId );
 		ok = js.ReadFromString( m_PlayerData, string_data, error );
 		if (!ok) {
 			Print(error);
@@ -149,8 +145,7 @@ modded class MainMenu
 
 		string player_id = m_PlayerData.GetId();
 		
-		// Print( "GET " + apiBase + "characters.php?player_id=" + player_id );
-		string_data = api.GET_now( "characters.php?player_id=" + player_id );
+		string_data = api.GET_now( BASTION_API_CHARACTERS_PID + player_id );
 		ok = js.ReadFromString( m_Characters, string_data, error );
 		if (!ok) {
 			Print(error);
@@ -164,7 +159,6 @@ modded class MainMenu
 	{
 		Print("###### Loading Character Details From API ######");
 
-		// TODO: Find all servers with BastionRP in their name and show count here
 		m_AllServers.SetText( "1 BastionRP Server Online" );
 
 		if (!LoadAPIData()) {
@@ -175,6 +169,7 @@ modded class MainMenu
 			m_LocationValue.SetText( "N/A" );
 			m_LastServer.SetText( "No last server on record" );
 			m_Play.Enable( false );
+			m_ViewCharacter.Show( false );
 			Print("###### No data for main menu to show ######");
 			return;
 		}
@@ -199,6 +194,8 @@ modded class MainMenu
 			m_FirstName.SetText( activeChar.GetFirstName() );
 			m_LastName.SetText( activeChar.GetLastName() );
 			m_CitizenClass.SetText( activeChar.GetCitizenClass() );
+		} else {
+			m_ViewCharacter.Show( false );
 		}
 
 		Print("###### Loaded Character Data From API ######");
@@ -220,14 +217,14 @@ modded class MainMenu
 			}
 			else if ( w == m_ForumsLinkButton )
 			{
-				GetGame().OpenURL( "https://bastionrp.com/forums" );
+				GetGame().OpenURL( BASTION_FORUMS_LINK );
 				return true;
 			}
 			else if ( w == m_NewsButton )
 			{
 				string link = m_NewsData.GetLink();
 				if (!link) {
-					link = "https://bastionrp.com/forums/forum/24-announcements/";
+					link = BASTION_ANNOUNCEMENTS_LINK;
 				}
 				GetGame().OpenURL( link );
 				return true;
@@ -269,9 +266,11 @@ modded class MainMenu
 				OpenMenuServerBrowser();
 				return true;
 			}
-			else if ( w == m_CustomizeCharacter )
+			else if ( w == m_ViewCharacter )
 			{
-				OpenMenuCustomizeCharacter();
+				if (m_Characters && m_Characters.Count() > 0) {
+					GetGame().OpenURL( BASTION_CHARACTER_URL_PREFIX + m_Characters.Get(0).GetId() + "/" );
+				}
 				return true;
 			}
 		}
