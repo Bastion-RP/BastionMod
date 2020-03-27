@@ -38,9 +38,11 @@ modded class MissionServer {
 								InitializeClient(identity);
 							} else {
 								Print(MCConst.debugPrefix + "MissionServer | OnEvent | ClientNewEventTypeID | Creating new thread to spawn player!");
-								auto spawnData = new Param3<PlayerIdentity, int, string>(identity, dataCharacterId.param1, dataCharacterType.param1);
+								//auto spawnData = new Param3<PlayerIdentity, int, string>(identity, dataCharacterId.param1, dataCharacterType.param1);
 
-        						GetGame().GameScript.Call(this, "ThreadOnClientNewEvent", spawnData);
+								ThreadOnClientNewEvent(identity, dataCharacterId.param1, dataCharacterType.param1);
+
+        						//GetGame().GameScript.Call(this, "ThreadOnClientNewEvent", spawnData);
 							}
 						}
 					}
@@ -54,11 +56,11 @@ modded class MissionServer {
 		}
 	}
 	
-	void ThreadOnClientNewEvent(Param3<PlayerIdentity, int, string> spawnData) {
+	void ThreadOnClientNewEvent(/*Param3<PlayerIdentity, int, string> spawnData*/PlayerIdentity identity, int characterId, string characterType) {
 		Print(MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | New thread created to spawn player");
-		PlayerIdentity identity = spawnData.param1;
+		/* PlayerIdentity identity = spawnData.param1;
 		int characterId = spawnData.param2;
-		string characterType = spawnData.param3;
+		string characterType = spawnData.param3; */
 
 		if (characterId != 0) {
 			Print(MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Loading client! id=" + identity.GetPlainId() + " | char id=" + characterId + " | char type=" + characterType);

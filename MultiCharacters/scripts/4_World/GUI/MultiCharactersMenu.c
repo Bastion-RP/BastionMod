@@ -8,6 +8,7 @@ class MultiCharactersMenu : UIScriptedMenu {
     protected int characterId;
 
     void ~MultiCharactersMenu() {
+        Print("!!!!!!!!!!---DELETING MULTICHARACTERS MENU---!!!!!!!!!!!!!");
         if (wSurvivorCreator) {
             delete wSurvivorCreator;
         }
@@ -28,7 +29,9 @@ class MultiCharactersMenu : UIScriptedMenu {
     }
 
     void InitScene() {
-        string rootPath, scenePath, childName;
+        playerCamera = Camera.Cast(GetGame().CreateObject("staticcamera", vector.Zero, true, false, false));
+        playerCamera.SetActive(true);
+        /* string rootPath, scenePath, childName;
         int count, index;
         float fov, pos_x, pos_z, pos_y;
         vector target, camDir, position;
@@ -47,7 +50,7 @@ class MultiCharactersMenu : UIScriptedMenu {
 
         playerCamera.SetActive(true);
         playerCamera.LookAt(target);
-        Print("SETTING POSITIONS | camera pos=" + position);
+        Print("SETTING POSITIONS | camera pos=" + position); */
     }
 
     override bool OnClick(Widget w, int x, int y, int button) {
@@ -96,7 +99,7 @@ class MultiCharactersMenu : UIScriptedMenu {
         return true;
     }
 
-    vector GetCameraPosition() {
+/*     vector GetCameraPosition() {
         return playerCamera.GetPosition();
     }
 
@@ -117,7 +120,7 @@ class MultiCharactersMenu : UIScriptedMenu {
         tmp_pos[1] = tmp_pos[1] + pos[1];
 
         return tmp_pos;
-    }
+    } */
 
     override void OnShow() {
         super.OnShow();
@@ -130,6 +133,7 @@ class MultiCharactersMenu : UIScriptedMenu {
 
     override void OnHide() {
         super.OnHide();
+
 
         GetGame().GetUIManager().ShowCursor(false);
         GetGame().GetMission().PlayerControlEnable(true);

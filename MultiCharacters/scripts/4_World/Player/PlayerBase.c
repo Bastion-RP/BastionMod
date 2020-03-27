@@ -44,10 +44,10 @@ modded class PlayerBase {
 				}
 			}
 		}
-		if (magCount > 0) {
+		/* if (magCount > 0) {
 			Param1<int> param = new Param1<int>(magCount);
-			g_Game.RPCSingleParam(this, MultiCharRPC.CLIENT_SPAWN_MAG, param, true, this.GetIdentity());
-		}
+			g_Game.RPCSingleParam(this, MultiCharRPC.CLIENT_SPAWN_MAG, param, true, GetIdentity());
+		} */
 		delete m_MagsToReload;
 	}
 
@@ -182,8 +182,10 @@ modded class PlayerBase {
 
 		Print(MCConst.debugPrefix + this.GetIdentity().GetName() + " died, killing player at index=" + multicharactersPlayerId);
 
-		string playerDir = MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId();
-		DeleteFile(playerDir + "\\" + multicharactersPlayerId + MCConst.fileType);
+		if (GetIdentity()) {
+			string playerDir = MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId();
+			DeleteFile(playerDir + "\\" + multicharactersPlayerId + MCConst.fileType);
+		}
 	}
 
 	void SetMultiCharacterStats(int multicharactersPlayerId, string multicharactersPlayerName, int multicharactersPlayerClass) {

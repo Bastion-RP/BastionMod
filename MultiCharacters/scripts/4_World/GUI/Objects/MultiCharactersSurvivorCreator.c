@@ -29,7 +29,6 @@ class MultiCharactersSurvivorCreator {
         Print(MCConst.debugPrefix + "Deleting survivor creator widget");
         if (wRoot) {
             wRoot.Unlink();
-            delete wRoot;
         }
         foreach (MultiCharactersSurvivorPreviewWidget previewWidget : arrayPreviewWidgets) {
             if (previewWidget) {

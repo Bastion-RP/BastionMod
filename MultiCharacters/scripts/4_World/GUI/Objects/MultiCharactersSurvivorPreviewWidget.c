@@ -10,12 +10,13 @@ class MultiCharactersSurvivorPreviewWidget {
         wRoot = GetGame().GetWorkspace().CreateWidgets("MultiCharacters\\gui\\layouts\\SurvivorPreviewWidget.layout", wParent);
         wSurvivorPreview = PlayerPreviewWidget.Cast(wRoot.FindAnyWidget("survivorPreview"));
         pnlBG = wRoot.FindAnyWidget("pnlBG");
-        cameraPos = GetMultiCharactersClientManager().GetSelectMenu().GetCameraPosition()
-        characterPos = ("" + cameraPos[0] + " " + (cameraPos[1] + 3) + " " + cameraPos[2]).ToVector();
-        dayzPlayer = GetGame().CreateObject(survivorType, characterPos, true);
+        //cameraPos = GetMultiCharactersClientManager().GetSelectMenu().GetCameraPosition()
+        //characterPos = ("" + cameraPos[0] + " " + (cameraPos[1] + 3) + " " + cameraPos[2]).ToVector();
+        //dayzPlayer = GetGame().CreateObject(survivorType, characterPos, true);
+        dayzPlayer = GetGame().CreateObject(survivorType, vector.Zero, true);
 
         Print(MCConst.debugPrefix + " | inactive pos=" + characterPos);
-        dayzPlayer.SetPosition(characterPos);
+        //dayzPlayer.SetPosition(characterPos);
         wSurvivorPreview.SetPlayer(dayzPlayer);
         pnlBG.Show(false);
     }
@@ -24,7 +25,6 @@ class MultiCharactersSurvivorPreviewWidget {
         Print(MCConst.debugPrefix + "Deleting survivor preview widget");
         if (wRoot) {
             wRoot.Unlink();
-            delete wRoot;
         }
         if (dayzPlayer) {
             GetGame().ObjectDelete(dayzPlayer);

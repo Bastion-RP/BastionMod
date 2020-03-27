@@ -13,9 +13,15 @@ class MultiCharactersClientManager : PluginBase {
 	}
 
     void Init() {
-		delete menuInit;
-		delete menuSelect;
-		delete arrayLoadouts;
+		if (menuInit) {
+			delete menuInit;
+		}
+		if (menuSelect) {
+			delete menuSelect;
+		}
+		if (arrayLoadouts) {
+			delete arrayLoadouts;
+		}
 		isInitialized = false;
 		arrayLoadouts = new array<ref SavePlayer>();
     }
@@ -33,12 +39,9 @@ class MultiCharactersClientManager : PluginBase {
 
 	void InitClient() {
 		Print(MCConst.debugPrefix + "MultiCharactersClientManager | InitClient | Initializing client! " + isInitialized);
-
-		if (menuInit) {
-			delete menuInit;
+		if (!menuInit) {
+			menuInit = new MultiCharactersInitMenu();
 		}
-		menuInit = new MultiCharactersInitMenu();
-
 		menuInit.Initializing();
 
 		if (!isInitialized) {
@@ -53,15 +56,16 @@ class MultiCharactersClientManager : PluginBase {
 	}
 
 	void ShowSelectMenu() {
-		delete menuSelect;
-
-		menuSelect = new MultiCharactersMenu();
-		
+		if (!menuSelect) {
+			menuSelect = new MultiCharactersMenu();
+		}
 		GetGame().GetUIManager().ShowScriptedMenu(menuSelect, null);
 	}
 
 	void HideInitMenu() {
-		delete menuInit;
+		if (menuInit) {
+			menuInit.Hide();
+		}
 	}
 
 	void SetInitialized(bool isInitialized) {

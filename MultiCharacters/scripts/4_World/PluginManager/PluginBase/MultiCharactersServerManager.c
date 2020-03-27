@@ -75,6 +75,7 @@ class MultiCharactersServerManager : PluginBase {
 			GetGame().DisconnectPlayer(sender);
             GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, sender);
         }
+		GetGame().GameScript.Release();
     }
 
     vector GetRandomSpawnpoint() {

@@ -14,7 +14,7 @@ class MultiCharactersServerRPCHandler : PluginBase {
             case MultiCharRPC.SERVER_GRAB_LOADOUTS:
                 {
                     Print(MCConst.debugPrefix + "ServerRPCHandler | SERVER_GRAB_LOADOUTS | Grabbing loadouts!");
-                    GetMultiCharactersServerManager().GetPlayerLoadouts(sender);
+                    GetMultiCharactersServerManager().ThreadGetPlayerLoadout(sender);
                     break;
                 }
         }
