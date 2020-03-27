@@ -39,25 +39,33 @@ class ActionExchange: ActionInteractBase
 		{
 			if ( GetGame().IsServer( ) )
 			{
+				Print("ActionCondition::1");
+
 				m_BankingAccount = GetBankAccountManager().GetAccountByPlayerBase( player );
+
+				Print("ActionCondition::2 " + m_BankingAccount);
 
 				if ( !m_BankingAccount )
 					return false;
 
+				Print("ActionCondition::3");
+
 				if ( m_BankingAccount.GetFunds() < m_VendingMachine.GetPrice() )
 				{
+					Print("ActionCondition::4");
+					
 					NotificationSystem.SendNotificationToPlayerExtended(player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
 					return false;
-				}
-				else
-				{
-					GetBankAccountManager().Withdraw( m_BankingAccount, m_VendingMachine.GetPrice() )
 				}
 			}
 		}
 
+		Print("ActionCondition::5");
+
 		if ( !Class.CastTo( m_VendingMachine, target.GetObject( ) ) )
 			return false;
+
+		Print("ActionCondition::6");
 
 		return true;
 	}
@@ -89,30 +97,46 @@ class ActionExchange: ActionInteractBase
 		{
 			if ( GetGame().IsServer( ) )
 			{
+				Print("OnStartServer::1");
+
 				m_Items.Clear();
 
 				m_BankingAccount = GetBankAccountManager().GetAccountByPlayerBase( action_data.m_Player );
+				
+				Print("OnStartServer::2 " + m_BankingAccount);
 
 				if ( !m_BankingAccount )
 					return;
 
+				Print("OnStartServer::3");
+
 				if ( GetBankManager().CanDeposit( action_data.m_Player, m_VendingMachine.GetPrice(), m_Items, m_Ammount ) )
 				{
+					Print("OnStartServer::4::I");
+
 					GetBankManager().RemoveCurrency( m_Items, m_VendingMachine.GetPrice() );
 				}
 				else
 				{
+					Print("OnStartServer::4::E");
+
 					NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
 					return;
 				}
 			}
 		}
 
+		Print("OnStartServer::5");
+
 		Object obj = action_data.m_Player.GetInventory().CreateInInventory( m_VendingMachine.GetRation() );
 		if ( !obj )
 		{
+			Print("OnStartServer::6");
+
 			obj = GetGame().CreateObject( m_VendingMachine.GetRation(), action_data.m_Player.GetPosition() );
 		}
+
+		Print("OnStartServer::7");
 
 		NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "Purchased 1 AION for " + m_VendingMachine.GetPrice() + " credits.", "set:dayz_gui image:iconHungry0");
 	}
