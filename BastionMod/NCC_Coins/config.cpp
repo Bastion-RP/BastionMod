@@ -54,6 +54,8 @@ class CfgVehicles
 		displayName = "Copper Coin";
 		descriptionShort = "NCC Currency";
 		model = "\BastionMod\NCC_Coins\CopperCoin.p3d";
+		varQuantityMin=0;
+		varQuantityMax=50;
 		isMeleeWeapon = 1;
 		weight = 4;
 		absorbency = 0;
