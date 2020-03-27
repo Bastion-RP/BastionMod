@@ -11,7 +11,7 @@ class BastionBankManager : PluginBase {
                 string typeName = item.GetType();
                 typeName.ToLower();
 
-                if (typeName == "nail") {
+                if (typeName == GetBBankConfig().GetConfig().GetCurrencyClassName()) {
                     arrayItems.Insert(item);
                 }
             }

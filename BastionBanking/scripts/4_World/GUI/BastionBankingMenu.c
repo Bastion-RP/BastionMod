@@ -1,4 +1,18 @@
 class BastionBankingMenu : UIScriptedMenu {
+
+    // make an actual command handler
+    // Create a command object and create command which have description/cmd/whatever
+    // Have execution function which is called when the command is ran
+
+    static const string CMD_HELP = "help";
+    static const string CMD_REGISTER = "register";
+    static const string CMD_DEPOSIT = "deposit";
+    static const string CMD_WITHDRAW = "withdraw";
+    static const string CMD_TRANSFER = "transfer";
+    static const string CMD_BALANCE = "balance";
+    static const string CMD_LOGIN = "login";
+    static const string CMD_LOGOUT = "logout";
+
     protected ref Widget wRoot;
     protected ref EditBoxWidget activeInputBox;
     protected ref ButtonWidget btnClose;
@@ -68,16 +82,15 @@ class BastionBankingMenu : UIScriptedMenu {
     override void OnShow() {
         super.OnShow();
 
+        player = PlayerBase.Cast(GetGame().GetPlayer());
+        userDir = "C:\Users\\" + player.GetIdentity().GetName() + ">";
+
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_INVENTORY);
         GetGame().GetUIManager().ShowUICursor(true);
         GetGame().GetUIManager().ShowCursor(true);
         GetGame().GetInput().ChangeGameFocus(1);
         GetGame().GetMission().GetHud().Show(false);
-        player = PlayerBase.Cast(GetGame().GetPlayer());
-        userDir = "C:\Users\\" + player.GetIdentity().GetName() + ">";
-        CreateTextGrid("Welcome to Bastion Banking. This is going to be changed later, but this is good enough for testing!", true);
-        CreateInputGrid();
-        scroller.VScrollToPos01(1);
+        StartIntro();
     }
 
     override void OnHide() {
@@ -86,13 +99,83 @@ class BastionBankingMenu : UIScriptedMenu {
         GetGame().GetUIManager().ShowCursor(false);
         GetGame().GetUIManager().ShowUICursor(false);
         GetGame().GetInput().ResetGameFocus();
-        GetGame().GetMission().PlayerControlEnable(true);
+        GetGame().GetMission().PlayerControlEnable(1);
         GetGame().GetMission().GetHud().Show(true);
         Cleanup();
     }
 
     void StartIntro() {
+        array<string> arrayIntroLines = new array<string>();
 
+        arrayIntroLines.Insert("Welcome to the Depository & Dispensary (D2) Console // V0.1 // Licensed for use by BKG-023:0");
+        arrayIntroLines.Insert("NCC RESTRICTED - DO NOT DISTRIBUTE, MODIFY, OR REPRODUCE THE CONTENTS OF SOFTWARE. DOING SO IS PUNISHABLE BY LAW.:0");
+        arrayIntroLines.Insert("CONTENTS ARE PROPERTY OF THE NATO-CSTO COALITION, DEPARTMENT OF COMMERCE.:1");
+        arrayIntroLines.Insert("New to D2? Type \"register\" into the console.:0");
+        arrayIntroLines.Insert("Need a refresher? Type \"help\".:1");
+
+        Param params = new Param4<array<string>, int, int, string>(arrayIntroLines, 25, 5, "");
+
+        GetGame().GameScript.Call(this, "SlowTypeArray", params);
+    }
+
+/*     void StartIntro() {
+        array<string> arrayIntroLines = new array<string>();
+
+        arrayIntroLines.Insert("Welcome to the Depository & Dispensary (D2) Console // V0.1 // Licensed for use by BKG-023:0");
+        arrayIntroLines.Insert("NCC RESTRICTED - DO NOT DISTRIBUTE, MODIFY, OR REPRODUCE THE CONTENTS OF SOFTWARE. DOING SO IS PUNISHABLE BY LAW.:0");
+        arrayIntroLines.Insert("CONTENTS ARE PROPERTY OF THE NATO-CSTO COALITION, DEPARTMENT OF COMMERCE.:1");
+        arrayIntroLines.Insert("New to D2? Type \"register\" into the console.:0");
+        arrayIntroLines.Insert("Need a refresher? Type \"help\".:1");
+
+        Param params = new Param3<array<string>, int, int>(arrayIntroLines, 25, 5);
+
+        GetGame().GameScript.Call(this, "StartIntro", params);
+        CreateInputGrid();
+        scroller.VScrollToPos01(1);
+    }*/
+
+    void SlowTypeArray(Param4<array<string>, int, int, string> params) {
+        array<string> arraySlowLines = params.param1;
+        int delay1 = params.param2;
+        int delay2 = params.param3;
+        string inputText = params.param4;
+
+        foreach (string input : arraySlowLines) {
+            array<string> splitInput;
+            TextWidget displayText;
+            GridSpacerWidget newGrid;
+            string text;
+            bool newLine;
+
+            splitInput = new array<string>();
+
+            input.Split(":", splitInput);
+
+            text = splitInput[0];
+            newLine = splitInput[1].ToInt();
+            
+            CheckGridSize();
+
+            if (newLine) {
+                newGrid = GetGame().GetWorkspace().CreateWidgets("BastionBanking\\gui\\layouts\\GridTextNewLine.layout", activeGrid);
+            } else {
+                newGrid = GetGame().GetWorkspace().CreateWidgets("BastionBanking\\gui\\layouts\\GridText.layout", activeGrid);
+            }
+            displayText = TextWidget.Cast(newGrid.FindAnyWidget("text"));
+
+            Sleep(delay1);
+            scroller.VScrollToPos01(1);
+            for (int i = 0; i <= text.Length(); i++) {
+                string subText = text.Substring(0, i);
+
+                Sleep(delay2);
+                displayText.SetText(subText);
+            }
+            arrayWidgets.Insert(newGrid);
+            arrayActiveGridWidgets.Insert(newGrid);
+        }
+        CreateInputGrid(inputText);
+        ScrollToBottom();
     }
 
     void CreateTextGrid(string text, bool newLine = false) {
@@ -224,9 +307,24 @@ class BastionBankingMenu : UIScriptedMenu {
         if (!mapCommands) {
             // Maybe make a legit command handler. Idk.
             mapCommands = new map<string, string>();
-            mapCommands.Insert("Balance", "Check your account balance");
-            mapCommands.Insert("Deposit", "Deposit {amount} | Deposit rations into account");
-            mapCommands.Insert("Withdraw", "Withdraw {amount} | Withdraw rations from account");
+            mapCommands.Insert("register", "register a new account, if one does not already exist.");
+            mapCommands.Insert("login", "login to your D2 account. When prompted, use the same password you used to register.");
+            mapCommands.Insert("logout", "logs you out of your D2 account, if logged in.");
+            mapCommands.Insert("balance", "check the balance of both your main and overflow account.");
+            mapCommands.Insert("deposit", "deposit Credits into your account. For example, \"deposit all\" will deposit ALL credits into your account.");
+            mapCommands.Insert("withdraw", "withdraw Credits from your account. For example, \"withdraw 5\" will withdraw 5 credits from your account.");
+            mapCommands.Insert("transfer", "transfer Credits from your overflow account to your main balance. This charges a transfer fee!");
+        }
+    }
+
+    void Help() {
+        for (int i = 0; i < mapCommands.Count(); i++) {
+            if (i == (mapCommands.Count() - 1)) {
+
+                CreateTextGrid("" + mapCommands.GetKey(i) + " - " + mapCommands.GetElement(i), true);
+            } else {
+                CreateTextGrid("" + mapCommands.GetKey(i) + " - " + mapCommands.GetElement(i));
+            }
         }
     }
 
@@ -242,21 +340,25 @@ class BastionBankingMenu : UIScriptedMenu {
         switch (cmd) {
             case "help":
                 {
-                    int mapCount = mapCommands.Count();
-                    for (int i = 0; i < mapCount; i++) {
-                        if (i == (mapCount - 1)) {
-                            CreateTextGrid("" + mapCommands.GetKey(i) + ": " + mapCommands.GetElement(i), true);
-                        } else {
-                            CreateTextGrid("" + mapCommands.GetKey(i) + ": " + mapCommands.GetElement(i));
-                        }
-                    }
+                    Help();
                     CreateInputGrid();
                     break;
                 }
             case "register":
                 {
+                    array<string> arraySlowType = new array<string>();
                     isRegistering = true;
-                    CreateInputGrid("Password:");
+
+                    arraySlowType.Insert("Welcome to the NCC's Depository & Dispensary Console.:1");
+                    arraySlowType.Insert("The purpose of this machine (as well the many other D2 machines around your Bastion) is to provide you with a safe way to deposit, :0");
+                    arraySlowType.Insert("store, and withdraw NCC Credits, which can then be used to buy essentials for life inside your Bastion.:1");
+                    arraySlowType.Insert("In order to reap the benefits of such a system, you must first register for an account. Your D2 login has been automatically set to your Citizen ID.:0");
+                    arraySlowType.Insert("You must choose a secure, memorable password. Please type your password below:0");
+                    arraySlowType.Insert("(rest assured it is logged, the characters do not show up for security purposes.):1");
+
+                    Param introParams = new Param4<array<string>, int, int, string>(arraySlowType, 15, 2, "Enter Password:");
+
+                    GetGame().GameScript.Call(this, "SlowTypeArray", introParams);
                     break;
                 }
             case "deposit":

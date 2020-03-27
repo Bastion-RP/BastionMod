@@ -2,8 +2,6 @@ class BastionConfigHandler : PluginBase {
     private ref BastionBankingConfig bbConfig;
 
     void BastionConfigHandler() {
-        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
-
         if (!FileExist(BBConst.configDir)) {
             bbConfig = new BastionBankingConfig();
             JsonFileLoader<BastionBankingConfig>.JsonSaveFile(BBConst.configDir, bbConfig);
@@ -14,20 +12,8 @@ class BastionConfigHandler : PluginBase {
         }
     }
 
-    int GetLoginTimeout() {
-        return bbConfig.LoginTimeout();
-    }
-
-    int GetPassivePayInterval() {
-        return bbConfig.PassivePayInterval();
-    }
-
-    int GetFundsCap() {
-        return bbConfig.BankFundsCap();
-    }
-
-    float GetTransferFee() {
-        return bbConfig.OverflowTransferFee();
+    ref BastionBankingConfig GetConfig() {
+        return bbConfig;
     }
 }
 
