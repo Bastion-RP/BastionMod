@@ -19,15 +19,19 @@ modded class MissionServer {
 
   void StoredDataToClient( PlayerBase player )
   {
-    // TODO: Test with a player that actually has a bank account
     BastionAccountManager manager = GetBankAccountManager();
 
+    Print("### MissionServer");
+    Print(manager);
     int balance = 0;
     if (manager) {
-      BastionBankAccount account = manager.FindAccount(player);
+      BastionBankAccount account = manager.GetAccountByPlayerBase(player);
       if (account)
         balance = account.GetFunds();
+      Print(account);
     }
+
+    Print("### MissionServer");
 
     string steam = player.GetIdentity().GetPlainId();
 
