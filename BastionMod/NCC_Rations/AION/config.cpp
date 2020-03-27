@@ -1,13 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\NCC_Rations\AION\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Wed Mar 25 22:31:35 2020 : 'file' last modified on Wed Mar 25 22:31:35 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class BastionRP_AION
 	{
@@ -17,10 +8,35 @@ class CfgPatches
 		requiredAddons[] = {"DZ_Data"};
 	};
 };
+class CfgMods
+{
+	class BastionRP_AION
+	{
+		dir = "BastionRP_AION";
+		picture = "";
+		action = "";
+		hideName = 1;
+		hidePicture = 1;
+		name = "BastionRP_AION";
+		credits = "BastionRP";
+		author = "BastionRP";
+		authorID = "0";
+		version = "1.0";
+		extra = 0;
+		type = "mod";
+		dependencies[] = {"World"};
+		class defs
+		{
+			class worldScriptModule
+			{
+				value = "";
+				files[] = {"BastionMod/NCC_Rations/AION/scripts/4_World"};
+			};
+		};
+	};
+};
 class CfgVehicles
 {
-	class Inventory_Base;
-	class Edible_Base;
 	class WaterBottle;
 	class BastionRP_AION: WaterBottle
 	{
@@ -48,6 +64,14 @@ class CfgVehicles
 					healthLevels[] = {{1,{"DZ\gear\drinks\data\Loot_WaterBottle.rvmat"}},{0.7,{"DZ\gear\drinks\data\Loot_WaterBottle.rvmat"}},{0.5,{"DZ\gear\drinks\data\Loot_WaterBottle_damage.rvmat"}},{0.3,{"DZ\gear\drinks\data\Loot_WaterBottle_damage.rvmat"}},{0,{"DZ\gear\drinks\data\Loot_WaterBottle_destruct.rvmat"}}};
 				};
 			};
+		};
+		class Nutrition
+		{
+			fullnessIndex = 1.5;
+			energy = 80;
+			water = 80;
+			nutritionalIndex = 1;
+			toxicity = 0;
 		};
 		class AnimEvents
 		{
