@@ -14,7 +14,7 @@ modded class MissionServer
                     BST_VendingMachineSettings vendingMachine = GetRationSettings( ).GetVendingMachineSettings( ).VendingMachineSettings.Get( i );
                     if (vendingMachine)
                     {
-                        BST_VendingMachine machine = BST_VendingMachine.Cast( GetGame( ).CreateObject( "BST_VendingMachine", vendingMachine.Position ) );
+                        NCC_AionVendor machine = NCC_AionVendor.Cast( GetGame( ).CreateObject( "NCC_AionVendor", vendingMachine.Position ) );
                         if ( machine )
                         {
                             machine.SetRation( vendingMachine.Ration );

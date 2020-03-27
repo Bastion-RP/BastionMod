@@ -6,6 +6,7 @@ class BBConst {
     static const string trackerDir = "$profile:\\Bastion\\Banking\\StatTracking.json";
     static const string wagesDir = "$profile:\\Bastion\\Banking\\JobWages.json";
     static const string configDir = "$profile:\\Bastion\\Banking\\Config.json";
+    static const string atmLocationsDir = "$profile:\\Bastion\\Banking\\ATMLocations.json";
     static const string fileType = ".json";
 
     static const string ACCOUNT_ID = "id";

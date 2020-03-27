@@ -22,6 +22,14 @@ class BankingClientRPC : PluginBase {
         string type, error;
 
         switch (rpc_type) {
+            case BSTBankRPC.RPC_CLIENT_INIT:
+                {
+                    Param1<BastionBankingConfig> dataInit;
+
+                    if (!ctx.Read(dataInit)) { return; }
+                    GetBBankConfig().SetConfig(dataInit.param1);
+                    break;
+                }
             case BSTBankRPC.RPC_CLIENT_ERROR:
                 {
                     Param2<int, map<string, string>> dataError;

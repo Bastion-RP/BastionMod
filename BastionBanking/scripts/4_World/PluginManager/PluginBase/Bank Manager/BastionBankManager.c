@@ -64,7 +64,7 @@ class BastionBankManager : PluginBase {
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
 
         ref array<ItemBase> arrayItems = GetMoneyInInventory(player);
-        int itemMaxQuant = GetGame().ConfigGetInt(CFG_VEHICLESPATH + " nail" + " varQuantityMax");
+        int itemMaxQuant = GetGame().ConfigGetInt(CFG_VEHICLESPATH + " " + GetBBankConfig().GetConfig().GetCurrencyClassName() + " varQuantityMax");
         int withdrawAmount = amount;
 
         if (arrayItems.Count() > 0) {
@@ -91,8 +91,8 @@ class BastionBankManager : PluginBase {
             for (int i = 0; i < iterationAmount; i++) {
                 InventoryLocation il = new InventoryLocation();
 
-                if (player.GetInventory().FindFirstFreeLocationForNewEntity("nail", FindInventoryLocationType.ANY, il)) {
-                    ItemBase newItem = il.GetParent().GetInventory().CreateEntityInCargoEx("nail", il.GetIdx(), il.GetRow(), il.GetCol(), il.GetFlip());
+                if (player.GetInventory().FindFirstFreeLocationForNewEntity(GetBBankConfig().GetConfig().GetCurrencyClassName(), FindInventoryLocationType.ANY, il)) {
+                    ItemBase newItem = il.GetParent().GetInventory().CreateEntityInCargoEx(GetBBankConfig().GetConfig().GetCurrencyClassName(), il.GetIdx(), il.GetRow(), il.GetCol(), il.GetFlip());
 
                     if (withdrawAmount < itemMaxQuant) {
                         newItem.SetQuantity(withdrawAmount);
