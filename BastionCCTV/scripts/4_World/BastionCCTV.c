@@ -1,7 +1,7 @@
 class BastionCCTV
 {
     Camera m_camera;
-	autoptr TStringVectorMap m_CCTVUsers = new TStringVectorMap;
+	static autoptr TStringVectorMap m_CCTVUsers = new TStringVectorMap;
     static autoptr array<ref CCTVCamera> m_cameras;
 
     void BastionCCTV() {
@@ -14,19 +14,19 @@ class BastionCCTV
         GetRPCManager().AddRPC( "BastionCCTV", "ReceiveCameraData",      this, SingeplayerExecutionType.Client );
     }
 
-    static void AddCamera( vector position, int yaw, int pitch, int roll, bool canRotate ) {
+    static void AddCamera( vector position, float yaw, float pitch, float roll, bool canRotate ) {
         m_cameras.Insert( new CCTVCamera( position, yaw, pitch, roll, canRotate ) );
     }
 
     void ReceiveCameraData( CallType type, ref ParamsReadContext ctx, ref PlayerIdentity sender, ref Object target ) {
-        Param5<vector, int, int, int, bool> data;
+        Param5<vector, float, float, float, bool> data;
         if ( !ctx.Read( data ) ) return;
 
         if ( type == CallType.Client ) {
             vector position = data.param1;
-            int yaw = data.param2;
-            int pitch = data.param3;
-            int roll = data.param4;
+            float yaw = data.param2;
+            float pitch = data.param3;
+            float roll = data.param4;
             bool canRotate = data.param5;
 
             AddCamera( position, yaw, pitch, roll, canRotate );

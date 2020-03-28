@@ -1,9 +1,9 @@
 class CCTVCamera {
     protected vector position;
-    protected int yaw, pitch, roll;
+    protected float yaw, pitch, roll;
     protected bool canRotate;
 
-    void CCTVCamera( vector _position, int _startingAngle = 0, int _pitch = 0, int _roll = 0, bool _canRotate = true ) {
+    void CCTVCamera( vector _position, float _startingAngle = 0.0, float _pitch = 0.0, float _roll = 0.0, bool _canRotate = true ) {
         position = _position;
         yaw = Math.NormalizeAngle( _startingAngle );
         pitch = Math.NormalizeAngle( _pitch );
@@ -12,9 +12,9 @@ class CCTVCamera {
     }
 
     vector GetPosition() { return position; }
-    int GetStartingAngle() { return yaw; }
-    int GetPitch() { return pitch; }
-    int GetRoll() { return roll; }
+    float GetStartingAngle() { return yaw; }
+    float GetPitch() { return pitch; }
+    float GetRoll() { return roll; }
     bool GetCanRotate() { return canRotate; }
     vector GetDirection() {
         vector dir = vector.Zero;

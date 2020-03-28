@@ -5,7 +5,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = {"DZ_Structures"};
+		requiredAddons[] = {};
 	};
 };
 class CfgMods
@@ -60,13 +60,5 @@ class CfgVehicles
 		carveNavmesh = 1;
 		canBeDigged = 1;
 		rotationFlags = 2;
-	};
-	class DOME_CCTV: Inventory_Base
-	{
-		scope = 2;
-		displayName = "CCTV Dome Camera";
-		descriptionShort = "CCTV Dome Camera";
-		model = "\BastionMod\BastionCCTV\cctv_dome.p3d";
-		weight = 1000;
 	};
 };
