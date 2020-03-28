@@ -61,4 +61,12 @@ class CfgVehicles
 		canBeDigged = 1;
 		rotationFlags = 2;
 	};
+	class DOME_CCTV: Inventory_Base
+	{
+		scope = 2;
+		displayName = "CCTV Dome Camera";
+		descriptionShort = "CCTV Dome Camera";
+		model = "\BastionMod\BastionCCTV\cctv_dome.p3d";
+		weight = 1000;
+	};
 };
