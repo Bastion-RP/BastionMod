@@ -62,7 +62,7 @@ FrameWidgetClass HudFrameWidget {
      "text halign" center
      "text valign" center
     }
-    ButtonWidgetClass btnPrevious0 {
+    ButtonWidgetClass btnPrevious {
      position 0 0.25
      size 215 50
      halign center_ref
@@ -75,7 +75,7 @@ FrameWidgetClass HudFrameWidget {
      font "gui/fonts/etelkatextpro22"
      "text color" 0.933 0.933 0.933 1
     }
-    ButtonWidgetClass btnNext0 {
+    ButtonWidgetClass btnNext {
      position 0 0.5
      size 215 50
      halign center_ref
@@ -88,7 +88,7 @@ FrameWidgetClass HudFrameWidget {
      font "gui/fonts/etelkatextpro22"
      "text color" 0.933 0.933 0.933 1
     }
-    ButtonWidgetClass btnClose0 {
+    ButtonWidgetClass btnClose {
      position 0 0.05
      size 215 50
      halign center_ref
