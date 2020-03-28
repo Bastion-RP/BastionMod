@@ -25,7 +25,7 @@ class BastionCCTVMenu : UIScriptedMenu {
     }
 
     void RPCClose() {
-        GetRPCManager().SendRPC( "BastionCCTV", "LeaveCCTV", new Param, true, NULL, GetGame().GetPlayer() );
+        GetRPCManager().SendRPC( "BastionCCTV", "LeaveCCTV", new Param, true, NULL, GetPlayer() );
     }
 
     void switchCamera(int delta) {
@@ -41,7 +41,7 @@ class BastionCCTVMenu : UIScriptedMenu {
         currentCameraIndex = newIndex % cameraCount;
         CCTVCamera camera = BastionCCTV.m_cameras.Get( currentCameraIndex );
 
-		GetRPCManager().SendRPC( "BastionCCTV", "SwitchCCTV", new Param2<vector, vector>( camera.GetPosition(), camera.GetDirection() ), true, NULL, GetGame().GetPlayer() );
+		GetRPCManager().SendRPC( "BastionCCTV", "SwitchCCTV", new Param2<vector, vector>( camera.GetPosition(), camera.GetDirection() ), true, NULL, GetPlayer() );
 
         if ( camera.GetCanRotate() ) {
             EnableControls();
