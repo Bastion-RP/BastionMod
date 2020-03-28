@@ -1,7 +1,7 @@
 class BastionCCTV
 {
     Camera m_camera;
-	autoptr TStringVectorMap m_CCTVUsers = new TStringVectorMap;
+	static autoptr TStringVectorMap m_CCTVUsers = new TStringVectorMap;
     static autoptr array<ref CCTVCamera> m_cameras;
 
     void BastionCCTV() {

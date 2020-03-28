@@ -8,7 +8,7 @@ modded class MissionGameplay {
     override void OnKeyPress( int key ) {
         super.OnKeyPress( key );
 
-        BastionCCTVMenu menu = BastionCCTVMenu.Cast(GetUIManager().GetMenu());
+        BastionCCTVMenu menu = BastionCCTVMenu.Cast( GetUIManager().GetMenu() );
         if ( menu ) {
             menu.OnKeyPress( key );
         }
@@ -50,7 +50,6 @@ modded class MissionServer {
             if ( !FileExist( BastionCCTVConst.baseDir ) ) {
                 MakeDirectory( BastionCCTVConst.baseDir );
             }
-
             if ( !FileExist( BastionCCTVConst.configDir ) ) {
                 MakeDirectory( BastionCCTVConst.configDir );
             }
