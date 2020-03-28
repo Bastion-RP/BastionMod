@@ -46,14 +46,9 @@ class CfgVehicles
 		model = "BastionMod\NCC_Rations\AION\aion.p3d";
 		weight = 25;
 		itemSize[] = {1,3};
-		destroyOnEmpty = 0;
-		varQuantityDestroyOnMin = 0;
-		varLiquidTypeInit = 512;
-		liquidContainerType = "1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 + 1024 + 2048 + 4096 + 8192 + 16384 + 32768 + 65536  - (1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256)";
 		varQuantityInit = 500;
 		varQuantityMin = 0;
 		varQuantityMax = 500;
-		isMeleeWeapon = 1;
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -69,7 +64,7 @@ class CfgVehicles
 		{
 			fullnessIndex = 1.5;
 			energy = 80;
-			water = 80;
+			water = 0; // Don't put any water here, it will be added via a script
 			nutritionalIndex = 1;
 			toxicity = 0;
 		};
