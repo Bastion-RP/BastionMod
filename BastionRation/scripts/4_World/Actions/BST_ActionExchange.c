@@ -93,37 +93,31 @@ class ActionExchange: ActionInteractBase
 	{
 		super.OnStartServer( action_data );
 
-		if ( GetGame().IsMultiplayer( ) )
+		Print("OnStartServer::1")
+
+		m_Items.Clear();
+		
+		m_BankingAccount = GetBankAccountManager().GetAccountByPlayerBase( action_data.m_Player );
+		
+		Print("OnStartServer::2 " + m_BankingAccount);
+
+		if ( !m_BankingAccount )
+			return;
+
+		Print("OnStartServer::3");
+
+		if ( GetBankManager().CanDeposit( action_data.m_Player, m_VendingMachine.GetPrice(), m_Items, m_Ammount ) )
 		{
-			if ( GetGame().IsServer( ) )
-			{
-				Print("OnStartServer::1");
+			Print("OnStartServer::4::I");
 
-				m_Items.Clear();
+			GetBankManager().RemoveCurrency( m_Items, m_VendingMachine.GetPrice() );
+		}
+		else
+		{
+			Print("OnStartServer::4::E");
 
-				m_BankingAccount = GetBankAccountManager().GetAccountByPlayerBase( action_data.m_Player );
-				
-				Print("OnStartServer::2 " + m_BankingAccount);
-
-				if ( !m_BankingAccount )
-					return;
-
-				Print("OnStartServer::3");
-
-				if ( GetBankManager().CanDeposit( action_data.m_Player, m_VendingMachine.GetPrice(), m_Items, m_Ammount ) )
-				{
-					Print("OnStartServer::4::I");
-
-					GetBankManager().RemoveCurrency( m_Items, m_VendingMachine.GetPrice() );
-				}
-				else
-				{
-					Print("OnStartServer::4::E");
-
-					NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
-					return;
-				}
-			}
+			NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
+			return;
 		}
 
 		Print("OnStartServer::5");
