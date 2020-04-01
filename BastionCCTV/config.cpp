@@ -48,6 +48,7 @@ class CfgMods
 class CfgVehicles
 {
 	class Inventory_Base;
+	class HouseNoDestruct;
 	class BST_CCTV: Inventory_Base
 	{
 		scope = 2;
@@ -61,12 +62,11 @@ class CfgVehicles
 		canBeDigged = 1;
 		rotationFlags = 2;
 	};
-	class DOME_CCTV: Inventory_Base
+	class DOME_CCTV: HouseNoDestruct
 	{
 		scope = 2;
 		displayName = "CCTV Dome Camera";
 		descriptionShort = "CCTV Dome Camera";
-		model = "\BastionMod\BastionCCTV\cctv_dome.p3d";
-		weight = 1000;
+		model = "\BastionCCTV\cctv_dome.p3d";
 	};
 };

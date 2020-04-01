@@ -16,12 +16,10 @@ class BastionCCTV
     }
 
     static void AddCamera( string name, vector position, float yaw, float pitch, float roll, bool canRotate ) {
-        Print("##### AddCamera " + name);
         m_cameras.Insert( new CCTVCamera( name, position, yaw, pitch, roll, canRotate ) );
     }
 
     void InitClientCameraData( CallType type, ref ParamsReadContext ctx, ref PlayerIdentity sender, ref Object target ) {
-        Print("##### InitClientCameraData");
         if ( type == CallType.Client ) {
             if ( m_cameras.Count() == 0 ) {
                 GetRPCManager().SendRPC( "BastionCCTV", "InitClientCameraData", NULL, true, NULL, target );
@@ -38,8 +36,6 @@ class BastionCCTV
         Param6<string, vector, float, float, float, bool> data;
         if ( !ctx.Read( data ) ) return;
 
-        Print("##### ReceiveCameraData " + data.param1);
-
         if ( type == CallType.Client ) {
             string name = data.param1;
             vector position = data.param2;
@@ -47,6 +43,17 @@ class BastionCCTV
             float pitch = data.param4;
             float roll = data.param5;
             bool canRotate = data.param6;
+
+            // Fix for camera model being in view
+            vector dir = vector.Zero;
+            dir[0] = yaw;
+            dir[1] = pitch;
+            dir[2] = roll;
+
+            dir = dir.AnglesToVector();
+            dir = dir * 0.15;
+            position = position + dir;
+            position[1] = position[1] - 0.1;
 
             AddCamera( name, position, yaw, pitch, roll, canRotate );
         }

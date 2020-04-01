@@ -39,6 +39,17 @@ modded class MissionServer {
         super.InvokeOnConnect( player, identity );
         GetRPCManager().SendRPC( "BastionCCTV", "InitClientCameraData", NULL, true, identity );
 	}
+	
+	void CreateSpecificObject( string type, vector pos, vector dir )
+	{
+		auto obj = GetGame().CreateObject( type, pos );
+		obj.SetPosition( pos );
+		obj.SetOrientation( dir );
+		obj.SetOrientation( obj.GetOrientation() );
+		obj.Update();
+		obj.SetAffectPathgraph( true, false );
+		if( obj.CanAffectPathgraph() ) GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( GetGame().UpdatePathgraphRegionByObject, 100, false, obj );
+	}
 
     void MissionServer() {
         m_bastionCCTV = new BastionCCTV();
@@ -54,23 +65,32 @@ modded class MissionServer {
             if ( FileExist( BastionCCTVConst.config ) ) {
                 JsonFileLoader<array<ref CCTVCamera>>.JsonLoadFile( BastionCCTVConst.config, m_bastionCCTV.m_cameras );
             } else {
-                m_bastionCCTV.AddCamera( "Bridge", "4539.593750 15.793251 4725.109375", 130.0, -5.0, 0.0, false );
-                m_bastionCCTV.AddCamera( "FireStation1", "4851.897949 28.766982 4420.295410", 70.0, 0.0, 0.0, true );
-                m_bastionCCTV.AddCamera( "FireStation2", "4843.640137 20.000047 4441.417480", -50.0, 0.0, 0.0, true );
-                m_bastionCCTV.AddCamera( "Office1", "4785.000000 28.152763 4448.799805", -50.0, -20.0, 0.0, false );
-                m_bastionCCTV.AddCamera( "Office2", "4714.375488 17.566299 4444.317871", 70.0, -5.0, 0.0, false );
-                m_bastionCCTV.AddCamera( "BigApt1", "4831.299805 32.104875 4253.982910", -120.0, -20.0, 0.0, true );
-                m_bastionCCTV.AddCamera( "GuardHouse", "4711.987305 13.944799 4357.939941", 90.0, -10.0, 0.0, true );
-                m_bastionCCTV.AddCamera( "SmallApt2", "4793.169922 21.105083 4234.919922", 20.0, -10.0, 0.0, true );
-                m_bastionCCTV.AddCamera( "Hotel", "4823.399902 29.600000 4179.799805", -85.0, -10.0, 0.0, true );
-                m_bastionCCTV.AddCamera( "Store", "4721.689902 18.530797 4251.049805", 100.0, -10.0, 0.0, true );
-                m_bastionCCTV.AddCamera( "TrainStation", "4860.500000 17.700000 4103.899902", 10.0, -10.0, 0.0, true );
-                m_bastionCCTV.AddCamera( "Industrial1", "4535.219727 20.459999 4392.620117", -170.0, -10.0, 0.0, false );
-                m_bastionCCTV.AddCamera( "TownSquare1", "4661.000000 24.650000 4232.299805", 100.0, -10.0, 0.0, true );
-                m_bastionCCTV.AddCamera( "Industrial2", "4453.959961 13.350000 4364.799805", 95.0, -10.0, 0.0, false );
-                m_bastionCCTV.AddCamera( "TownSquare2", "4579.399902 18.320000 4183.270020", 95.0, -10.0, 0.0, false );
+				// To keep in mind while changing these positions:
+				// 1. The camera views will be placed under these as to not show the model
+				// 2. The camera models will not get the yaw and roll applied to them for now
+                m_bastionCCTV.AddCamera( "Bridge", "4539.629395 15.510000 4724.262695", 130.0, -5.0, 0.0, false );
+				m_bastionCCTV.AddCamera( "FireStationLow", "4843.568848 19.525745 4441.661133", -23.0, 0.0, 0.0, true );
+				m_bastionCCTV.AddCamera( "FireStationHi", "4852.020020 28.375820 4420.404785", 78.0, 0.0, 0.0, true );
+                m_bastionCCTV.AddCamera( "Office1", "4785.060059 28.352760 4448.580078", -50.0, -20.0, 0.0, false );
+                m_bastionCCTV.AddCamera( "Office2", "4713.869141 16.800011 4444.125488", 77.0, -5.0, 0.0, false );
+                m_bastionCCTV.AddCamera( "BigApt1", "4833.096191 32.104874 4252.549316", -141.0, -20.0, 0.0, true );
+                m_bastionCCTV.AddCamera( "GuardHouse", "4712.000000 13.470000 4357.910156", 90.0, -10.0, 0.0, true );
+                m_bastionCCTV.AddCamera( "SmallApt2", "4793.120117 21.055084 4234.770020", -42.0, -10.0, 0.0, true );
+                m_bastionCCTV.AddCamera( "Hotel", "4823.660156 26.400049 4179.689941", -44.0, -10.0, 0.0, true );
+                m_bastionCCTV.AddCamera( "Store", "4721.560059 18.530191 4251.169922", 91.0, -10.0, 0.0, true );
+                m_bastionCCTV.AddCamera( "TrainStation", "4860.419922 16.050022 4103.109863", 22.0, -10.0, 0.0, true );
+                m_bastionCCTV.AddCamera( "Industrial1", "4537.759766 19.786858 4389.817871", -131.0, -10.0, 0.0, false );
+                m_bastionCCTV.AddCamera( "TownSquare1", "4660.910156 24.499821 4232.377930", 89.0, -10.0, 0.0, true );
+                m_bastionCCTV.AddCamera( "Industrial2", "4453.099121 13.128106 4364.430176", 97.0, -10.0, 0.0, false );
+                m_bastionCCTV.AddCamera( "TownSquare2", "4579.270020 18.050175 4183.352051", 90.0, -10.0, 0.0, false );
 
                 JsonFileLoader<array<ref CCTVCamera>>.JsonSaveFile( BastionCCTVConst.config, m_bastionCCTV.m_cameras );
+            }
+            foreach( auto camera : m_bastionCCTV.m_cameras )
+            {
+				vector dir = vector.Zero;
+				dir[0] = camera.GetStartingAngle();
+				CreateSpecificObject( "DOME_CCTV", camera.GetPosition(), dir );
             }
 
             array<ref CCTVMonitor> monitors = new array<ref CCTVMonitor>;
@@ -81,19 +101,9 @@ modded class MissionServer {
                 monitors.Insert( new CCTVMonitor( "4443.448730 14.239664 4719.937988", 29.0, 0.0, 0.0 ) );
                 JsonFileLoader<array<ref CCTVMonitor>>.JsonSaveFile( BastionCCTVConst.monitors, monitors );
             }
-
             foreach( auto monitor : monitors )
             {
-                vector position = monitor.GetPosition();
-                vector orientation = monitor.GetDirection();
-
-                auto obj = GetGame().CreateObject( "BST_CCTV", position );
-                obj.SetPosition( position );
-                obj.SetOrientation( orientation );
-                obj.SetOrientation( obj.GetOrientation() );
-                obj.Update();
-                obj.SetAffectPathgraph( true, false );
-                if( obj.CanAffectPathgraph() ) GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( GetGame().UpdatePathgraphRegionByObject, 100, false, obj );
+				CreateSpecificObject( "BST_CCTV", monitor.GetPosition(), monitor.GetDirection() );
             }
         }
     }

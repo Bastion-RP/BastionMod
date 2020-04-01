@@ -87,11 +87,9 @@ class BastionCCTVMenu : UIScriptedMenu {
 		filter.ToLower();
 
 		for ( int i = 0; i < BastionCCTV.m_cameras.Count(); i++ ) {
-            Print(i);
             auto camera = BastionCCTV.m_cameras.Get(i);
             string name = camera.GetName();
             name.ToLower();
-            Print(name);
 
             if ( !name.Contains( filter ) ) {
                 continue;
