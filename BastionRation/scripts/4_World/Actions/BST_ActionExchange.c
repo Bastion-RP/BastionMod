@@ -6,7 +6,7 @@ class ActionExchange: ActionInteractBase
 
 	private ref BastionBankAccount m_BankingAccount;
 
-    private BST_VendingMachine m_VendingMachine;
+    private NCC_AionVendor m_VendingMachine;
 
 	void ActionExchange( )
 	{

@@ -25,12 +25,15 @@ class MultiCharactersPlayerStatPanel {
         txtWater = TextWidget.Cast(wRoot.FindAnyWidget("txtWater"));
         pnlStats = wRoot.FindAnyWidget("pnlStats");
         pnlBorder = wRoot.FindAnyWidget("pnlBorder");
-        cameraPos = GetMultiCharactersClientManager().GetSelectMenu().GetCameraPosition()
-        characterPos = ("" + cameraPos[0] + " " + (cameraPos[1] + 3) + " " + cameraPos[2]).ToVector();
-        dayzPlayer = GetGame().CreateObject(savePlayer.GetType(), characterPos, true);
+        //cameraPos = GetMultiCharactersClientManager().GetSelectMenu().GetCameraPosition()
+        //characterPos = ("" + cameraPos[0] + " " + (cameraPos[1] + 3) + " " + cameraPos[2]).ToVector();
+        //dayzPlayer = GetGame().CreateObject(savePlayer.GetType(), characterPos, true);
+        dayzPlayer = GetGame().CreateObject(savePlayer.GetType(), vector.Zero, true);
 
+        /* if (dayzPlayer) {
+            dayzPlayer.SetPosition(characterPos);
+        } */
         Init();
-        dayzPlayer.SetPosition(characterPos);
         txtName.SetText(savePlayer.GetName());
         wRoot.Show(true);
     }

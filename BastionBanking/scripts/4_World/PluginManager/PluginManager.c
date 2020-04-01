@@ -22,7 +22,7 @@ modded class PluginManager {
 		RegisterPlugin("BankingServerRPC", false, true);
 		RegisterPlugin("BastionBankManager", true, true);
 		RegisterPlugin("BastionAccountManager", false, true);
-		RegisterPlugin("BastionConfigHandler", false, true);
+		RegisterPlugin("BastionConfigHandler", true, true);
 	}
 	
 	//=================================

@@ -5,7 +5,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = {"MultiCharacters"};
+		requiredAddons[] = {"MultiCharacters", "BastionRP_Items"};
 	};
 };
 class CfgMods
@@ -45,3 +45,11 @@ class CfgMods
 		};
 	};
 };
+
+class CfgVehicles
+{
+	class Inventory_Base;
+	class NCC_ATM: Inventory_Base
+	{
+	};
+}

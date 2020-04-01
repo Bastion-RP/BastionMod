@@ -52,8 +52,11 @@ modded class PlayerBase {
 
     override void OnConnect() {
         if (GetGame().IsServer() && GetGame().IsMultiplayer()) {
+            Param params = new Param1<BastionBankingConfig>(GetBBankConfig().GetConfig());
+
             LoadBastionPlayerAccount();
             GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.DepositPassiveIncome, GetBBankConfig().GetConfig().GetPassivePayInterval() * 60000, true);
+            GetGame().RPCSingleParam(this, BSTBankRPC.RPC_CLIENT_INIT, params, true, GetIdentity());
         }
         super.OnConnect();
     }

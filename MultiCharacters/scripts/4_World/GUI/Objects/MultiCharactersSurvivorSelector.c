@@ -24,7 +24,6 @@ class MultiCharactersSurvivorSelector {
         Print(MCConst.debugPrefix + "Deleting survivor selector widget");
         if (wRoot) {
             wRoot.Unlink();
-            delete wRoot;
         }
         foreach (MultiCharactersPlayerStatPanel statPanel : arrayStatPanels) {
             if (statPanel) {

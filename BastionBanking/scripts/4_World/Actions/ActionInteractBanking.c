@@ -10,10 +10,15 @@ class ActionInteractBanking : ActionInteractBase {
     }
 
     override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item) {
-        SeaChest chest = SeaChest.Cast(target.GetObject());
+        ItemBase atm = ItemBase.Cast(target.GetObject());
 
-        if (chest) {
-            return true;
+        if (atm) {
+            string atmType = atm.GetType();
+            atmType.ToLower();
+
+            if (atmType == GetBBankConfig().GetConfig().GetATMClassName()) {
+                return true;
+            }
         }
         return false;
     }

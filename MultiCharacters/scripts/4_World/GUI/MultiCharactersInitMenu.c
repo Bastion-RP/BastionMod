@@ -11,11 +11,15 @@ class MultiCharactersInitMenu {
 	void ~MultiCharactersInitMenu() {
 		if (wRoot) {
 			wRoot.Unlink();
-			delete wRoot;
 		}
 	}
 
+	void Hide() {
+		wRoot.Show(false);
+	}
+
 	void Initializing() {
+		wRoot.Show(true);
 		txtInit.SetText("Initializing...")
 	}
 	

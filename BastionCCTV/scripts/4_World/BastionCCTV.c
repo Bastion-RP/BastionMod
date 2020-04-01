@@ -1,7 +1,7 @@
 class BastionCCTV
 {
     Camera m_camera;
-	autoptr TStringVectorMap m_CCTVUsers = new TStringVectorMap;
+	static autoptr TStringVectorMap m_CCTVUsers = new TStringVectorMap;
     static autoptr array<ref CCTVCamera> m_cameras;
 
     void BastionCCTV() {
@@ -12,24 +12,50 @@ class BastionCCTV
         GetRPCManager().AddRPC( "BastionCCTV", "SwitchCCTV",             this, SingeplayerExecutionType.Client );
         GetRPCManager().AddRPC( "BastionCCTV", "PlayerToCameraPosition", this, SingeplayerExecutionType.Client );
         GetRPCManager().AddRPC( "BastionCCTV", "ReceiveCameraData",      this, SingeplayerExecutionType.Client );
+        GetRPCManager().AddRPC( "BastionCCTV", "InitClientCameraData",   this, SingeplayerExecutionType.Client );
     }
 
-    static void AddCamera( vector position, int yaw, int pitch, int roll, bool canRotate ) {
-        m_cameras.Insert( new CCTVCamera( position, yaw, pitch, roll, canRotate ) );
+    static void AddCamera( string name, vector position, float yaw, float pitch, float roll, bool canRotate ) {
+        m_cameras.Insert( new CCTVCamera( name, position, yaw, pitch, roll, canRotate ) );
+    }
+
+    void InitClientCameraData( CallType type, ref ParamsReadContext ctx, ref PlayerIdentity sender, ref Object target ) {
+        if ( type == CallType.Client ) {
+            if ( m_cameras.Count() == 0 ) {
+                GetRPCManager().SendRPC( "BastionCCTV", "InitClientCameraData", NULL, true, NULL, target );
+            }
+        } else {
+            foreach( auto camera : m_cameras ) {
+                auto data = new Param6<string, vector, float, float, float, bool>( camera.GetName(), camera.GetPosition(), camera.GetStartingAngle(), camera.GetPitch(), camera.GetRoll(), camera.GetCanRotate() );
+                GetRPCManager().SendRPC( "BastionCCTV", "ReceiveCameraData", data, true, sender );
+            }
+        }
     }
 
     void ReceiveCameraData( CallType type, ref ParamsReadContext ctx, ref PlayerIdentity sender, ref Object target ) {
-        Param5<vector, int, int, int, bool> data;
+        Param6<string, vector, float, float, float, bool> data;
         if ( !ctx.Read( data ) ) return;
 
         if ( type == CallType.Client ) {
-            vector position = data.param1;
-            int yaw = data.param2;
-            int pitch = data.param3;
-            int roll = data.param4;
-            bool canRotate = data.param5;
+            string name = data.param1;
+            vector position = data.param2;
+            float yaw = data.param3;
+            float pitch = data.param4;
+            float roll = data.param5;
+            bool canRotate = data.param6;
 
-            AddCamera( position, yaw, pitch, roll, canRotate );
+            // Fix for camera model being in view
+            vector dir = vector.Zero;
+            dir[0] = yaw;
+            dir[1] = pitch;
+            dir[2] = roll;
+
+            dir = dir.AnglesToVector();
+            dir = dir * 0.15;
+            position = position + dir;
+            position[1] = position[1] - 0.1;
+
+            AddCamera( name, position, yaw, pitch, roll, canRotate );
         }
     }
 

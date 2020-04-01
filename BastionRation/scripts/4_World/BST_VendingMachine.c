@@ -1,14 +1,14 @@
-class BST_VendingMachine extends ItemBase
+class NCC_AionVendor extends ItemBase
 {
     string m_Ration;
     int m_Price;
 
-    void BST_VendingMachine( )
+    void NCC_AionVendor( )
     {
 
     }
 
-    void ~BST_VendingMachine( )
+    void ~NCC_AionVendor( )
     {
 
     }
