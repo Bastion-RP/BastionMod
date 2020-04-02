@@ -42,7 +42,7 @@ class ActionExchange: ActionInteractBase
                 ItemBase itemBase = ItemBase.Cast( item );
                 if (itemBase)
                 {
-                    if (itemBase.GetType() == "Nail")
+                    if (itemBase.GetType() == GetBBankConfig().GetConfig().GetCurrencyClassName())
                     {	
                         balance += itemBase.GetQuantity();
                     }
@@ -91,7 +91,7 @@ class ActionExchange: ActionInteractBase
 						ItemBase currency = ItemBase.Cast(items[i]);
                 		if (currency)
                 		{
-                    		if (currency.GetType() == "Nail")
+                    		if (currency.GetType() == GetBBankConfig().GetConfig().GetCurrencyClassName())
                     		{
                     	    	currencies.Insert( currency );
                     		}
@@ -185,7 +185,7 @@ class ActionExchange: ActionInteractBase
 				ItemBase currency = ItemBase.Cast(items[i]);
                 if (currency)
                 {
-                    if (currency.GetType() == "Nail")
+                    if (currency.GetType() == GetBBankConfig().GetConfig().GetCurrencyClassName())
                     {
                         currencies.Insert( currency );
                     }
