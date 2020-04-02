@@ -5,7 +5,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = {"BastionBanking", "BastionRP_Items"};
+		requiredAddons[] = {"BastionRP_Items"};
 	};
 };
 
@@ -48,10 +48,11 @@ class CfgMods
 };
 
 class CfgVehicles
-{	
+{
 	class Inventory_Base;
 	class NCC_AionVendor: Inventory_Base
 	{
+		scope = 2;
 		displayName = "Vending Machine";
 		descriptionShort = "Vending Machine";
 		weight = 5000;
@@ -60,5 +61,6 @@ class CfgVehicles
 		carveNavmesh = 1;
 		bounding="BSphere";
 		physLayer="item_large";
+		// model = "\DZ\structures\furniture\Eletrical_appliances\vending_machine\vending_machine.p3d"; 
 	};
 };

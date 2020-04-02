@@ -2,16 +2,10 @@ class ActionExchange: ActionInteractBase
 {
 	private int m_Ammount;
 
-	private ref array< ItemBase > m_Items;
-
-	private ref BastionBankAccount m_BankingAccount;
-
     private NCC_AionVendor m_VendingMachine;
 
 	void ActionExchange( )
 	{
-		m_Items = new ref array< ItemBase >;
-
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_ATTACHITEM;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
 		m_HUDCursorIcon = CursorIcons.OpenDoors;
@@ -32,40 +26,40 @@ class ActionExchange: ActionInteractBase
 	{
 		return InteractActionInput;
 	}
+
+	protected int GetPlayersBalance( PlayerBase player )
+    {
+        int balance = 0;
+
+        array< EntityAI > items = new array< EntityAI >;
+	   	player.GetInventory().EnumerateInventory( InventoryTraversalType.PREORDER, items );
+
+        for ( int i = 0; i < items.Count(); i++ )
+		{
+            EntityAI item = items.Get(i);
+            if (item)
+            {
+                ItemBase itemBase = ItemBase.Cast( item );
+                if (itemBase)
+                {
+                    if (itemBase.GetType() == "Nail")
+                    {	
+                        balance += itemBase.GetQuantity();
+                    }
+                }
+            }
+        }
+
+        return balance;
+    }
 	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		if ( GetGame().IsMultiplayer( ) )
-		{
-			if ( GetGame().IsServer( ) )
-			{
-				Print("ActionCondition::1");
-
-				m_BankingAccount = GetBankAccountManager().GetAccountByPlayerBase( player );
-
-				Print("ActionCondition::2 " + m_BankingAccount);
-
-				if ( !m_BankingAccount )
-					return false;
-
-				Print("ActionCondition::3");
-
-				if ( m_BankingAccount.GetFunds() < m_VendingMachine.GetPrice() )
-				{
-					Print("ActionCondition::4");
-					
-					NotificationSystem.SendNotificationToPlayerExtended(player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
-					return false;
-				}
-			}
-		}
-
-		Print("ActionCondition::5");
-
 		if ( !Class.CastTo( m_VendingMachine, target.GetObject( ) ) )
 			return false;
-
-		Print("ActionCondition::6");
+		
+		if ( GetPlayersBalance(player) < m_VendingMachine.GetPrice() )
+			return false;
 
 		return true;
 	}
@@ -78,13 +72,92 @@ class ActionExchange: ActionInteractBase
 		{
 			if ( GetGame().IsServer( ) )
 			{
-				Object obj = action_data.m_Player.GetInventory().CreateInInventory( m_VendingMachine.GetRation() );
-				if ( !obj )
+				if ( GetPlayersBalance(action_data.m_Player) < m_VendingMachine.GetPrice() )
 				{
-					obj = GetGame().CreateObject( m_VendingMachine.GetRation(), action_data.m_Player.GetPosition() );
+					NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
+					return;
 				}
 
-				NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "Purchased 1 AION for " + m_VendingMachine.GetPrice() + " credits.", "set:dayz_gui image:iconHungry0");
+				int price = m_VendingMachine.GetPrice();
+
+        		if (price > 0)
+        		{
+					array< ItemBase > currencies = new array< ItemBase >;
+            		array< EntityAI > items = new array< EntityAI >;
+	   	   			action_data.m_Player.GetInventory().EnumerateInventory( InventoryTraversalType.PREORDER, items );
+
+            		for ( int i = 0; i < items.Count(); i++ )
+		    		{
+						ItemBase currency = ItemBase.Cast(items[i]);
+                		if (currency)
+                		{
+                    		if (currency.GetType() == "Nail")
+                    		{
+                    	    	currencies.Insert( currency );
+                    		}
+                		}
+					}
+
+					int reserved;
+
+            		for ( int a = 0; a < currencies.Count(); a++ )
+		    		{
+                		ItemBase currentCurrency = currencies[a];
+                		if (currentCurrency)
+                		{
+                		    reserved += currentCurrency.GetQuantity();
+                		}
+           			}
+
+            		int payed;
+
+            		if (reserved >= price)
+            		{
+						bool complete = false;
+
+                		for ( int b = 0; b < currencies.Count(); b++ )
+		        		{
+                    		ItemBase reservedCurrency = currencies[b];
+                    		if (reservedCurrency)
+                    		{
+                        		payed += reservedCurrency.GetQuantity() - price;
+                        		if ( payed >= price ) // >= if more then refund
+                        		{
+                            		if (!complete)
+                            		{
+                            		    reservedCurrency.SetQuantity(payed);
+                            		}
+                            
+                            		complete = true;
+                        		}
+                    		}
+                		}
+					}
+					else 
+					{
+						NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
+						return;
+					}
+
+					Object obj = action_data.m_Player.GetInventory().CreateInInventory( m_VendingMachine.GetRation() );
+					if ( !obj )
+					{
+						obj = GetGame().CreateObject( m_VendingMachine.GetRation(), action_data.m_Player.GetPosition() );
+					}
+
+					NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "Purchased 1 AION for " + m_VendingMachine.GetPrice() + " credits.", "set:dayz_gui image:iconHungry0");
+
+					if (items)
+            		{
+            		    items.Clear();
+            		}
+
+            		if (currencies)
+            		{
+            		    currencies.Clear();
+            		}
+				}
+
 			}
 		}
 	}
@@ -93,46 +166,91 @@ class ActionExchange: ActionInteractBase
 	{
 		super.OnStartServer( action_data );
 
-		Print("OnStartServer::1")
-
-		m_Items.Clear();
-		
-		m_BankingAccount = GetBankAccountManager().GetAccountByPlayerBase( action_data.m_Player );
-		
-		Print("OnStartServer::2 " + m_BankingAccount);
-
-		if ( !m_BankingAccount )
-			return;
-
-		Print("OnStartServer::3");
-
-		if ( GetBankManager().CanDeposit( action_data.m_Player, m_VendingMachine.GetPrice(), m_Items, m_Ammount ) )
+		if ( GetPlayersBalance(action_data.m_Player) < m_VendingMachine.GetPrice() )
 		{
-			Print("OnStartServer::4::I");
-
-			GetBankManager().RemoveCurrency( m_Items, m_VendingMachine.GetPrice() );
-		}
-		else
-		{
-			Print("OnStartServer::4::E");
-
 			NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
 			return;
 		}
 
-		Print("OnStartServer::5");
+		int price = m_VendingMachine.GetPrice();
 
-		Object obj = action_data.m_Player.GetInventory().CreateInInventory( m_VendingMachine.GetRation() );
-		if ( !obj )
-		{
-			Print("OnStartServer::6");
+        if (price > 0)
+        {
+			array< ItemBase > currencies = new array< ItemBase >;
+            array< EntityAI > items = new array< EntityAI >;
+	   	    action_data.m_Player.GetInventory().EnumerateInventory( InventoryTraversalType.PREORDER, items );
 
-			obj = GetGame().CreateObject( m_VendingMachine.GetRation(), action_data.m_Player.GetPosition() );
+            for ( int i = 0; i < items.Count(); i++ )
+		    {
+				ItemBase currency = ItemBase.Cast(items[i]);
+                if (currency)
+                {
+                    if (currency.GetType() == "Nail")
+                    {
+                        currencies.Insert( currency );
+                    }
+                }
+			}
+
+			int reserved;
+
+            for ( int a = 0; a < currencies.Count(); a++ )
+		    {
+                ItemBase currentCurrency = currencies[a];
+                if (currentCurrency)
+                {
+                    reserved += currentCurrency.GetQuantity();
+                }
+            }
+
+            int payed;
+
+            if (reserved >= price)
+            {
+				bool complete = false;
+
+                for ( int b = 0; b < currencies.Count(); b++ )
+		        {
+                    ItemBase reservedCurrency = currencies[b];
+                    if (reservedCurrency)
+                    {
+                        payed += reservedCurrency.GetQuantity() - price;
+                        if ( payed >= price ) // >= if more then refund
+                        {
+                            if (!complete)
+                            {
+                                reservedCurrency.SetQuantity(payed);
+                            }
+                            
+                            complete = true;
+                        }
+                    }
+                }
+			}
+			else 
+			{
+				NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "You don't have enough funds to complete the purchase", "set:dayz_gui image:icon_x");
+				return;
+			}
+
+			Object obj = action_data.m_Player.GetInventory().CreateInInventory( m_VendingMachine.GetRation() );
+			if ( !obj )
+			{
+				obj = GetGame().CreateObject( m_VendingMachine.GetRation(), action_data.m_Player.GetPosition() );
+			}
+
+			NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "Purchased 1 AION for " + m_VendingMachine.GetPrice() + " credits.", "set:dayz_gui image:iconHungry0");
+
+			if (items)
+            {
+                items.Clear();
+            }
+
+            if (currencies)
+            {
+                currencies.Clear();
+            }
 		}
-
-		Print("OnStartServer::7");
-
-		NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "Purchased 1 AION for " + m_VendingMachine.GetPrice() + " credits.", "set:dayz_gui image:iconHungry0");
 	}
 }
 
