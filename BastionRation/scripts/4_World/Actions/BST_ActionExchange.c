@@ -253,7 +253,7 @@ class ActionExchange: ActionInteractBase
 		}
 		else 
 		{
-			NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "Error: AION", "Price is not correct.", "set:dayz_gui image:iconHungry0");
+			NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "AION", "Unknown error occurred", "set:dayz_gui image:icon_x");
 		}
 	}
 }
