@@ -251,6 +251,10 @@ class ActionExchange: ActionInteractBase
                 currencies.Clear();
             }
 		}
+		else 
+		{
+			NotificationSystem.SendNotificationToPlayerExtended(action_data.m_Player, 5, "Error: AION", "Price is not correct.", "set:dayz_gui image:iconHungry0");
+		}
 	}
 }
 
