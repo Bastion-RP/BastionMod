@@ -5,24 +5,17 @@ modded class MissionServer
         g_RationSettings = null;
         GetRationSettings( );
 
-        if ( GetGame( ) )
+        foreach ( auto vendingMachine : GetRationSettings( ).GetVendingMachineSettings( ).VendingMachineSettings )
         {
-            if ( GetGame( ).IsServer( ) )
-            {
-                for ( int i = 0; i < GetRationSettings( ).GetVendingMachineSettings( ).VendingMachineSettings.Count( ); i++ )
-		        {
-                    BST_VendingMachineSettings vendingMachine = GetRationSettings( ).GetVendingMachineSettings( ).VendingMachineSettings.Get( i );
-                    if (vendingMachine)
-                    {
-                        NCC_AionVendor machine = NCC_AionVendor.Cast( GetGame( ).CreateObject( "NCC_AionVendor", vendingMachine.Position ) );
-                        if ( machine )
-                        {
-                            machine.SetRation( vendingMachine.Ration );
-                            machine.SetPrice( vendingMachine.Price );
-                        }
-                    }
-                }
-            }
+            auto obj = NCC_AionVendor.Cast( GetGame().CreateObject( "NCC_AionVendor", vendingMachine.Position ) );
+            obj.SetRation( vendingMachine.Ration );
+            obj.SetPrice( vendingMachine.Price );
+            obj.SetPosition( vendingMachine.Position );
+            obj.SetOrientation( vendingMachine.Direction );
+            obj.SetOrientation( obj.GetOrientation() );
+            obj.Update();
+            obj.SetAffectPathgraph( true, false );
+            if( obj.CanAffectPathgraph() ) GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( GetGame().UpdatePathgraphRegionByObject, 100, false, obj );
         }
     }
 }

@@ -5,7 +5,11 @@ class NCC_AionVendor extends ItemBase
 
     void NCC_AionVendor( )
     {
-
+        if ( GetGame().IsServer() ) {
+            auto settings = GetRationSettings().GetVendingMachineSettings();
+            m_Ration = settings.m_defaultRation;
+            m_Price = settings.m_defaultPrice;
+        }
     }
 
     void ~NCC_AionVendor( )

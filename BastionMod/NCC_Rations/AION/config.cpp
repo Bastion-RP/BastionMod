@@ -63,7 +63,7 @@ class CfgVehicles
 		class Nutrition
 		{
 			fullnessIndex = 1.5;
-			energy = 80;
+			energy = 100;
 			water = 0; // Don't put any water here, it will be added via a script
 			nutritionalIndex = 1;
 			toxicity = 0;

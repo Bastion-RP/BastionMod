@@ -61,6 +61,5 @@ class CfgVehicles
 		carveNavmesh = 1;
 		bounding="BSphere";
 		physLayer="item_large";
-		// model = "\DZ\structures\furniture\Eletrical_appliances\vending_machine\vending_machine.p3d"; 
 	};
 };

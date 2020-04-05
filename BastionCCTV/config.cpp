@@ -59,7 +59,6 @@ class CfgVehicles
 		itemBehaviour = 0;
 		itemSize[] = {5,5};
 		carveNavmesh = 1;
-		canBeDigged = 1;
 		rotationFlags = 2;
 	};
 	class DOME_CCTV: HouseNoDestruct
