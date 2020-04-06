@@ -56,6 +56,9 @@ class CfgVehicles
 		displayName = "Body bag";
 		descriptionShort = "Bag used to store and transport human corpses. Filled with a corpse from the looks of it.";
 		weight = 70000;
+		itemsCargoSize[] = {0, 0};
+		itemInfo[] = {};
+		inventorySlot[] = {};
 	};
 	// WaterproofBag is placeholder
 	class BST_BodyBagKit: Inventory_Base
