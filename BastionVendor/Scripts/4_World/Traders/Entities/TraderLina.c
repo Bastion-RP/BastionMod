@@ -1,0 +1,3 @@
+class BastionVendorLina: BastionVendor
+{
+}

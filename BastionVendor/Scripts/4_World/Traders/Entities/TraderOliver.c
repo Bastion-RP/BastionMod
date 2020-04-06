@@ -1,0 +1,3 @@
+class BastionVendorOliver: BastionVendor
+{
+}

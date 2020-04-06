@@ -1,0 +1,3 @@
+class BastionVendorQuinn: BastionVendor
+{
+}

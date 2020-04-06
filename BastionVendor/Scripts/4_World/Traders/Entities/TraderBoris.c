@@ -1,0 +1,3 @@
+class BastionVendorBoris: BastionVendor 
+{
+}

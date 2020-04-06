@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<modded_inputs>
+    <inputs>
+        <actions>
+            <input name="UAEndZoneDeleteMarkerMap" loc="Delete Gps Marker" />
+            <input name="UAEndZoneCloseMap" loc="Close Gps" />
+            <input name="UAEndZoneOpenMap" loc="Open Gps" />
+        </actions>
+    </inputs>
+
+    <preset>
+        <input name="UAEndZoneDeleteMarkerMap">
+            <btn name="kDelete" />
+        </input>
+        <input name="UAEndZoneCloseMap">
+            <btn name="kEscape" />
+        </input>
+        <input name="UAEndZoneOpenMap">
+            <btn name="kM" />
+        </input>
+    </preset>
+</modded_inputs>

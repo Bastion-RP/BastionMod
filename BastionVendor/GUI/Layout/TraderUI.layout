@@ -1,0 +1,338 @@
+FrameWidgetClass TraderMenu {
+ visible 1
+ color 0.1961 0.1961 0.1961 0
+ position 0 0
+ size 1 1
+ halign center_ref
+ valign center_ref
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ scriptclass "TraderUI"
+ {
+  FrameWidgetClass BgFrame {
+   visible 1
+   position -0.0008 0
+   size 1 1
+   halign right_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   {
+    FrameWidgetClass Trader_Menu {
+     visible 1
+     color 0 0 0 0
+     position 0.1 0
+     size 1000 720
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     {
+      PanelWidgetClass Trader_BgMenu {
+       visible 1
+       color 0.1961 0.1961 0.1961 0.7843
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+      }
+      PanelWidgetClass Trader_HeaderMenu {
+       visible 1
+       color 0.1961 0.1961 0.1961 1
+       position 0 0
+       size 1 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style rover_sim_colorable
+       {
+        RichTextWidgetClass Trader_TextMenu {
+         ignorepointer 1
+         position 0.01 0
+         size 0.99 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         text "Trader"
+         font "gui/fonts/Metron22"
+         "exact text" 1
+         "text valign" center
+         wrap 1
+        }
+        RichTextWidgetClass Trader_BalanceMenu {
+         ignorepointer 1
+         position 0.01 0
+         size 0.99 1
+         halign right_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         text "999 BTC"
+         font "gui/fonts/Metron16"
+         "exact text" 1
+         "text halign" right
+         "text valign" center
+        }
+       }
+      }
+      XComboBoxWidgetClass Trader_CategorysMenu {
+       position 0 55
+       size 0.5 40
+       halign left_ref
+       valign top_ref
+       hexactpos 0
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       font "gui/fonts/Metron16"
+       items "Melee;Pistols;Shotguns;Rifles"
+      }
+      ScrollWidgetClass Trader_ItemsMenu {
+       clipchildren 0
+       position 0 100
+       size 1 575
+       halign left_ref
+       valign top_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style blank
+       "Scrollbar V" 1
+       {
+        GridSpacerWidgetClass Trader_GridMenu {
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         "Ignore invisible" 0
+         Padding 10
+         Margin 10
+         "Size To Content H" 1
+         "Size To Content V" 1
+         Columns 10
+         Rows 100
+        }
+       }
+      }
+      ButtonWidgetClass Trader_QuitMenu {
+       position -0.00116 0
+       size 160 40
+       halign right_ref
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       text "Quit"
+       font "gui/fonts/Metron16"
+      }
+      ButtonWidgetClass Trader_BuyMenu {
+       position 0 0
+       size 160 40
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       text "Buy"
+       font "gui/fonts/Metron16"
+      }
+      ButtonWidgetClass Trader_SellMenu {
+       position 0.16 0
+       size 160 40
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       priority 999
+       text "Sell"
+       font "gui/fonts/Metron16"
+      }
+      EditBoxWidgetClass Trader_SearchMenu {
+       position 0 55
+       size 0.5 40
+       halign right_ref
+       hexactpos 0
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+      }
+     }
+    }
+    FrameWidgetClass Trader_Info {
+     visible 1
+     color 0 0 0 0
+     position 0.1 0
+     size 500 720
+     halign right_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     {
+      PanelWidgetClass Trader_BgInfo {
+       visible 1
+       color 0.1961 0.1961 0.1961 0.7843
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       priority 1
+       style rover_sim_colorable
+      }
+      PanelWidgetClass Trader_HeaderInfo {
+       visible 1
+       color 0.1961 0.1961 0.1961 1
+       position 0 0
+       size 1 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       priority 1
+       style rover_sim_colorable
+       {
+        RichTextWidgetClass Trader_TextInfo {
+         ignorepointer 1
+         position 0.01 0
+         size 0.99 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         text "Info"
+         font "gui/fonts/Metron22"
+         "exact text" 1
+         "text valign" center
+         wrap 1
+        }
+       }
+      }
+      ItemPreviewWidgetClass Trader_PreviewInfo {
+       ignorepointer 1
+       position 0 0.125
+       size 0.95 0.25
+       halign center_ref
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+      }
+      RichTextWidgetClass Trader_DescriptonInfo {
+       ignorepointer 1
+       position 0 0.1
+       size 0.95 0.5
+       halign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       priority 1
+       text "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+       font "gui/fonts/Metron14"
+       "exact text" 1
+       wrap 1
+      }
+      ButtonWidgetClass Trader_QuantityDecreaseInfo {
+       size 160 40
+       halign right_ref
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       priority 1
+       text "-"
+      }
+      ButtonWidgetClass Trader_QuantityAddInfo {
+       size 160 40
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       priority 1
+       text "+"
+      }
+      RichTextWidgetClass Trader_QuantityInfo {
+       ignorepointer 1
+       size 160 40
+       halign center_ref
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       priority 1
+       style DayZNormal
+       text "1"
+       font "gui/fonts/Metron14"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+       {
+        EditBoxWidgetClass Trader_QuantityInput {
+         position 0 0
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style ServerBrowser
+         "limit visible" 1
+         "Default text color" 1 1 1 0
+         "text color" 1 1 1 0
+         "disabled text color" 1 1 1 0
+        }
+       }
+      }
+      RichTextWidgetClass Trader_PriceInfo {
+       ignorepointer 1
+       color 0 1 0.251 1
+       position 0 0.06
+       size 0.95 0.05
+       halign center_ref
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       priority 1
+       text "999 BTC"
+       font "gui/fonts/Metron16"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+      }
+     }
+    }
+   }
+  }
+ }
+}

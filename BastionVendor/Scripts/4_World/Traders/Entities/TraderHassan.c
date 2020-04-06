@@ -1,0 +1,3 @@
+class BastionVendorHassan: BastionVendor
+{
+}
