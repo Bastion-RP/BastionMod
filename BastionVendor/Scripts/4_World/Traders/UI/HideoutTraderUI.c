@@ -71,7 +71,7 @@ class TraderUI extends UIScriptedMenu
 
         if ( GetGame().IsClient() || !GetGame().IsMultiplayer() )
         {
-            m_BalanceLayout.SetText( GetPlayersBalance( GetGame().GetPlayer() ).ToString() + " BTC" );
+            m_BalanceLayout.SetText( GetPlayersBalance( GetGame().GetPlayer() ).ToString() + " CREDITS" );
 
             m_QuantityInputLayout.SetText("1");
             m_QuantityLayout.SetText("1");
@@ -276,7 +276,7 @@ class TraderUI extends UIScriptedMenu
                 }
             }
 
-            m_BalanceLayout.SetText( GetPlayersBalance( GetGame().GetPlayer() ).ToString() + " BTC" );
+            m_BalanceLayout.SetText( GetPlayersBalance( GetGame().GetPlayer() ).ToString() + " CREDITS" );
 			return true;
 		}
 
@@ -294,7 +294,7 @@ class TraderUI extends UIScriptedMenu
                 }
             }
 
-            m_BalanceLayout.SetText( GetPlayersBalance( GetGame().GetPlayer() ).ToString() + " BTC" );
+            m_BalanceLayout.SetText( GetPlayersBalance( GetGame().GetPlayer() ).ToString() + " CREDITS" );
 			return true;
 		}
 
@@ -315,7 +315,7 @@ class TraderUI extends UIScriptedMenu
         m_Item = item;
 
         m_DescriptionLayout.SetText( item.GetDescriptionFromType( item.GetPreview().GetType() ) );
-        m_PriceLayout.SetText( item.GetData().m_PriceBuy.ToString() + " BTC" );
+        m_PriceLayout.SetText( item.GetData().m_PriceBuy.ToString() + " CREDITS" );
 
         if ( item.GetPreview() && m_PreviewLayout )
         {

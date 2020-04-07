@@ -89,8 +89,8 @@ class BastionVendorItemUI: ScriptedWidgetEventHandler
         GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( OnUpdatePreview, 250 );
 
 		m_ItemNameLayout.SetText( GetNameFromType( m_Data.m_ClassName ) );
-        m_ItemPriceLayout.SetText( m_Data.m_PriceBuy.ToString() + " BTC" );
-        m_ItemPriceSellLayout.SetText( m_Data.m_PriceSell.ToString() + " BTC" );
+        m_ItemPriceLayout.SetText( m_Data.m_PriceBuy.ToString() + " CREDITS" );
+        m_ItemPriceSellLayout.SetText( m_Data.m_PriceSell.ToString() + " CREDITS" );
 
         UpdateColors();
     }

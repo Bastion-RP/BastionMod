@@ -94,7 +94,7 @@ FrameWidgetClass TraderItem {
            vexactsize 0
            priority 100
            style DayZNormal
-           text "10 BTC"
+           text "10 CREDITS"
            font "gui/fonts/etelkatextpro12"
            "exact text" 1
            "text halign" center
@@ -111,7 +111,7 @@ FrameWidgetClass TraderItem {
            vexactpos 0
            hexactsize 0
            vexactsize 0
-           text "5 BTC"
+           text "5 CREDITS"
            font "gui/fonts/etelkatextpro12"
            "exact text" 1
            "text halign" center

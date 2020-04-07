@@ -80,7 +80,7 @@ FrameWidgetClass TraderMenu {
          vexactpos 0
          hexactsize 0
          vexactsize 0
-         text "999 BTC"
+         text "999 CREDITS"
          font "gui/fonts/Metron16"
          "exact text" 1
          "text halign" right
@@ -157,6 +157,7 @@ FrameWidgetClass TraderMenu {
        font "gui/fonts/Metron16"
       }
       ButtonWidgetClass Trader_SellMenu {
+       visible 0
        position 0.16 0
        size 160 40
        valign bottom_ref
@@ -324,7 +325,7 @@ FrameWidgetClass TraderMenu {
        hexactsize 0
        vexactsize 0
        priority 1
-       text "999 BTC"
+       text "999 CREDITS"
        font "gui/fonts/Metron16"
        "exact text" 1
        "text halign" center
