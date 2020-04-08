@@ -14,6 +14,13 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
+	class BST_Compactor : Inventory_Base
+    {
+        scope=2;
+		displayName="Compactor";
+		// Placeholder..., pls replace model with a real one
+        model="\BastionMod\BastionBodyBag\data\compactor\compactor.p3d";
+    };
 	class BST_BodyBag_Base: Inventory_Base
 	{
 		scope=0;
