@@ -3,4 +3,4 @@ class BST_BodyBagKit : ItemBase {
         super.SetActions();
         AddAction(ActionBodyBag);
     }
-}
+};
