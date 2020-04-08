@@ -3,5 +3,6 @@ modded class ActionConstructor {
         super.RegisterActions(actions);
         actions.Insert(ActionBodyBag);
         actions.Insert(ActionBuryBodyBag);
+        actions.Insert(ActionIncinerateBodyBag);
     }
 }

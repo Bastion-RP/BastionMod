@@ -44,3 +44,13 @@ class CfgMods
 		};
 	};
 };
+class CfgVehicles
+{
+	class Fireplace;
+	class BST_Incinerator: Fireplace
+	{
+		scope = 2;
+		displayName = "Incinerator";
+		descriptionShort = "Incinerator";
+	};
+};

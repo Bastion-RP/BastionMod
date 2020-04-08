@@ -1,5 +1,10 @@
 class BST_BodyBag_Base : ItemBase
 {
+    override void SetActions() {
+        super.SetActions();
+        AddAction(ActionIncinerateBodyBag);
+    }
+
     override void EEInit()
 	{	
 		super.EEInit();  
