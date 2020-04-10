@@ -88,7 +88,7 @@ class TraderPlayerSettings
         TraderItems.Insert( new ref BastionVendorItems( "Bandana_CamoPattern", 1, 1, false, VehicleParts ) );
         CategoriesItems.Insert( new ref BastionVendorCattegories( "Bandanas", TraderItems ) );
 
-        TraderItems.Clear();
+        TraderItems = new array< ref BastionVendorItems >;
 
         TraderItems.Insert( new ref BastionVendorItems( "Bandana_BlackPattern", 1, 1, false, VehicleParts ) );
         TraderItems.Insert( new ref BastionVendorItems( "Bandana_PolkaPattern", 1, 1, false, VehicleParts ) );

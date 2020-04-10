@@ -93,7 +93,11 @@ class TraderSettings
         Enabled = true;
 		Currency = "NCC_CopperCoin";
         
-        TraderZones.Insert( new TraderZone( "BastionVendorGuo", Vector(4144, 12, 4877), Vector(0, 0, 0) ) );
+		// Civilian 
+        TraderZones.Insert( new TraderZone( "BastionVendorGuo", Vector(4652, 10.23, 4221.4), Vector(139, 0, 0) ) );
+
+		// ISF 
+        TraderZones.Insert( new TraderZone( "BastionVendorBoris", Vector(4437, 10.405, 4697), Vector(0, 0, 0) ) );
 
         if ( !FileExist( "$profile:Bastion\\Vendors\\" ) )
 		{
