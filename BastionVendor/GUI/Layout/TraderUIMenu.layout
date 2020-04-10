@@ -84,7 +84,7 @@ FrameWidgetClass TraderItem {
            visible 1
            ignorepointer 1
            color 0 1 0.251 1
-           position 0 0.2
+           position 0 0.05
            size 1 0.15
            halign center_ref
            valign bottom_ref
@@ -101,6 +101,7 @@ FrameWidgetClass TraderItem {
            wrap 1
           }
           RichTextWidgetClass Trader_ItemSell {
+           visible 0
            ignorepointer 1
            color 1 0 0 1
            position 0 0.05
