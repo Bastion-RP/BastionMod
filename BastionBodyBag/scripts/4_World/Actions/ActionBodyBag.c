@@ -42,18 +42,22 @@ class ActionBodyBag: ActionSkinning
 
 	override void OnFinishProgressServer( ActionData action_data )
 	{
-		Object targetObject = action_data.m_Target.GetObject();
-		
-		// Mark the body as skinned to forbid another skinning action on it
-		EntityAI body;
-		Class.CastTo( body,  targetObject );
-		vector body_pos = body.GetPosition();
-		body.SetAsSkinned();
-		
-        GetGame().ObjectDelete(body);
+        Object targetObject = action_data.m_Target.GetObject();
 
-		ItemBase added_item;
-		Class.CastTo(added_item,  GetGame().CreateObject( BastionBodyBagConst.bodyBagItem, body_pos, false ) );
-		added_item.PlaceOnSurface();
+        // Mark the body as skinned to forbid another skinning action on it
+        EntityAI body;
+        Class.CastTo( body,  targetObject );
+        vector body_pos = body.GetPosition();
+        vector body_dir = body.GetDirection();
+        body.SetAsSkinned();
+
+        GetGame().ObjectDelete(body);
+        action_data.m_MainItem.Delete();
+
+        EntityAI entity = action_data.m_Player.SpawnEntityOnGroundPos ( BastionBodyBagConst.bodyBagItem, body_pos );
+        entity.SetPosition(body_pos);
+        entity.SetDirection(body_dir);
+        body_dir = body.GetDirection();
+        entity.SetDirection(body_dir);
 	}
 };
