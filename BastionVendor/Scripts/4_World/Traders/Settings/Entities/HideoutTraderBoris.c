@@ -15,7 +15,7 @@ class BastionVendorBorisSettings: TraderPlayerSettings
         TraderItems.Insert( new ref BastionVendorItems( "BastionRP_ISF_CarrierRig", 1, 1, false, VehicleParts ) );
         TraderItems.Insert( new ref BastionVendorItems( "Bastion_ISF_Tacshirt", 1, 1, false, VehicleParts ) );
         TraderItems.Insert( new ref BastionVendorItems( "BastionRP_ISF_Pants", 1, 1, false, VehicleParts ) );
-        TraderItems.Insert( new ref BastionVendorItems( "AssaultBoots", 1, 1, false, VehicleParts ) ); // ? Assault Boots
+        TraderItems.Insert( new ref BastionVendorItems( "MilitaryBoots_Bluerock", 1, 1, false, VehicleParts ) );
         TraderItems.Insert( new ref BastionVendorItems( "TacticalGloves_Black", 1, 1, false, VehicleParts ) );
         TraderItems.Insert( new ref BastionVendorItems( "BastionRPGuns_P226", 1, 1, false, VehicleParts ) );
         TraderItems.Insert( new ref BastionVendorItems( "Mag_P226_10Rnd", 1, 1, false, VehicleParts ) );
