@@ -119,7 +119,6 @@ modded class MissionServer {
 				GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, identity);
 			}
 		}
-		GetGame().GameScript.Release();
 	}
 
 	void InitializeClient(PlayerIdentity identity) {
