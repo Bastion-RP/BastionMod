@@ -135,8 +135,22 @@ class MultiCharactersMenu : UIScriptedMenu {
         super.OnHide();
 
 
+        if (!GetGame()) {
+            return;
+        }
+
         GetGame().GetUIManager().ShowCursor(false);
+
+        if (!GetGame().GetMission()) {
+            return;
+        }
+
         GetGame().GetMission().PlayerControlEnable(true);
+
+        if (!GetGame().GetMission().GetHud()) {
+            return;
+        }
+
         GetGame().GetMission().GetHud().Show(true);
     }
 }
