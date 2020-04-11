@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<modded_inputs>
+
+	<!-- declarations -->
+	<inputs>
+
+		<actions>
+			<input name="DTACToggleLookup" loc="Open DTAC Menu" />
+		</actions>
+
+	</inputs>
+
+	<!-- preset -->
+	<preset>
+		
+		<input name="DTACToggleLookup">
+			<btn name="kP" />
+		</input>
+		
+	</preset>
+
+</modded_inputs>
