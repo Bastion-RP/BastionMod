@@ -13,7 +13,7 @@ modded class ItemBase {
         string type = GetType();
         type.ToLower();
 
-        if (type == GetBBankConfig().GetConfig().GetATMClassName()) {
+        if (GetBBankConfig() && GetBBankConfig().GetConfig() && GetBBankConfig().GetConfig().GetATMClassName() && type == GetBBankConfig().GetConfig().GetATMClassName()) {
             return false;
         }
         return super.CanPutInCargo(parent);
@@ -23,7 +23,7 @@ modded class ItemBase {
         string type = GetType();
         type.ToLower();
 
-        if (type == GetBBankConfig().GetConfig().GetATMClassName()) {
+        if (GetBBankConfig() && GetBBankConfig().GetConfig() && GetBBankConfig().GetConfig().GetATMClassName() && type == GetBBankConfig().GetConfig().GetATMClassName()) {
             return false;
         }
         return super.CanPutInCargo(parent);

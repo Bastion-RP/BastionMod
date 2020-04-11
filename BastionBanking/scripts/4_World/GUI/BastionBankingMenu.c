@@ -244,6 +244,9 @@ class BastionBankingMenu : UIScriptedMenu {
     }
 
     void HandleEnterKey() {
+        if (!activeInputBox) {
+            return;
+        }
         string inputText = activeInputBox.GetText();
         inputText.ToLower();
         inputText.Trim();

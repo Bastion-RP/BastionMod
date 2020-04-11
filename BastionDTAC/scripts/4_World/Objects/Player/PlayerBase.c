@@ -3,7 +3,7 @@ modded class PlayerBase {
         if (GetGame().IsServer() && GetGame().IsMultiplayer() && GetIdentity()) {
             GetDTACServerGroupManager().RemoveUserFromGroup(this);
         } else {
-            if (GetIdentity()) {
+            if ( GetIdentity() && GetDTACGroupManager() && GetDTACGroupManager().dtacStatInvoker ) {
                 GetDTACGroupManager().dtacStatInvoker.Invoke(GetIdentity().GetId());
             }
         }
