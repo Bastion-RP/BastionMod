@@ -18,8 +18,7 @@ class CfgVehicles
     {
         scope=2;
 		displayName="Compactor";
-		// Placeholder..., pls replace model with a real one
-        model="\BastionMod\BastionBodyBag\data\compactor\compactor.p3d";
+        model="\BastionMod\BastionBodyBag\data\compactor\biocompactor.p3d";
     };
 	class BST_BodyBag_Base: Inventory_Base
 	{
