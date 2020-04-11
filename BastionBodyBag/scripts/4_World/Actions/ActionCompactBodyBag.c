@@ -1,6 +1,5 @@
 class ActionCompactBodyBag : ActionInteractBase
 {
-	BST_BodyBag_Base body_bag;
 	void ActionCompactBodyBag( )
 	{
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_ATTACHITEM;
@@ -24,31 +23,30 @@ class ActionCompactBodyBag : ActionInteractBase
 		return "Compact Body Bag";
 	}
 
-    protected bool FindBodyBag( PlayerBase player )
-    {
-        array<Object> objects = new array<Object>;
-        array<CargoBase> proxy_cargos = new array<CargoBase>;
-        GetGame().GetObjectsAtPosition(player.GetPosition(), 3, objects, proxy_cargos);
-
-        foreach (auto obj : objects)
-        {
-            Class.CastTo( body_bag, obj );
-            if ( body_bag )
-                return true;
-        }
-        return false;
-    }
-
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-        return FindBodyBag(player);
+        if(!target) 
+			return false;
+		if (!target.GetObject() || !target.GetObject().IsInherited(BST_Compactor))
+			return false;
+
+		BST_Compactor compactor = BST_Compactor.Cast(target.GetObject());
+		//getting HumanInventory entity in hands because on server item variable seems to be null
+		BST_BodyBag_Base bodybag = BST_BodyBag_Base.Cast(player.GetHumanInventory().GetEntityInHands());		
+		if (compactor && bodybag)
+		{
+			string selection = compactor.GetActionComponentName(target.GetComponentIndex());
+			if(selection.Contains("compactoraction"))
+				return true;
+		}
+        return false;
 	}
 
 	override void OnStartServer( ActionData action_data )
 	{
-        if ( body_bag || ( action_data.m_Player && FindBodyBag( action_data.m_Player ) ) )
-        {
-            body_bag.Delete();
-        }
+		PlayerBase player = PlayerBase.Cast(action_data.m_Player);
+		BST_BodyBag_Base bodybag = BST_BodyBag_Base.Cast(player.GetHumanInventory().GetEntityInHands());
+		if(bodybag)
+			bodybag.Delete();
 	}
-}
+};

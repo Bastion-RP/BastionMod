@@ -1,16 +1,7 @@
-class BST_Compactor : ItemBase {
+class BST_Compactor : BuildingSuper 
+{
     override void SetActions() {
         super.SetActions();
         AddAction(ActionCompactBodyBag);
-    }
-
-    override bool CanPutIntoHands(EntityAI parent)
-	{
-        return false;
-    }
-
-    override bool CanPutInCargo(EntityAI parent)
-    {
-		return false;
     }
 };
