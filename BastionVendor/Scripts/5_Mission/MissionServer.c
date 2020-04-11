@@ -27,6 +27,7 @@ modded class MissionServer
         }
     }
 
+    /*
     override void OnClientReadyEvent(PlayerIdentity identity, PlayerBase player)
 	{
         super.OnClientReadyEvent( identity, player );
@@ -36,4 +37,5 @@ modded class MissionServer
             GetRPCManager().SendRPC( "Bastion", "SyncTraderSettings", new Param1< ref TraderSettings >( GetServerSettings().GetTraderSettings() ), true, identity );
         }
     }
+    */
 }
