@@ -11,7 +11,7 @@ modded class MissionGameplay {
 
         if (!menu) {
             switch (id) {
-                case DTACMenu.GROUP_MENU:
+                case DTACMenu.CHOICE_MENU:
                     {
                         menu = new DTACChoiceMenu();
                         break;
@@ -28,17 +28,24 @@ modded class MissionGameplay {
         super.OnUpdate(timeslice);
 
         Input input;
-        DTACGroupMenu dtacGroupMenu;
+        DTACChoiceMenu dtacChoiceMenu;
 
         input = GetGame().GetInput();
         
-        if (input.LocalPress("DTACOpenGroupMenu", false)) {
-            dtacGroupMenu = DTACGroupMenu.Cast(GetGame().GetUIManager().GetMenu());
+        if (input.LocalPress("UAUIBack", false)) {
+            dtacChoiceMenu = DTACChoiceMenu.Cast(GetGame().GetUIManager().GetMenu());
 
-            if (dtacGroupMenu) {
-                dtacGroupMenu.Close();
+            if (dtacChoiceMenu) {
+                dtacChoiceMenu.Close();
+            }
+        }
+        if (input.LocalPress("DTACOpenChoiceMenu", false)) {
+            dtacChoiceMenu = DTACChoiceMenu.Cast(GetGame().GetUIManager().GetMenu());
+
+            if (dtacChoiceMenu) {
+                dtacChoiceMenu.Close();
             } else {
-                GetUIManager().EnterScriptedMenu(DTACMenu.GROUP_MENU, null);
+                GetUIManager().EnterScriptedMenu(DTACMenu.CHOICE_MENU, null);
             }
         }
     }

@@ -19,8 +19,8 @@ class CfgPatches
 };
 class CfgVehicles
 {
-	class HouseNoDestruct;
-	class BastionRP_Phone: HouseNoDestruct
+	class Inventory_Base;
+	class BastionRP_Phone: Inventory_Base
 	{
 		scope = 2;
 		displayName = "Phone";

@@ -1,3 +1,0 @@
-enum DTACMenuEnum {
-    DBLookupMenu
-}

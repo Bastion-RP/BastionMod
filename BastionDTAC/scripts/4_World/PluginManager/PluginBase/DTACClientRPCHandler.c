@@ -9,6 +9,17 @@ class DTACClientRPCHandler : PluginBase {
 
     void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx) {
         switch (rpc_type) {
+            case DTACRPC.CLIENT_RECEIVE_PLAYER_API_DATA:
+                {
+                    Print("[DEBUG] DTACClientRPCHandler | OnRPC | CLIENT_RECEIVE_PLAYER_API_DATA | Reading data");
+                    Param3<int, string, int> dataAPI;
+
+                    if (!ctx.Read(dataAPI)) { return; }
+                    Print("[DEBUG] DTACClientRPCHandler | OnRPC | CLIENT_RECEIVE_PLAYER_API_DATA | Data read");
+                    Print("[DEBUG] DTACClientRPCHandler | OnRPC | CLIENT_RECEIVE_PLAYER_API_DATA | param1=" + dataAPI.param1 + " | param3=" + dataAPI.param3);
+                    PlayerBase.Cast(GetGame().GetPlayer()).SetMultiCharacterStats(dataAPI.param1, dataAPI.param2, dataAPI.param3);
+                    break;
+                }
             case DTACRPC.CLIENT_RECEIVE_ACTIVE_GROUP:
                 {
                     Print("[DEBUG] DTACClientRPCHandler | OnRPC | CLIENT_RECEIVE_ACTIVE_GROUP | Reading data");

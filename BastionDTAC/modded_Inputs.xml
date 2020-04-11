@@ -5,7 +5,7 @@
 	<inputs>
 
 		<actions>
-			<input name="DTACToggleLookup" loc="Open DTAC Menu" />
+			<input name="DTACOpenChoiceMenu" loc="Open DTAC Menu" />
 		</actions>
 
 	</inputs>
@@ -13,7 +13,7 @@
 	<!-- preset -->
 	<preset>
 		
-		<input name="DTACToggleLookup">
+		<input name="DTACOpenChoiceMenu">
 			<btn name="kP" />
 		</input>
 		

@@ -90,6 +90,10 @@ class DTACGroupMember {
             }
         } else {
             if (player && player.IsAlive()) {
+                if (!GetDTACServerGroupManager().HasDTAC(player)) {
+                    GetDTACServerGroupManager().RemoveUserFromGroup(player);
+                    return;
+                }
                 int updateSens, distanceSens;
                 float currHealth, currBlood, currWater, currFood, diffHealth, diffBlood, diffWater, diffFood;
 

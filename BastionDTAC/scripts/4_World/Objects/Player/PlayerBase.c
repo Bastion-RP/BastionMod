@@ -16,4 +16,14 @@ modded class PlayerBase {
             GetDTACServerGroupManager().RemoveUserFromGroup(this);
         }
     }
+
+    override void OnConnect() {
+        Param params = new Param3<int, string, int>(multicharactersPlayerId, multicharactersPlayerName, multicharactersPlayerClass);
+
+        GetGame().RPCSingleParam(this, DTACRPC.CLIENT_RECEIVE_PLAYER_API_DATA, params, true, GetIdentity());
+    }
+
+    string GetMultiCharactersPlayerName() {
+        return multicharactersPlayerName;
+    }
 }

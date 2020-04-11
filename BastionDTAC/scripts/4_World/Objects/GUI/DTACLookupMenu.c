@@ -1,28 +1,19 @@
-class DBLookupMenu : UIScriptedMenu {
+class DTACLookupMenu {
 	private static const int KEYCODE_MIN_NUM = 48;
 	private static const int KEYCODE_MAX_NUM = 57;
 
     protected ref JsonSerializer jsSerializer;
-    protected ref Widget wRoot, pnlInput, pnlResults;
+    protected ref Widget wRoot, wParent, pnlInput, pnlResults;
     protected ref TextWidget txtCivID, txtNameFirst, txtNameLast, txtDOB, txtSex, txtCivClass, txtRace;
     protected ref TextWidget txtInputHeader;
     protected ref EditBoxWidget edtInputID;
     protected ref ButtonWidget btnLookup;
-    protected ref map<string, string> mapCitizenClasses;
     private bool rateLimited;
 
-    void DBLookupMenu() {
+    void DTACLookupMenu(Widget wParent) {
+        this.wParent = wParent;
         jsSerializer = new JsonSerializer();
-        mapCitizenClasses = new map<string, string>();
-
-        DTACCurl.dtacData.Insert(this.DisplayData);
-        mapCitizenClasses.Insert("1", "A");
-        mapCitizenClasses.Insert("2", "B");
-        mapCitizenClasses.Insert("3", "C");
-    }
-
-    override Widget Init() {
-        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionDTAC\\gui\\layouts\\DBLookup.layout");
+        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionDTAC\\gui\\layouts\\DBLookup.layout", wParent);
         pnlInput = wRoot.FindAnyWidget("pnlInput");
         pnlResults = wRoot.FindAnyWidget("pnlResults");
         txtInputHeader = TextWidget.Cast(wRoot.FindAnyWidget("txtInputHeader"));
@@ -36,14 +27,20 @@ class DBLookupMenu : UIScriptedMenu {
         edtInputID = EditBoxWidget.Cast(wRoot.FindAnyWidget("edtInputID"));
         btnLookup = ButtonWidget.Cast(wRoot.FindAnyWidget("btnLookup"));
 
-        return wRoot;
+        DTACCurl.dtacData.Insert(this.DisplayData);
+    }
+
+    void ~DTACLookupMenu() {
+        if (wRoot) {
+            wRoot.Unlink();
+        }
     }
 
     void DisplayData(string data) {
         map<string, string> mapData = new map<string, string>();
         string error;
 
-        Print("[DTAC DEBUG] DBLookupMenu | DisplayData | Received function call");
+        Print("[DTAC DEBUG] DTACLookupMenu | DisplayData | Received function call");
         if (!jsSerializer.ReadFromString(mapData, data, error)) {
             txtInputHeader.SetText(data);
         } else {
@@ -55,12 +52,12 @@ class DBLookupMenu : UIScriptedMenu {
             txtNameLast.SetText("Last Name: " + mapData.Get("last_name"));
             txtDOB.SetText("DOB: " + mapData.Get("date_of_birth"));
             txtSex.SetText("Sex: " + mapData.Get("sex"));
-            txtCivClass.SetText("Class: " + mapCitizenClasses.Get(mapData.Get("citizen_class")));
+            txtCivClass.SetText("Class: " + typename.EnumToString(BastionClasses, mapData.Get("citizen_class").ToInt()));
             txtRace.SetText("Race: " + mapData.Get("race"));
         }
     }
 
-	override bool OnKeyPress(Widget w, int x, int y, int key) {
+	bool OnKeyPress(Widget w, int x, int y, int key) {
         if (w == edtInputID) {
             string boxText = edtInputID.GetText();
 
@@ -69,10 +66,10 @@ class DBLookupMenu : UIScriptedMenu {
                 return true;
             }
         }
-        return super.OnKeyPress(w, x, y, key);
+        return false;
     }
 
-    override bool OnClick(Widget w, int x, int y, int button) {
+    void OnClick(Widget w, int x, int y, int button) {
         switch (w) {
             case btnLookup:
                 {
@@ -80,11 +77,6 @@ class DBLookupMenu : UIScriptedMenu {
                     break;
                 }
         }
-        return true;
-    }
-
-    bool IsInputDialogVisible() {
-        return pnlInput.IsVisible();
     }
 
 	void SetRateLimited() {
@@ -106,23 +98,5 @@ class DBLookupMenu : UIScriptedMenu {
         }
     }
 
-	bool IsRateLimited() {
-		return rateLimited;
-	}
-
-	override void OnShow() {
-		super.OnShow();
-
-		GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
-		GetGame().GetUIManager().ShowCursor(true);
-		GetGame().GetMission().GetHud().Show(false);
-	}
-
-	override void OnHide() {
-		super.OnHide();
-
-		GetGame().GetUIManager().ShowCursor(false);
-		GetGame().GetMission().PlayerControlEnable(1);
-		GetGame().GetMission().GetHud().Show(true);
-	}
+	bool IsRateLimited() { return rateLimited; }
 }

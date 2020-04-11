@@ -60,6 +60,7 @@ class DTACServerGroupManager : PluginBase {
     }
 
     void AddUserToGroup(PlayerBase player, int groupId) {
+        if (!HasDTAC(player)) { return; }
         DTACGroup group = GetGroupById(groupId);
 
         Print("DTACServerGroupManager | AddUserToGroup | Adding user to group id=" + groupId + " | group=" + group);
@@ -76,6 +77,25 @@ class DTACServerGroupManager : PluginBase {
         GetDTACGroupManager().dtacRemovalInvoker.Invoke(player.GetIdentity().GetId());
 
         GetGame().RPCSingleParam(player, DTACRPC.CLIENT_LEAVE_GROUP, null, true, player.GetIdentity());
+    }
+
+    bool HasDTAC(Man player) {
+		array<EntityAI> arrayInventory = new array<EntityAI>();
+
+		player.GetHumanInventory().EnumerateInventory(InventoryTraversalType.PREORDER, arrayInventory);
+        
+        foreach (EntityAI entity : arrayInventory) {
+            if (entity) {
+                string entityType = entity.GetType();
+
+                entityType.ToLower();
+
+                if (entityType == "bastionrp_phone") {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     DTACGroup GetGroupById(int groupId) {

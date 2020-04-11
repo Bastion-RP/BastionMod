@@ -71,15 +71,17 @@ class DTACClientGroupManager : PluginBase {
     }
 
     void SetRateLimited() {
+        if (isRateLimited) { return; }
         isRateLimited = true;
         
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.RemoveRateLimit, 1);
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.RemoveRateLimit, 20000);
     }
 
     void SetUpdateRateLimited() {
+        if (isUpdateRateLimited) { return; }
         isUpdateRateLimited = true;
         
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.RemoveUpdateRateLimit, 1);
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.RemoveUpdateRateLimit, 20000);
     }
 
     void RemoveRateLimit() { isRateLimited = false; }
@@ -93,7 +95,7 @@ class DTACClientGroupManager : PluginBase {
         }
         return null;
     }
-
+    
     ref array<ref DTACGroup> GetGroups() { return arrayGroups; }
     DTACGroup GetActiveGroup() { return activeGroup; }
     DTACHUD GetHUD() { return hud; }

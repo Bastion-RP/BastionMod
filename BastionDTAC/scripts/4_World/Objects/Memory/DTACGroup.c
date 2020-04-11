@@ -47,7 +47,7 @@ class DTACGroup {
             playerData = new DTACPlayerData();
             rpcParams = new array<ref Param>();
 
-            playerData.SetName(player.GetIdentity().GetName());
+            playerData.SetName(player.GetMultiCharactersPlayerName());
             playerData.SetId(player.GetIdentity().GetId());
             playerData.SetPosition(player.GetPosition());
             playerData.SetHealth(player.GetHealth("", "Health"));
@@ -99,6 +99,7 @@ class DTACGroup {
         DTACGroupMember member = GetMember(id);
 
         if (member) {
+            Print("[DEBUG] DTACGroup | RemoveMember | Removing member...");
             if (GetGame().IsServer() && GetGame().IsMultiplayer()) {
                 array<ref Param> rpcParams = new array<ref Param>();
                 Param param = new Param1<string>(id);
