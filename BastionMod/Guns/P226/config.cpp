@@ -1,20 +1,11 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\Guns\P226\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Thu Mar 26 21:20:40 2020 : 'file' last modified on Thu Mar 26 21:20:40 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class BastionRIP_Pistols_P226
 	{
 		units[] = {};
 		weapons[] = {"BastionRPGuns_P226"};
 		requiredVersion = 0.1;
-		requiredAddons[] = {"DZ_Data","DZ_Pistols"};
+		requiredAddons[] = {"DZ_Data","DZ_Pistols","DZ_Weapons_Muzzles","DZ_Weapons_Optics","DZ_Weapons_Lights"};
 		magazines[] = {"Mag_P226_10Rnd"};
 	};
 };
@@ -474,20 +465,14 @@ class cfgWeapons
 class CfgMagazines
 {
 	class Ammunition_Base;
-	class Magazine_Base;
-	class Mag_P226_10Rnd: Magazine_Base
+	class Mag_CZ75_15Rnd;
+	class Mag_P226_10Rnd: Mag_CZ75_15Rnd
 	{
 		scope = 2;
 		displayName = "15 round P226 Mag";
 		descriptionShort = "15-round P226  Magazine";
 		model = "BastionMod\Guns\P226\p226magazine.p3d";
 		weight = 230;
-		itemSize[] = {1,2};
-		count = 15;
-		ammo = "Bullet_9x19";
-		ammoItems[] = {"Ammo_9x19"};
-		isMeleeWeapon = 0;
-		tracersEvery = 1;
 	};
 };
 class CfgNonAIVehicles
