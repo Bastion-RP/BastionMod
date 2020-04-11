@@ -45,11 +45,3 @@ class CfgMods
 		};
 	};
 };
-
-class CfgVehicles
-{
-	class Inventory_Base;
-	class NCC_ATM: Inventory_Base
-	{
-	};
-}
