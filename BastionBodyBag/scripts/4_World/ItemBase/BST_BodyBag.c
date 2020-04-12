@@ -1,12 +1,5 @@
 class BST_BodyBag_Base : ItemBase
 {
-    override void EEInit()
-	{	
-		super.EEInit();  
-        ShowSelection("Flat");
-        HideSelection("Curled");   
-	}
-
     override bool CanPutInCargo( EntityAI parent )
     {
         return false;
