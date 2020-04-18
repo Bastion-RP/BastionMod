@@ -28,7 +28,7 @@ class CfgMods
 		version = "1.0";
 		extra = 0;
 		type = "mod";
-		dependencies[] = {"Game", "World"};
+		dependencies[] = {"Game", "World", "Mission"};
 		class defs
 		{
 			class gameScriptModule
@@ -40,6 +40,11 @@ class CfgMods
 			{
 				value = "";
 				files[] = {"BastionBodyBag/scripts/4_World"};
+			};
+			class missionScriptModule
+			{
+				value = "";
+				files[] = {"BastionBodyBag/scripts/5_Mission"};
 			};
 		};
 	};
