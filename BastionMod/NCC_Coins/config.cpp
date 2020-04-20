@@ -51,8 +51,8 @@ class CfgVehicles
 	class NCC_CopperCoin: Inventory_Base
 	{
 		scope = 2;
-		displayName = "Copper Coin";
-		descriptionShort = "NCC Currency";
+		displayName = "Credit (Copper)";
+		descriptionShort = "An NCC Credit. It appears to be plated in copper.";
 		model = "\BastionMod\NCC_Coins\CopperCoin.p3d";
 		varQuantityMin=0;
 		varQuantityMax=50;
@@ -65,14 +65,14 @@ class CfgVehicles
 	};
 	class NCC_SilverCoin: NCC_CopperCoin
 	{
-		displayName = "Silver Coin";
-		descriptionShort = "NCC Currency";
+		displayName = "Credit (Silver)";
+		descriptionShort = "An NCC Credit. It appears to be plated in silver.";
 		model = "\BastionMod\NCC_Coins\SilverCoin.p3d";
 	};
 	class NCC_GoldCoin: NCC_CopperCoin
 	{
-		displayName = "Gold Coin";
-		descriptionShort = "NCC Currency";
+		displayName = "Credit (Gold)";
+		descriptionShort = "An NCC Credit. It appears to be plated in gold.";
 		model = "\BastionMod\NCC_Coins\GoldCoin.p3d";
 	};
 };
