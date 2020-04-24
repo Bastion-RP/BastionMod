@@ -1,4 +1,4 @@
-class WeaponRepair extends RecipeBase
+class BRP_WeaponRepair extends RecipeBase
 {	
 	override void Init()
 	{
@@ -34,11 +34,23 @@ class WeaponRepair extends RecipeBase
 		
 		//ingredient 2
 		InsertIngredient(1,"DefaultWeapon");
-		InsertIngredient(1,"AK12");
-		InsertIngredient(1,"P99");
-		InsertIngredient(1,"BrowningHP");
-		InsertIngredient(1,"MKIIA");
-		InsertIngredient(1,"Beretta92");
+		// Pistols
+		InsertIngredient(1,"BastionRPGuns_PX4");
+		InsertIngredient(1,"BastionRPGuns_P226");
+		InsertIngredient(1,"BastionRPGuns_P99");
+		InsertIngredient(1,"BastionRPGuns_MKIIA");
+		InsertIngredient(1,"BastionRPGuns__CSP9");
+		InsertIngredient(1,"BastionRPGuns_CSC45");
+		InsertIngredient(1,"BastionRPGuns_BerettaM9");
+		InsertIngredient(1,"BastionRPGuns_BrowningHP");
+		// Rifles & SMGS
+		InsertIngredient(1,"BastionRPGuns_AK12");
+		InsertIngredient(1,"BastionRPGuns_ar15");
+		InsertIngredient(1,"BastionRPGuns_ar15_fullauto");
+		InsertIngredient(1,"BastionRPGuns_ar15_sbr");
+		InsertIngredient(1,"BastionRPGuns_CSR556");
+		InsertIngredient(1,"BastionRPGuns_Tec9");
+		// 
 		InsertIngredient(1,"DefaultMagazine");
 		InsertIngredient(1,"ItemSuppressor");
 		

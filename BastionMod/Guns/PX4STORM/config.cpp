@@ -1,13 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\Guns\PX4STORM\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Thu Mar 26 21:21:00 2020 : 'file' last modified on Thu Mar 26 21:21:00 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class BastionRIP_Pistols_PX4
 	{
@@ -471,7 +462,6 @@ class cfgWeapons
 };
 class CfgMagazines
 {
-	class Ammunition_Base;
 	class Magazine_Base;
 	class Mag_PX4_20Rnd: Magazine_Base
 	{

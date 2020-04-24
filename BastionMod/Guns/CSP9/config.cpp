@@ -1,13 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\Guns\CSP9\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Thu Mar 26 21:19:35 2020 : 'file' last modified on Thu Mar 26 21:19:35 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class BastionRP_Pistols_CSP9
 	{
@@ -471,7 +462,6 @@ class cfgWeapons
 };
 class CfgMagazines
 {
-	class Ammunition_Base;
 	class Magazine_Base;
 	class Mag_CSP9_17Rnd: Magazine_Base
 	{

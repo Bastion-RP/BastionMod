@@ -12,6 +12,7 @@ class CfgVehicles
 {
 	class PlateCarrierVest;
 	class PlateCarrierPouches;
+	class PlateCarrierHolster;
 	class BastionRP_ISF_CarrierRig: PlateCarrierVest
 	{
 		scope = 2;
@@ -32,38 +33,6 @@ class CfgVehicles
 			male = "BastionMod\NCCUniform\isfplatecarrier\isfplatecarrier_m.p3d";
 			female = "BastionMod\NCCUniform\isfplatecarrier\isfplatecarrier_m.p3d";
 		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = 
-					{
-						{
-							1.0,
-							{"BastionMod\NCCUniform\isfplatecarrier\data\isfplatecarrier.rvmat"}
-						},
-						{
-							0.7,
-							{"BastionMod\NCCUniform\isfplatecarrier\data\isfplatecarrier.rvmat"}
-						},
-						{
-							0.5,
-							{"BastionMod\NCCUniform\isfplatecarrier\data\isfplatecarrier_damage.rvmat"}
-						},
-						{
-							0.3,
-							{"BastionMod\NCCUniform\isfplatecarrier\data\isfplatecarrier_damage.rvmat"}
-						},
-						{
-							0.0,
-							{"BastionMod\NCCUniform\isfplatecarrier\data\isfplatecarrier_destruct.rvmat"}
-						}
-					};
-				};
-			};
 			class GlobalArmor
 			{
 				class Projectile
@@ -113,70 +82,14 @@ class CfgVehicles
 				};
 			};
 		};
-	};
 	class BastionRP_ISF_CarrierRigPouches: PlateCarrierPouches
 	{
 		scope=2;
 		displayName="Rhino II Pouches";
 		descriptionShort="$STR_CfgVehicles_CarrierPouches1";
-		model="\BastionMod\NCCUniform\isfplatecarrier\isfplatecarrier_pouches.p3d";
+		model = "\BastionMod\NCCUniform\isfplatecarrier\isfplatecarrier_pouches.p3d";
 		itemsCargoSize[] = {8,4};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=200;
-					healthLevels[]=
-					{
-						
-						{
-							1.0,
-							
-							{
-								"BastionMod\NCCUniform\isfplatecarrier\data\isfplatecarrier.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"BastionMod\NCCUniform\isfplatecarrier\data\isfplatecarrier.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"BastionMod\NCCUniform\isfplatecarrier\data\isfplatecarrier_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"BastionMod\NCCUniform\isfplatecarrier\data\isfplatecarrier_damage.rvmat"
-							}
-						},
-						
-						{
-							0.0,
-							
-							{
-								"BastionMod\NCCUniform\isfplatecarrier\data\isfplatecarrier_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
 	};
-
-	class PlateCarrierHolster;
 	class BastionRP_ISF_CarrierRigHolster: PlateCarrierHolster
 	{
 		scope = 2;
@@ -189,6 +102,7 @@ class CfgVehicles
 		};
 	};
 };
+
 
 class CfgNonAIVehicles
 {

@@ -1,13 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\Guns\BERETTA92\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Thu Mar 26 21:17:59 2020 : 'file' last modified on Thu Mar 26 21:17:59 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class Beretta92
 	{

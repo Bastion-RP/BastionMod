@@ -1,13 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\Clothing\Tactical_Jacket\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Mon Mar 30 01:29:59 2020 : 'file' last modified on Mon Mar 30 01:29:59 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class BRP_Tactical_Jacket_Assets
 	{
@@ -23,7 +14,7 @@ class CfgVehicles
 	class Clothing: Clothing_Base{};
 	class BRP_Tactical_Jacket_Base: Clothing
 	{
-		scope = 2;
+		scope = 0;
 		displayName = "Military Fleece";
 		descriptionShort = "";
 		model = "\BastionMod\Clothing\Tactical_Jacket\tactical_jacket_g.p3d";

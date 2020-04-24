@@ -1,13 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\Guns\TEC9\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Thu Mar 26 21:21:27 2020 : 'file' last modified on Thu Mar 26 21:21:27 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class BastionRP_Tec9
 	{
@@ -18,6 +9,7 @@ class CfgPatches
 		magazines[] = {"Mag_TEC9_20Rnd"};
 	};
 };
+
 class Mode_Safe;
 class Mode_SemiAuto;
 class Mode_Burst;
@@ -515,7 +507,6 @@ class CfgWeapons
 };
 class CfgMagazines
 {
-	class Ammunition_Base;
 	class Magazine_Base;
 	class Mag_TEC9_20Rnd: Magazine_Base
 	{

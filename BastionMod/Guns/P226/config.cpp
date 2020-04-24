@@ -464,7 +464,6 @@ class cfgWeapons
 };
 class CfgMagazines
 {
-	class Ammunition_Base;
 	class Mag_CZ75_15Rnd;
 	class Mag_P226_10Rnd: Mag_CZ75_15Rnd
 	{

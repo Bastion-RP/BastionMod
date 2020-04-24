@@ -1,13 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\Guns\CK556\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Thu Mar 26 21:18:43 2020 : 'file' last modified on Thu Mar 26 21:18:43 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class CK556
 	{
@@ -23,9 +14,8 @@ class Mode_Burst;
 class Mode_FullAuto;
 class cfgWeapons
 {
-	class Rifle_Base;
-	class AKM;
-	class Ck556_Base: AKM
+	class FAL;
+	class Ck556_Base: FAL
 	{
 		scope = 0;
 		ironsightsExcludingOptics[] = {"M4_CarryHandleOptic","BUISOptic","M68Optic","M4_T3NRDSOptic","ReflexOptic","ACOGOptic"};

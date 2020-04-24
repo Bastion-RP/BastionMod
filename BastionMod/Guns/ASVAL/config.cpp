@@ -1,31 +1,20 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\Guns\ASVAL\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Thu Mar 26 21:17:17 2020 : 'file' last modified on Thu Mar 26 21:17:17 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
-	class BastionRP_Weapons_AsVal
+	class BastionRPGuns_Asval_Base
 	{
 		units[] = {"MTK83_RailAtt"};
 		weapons[] = {"BastionRPGuns_ASVal"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Weapons_Firearms"};
-		magazines[] = {"Mag_ASVAL_20Rnd","Mag_ASVAL_20RndAP"};
+		magazines[] = {"Mag_ASVAL_20Rnd"};
 	};
 };
 class Mode_Safe;
 class Mode_SemiAuto;
-class Mode_Burst;
 class Mode_FullAuto;
 class OpticsInfoRifle;
 class cfgWeapons
 {
-	class Rifle_Base;
 	class AKM;
 	class BastionRPGuns_Asval_Base: AKM
 	{
@@ -40,12 +29,13 @@ class cfgWeapons
 		chamberSize = 1;
 		chamberedRound = "";
 		chamberableFrom[] = {"Ammo_9x39","Ammo_9x39AP"};
-		magazines[] = {"Mag_VSS_10Rnd","Mag_ASVAL_20RndAP","Mag_ASVAL_20Rnd"};
+		magazines[] = {"Mag_VSS_10Rnd","Mag_ASVAL_20Rnd"};
 		magazineSwitchTime = 0.38;
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
 		reloadAction = "ReloadVSS";
 		hiddenSelections[] = {"camo"};
+		hiddenSelectionsMaterials[] = {"BastionMod\Guns\ASVAL\data\aknew.rvmat"};
 		modes[] = {"FullAuto","SemiAuto"};
 		class SemiAuto: Mode_SemiAuto
 		{
@@ -333,6 +323,7 @@ class cfgWeapons
 		descriptionShort = "The AS Val (Avtomat Special'nyj Val, Russian: Автомат Специальный Вал or Special Automatic Rifle, code name: Shaft, GRAU designation 6P30) is a Soviet-designed rifle featuring an integrated suppressor";
 		model = "\BastionMod\Guns\ASVAL\asval.p3d";
 		attachments[] = {"weaponOpticsAK","weaponOptics","weaponWrap","mtk83ScopeRail"};
+		hiddenSelectionsTextures[] = {"BastionMod\Guns\ASVAL\data\dayz_co.paa"};
 		itemSize[] = {8,3};
 		class DamageSystem
 		{
@@ -347,61 +338,7 @@ class cfgWeapons
 		};
 	};
 };
-class CfgVehicles
-{
-	class Inventory_Base;
-	class MTK83_RailAtt: Inventory_Base
-	{
-		scope = 2;
-		displayName = "MP5 Rail Mount";
-		descriptionShort = "Raised picatinny rail mount for AS VAL giving it more flexibility with the increased popularity of picatinny based optics.";
-		model = "BastionMod\Guns\ASVAL\mtk83mount.p3d";
-		rotationFlags = 17;
-		reversed = 0;
-		weight = 460;
-		itemSize[] = {2,2};
-		inventorySlot = "mtk83ScopeRail";
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1,{"DZ\weapons\attachments\data\akm_accessories.rvmat"}},{0.7,{"DZ\weapons\attachments\data\akm_accessories.rvmat"}},{0.5,{"DZ\weapons\attachments\data\akm_accessories_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\akm_accessories_damage.rvmat"}},{0,{"DZ\weapons\attachments\data\akm_accessories_destruct.rvmat"}}};
-				};
-			};
-		};
-		isMeleeWeapon = 1;
-		class MeleeModes
-		{
-			class Default
-			{
-				ammo = "MeleeLightBlunt";
-				range = 1;
-			};
-			class Heavy
-			{
-				ammo = "MeleeLightBlunt_Heavy";
-				range = 1;
-			};
-			class Sprint
-			{
-				ammo = "MeleeLightBlunt_Heavy";
-				range = 2.8;
-			};
-		};
-	};
-};
-class CfgSlots
-{
-	class Slot_mtk83ScopeRail
-	{
-		name = "mtk83ScopeRail";
-		displayName = "mtk83ScopeRail";
-		ghostIcon = "handguard";
-	};
-};
+
 class CfgMagazines
 {
 	class Magazine_Base;
@@ -484,86 +421,8 @@ class CfgMagazines
 			};
 		};
 	};
-	class Mag_ASVAL_20RndAP: Magazine_Base
-	{
-		scope = 2;
-		displayName = "AS Val 20 Round Mag";
-		descriptionShort = "AS Val 20 Round Mag,9x39 rounds can be fed into this box magazine";
-		model = "\BastionMod\Guns\ASVAL\asvalmagazine.p3d";
-		weight = 350;
-		itemSize[] = {2,2};
-		count = 20;
-		ammo = "Ammo_9x39AP";
-		ammoItems[] = {"Ammo_9x39","Ammo_9x39AP"};
-		tracersEvery = 0;
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class MagRifle_fill_in
-				{
-					soundSet = "MagRifle_fill_in_SoundSet";
-					id = 1;
-				};
-				class MagRifle_fill_loop
-				{
-					soundSet = "MagRifle_fill_loop_SoundSet";
-					id = 2;
-				};
-				class MagRifle_fill_out
-				{
-					soundSet = "MagRifle_fill_out_SoundSet";
-					id = 3;
-				};
-				class MagRifle_empty_in
-				{
-					soundSet = "MagRifle_empty_in_SoundSet";
-					id = 4;
-				};
-				class MagRifle_empty_loop
-				{
-					soundSet = "MagRifle_empty_loop_SoundSet";
-					id = 5;
-				};
-				class MagRifle_empty_out
-				{
-					soundSet = "MagRifle_empty_out_SoundSet";
-					id = 6;
-				};
-				class MagPistol_fill_in
-				{
-					soundSet = "MagPistol_fill_in_SoundSet";
-					id = 7;
-				};
-				class MagPistol_fill_loop
-				{
-					soundSet = "MagPistol_fill_loop_SoundSet";
-					id = 8;
-				};
-				class MagPistol_fill_out
-				{
-					soundSet = "MagPistol_fill_out_SoundSet";
-					id = 9;
-				};
-				class MagPistol_empty_in
-				{
-					soundSet = "MagPistol_empty_in_SoundSet";
-					id = 10;
-				};
-				class MagPistol_empty_loop
-				{
-					soundSet = "MagPistol_empty_loop_SoundSet";
-					id = 11;
-				};
-				class MagPistol_empty_out
-				{
-					soundSet = "MagPistol_empty_out_SoundSet";
-					id = 12;
-				};
-			};
-		};
-	};
 };
+
 class CfgNonAIVehicles
 {
 	class ProxyAttachment;
@@ -572,5 +431,62 @@ class CfgNonAIVehicles
 		scope = 2;
 		inventorySlot = "mtk83ScopeRail";
 		model = "BastionMod\Guns\ASVAL\mtk83mount.p3d";
+	};
+};
+
+class CfgSlots
+{
+	class Slot_mtk83ScopeRail
+	{
+		name = "mtk83ScopeRail";
+		displayName = "mtk83ScopeRail";
+		ghostIcon = "handguard";
+	};
+};
+
+class CfgVehicles
+{
+	class Inventory_Base;
+	class MTK83_RailAtt: Inventory_Base
+	{
+		scope = 2;
+		displayName = "MP5 Rail Mount";
+		descriptionShort = "Raised picatinny rail mount for AS VAL giving it more flexibility with the increased popularity of picatinny based optics.";
+		model = "BastionMod\Guns\ASVAL\mtk83mount.p3d";
+		rotationFlags = 17;
+		reversed = 0;
+		weight = 460;
+		itemSize[] = {2,2};
+		inventorySlot = "mtk83ScopeRail";
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1,{"DZ\weapons\attachments\data\akm_accessories.rvmat"}},{0.7,{"DZ\weapons\attachments\data\akm_accessories.rvmat"}},{0.5,{"DZ\weapons\attachments\data\akm_accessories_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\akm_accessories_damage.rvmat"}},{0,{"DZ\weapons\attachments\data\akm_accessories_destruct.rvmat"}}};
+				};
+			};
+		};
+		isMeleeWeapon = 1;
+		class MeleeModes
+		{
+			class Default
+			{
+				ammo = "MeleeLightBlunt";
+				range = 1;
+			};
+			class Heavy
+			{
+				ammo = "MeleeLightBlunt_Heavy";
+				range = 1;
+			};
+			class Sprint
+			{
+				ammo = "MeleeLightBlunt_Heavy";
+				range = 2.8;
+			};
+		};
 	};
 };
