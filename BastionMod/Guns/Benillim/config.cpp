@@ -35,7 +35,7 @@ class cfgWeapons
 		chamberSize = 6;
 		chamberableFrom[] = {"Ammo_12gaPellets","Ammo_12gaSlug","Ammo_12gaRubberSlug","Ammo_12gaBeanbag"};
 		attachments[] = {"weaponOptics"};
-		modes[] = {"Semi Auto"};
+		modes[] = {"Single"};
 		class Single: Mode_Single
 		{
 			soundSetShot[] = {"Mp133_Shot_SoundSet","Mp133_Tail_SoundSet","Mp133_InteriorTail_SoundSet"};
