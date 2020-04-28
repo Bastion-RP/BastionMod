@@ -1,0 +1,54 @@
+﻿////////////////////////////////////////////////////////////////////
+//DeRap: P:\BastionMod\BastionBanking_Data\data\silver.rvmat
+//Produced from mikero's Dos Tools Dll version 7.60
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Apr 28 21:16:36 2020 : 'file' last modified on Tue Apr 28 21:16:36 2020
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {1,1,1,1};
+diffuse[] = {1,1,1,1};
+forcedDiffuse[] = {0,0,0,1};
+emmisive[] = {0,0,0,0};
+specular[] = {0.3254902,0.3254902,0.3254902,1};
+specularPower = 30;
+PixelShaderID = "Super";
+VertexShaderID = "Super";
+class Stage0
+{
+	texture = "BastionMod\BastionBanking_Data\Data\Coin_NCC_Silver_BaseColor.paa";
+	uvSource = "tex";
+	Filter = "Anizotropic";
+};
+class Stage1
+{
+	texture = "BastionMod\BastionBanking_Data\Data\Coin_NCC_Silver_Normal.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,1};
+		pos[] = {0,0,0};
+	};
+	Filter = "Anizotropic";
+};
+class Stage5
+{
+	texture = "BastionMod\BastionBanking_Data\Data\Coin_NCC_Silver_Specular.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,1};
+		pos[] = {0,0,0};
+	};
+	Filter = "Anizotropic";
+};
+class Stage7
+{
+	texture = "DZ\data\data\env_land_co.paa";
+	uvSource = "none";
+};

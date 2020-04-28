@@ -1,0 +1,3 @@
+class BastionVendorPeter: BastionVendor
+{
+}

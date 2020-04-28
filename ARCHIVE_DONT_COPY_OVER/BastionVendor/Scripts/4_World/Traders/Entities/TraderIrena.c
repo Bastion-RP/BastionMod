@@ -1,0 +1,3 @@
+class BastionVendorIrena: BastionVendor
+{
+}

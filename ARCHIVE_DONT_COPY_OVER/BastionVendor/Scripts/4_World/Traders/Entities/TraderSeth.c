@@ -1,0 +1,3 @@
+class BastionVendorSeth: BastionVendor
+{
+}

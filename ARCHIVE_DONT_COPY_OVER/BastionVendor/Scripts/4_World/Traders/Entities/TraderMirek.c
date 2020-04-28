@@ -1,0 +1,3 @@
+class BastionVendorMirek: BastionVendor
+{
+}

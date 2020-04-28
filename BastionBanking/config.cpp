@@ -30,17 +30,17 @@ class CfgMods
 			class gameScriptModule
 			{
 				value = "";
-				files[] = {"BastionBanking/scripts/3_Game"};
+				files[] = {"BastionMod/BastionBanking/scripts/3_Game"};
 			};
 			class worldScriptModule
 			{
 				value = "";
-				files[] = {"BastionBanking/scripts/4_World"};
+				files[] = {"BastionMod/BastionBanking/scripts/4_World"};
 			};
 			class missionScriptModule
 			{
 				value = "";
-				files[] = {"BastionBanking/scripts/5_Mission"};
+				files[] = {"BastionMod/BastionBanking/scripts/5_Mission"};
 			};
 		};
 	};

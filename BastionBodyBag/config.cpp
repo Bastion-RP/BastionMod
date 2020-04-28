@@ -5,11 +5,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = 
-		{
-			"DZ_Data",
-			"BastionBodyBagItems"
-		};
+		requiredAddons[] = {"DZ_Data","BastionBodyBag_Data"};
 	};
 };
 class CfgMods
@@ -34,17 +30,17 @@ class CfgMods
 			class gameScriptModule
 			{
 				value = "";
-				files[] = {"BastionBodyBag/scripts/3_Game"};
+				files[] = {"BastionMod/BastionBodyBag/scripts/3_Game"};
 			};
 			class worldScriptModule
 			{
 				value = "";
-				files[] = {"BastionBodyBag/scripts/4_World"};
+				files[] = {"BastionMod/BastionBodyBag/scripts/4_World"};
 			};
 			class missionScriptModule
 			{
 				value = "";
-				files[] = {"BastionBodyBag/scripts/5_Mission"};
+				files[] = {"BastionMod/BastionBodyBag/scripts/5_Mission"};
 			};
 		};
 	};

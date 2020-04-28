@@ -5,10 +5,7 @@ class CfgPatches
 		units[]={};
 		weapons[]={};
 		requiredVersion=0.1;
-		requiredAddons[]=
-		{
-			"DZ_Data"
-		};
+		requiredAddons[]={"DZ_Data"};
 	};
 };
 
@@ -34,12 +31,12 @@ class CfgMods
 			class gameScriptModule
 			{
 				value = "";
-				files[] = {"BastionMenu/scripts/3_Game"};
+				files[] = {"BastionMod/BastionMenu/scripts/3_Game"};
 			};
 			class missionScriptModule
 			{
 				value = "";
-				files[] = {"BastionMenu/scripts/5_Mission"};
+				files[] = {"BastionMod/BastionMenu/scripts/5_Mission"};
 			};
 		};
 	};

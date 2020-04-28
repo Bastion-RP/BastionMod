@@ -21,7 +21,7 @@ class CfgMods
 		credits="RoomService";
 		author="RoomService";
 		authorID="999999";
-		inputs="BastionDTAC\modded_Inputs.xml";
+		inputs="BastionMod\BastionDTAC\modded_Inputs.xml";
 		version="version 1.0";
 		extra=0;
 		type="mod";
@@ -31,15 +31,15 @@ class CfgMods
 	    {
             class gameScriptModule
             {
-                files[] = {"BastionDTAC\scripts\3_Game"};
+                files[] = {"BastionMod/BastionDTAC/scripts/3_Game"};
             };
             class worldScriptModule
             {
-                files[] = {"BastionDTAC\scripts\4_World"};
+                files[] = {"BastionMod/BastionDTAC/scripts/4_World"};
             };
             class missionScriptModule
             {
-                files[] = {"BastionDTAC\Scripts\5_Mission"};
+                files[] = {"BastionMod/BastionDTAC\Scripts/5_Mission"};
             };
         };
     };

@@ -1,0 +1,3 @@
+class BastionVendorRolf: BastionVendor
+{
+}

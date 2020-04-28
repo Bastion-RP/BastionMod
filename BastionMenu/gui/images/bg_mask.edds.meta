@@ -1,7 +1,7 @@
 MetaFileClass {
- Name "{AFAA88FD89443683}BastionMenu/gui/images/bg_mask.edds"
- Author "desktop-hr5reke"
- ChangeDate -591042426
+ Name "{AFAA88FD89443683}BastionMod/BastionMenu/gui/images/bg_mask.tga"
+ Author "yriou-desktop"
+ ChangeDate 966109340
  Configurations {
   TGAResourceClass PC {
    SourceFile "bg_mask.tga"

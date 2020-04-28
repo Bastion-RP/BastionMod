@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{9F2F179937092709}BastionBanking/gui/layouts/bastionsquaresmall.edds"
+ Author "desktop-93433la"
+ ChangeDate 646162268
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "bastionsquaresmall.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

@@ -1,0 +1,3 @@
+class BastionVendorMaria: BastionVendor
+{
+}

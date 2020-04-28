@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{BD9153F0F4A4362C}MultiCharacters/gui/img/toplogosmall.edds"
+ Author "bryanpc"
+ ChangeDate -1421531022
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "toplogosmall.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

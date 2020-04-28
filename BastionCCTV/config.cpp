@@ -5,7 +5,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = {};
+		requiredAddons[] = {"DZ_Data"};
 	};
 };
 class CfgMods
@@ -30,42 +30,18 @@ class CfgMods
 			class gameScriptModule
 			{
 				value = "";
-				files[] = {"BastionCCTV/scripts/3_Game"};
+				files[] = {"BastionMod/BastionCCTV/scripts/3_Game"};
 			};
 			class worldScriptModule
 			{
 				value = "";
-				files[] = {"BastionCCTV/scripts/4_World"};
+				files[] = {"BastionMod/BastionCCTV/scripts/4_World"};
 			};
 			class missionScriptModule
 			{
 				value = "";
-				files[] = {"BastionCCTV/scripts/5_Mission"};
+				files[] = {"BastionMod/BastionCCTV/scripts/5_Mission"};
 			};
 		};
-	};
-};
-class CfgVehicles
-{
-	class Inventory_Base;
-	class HouseNoDestruct;
-	class BST_CCTV: Inventory_Base
-	{
-		scope = 2;
-		displayName = "CCTV Monitor";
-		descriptionShort = "CCTV Monitor";
-		model = "\DZ\structures\furniture\Eletrical_appliances\pc\PC.p3d";
-		weight = 5000;
-		itemBehaviour = 0;
-		itemSize[] = {5,5};
-		carveNavmesh = 1;
-		rotationFlags = 2;
-	};
-	class DOME_CCTV: HouseNoDestruct
-	{
-		scope = 2;
-		displayName = "CCTV Dome Camera";
-		descriptionShort = "CCTV Dome Camera";
-		model = "\BastionCCTV\cctv_dome.p3d";
 	};
 };

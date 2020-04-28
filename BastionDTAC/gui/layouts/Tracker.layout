@@ -15,7 +15,7 @@ FrameWidgetClass rootFrame {
    vexactpos 1
    hexactsize 1
    vexactsize 1
-   imageTexture "{3BF4D48F40C81575}BastionDTAC/gui/img/chevron.edds"
+   imageTexture "{3BF4D48F40C81575}BastionMod/BastionDTAC/gui/img/chevron.edds"
    mode blend
    "src alpha" 1
    stretch 1

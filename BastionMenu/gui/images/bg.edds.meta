@@ -1,7 +1,7 @@
 MetaFileClass {
- Name "{160EB9BD40E6A204}BastionMenu/gui/images/bg.edds"
- Author "desktop-hr5reke"
- ChangeDate -893032314
+ Name "{160EB9BD40E6A204}BastionMod/BastionMenu/gui/images/bg.tga"
+ Author "yriou-desktop"
+ ChangeDate 496347292
  Configurations {
   TGAResourceClass PC {
    SourceFile "bg.tga"

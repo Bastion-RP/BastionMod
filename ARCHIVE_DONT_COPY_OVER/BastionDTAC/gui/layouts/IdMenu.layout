@@ -1,0 +1,71 @@
+FrameWidgetClass rootFrame {
+ ignorepointer 1
+ position 0 30
+ size 300 95
+ halign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  PanelWidgetClass pnlBG {
+   ignorepointer 1
+   color 0 0 0 0.8235
+   position 0 0
+   size 1 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+  }
+  TextWidgetClass txtHeader {
+   ignorepointer 1
+   position 5 5
+   size 48 24
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Civ Identification"
+   "size to text h" 1
+   "text valign" center
+  }
+  TextWidgetClass txtName {
+   ignorepointer 1
+   position 5 32
+   size 48 18
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Name: "
+   "size to text h" 1
+   "text valign" center
+  }
+  TextWidgetClass txtId {
+   ignorepointer 1
+   position 5 52
+   size 48 18
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "ID:"
+   "size to text h" 1
+   "text valign" center
+  }
+  TextWidgetClass txtClass {
+   ignorepointer 1
+   position 5 72
+   size 48 18
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Class:"
+   "size to text h" 1
+   "text valign" center
+  }
+ }
+}

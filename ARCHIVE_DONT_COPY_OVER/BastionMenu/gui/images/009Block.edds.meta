@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{A896B94E5F72956F}BastionMenu/gui/images/009Block.edds"
+ Author "desktop-hr5reke"
+ ChangeDate -597890967
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "009Block.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

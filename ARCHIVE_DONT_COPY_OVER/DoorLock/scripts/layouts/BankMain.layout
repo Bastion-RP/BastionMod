@@ -1,0 +1,83 @@
+WindowWidgetClass BankMain {
+ visible 1
+ color 0.1255 0.1216 0.1098 1
+ position 0 0
+ size 288 108
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ style rover_sim_black_2
+ {
+  ButtonWidgetClass btn_Deposit {
+   position 0.156 0.231
+   size 0.087 0.231
+   halign right_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style MenuDefault
+   "no focus" 1
+   text "<"
+  }
+  ButtonWidgetClass btn_Withdraw {
+   position 0.052 0.231
+   size 0.087 0.231
+   halign right_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style MenuDefault
+   "no focus" 1
+   text ">"
+  }
+  EditBoxWidgetClass edt_Amount {
+   position 0.25892 0.231
+   size 0.694 0.231
+   halign right_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style Editor
+   "no focus" 0
+  }
+  TextWidgetClass txt_BPlaceHolder {
+   ignorepointer 1
+   position 96 38
+   size 176.95999 25
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Balance Placeholder"
+  }
+  TextWidgetClass txt_Balance {
+   ignorepointer 1
+   position 13.94 38
+   size 79 25
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Balance:"
+  }
+  TextWidgetClass txt_NPlaceholder {
+   ignorepointer 1
+   position 13.9799 5.47
+   size 258.724 26.87
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Name Placeholder"
+  }
+ }
+}
