@@ -25,7 +25,7 @@ class cfgVehicles
 	class ISF_PatrolBelt: CivilianBelt
 	{
 		scope = 2;
-		model = "BastionMod\BastionClothing\Belts\PatrolBelt\nccbelt.p3d";
+		model = "BastionMod\BastionClothing\Belts\PatrolBelt\nccbelt_g.p3d";
 		displayName = "Patrol Belt";
 		attachments[] = {"Baton","Pistol"};
 		descriptionShort = "";
