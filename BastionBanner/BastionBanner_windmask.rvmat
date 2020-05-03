@@ -1,0 +1,45 @@
+ambient[]={1,1,1,1};
+diffuse[]={1,1,1,1};
+forcedDiffuse[]={0.5,0.5,0.5,0.5};
+emmisive[]={0,0,0,1};
+specular[]={0.8,0.8,0.8,1};
+specularPower=120;
+PixelShaderID="Tree";
+VertexShaderID="TreeNoFade";
+plantWind[]={10.5,10.5,100.5,50.5}; //plantWind[]={0.5,0.5,50.5,2.5};
+class Stage1
+{
+	texture="BastionMod\BastionBanner\BastionBanner_nohq.paa";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};
+class Stage2
+{
+	texture="#(argb,8,8,3)color(1,1,1,0.5,MCA)";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};
+class Stage4
+{
+	texture="BastionMod\BastionBanner\BastionBanner_windmask_co.paa";
+	uvSource="tex";
+	class uvTransform
+	{
+		aside[]={1,0,0};
+		up[]={0,1,0};
+		dir[]={0,0,0};
+		pos[]={0,0,0};
+	};
+};
