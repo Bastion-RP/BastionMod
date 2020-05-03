@@ -1,3 +1,0 @@
-class BastionVendorIndar: BastionVendor
-{
-}

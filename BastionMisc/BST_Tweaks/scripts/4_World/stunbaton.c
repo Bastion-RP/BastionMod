@@ -1,1 +1,0 @@
-class BST_StunBaton : StunBaton {};

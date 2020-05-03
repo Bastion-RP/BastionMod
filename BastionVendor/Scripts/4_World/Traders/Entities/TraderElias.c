@@ -1,3 +1,0 @@
-class BastionVendorElias: BastionVendor 
-{
-}
