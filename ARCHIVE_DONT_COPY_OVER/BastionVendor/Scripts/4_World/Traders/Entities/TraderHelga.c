@@ -1,3 +1,0 @@
-class BastionVendorHelga: BastionVendor
-{
-}
