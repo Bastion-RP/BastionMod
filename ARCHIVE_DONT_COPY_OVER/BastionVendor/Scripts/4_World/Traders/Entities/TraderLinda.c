@@ -1,3 +1,0 @@
-class BastionVendorLinda: BastionVendor
-{
-}

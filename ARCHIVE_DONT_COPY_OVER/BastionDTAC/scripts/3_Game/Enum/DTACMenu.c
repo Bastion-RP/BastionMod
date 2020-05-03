@@ -1,6 +1,0 @@
-enum DTACMenu {
-    CHOICE_MENU = 1983276,
-    GROUP_MENU,
-    LOOKUP_MENU,
-    ID_MENU
-}
