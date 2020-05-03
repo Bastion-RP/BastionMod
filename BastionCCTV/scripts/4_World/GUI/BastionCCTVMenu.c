@@ -12,7 +12,7 @@ class BastionCCTVMenu : UIScriptedMenu {
         m_id = BastionCCTVEnum.CCTVMenu;
 
         chromAber = GetGame().GetWorld().GetMaterial("graphics/materials/postprocess/chromaber");
-        layoutRoot = GetGame().GetWorkspace().CreateWidgets("BastionCCTV\\gui\\layouts\\BastionCCTV.layout");
+        layoutRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionCCTV\\gui\\layouts\\BastionCCTV.layout");
 
 		m_title = TextWidget.Cast( layoutRoot.FindAnyWidget( "title" ) );
 		m_cameraList = TextListboxWidget.Cast( layoutRoot.FindAnyWidget( "cameras" ) );
@@ -27,6 +27,7 @@ class BastionCCTVMenu : UIScriptedMenu {
         GetGame().GetUIManager().ShowCursor( true );
         GetGame().GetUIManager().ShowUICursor( true );
         GetGame().GetInput().ChangeGameFocus( 1 );
+        GetGame().GetMission().GetHud().Show(false);
     }
 
     void EnableControls() {
@@ -36,6 +37,7 @@ class BastionCCTVMenu : UIScriptedMenu {
         GetGame().GetUIManager().ShowCursor( false );
         GetGame().GetUIManager().ShowUICursor( false );
         GetGame().GetInput().ResetGameFocus();
+        GetGame().GetMission().GetHud().Show(true);
     }
 
     void RPCClose() {

@@ -49,7 +49,7 @@ class CfgMods
 class CfgVehicles
 {
 	class Lockpick;
-	class NCCLockPick : Lockpick
+	class BRP_LockPick : Lockpick
 	{
 		scope=2;
 		displayName="NCC Lockpick";

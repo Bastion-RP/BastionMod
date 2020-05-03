@@ -1,4 +1,4 @@
-class BST_CCTV : ItemBase {
+class BRP_CCTV : ItemBase {
     override void SetActions() {
         super.SetActions();
         AddAction(ActionOpenCCTV);

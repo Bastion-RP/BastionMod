@@ -1,0 +1,148 @@
+FrameWidgetClass HudFrameWidget {
+ position 0 0
+ size 1 1
+ halign center_ref
+ valign center_ref
+ hexactsize 0
+ vexactsize 0
+ {
+  PanelWidgetClass tint {
+   color 0 0.5255 0.3137 0.0784
+   size 1 1
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+  }
+  ImageWidgetClass bg {
+   visible 1
+   disabled 0
+   clipchildren 1
+   inheritalpha 0
+   position 0 0
+   size 1 1
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   imageTexture "{3543F8B52FEEC7E7}BastionMod/BastionCCTV/gui/layouts/CCTV_Overlay.edds"
+   mode blend
+   "src alpha" 1
+   "no wrap" 0
+   stretch 1
+  }
+  PanelWidgetClass sidePanel0 {
+   visible 1
+   color 0 0 0 0.8392
+   position 0 0
+   size 321.98599 552.18799
+   halign right_ref
+   valign center_ref
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    TextWidgetClass title {
+     disabled 0
+     position 0 0.05
+     size 300 35
+     halign center_ref
+     hexactpos 1
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     text "NCC CCTV System"
+     font "gui/fonts/etelkatextpro22"
+     "text color" 0.933 0.933 0.933 1
+     "text halign" center
+     "text valign" center
+    }
+    ButtonWidgetClass btnPrevious {
+     position 0 0.1535
+     size 215 27
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     style Default
+     text "Previous [<-]"
+     "text color" 0.933 0.933 0.933 1
+    }
+    ButtonWidgetClass btnNext {
+     position 0 0.2314
+     size 215 27
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     style Default
+     text "Next [->]"
+     "text color" 0.933 0.933 0.933 1
+    }
+    ButtonWidgetClass btnClose {
+     position 0 0.6429
+     size 215 27
+     halign center_ref
+     valign bottom_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     style Default
+     text "Close [ESC]"
+     "text color" 0.933 0.933 0.933 1
+    }
+    TextWidgetClass switchTXT {
+     ignorepointer 1
+     position 29.0407 214.71899
+     size 271.207 30.4433
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Camera quickswitch:"
+     "text halign" center
+    }
+    TextListboxWidgetClass cameras {
+     position 28.0849 258.91202
+     size 274.04901 191.698
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Editor
+     font "gui/fonts/Metron22"
+    }
+    EditBoxWidgetClass search {
+     position 28.6131 460.43698
+     size 273.21902 31.9273
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+		 style ServerBrowser
+    }
+    ButtonWidgetClass btnSwitch {
+     position 0 0.0378
+     size 215 27
+     halign center_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     style Default
+     text "Switch [TAB]"
+     "text color" 0.933 0.933 0.933 1
+    }
+   }
+  }
+ }
+}

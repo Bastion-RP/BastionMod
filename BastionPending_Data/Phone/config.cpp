@@ -9,9 +9,9 @@
 
 class CfgPatches
 {
-	class BastionRP_Phone
+	class BRP_Phone
 	{
-		units[] = {"BastionRP_Phone"};
+		units[] = {"BRP_Phone"};
 		weapons[] = {};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data"};
@@ -19,14 +19,14 @@ class CfgPatches
 };
 class CfgMods
 {
-	class BastionRP_Phone
+	class BRP_Phone
 	{
 		dir = "BastionMod";
 		picture = "";
 		action = "";
 		hideName = 1;
 		hidePicture = 1;
-		name = "BastionRP_Phone";
+		name = "BRP_Phone";
 		credits = "Helkhiana";
 		author = "Kerkkoh";
 		authorID = "0";
@@ -47,7 +47,7 @@ class CfgMods
 class CfgVehicles
 {
 	class Inventory_Base;
-	class BastionRP_Phone: Inventory_Base
+	class BRP_Phone: Inventory_Base
 	{
 		scope = 2;
 		displayName = "Phone";

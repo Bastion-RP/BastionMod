@@ -22,7 +22,7 @@ class DTACTracker {
         this.groupMember = groupMember;
 
         // Data widget
-        wRootData = GetGame().GetWorkspace().CreateWidgets("BastionDTAC\\gui\\layouts\\TrackerData.layout", gridParent);
+        wRootData = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\TrackerData.layout", gridParent);
         txtDataName = TextWidget.Cast(wRootData.FindAnyWidget("txtName"));
         txtDataHealth = TextWidget.Cast(wRootData.FindAnyWidget("txtHealth"));
         txtDataBlood = TextWidget.Cast(wRootData.FindAnyWidget("txtBlood"));
@@ -30,7 +30,7 @@ class DTACTracker {
         txtDataFood = TextWidget.Cast(wRootData.FindAnyWidget("txtFood"));
 
         // Visual widget
-        wRootVisual = GetGame().GetWorkspace().CreateWidgets("BastionDTAC\\gui\\layouts\\Tracker.layout", wParent);
+        wRootVisual = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\Tracker.layout", wParent);
         txtVisualName = TextWidget.Cast(wRootVisual.FindAnyWidget("txtPlayerName"));
 
         txtDataName.SetText(GetFormattedName(groupMember.GetPlayerData().GetName()));

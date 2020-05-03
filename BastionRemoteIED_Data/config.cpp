@@ -11,7 +11,7 @@ class CfgPatches
 {
 	class BastionRemoteIED_Data
 	{
-		units[] = {"RemoteIED"};
+		units[] = {"BRP_RemoteIED"};
 		weapons[] = {};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data"};
@@ -21,13 +21,13 @@ class CfgVehicles
 {
 	class LandMineTrap;
 	class Lockpick;
-	class RemoteDetonator: Lockpick
+	class BRP_RemoteDetonator: Lockpick
 	{
 		displayName = "Remote Detonator";
 		descriptionShort = "Remote detonator used to touch off placed IEDs";
 		model = "\BastionMod\BastionRemoteIED_Data\m57_remote.p3d";
 	};
-	class RemoteIED: LandMineTrap
+	class BRP_RemoteIED: LandMineTrap
 	{
 		scope = 2;
 		displayName = "Remote IED";

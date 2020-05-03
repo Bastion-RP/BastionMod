@@ -1,8 +1,8 @@
-class RemoteIED : TrapBase
+class BRP_RemoteIED : TrapBase
 {
 	bool m_Disarmed;
 
-	void RemoteIED()
+	void BRP_RemoteIED()
 	{
 		m_Disarmed = false;
 		RegisterNetSyncVariableBool( "m_Disarmed" );

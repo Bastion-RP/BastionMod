@@ -22,8 +22,8 @@ class ActionAddIEDToDetonator : ActionInteractBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		RemoteDetonator remote = RemoteDetonator.Cast( item );
-		RemoteIED IED = RemoteIED.Cast( target.GetObject() );
+		BRP_RemoteDetonator remote = BRP_RemoteDetonator.Cast( item );
+		BRP_RemoteIED IED = BRP_RemoteIED.Cast( target.GetObject() );
 
 		if ( !IED || !remote ) return false;
 		//if ( IED.IsInactive() ) return false;
@@ -39,8 +39,8 @@ class ActionAddIEDToDetonator : ActionInteractBase
 
 	override void OnStartClient( ActionData action_data )
 	{
-		RemoteDetonator remote = RemoteDetonator.Cast( action_data.m_MainItem );
-		RemoteIED IED = RemoteIED.Cast( action_data.m_Target.GetObject() );
+		BRP_RemoteDetonator remote = BRP_RemoteDetonator.Cast( action_data.m_MainItem );
+		BRP_RemoteIED IED = BRP_RemoteIED.Cast( action_data.m_Target.GetObject() );
 
 		if ( !remote || !IED ) return;
 
@@ -49,8 +49,8 @@ class ActionAddIEDToDetonator : ActionInteractBase
 
 	override void OnStartServer( ActionData action_data )
 	{
-		RemoteDetonator remote = RemoteDetonator.Cast( action_data.m_MainItem );
-		RemoteIED IED = RemoteIED.Cast( action_data.m_Target.GetObject() );
+		BRP_RemoteDetonator remote = BRP_RemoteDetonator.Cast( action_data.m_MainItem );
+		BRP_RemoteIED IED = BRP_RemoteIED.Cast( action_data.m_Target.GetObject() );
 
 		if ( !remote || !IED ) return;
 

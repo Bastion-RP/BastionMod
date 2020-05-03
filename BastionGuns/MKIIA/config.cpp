@@ -12,10 +12,10 @@ class CfgPatches
 	class MKIIA
 	{
 		units[] = {};
-		weapons[] = {"BastionRPGuns_MKIIA"};
+		weapons[] = {"BRP_MKIIA"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Pistols"};
-		magazines[] = {"Mag_MKIIA_6rnd"};
+		magazines[] = {"BRP_Mag_MKIIA_6rnd"};
 	};
 };
 class Mode_Safe;
@@ -39,7 +39,7 @@ class cfgWeapons
 		value = 0;
 		chamberSize = 1;
 		chamberedRound = "";
-		magazines[] = {"Mag_MKIIA_6Rnd"};
+		magazines[] = {"BRP_Mag_MKIIA_6rnd"};
 		chamberableFrom[] = {"Ammo_9x19"};
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
@@ -67,7 +67,7 @@ class cfgWeapons
 			type = "shot";
 		};
 	};
-	class BastionRPGuns_MKIIA: MKIIA_Base
+	class BRP_MKIIA: MKIIA_Base
 	{
 		scope = 2;
 		displayName = "Welrod MKIIA";
@@ -82,7 +82,7 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1,{"DZ\weapons\pistols\cz75\data\cz75.rvmat"}},{0.7,{"DZ\weapons\pistols\cz75\data\cz75.rvmat"}},{0.5,{"DZ\weapons\pistols\cz75\data\cz75_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\cz75\data\cz75_damage.rvmat"}},{0,{"DZ\weapons\pistols\cz75\data\cz75_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\pistols\cz75\data\cz75.rvmat"}},{0.7,{"DZ\weapons\pistols\cz75\data\cz75.rvmat"}},{0.5,{"DZ\weapons\pistols\cz75\data\cz75_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\cz75\data\cz75_damage.rvmat"}},{0.0,{"DZ\weapons\pistols\cz75\data\cz75_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -102,7 +102,7 @@ class cfgWeapons
 class CfgMagazines
 {
 	class Mag_CZ75_15Rnd;
-	class Mag_MKIIA_6rnd: Mag_CZ75_15Rnd
+	class BRP_Mag_MKIIA_6rnd: Mag_CZ75_15Rnd
 	{
 		scope = 2;
 		displayName = "6rnd MKIIA Magazine";

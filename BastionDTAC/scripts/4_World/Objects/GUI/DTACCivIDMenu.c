@@ -4,7 +4,7 @@ class DTACCivIDMenu {
 
     void DTACCivIDMenu(Widget wParent) {
         this.wParent = wParent;
-        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionDTAC\\gui\\layouts\\IdMenu.layout", wParent);
+        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\IdMenu.layout", wParent);
         txtName = TextWidget.Cast(wRoot.FindAnyWidget("txtName"));
         txtID = TextWidget.Cast(wRoot.FindAnyWidget("txtId"));
         txtClass = TextWidget.Cast(wRoot.FindAnyWidget("txtClass"));

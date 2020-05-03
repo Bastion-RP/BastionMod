@@ -11,7 +11,7 @@ class CfgPatches
 {
 	class BastionRPitems
 	{
-		units[] = {"NCC_ATM","NCC_CopperCoin","NCC_SilverCoin","NCC_GoldCoin"};
+		units[] = {"BRP_ATM","BRP_CopperCoin","BRP_SilverCoin","BRP_GoldCoin"};
 		weapons[] = {};
 		requiredVersion = 1;
 		requiredAddons[] = {"DZ_data"};
@@ -21,22 +21,18 @@ class CfgPatches
 };
 class CfgVehicles
 {
+	class HouseNoDestruct;
 	class Inventory_Base;
-// - NCC ATM Machine
-	class NCC_ATM: Inventory_Base
+	class BRP_ATM: HouseNoDestruct
 	{
-		scope=2;
-		model="\BastionMod\BastionBanking_Data\NCC_ATM.p3d";
-		physLayer="item_large";
-		handheld="false"; // Didnt work :( can still take to hands
-		itemSize[]={9,14};
+		scope=1;
+		model="\BastionMod\BastionBanking_Data\ATM\atm.p3d";
 	};
-	class NCC_CopperCoin: Inventory_Base
+
+	class BRP_Coin_Base: Inventory_Base
 	{
-		scope = 2;
-		displayName = "Credit (Copper)";
-		descriptionShort = "An NCC Credit. It appears to be plated in copper.";
-		model = "\BastionMod\BastionBanking_Data\CopperCoin.p3d";
+		scope = 0;
+		model = "\BastionMod\BastionBanking_Data\Coin\coin.p3d";
 		canBeSplit = 1;
 		varQuantityInit = 50;
 		varQuantityMin = 0;
@@ -45,19 +41,62 @@ class CfgVehicles
 		weight = 4;
 		absorbency = 0;
 		itemSize[] = {1,1};
-		rotationFlags = 16;
-		inventorySlot[] = {""};
+		rotationFlags = 16;		
+		hiddenSelections[] = 
+		{
+			"all"
+		};
+		hiddenSelectionsTextures[] = 
+		{
+			"\BastionMod\BastionBanking_Data\Coin\data\coin_copper_co.paa"
+		};
+		hiddenSelectionsMaterials[] = 
+		{
+			"BastionMod\BastionBanking_Data\Coin\data\coin_copper.rvmat"
+		};
 	};
-	class NCC_SilverCoin: NCC_CopperCoin
+	
+	class BRP_CopperCoin: BRP_Coin_Base
 	{
+		scope = 2;
+		displayName = "Credit (Copper)";
+		descriptionShort = "An NCC Credit. It appears to be plated in copper.";
+		hiddenSelectionsTextures[] = 
+		{
+			"\BastionMod\BastionBanking_Data\Coin\data\coin_copper_co.paa"
+		};
+		hiddenSelectionsMaterials[] = 
+		{
+			"BastionMod\BastionBanking_Data\Coin\data\coin_copper.rvmat"
+		};
+	};
+
+	class BRP_SilverCoin: BRP_Coin_Base
+	{
+		scope = 2;
 		displayName = "Credit (Silver)";
 		descriptionShort = "An NCC Credit. It appears to be plated in silver.";
-		model = "\BastionMod\BastionBanking_Data\SilverCoin.p3d";
+		hiddenSelectionsTextures[] = 
+		{
+			"\BastionMod\BastionBanking_Data\Coin\data\coin_silver_co.paa"
+		};
+		hiddenSelectionsMaterials[] = 
+		{
+			"BastionMod\BastionBanking_Data\Coin\data\coin_silver.rvmat"
+		};
 	};
-	class NCC_GoldCoin: NCC_CopperCoin
+	class BRP_GoldCoin: BRP_Coin_Base
 	{
+		scope = 2;
 		displayName = "Credit (Gold)";
 		descriptionShort = "An NCC Credit. It appears to be plated in gold.";
-		model = "\BastionMod\BastionBanking_Data\GoldCoin.p3d";
+		hiddenSelectionsTextures[] = 
+		{
+			"\BastionMod\BastionBanking_Data\Coin\data\coin_gold_co.paa"
+		};
+		hiddenSelectionsMaterials[] = 
+		{
+			"BastionMod\BastionBanking_Data\Coin\data\coin_gold.rvmat"
+		};
 	};
 };

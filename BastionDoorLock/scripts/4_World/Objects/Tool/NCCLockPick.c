@@ -1,4 +1,4 @@
-class NCCLockPick : Inventory_Base
+class BRP_LockPick : Inventory_Base
 {
 	override void SetActions()
 	{

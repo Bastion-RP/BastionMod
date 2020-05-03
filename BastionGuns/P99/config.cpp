@@ -12,10 +12,10 @@ class CfgPatches
 	class P99
 	{
 		units[] = {};
-		weapons[] = {"BastionRPGuns_P99"};
+		weapons[] = {"BRP_P99"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Pistols"};
-		magazines[] = {"Mag_P99_15rnd"};
+		magazines[] = {"BRP_Mag_P99_15rnd"};
 	};
 };
 class Mode_Safe;
@@ -26,14 +26,14 @@ class OpticsInfoPistol;
 class cfgWeapons
 {
 	class CZ75;
-	class BastionRPGuns_P99: CZ75
+	class BRP_P99: CZ75
 	{
 		scope = 2;
 		displayName = "Walther P99";
-		descriptionShort = "The Walther P99 is a semi-automatic pistol developed by the German company Carl Walther GmbH Sportwaffen of Ulm for law enforcement, security forces and the civilian shooting market as a replacement for the Walther P5 and the P88. The P99 and its variants are also made under licence by Fabryka Broni Radom. Chambered in 9x19mm Rounds.";
+		descriptionShort = "The Walther P99 is a semi-automatic pistol, chambered in 9x19mm, developed by the German company Carl Walther GmbH Sportwaffen of Ulm for law enforcement, security forces and the civilian shooting market as a replacement for the Walther P5 and the P88. The P99 and its variants are also made under licence by Fabryka Broni Radom.";
 		model = "BastionMod\BastionGuns\P99\P99.p3d";
 		attachments[] = {};
-		magazines[] = {"Mag_P99_15Rnd"};
+		magazines[] = {"BRP_Mag_P99_15rnd"};
 		itemSize[] = {4,2};
 		class DamageSystem
 		{
@@ -42,7 +42,7 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1,{"DZ\weapons\pistols\cz75\data\cz75.rvmat"}},{0.7,{"DZ\weapons\pistols\cz75\data\cz75.rvmat"}},{0.5,{"DZ\weapons\pistols\cz75\data\cz75_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\cz75\data\cz75_damage.rvmat"}},{0,{"DZ\weapons\pistols\cz75\data\cz75_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\pistols\cz75\data\cz75.rvmat"}},{0.7,{"DZ\weapons\pistols\cz75\data\cz75.rvmat"}},{0.5,{"DZ\weapons\pistols\cz75\data\cz75_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\cz75\data\cz75_damage.rvmat"}},{0.0,{"DZ\weapons\pistols\cz75\data\cz75_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -51,7 +51,7 @@ class cfgWeapons
 class CfgMagazines
 {
 	class Mag_CZ75_15Rnd;
-	class Mag_P99_15rnd: Mag_CZ75_15Rnd
+	class BRP_Mag_P99_15rnd: Mag_CZ75_15Rnd
 	{
 		scope = 2;
 		displayName = "15rnd P99 Magazine";

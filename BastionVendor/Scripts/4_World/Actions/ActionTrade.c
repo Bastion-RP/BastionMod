@@ -1,6 +1,6 @@
 class ActionTrade: ActionInteractBase
 {
-	private BastionVendor m_TraderBase;
+	private BRP_VendingMachine_Base m_TraderBase;
 	private Trader m_Trader;
 
 	void ActionTrade()
@@ -56,5 +56,4 @@ class ActionTrade: ActionInteractBase
 
 		// m_Trader.LoadTraderData( m_TraderBase, action_data.m_Player.GetIdentity() );
 	}
-}
-
+};

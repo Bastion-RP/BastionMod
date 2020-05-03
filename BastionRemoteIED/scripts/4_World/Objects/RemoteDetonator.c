@@ -1,16 +1,16 @@
-typedef Param1< RemoteIED > bombParam;
+typedef Param1< BRP_RemoteIED > bombParam;
 
-class RemoteDetonator : ItemBase
+class BRP_RemoteDetonator : ItemBase
 {
 	protected static ref JsonSerializer 	m_Serializer 	= new JsonSerializer;
-	ref array< ref RemoteIED > 				m_Bombs;
+	ref array< ref BRP_RemoteIED > 				m_Bombs;
 	ref array< ref vector >					m_BombVectors;
 	string									jsonString;
 	string									error;
 
-	void RemoteDetonator()
+	void BRP_RemoteDetonator()
 	{
-		m_Bombs 		= new array< ref RemoteIED >;
+		m_Bombs 		= new array< ref BRP_RemoteIED >;
 		m_BombVectors 	= new array< ref vector >;
 	}
 
@@ -79,7 +79,7 @@ class RemoteDetonator : ItemBase
 			objects.Debug();
 			for ( int j = 0; j < objects.Count(); j++ )
 			{
-				RemoteIED IED = RemoteIED.Cast( objects.Get(j) );
+				BRP_RemoteIED IED = BRP_RemoteIED.Cast( objects.Get(j) );
 
 				if ( IED )
 				{
@@ -97,20 +97,20 @@ class RemoteDetonator : ItemBase
 		PlayerBase player = GetHierarchyRootPlayer();
 		for ( int i = 0; i < m_Bombs.Count(); i++ )
 		{
-			RemoteIED IED = m_Bombs.Get(i);
+			BRP_RemoteIED IED = m_Bombs.Get(i);
 			bombParam data = new bombParam( IED );
 			GetGame().RPCSingleParam( this, 998911108, data, true, player.GetIdentity() )
 		}
 	}
 
-	ref array< ref RemoteIED > GetBombsInRange( PlayerBase player )
+	ref array< ref BRP_RemoteIED > GetBombsInRange( PlayerBase player )
 	{
 		int inRange = 0;
-		ref array< ref RemoteIED > tempArray = new array< ref RemoteIED >;
+		ref array< ref BRP_RemoteIED > tempArray = new array< ref BRP_RemoteIED >;
 
 		for ( int i = 0; i < m_Bombs.Count(); i++ )
 		{
-			RemoteIED IED = m_Bombs.Get(i);
+			BRP_RemoteIED IED = m_Bombs.Get(i);
 			if ( vector.Distance( IED.GetPosition(), player.GetPosition() ) < 300 )
 				tempArray.Insert( IED );
 		}
@@ -118,12 +118,12 @@ class RemoteDetonator : ItemBase
 		return tempArray;
 	}
 
-	bool HasBomb( RemoteIED IED )
+	bool HasBomb( BRP_RemoteIED IED )
 	{
 		Print("[RS][DEBUG] Checking detonator for m_Bombs!");
 		for ( int i = 0; i < m_Bombs.Count(); i++ )
 		{
-			RemoteIED localIED = m_Bombs.Get(i);
+			BRP_RemoteIED localIED = m_Bombs.Get(i);
 
 			if ( !localIED ) break;
 			if ( IED == localIED )
@@ -135,7 +135,7 @@ class RemoteDetonator : ItemBase
 		return false;
 	}
 
-	void AddBomb( RemoteIED IED )
+	void AddBomb( BRP_RemoteIED IED )
 	{
 		Print("[RS][DEBUG] Adding bomb to detonator!");
 		if ( HasBomb( IED ) )
@@ -148,16 +148,16 @@ class RemoteDetonator : ItemBase
 		Print("[RS][DEBUG] Added bomb to detonator!");
 	}
 
-	void DetonateBombsInRange( ref array< ref RemoteIED > bombsToDetonate )
+	void DetonateBombsInRange( ref array< ref BRP_RemoteIED > bombsToDetonate )
 	{
 		Print("[RS][DEBUG] Detonating all m_Bombs on detonator! " + bombsToDetonate.Count() );
 		for ( int i = 0; i < bombsToDetonate.Count(); i++ )
 		{
 			Print("[RS][DEBUG] Detonating bomb!");
-			RemoteIED bombToDetonate = bombsToDetonate.Get(i);
+			BRP_RemoteIED bombToDetonate = bombsToDetonate.Get(i);
 			for ( int j = 0; j < m_Bombs.Count(); j++ )
 			{
-				RemoteIED localIED = m_Bombs.Get(j);
+				BRP_RemoteIED localIED = m_Bombs.Get(j);
 
 				if ( !localIED )
 				{
@@ -193,7 +193,7 @@ class RemoteDetonator : ItemBase
 				bombParam data;
 				ctx.Read( data );
 				
-				RemoteIED IED = data.param1;
+				BRP_RemoteIED IED = data.param1;
 				if ( IED )
 					m_Bombs.Insert( IED );
 			}

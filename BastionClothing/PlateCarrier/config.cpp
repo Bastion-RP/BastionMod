@@ -14,7 +14,7 @@ class CfgPatches
 		weapons[] = {};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Characters","DZ_Characters_Vests","DZ_Characters_Pants","DZ_Characters_Tops","DZ_Characters_Shoes","DZ_Characters_Headgear","DZ_Data","DZ_Weapons_Optics","DZ_Weapons_Melee"};
-		units[] = {"BastionRP_ISF_CarrierRig","BastionRP_ISF_CarrierRigPouches","BastionRP_ISF_CarrierRigHolster"};
+		units[] = {"BRP_ISF_CarrierRig","BRP_ISF_CarrierRigPouches","BRP_ISF_CarrierRigHolster"};
 	};
 };
 class CfgVehicles
@@ -22,7 +22,7 @@ class CfgVehicles
 	class PlateCarrierVest;
 	class PlateCarrierPouches;
 	class PlateCarrierHolster;
-	class BastionRP_ISF_CarrierRig: PlateCarrierVest
+	class BRP_ISF_CarrierRig: PlateCarrierVest
 	{
 		scope = 2;
 		displayName = "Rhino II Plate Carrier 'Big Rig'";
@@ -84,7 +84,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class BastionRP_ISF_CarrierRigPouches: PlateCarrierPouches
+	class BRP_ISF_CarrierRigPouches: PlateCarrierPouches
 	{
 		scope = 2;
 		displayName = "Rhino II Pouches";
@@ -92,7 +92,7 @@ class CfgVehicles
 		model = "\BastionMod\BastionClothing\PlateCarrier\isfplatecarrier_pouches.p3d";
 		itemsCargoSize[] = {8,4};
 	};
-	class BastionRP_ISF_CarrierRigHolster: PlateCarrierHolster
+	class BRP_ISF_CarrierRigHolster: PlateCarrierHolster
 	{
 		scope = 2;
 		displayName = "Rhino II Holster";

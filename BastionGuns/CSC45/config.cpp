@@ -12,10 +12,10 @@ class CfgPatches
 	class CK556
 	{
 		units[] = {};
-		weapons[] = {"BastionRPGuns_CSC45"};
+		weapons[] = {"BRP_CSC45"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Weapons_Firearms","DZ_Characters"};
-		magazines[] = {"Magazine_CSC45_30Rnd"};
+		magazines[] = {"BRP_Mag_CSC45_30Rnd"};
 	};
 };
 class Mode_Safe;
@@ -39,7 +39,7 @@ class cfgWeapons
 		chamberSize = 1;
 		chamberedRound = "";
 		chamberableFrom[] = {"Ammo_45ACP"};
-		magazines[] = {"Magazine_CSC45_30Rnd"};
+		magazines[] = {"BRP_Mag_CSC45_30Rnd"};
 		magazineSwitchTime = 0.38;
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
@@ -327,11 +327,11 @@ class cfgWeapons
 			};
 		};
 	};
-	class BastionRPGuns_CSC45: Csc45_Base
+	class BRP_CSC45: Csc45_Base
 	{
 		scope = 2;
 		displayName = "CSC-45";
-		descriptionShort = "";
+		descriptionShort = "CSC-45 is a full-automatic SMG chambered in .45 ACP.";
 		model = "BastionMod\BastionGuns\CSC45\csc45.p3d";
 		attachments[] = {"weaponFlashlight","weaponOptics","pistolMuzzle","pistolFlashlight"};
 		itemSize[] = {8,3};
@@ -342,7 +342,7 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1,{"DZ\weapons\firearms\VSS\data\vss.rvmat"}},{0.7,{"DZ\weapons\firearms\VSS\data\vss.rvmat"}},{0.5,{"DZ\weapons\firearms\VSS\data\vss_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\VSS\data\vss_damage.rvmat"}},{0,{"DZ\weapons\firearms\VSS\data\vss_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\firearms\VSS\data\vss.rvmat"}},{0.7,{"DZ\weapons\firearms\VSS\data\vss.rvmat"}},{0.5,{"DZ\weapons\firearms\VSS\data\vss_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\VSS\data\vss_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\VSS\data\vss_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -351,11 +351,11 @@ class cfgWeapons
 class CfgMagazines
 {
 	class Magazine_Base;
-	class Magazine_CSC45_30Rnd: Magazine_Base
+	class BRP_Mag_CSC45_30Rnd: Magazine_Base
 	{
 		scope = 2;
 		displayName = "30round CSC-45 Magazine";
-		descriptionShort = "30-round CSC-45 Magazine";
+		descriptionShort = "30-round CSC-45 Magazine loaded in .45 ACP rounds.";
 		model = "BastionMod\BastionGuns\CSC45\csc45mag.p3d";
 		weight = 230;
 		itemSize[] = {1,3};

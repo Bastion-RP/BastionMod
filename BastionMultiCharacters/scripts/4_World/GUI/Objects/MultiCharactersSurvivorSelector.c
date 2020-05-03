@@ -8,7 +8,7 @@ class MultiCharactersSurvivorSelector {
 
     void MultiCharactersSurvivorSelector(Widget wParent) {
         this.wParent = wParent;
-        wRoot = GetGame().GetWorkspace().CreateWidgets("MultiCharacters\\gui\\layouts\\CharacterSelectWidget.layout", wParent);
+        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionMultiCharacters\\gui\\layouts\\CharacterSelectWidget.layout", wParent);
         wCharacterFrame = wRoot.FindAnyWidget("charFrame");
         gridRoot = GridSpacerWidget.Cast(wRoot.FindAnyWidget("gridPnlSurvivor"));
         survivorPreview = PlayerPreviewWidget.Cast(wRoot.FindAnyWidget("plyPreview"));

@@ -7,7 +7,7 @@ class MultiCharactersSurvivorPreviewWidget {
     void MultiCharactersSurvivorPreviewWidget(Widget wParent, string survivorType) {
         vector cameraPos, characterPos;
         this.wParent = wParent;
-        wRoot = GetGame().GetWorkspace().CreateWidgets("MultiCharacters\\gui\\layouts\\SurvivorPreviewWidget.layout", wParent);
+        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionMultiCharacters\\gui\\layouts\\SurvivorPreviewWidget.layout", wParent);
         wSurvivorPreview = PlayerPreviewWidget.Cast(wRoot.FindAnyWidget("survivorPreview"));
         pnlBG = wRoot.FindAnyWidget("pnlBG");
         //cameraPos = GetMultiCharactersClientManager().GetSelectMenu().GetCameraPosition()

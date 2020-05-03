@@ -16,7 +16,7 @@ class MultiCharactersPlayerStatPanel {
         vector cameraPos, characterPos;
         this.wParent = wParent;
         this.savePlayer = savePlayer;
-        wRoot = GetGame().GetWorkspace().CreateWidgets("MultiCharacters\\gui\\layouts\\SurvivorStatWidget.layout", wParent);
+        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionMultiCharacters\\gui\\layouts\\SurvivorStatWidget.layout", wParent);
         txtRespawn = TextWidget.Cast(wRoot.FindAnyWidget("txtRespawn"));
         txtName = TextWidget.Cast(wRoot.FindAnyWidget("txtName"));
         txtHealth = TextWidget.Cast(wRoot.FindAnyWidget("txtHealth"));

@@ -18,6 +18,8 @@ modded class PlayerBase {
     }
 
     override void OnConnect() {
+        super.OnConnect();
+        
         Param params = new Param3<int, string, int>(multicharactersPlayerId, multicharactersPlayerName, multicharactersPlayerClass);
 
         GetGame().RPCSingleParam(this, DTACRPC.CLIENT_RECEIVE_PLAYER_API_DATA, params, true, GetIdentity());

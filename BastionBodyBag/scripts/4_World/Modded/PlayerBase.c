@@ -13,8 +13,8 @@ modded class PlayerBase
         DayzPlayerItemBehaviorCfg     heavyItemBehaviour = new DayzPlayerItemBehaviorCfg;
         heavyItemBehaviour.SetHeavyItems();            
 
-        GetDayZPlayerType().AddItemInHandsProfileIK("BST_BodyBag_Base", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour, "dz/anims/anm/player/ik/heavy/wooden_log.anm");
-        GetDayZPlayerType().AddItemInHandsProfileIK("BST_BodyBagKit", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, "dz/anims/anm/player/ik/gear/book.anm");        
+        GetDayZPlayerType().AddItemInHandsProfileIK("BRP_BodyBag_Base", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour, "dz/anims/anm/player/ik/heavy/wooden_log.anm");
+        GetDayZPlayerType().AddItemInHandsProfileIK("BRP_BodyBagKit", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, "dz/anims/anm/player/ik/gear/book.anm");        
         super.Init();
     }
 };

@@ -5,5 +5,6 @@ modded class ActionConstructor
 		super.RegisterActions( actions );	
 
         actions.Insert( ActionTrade );
+        actions.Insert( ActionExchange );
     }
-}
+};

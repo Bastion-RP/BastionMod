@@ -13,7 +13,7 @@ class DTACLookupMenu {
     void DTACLookupMenu(Widget wParent) {
         this.wParent = wParent;
         jsSerializer = new JsonSerializer();
-        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionDTAC\\gui\\layouts\\DBLookup.layout", wParent);
+        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\DBLookup.layout", wParent);
         pnlInput = wRoot.FindAnyWidget("pnlInput");
         pnlResults = wRoot.FindAnyWidget("pnlResults");
         txtInputHeader = TextWidget.Cast(wRoot.FindAnyWidget("txtInputHeader"));

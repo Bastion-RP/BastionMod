@@ -34,7 +34,7 @@ modded class VPPMapMenu {
                 } else {
                     playerPos = member.GetPlayerData().GetPosition();
                 }
-                m_MapWidget.AddUserMark(playerPos, GetFormattedName(member.GetPlayerData().GetName()), ARGB(255, 255, 255, 255), "BastionDTAC\\gui\\img\\circle.paa");
+                m_MapWidget.AddUserMark(playerPos, GetFormattedName(member.GetPlayerData().GetName()), ARGB(255, 255, 255, 255), "BastionMod\\BastionDTAC\\gui\\img\\circle.paa");
             }
         }
     }

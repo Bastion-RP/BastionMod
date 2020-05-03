@@ -12,10 +12,10 @@ class CfgPatches
 	class BrowningHP
 	{
 		units[] = {};
-		weapons[] = {"BastionRPGuns_BrowningHP"};
+		weapons[] = {"BRP_BrowningHP"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Pistols"};
-		magazines[] = {"Mag_BrowningHP_13rnd"};
+		magazines[] = {"BRP_Mag_BrowningHP_13rnd"};
 	};
 };
 class Mode_Safe;
@@ -26,14 +26,14 @@ class OpticsInfoPistol;
 class cfgWeapons
 {
 	class FNX45;
-	class BastionRPGuns_BrowningHP: FNX45
+	class BRP_BrowningHP: FNX45
 	{
 		scope = 2;
 		displayName = "Browning Hi-Power";
 		descriptionShort = "The Browning Hi Power is a single-action, semi-automatic handgun available in the 9mm and .40 S&W calibers. The Hi-Power is one of the most widely used military pistols in history, having been used by the armed forces of over 50 countries. Chambered in 9x19mm rounds.";
 		model = "BastionMod\BastionGuns\BROWNINGHP\BrowningHP.p3d";
 		attachments[] = {};
-		magazines[] = {"Mag_BrowningHP_13Rnd"};
+		magazines[] = {"BRP_Mag_BrowningHP_13rnd"};
 		chamberableFrom[] = {"Ammo_9x19"};
 		itemSize[] = {4,2};
 		class DamageSystem
@@ -43,7 +43,7 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1,{"DZ\weapons\pistols\cz75\data\cz75.rvmat"}},{0.7,{"DZ\weapons\pistols\cz75\data\cz75.rvmat"}},{0.5,{"DZ\weapons\pistols\cz75\data\cz75_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\cz75\data\cz75_damage.rvmat"}},{0,{"DZ\weapons\pistols\cz75\data\cz75_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\pistols\cz75\data\cz75.rvmat"}},{0.7,{"DZ\weapons\pistols\cz75\data\cz75.rvmat"}},{0.5,{"DZ\weapons\pistols\cz75\data\cz75_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\cz75\data\cz75_damage.rvmat"}},{0.0,{"DZ\weapons\pistols\cz75\data\cz75_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -52,7 +52,7 @@ class cfgWeapons
 class CfgMagazines
 {
 	class Mag_CZ75_15Rnd;
-	class Mag_BrowningHP_13rnd: Mag_CZ75_15Rnd
+	class BRP_Mag_BrowningHP_13rnd: Mag_CZ75_15Rnd
 	{
 		scope = 2;
 		displayName = "13rnd Browning Hi-Power Magazine";

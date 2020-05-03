@@ -1,17 +1,8 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionVendor_Data\AION\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 21:19:07 2020 : 'file' last modified on Tue Apr 28 21:19:07 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
-	class BastionRP_AION
+	class BRP_AION
 	{
-		units[] = {"BastionRP_AION"};
+		units[] = {"BRP_AION"};
 		weapons[] = {};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data"};
@@ -19,14 +10,14 @@ class CfgPatches
 };
 class CfgMods
 {
-	class BastionRP_AION
+	class BRP_AION
 	{
-		dir = "BastionRP_AION";
+		dir = "BRP_AION";
 		picture = "";
 		action = "";
 		hideName = 1;
 		hidePicture = 1;
-		name = "BastionRP_AION";
+		name = "BRP_AION";
 		credits = "BastionRP";
 		author = "BastionRP";
 		authorID = "0";
@@ -47,7 +38,7 @@ class CfgMods
 class CfgVehicles
 {
 	class WaterBottle;
-	class BastionRP_AION: WaterBottle
+	class BRP_AION: WaterBottle
 	{
 		scope = 2;
 		displayName = "AION";

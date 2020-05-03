@@ -22,7 +22,7 @@ class cfgVehicles
 	class Clothing_Base;
 	class Clothing: Clothing_Base{};
 	class CivilianBelt;
-	class ISF_MolleBelt: CivilianBelt
+	class BRP_ISF_MolleBelt: CivilianBelt
 	{
 		scope = 2;
 		model = "BastionMod\BastionClothing\Belts\LegHolster\doublethighholstersmall_g.p3d";

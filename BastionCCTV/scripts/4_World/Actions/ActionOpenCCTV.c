@@ -10,7 +10,7 @@ class ActionOpenCCTV : ActionInteractBase {
     }
 
     override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item) {
-        if (BST_CCTV.Cast(target.GetObject())) {
+        if (BRP_CCTV.Cast(target.GetObject())) {
             return true;
         }
         return false;

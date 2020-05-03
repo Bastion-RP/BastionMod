@@ -24,4 +24,4 @@ class BST_VendingMachineLocations
     {
         VendingMachineSettings = new array< ref BST_VendingMachineSettings >;
     }
-}
+};

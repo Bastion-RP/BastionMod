@@ -10,7 +10,7 @@ class DTACGroupWidget {
         this.wParent = wParent;
         this.group = group;
         arrayChildren = new array<ref DTACUserWidget>();
-        gridRoot = GetGame().GetWorkspace().CreateWidgets("BastionDTAC\\gui\\layouts\\GroupWidget.layout", wParent);;
+        gridRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\GroupWidget.layout", wParent);;
         wHeader = gridRoot.FindAnyWidget("pnlHeader");
         txtHeader = gridRoot.FindAnyWidget("txtHeader");
 
@@ -42,14 +42,14 @@ class DTACGroupWidget {
     }
 
     void CreateJoinButton() {
-        gridRoot = GetGame().GetWorkspace().CreateWidgets("BastionDTAC\\gui\\layouts\\TextWidget.layout", gridRoot);
+        gridRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\TextWidget.layout", gridRoot);
         txtClicktoJoin = gridRoot.FindAnyWidget("txt");
 
         txtClicktoJoin.SetText("+ Click to Join");
     }
 
     void CreateLeaveButton() {
-        gridRoot = GetGame().GetWorkspace().CreateWidgets("BastionDTAC\\gui\\layouts\\TextWidget.layout", gridRoot);
+        gridRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\TextWidget.layout", gridRoot);
         txtClicktoJoin = gridRoot.FindAnyWidget("txt");
 
         txtClicktoJoin.SetText("- Click to Leave");

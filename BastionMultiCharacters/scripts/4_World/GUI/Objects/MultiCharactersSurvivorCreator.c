@@ -9,7 +9,7 @@ class MultiCharactersSurvivorCreator {
 
     void MultiCharactersSurvivorCreator(Widget wParent) {
         this.wParent = wParent;
-        wRoot = GetGame().GetWorkspace().CreateWidgets("MultiCharacters\\gui\\layouts\\CharacterCreateWidget.layout", wParent);
+        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionMultiCharacters\\gui\\layouts\\CharacterCreateWidget.layout", wParent);
         btnBack = wRoot.FindAnyWidget("previousMenu");
         survivorPreview = PlayerPreviewWidget.Cast(wRoot.FindAnyWidget("playerPreview"));
         gridPreviewWidgets = GridSpacerWidget.Cast(wRoot.FindAnyWidget("spacer"));

@@ -12,9 +12,6 @@ modded class MissionGameplay
         {
             if (GetGame().IsServer())
             {
-                g_Safezone = null;
-                GetSafezone();
-
                 for ( int i = 0; i < GetServerSettings().GetTraderSettings().TraderZones.Count(); i++ )
 		        {
                     TraderZone zone = GetServerSettings().GetTraderSettings().TraderZones.Get(i);
@@ -24,16 +21,6 @@ modded class MissionGameplay
                     }
                 }
             }
-        }
-    }
-
-    override void OnInit()
-	{
-		super.OnInit();
-
-        if (GetGame().IsServer())
-        {
-            // GetClientSettings().SetTraderSettings( GetServerSettings().GetTraderSettings() );
         }
     }
 }

@@ -3,7 +3,7 @@ class MultiCharactersInitMenu {
 	private ref TextWidget txtInit;
 
 	void MultiCharactersInitMenu() {
-		wRoot = GetGame().GetWorkspace().CreateWidgets("MultiCharacters\\gui\\layouts\\ClientWaitMenu.layout");
+		wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionMultiCharacters\\gui\\layouts\\ClientWaitMenu.layout");
 		txtInit = TextWidget.Cast(wRoot.FindAnyWidget("waitText"));
 		wRoot.SetSort(9999);
 	}

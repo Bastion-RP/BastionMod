@@ -1,4 +1,4 @@
-class BST_BodyBag_Base : ItemBase
+class BRP_BodyBag_Base : ItemBase
 {
     override bool CanPutInCargo( EntityAI parent )
     {
@@ -20,6 +20,6 @@ class BST_BodyBag_Base : ItemBase
     }
 };
 
-class BST_BodyBag : BST_BodyBag_Base {};
-class BST_BodyBag_Blood : BST_BodyBag_Base {};
-class BST_WrappedBody : BST_BodyBag_Base {};
+class BRP_BodyBag : BRP_BodyBag_Base {};
+class BRP_BodyBag_Blood : BRP_BodyBag_Base {};
+class BST_WrappedBody : BRP_BodyBag_Base {};

@@ -27,7 +27,7 @@ class ActionDisarmIED: ActionContinuousBase
 	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		RemoteIED IED = RemoteIED.Cast( target.GetObject() );
+		BRP_RemoteIED IED = BRP_RemoteIED.Cast( target.GetObject() );
 
 		if ( !IED ) return false;
 		if ( IED.IsDisarmed() ) return false;
@@ -37,7 +37,7 @@ class ActionDisarmIED: ActionContinuousBase
 	
 	override void OnFinishProgressServer( ActionData action_data )
 	{
-		RemoteIED IED = RemoteIED.Cast( action_data.m_Target.GetObject() );
+		BRP_RemoteIED IED = BRP_RemoteIED.Cast( action_data.m_Target.GetObject() );
 
 		if ( !IED ) return;
 

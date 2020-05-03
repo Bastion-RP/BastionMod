@@ -36,7 +36,7 @@ modded class MainMenu
 
 	override Widget Init()
  	{
- 		layoutRoot           			= GetGame().GetWorkspace().CreateWidgets( "BastionMenu/gui/layouts/main_menu.layout" );
+ 		layoutRoot           			= GetGame().GetWorkspace().CreateWidgets( "BastionMod/BastionMenu/gui/layouts/main_menu.layout" );
 		m_ForumsLinkButton 			  = layoutRoot.FindAnyWidget( "VisitForums" );
 		m_Exit							 			= layoutRoot.FindAnyWidget( "ExitGame" );
 		m_Play						   			= layoutRoot.FindAnyWidget( "play" );
@@ -90,10 +90,10 @@ modded class MainMenu
  		g_Game.SetLoadState( DayZLoadState.MAIN_MENU_CONTROLLER_SELECT );
 
 		Class.CastTo(m_logoWidget, layoutRoot.FindAnyWidget("bastion_logo"));
-		m_logoWidget.LoadImageFile( 0, "BastionMenu/gui/images/bastionlogo.edds" );
+		m_logoWidget.LoadImageFile( 0, "BastionMod/BastionMenu/gui/images/bastionlogo.edds" );
 
 		Class.CastTo(m_newsWidget, layoutRoot.FindAnyWidget("NewsBox"));
-		m_newsWidget.LoadImageFile( 0, "BastionMenu/gui/images/009Block.edds" );
+		m_newsWidget.LoadImageFile( 0, "BastionMod/BastionMenu/gui/images/009Block.edds" );
  		return layoutRoot;
  	}
 

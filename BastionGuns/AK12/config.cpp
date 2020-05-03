@@ -1,21 +1,12 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionGuns\AK12\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 20:38:30 2020 : 'file' last modified on Tue Apr 28 20:38:30 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class AK12
 	{
 		units[] = {};
-		weapons[] = {"BastionRPGuns_AK12"};
+		weapons[] = {"BRP__AK12"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Weapons_Firearms","DZ_Characters"};
-		magazines[] = {"Mag_AK12_30rnd"};
+		magazines[] = {"BRP_Mag_AK12_30rnd"};
 	};
 };
 class Mode_Safe;
@@ -25,7 +16,7 @@ class Mode_FullAuto;
 class cfgWeapons
 {
 	class AKM;
-	class BastionRPGuns_AK12: AKM
+	class BRP_AK12: AKM
 	{
 		scope = 2;
 		displayName = "AK-12";
@@ -35,7 +26,7 @@ class cfgWeapons
 		attachments[] = {"weaponFlashlight","weaponButtstockAK","weaponBipod","weaponOptics","weaponWrap","suppressorImpro","weaponMuzzleAK"};
 		ironsightsExcludingOptics[] = {"M4_CarryHandleOptic","BUISOptic","M68Optic","M4_T3NRDSOptic","ReflexOptic","ACOGOptic"};
 		chamberableFrom[] = {"Ammo_545x39","Ammo_545x39Tracer"};
-		magazines[] = {"Mag_AK12_30Rnd"};
+		magazines[] = {"BRP_Mag_AK12_30Rnd"};
 		class SemiAuto: Mode_SemiAuto
 		{
 			soundSetShot[] = {"AK_Shot_SoundSet","AK_Tail_SoundSet","AK_InteriorTail_SoundSet"};
@@ -63,7 +54,7 @@ class cfgWeapons
 class CfgMagazines
 {
 	class Mag_AKM_30Rnd;
-	class Mag_AK12_30rnd: Mag_AKM_30Rnd
+	class BRP_Mag_AK12_30rnd: Mag_AKM_30Rnd
 	{
 		scope = 2;
 		displayName = "30rnd AK-12 Magazine";

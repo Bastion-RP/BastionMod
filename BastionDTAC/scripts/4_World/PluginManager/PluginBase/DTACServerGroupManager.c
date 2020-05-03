@@ -90,7 +90,7 @@ class DTACServerGroupManager : PluginBase {
 
                 entityType.ToLower();
 
-                if (entityType == "bastionrp_phone") {
+                if (entityType == "brp_phone") {
                     return true;
                 }
             }
