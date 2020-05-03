@@ -11,7 +11,7 @@ class CfgPatches
 {
 	class BastionCCTV_Data
 	{
-		units[] = {"BST_CCTV","DOME_CCTV"};
+		units[] = {"BRP_CCTV","BRP_DOME_CCTV"};
 		weapons[] = {};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data"};
@@ -21,7 +21,7 @@ class CfgVehicles
 {
 	class Inventory_Base;
 	class HouseNoDestruct;
-	class BST_CCTV: Inventory_Base
+	class BRP_CCTV: Inventory_Base
 	{
 		scope = 2;
 		displayName = "CCTV Monitor";
@@ -33,7 +33,7 @@ class CfgVehicles
 		carveNavmesh = 1;
 		rotationFlags = 2;
 	};
-	class DOME_CCTV: HouseNoDestruct
+	class BRP_DOME_CCTV: HouseNoDestruct
 	{
 		scope = 2;
 		displayName = "CCTV Dome Camera";

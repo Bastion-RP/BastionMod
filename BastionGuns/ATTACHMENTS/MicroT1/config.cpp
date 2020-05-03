@@ -1,17 +1,8 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionGuns\ATTACHMENTS\MicroT1\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 20:40:53 2020 : 'file' last modified on Tue Apr 28 20:40:53 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
-	class BastionRP_t1
+	class MicroT1
 	{
-		units[] = {"BastionRP_microt1"};
+		units[] = {"BRP_microt1"};
 		weapons[] = {};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Weapons_Optics"};
@@ -19,9 +10,8 @@ class CfgPatches
 };
 class cfgVehicles
 {
-	class Inventory_Base;
-	class ItemOptics: Inventory_Base{};
-	class BastionRP_microt1: ItemOptics
+	class ItemOptics;
+	class BRP_microt1: ItemOptics
 	{
 		scope = 2;
 		displayName = "Micro T1 Aimpoint";

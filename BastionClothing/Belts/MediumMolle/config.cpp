@@ -22,7 +22,7 @@ class cfgVehicles
 	class Clothing_Base;
 	class Clothing: Clothing_Base{};
 	class CivilianBelt;
-	class ISF_DART_MediumMolleBelt: CivilianBelt
+	class BRP_ISF_DART_MediumMolleBelt: CivilianBelt
 	{
 		scope = 2;
 		model = "BastionMod\BastionClothing\Belts\MediumMolle\mediummolleplatform_g.p3d";

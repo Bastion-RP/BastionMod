@@ -4,7 +4,7 @@ class DTACHUD {
     private ref array<ref DTACTracker> arrayTrackers;
 
     void DTACHUD() {
-        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionDTAC\\gui\\layouts\\HUD.layout");
+        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\HUD.layout");
         gridRoot = GridSpacerWidget.Cast(wRoot.FindAnyWidget("rootGrid"));
         
         wRoot.SetSort(-9999);

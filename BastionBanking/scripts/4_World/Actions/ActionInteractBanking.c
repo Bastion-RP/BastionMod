@@ -10,15 +10,8 @@ class ActionInteractBanking : ActionInteractBase {
     }
 
     override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item) {
-        ItemBase atm = ItemBase.Cast(target.GetObject());
-
-        if (atm) {
-            string atmType = atm.GetType();
-            atmType.ToLower();
-
-            if (atmType == GetBBankConfig().GetConfig().GetATMClassName()) {
-                return true;
-            }
+        if (target.GetObject() && BRP_ATM.Cast(target.GetObject())) {
+            return true;
         }
         return false;
     }

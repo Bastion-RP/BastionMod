@@ -31,10 +31,10 @@ class BastionBankingMenu : UIScriptedMenu {
         arrayActiveGridWidgets = new array<ref Widget>();
         arrayPreviousEntry = new array<string>();
 
-        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionBanking\\gui\\layouts\\BastionCLI.layout");
+        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionBanking\\gui\\layouts\\BastionCLI.layout");
         scroller = ScrollWidget.Cast(wRoot.FindAnyWidget("barScroll"));
         outerGrid = GridSpacerWidget.Cast(wRoot.FindAnyWidget("outerGrid"));
-        activeGrid = GetGame().GetWorkspace().CreateWidgets("BastionBanking\\gui\\layouts\\GridSpacer.layout", outerGrid);
+        activeGrid = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionBanking\\gui\\layouts\\GridSpacer.layout", outerGrid);
         arrayWidgets.Insert(activeGrid);
 
         InitializeCommands();
@@ -157,9 +157,9 @@ class BastionBankingMenu : UIScriptedMenu {
             CheckGridSize();
 
             if (newLine) {
-                newGrid = GetGame().GetWorkspace().CreateWidgets("BastionBanking\\gui\\layouts\\GridTextNewLine.layout", activeGrid);
+                newGrid = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionBanking\\gui\\layouts\\GridTextNewLine.layout", activeGrid);
             } else {
-                newGrid = GetGame().GetWorkspace().CreateWidgets("BastionBanking\\gui\\layouts\\GridText.layout", activeGrid);
+                newGrid = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionBanking\\gui\\layouts\\GridText.layout", activeGrid);
             }
             displayText = TextWidget.Cast(newGrid.FindAnyWidget("text"));
 
@@ -185,9 +185,9 @@ class BastionBankingMenu : UIScriptedMenu {
         GridSpacerWidget newGrid;
 
         if (newLine) {
-            newGrid = GetGame().GetWorkspace().CreateWidgets("BastionBanking\\gui\\layouts\\GridTextNewLine.layout", activeGrid);
+            newGrid = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionBanking\\gui\\layouts\\GridTextNewLine.layout", activeGrid);
         } else {
-            newGrid = GetGame().GetWorkspace().CreateWidgets("BastionBanking\\gui\\layouts\\GridText.layout", activeGrid);
+            newGrid = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionBanking\\gui\\layouts\\GridText.layout", activeGrid);
         }
         displayText = TextWidget.Cast(newGrid.FindAnyWidget("text"));
         displayText.SetText(text);
@@ -201,7 +201,7 @@ class BastionBankingMenu : UIScriptedMenu {
         TextWidget txtUserDir;
         GridSpacerWidget newGrid;
 
-        newGrid = GetGame().GetWorkspace().CreateWidgets("BastionBanking\\gui\\layouts\\GridUserInput.layout", activeGrid);
+        newGrid = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionBanking\\gui\\layouts\\GridUserInput.layout", activeGrid);
         txtUserDir = TextWidget.Cast(newGrid.FindAnyWidget("txtUserDir"));
         activeInputBox = EditBoxWidget.Cast(newGrid.FindAnyWidget("edtUserInput"));
 
@@ -237,7 +237,7 @@ class BastionBankingMenu : UIScriptedMenu {
     private void CheckGridSize() {
         if (arrayActiveGridWidgets.Count() >= 100) {
             Print("Creating new grid");
-            activeGrid = GetGame().GetWorkspace().CreateWidgets("BastionBanking\\gui\\layouts\\GridSpacer.layout", outerGrid);
+            activeGrid = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionBanking\\gui\\layouts\\GridSpacer.layout", outerGrid);
             arrayWidgets.Insert(activeGrid);
             arrayActiveGridWidgets = new array<ref Widget>();
         }

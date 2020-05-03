@@ -38,7 +38,7 @@ FrameWidgetClass rootFrame {
      vexactpos 0
      hexactsize 1
      vexactsize 1
-     imageTexture "{9F2F179937092709}BastionBanking/gui/layouts/bastionsquaresmall.edds"
+     imageTexture "{9F2F179937092709}BastionMod/BastionBanking/gui/layouts/bastionsquaresmall.edds"
      mode blend
      "src alpha" 1
      stretch 1

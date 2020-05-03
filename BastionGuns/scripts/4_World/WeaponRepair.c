@@ -35,21 +35,21 @@ class BRP_WeaponRepair extends RecipeBase
 		//ingredient 2
 		InsertIngredient(1,"DefaultWeapon");
 		// Pistols
-		InsertIngredient(1,"BastionRPGuns_PX4");
-		InsertIngredient(1,"BastionRPGuns_P226");
-		InsertIngredient(1,"BastionRPGuns_P99");
-		InsertIngredient(1,"BastionRPGuns_MKIIA");
-		InsertIngredient(1,"BastionRPGuns__CSP9");
-		InsertIngredient(1,"BastionRPGuns_CSC45");
-		InsertIngredient(1,"BastionRPGuns_BerettaM9");
-		InsertIngredient(1,"BastionRPGuns_BrowningHP");
+		InsertIngredient(1,"BRP_PX4");
+		InsertIngredient(1,"BRP_P226");
+		InsertIngredient(1,"BRP_P99");
+		InsertIngredient(1,"BRP_MKIIA");
+		InsertIngredient(1,"BRP_CSP9");
+		InsertIngredient(1,"BRP_CSC45");
+		InsertIngredient(1,"BRP_BerettaM9");
+		InsertIngredient(1,"BRP_BrowningHP");
 		// Rifles & SMGS
-		InsertIngredient(1,"BastionRPGuns_AK12");
-		InsertIngredient(1,"BastionRPGuns_ar15");
-		InsertIngredient(1,"BastionRPGuns_ar15_fullauto");
-		InsertIngredient(1,"BastionRPGuns_ar15_sbr");
-		InsertIngredient(1,"BastionRPGuns_CSR556");
-		InsertIngredient(1,"BastionRPGuns_Tec9");
+		InsertIngredient(1,"BRP_AK12");
+		InsertIngredient(1,"BRP_AR15");
+		InsertIngredient(1,"BRP_AR15_fullauto");
+		InsertIngredient(1,"BRP_AR15_sbr");
+		InsertIngredient(1,"BRP_CSR556");
+		InsertIngredient(1,"BRP_Tec9");
 		// 
 		InsertIngredient(1,"DefaultMagazine");
 		InsertIngredient(1,"ItemSuppressor");

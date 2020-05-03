@@ -35,8 +35,8 @@ class ActionTouchOffIED : ActionSingleUseBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		RemoteDetonator 			remote 			= RemoteDetonator.Cast( item );
-		ref array< ref RemoteIED > 	bombsInRange 	= remote.GetBombsInRange( player );
+		BRP_RemoteDetonator 			remote 			= BRP_RemoteDetonator.Cast( item );
+		ref array< ref BRP_RemoteIED > 	bombsInRange 	= remote.GetBombsInRange( player );
 		int							bombArraySize	= bombsInRange.Count();
 
 		if ( !remote )
@@ -56,16 +56,16 @@ class ActionTouchOffIED : ActionSingleUseBase
 
 	override void OnStartClient( ActionData action_data )
 	{
-		RemoteDetonator 			remote 			= RemoteDetonator.Cast( action_data.m_MainItem );
-		ref array< ref RemoteIED > 	bombsInRange 	= remote.GetBombsInRange( action_data.m_Player );
+		BRP_RemoteDetonator 			remote 			= BRP_RemoteDetonator.Cast( action_data.m_MainItem );
+		ref array< ref BRP_RemoteIED > 	bombsInRange 	= remote.GetBombsInRange( action_data.m_Player );
 
 		remote.DetonateBombsInRange( bombsInRange );
 	}
 
 	override void OnStartServer( ActionData action_data )
 	{
-		RemoteDetonator 			remote 			= RemoteDetonator.Cast( action_data.m_MainItem );
-		ref array< ref RemoteIED > 	bombsInRange 	= remote.GetBombsInRange( action_data.m_Player );
+		BRP_RemoteDetonator 			remote 			= BRP_RemoteDetonator.Cast( action_data.m_MainItem );
+		ref array< ref BRP_RemoteIED > 	bombsInRange 	= remote.GetBombsInRange( action_data.m_Player );
 
 		if ( !remote ) return;
 		if ( bombsInRange.Count() == 0 ) return;

@@ -12,10 +12,10 @@ class CfgPatches
 	class BastionRIP_Pistols_PX4
 	{
 		units[] = {};
-		weapons[] = {"BastionRPGuns_PX4"};
+		weapons[] = {"BRP_PX4"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Pistols"};
-		magazines[] = {"Mag_PX4_20Rnd"};
+		magazines[] = {"BRP_Mag_PX4_20Rnd"};
 	};
 };
 class Mode_Safe;
@@ -38,7 +38,7 @@ class cfgWeapons
 		WeaponLength = 0.634148;
 		chamberSize = 1;
 		chamberedRound = "";
-		magazines[] = {"Mag_PX4_20Rnd"};
+		magazines[] = {"BRP_Mag_PX4_20Rnd"};
 		chamberableFrom[] = {"Ammo_9x19"};
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
@@ -236,11 +236,11 @@ class cfgWeapons
 			};
 		};
 	};
-	class BastionRPGuns_PX4: PX4_Base
+	class BRP_PX4: PX4_Base
 	{
 		scope = 2;
 		displayName = "PX4 Storm";
-		descriptionShort = "";
+		descriptionShort = "PX4 Storm is a pistol chambered in 9x19mm rounds.";
 		model = "\BastionMod\BastionGuns\PX4STORM\px4.p3d";
 		attachments[] = {"pistolMuzzle","pistolOptics","pistolFlashlight"};
 		itemSize[] = {4,2};
@@ -251,7 +251,7 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.7,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.5,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0,{"DZ\weapons\pistols\fnx45\data\herstal45_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.7,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.5,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0.0,{"DZ\weapons\pistols\fnx45\data\herstal45_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -472,11 +472,11 @@ class cfgWeapons
 class CfgMagazines
 {
 	class Magazine_Base;
-	class Mag_PX4_20Rnd: Magazine_Base
+	class BRP_Mag_PX4_20Rnd: Magazine_Base
 	{
 		scope = 2;
-		displayName = "10 round HK417 Mag";
-		descriptionShort = "10-round PX4 Storm Magazine";
+		displayName = "10 round PX4 Mag";
+		descriptionShort = "10-round PX4 Storm Magazine loaded in 9x19mm rounds.";
 		model = "BastionMod\BastionGuns\PX4STORM\px4magazine.p3d";
 		weight = 230;
 		itemSize[] = {1,2};

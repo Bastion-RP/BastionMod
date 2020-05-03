@@ -65,7 +65,7 @@ class ActionNCCUnlockDoor : ActionContinuousBase {
 		PlayerBase player = PlayerBase.Cast(action_data.m_Player);
 
 		if (!g_Game.IsWhitelisted(player.GetIdentity().GetPlainId())) {
-			Print("[DEBUG] Player tried unlocking door using NCCLockpick while not whitelisted! playerId=" + player.GetIdentity().GetPlainId());
+			Print("[DEBUG] Player tried unlocking door using BRP_LockPick while not whitelisted! playerId=" + player.GetIdentity().GetPlainId());
 			return;
 		}
 

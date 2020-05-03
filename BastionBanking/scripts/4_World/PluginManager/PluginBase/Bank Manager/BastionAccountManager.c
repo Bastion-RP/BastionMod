@@ -305,6 +305,7 @@ class BastionAccountManager : PluginBase {
     }
 
     BastionActiveBankAccount GetAccountByPlayerBase(PlayerBase player) {
+        if (!player) { return null; }
         BastionPlayerAccount playerAccount = player.GetBastionPlayerAccount();
         Print("GetAccountByPlayerBase | Getting player account=" + playerAccount);
 

@@ -1,4 +1,4 @@
-class BST_Compactor : BuildingSuper 
+class BRP_Compactor : BuildingSuper 
 {
     override void SetActions() {
         super.SetActions();

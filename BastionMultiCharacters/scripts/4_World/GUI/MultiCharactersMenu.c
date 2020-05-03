@@ -8,7 +8,7 @@ class MultiCharactersMenu : UIScriptedMenu {
     protected int characterId;
 
     void ~MultiCharactersMenu() {
-        Print("!!!!!!!!!!---DELETING MULTICHARACTERS MENU---!!!!!!!!!!!!!");
+        Print("!!!!!!!!!!---DELETING BastionMultiCharacters MENU---!!!!!!!!!!!!!");
         if (wSurvivorCreator) {
             delete wSurvivorCreator;
         }
@@ -21,7 +21,7 @@ class MultiCharactersMenu : UIScriptedMenu {
         Print("CREATING SELECT MENU");
         InitScene();
         
-        wRoot = GetGame().GetWorkspace().CreateWidgets("MultiCharacters\\gui\\layouts\\CharacterMenu.layout");
+        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionMultiCharacters\\gui\\layouts\\CharacterMenu.layout");
         wSurvivorCreator = new MultiCharactersSurvivorCreator(wRoot);
         wSurvivorSelector = new MultiCharactersSurvivorSelector(wRoot);
 

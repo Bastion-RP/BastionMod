@@ -5,7 +5,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = {"MultiCharacters", "BastionRP_Items"};
+		requiredAddons[] = {"BastionMultiCharacters"};
 	};
 };
 class CfgMods

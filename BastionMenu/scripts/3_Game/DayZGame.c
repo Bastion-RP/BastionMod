@@ -1,6 +1,6 @@
-const string backgroundPath = "BastionMenu/gui/images/bg.edds";
-const string maskPath = "BastionMenu/gui/images/bg_mask.edds";
-const string logoPath = "BastionMenu/gui/images/bastionlogo.edds";
+const string backgroundPath = "BastionMod/BastionMenu/gui/images/bg.edds";
+const string maskPath = "BastionMod/BastionMenu/gui/images/bg_mask.edds";
+const string logoPath = "BastionMod/BastionMenu/gui/images/bastionlogo.edds";
 
 modded class LoadingScreen
 {

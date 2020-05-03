@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{3543F8B52FEEC7E7}BastionMod/BastionCCTV/gui/layouts/CCTV_Overlay.edds"
+ Author "desktop-hr5reke"
+ ChangeDate -999954381
+ Configurations {
+  PNGResourceClass PC {
+   SourceFile "CCTV_Overlay.png"
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+  PNGResourceClass LINUX : PC {
+  }
+ }
+}

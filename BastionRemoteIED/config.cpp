@@ -13,7 +13,7 @@ class CfgPatches
 };
 class CfgMods
 {
-	class RemoteIED
+	class BRP_RemoteIED
 	{
 		dir = "BastionRemoteIED";
 		picture = "";

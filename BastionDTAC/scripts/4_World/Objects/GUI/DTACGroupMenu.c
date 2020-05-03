@@ -7,7 +7,7 @@ class DTACGroupMenu {
     void DTACGroupMenu(Widget wParent) {
         this.wParent = wParent;
         arrayGroupWidgets = new array<ref DTACGroupWidget>();
-        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionDTAC\\gui\\layouts\\GroupMenu.layout", wParent);
+        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\GroupMenu.layout", wParent);
         scroller = ScrollWidget.Cast(wRoot.FindAnyWidget("scroller"));
         rootGrid = GridSpacerWidget.Cast(wRoot.FindAnyWidget("rootGrid"));
 

@@ -27,12 +27,12 @@ class ActionCompactBodyBag : ActionInteractBase
 	{
         if(!target) 
 			return false;
-		if (!target.GetObject() || !target.GetObject().IsInherited(BST_Compactor))
+		if (!target.GetObject() || !target.GetObject().IsInherited(BRP_Compactor))
 			return false;
 
-		BST_Compactor compactor = BST_Compactor.Cast(target.GetObject());
+		BRP_Compactor compactor = BRP_Compactor.Cast(target.GetObject());
 		//getting HumanInventory entity in hands because on server item variable seems to be null
-		BST_BodyBag_Base bodybag = BST_BodyBag_Base.Cast(player.GetHumanInventory().GetEntityInHands());		
+		BRP_BodyBag_Base bodybag = BRP_BodyBag_Base.Cast(player.GetHumanInventory().GetEntityInHands());		
 		if (compactor && bodybag)
 		{
 			string selection = compactor.GetActionComponentName(target.GetComponentIndex());
@@ -45,7 +45,7 @@ class ActionCompactBodyBag : ActionInteractBase
 	override void OnStartServer( ActionData action_data )
 	{
 		PlayerBase player = PlayerBase.Cast(action_data.m_Player);
-		BST_BodyBag_Base bodybag = BST_BodyBag_Base.Cast(player.GetHumanInventory().GetEntityInHands());
+		BRP_BodyBag_Base bodybag = BRP_BodyBag_Base.Cast(player.GetHumanInventory().GetEntityInHands());
 		if(bodybag)
 			bodybag.Delete();
 	}

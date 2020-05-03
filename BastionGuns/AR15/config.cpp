@@ -14,7 +14,7 @@ class CfgPatches
 		units[] = {};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Weapons_Firearms","DZ_Weapons_Ammunition","DZ_Weapons_Magazines"};
-		weapons[] = {"BastionRPGuns_ar15","BastionRPGuns_ar15_fullauto"};
+		weapons[] = {"BRP_AR15","BRP_AR15_fullauto"};
 	};
 };
 class Mode_Safe;
@@ -23,7 +23,7 @@ class Mode_FullAuto;
 class M4A1;
 class cfgWeapons
 {
-	class ar15_Base: M4A1
+	class AR15_Base: M4A1
 	{
 		scope = 0;
 		weight = 3000;
@@ -42,7 +42,11 @@ class cfgWeapons
 		value = 0;
 		chamberSize = 1;
 		chamberedRound = "";
-		chamberableFrom[] = {"Ammo_556x45"};
+		chamberableFrom[]=
+		{
+			"Ammo_556x45",
+			"Ammo_556x45Tracer"
+		};
 		magazines[] = {"Mag_STANAG_30Rnd","Mag_STANAGCoupled_30Rnd","Mag_CMAG_10Rnd","Mag_CMAG_20Rnd","Mag_CMAG_30Rnd","Mag_CMAG_40Rnd","Mag_CMAG_10Rnd_Green","Mag_CMAG_20Rnd_Green","Mag_CMAG_30Rnd_Green","Mag_CMAG_40Rnd_Green","Mag_CMAG_10Rnd_Black","Mag_CMAG_20Rnd_Black","Mag_CMAG_30Rnd_Black","Mag_CMAG_40Rnd_Black"};
 		magazineSwitchTime = 0.2;
 		barrelArmor = 3000;
@@ -241,11 +245,11 @@ class cfgWeapons
 			};
 		};
 	};
-	class BastionRPGuns_ar15: ar15_Base
+	class BRP_AR15: AR15_Base
 	{
 		scope = 2;
 		displayName = "AR-15";
-		descriptionShort = "An AR-15 style rifle is a lightweight semi-automatic rifle based on the ArmaLite AR-15 design. ArmaLite sold the patent and trademarks to Colt's Manufacturing Company in 1959. After Colt's patents expired in 1977, Colt retained the trademark and is the exclusive owner of AR-15 designation.[1] An expanded marketplace emerged with many manufacturers producing their own version of the AR-15 design for commercial sale. After the term modern sporting rifles was coined in 2009 by the US National Shooting Sports Foundation, a firearms industry trade association, it was quickly adopted by the trade association and some manufacturers.[2][3] Coverage of high-profile incidents where various versions of the rifle were involved often uses the shorthand AR-15.[4] ";
+		descriptionShort = "An AR-15 style rifle is a lightweight semi-automatic, chambered in 5.56x45mm, rifle based on the ArmaLite AR-15 design. ArmaLite sold the patent and trademarks to Colt's Manufacturing Company in 1959. After Colt's patents expired in 1977, Colt retained the trademark and is the exclusive owner of AR-15 designation. An expanded marketplace emerged with many manufacturers producing their own version of the AR-15 design for commercial sale. After the term modern sporting rifles was coined in 2009 by the US National Shooting Sports Foundation, a firearms industry trade association, it was quickly adopted by the trade association and some manufacturers. Coverage of high-profile incidents where various versions of the rifle were involved often uses the shorthand AR-15. ";
 		model = "BastionMod\BastionGuns\AR15\ar15.p3d";
 		attachments[] = {"weaponMuzzleM4","weaponOptics"};
 		itemSize[] = {8,3};
@@ -323,16 +327,16 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1,{"DZ\weapons\firearms\M4\Data\m4_body.rvmat"}},{0.7,{}},{0.5,{"DZ\weapons\firearms\M4\Data\m4_body_damage.rvmat"}},{0.3,{}},{0,{"DZ\weapons\firearms\M4\Data\m4_body_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\firearms\M4\Data\m4_body.rvmat"}},{0.7,{}},{0.5,{"DZ\weapons\firearms\M4\Data\m4_body_damage.rvmat"}},{0.3,{}},{0.0,{"DZ\weapons\firearms\M4\Data\m4_body_destruct.rvmat"}}};
 				};
 			};
 		};
 	};
-	class BastionRPGuns_ar15_fullauto: ar15_Base
+	class BRP_AR15_fullauto: AR15_Base
 	{
 		scope = 2;
-		displayName = "AR-15";
-		descriptionShort = "An AR-15 style rifle is a lightweight semi-automatic rifle based on the ArmaLite AR-15 design. ArmaLite sold the patent and trademarks to Colt's Manufacturing Company in 1959. After Colt's patents expired in 1977, Colt retained the trademark and is the exclusive owner of AR-15 designation.[1] An expanded marketplace emerged with many manufacturers producing their own version of the AR-15 design for commercial sale. After the term modern sporting rifles was coined in 2009 by the US National Shooting Sports Foundation, a firearms industry trade association, it was quickly adopted by the trade association and some manufacturers.[2][3] Coverage of high-profile incidents where various versions of the rifle were involved often uses the shorthand AR-15.[4] ";
+		displayName = "AR-15 Full-Auto";
+		descriptionShort = "An AR-15 style rifle is a lightweight full-automatic rifle, chambered in 5.56x45mm, based on the ArmaLite AR-15 design. ArmaLite sold the patent and trademarks to Colt's Manufacturing Company in 1959. After Colt's patents expired in 1977, Colt retained the trademark and is the exclusive owner of AR-15 designation. An expanded marketplace emerged with many manufacturers producing their own version of the AR-15 design for commercial sale. After the term modern sporting rifles was coined in 2009 by the US National Shooting Sports Foundation, a firearms industry trade association, it was quickly adopted by the trade association and some manufacturers. Coverage of high-profile incidents where various versions of the rifle were involved often uses the shorthand AR-15. ";
 		model = "BastionMod\BastionGuns\AR15\ar15.p3d";
 		attachments[] = {"weaponMuzzleM4","weaponOptics"};
 		itemSize[] = {8,3};
@@ -431,7 +435,7 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{""}},{0.7,{""}},{0.5,{""}},{0.3,{""}},{0.0,{""}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\firearms\M4\Data\m4_body.rvmat"}},{0.7,{}},{0.5,{"DZ\weapons\firearms\M4\Data\m4_body_damage.rvmat"}},{0.3,{}},{0.0,{"DZ\weapons\firearms\M4\Data\m4_body_destruct.rvmat"}}};
 				};
 			};
 		};

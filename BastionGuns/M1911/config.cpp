@@ -15,7 +15,7 @@ class CfgPatches
 		weapons[] = {"BRP_M1911"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Weapons_Firearms","DZ_Weapons_Ammunition","DZ_Weapons_Magazines"};
-		magazines[] = {"BRP_M1911_Magazine"};
+		magazines[] = {"BRP_Mag_M1911_7Rnd"};
 		ammo[] = {};
 	};
 };
@@ -28,10 +28,10 @@ class cfgWeapons
 	{
 		scope = 2;
 		displayName = "Makeshift Colt 1911";
-		descriptionShort = "This is a makeshift Colt 1911.";
+		descriptionShort = "This is a makeshift Colt 1911. Chambered in .45 ACP rounds.";
 		weight = 1000;
 		model = "\BastionMod\BastionGuns\M1911\M1911.p3d";
-		magazines[] = {"BRP_M1911_Magazine","Mag_1911_7Rnd"};
+		magazines[] = {"BRP_Mag_M1911_7Rnd","Mag_1911_7Rnd"};
 		itemSize[] = {6,3};
 		PPDOFProperties[] = {0,0,0,0,0,0};
 		dexterity = 3.0;
@@ -55,11 +55,11 @@ class cfgWeapons
 class CfgMagazines
 {
 	class Magazine_Base;
-	class BRP_M1911_Magazine: Magazine_Base
+	class BRP_Mag_M1911_7Rnd: Magazine_Base
 	{
 		scope = 2;
 		displayName = "Colt 1911 Magazine";
-		descriptionShort = "";
+		descriptionShort = "Thus is a 7 round mag for the Colt 1911 pistol, loaded in .45 ACP rounds.";
 		model = "\BastionMod\BastionGuns\M1911\M1911_Magazine.p3d";
 		weight = 90;
 		itemSize[] = {1,2};

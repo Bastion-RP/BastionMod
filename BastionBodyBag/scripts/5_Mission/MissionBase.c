@@ -32,7 +32,7 @@ modded class MissionServer {
 
             foreach( auto object : objects )
             {
-				CreateConfigObject( "BST_Compactor", object.GetPosition(), object.GetDirection() );
+				CreateConfigObject( "BRP_Compactor", object.GetPosition(), object.GetDirection() );
             }
         }
     }

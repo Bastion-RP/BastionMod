@@ -10,7 +10,7 @@ class DTACChoiceMenu : UIScriptedMenu {
     }
     
     override Widget Init() {
-        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionDTAC\\gui\\layouts\\ChoiceMenu.layout");
+        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\ChoiceMenu.layout");
         btnGroup = ButtonWidget.Cast(wRoot.FindAnyWidget("btnGroup"));
         btnLookup = ButtonWidget.Cast(wRoot.FindAnyWidget("btnLookup"));
         btnShowID = ButtonWidget.Cast(wRoot.FindAnyWidget("btnShowID"));
@@ -125,7 +125,7 @@ class DTACChoiceMenu : UIScriptedMenu {
 
                 entityType.ToLower();
 
-                if (entityType == "bastionrp_phone") {
+                if (entityType == "brp_phone") {
                     return true;
                 }
             }

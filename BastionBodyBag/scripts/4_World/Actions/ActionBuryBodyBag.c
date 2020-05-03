@@ -7,7 +7,7 @@ class ActionBuryBodyBag: ActionBuryBody
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		BST_BodyBag_Base body_bag;
+		BRP_BodyBag_Base body_bag;
 		Class.CastTo( body_bag, target.GetObject() );
 
 		if ( body_bag )

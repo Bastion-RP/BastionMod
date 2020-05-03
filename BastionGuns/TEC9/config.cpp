@@ -12,10 +12,10 @@ class CfgPatches
 	class BastionRP_Tec9
 	{
 		units[] = {};
-		weapons[] = {"BastionRPGuns_Tec9"};
+		weapons[] = {"BRP_Tec9"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Weapons_Firearms"};
-		magazines[] = {"Mag_TEC9_20Rnd"};
+		magazines[] = {"BRP_Mag_TEC9_20Rnd"};
 	};
 };
 class Mode_Safe;
@@ -37,7 +37,7 @@ class CfgWeapons
 		chamberSize = 1;
 		chamberedRound = "";
 		chamberableFrom[] = {"Ammo_9x19"};
-		magazines[] = {"Mag_TEC9_20Rnd"};
+		magazines[] = {"BRP_Mag_TEC9_20Rnd"};
 		magazineSwitchTime = 0.3;
 		barrelArmor = 800;
 		ejectType = 1;
@@ -310,11 +310,11 @@ class CfgWeapons
 			};
 		};
 	};
-	class BastionRPGuns_Tec9: tec9_Base
+	class BRP_Tec9: tec9_Base
 	{
 		scope = 2;
 		displayName = "TEC 9";
-		descriptionShort = "The Intratec TEC-9, TEC-DC9, KG-99 or AB-10 is a blowback-operated semi-automatic pistol. It was developed by Intratec, an American subsidiary of the Swedish firearms manufacturer Interdynamic AB. Introduced in 1985, the TEC-9 was made of inexpensive molded polymers and a mixture of stamped and milled steel parts, and the simple design of the gun made it easy to repair and modify. The TEC-9 developed a negative reputation for its association with organized crime in the 1990s,";
+		descriptionShort = "The Intratec TEC-9, TEC-DC9, KG-99 or AB-10 is a blowback-operated semi-automatic pistol, chambered in 9x19mm rounds. It was developed by Intratec, an American subsidiary of the Swedish firearms manufacturer Interdynamic AB. Introduced in 1985, the TEC-9 was made of inexpensive molded polymers and a mixture of stamped and milled steel parts, and the simple design of the gun made it easy to repair and modify. The TEC-9 developed a negative reputation for its association with organized crime in the 1990s,";
 		model = "BastionMod\BastionGuns\TEC9\tec9.p3d";
 		attachments[] = {};
 		itemSize[] = {4,3};
@@ -326,7 +326,7 @@ class CfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1,{"DZ\weapons\firearms\cz61\data\cz61.rvmat"}},{0.7,{"DZ\weapons\firearms\cz61\data\cz61.rvmat"}},{0.5,{"DZ\weapons\firearms\cz61\data\cz61_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\cz61\data\cz61_damage.rvmat"}},{0,{"DZ\weapons\firearms\cz61\data\cz61_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\firearms\cz61\data\cz61.rvmat"}},{0.7,{"DZ\weapons\firearms\cz61\data\cz61.rvmat"}},{0.5,{"DZ\weapons\firearms\cz61\data\cz61_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\cz61\data\cz61_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\cz61\data\cz61_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -516,11 +516,11 @@ class CfgWeapons
 class CfgMagazines
 {
 	class Magazine_Base;
-	class Mag_TEC9_20Rnd: Magazine_Base
+	class BRP_Mag_TEC9_20Rnd: Magazine_Base
 	{
 		scope = 2;
 		displayName = "20 round Tec 9 Mag";
-		descriptionShort = "30-round Tec 9 Magazine";
+		descriptionShort = "20-round Tec 9 Magazine loaded in 9x19mm rounds.";
 		model = "BastionMod\BastionGuns\TEC9\tec9magazine.p3d";
 		weight = 230;
 		itemSize[] = {1,3};

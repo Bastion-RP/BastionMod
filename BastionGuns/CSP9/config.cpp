@@ -12,10 +12,10 @@ class CfgPatches
 	class BastionRP_Pistols_CSP9
 	{
 		units[] = {};
-		weapons[] = {"BastionRPGuns__CSP9"};
+		weapons[] = {"BRP__CSP9"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Pistols"};
-		magazines[] = {"Mag_CSP9_17Rnd"};
+		magazines[] = {"BRP_Mag_CSP9_17Rnd"};
 	};
 };
 class Mode_Safe;
@@ -38,7 +38,7 @@ class cfgWeapons
 		WeaponLength = 0.634148;
 		chamberSize = 1;
 		chamberedRound = "";
-		magazines[] = {"Mag_CSP9_17Rnd"};
+		magazines[] = {"BRP_Mag_CSP9_17Rnd"};
 		chamberableFrom[] = {"Ammo_9x19"};
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
@@ -236,11 +236,11 @@ class cfgWeapons
 			};
 		};
 	};
-	class BastionRPGuns__CSP9: CSP9_Base
+	class BRP_CSP9: CSP9_Base
 	{
 		scope = 2;
 		displayName = "CSP-9";
-		descriptionShort = "";
+		descriptionShort = "CSP-9 is a pistol chambered in 9x19mm and takes a 17 round CSP9 Grach Mag.";
 		model = "BastionMod\BastionGuns\CSP9\CSP9.p3d";
 		attachments[] = {"pistolMuzzle"};
 		itemSize[] = {4,2};
@@ -251,7 +251,7 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.7,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.5,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0,{"DZ\weapons\pistols\fnx45\data\herstal45_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.7,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.5,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0.0,{"DZ\weapons\pistols\fnx45\data\herstal45_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -472,11 +472,11 @@ class cfgWeapons
 class CfgMagazines
 {
 	class Magazine_Base;
-	class Mag_CSP9_17Rnd: Magazine_Base
+	class BRP_Mag_CSP9_17Rnd: Magazine_Base
 	{
 		scope = 2;
 		displayName = "17 round CSP9 Grach Mag";
-		descriptionShort = "";
+		descriptionShort = "CSP9 Grach Mag is a 17 round mag for the CSP9 pistol, loaded in 9x19mm rounds.";
 		model = "BastionMod\BastionGuns\CSP9\CSP9mag.p3d";
 		weight = 230;
 		itemSize[] = {1,2};

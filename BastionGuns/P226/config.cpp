@@ -12,10 +12,10 @@ class CfgPatches
 	class BastionRIP_Pistols_P226
 	{
 		units[] = {};
-		weapons[] = {"BastionRPGuns_P226"};
+		weapons[] = {"BRP_P226"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Pistols","DZ_Weapons_Muzzles","DZ_Weapons_Optics","DZ_Weapons_Lights"};
-		magazines[] = {"Mag_P226_10Rnd"};
+		magazines[] = {"BRP_Mag_P226_10Rnd"};
 	};
 };
 class Mode_Safe;
@@ -38,7 +38,7 @@ class cfgWeapons
 		WeaponLength = 0.634148;
 		chamberSize = 1;
 		chamberedRound = "";
-		magazines[] = {"Mag_P226_10Rnd"};
+		magazines[] = {"BRP_Mag_P226_10Rnd"};
 		chamberableFrom[] = {"Ammo_9x19"};
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
@@ -238,7 +238,7 @@ class cfgWeapons
 			};
 		};
 	};
-	class BastionRPGuns_P226: P226_Base
+	class BRP_P226: P226_Base
 	{
 		scope = 2;
 		displayName = "SIG Sauer P226";
@@ -253,7 +253,7 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.7,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.5,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0,{"DZ\weapons\pistols\fnx45\data\herstal45_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.7,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.5,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0.0,{"DZ\weapons\pistols\fnx45\data\herstal45_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -474,11 +474,11 @@ class cfgWeapons
 class CfgMagazines
 {
 	class Mag_CZ75_15Rnd;
-	class Mag_P226_10Rnd: Mag_CZ75_15Rnd
+	class BRP_Mag_P226_10Rnd: Mag_CZ75_15Rnd
 	{
 		scope = 2;
 		displayName = "15 round P226 Mag";
-		descriptionShort = "15-round P226  Magazine";
+		descriptionShort = "15-round Magazine for SIG Sauer P226 pistol, loaded in 9x19mm rounds.";
 		model = "BastionMod\BastionGuns\P226\p226magazine.p3d";
 		weight = 230;
 	};

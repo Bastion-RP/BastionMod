@@ -12,7 +12,7 @@ class CfgPatches
 	class CK556
 	{
 		units[] = {};
-		weapons[] = {"BastionRPGuns_CSR556"};
+		weapons[] = {"BRP_CSR556"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Weapons_Firearms","DZ_Characters"};
 	};
@@ -260,11 +260,11 @@ class cfgWeapons
 			};
 		};
 	};
-	class BastionRPGuns_CSR556: Ck556_Base
+	class BRP_CSR556: Ck556_Base
 	{
 		scope = 2;
 		displayName = "CSR-556 GROT";
-		descriptionShort = "Originally a design licensed from Poland, this rifle was intended as a replacement service rifle for the Ukrainian military. With the lack of manufacturing infrastructure after the disaster, the NCC took over the factories in central Ukraine, and began to manufacture it en-masse under its new designation, the CSR-556, as a standard issue 5.56x45 infantry carbine.";
+		descriptionShort = "Originally a design licensed from Poland, this rifle was intended as a replacement service rifle for the Ukrainian military. With the lack of manufacturing infrastructure after the disaster, the NCC took over the factories in central Ukraine, and began to manufacture it en-masse under its new designation, the CSR-556, as a standard issue 5.56x45mm infantry carbine.";
 		model = "BastionMod\BastionGuns\CK556\ck556.p3d";
 		attachments[] = {"weaponFlashlight","weaponBipod","weaponOptics","WeaponHandguardM4","weaponWrap","suppressorImpro","HighcalibreSup","weaponMuzzleM4"};
 		itemSize[] = {8,3};
@@ -275,7 +275,7 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1,{"DZ\weapons\firearms\VSS\data\vss.rvmat"}},{0.7,{"DZ\weapons\firearms\VSS\data\vss.rvmat"}},{0.5,{"DZ\weapons\firearms\VSS\data\vss_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\VSS\data\vss_damage.rvmat"}},{0,{"DZ\weapons\firearms\VSS\data\vss_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\firearms\VSS\data\vss.rvmat"}},{0.7,{"DZ\weapons\firearms\VSS\data\vss.rvmat"}},{0.5,{"DZ\weapons\firearms\VSS\data\vss_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\VSS\data\vss_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\VSS\data\vss_destruct.rvmat"}}};
 				};
 			};
 		};

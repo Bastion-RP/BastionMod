@@ -90,7 +90,7 @@ modded class MissionServer {
             {
 				vector dir = vector.Zero;
 				dir[0] = camera.GetStartingAngle();
-				CreateSpecificObject( "DOME_CCTV", camera.GetPosition(), dir );
+				CreateSpecificObject( "BRP_DOME_CCTV", camera.GetPosition(), dir );
             }
 
             array<ref CCTVMonitor> monitors = new array<ref CCTVMonitor>;
@@ -103,7 +103,7 @@ modded class MissionServer {
             }
             foreach( auto monitor : monitors )
             {
-				CreateSpecificObject( "BST_CCTV", monitor.GetPosition(), monitor.GetDirection() );
+				CreateSpecificObject( "BRP_CCTV", monitor.GetPosition(), monitor.GetDirection() );
             }
         }
     }

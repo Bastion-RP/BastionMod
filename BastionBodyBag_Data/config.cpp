@@ -1,17 +1,8 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionBodyBag_Data\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 21:21:50 2020 : 'file' last modified on Tue Apr 28 21:21:50 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class BastionBodyBag_Data
 	{
-		units[] = {"BST_BodyBag","BST_BodyBag_Blood","BST_WrappedBody","BST_BodyBagKit"};
+		units[] = {"BRP_BodyBag","BRP_BodyBag_Blood","BST_WrappedBody","BRP_BodyBagKit"};
 		weapons[] = {};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data"};
@@ -21,13 +12,14 @@ class CfgVehicles
 {
 	class Inventory_Base;
 	class HouseNoDestruct;
-	class BST_Compactor: HouseNoDestruct
+	class BRP_Compactor: HouseNoDestruct
 	{
 		scope = 1;
 		displayName = "Compactor";
-		model = "\BastionMod\BastionBodyBag_Data\biocompactor.p3d";
+		model = "\BastionMod\BastionBodyBag_Data\biocompactor\biocompactor.p3d";
 	};
-	class BST_BodyBag_Base: Inventory_Base
+
+	class BRP_BodyBag_Base: Inventory_Base
 	{
 		scope = 0;
 		destroyOnEmpty = 0;
@@ -105,41 +97,41 @@ class CfgVehicles
 			};
 		};
 	};
-	class BST_BodyBag: BST_BodyBag_Base
+	class BRP_BodyBag: BRP_BodyBag_Base
 	{
 		scope = 2;
 		displayName = "Body bag";
-		model = "\BastionMod\BastionBodyBag_Data\bodybag.p3d";
+		model = "\BastionMod\BastionBodyBag_Data\bodybag\bodybag.p3d";
 		hiddenSelections[] = {"all"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionBodyBag_Data\data\bodybag_co.paa"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionBodyBag_Data\bodybag\data\bodybag_co.paa"};
 	};
-	class BST_BodyBag_Blood: BST_BodyBag
+	class BRP_BodyBag_Blood: BRP_BodyBag
 	{
 		scope = 2;
-		hiddenSelectionsTextures[] = {"BastionMod\BastionBodyBag_Data\data\bodybag_blood_co.paa"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionBodyBag_Data\bodybag\data\bodybag_blood_co.paa"};
 	};
-	class BST_WrappedBody: BST_BodyBag_Base
+	class BRP_WrappedBody: BRP_BodyBag_Base
 	{
 		scope = 2;
 		displayName = "Wrapped body";
-		model = "\BastionMod\BastionBodyBag_Data\wrappedbody.p3d";
+		model = "\BastionMod\BastionBodyBag_Data\bodybag\wrappedbody.p3d";
 		hiddenSelections[] = {"all"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionBodyBag_Data\data\wrappedbody_co.paa"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionBodyBag_Data\bodybag\data\wrappedbody_co.paa"};
 	};
-	class BST_BodyBagKit: Inventory_Base
+	class BRP_BodyBagKit: Inventory_Base
 	{
 		scope = 2;
 		displayName = "Body bag kit";
 		descriptionShort = "Used to store and transport human corpses.";
-		model = "\BastionMod\BastionBodyBag_Data\tarp.p3d";
+		model = "\BastionMod\BastionBodyBag_Data\bodybag\tarp.p3d";
 		itemSize[] = {3,2};
 		weight = 300;
 		itemBehaviour = 1;
 		rotationFlags = 17;
 		canBeDigged = 0;
 		hiddenSelections[] = {"all"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionBodyBag_Data\data\bodybag_co.paa"};
-		hiddenSelectionsMaterials[] = {"BastionMod\BastionBodyBag_Data\data\bodybag.rvmat"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionBodyBag_Data\bodybag\data\bodybag_co.paa"};
+		hiddenSelectionsMaterials[] = {"BastionMod\BastionBodyBag_Data\bodybag\data\bodybag.rvmat"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -147,7 +139,7 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 300;
-					healthLevels[] = {{1.0,{"BastionMod\BastionBodyBag_Data\data\bodybag.rvmat"}},{0.7,{"BastionMod\BastionBodyBag_Data\data\bodybag.rvmat"}},{0.5,{"BastionMod\BastionBodyBag_Data\data\bodybag_damage.rvmat"}},{0.3,{"BastionMod\BastionBodyBag_Data\data\bodybag_damage.rvmat"}},{0.0,{"BastionMod\BastionBodyBag_Data\data\bodybag_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"BastionMod\BastionBodyBag_Data\bodybag\data\bodybag.rvmat"}},{0.7,{"BastionMod\BastionBodyBag_Data\bodybag\data\bodybag.rvmat"}},{0.5,{"BastionMod\BastionBodyBag_Data\bodybag\data\bodybag_damage.rvmat"}},{0.3,{"BastionMod\BastionBodyBag_Data\bodybag\data\bodybag_damage.rvmat"}},{0.0,{"BastionMod\BastionBodyBag_Data\bodybag\data\bodybag_destruct.rvmat"}}};
 				};
 			};
 		};
