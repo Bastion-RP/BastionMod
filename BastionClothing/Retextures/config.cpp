@@ -15,6 +15,7 @@ class cfgVehicles
 	class BDUPants;	
 	class Mich2001Helmet;
 	class MilitaryBeret_Red;
+	class TTsKOJacket_ColorBase;
 	class BRP_BurlapSackCoverMask: BalaclavaMask_ColorBase
 	{
 		scope = 2;
@@ -113,5 +114,16 @@ class cfgVehicles
 		descriptionShort = "";
 		scope = 2;
 		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa","BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa","BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa"};
+	};
+	class BRP_TTsKOJacket_Civilian: TTsKOJacket_ColorBase
+	{
+		scope=2;
+		visibilityModifier=0.5;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa"
+		};
 	};
 };
