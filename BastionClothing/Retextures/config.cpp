@@ -15,6 +15,8 @@ class cfgVehicles
 	class BDUPants;	
 	class Mich2001Helmet;
 	class MilitaryBeret_Red;
+	class TTsKOJacket_ColorBase;
+	class MilitaryBeret_ColorBase;
 	class BRP_BurlapSackCoverMask: BalaclavaMask_ColorBase
 	{
 		scope = 2;
@@ -109,9 +111,39 @@ class cfgVehicles
 	};
 	class BRP_ISF_DART_Helmet: Mich2001Helmet
 	{
+		scope = 2;
 		displayName = "ISF Helmet";
 		descriptionShort = "";
-		scope = 2;
 		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa","BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa","BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa"};
+	};
+	class BRP_TTsKOJacket_Civilian: TTsKOJacket_ColorBase
+	{
+		scope=2;
+		visibilityModifier=0.5;
+		itemSize[]={3,3};
+		itemsCargoSize[]={5,4};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa"
+		};
+	};
+	
+	class BRP_MilitaryBeret_ISF: MilitaryBeret_ColorBase
+	{
+		scope=2;
+		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
+		class ClothingTypes
+		{
+			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
+			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa"
+		};
 	};
 };
