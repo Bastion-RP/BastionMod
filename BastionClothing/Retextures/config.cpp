@@ -111,15 +111,17 @@ class cfgVehicles
 	};
 	class BRP_ISF_DART_Helmet: Mich2001Helmet
 	{
+		scope = 2;
 		displayName = "ISF Helmet";
 		descriptionShort = "";
-		scope = 2;
 		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa","BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa","BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa"};
 	};
 	class BRP_TTsKOJacket_Civilian: TTsKOJacket_ColorBase
 	{
 		scope=2;
 		visibilityModifier=0.5;
+		itemSize[]={3,3};
+		itemsCargoSize[]={5,4};
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa",
