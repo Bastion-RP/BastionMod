@@ -1,28 +1,14 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionVendor_Data\AION\data\aion.rvmat
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 21:19:18 2020 : 'file' last modified on Tue Apr 28 21:19:18 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-ambient[] = {1.0,1.0,1.0,1.0};
-diffuse[] = {1.0,1.0,1.0,1.0};
-forcedDiffuse[] = {0.0,0.0,0.0,0.0};
-emmisive[] = {0.0,0.0,0.0,1.0};
-specular[] = {0.497,0.529,0.545,0.43};
+﻿ambient[] = {1,1,1,1};
+diffuse[] = {1,1,1,1};
+forcedDiffuse[] = {0,0,0,0};
+emmisive[] = {0,0,0,1};
+specular[] = {1,1,1,1};
 specularPower = 100.0;
 PixelShaderID = "Super";
 VertexShaderID = "Super";
-class Stage0
-{
-	texture = "BastionMod\BastionVendor_Data\AION\data\label_co.paa";
-	uvSource = "tex";
-};
 class Stage1
 {
-	texture = "BastionMod\BastionVendor_Data\aion\data\label_nohq.paa";
+	texture = "BastionMod\BastionVendor_Data\AION\data\label_nohq.paa";
 	uvSource = "tex";
 	class uvTransform
 	{
@@ -58,7 +44,7 @@ class Stage3
 };
 class Stage4
 {
-	texture = "BastionMod\BastionVendor_Data\aion\data\label_as.paa";
+	texture = "BastionMod\BastionVendor_Data\AION\data\label_as.paa";
 	uvSource = "tex1";
 	class uvTransform
 	{

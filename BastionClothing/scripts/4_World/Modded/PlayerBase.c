@@ -16,7 +16,7 @@ modded class PlayerBase
             DayzPlayerItemBehaviorCfg     heavyItemBehaviour = new DayzPlayerItemBehaviorCfg;
             heavyItemBehaviour.SetHeavyItems();            
 
-            GetDayZPlayerType().AddItemInHandsProfileIK("BastionRP_ISF_CarrierRig", "dz/anims/workspaces/player/player_main/weapons/player_main_2h_extinguisher.asi", twoHanded, "dz/anims/anm/player/ik/two_handed/vest_ballistic.anm");
+            GetDayZPlayerType().AddItemInHandsProfileIK("BRP_ISF_CarrierRig", "dz/anims/workspaces/player/player_main/weapons/player_main_2h_extinguisher.asi", twoHanded, "dz/anims/anm/player/ik/two_handed/vest_ballistic.anm");
         }
         super.Init();
     }

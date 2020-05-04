@@ -1,0 +1,1 @@
+class BRP_AION extends Bottle_Base {};
