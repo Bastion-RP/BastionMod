@@ -15,4 +15,26 @@ modded class PlayerBase
 
 		return super.Consume(source, amount, consume_type);
 	}
-}
+
+	
+    override void Init()
+    {
+        if ( !GetGame().IsServer() || !GetGame().IsMultiplayer() ) 
+        {
+            DayzPlayerItemBehaviorCfg toolsOneHanded = new DayzPlayerItemBehaviorCfg;
+            toolsOneHanded.SetToolsOneHanded();
+
+            DayzPlayerItemBehaviorCfg     twoHanded = new DayzPlayerItemBehaviorCfg;
+            twoHanded.SetTwoHanded();
+
+            DayzPlayerItemBehaviorCfg     fireArmsItemBehaviour = new DayzPlayerItemBehaviorCfg;
+            fireArmsItemBehaviour.SetFirearms();
+
+            DayzPlayerItemBehaviorCfg     heavyItemBehaviour = new DayzPlayerItemBehaviorCfg;
+            heavyItemBehaviour.SetHeavyItems();            
+            
+            GetDayZPlayerType().AddItemInHandsProfileIK("BRP_AIONBox", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour, "dz/anims/anm/player/ik/heavy/wooden_crate.anm");
+        }
+        super.Init();
+    }
+};
