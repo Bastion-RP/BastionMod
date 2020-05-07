@@ -8,33 +8,6 @@
 		requiredAddons[] = {"DZ_Data"};
 	};
 };
-class CfgMods
-{
-	class BRP_AION
-	{
-		dir = "BRP_AION";
-		picture = "";
-		action = "";
-		hideName = 1;
-		hidePicture = 1;
-		name = "BRP_AION";
-		credits = "BastionRP";
-		author = "BastionRP";
-		authorID = "0";
-		version = "1.0";
-		extra = 0;
-		type = "mod";
-		dependencies[] = {"World"};
-		class defs
-		{
-			class worldScriptModule
-			{
-				value = "";
-				files[] = {"BastionMod/NCC_Rations/AION/scripts/4_World"};
-			};
-		};
-	};
-};
 
 class cfgLiquidDefinitions
 {
@@ -67,6 +40,8 @@ class CfgVehicles
 		stackedRandom=0;
 		stackedUnit="";
 		varLiquidTypeInit=131072;
+		//destroyOnEmpty=0;
+		//varQuantityDestroyOnMin=0;
 		varQuantityInit=500;
 		varQuantityMin=0;
 		varQuantityMax=500;
