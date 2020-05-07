@@ -64,9 +64,10 @@ class ActionExchange: ActionInteractBase
 	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		if ( !Class.CastTo( m_VendingMachine, target.GetObject( ) ) )
+        BRP_AIONBox_Base box = BRP_AIONBox_Base.Cast( item );
+		if ( !Class.CastTo( m_VendingMachine, target.GetObject( ) ) || box )
 			return false;
-
+        
 		return true;
 	}
 	

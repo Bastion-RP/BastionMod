@@ -13,9 +13,9 @@ class CfgVehicles
 {
 	class Inventory_Base;
 	class HouseNoDestruct;
-	class BRP_AIONBox: Inventory_Base
+	class BRP_AIONBox_Base: Inventory_Base
 	{
-		scope=2;
+		scope=0;
 		displayName="AION Box";
 		descriptionShort="Box full of Aion | All-In-One NutritionAion. Developed by the NATO-CSTO Coalition.  Is an affordable, sustainable, all-in-one solution to the food crisis that we face every day. In order to regrow a population in a world wracked with disaster, it is imperative that our citizens have access to nutrition that is easy to consume and easy to sustain, so no one in any Bastion goes hungry.Each serving contains 25% daily value of protein and fats, slow-burning carbohydrates, and 28 essential vitamins and minerals that are then mixed with purified water and bottled to ensure that every citizen remains happy and, most importantly, healthy.";
 		model="BastionMod\BastionVendor_Data\AIONBox\box.p3d";
@@ -23,6 +23,7 @@ class CfgVehicles
 		itemSize[]={9,6};
 		itemsCargoSize[]={9,6};
 		itemBehaviour=0;
+		physLayer="item_large";
 		hiddenSelections[] = 
 		{
 			"all"
@@ -69,6 +70,16 @@ class CfgVehicles
 			};
 		};
 	};
+
+	class BRP_AIONBox_Full: BRP_AIONBox_Base 
+	{		
+		scope=2;
+	};
+	class BRP_AIONBox_Empty: BRP_AIONBox_Base 
+	{		
+		scope=2;
+	};
+
 	class BRP_AIONBoxes1: HouseNoDestruct
 	{
 		scope = 1;

@@ -19,22 +19,19 @@ modded class PlayerBase
 	
     override void Init()
     {
-        if ( !GetGame().IsServer() || !GetGame().IsMultiplayer() ) 
-        {
-            DayzPlayerItemBehaviorCfg toolsOneHanded = new DayzPlayerItemBehaviorCfg;
-            toolsOneHanded.SetToolsOneHanded();
+        DayzPlayerItemBehaviorCfg toolsOneHanded = new DayzPlayerItemBehaviorCfg;
+        toolsOneHanded.SetToolsOneHanded();
 
-            DayzPlayerItemBehaviorCfg     twoHanded = new DayzPlayerItemBehaviorCfg;
-            twoHanded.SetTwoHanded();
+        DayzPlayerItemBehaviorCfg     twoHanded = new DayzPlayerItemBehaviorCfg;
+        twoHanded.SetTwoHanded();
 
-            DayzPlayerItemBehaviorCfg     fireArmsItemBehaviour = new DayzPlayerItemBehaviorCfg;
-            fireArmsItemBehaviour.SetFirearms();
+        DayzPlayerItemBehaviorCfg     fireArmsItemBehaviour = new DayzPlayerItemBehaviorCfg;
+        fireArmsItemBehaviour.SetFirearms();
 
-            DayzPlayerItemBehaviorCfg     heavyItemBehaviour = new DayzPlayerItemBehaviorCfg;
-            heavyItemBehaviour.SetHeavyItems();            
-            
-            GetDayZPlayerType().AddItemInHandsProfileIK("BRP_AIONBox", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour, "dz/anims/anm/player/ik/heavy/wooden_crate.anm");
-        }
+        DayzPlayerItemBehaviorCfg     heavyItemBehaviour = new DayzPlayerItemBehaviorCfg;
+        heavyItemBehaviour.SetHeavyItems();            
+        
+        GetDayZPlayerType().AddItemInHandsProfileIK("BRP_AIONBox_Base", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour, "dz/anims/anm/player/ik/heavy/wooden_crate.anm");
         super.Init();
     }
 };

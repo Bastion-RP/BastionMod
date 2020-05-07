@@ -6,5 +6,6 @@ modded class ActionConstructor
 
         actions.Insert( ActionTrade );
         actions.Insert( ActionExchange );
+        actions.Insert( ActionRefillAIONVendingMachine );
     }
 };
