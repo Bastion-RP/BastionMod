@@ -28,16 +28,6 @@ modded class MissionGameplay {
         } else if (key == KeyCode.KC_RETURN || key == KeyCode.KC_NUMPADENTER) {
             HandleBankingEnter();
             return;
-        } else if (key == KeyCode.KC_BACK) {
-            HandleBackspace();
-        }
-    }
-
-    private void HandleBackspace() {
-        BastionBankingMenu menu = BastionBankingMenu.Cast(GetUIManager().GetMenu());
-
-        if (menu) {
-            menu.Backspace();
         }
     }
 
