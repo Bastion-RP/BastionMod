@@ -151,4 +151,125 @@ class CfgVehicles
 			};
 		};
 	};
+	class BRP_AION_Empty: BRP_AION
+	{
+		displayName="AION Bottle";
+		descriptionShort="Fill this with water then mix in AION Powder to make AION.";		
+		varQuantityInit=0;
+		varLiquidTypeInit=512;
+		destroyOnEmpty=0;		
+		liquidContainerType="512";
+	};
+
+	class PowderedMilk;
+	class BRP_AIONPowder: PowderedMilk
+	{
+		scope=2;
+		displayName="AION Powder";
+		descriptionShort="AION Powder used to make AION. Mix this with AION Bottle with water inside. Do not eat the powder.";
+		absorbency=0.89999998;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=100;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"DZ\gear\food\data\powdered_milk.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"DZ\gear\food\data\powdered_milk.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"DZ\gear\food\data\powdered_milk_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"DZ\gear\food\data\powdered_milk_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"DZ\gear\food\data\powdered_milk_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
+		class Nutrition
+		{
+			fullnessIndex=2.5;
+			energy=196;
+			water=-200;
+			nutritionalIndex=1;
+			toxicity=1;
+			agents=16;
+		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class openTunaCan
+				{
+					soundSet="openTunaCan_SoundSet";
+					id=204;
+				};
+				class pickUpItem
+				{
+					soundSet="pickUpBloodBag_SoundSet";
+					id=797;
+				};
+				class Eating_TakeFood
+				{
+					soundSet="Eating_TakeFood_Soundset";
+					id=889;
+				};
+				class Eating_BoxOpen
+				{
+					soundSet="Eating_BoxOpen_Soundset";
+					id=893;
+				};
+				class Eating_BoxShake
+				{
+					soundSet="Eating_BoxShake_Soundset";
+					id=894;
+				};
+				class Eating_BoxEnd
+				{
+					soundSet="Eating_BoxEnd_Soundset";
+					id=895;
+				};
+				class drop
+				{
+					soundset="bloodbag_drop_SoundSet";
+					id=898;
+				};
+			};
+		};
+	};
 };
