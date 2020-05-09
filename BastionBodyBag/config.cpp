@@ -45,3 +45,28 @@ class CfgMods
 		};
 	};
 };
+
+class CfgVehicles
+{    
+    class HouseNoDestruct; 
+	class BRP_dead_pile1: HouseNoDestruct
+    {
+        scope = 1;
+        model = "\DZ\structures\specific\deadbodies\dead_pile1.p3d";
+    };
+    class BRP_dead_pile2: HouseNoDestruct
+    {
+        scope = 1;
+        model = "\DZ\structures\specific\deadbodies\dead_pile2.p3d";
+    };
+    class BRP_dead_pile3: HouseNoDestruct
+    {
+        scope = 1;
+        model = "\DZ\structures\specific\deadbodies\dead_pile3.p3d";
+    };
+    class BRP_dead_pile4: HouseNoDestruct
+    {
+        scope = 1;
+        model = "\DZ\structures\specific\deadbodies\dead_pile4.p3d";
+    };
+};
