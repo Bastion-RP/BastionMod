@@ -168,6 +168,14 @@ class CfgVehicles
 		displayName="AION Powder";
 		descriptionShort="AION Powder used to make AION. Mix this with AION Bottle with water inside. Do not eat the powder.";
 		absorbency=0.89999998;
+		hiddenSelections[] = 
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[] = 
+		{
+			"BastionMod\BastionVendor_Data\aion\data\powdered_aion_co.paa"
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
