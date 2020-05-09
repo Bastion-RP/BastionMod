@@ -1,15 +1,6 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionGuns\BERETTA92\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 20:41:45 2020 : 'file' last modified on Tue Apr 28 20:41:45 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
-	class Beretta92
+	class BRP_BerettaM9
 	{
 		units[] = {};
 		weapons[] = {"BRP_BerettaM9"};
@@ -18,11 +9,9 @@ class CfgPatches
 		magazines[] = {"BRP_Mag_BerettaM9_15rnd"};
 	};
 };
+
 class Mode_Safe;
 class Mode_SemiAuto;
-class Mode_Burst;
-class Mode_FullAuto;
-class OpticsInfoPistol;
 class cfgWeapons
 {
 	class CZ75;
@@ -32,7 +21,7 @@ class cfgWeapons
 		displayName = "Beretta M9";
 		descriptionShort = "The Beretta M9 is the designation for the Beretta 92F semi-automatic pistol used by the United States Armed Forces. The M9 was adopted by the United States military as their service pistol in 1985. Chambered in 9x19mm Rounds.";
 		model = "BastionMod\BastionGuns\BERETTA92\Beretta92.p3d";
-		attachments[] = {};
+		attachments[] = {"pistolMuzzle", "pistolFlashlight"};
 		magazines[] = {"BRP_Mag_BerettaM9_15rnd"};
 		itemSize[] = {4,2};
 		class DamageSystem
@@ -48,6 +37,7 @@ class cfgWeapons
 		};
 	};
 };
+
 class CfgMagazines
 {
 	class Mag_CZ75_15Rnd;

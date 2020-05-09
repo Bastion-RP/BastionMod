@@ -24,7 +24,7 @@ class CfgMods
 		hidePicture = 1;
 		name = "BastionGuns";
 		credits = "";
-		author = "Helkhiana";
+		author = "Helkhiana & Jordan";
 		authorID = "0";
 		version = "1.0";
 		extra = 0;
