@@ -23,7 +23,7 @@ class BastionBankingMenu : UIScriptedMenu {
     protected ref map<string, string> mapCommands;
     protected PlayerBase player;
     protected string userDir, initialPassword, password, cmdUsed;
-    protected bool isLoggingIn, isRegistering, isConfirming, isConfirmed, isConfirmingPasscode;
+    protected bool isLoggingIn, isRegistering, isConfirming, isConfirmed, isConfirmingPasscode, isResetting;
     protected int bankId, inputAmount;
 
     override Widget Init() {
@@ -54,7 +54,7 @@ class BastionBankingMenu : UIScriptedMenu {
     }
 
     override bool OnChange(Widget w, int x, int y, bool finished) {
-        if (isLoggingIn || isRegistering || isConfirmingPasscode) {
+        if (isLoggingIn || isRegistering || isConfirmingPasscode || isResetting) {
             if (EditBoxWidget.Cast(w) == activeInputBox) {
                 string boxText = activeInputBox.GetText();
 
@@ -200,7 +200,7 @@ class BastionBankingMenu : UIScriptedMenu {
         inputText.ToLower();
         inputText.Trim();
 
-        if (isLoggingIn || isRegistering || isConfirmingPasscode) {
+        if (isLoggingIn || isRegistering || isConfirmingPasscode || isResetting) {
             if (initialPassword != string.Empty) {
                 if (isLoggingIn) {
                     isLoggingIn = false;
@@ -209,24 +209,26 @@ class BastionBankingMenu : UIScriptedMenu {
                     password = string.Empty;
                     CreateTextGrid("Logging in...", true);
 
-                    auto loginParams = new Param2<int, string>(bankId, password);
+                    SetFocus(null);
+                    auto loginParams = new Param2<int, string>(bankId, initialPassword);
                     GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_ACCOUNTLOGIN, loginParams, true);
-                } else if (isRegistering) {
-                    isConfirmingPasscode = true;
-                    isRegistering = false;
-                    password = initialPassword;
-                    initialPassword = string.Empty;
-
-                    CreateInputGrid("Confirm Passcode:");
                 } else if (isConfirmingPasscode) {
                     if (password == initialPassword) {
-                        CreateTextGrid("Registering...", true);
-
                         auto registerParam = new Param1<string>(password);
+
+                        if (isResetting) {
+                            SetFocus(null);
+                            CreateTextGrid("Resetting passcode...", true);
+                            GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_RESETPASSCODE, registerParam, true);
+                        } else {
+                            SetFocus(null);
+                            CreateTextGrid("Registering...", true);
+                            GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_REGISTERACCOUNT, registerParam, true);
+                        }
                         initialPassword = string.Empty;
                         password = string.Empty;
-
-                        GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_REGISTERACCOUNT, registerParam, true);
+                        isConfirmingPasscode = false;
+                        isResetting = false;
                     } else {
                         isRegistering = true;
                         initialPassword = string.Empty;
@@ -236,6 +238,13 @@ class BastionBankingMenu : UIScriptedMenu {
                         CreateInputGrid("Enter Passcode:");
                     }
                     isConfirmingPasscode = false;
+                } else if (isRegistering || isResetting) {
+                    isConfirmingPasscode = true;
+                    isRegistering = false;
+                    password = initialPassword;
+                    initialPassword = string.Empty;
+
+                    CreateInputGrid("Confirm Passcode:");
                 }
             } else {
                 CreateTextGrid("No Password Entered!", true);
@@ -423,6 +432,9 @@ class BastionBankingMenu : UIScriptedMenu {
                 }
             case "reset":
                 {
+                    isResetting = true;
+                    CreateInputGrid("Enter New Password:");
+                    ScrollToBottom();
                     break;
                 }
             default:

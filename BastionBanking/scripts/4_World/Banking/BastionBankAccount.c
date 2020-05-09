@@ -9,6 +9,12 @@ class BastionBankAccount {
         password = pass;
     }
 
+    void SetPassword(string password) {
+        if (GetGame().IsMultiplayer() && GetGame().IsServer()) {
+            this.password = password;
+        }
+    }
+
     void Deposit(int amount) {
         funds += amount;
     }
