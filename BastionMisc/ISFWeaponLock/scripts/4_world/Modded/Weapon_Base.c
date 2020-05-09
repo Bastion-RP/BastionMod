@@ -27,7 +27,7 @@ modded class Weapon_Base {
         return super.CanPutIntoHands(parent);
     }
 
-    override bool CanPutAsAttachment(EntityAI parent) {
+    /* override bool CanPutAsAttachment(EntityAI parent) {
         if (IsISFWeapon()) {
             PlayerBase player;
             if (Class.CastTo(player, parent)) {
@@ -37,5 +37,5 @@ modded class Weapon_Base {
             }
         }
         return super.CanPutAsAttachment(parent);
-    }
+    } */
 }
