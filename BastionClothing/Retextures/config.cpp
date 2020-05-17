@@ -103,14 +103,6 @@ class cfgVehicles
 		descriptionShort = "";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\isff_pants.paa","BastionMod\BastionClothing\Retextures\data\isff_pants.paa","BastionMod\BastionClothing\Retextures\data\isff_pants.paa"};
 	};
-	class BRP_ISF_OfficerBeret: MilitaryBeret_Red
-	{
-		scope = 2;
-		displayName = "ISF Officer Beret";
-		descriptionShort = "";
-		hiddenSelection[] = {"zbytek"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\ncc_officerberet.paa","BastionMod\BastionClothing\Retextures\data\ncc_officerberet.paa","BastionMod\BastionClothing\Retextures\data\ncc_officerberet.paa"};
-	};
 	class BRP_ISF_DART_Helmet: Mich2001Helmet
 	{
 		scope = 2;
@@ -121,6 +113,8 @@ class cfgVehicles
 	class BRP_TTsKOJacket_Civilian: TTsKOJacket_ColorBase
 	{
 		scope=2;
+		displayName = "NCC Citizen's Jacket";
+        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in navy blue.";
 		visibilityModifier=0.5;
 		itemSize[]={3,3};
 		itemsCargoSize[]={5,4};
@@ -134,6 +128,8 @@ class cfgVehicles
 	class BRP_TTsKOJacket_Civilian_Brown: TTsKOJacket_ColorBase
 	{
 		scope=2;
+		displayName = "NCC Citizen's Jacket";
+        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in brown.";
 		visibilityModifier=0.5;
 		itemSize[]={3,3};
 		itemsCargoSize[]={5,4};
@@ -145,9 +141,11 @@ class cfgVehicles
 		};
 	};
 	
-	class BRP_MilitaryBeret_ISF: MilitaryBeret_ColorBase
+	class BRP_ISF_OfficerBeret: MilitaryBeret_ColorBase
 	{
 		scope=2;
+		displayName = "NCC Military Beret";
+        descriptionShort = "Military beret for high-ranking NCC officials.";
 		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
 		class ClothingTypes
 		{
@@ -165,7 +163,7 @@ class cfgVehicles
 	class BRP_ISF_BaseballCap: BaseballCap_ColorBase
 	{
 		scope=2;
-		visibilityModifier=0.94999999;//Adjust to needs
+		visibilityModifier=0.94999999;
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\baseballcap_isf_co.paa",
@@ -233,9 +231,11 @@ class cfgVehicles
 		};
 	};
 
-	class BRP_PoliceVest_ISF: PoliceVest
+	class BRP_ISF_PoliceVest: PoliceVest
 	{
 		scope=2;
+		displayName = "ISF Light Vest";
+		descriptionShort = "Standard issue ISF vest. Lightly armored.";
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\policevest_isf_co.paa",
