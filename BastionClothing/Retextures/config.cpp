@@ -187,10 +187,10 @@ class cfgVehicles
 					{
 
 						{
-							1.0,
+							1.01,
 
 							{
-								"BastionMod\BastionClothing\Retextures\data\baseballcap_isf.rvmat"
+								"DZ\characters\headgear\data\BaseballCapII.rvmat"
 							}
 						},
 
@@ -257,53 +257,33 @@ class cfgVehicles
 				    hitpoints=100;
 					healthLevels[]=
 					{
-
 						{
-							1.0,
-
+							1.01,
 							{
-								"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat",
-								"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat",
-								"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat"
+								"DZ\characters\vests\Data\PoliceVest.rvmat"
 							}
 						},
-
 						{
 							0.69999999,
-
 							{
-								"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat",
-								"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat",
 								"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat"
 							}
 						},
-
 						{
 							0.5,
-
 							{
-								"BastionMod\BastionClothing\Retextures\data\policevest_isf_damage.rvmat",
-								"BastionMod\BastionClothing\Retextures\data\policevest_isf_damage.rvmat",
 								"BastionMod\BastionClothing\Retextures\data\policevest_isf_damage.rvmat"
 							}
 						},
-
 						{
 							0.30000001,
-
 							{
-								"BastionMod\BastionClothing\Retextures\data\policevest_isf_damage.rvmat",
-								"BastionMod\BastionClothing\Retextures\data\policevest_isf_damage.rvmat",
 								"BastionMod\BastionClothing\Retextures\data\policevest_isf_damage.rvmat"
 							}
 						},
-
 						{
 							0.0,
-
 							{
-								"BastionMod\BastionClothing\Retextures\data\policevest_isf_destruct.rvmat",
-								"BastionMod\BastionClothing\Retextures\data\policevest_isf_destruct.rvmat",
 								"BastionMod\BastionClothing\Retextures\data\policevest_isf_destruct.rvmat"
 							}
 						}
