@@ -17,6 +17,8 @@ class cfgVehicles
 	class MilitaryBeret_Red;
 	class TTsKOJacket_ColorBase;
 	class MilitaryBeret_ColorBase;
+	class BaseballCap_ColorBase;
+	class PoliceVest;
 	class BRP_BurlapSackCoverMask: BalaclavaMask_ColorBase
 	{
 		scope = 2;
@@ -129,6 +131,19 @@ class cfgVehicles
 			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa"
 		};
 	};
+	class BRP_TTsKOJacket_Civilian_Brown: TTsKOJacket_ColorBase
+	{
+		scope=2;
+		visibilityModifier=0.5;
+		itemSize[]={3,3};
+		itemsCargoSize[]={5,4};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_brown_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_brown_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_brown_co.paa"
+		};
+	};
 	
 	class BRP_MilitaryBeret_ISF: MilitaryBeret_ColorBase
 	{
@@ -144,6 +159,220 @@ class cfgVehicles
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa",
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa",
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa"
+		};
+	};
+
+	class BRP_ISF_BaseballCap: BaseballCap_ColorBase
+	{
+		scope=2;
+		visibilityModifier=0.94999999;//Adjust to needs
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\baseballcap_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\baseballcap_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\baseballcap_isf_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\baseballcap_isf.rvmat",
+			"BastionMod\BastionClothing\Retextures\data\baseballcap_isf.rvmat",
+			"BastionMod\BastionClothing\Retextures\data\baseballcap_isf.rvmat"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=100;
+					healthLevels[]=
+					{
+
+						{
+							1.0,
+
+							{
+								"BastionMod\BastionClothing\Retextures\data\baseballcap_isf.rvmat"
+							}
+						},
+
+						{
+							0.69999999,
+
+							{
+								"BastionMod\BastionClothing\Retextures\data\baseballcap_isf.rvmat"
+							}
+						},
+
+						{
+							0.5,
+
+							{
+								"BastionMod\BastionClothing\Retextures\data\baseballcap_isf_damage.rvmat"
+							}
+						},
+
+						{
+							0.30000001,
+
+							{
+								"BastionMod\BastionClothing\Retextures\data\baseballcap_isf_damage.rvmat"
+							}
+						},
+
+						{
+							0.0,
+
+							{
+								"BastionMod\BastionClothing\Retextures\data\baseballcap_isf_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
+	};
+
+	class BRP_PoliceVest_ISF: PoliceVest
+	{
+		scope=2;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\policevest_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\policevest_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\policevest_isf_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat",
+			"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat",
+			"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+				    hitpoints=100;
+					healthLevels[]=
+					{
+
+						{
+							1.0,
+
+							{
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat",
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat",
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat"
+							}
+						},
+
+						{
+							0.69999999,
+
+							{
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat",
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat",
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf.rvmat"
+							}
+						},
+
+						{
+							0.5,
+
+							{
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf_damage.rvmat",
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf_damage.rvmat",
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf_damage.rvmat"
+							}
+						},
+
+						{
+							0.30000001,
+
+							{
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf_damage.rvmat",
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf_damage.rvmat",
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf_damage.rvmat"
+							}
+						},
+
+						{
+							0.0,
+
+							{
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf_destruct.rvmat",
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf_destruct.rvmat",
+								"BastionMod\BastionClothing\Retextures\data\policevest_isf_destruct.rvmat"
+							}
+						}
+					};
+				};
+	            class GlobalArmor
+                {
+                    class Projectile
+                    {
+                        class Health
+                        {
+                            damage=0.5;
+                        };
+                        class Blood
+                        {
+                            damage=0;
+                        };
+                        class Shock
+                        {
+                            damage=0.4;
+                        };
+                    };
+                    class Melee
+                    {
+                        class Health
+                        {
+                            damage=0.60;
+                        };
+                        class Blood
+                        {
+                            damage=0;
+                        };
+                        class Shock
+                        {
+                            damage=0.60;
+                        };
+                    };
+                    class Infected
+                    {
+                        class Health
+                        {
+                            damage=0.60;
+                        };
+                        class Blood
+                        {
+                            damage=0;
+                        };
+                        class Shock
+                        {
+                            damage=0.60;
+                        };
+                    };
+                    class FragGrenade
+                    {
+                        class Health
+                        {
+                            damage=0.5;
+                        };
+                        class Blood
+                        {
+                            damage=0;
+                        };
+                        class Shock
+                        {
+                            damage=0.4;
+                        };
+                    };
+                };
+			};
 		};
 	};
 };
