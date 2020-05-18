@@ -1,22 +1,14 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionGuns\CK556\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 20:42:22 2020 : 'file' last modified on Tue Apr 28 20:42:22 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class CK556
 	{
 		units[] = {};
 		weapons[] = {"BRP_CSR556"};
 		requiredVersion = 0.1;
-		requiredAddons[] = {"DZ_Data","DZ_Weapons_Firearms","DZ_Characters"};
+		requiredAddons[] = {"DZ_Data","DZ_Weapons_Firearms"};
 	};
 };
+
 class Mode_Safe;
 class Mode_SemiAuto;
 class Mode_Burst;
@@ -24,10 +16,10 @@ class Mode_FullAuto;
 class cfgWeapons
 {
 	class FAL;
-	class Ck556_Base: FAL
+	class BRP_CSR556_Base: FAL
 	{
 		scope = 0;
-		ironsightsExcludingOptics[] = {"M4_CarryHandleOptic","BUISOptic","M68Optic","M4_T3NRDSOptic","ReflexOptic","ACOGOptic"};
+		ironsightsExcludingOptics[] = {"M4_CarryHandleOptic","BUISOptic","M68Optic","M4_T3NRDSOptic","ReflexOptic","ACOGOptic","BRP_CSR556"};
 		weight = 1990;
 		absorbency = 0;
 		repairableWithKits[] = {5,1};
@@ -260,13 +252,13 @@ class cfgWeapons
 			};
 		};
 	};
-	class BRP_CSR556: Ck556_Base
+	class BRP_CSR556: BRP_CSR556_Base
 	{
 		scope = 2;
 		displayName = "CSR-556 GROT";
-		descriptionShort = "Originally a design licensed from Poland, this rifle was intended as a replacement service rifle for the Ukrainian military. With the lack of manufacturing infrastructure after the disaster, the NCC took over the factories in central Ukraine, and began to manufacture it en-masse under its new designation, the CSR-556, as a standard issue 5.56x45mm infantry carbine.";
+		descriptionShort = "Originally a design licensed from Poland, this rifle was intended as a replacement service rifle for the Ukrainian military. With the lack of manufacturing infrastructure after the disaster, the NCC took over the factories in central Ukraine, and began to manufacture it en-masse under its new designation, the CSR-556, as a standard issue 5.56x45 infantry carbine.";
 		model = "BastionMod\BastionGuns\CK556\ck556.p3d";
-		attachments[] = {"weaponFlashlight","weaponBipod","weaponOptics","WeaponHandguardM4","weaponWrap","suppressorImpro","HighcalibreSup","weaponMuzzleM4"};
+		attachments[] = {"weaponFlashlight","weaponBipod","weaponOptics","weaponWrap","suppressorImpro","HighcalibreSup","weaponMuzzleM4"};
 		itemSize[] = {8,3};
 		class DamageSystem
 		{
@@ -275,43 +267,16 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\firearms\VSS\data\vss.rvmat"}},{0.7,{"DZ\weapons\firearms\VSS\data\vss.rvmat"}},{0.5,{"DZ\weapons\firearms\VSS\data\vss_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\VSS\data\vss_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\VSS\data\vss_destruct.rvmat"}}};
+					healthLevels[] = 
+					{
+						{1.0,{"BastionMod\BastionGuns\CK556\data\ck556.rvmat"}},
+						{0.7,{"BastionMod\BastionGuns\CK556\data\ck556.rvmat"}},
+						{0.5,{"BastionMod\BastionGuns\CK556\data\ck556_damage.rvmat"}},
+						{0.3,{"BastionMod\BastionGuns\CK556\data\ck556_damage.rvmat"}},
+						{0.0,{"BastionMod\BastionGuns\CK556\data\ck556_destruct.rvmat"}}
+					};
 				};
 			};
 		};
-	};
-};
-class CfgNonAIVehicles
-{
-	class ProxyAttachment;
-	class ProxyMagazine_STANAG30: ProxyAttachment
-	{
-		scope = 2;
-		inventorySlot = "magazine";
-		model = "\dz\weapons\attachments\magazine\magazine_STANAG30.p3d";
-	};
-	class ProxyMagazine_PMAG_10: ProxyAttachment
-	{
-		scope = 2;
-		inventorySlot = "magazine";
-		model = "\dz\weapons\attachments\magazine\magazine_pmag_10.p3d";
-	};
-	class ProxyMagazine_PMAG_20: ProxyAttachment
-	{
-		scope = 2;
-		inventorySlot = "magazine";
-		model = "\dz\weapons\attachments\magazine\magazine_pmag_20.p3d";
-	};
-	class ProxyMagazine_PMAG_30: ProxyAttachment
-	{
-		scope = 2;
-		inventorySlot = "magazine";
-		model = "\dz\weapons\attachments\magazine\magazine_pmag_30.p3d";
-	};
-	class ProxyMagazine_PMAG_40: ProxyAttachment
-	{
-		scope = 2;
-		inventorySlot = "magazine";
-		model = "\dz\weapons\attachments\magazine\magazine_pmag_40.p3d";
 	};
 };
