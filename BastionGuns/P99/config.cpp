@@ -1,13 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionGuns\P99\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 20:44:24 2020 : 'file' last modified on Tue Apr 28 20:44:24 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class P99
 	{
@@ -33,6 +24,7 @@ class cfgWeapons
 		descriptionShort = "The Walther P99 is a semi-automatic pistol, chambered in 9x19mm, developed by the German company Carl Walther GmbH Sportwaffen of Ulm for law enforcement, security forces and the civilian shooting market as a replacement for the Walther P5 and the P88. The P99 and its variants are also made under licence by Fabryka Broni Radom.";
 		model = "BastionMod\BastionGuns\P99\P99.p3d";
 		attachments[] = {};
+		PPDOFProperties[]={0,0,0,0,0,0};
 		magazines[] = {"BRP_Mag_P99_15rnd"};
 		itemSize[] = {4,2};
 		class DamageSystem

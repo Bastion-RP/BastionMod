@@ -1,13 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionGuns\CK556\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 20:42:22 2020 : 'file' last modified on Tue Apr 28 20:42:22 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class CK556
 	{
@@ -17,9 +8,9 @@ class CfgPatches
 		requiredAddons[] = {"DZ_Data","DZ_Weapons_Firearms","DZ_Characters"};
 	};
 };
+
 class Mode_Safe;
 class Mode_SemiAuto;
-class Mode_Burst;
 class Mode_FullAuto;
 class cfgWeapons
 {
@@ -266,7 +257,7 @@ class cfgWeapons
 		displayName = "CSR-556 GROT";
 		descriptionShort = "Originally a design licensed from Poland, this rifle was intended as a replacement service rifle for the Ukrainian military. With the lack of manufacturing infrastructure after the disaster, the NCC took over the factories in central Ukraine, and began to manufacture it en-masse under its new designation, the CSR-556, as a standard issue 5.56x45mm infantry carbine.";
 		model = "BastionMod\BastionGuns\CK556\ck556.p3d";
-		attachments[] = {"weaponFlashlight","weaponBipod","weaponOptics","WeaponHandguardM4","weaponWrap","suppressorImpro","HighcalibreSup","weaponMuzzleM4"};
+		attachments[] = {"weaponFlashlight","weaponOptics","weaponWrap","suppressorImpro","weaponMuzzleM4"};
 		itemSize[] = {8,3};
 		class DamageSystem
 		{
