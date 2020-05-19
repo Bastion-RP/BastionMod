@@ -1,4 +1,4 @@
-class Ck556_Base: FAL_Base {
+class CSR556_Base: FAL_Base {
     override bool IsISFWeapon() {
         return true;
     }
@@ -16,6 +16,6 @@ class Csc45_Base : AKS74U {
     }
 }
 
-class BRP_CSR556 : Ck556_Base {}
-class BRP_CSP9 : CSP9_Base {}
-class BRP_CSC45 : Csc45_Base {}
+class BRP_CSR556 extends CSR556_Base {}
+class BRP_CSP9 extends CSP9_Base {}
+class BRP_CSC45 extends Csc45_Base {}
