@@ -16,7 +16,7 @@ class Mode_FullAuto;
 class cfgWeapons
 {
 	class FAL;
-	class BRP_CSR556_Base: FAL
+	class CSR556_Base: FAL
 	{
 		scope = 0;
 		ironsightsExcludingOptics[] = {"M4_CarryHandleOptic","BUISOptic","M68Optic","M4_T3NRDSOptic","ReflexOptic","ACOGOptic","BRP_CSR556"};
@@ -252,7 +252,7 @@ class cfgWeapons
 			};
 		};
 	};
-	class BRP_CSR556: BRP_CSR556_Base
+	class BRP_CSR556: CSR556_Base
 	{
 		scope = 2;
 		displayName = "CSR-556 GROT";
