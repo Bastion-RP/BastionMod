@@ -1,11 +1,11 @@
-enum MassSchottiAnimState
+enum JCSchottiAnimState
 {
 	DEFAULT 			= 0, 	//Animstates are only important for weapon that will stay open when empty - stuff like that
 	OPENED				= 1, 	// Duh
 	JAMMED				= 2,	// Typical pvp server owner: hOw tO dIsAbLe wEaPoN jAm
 };
 //States the weapon can have
-enum MassSchottiStableStateID  
+enum JCSchottiStableStateID  
 {
 	UNKNOWN		=  0,
 	Empty		=  1,
@@ -14,43 +14,43 @@ enum MassSchottiStableStateID
 	Jammed		=  4,
 }
 
-class MassSchottiEmpty extends WeaponStableState
+class JCSchottiEmpty extends WeaponStableState
 {
 	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { Empty"); super.OnEntry(e); }
 	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } Empty"); }
-	override int GetCurrentStateID () { return MassSchottiStableStateID.Empty; }
+	override int GetCurrentStateID () { return JCSchottiStableStateID.Empty; }
 	override bool HasBullet () { return false; }
 	override bool IsJammed () { return false; }
 };
-class MassSchottiDry extends WeaponStableState
+class JCSchottiDry extends WeaponStableState
 {
 	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { Dry"); super.OnEntry(e); }
 	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } Dry"); }
-	override int GetCurrentStateID () { return MassSchottiStableStateID.Dry; }
+	override int GetCurrentStateID () { return JCSchottiStableStateID.Dry; }
 	override bool HasBullet () { return false; }
 	override bool IsJammed () { return false; }
 	override bool IsBoltOpen () { return true; }
 };
-class MassSchottiLoaded extends WeaponStableState
+class JCSchottiLoaded extends WeaponStableState
 {
 	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { Loaded C"); super.OnEntry(e); }
 	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } Loaded C"); }
-	override int GetCurrentStateID () { return MassSchottiStableStateID.Loaded; }
+	override int GetCurrentStateID () { return JCSchottiStableStateID.Loaded; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return false; }
 	override bool IsJammed () { return false; }
 };
-class MassSchottiJammed extends WeaponStateJammed
+class JCSchottiJammed extends WeaponStateJammed
 {
 	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { Jammed"); super.OnEntry(e); }
 	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } Jammed"); }
-	override int GetCurrentStateID () { return MassSchottiStableStateID.Jammed; }
+	override int GetCurrentStateID () { return JCSchottiStableStateID.Jammed; }
 	override bool HasBullet () { return true; }
 	override bool IsJammed () { return true; }
 	override bool IsBoltOpen () { return true; }
 };
 
-class AutoShotgunScript extends Rifle_Base
+class AutoShotGunScript extends Rifle_Base
 {
 	ref WeaponStateBase Empty;			// you could also just use "E","D","L","J" - however i want to keep it simple and easily readable
 	ref WeaponStateBase Dry;
@@ -73,10 +73,10 @@ class AutoShotgunScript extends Rifle_Base
 		m_abilities.Insert(new AbilityRecord(WeaponActions.CHAMBERING, WeaponActionChamberingTypes.CHAMBERING_ENDLOOPABLE));
 		
 		
-		Empty = 	new MassSchottiEmpty(this, NULL, MassSchottiAnimState.DEFAULT);			
-		Dry = 		new MassSchottiDry(this, NULL, MassSchottiAnimState.OPENED);
-		Loaded = 	new MassSchottiLoaded(this, NULL, MassSchottiAnimState.DEFAULT);
-		Jammed = 	new MassSchottiJammed(this, NULL, MassSchottiAnimState.JAMMED);
+		Empty = 	new JCSchottiEmpty(this, NULL, JCSchottiAnimState.DEFAULT);			
+		Dry = 		new JCSchottiDry(this, NULL, JCSchottiAnimState.OPENED);
+		Loaded = 	new JCSchottiLoaded(this, NULL, JCSchottiAnimState.DEFAULT);
+		Jammed = 	new JCSchottiJammed(this, NULL, JCSchottiAnimState.JAMMED);
 		// This should be the basic weapon states and stuff it should be able to do ... now comes the real fun OwO
 		
 		WeaponChargingInnerMag		Mech_Empty = 	new WeaponChargingInnerMag(this, NULL, WeaponActions.MECHANISM, WeaponActionMechanismTypes.MECHANISM_CLOSED);

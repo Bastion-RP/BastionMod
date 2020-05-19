@@ -1,13 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionGuns\PX4STORM\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 20:45:02 2020 : 'file' last modified on Tue Apr 28 20:45:02 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class BastionRIP_Pistols_PX4
 	{
@@ -18,11 +9,9 @@ class CfgPatches
 		magazines[] = {"BRP_Mag_PX4_20Rnd"};
 	};
 };
+
 class Mode_Safe;
 class Mode_SemiAuto;
-class Mode_Burst;
-class Mode_FullAuto;
-class OpticsInfoPistol;
 class cfgWeapons
 {
 	class CZ75;
@@ -242,7 +231,7 @@ class cfgWeapons
 		displayName = "PX4 Storm";
 		descriptionShort = "PX4 Storm is a pistol chambered in 9x19mm rounds.";
 		model = "\BastionMod\BastionGuns\PX4STORM\px4.p3d";
-		attachments[] = {"pistolMuzzle","pistolOptics","pistolFlashlight"};
+		attachments[] = {"pistolMuzzle","pistolFlashlight"};
 		itemSize[] = {4,2};
 		class DamageSystem
 		{

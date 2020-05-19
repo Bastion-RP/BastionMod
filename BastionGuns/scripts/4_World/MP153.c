@@ -1,4 +1,4 @@
-class BRP_BenelliM2 : AutoShotgunScript
+class BRP_BenelliM2 : AutoShotGunScript
 {
 	void BRP_BenelliM2 ()
 	{

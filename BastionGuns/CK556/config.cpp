@@ -1,4 +1,4 @@
-﻿class CfgPatches
+class CfgPatches
 {
 	class CK556
 	{
