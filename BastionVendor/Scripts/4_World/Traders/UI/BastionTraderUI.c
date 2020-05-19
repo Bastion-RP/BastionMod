@@ -81,10 +81,10 @@ class TraderUI extends UIScriptedMenu
 
         if ( GetGame().IsMultiplayer() )
         {
-            GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( Reload, 100 );
+            GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( Reload, 250 );
         }
 
-        GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( Load, 100 );
+        GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( Load, 500 );
 
         return layoutRoot;
     }
@@ -102,8 +102,11 @@ class TraderUI extends UIScriptedMenu
     {  
         GetRPCManager().SendRPC( "Bastion", "SetTraderCurrency", new Param1< bool >( true ), true, GetGame().GetPlayer().GetIdentity() );
 
-        GetRPCManager().SendRPC( "Bastion", "SetTraderPlayer", new Param1< string >( m_Trader.GetType() ), true, GetGame().GetPlayer().GetIdentity() );
-
+        if ( m_Trader )
+        {
+            GetRPCManager().SendRPC( "Bastion", "SetTraderPlayer", new Param1< string >( m_Trader.GetType() ), true, GetGame().GetPlayer().GetIdentity() );
+        }
+   
         m_GridScrollerLayout.VScrollToPos( 0 );
 
         m_Loading = true;

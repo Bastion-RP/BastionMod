@@ -144,4 +144,9 @@ class CfgVehicles
 			};
 		};
 	};
+	class BRP_CartonBox_BodyBagKits: HouseNoDestruct
+	{
+		scope = 1;
+		model = "\BastionMod\BastionBodyBag_Data\cartonbox\cartonbox.p3d";
+	};
 };

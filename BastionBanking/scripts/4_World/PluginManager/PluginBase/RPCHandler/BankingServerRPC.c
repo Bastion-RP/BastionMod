@@ -31,6 +31,29 @@ class BankingServerRPC : PluginBase {
         string password;
 
         switch (rpc_type) {
+            case BSTBankRPC.RPC_SERVER_RESETPASSCODE:
+                {
+                    Param1<string> dataResetPasscode;
+                    if (!ctx.Read(dataResetPasscode)) { return; }
+
+                    player = PlayerBase.Cast(target);
+                    password = dataResetPasscode.param1;
+                    
+                    if (player && password != string.Empty) {
+                        bankAccount = GetBankAccountManager().GetAccountByPlayerBase(player);
+
+                        if (bankAccount) {
+                            if (GetBankAccountManager().ResetAccountPassword(bankAccount, password)) {
+                                params = new Param2<int, map<string, string>>(BBRPCTypes.ACCOUNT_RESET, null);
+                                GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
+                            } else {
+                                params = new Param2<int, map<string, string>>(BBRPCTypes.ERROR_RESET, null);
+                                GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
+                            }
+                        }
+                    }
+                    break;
+                }
             case BSTBankRPC.RPC_SERVER_REGISTERACCOUNT:
                 {
                     Param1<string> dataRegister;

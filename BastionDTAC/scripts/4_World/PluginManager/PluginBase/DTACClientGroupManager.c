@@ -2,6 +2,7 @@ class DTACClientGroupManager : PluginBase {
     private ref array<ref DTACGroup> arrayGroups;
     private ref DTACGroup activeGroup;
     private ref DTACHUD hud;
+    private ref BST_CompassHUD compassHUD;
     static ref ScriptInvoker groupInvoker, statUpdateInvoker, playerUpdateInvoker;
     private bool isRateLimited, isUpdateRateLimited;
 
@@ -18,6 +19,17 @@ class DTACClientGroupManager : PluginBase {
         delete hud;
         
         arrayGroups = new array<ref DTACGroup>();
+    }
+
+    void InitCompassHUD() {
+        DeleteCompassHUD();
+        compassHUD = new BST_CompassHUD();
+    }
+
+    void DeleteCompassHUD() {
+        if (compassHUD) {
+            delete compassHUD;
+        }
     }
 
     void InitActiveGroup() {
@@ -97,6 +109,7 @@ class DTACClientGroupManager : PluginBase {
     }
     
     ref array<ref DTACGroup> GetGroups() { return arrayGroups; }
+    BST_CompassHUD GetCompassHUD() { return compassHUD; }
     DTACGroup GetActiveGroup() { return activeGroup; }
     DTACHUD GetHUD() { return hud; }
     bool IsRateLimited() { return isRateLimited; }

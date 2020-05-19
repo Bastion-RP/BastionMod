@@ -40,94 +40,6 @@ class BastionAccountManager : PluginBase {
         }
     }
 
-/*     void AccountManagerRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx) {
-        if (!sender) { return; }
-
-        Param2<string, string> params;
-        ref BastionActiveBankAccount bankAccount;
-        PlayerBase player;
-        int bankId;
-        string password, type, error;
-
-        switch (rpc_type) {
-            case BSTBankRPC.RPC_SERVER_REGISTERACCOUNT:
-                {
-                    Param1<string> dataRegister;
-                    if (!ctx.Read(dataRegister)) { return; }
-
-                    player = PlayerBase.Cast(target);
-                    password = dataRegister.param1;
-
-                    if (player) {
-                        if (CanCreateNewAccount(player, bankId)) {
-                            CreateAccount(player, password, bankId, bankAccount);
-                            Login(player, bankAccount);
-
-                            type = "registersuccess";
-                            error = bankAccount.GetId().ToString();
-                        } else {
-                            type = "invalid";
-                            error = ", you already have an account!";
-                        }
-                    } else {
-                        // Send rpc back to client to show error
-                        type = "critical";
-                        error = "Critical Error!!! Aborting!";
-                    }
-                    params = new Param2<string, string>(type, error);
-                    GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
-                    break;
-                }
-            case BSTBankRPC.RPC_SERVER_ACCOUNTLOGIN:
-                {
-                    Param2<int, string> dataLogin;
-                    if (!ctx.Read(dataLogin)) { return; }
-
-                    player = PlayerBase.Cast(target);
-                    bankId = dataLogin.param1;
-                    password = dataLogin.param2;
-
-                    Print("BankId at RPC=" + bankId);
-
-                    if (player) {
-                        if (mapAccountLogins.Contains(player)) {
-                            type = "invalid";
-                            error = ", you are already logged in!";
-                        } else {
-                            if (CanLogin(player, bankId, password, bankAccount)) {
-                                Login(player, bankAccount);
-
-                                type = "loginsuccess";
-                                error = "" + bankAccount.GetId() + " " + bankAccount.GetFunds() + " " + bankAccount.GetOverflowFunds();
-                            } else {
-                                type = "loginfail";
-                                error = "Invalid Password or AccountId";
-                            }
-                        }
-                        params = new Param2<string, string>(type, error);
-                        GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
-                    }
-                    break;
-                }
-            case BSTBankRPC.RPC_SERVER_ACCOUNTLOGOUT:
-                {
-                    player = PlayerBase.Cast(target);
-
-                    if (player) {
-                        if (CanLogout(player)) {
-                            Logout(player);
-                            error = "Goodbye, ";
-                        } else {
-                            error = "You are not logged in!";
-                        }
-                        params = new Param2<string, string>("logout", error);
-                        GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
-                    }
-                    break;
-                }
-        }
-    } */
-
     void LoginTimeoutLoop() {
         while (true) {
             for (int i = (mapAccountLogins.Count() - 1); i >= 0; i--) {
@@ -287,6 +199,26 @@ class BastionAccountManager : PluginBase {
             account.Deposit(transferAmount);
             JsonFileLoader<BastionBankAccount>.JsonSaveFile(accountDir, account);
         }
+    }
+
+    bool ResetAccountPassword(BastionBankAccount account, string password) {
+        if (account && password != string.Empty) {
+            // log out all accounts by id
+            for (int i = (mapAccountLogins.Count() - 1); i >= 0; i--) {
+                BastionBankAccount checkAccount = mapAccountLogins.GetElement(i);
+
+                if (checkAccount && checkAccount.GetId() == account.GetId()) {
+                    mapAccountLogins.RemoveElement(i);
+                }
+            }
+            account.SetPassword(password);
+
+            string accountDir = BBConst.accountDir + "\\" + account.GetId() + BBConst.fileType;
+
+            JsonFileLoader<BastionBankAccount>.JsonSaveFile(accountDir, account);
+            return true;
+        }
+        return false;
     }
 
     int GetWageByPlayerBase(PlayerBase player) {

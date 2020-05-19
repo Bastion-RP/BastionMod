@@ -1,0 +1,40 @@
+FrameWidgetClass rootFrame {
+ position 0 20
+ size 900 55
+ halign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  ImageWidgetClass imgMarker {
+   ignorepointer 1
+   size 20 20
+   halign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   imageTexture "{D150F2CAA292C5F2}BastionMod/BastionDTAC/gui/img/compassMarker.edds"
+   mode blend
+   "src alpha" 1
+   stretch 1
+   "flip v" 1
+  }
+  ImageWidgetClass imgCompass {
+   ignorepointer 1
+   position -1800 0
+   size 5400 40
+   halign center_ref
+   valign bottom_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   imageTexture "{95CD51CE3008AA67}BastionMod/BastionDTAC/gui/img/compassHUD.edds"
+   mode blend
+   "src alpha" 1
+   stretch 1
+  }
+ }
+}

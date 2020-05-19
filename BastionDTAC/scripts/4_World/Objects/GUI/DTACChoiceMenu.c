@@ -96,7 +96,7 @@ class DTACChoiceMenu : UIScriptedMenu {
         GetGame().GetUIManager().ShowCursor(true);
         GetGame().GetMission().GetHud().Show(false);
 
-        if (HasDTAC()) {
+        if (GetDTACGroupManager().HasDTAC(GetGame().GetPlayer())) {
             btnLookup.Show(true);
             btnGroup.Show(true);
         } else {
@@ -112,25 +112,6 @@ class DTACChoiceMenu : UIScriptedMenu {
         GetGame().GetMission().PlayerControlEnable(true);
         GetGame().GetMission().GetHud().Show(true);
         DeleteMenus();
-    }
-
-    bool HasDTAC() {
-		array<EntityAI> arrayInventory = new array<EntityAI>();
-
-		GetGame().GetPlayer().GetHumanInventory().EnumerateInventory(InventoryTraversalType.PREORDER, arrayInventory);
-
-        foreach (EntityAI entity : arrayInventory) {
-            if (entity) {
-                string entityType = entity.GetType();
-
-                entityType.ToLower();
-
-                if (entityType == "brp_phone") {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     void DeleteMenus() {
