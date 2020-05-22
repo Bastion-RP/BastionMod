@@ -1,0 +1,562 @@
+{
+    "VehiclePosition": [
+        0,
+        0,
+        0
+    ],
+    "TraderName": "BastionVendorGuo",
+    "DisplayName": "ISF Vendor",
+    "CategoriesItems": [
+        {
+            "Name": "Default Loadout",
+            "Items": [
+                {
+                    "ClassName": "BRP_ISF_Tacshirt",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_Pants",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_CarrierRig",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_CarrierRigPouches",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_CarrierRigHolster",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_PatrolBelt",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "MilitaryBoots_Bluerock",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "TacticalGloves_Black",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_CSP9",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_Mag_CSP9_17Rnd",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Taser",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Mag_taser",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "TLRLight",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Flashbang",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BandageDressing",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "SalineBagIV",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_AION",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Morphine",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Handcuffs",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "HandcuffKeys",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "StunBaton",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Battery9V",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Weapons",
+            "Items": [
+                {
+                    "ClassName": "BRP_CSP9",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_Mag_CSP9_17Rnd",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Taser",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Mag_taser",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_CSC45",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_Mag_CSC45_30Rnd",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_CSR556",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Mag_STANAG_30Rnd",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_BeneliiM2",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Ammo_12gaSlug",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Ammo_12gaRubberSlug",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "StunBaton",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Battery9V",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Medical",
+            "Items": [
+                {
+                    "ClassName": "TetracyclineAntibiotics",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Epinephrine",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BandageDressing",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "SalineBagIV",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Morphine",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Apparel",
+            "Items": [
+                {
+                    "ClassName": "BRP_Tactical_Jacket_Black",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_Tacshirt",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_Pants",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_OfficerBeret",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_MolleBelt",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "MilitaryBoots_Bluerock",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "TacticalGloves_Black",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_DART_MediumMolleBelt",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_DART_Helmet",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_DART_Pants",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BRP_ISF_PatrolBelt",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BaseballCap_Black",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "RadarCap_Black",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BoonieHat_Black",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BeanieHat_Black",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "AviatorGlasses",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "BalaclavaMask_Black",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "ThickFramesGlasses",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "SportGlasses_Black",
+                    "SellPrice": 1,
+                    "BuyPrice": 0,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                }
+            ]
+        }
+    ]
+}
