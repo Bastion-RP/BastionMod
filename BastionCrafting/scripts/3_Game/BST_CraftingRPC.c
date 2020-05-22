@@ -1,0 +1,3 @@
+enum BST_CraftingRPC {
+    SERVER_CRAFT_ITEM = -2981623
+}

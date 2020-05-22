@@ -1,0 +1,3 @@
+class BST_CraftingConfig {
+    
+}
