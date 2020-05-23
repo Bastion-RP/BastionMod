@@ -46,7 +46,7 @@ class CfgVehicles
 		displayName = "Cassette Player";
 		descriptionShort = "Description";
 		model = "BastionMod\BastionMisc_Data\CassettePlayer\walkman.p3d";
-//		rotationFlags = 17;
+		rotationFlags = 17;
 		weight = 300;
 		absorbency = 0.2;
 		itemSize[] = {2,2};
@@ -108,7 +108,7 @@ class CfgVehicles
 		displayName = "Red Cassette";
 		descriptionShort = "Description";
 		model = "BastionMod\BastionMisc_Data\CassettePlayer\cassette.p3d";
-//		rotationFlags = 17;
+		rotationFlags = 17;
 		weight = 300;
 		absorbency = 0.2;
 		itemSize[] = {1,2};
