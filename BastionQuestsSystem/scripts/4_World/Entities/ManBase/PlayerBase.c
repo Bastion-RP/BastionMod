@@ -33,7 +33,7 @@ modded class PlayerBase
     {
         super.OnConnect();
 
-		Print("[QUEST]OnConnect "+m_Player.GetMultiCharactersPlayerId().ToString());
+		Print("[QUEST]OnConnect "+this.GetMultiCharactersPlayerId().ToString());
 		if (GetGame().IsServer() && GetIdentity())
 		{
 			m_PersonQuestManag = new PersonalQuestManager(this);
