@@ -120,7 +120,7 @@ class BRP_RemoteDetonator : ItemBase
 
 	bool HasBomb( BRP_RemoteIED IED )
 	{
-		Print("[RS][DEBUG] Checking detonator for m_Bombs!");
+		//Print("[RS][DEBUG] Checking detonator for m_Bombs!");
 		for ( int i = 0; i < m_Bombs.Count(); i++ )
 		{
 			BRP_RemoteIED localIED = m_Bombs.Get(i);
