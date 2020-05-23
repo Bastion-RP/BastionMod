@@ -39,7 +39,6 @@ class QuestsData
 	{
 		m_QuestsLoader = new QuestsLoader();
 		m_QuestsLoader = QuestsLoader.LoadData();
-		m_QuestsLoader.AllQuests.Debug();
 	}
 
 	void SendQuestsData(PlayerBase player)

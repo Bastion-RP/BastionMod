@@ -47,6 +47,7 @@ class Shipment
 {
     string                      Classname;
     int                         Count;		// If the item has a quantity, specify it in conventional units. For example for a water bottle specify 1000
+	int							DistanceForSpawn;
 	vector						PackagePos;	// need only for 'FindAndDelivery' type
 	vector						PackageOri; // need only for 'FindAndDelivery' type
 }

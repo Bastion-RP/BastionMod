@@ -23,8 +23,13 @@ class QuestManager
 		m_Player		= PlayerBase.Cast(GetGame().GetPlayer());
 
 		m_QuestManagerStg = new QuestManagerStg();
-		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( this.Update, 5000, true);
+		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( this.Update, 2000, true);
     }
+
+	void ~QuestManager()
+	{
+		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).Remove( this.Update );
+	}
 
 	void SetQuestNPC(NPC npc)
 	{
@@ -226,60 +231,14 @@ class QuestManager
         if (!ctx.Read(rpb)) return;
         NPC npc = rpb.param1;
         NPCArray.Insert(npc);
-        //ShowNPCInfo(npc);
-        NPCArray.Debug();
     }
 
-    // void ShowNPCInfo(NPC npc) // remove this debug
-    // {
-    //     Print("======================= NPC INFO START ===========================");
-    //     Print(npc.NPCType);
-    //     Print(npc.NPCName);
-    //     npc.NPCClothing.Debug();
-    //     Print(npc.NPCPos);
-    //     Print(npc.NPCOri);
-    //     Print(npc.NPCUnicID);
-    //     for (int i = 0; i < npc.Dialogues.Count(); i++)
-    //     {
-    //         QuestDialog qd = npc.Dialogues.Get(i);
-    //         Print(qd.ID);
-    //         Print(qd.Message);
-    //         for (int j = 0; j < qd.Choices.Count(); j++)
-    //         {
-    //             Choice ch = qd.Choices.Get(j);
-    //             Print(ch.ChoiceMsg);
-    //             Print(ch.MoveToDialog);
-    //             Print(ch.ApplyQuest);
-    //         }
-    //     }
-    //     Print("======================= NPC INFO END ===========================");
-    // }
 
 	void handleApplyQuestsData(ParamsReadContext ctx)
 	{
 		Param1<ref array<ref Quest>> rpb;
         if (!ctx.Read(rpb)) return;
 		AllQuests = rpb.param1;
-		// for (int k = 0; k < AllQuests.Count(); k++)
-        // {
-        //     Quest qt = AllQuests.Get(k);
-        //     Print(qt.QuestID);
-        //     Print(qt.Type);
-        //     for (int k2 = 0; k2 < qt.Shipments.Count(); k2++)
-        //     {
-        //         Shipment sh = qt.Shipments.Get(k2);
-        //         Print(sh.Classname);
-        //         Print(sh.Count);
-		// 		Print(sh.PackagePos);
-        //     	Print(sh.PackageOri);
-        //     }
-        //     for (int k3 = 0; k3 < qt.Rewards.Count(); k3++)
-        //     {
-        //         Reward rw = qt.Rewards.Get(k3);
-        //         Print(rw.Classname);
-        //         Print(rw.Count);
-        //     }
-        // }
 	}
 
 	void handleSyncQuests(ParamsReadContext ctx)
@@ -305,6 +264,7 @@ class QuestManager
 		if (!m_Player) return;
 		bool needSync = false;
 		vector pPos = m_Player.GetPosition();
+		NormalizeHeight(pPos);
 		for (int i = 0; i < m_QuestManagerStg.QuestStatusArr.Count(); i++)
 		{
 			AppliedQuestStatus qs = m_QuestManagerStg.QuestStatusArr.Get(i);
@@ -314,7 +274,7 @@ class QuestManager
 				if (qs.SaveCountSpawnedItems.Get(j) == 1) continue;
 
 				ref Shipment sh = qt.Shipments.Get(j);
-				if ( vector.Distance(pPos, sh.PackagePos) <= 1.5 )
+				if ( vector.Distance(pPos, sh.PackagePos) <= sh.DistanceForSpawn )
 				{
 					RequestSpawnItems(sh);
 					qs.SaveCountSpawnedItems[j] = 1;
@@ -324,6 +284,15 @@ class QuestManager
 		}
 		if (needSync)
 		RequestSyncData();
+	}
+
+	void NormalizeHeight(out vector pos)
+	{
+		float tempHeight = GetGame().SurfaceY(pos[0], pos[2]);
+		if (pos[1] < tempHeight)
+		{
+			pos[1] = tempHeight;
+		}
 	}
 
 	void RequestSpawnItems(ref Shipment sh)
