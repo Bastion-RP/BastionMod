@@ -1,0 +1,14 @@
+{
+    "Enabled": 0,
+    "Locations": [
+        {
+            "Position": [
+                11925,
+                140,
+                12595
+            ],
+            "Radius": 1000,
+            "Name": "NEAF"
+        }
+    ]
+}
