@@ -53,6 +53,7 @@ class QuestHud extends UIScriptedMenu
 		if (m_CurNPC)
 		{
 			QuestDialog qd = m_CurNPC.Dialogues.Get(0);
+			if (qd)
 			UpdateDialogContent(qd);
 		}
 	}
