@@ -39,7 +39,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"StunGrenade/scripts/3_Game"
+					"BastionMod/BastionMisc/StunGrenade/scripts/3_Game"
 				};
 			};
 			class worldScriptModule
@@ -47,7 +47,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"StunGrenade/scripts/4_World"
+					"BastionMod/BastionMisc/StunGrenade/scripts/4_World"
 				};
 			};
 		};
@@ -153,7 +153,7 @@ class CfgVehicles
 		descriptionShort="After activation, a toxic gaz is spreading on a 8 meter radius. Without a gasmask, you're gonna pass out";
 		hiddenSelectionsTextures[]=
 		{
-			"StunGrenade\images\Stungrenade_blue_co.paa"
+			"BastionMod\BastionMisc\StunGrenade\images\Stungrenade_blue_co.paa"
 		};
 	};
 };
