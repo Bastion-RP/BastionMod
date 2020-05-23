@@ -1,6 +1,7 @@
 modded class PlayerBase
 {
 	private int		UnicID;
+	private ref PersonalQuestManager	m_PersonQuestManag;
 
 	void PlayerBase()
 	{
@@ -28,6 +29,19 @@ modded class PlayerBase
         AddAction(ActionCheckPulse);
 	}
 
+	override void OnConnect()
+    {
+        super.OnConnect();
+
+		Print("[QUEST]OnConnect "+m_Player.GetMultiCharactersPlayerId().ToString());
+		if (GetGame().IsServer() && GetIdentity())
+		{
+			m_PersonQuestManag = new PersonalQuestManager(this);
+		}
+		
+		m_PersonQuestManag.OnConnect();
+    }
+
     override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
 	{
 		super.OnRPC(sender, rpc_type, ctx);
@@ -35,5 +49,10 @@ modded class PlayerBase
         {
             g_QM.OnRPC(sender, rpc_type, ctx);
         }
+		else if (GetGame().IsServer())
+		{
+			m_PersonQuestManag.OnRPC(sender, rpc_type, ctx);
+		}
     }
+
 }

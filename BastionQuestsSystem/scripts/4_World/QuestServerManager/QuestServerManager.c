@@ -14,6 +14,8 @@ class PersonalQuestManager
 		existItems				= new map<string,int>();
 		m_QuestStorageLoader	= new QuestStorageLoader();
 		m_QuestStorageLoader	= QuestStorageLoader.LoadData(m_Player.GetMultiCharactersPlayerId().ToString());
+		//m_QuestStorageLoader	= QuestStorageLoader.LoadData(m_Player.GetIdentity().GetPlainId());
+		Print("[QUEST]m_QuestStorageLoader load data id= "+m_Player.GetMultiCharactersPlayerId().ToString());
 	}
 
 	void OnConnect()
@@ -52,7 +54,9 @@ class PersonalQuestManager
 		Param1<ref QuestManagerStg> rpb;
 		if (!ctx.Read(rpb)) return;
 		m_QuestStorageLoader.m_QuestManagerStg = rpb.param1;
+		//QuestStorageLoader.SaveData(m_QuestStorageLoader, m_Player.GetIdentity().GetPlainId());
 		QuestStorageLoader.SaveData(m_QuestStorageLoader, m_Player.GetMultiCharactersPlayerId().ToString());
+		Print("[QUEST]handleSyncData save id= "+m_Player.GetMultiCharactersPlayerId().ToString());
 	}
 
 	void handleGiveShipment(ParamsReadContext ctx)

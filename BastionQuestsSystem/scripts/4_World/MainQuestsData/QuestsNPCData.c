@@ -1,7 +1,6 @@
 class QuestNPCData
 {
-    const private static string m_ProfilePath		= "$profile:";
-	const private static string m_FolderName		= "Quests";
+    const private static string m_ProfilePath		= "$profile:\\Bastion\\Quests";
 
     ref NPC 					NPCElem;
     ref array<ref NPC>          MainDataArray;
@@ -17,41 +16,14 @@ class QuestNPCData
         for (int i = 1; i < (g_QD.m_GeneralSettings.NPCCount + 1); i++)
         {
             QuestNPCData QData = new QuestNPCData();
-            if (FileExist(m_ProfilePath + m_FolderName + "/" + "Npc" + i.ToString() + ".json"))
+            if (FileExist(m_ProfilePath + "\\" + "Npc" + i.ToString() + ".json"))
             {
-                string temp = m_ProfilePath + m_FolderName + "/" + "Npc" + i.ToString() + ".json";
-                JsonFileLoader<QuestNPCData>.JsonLoadFile(m_ProfilePath + m_FolderName + "/" + "Npc" + i.ToString() + ".json", QData);
+                string temp = m_ProfilePath + "\\" + "Npc" + i.ToString() + ".json";
+                JsonFileLoader<QuestNPCData>.JsonLoadFile(m_ProfilePath + "\\" + "Npc" + i.ToString() + ".json", QData);
             }
             MainDataArray.Insert(QData.NPCElem);
-            //ShowNPCInfo(QData.NPCElem);
         }
-        //MainDataArray.Debug();
     }
-
-    // void ShowNPCInfo(NPC npc) //debug
-    // {
-    //     Print("======================= NPC INFO START ===========================");
-    //     Print(npc.NPCType);
-    //     Print(npc.NPCName);
-    //     npc.NPCClothing.Debug();
-    //     Print(npc.NPCPos);
-    //     Print(npc.NPCOri);
-    //     Print(npc.NPCUnicID);
-    //     for (int i = 0; i < npc.Dialogues.Count(); i++)
-    //     {
-    //         QuestDialog qd = npc.Dialogues.Get(i);
-    //         Print(qd.ID);
-    //         Print(qd.Message);
-    //         for (int j = 0; j < qd.Choices.Count(); j++)
-    //         {
-    //             Choice ch = qd.Choices.Get(j);
-    //             Print(ch.ChoiceMsg);
-    //             Print(ch.MoveToDialog);
-    //             Print(ch.ApplyQuest);
-    //         }
-    //     }
-    //     Print("======================= NPC INFO END ===========================");
-    // }
 
     void SendAllData(PlayerBase player)
     {

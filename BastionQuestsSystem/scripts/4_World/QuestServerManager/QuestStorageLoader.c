@@ -1,6 +1,6 @@
 class QuestStorageLoader
 {
-	const private static string m_ProfilePath		= "$profile:Quests_BD/";
+	const private static string m_ProfilePath		= "$profile:\\Bastion\\Quests_BD";
 
 	ref QuestManagerStg	m_QuestManagerStg;
 
@@ -18,14 +18,14 @@ class QuestStorageLoader
 			MakeDirectory(m_ProfilePath);
 		}
 
-        if (FileExist(m_ProfilePath + ID + ".json"))
+        if (FileExist(m_ProfilePath + "/" + ID + ".json"))
         {
-            JsonFileLoader<QuestStorageLoader>.JsonLoadFile(m_ProfilePath + ID + ".json", data);
+            JsonFileLoader<QuestStorageLoader>.JsonLoadFile(m_ProfilePath + "\\" + ID + ".json", data);
         }
 		else
         {
 			SaveData(data, ID);
-			JsonFileLoader<QuestStorageLoader>.JsonLoadFile(m_ProfilePath + ID + ".json", data);
+			JsonFileLoader<QuestStorageLoader>.JsonLoadFile(m_ProfilePath + "\\" + ID + ".json", data);
         }
 
         return data;
@@ -33,6 +33,6 @@ class QuestStorageLoader
 	
 	static void SaveData(QuestStorageLoader data, string ID)
 	{		
-		JsonFileLoader<QuestStorageLoader>.JsonSaveFile(m_ProfilePath + ID + ".json", data);
+		JsonFileLoader<QuestStorageLoader>.JsonSaveFile(m_ProfilePath + "\\" + ID + ".json", data);
 	}
 }
