@@ -1,0 +1,88 @@
+{
+    "NPCElem": {
+        "NPCType" : "SurvivorM_Mirek",
+        "NPCName" : "Boris",
+        "NPCClothing" : ["TortillaBag", "WorkingGloves_Black", "BallisticHelmet_Black", "USMCPants_Desert", "HikingBootsLow_Grey", "M65Jacket_Olive"],
+        "NPCPos" : [ 2145, 15, 2276 ],
+        "NPCOri" : [ 180, 0, 0 ],
+        "NPCUnicID" : 1,
+        "Dialogues":[
+            {
+                "ID" : 1,
+                "Message" : "Hi, how are you?",
+                "Choices" : [
+                    {
+                        "ChoiceMsg" : "Let's get to business.",
+                        "MoveToDialog" : 2
+                    },
+                    {
+                        "ChoiceMsg" : "What difference does it make how I'm doing? Are you gay?",
+                        "MoveToDialog" : 3
+                    }
+                ]
+            },
+            {
+                "ID" : 2,
+                "Message" : "Okay, I see you're a serious guy, you need to deliver a package to one person.",
+                "Choices" : [
+                    {
+                        "ChoiceMsg" : "What is the package and to whom should it be delivered",
+                        "MoveToDialog" : 4
+                    },
+                    {
+                        "ChoiceMsg" : "I take",
+                        "MoveToDialog" : 5,
+                        "ApplyQuest" : 25
+                    }
+                ]
+            },
+            {
+                "ID" : 3,
+                "Message" : "Fuck you, asshole."
+            },
+            {
+                "ID" : 4,
+                "Message" : "You ask too many questions, are you taking it or not?",
+                "Choices" : [
+                    {
+                        "ChoiceMsg" : "I take",
+						"MoveToDialog" : 5,
+						"ApplyQuest" : 25
+                    },
+                    {
+                        "ChoiceMsg" : "I pass it is some kind of troubled business"
+                    }
+                ]
+            },
+            {
+                "ID" : 4,
+                "Message" : "You ask too many questions, are you taking it or not?",
+                "Choices" : [
+                    {
+						"ChoiceMsg" : "I take",
+						"ApplyQuest" : 25
+                    },
+                    {
+                        "ChoiceMsg" : "I pass it is some kind of troubled business"
+                    }
+                ]
+            },
+            {
+                "ID" : 5,
+                "Message" : "The parcel must be delivered to a guy named Sean, you will find it in the first sector.",
+                "Choices" : [
+                    {
+                        "ChoiceMsg" : "Sean, the first sector, I remember"
+                    }
+                ]
+            }
+		],
+		"QuestFinishDialogs": [
+			{
+				"ForQuest" : 35,
+				"MoveToDialog": 2,
+				"ChoiceMsg" : "Hi, are you Boris? I need a job."
+			}
+		]
+    }
+}

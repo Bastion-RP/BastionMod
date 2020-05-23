@@ -1,0 +1,12 @@
+{
+    "NPCElem": {
+        "NPCType" : "Barrel_Red",
+        "NPCName" : "Coffee Machine",
+        "NPCClothing" : [],
+        "NPCPos" : [ 2142, 15, 2276 ],
+        "NPCOri" : [ 180, 0, 0 ],
+        "NPCUnicID" : 3,
+        "Dialogues":[],
+		"QuestFinishDialogs": []
+    }
+}

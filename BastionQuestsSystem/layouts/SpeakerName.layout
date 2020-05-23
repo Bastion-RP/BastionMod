@@ -1,0 +1,10 @@
+TextWidgetClass SpeakerName {
+ size 1 0.06
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ "text offset" 10 0
+ "exact text" 1
+ "text valign" center
+}

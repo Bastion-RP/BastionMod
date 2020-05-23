@@ -1,4 +1,4 @@
-class ActionAddIEDToDetonator : ActionInteractBase
+class ActionAddIEDToDetonator : ActionContinuousBase
 {
 	void ActionAddIEDToDetonator()
 	{

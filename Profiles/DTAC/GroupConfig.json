@@ -1,0 +1,12 @@
+{
+    "arrayConfigGroups": [
+        {
+            "GroupName": "ISF Patrol",
+            "GroupCapactity": 100,
+            "GroupHeaderColor": "255 255 255"
+        }
+    ],
+    "StatUpdateSensitivityPercentage": 1,
+    "StatUpdateIntervalSeconds": 1,
+    "DistanceUpdateSensitivityMeters": 25
+}
