@@ -22,8 +22,8 @@ class BastionBankingMenu : UIScriptedMenu {
     protected ref array<string> arrayPreviousEntry;
     protected ref map<string, string> mapCommands;
     protected PlayerBase player;
-    protected string userDir, password, cmdUsed;
-    protected bool isLoggingIn, isRegistering, isConfirming, isConfirmed;
+    protected string userDir, initialPassword, password, cmdUsed;
+    protected bool isLoggingIn, isRegistering, isConfirming, isConfirmed, isConfirmingPasscode, isResetting;
     protected int bankId, inputAmount;
 
     override Widget Init() {
@@ -54,14 +54,16 @@ class BastionBankingMenu : UIScriptedMenu {
     }
 
     override bool OnChange(Widget w, int x, int y, bool finished) {
-        if (isLoggingIn || isRegistering) {
+        if (isLoggingIn || isRegistering || isConfirmingPasscode || isResetting) {
             if (EditBoxWidget.Cast(w) == activeInputBox) {
                 string boxText = activeInputBox.GetText();
 
-                if (boxText != string.Empty) {
-                    password += boxText;
-                    activeInputBox.SetText(string.Empty);
+                if (boxText.Length() > initialPassword.Length()) {
+                    initialPassword += boxText.Substring(initialPassword.Length(), 1);
+                } else {
+                    initialPassword = initialPassword.Substring(0, boxText.Length());
                 }
+                activeInputBox.SetText(ConsealText(boxText));
             }
             return true;
         }
@@ -105,76 +107,13 @@ class BastionBankingMenu : UIScriptedMenu {
     }
 
     void StartIntro() {
-        array<string> arrayIntroLines = new array<string>();
+        CreateTextGrid("Welcome to the Depository & Dispensary (D2) Console // V0.1 // Licensed for use by BKG-023");
+        CreateTextGrid("NCC RESTRICTED - DO NOT DISTRIBUTE, MODIFY, OR REPRODUCE THE CONTENTS OF SOFTWARE. DOING SO IS PUNISHABLE BY LAW.");
+        CreateTextGrid("CONTENTS ARE PROPERTY OF THE NATO-CSTO COALITION, DEPARTMENT OF COMMERCE.", true);
+        CreateTextGrid("New to D2? Type \"register\" into the console.");
+        CreateTextGrid("Need a refresher? Type \"help\".", true);
 
-        arrayIntroLines.Insert("Welcome to the Depository & Dispensary (D2) Console // V0.1 // Licensed for use by BKG-023:0");
-        arrayIntroLines.Insert("NCC RESTRICTED - DO NOT DISTRIBUTE, MODIFY, OR REPRODUCE THE CONTENTS OF SOFTWARE. DOING SO IS PUNISHABLE BY LAW.:0");
-        arrayIntroLines.Insert("CONTENTS ARE PROPERTY OF THE NATO-CSTO COALITION, DEPARTMENT OF COMMERCE.:1");
-        arrayIntroLines.Insert("New to D2? Type \"register\" into the console.:0");
-        arrayIntroLines.Insert("Need a refresher? Type \"help\".:1");
-
-        Param params = new Param4<array<string>, int, int, string>(arrayIntroLines, 25, 5, "");
-
-        GetGame().GameScript.Call(this, "SlowTypeArray", params);
-    }
-
-/*     void StartIntro() {
-        array<string> arrayIntroLines = new array<string>();
-
-        arrayIntroLines.Insert("Welcome to the Depository & Dispensary (D2) Console // V0.1 // Licensed for use by BKG-023:0");
-        arrayIntroLines.Insert("NCC RESTRICTED - DO NOT DISTRIBUTE, MODIFY, OR REPRODUCE THE CONTENTS OF SOFTWARE. DOING SO IS PUNISHABLE BY LAW.:0");
-        arrayIntroLines.Insert("CONTENTS ARE PROPERTY OF THE NATO-CSTO COALITION, DEPARTMENT OF COMMERCE.:1");
-        arrayIntroLines.Insert("New to D2? Type \"register\" into the console.:0");
-        arrayIntroLines.Insert("Need a refresher? Type \"help\".:1");
-
-        Param params = new Param3<array<string>, int, int>(arrayIntroLines, 25, 5);
-
-        GetGame().GameScript.Call(this, "StartIntro", params);
         CreateInputGrid();
-        scroller.VScrollToPos01(1);
-    }*/
-
-    void SlowTypeArray(Param4<array<string>, int, int, string> params) {
-        array<string> arraySlowLines = params.param1;
-        int delay1 = params.param2;
-        int delay2 = params.param3;
-        string inputText = params.param4;
-
-        foreach (string input : arraySlowLines) {
-            array<string> splitInput;
-            TextWidget displayText;
-            GridSpacerWidget newGrid;
-            string text;
-            bool newLine;
-
-            splitInput = new array<string>();
-
-            input.Split(":", splitInput);
-
-            text = splitInput[0];
-            newLine = splitInput[1].ToInt();
-            
-            CheckGridSize();
-
-            if (newLine) {
-                newGrid = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionBanking\\gui\\layouts\\GridTextNewLine.layout", activeGrid);
-            } else {
-                newGrid = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionBanking\\gui\\layouts\\GridText.layout", activeGrid);
-            }
-            displayText = TextWidget.Cast(newGrid.FindAnyWidget("text"));
-
-            Sleep(delay1);
-            scroller.VScrollToPos01(1);
-            for (int i = 0; i <= text.Length(); i++) {
-                string subText = text.Substring(0, i);
-
-                Sleep(delay2);
-                displayText.SetText(subText);
-            }
-            arrayWidgets.Insert(newGrid);
-            arrayActiveGridWidgets.Insert(newGrid);
-        }
-        CreateInputGrid(inputText);
         ScrollToBottom();
     }
 
@@ -243,6 +182,16 @@ class BastionBankingMenu : UIScriptedMenu {
         }
     }
 
+	protected string ConsealText(string input) {
+		string consealedtext = string.Empty;
+
+		for (int i = 0; i < input.Length(); i++) {
+			consealedtext += "*";
+		}
+
+		return consealedtext;
+	}
+
     void HandleEnterKey() {
         if (!activeInputBox) {
             return;
@@ -251,26 +200,57 @@ class BastionBankingMenu : UIScriptedMenu {
         inputText.ToLower();
         inputText.Trim();
 
-        if (isLoggingIn || isRegistering) {
-            if (password != string.Empty) {
+        if (isLoggingIn || isRegistering || isConfirmingPasscode || isResetting) {
+            if (initialPassword != string.Empty) {
                 if (isLoggingIn) {
+                    isLoggingIn = false;
+                    isRegistering = false;
+                    isConfirmingPasscode = false;
+                    password = string.Empty;
                     CreateTextGrid("Logging in...", true);
 
-                    auto loginParams = new Param2<int, string>(bankId, password);
+                    SetFocus(null);
+                    auto loginParams = new Param2<int, string>(bankId, initialPassword);
                     GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_ACCOUNTLOGIN, loginParams, true);
-                } else if (isRegistering) {
-                    CreateTextGrid("Registering...", true);
+                } else if (isConfirmingPasscode) {
+                    if (password == initialPassword) {
+                        auto registerParam = new Param1<string>(password);
 
-                    auto registerParam = new Param1<string>(password);
-                    GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_REGISTERACCOUNT, registerParam, true);
+                        if (isResetting) {
+                            SetFocus(null);
+                            CreateTextGrid("Resetting passcode...", true);
+                            GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_RESETPASSCODE, registerParam, true);
+                        } else {
+                            SetFocus(null);
+                            CreateTextGrid("Registering...", true);
+                            GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_REGISTERACCOUNT, registerParam, true);
+                        }
+                        initialPassword = string.Empty;
+                        password = string.Empty;
+                        isConfirmingPasscode = false;
+                        isResetting = false;
+                    } else {
+                        isRegistering = true;
+                        initialPassword = string.Empty;
+                        password = string.Empty;
+
+                        CreateTextGrid("Passwords do not match! Try again!");
+                        CreateInputGrid("Enter Passcode:");
+                    }
+                    isConfirmingPasscode = false;
+                } else if (isRegistering || isResetting) {
+                    isConfirmingPasscode = true;
+                    isRegistering = false;
+                    password = initialPassword;
+                    initialPassword = string.Empty;
+
+                    CreateInputGrid("Confirm Passcode:");
                 }
             } else {
                 CreateTextGrid("No Password Entered!", true);
-                CreateInputGrid();
+                CreateInputGrid("Enter password:");
+                initialPassword = string.Empty;
             }
-            isLoggingIn = false;
-            isRegistering = false;
-            password = string.Empty;
         } else if (isConfirming) {
             if (inputText == "y" || inputText == "yes") {
                 //isConfirmed = true;
@@ -294,14 +274,6 @@ class BastionBankingMenu : UIScriptedMenu {
         ScrollToBottom();
     }
 
-    void Backspace() {
-        if (isLoggingIn) {
-            if (password != string.Empty) {
-                password = password.Substring(0, password.Length() - 1);
-            }
-        }
-    }
-
     void ScrollToBottom() {
         GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(scroller.VScrollToPos01, 100, false, 1);
     }
@@ -317,6 +289,7 @@ class BastionBankingMenu : UIScriptedMenu {
             mapCommands.Insert("deposit", "deposit Credits into your account. For example, \"deposit all\" will deposit ALL credits into your account.");
             mapCommands.Insert("withdraw", "withdraw Credits from your account. For example, \"withdraw 5\" will withdraw 5 credits from your account.");
             mapCommands.Insert("transfer", "transfer Credits from your overflow account to your main balance. This charges a transfer fee!");
+            mapCommands.Insert("reset", "prompts to reset password on associated account.");
         }
     }
 
@@ -349,19 +322,16 @@ class BastionBankingMenu : UIScriptedMenu {
                 }
             case "register":
                 {
-                    array<string> arraySlowType = new array<string>();
                     isRegistering = true;
 
-                    arraySlowType.Insert("Welcome to the NCC's Depository & Dispensary Console.:1");
-                    arraySlowType.Insert("The purpose of this machine (as well the many other D2 machines around your Bastion) is to provide you with a safe way to deposit, :0");
-                    arraySlowType.Insert("store, and withdraw NCC Credits, which can then be used to buy essentials for life inside your Bastion.:1");
-                    arraySlowType.Insert("In order to reap the benefits of such a system, you must first register for an account. Your D2 login has been automatically set to your Citizen ID.:0");
-                    arraySlowType.Insert("You must choose a secure, memorable password. Please type your password below:0");
-                    arraySlowType.Insert("(rest assured it is logged, the characters do not show up for security purposes.):1");
-
-                    Param introParams = new Param4<array<string>, int, int, string>(arraySlowType, 15, 2, "Enter Password:");
-
-                    GetGame().GameScript.Call(this, "SlowTypeArray", introParams);
+                    CreateTextGrid("Welcome to the NCC's Depository & Dispensary Console.", true);
+                    CreateTextGrid("The purpose of this machine (as well the many other D2 machines around your Bastion) is to provide you with a safe way to deposit, ");
+                    CreateTextGrid("store, and withdraw NCC Credits, which can then be used to buy essentials for life inside your Bastion.", true);
+                    CreateTextGrid("In order to reap the benefits of such a system, you must first register for an account. Your D2 login has been automatically set to your Citizen ID.");
+                    CreateTextGrid("You must choose a secure, memorable password. Please type your password below");
+                    CreateTextGrid("(rest assured it is logged, the characters do not show up for security purposes.)", true);
+                    CreateInputGrid("Enter Password:");
+                    ScrollToBottom();
                     break;
                 }
             case "deposit":
@@ -458,6 +428,13 @@ class BastionBankingMenu : UIScriptedMenu {
                     activeInputBox = null;
 
                     GetGame().RPCSingleParam(player, BSTBankRPC.RPC_SERVER_ACCOUNTLOGOUT, null, true);
+                    break;
+                }
+            case "reset":
+                {
+                    isResetting = true;
+                    CreateInputGrid("Enter New Password:");
+                    ScrollToBottom();
                     break;
                 }
             default:

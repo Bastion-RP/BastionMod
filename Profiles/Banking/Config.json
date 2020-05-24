@@ -1,0 +1,13 @@
+{
+    "PerJobPassiveIncome": {
+        "Unemployed": 2
+    },
+    "DefaultJobPosition": "Unemployed",
+    "DefaultJobIncome": 1,
+    "LoginTimeout": 60,
+    "PassivePayInterval": 30,
+    "BankFundsCap": 1000,
+    "OverflowTransferFee": 0.25,
+    "CurrencyClassName": "BRP_CopperCoin",
+    "ATMClassName": "BRP_ATM"
+}

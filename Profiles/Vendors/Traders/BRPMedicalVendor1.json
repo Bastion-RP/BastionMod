@@ -1,0 +1,61 @@
+{
+    "VehiclePosition": [
+        4651.8,
+        10.224,
+        4222.4
+    ],
+    "TraderName": "BRP_MedicalVendor1",
+    "DisplayName": "Medical Vendor",
+    "CategoriesItems": [
+        {
+            "Name": "Medical",
+            "Items": [
+                {
+                    "ClassName": "BandageDressing",
+                    "SellPrice": 1,
+                    "BuyPrice": 10,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "SalineBagIV",
+                    "SellPrice": 1,
+                    "BuyPrice": 15,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Morphine",
+                    "SellPrice": 1,
+                    "BuyPrice": 15,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "TetracyclineAntibiotics",
+                    "SellPrice": 1,
+                    "BuyPrice": 5,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Epinephrine",
+                    "SellPrice": 1,
+                    "BuyPrice": 20,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                }
+            ]
+        }
+    ]
+}

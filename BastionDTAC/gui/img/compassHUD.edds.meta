@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{95CD51CE3008AA67}BastionMod/BastionDTAC/gui/img/compassHUD.edds"
+ Author "bryanpc"
+ ChangeDate 284715155
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "compassHUD.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

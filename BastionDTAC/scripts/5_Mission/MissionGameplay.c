@@ -5,6 +5,10 @@ modded class MissionGameplay {
         }
     }
 
+    void ~MissionGameplay() {
+        GetDTACClientGroupManager().DeleteCompassHUD();
+    }
+
     override UIScriptedMenu CreateScriptedMenu(int id) {
         UIScriptedMenu menu = null;
         menu = super.CreateScriptedMenu(id);

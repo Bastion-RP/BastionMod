@@ -1,0 +1,182 @@
+[
+    {
+        "name": "Bridge",
+        "position": [
+            4539.63,
+            15.51,
+            4724.26
+        ],
+        "yaw": 130,
+        "pitch": 355,
+        "roll": 0,
+        "canRotate": 0
+    },
+    {
+        "name": "FireStationLow",
+        "position": [
+            4843.57,
+            19.5257,
+            4441.66
+        ],
+        "yaw": 337,
+        "pitch": 0,
+        "roll": 0,
+        "canRotate": 1
+    },
+    {
+        "name": "FireStationHi",
+        "position": [
+            4852.02,
+            28.3758,
+            4420.4
+        ],
+        "yaw": 78,
+        "pitch": 0,
+        "roll": 0,
+        "canRotate": 1
+    },
+    {
+        "name": "Office1",
+        "position": [
+            4785.06,
+            28.3528,
+            4448.58
+        ],
+        "yaw": 310,
+        "pitch": 340,
+        "roll": 0,
+        "canRotate": 0
+    },
+    {
+        "name": "Office2",
+        "position": [
+            4713.87,
+            16.8,
+            4444.13
+        ],
+        "yaw": 77,
+        "pitch": 355,
+        "roll": 0,
+        "canRotate": 0
+    },
+    {
+        "name": "BigApt1",
+        "position": [
+            4833.1,
+            32.1049,
+            4252.55
+        ],
+        "yaw": 219,
+        "pitch": 340,
+        "roll": 0,
+        "canRotate": 1
+    },
+    {
+        "name": "GuardHouse",
+        "position": [
+            4712,
+            13.47,
+            4357.91
+        ],
+        "yaw": 90,
+        "pitch": 350,
+        "roll": 0,
+        "canRotate": 1
+    },
+    {
+        "name": "SmallApt2",
+        "position": [
+            4793.12,
+            21.0551,
+            4234.77
+        ],
+        "yaw": 318,
+        "pitch": 350,
+        "roll": 0,
+        "canRotate": 1
+    },
+    {
+        "name": "Hotel",
+        "position": [
+            4823.66,
+            26.4,
+            4179.69
+        ],
+        "yaw": 316,
+        "pitch": 350,
+        "roll": 0,
+        "canRotate": 1
+    },
+    {
+        "name": "Store",
+        "position": [
+            4721.56,
+            18.5302,
+            4251.17
+        ],
+        "yaw": 91,
+        "pitch": 350,
+        "roll": 0,
+        "canRotate": 1
+    },
+    {
+        "name": "TrainStation",
+        "position": [
+            4860.42,
+            16.05,
+            4103.11
+        ],
+        "yaw": 22,
+        "pitch": 350,
+        "roll": 0,
+        "canRotate": 1
+    },
+    {
+        "name": "Industrial1",
+        "position": [
+            4537.76,
+            19.7869,
+            4389.82
+        ],
+        "yaw": 229,
+        "pitch": 350,
+        "roll": 0,
+        "canRotate": 0
+    },
+    {
+        "name": "TownSquare1",
+        "position": [
+            4660.91,
+            24.4998,
+            4232.38
+        ],
+        "yaw": 89,
+        "pitch": 350,
+        "roll": 0,
+        "canRotate": 1
+    },
+    {
+        "name": "Industrial2",
+        "position": [
+            4453.1,
+            13.1281,
+            4364.43
+        ],
+        "yaw": 97,
+        "pitch": 350,
+        "roll": 0,
+        "canRotate": 0
+    },
+    {
+        "name": "TownSquare2",
+        "position": [
+            4579.27,
+            18.0502,
+            4183.35
+        ],
+        "yaw": 90,
+        "pitch": 350,
+        "roll": 0,
+        "canRotate": 0
+    }
+]

@@ -17,7 +17,17 @@ class DTACClientRPCHandler : PluginBase {
                     if (!ctx.Read(dataAPI)) { return; }
                     Print("[DEBUG] DTACClientRPCHandler | OnRPC | CLIENT_RECEIVE_PLAYER_API_DATA | Data read");
                     Print("[DEBUG] DTACClientRPCHandler | OnRPC | CLIENT_RECEIVE_PLAYER_API_DATA | param1=" + dataAPI.param1 + " | param3=" + dataAPI.param3);
-                    PlayerBase.Cast(GetGame().GetPlayer()).SetMultiCharacterStats(dataAPI.param1, dataAPI.param2, dataAPI.param3);
+                    Print("[DTAC DEBUG] 1=" + dataAPI.param1 + " 2=" + dataAPI.param2 + " 3=" + dataAPI.param3);
+
+                    PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+
+                    if (player) {
+                        player.SetBastionAPIID(dataAPI.param1);
+                        player.SetBastionAPIClass(dataAPI.param3);
+                        player.SetBastionAPIName(dataAPI.param2);
+
+                        Print("[DTAC DEBUG] id=" + player.GetMultiCharactersPlayerId() + " class=" + player.GetMultiCharactersPlayerClass() + " name=" + player.GetMultiCharactersPlayerName());
+                    }
                     break;
                 }
             case DTACRPC.CLIENT_RECEIVE_ACTIVE_GROUP:

@@ -1,0 +1,152 @@
+{
+    "arrayInventory": [
+        {
+            "objectType": "ThickFramesGlasses",
+            "healthLevel": 50,
+            "quantity": 0,
+            "invSlot": 1436473694,
+            "invIdx": -1,
+            "invRow": -1,
+            "invCol": -1,
+            "invFlip": 0,
+            "isInHands": 0,
+            "arrayChildren": []
+        },
+        {
+            "objectType": "SurgicalGloves_White",
+            "healthLevel": 15.4,
+            "quantity": 0,
+            "invSlot": -1239309756,
+            "invIdx": -1,
+            "invRow": -1,
+            "invCol": -1,
+            "invFlip": 0,
+            "isInHands": 0,
+            "arrayChildren": []
+        },
+        {
+            "objectType": "WorkingBoots_Yellow",
+            "healthLevel": 39.1581,
+            "quantity": 0,
+            "invSlot": 5308728,
+            "invIdx": -1,
+            "invRow": -1,
+            "invCol": -1,
+            "invFlip": 0,
+            "isInHands": 0,
+            "arrayChildren": []
+        },
+        {
+            "objectType": "JumpsuitJacket_Gray",
+            "healthLevel": 100,
+            "quantity": 0,
+            "invSlot": 5119774,
+            "invIdx": -1,
+            "invRow": -1,
+            "invCol": -1,
+            "invFlip": 0,
+            "isInHands": 0,
+            "arrayChildren": [
+                {
+                    "objectType": "Mag_taser",
+                    "healthLevel": 100,
+                    "quantity": 1,
+                    "invSlot": -1,
+                    "invIdx": 0,
+                    "invRow": 0,
+                    "invCol": 0,
+                    "invFlip": 0,
+                    "isInHands": 0,
+                    "arrayChildren": []
+                },
+                {
+                    "objectType": "Megaphone",
+                    "healthLevel": 69,
+                    "quantity": 0,
+                    "invSlot": -1,
+                    "invIdx": 0,
+                    "invRow": 1,
+                    "invCol": 0,
+                    "invFlip": 0,
+                    "isInHands": 0,
+                    "arrayChildren": [
+                        {
+                            "objectType": "Battery9V",
+                            "healthLevel": 20,
+                            "quantity": 50,
+                            "invSlot": -131201905,
+                            "invIdx": -1,
+                            "invRow": -1,
+                            "invCol": -1,
+                            "invFlip": 0,
+                            "isInHands": 0,
+                            "arrayChildren": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "objectType": "JumpsuitPants_Grey",
+            "healthLevel": 100,
+            "quantity": 0,
+            "invSlot": 5612719,
+            "invIdx": -1,
+            "invRow": -1,
+            "invCol": -1,
+            "invFlip": 0,
+            "isInHands": 0,
+            "arrayChildren": [
+                {
+                    "objectType": "Taser",
+                    "healthLevel": 100,
+                    "quantity": 0,
+                    "invSlot": -1,
+                    "invIdx": 0,
+                    "invRow": 0,
+                    "invCol": 0,
+                    "invFlip": 0,
+                    "isInHands": 0,
+                    "arrayChildren": []
+                },
+                {
+                    "objectType": "Mag_taser",
+                    "healthLevel": 100,
+                    "quantity": 2,
+                    "invSlot": -1,
+                    "invIdx": 0,
+                    "invRow": 2,
+                    "invCol": 0,
+                    "invFlip": 0,
+                    "isInHands": 0,
+                    "arrayChildren": []
+                },
+                {
+                    "objectType": "Lockpick",
+                    "healthLevel": 50,
+                    "quantity": 0,
+                    "invSlot": -1,
+                    "invIdx": 0,
+                    "invRow": 0,
+                    "invCol": 4,
+                    "invFlip": 0,
+                    "isInHands": 0,
+                    "arrayChildren": []
+                }
+            ]
+        }
+    ],
+    "characterId": 50237,
+    "characterClass": 0,
+    "isDead": 0,
+    "survivorName": "Bogdan Vyacheslavovich",
+    "survivorType": "SurvivorM_Seth",
+    "position": "4663.65 9.60434 4307.67",
+    "direction": "0.956435 0 -0.291946",
+    "orientation": "106.974 0 -0",
+    "healthLevel": 100,
+    "bloodLevel": 5000,
+    "shockLevel": 100,
+    "waterLevel": 4913.02,
+    "energyLevel": 15330.5
+}

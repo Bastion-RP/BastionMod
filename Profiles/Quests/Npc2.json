@@ -1,0 +1,94 @@
+{
+    "NPCElem": {
+        "NPCType" : "SurvivorM_Boris",
+        "NPCName" : "Sean",
+        "NPCClothing" : ["WorkingGloves_Black", "USMCPants_Desert", "HikingBootsLow_Grey", "M65Jacket_Olive"],
+        "NPCPos" : [ 2148, 15, 2276 ],
+        "NPCOri" : [ 180, 0, 0 ],
+        "NPCUnicID" : 2,
+        "Dialogues":[
+            {
+				"ID" : 1,
+				"Message" : "I don't want to talk to you, get out of here while you're safe.",
+				"Choices" : [
+					{
+						"ChoiceMsg" : "I need money, I'm ready to take any job, even the dirtiest.",
+                        "MoveToDialog" : 50
+					},
+					{
+						"ChoiceMsg" : "Do you need something?",
+                        "MoveToDialog" : 120
+					}
+				]
+			},
+			{
+				"ID" : 50,
+				"Message" : "Well, if that's the case, I know a guy who can help you. His name is Boris, he is standing to my left, talk to him.",
+				"Choices" : [
+                    {
+                        "ChoiceMsg" : "Okay I'll try",
+                        "ApplyQuest" : 35
+					}
+				]
+			},
+			{
+				"ID" : 15,
+				"Message" : "Are you from Boris?",
+				"Choices" : [
+                    {
+                        "ChoiceMsg" : "Yes from him",
+                        "MoveToDialog" : 16
+					}
+				]
+			},
+			{
+				"ID" : 16,
+				"Message" : "Where's the stuff?",
+				"Choices" : [
+                    {
+                        "ChoiceMsg" : "Here, take this.",
+                        "MoveToDialog" : 18
+					},
+					{
+						"ChoiceMsg" : "I lost it.",
+						"MoveToDialog" : 19
+					}
+				]
+			},
+			{
+				"ID" : 18,
+				"Message" : "Looks intact, okay here's your money."
+			},
+			{
+				"ID" : 19,
+				"Message" : "Don't come back until you find it."
+			},
+			{
+				"ID" : 120,
+				"Message" : "I dropped 3 bottles of water on the road not far from here, help me find them.",
+				"Choices" : [
+					{
+						"ChoiceMsg" : "I'll take it.",
+						"ApplyQuest" : 50
+					}
+				]
+			},
+			{
+				"ID" : 121,
+				"Message" : "Thank you."
+			}
+		],
+		"QuestFinishDialogs": [
+			{
+				"ForQuest" : 25,
+				"MoveToDialog": 15,
+				"ChoiceMsg" : "Hi, are you Sean? I have something for you."
+			},
+			{
+				"ForQuest" : 50,
+				"MoveToDialog": 121,
+				"ChoiceMsg" : "I found your bottles."
+			}
+		]
+    }
+}

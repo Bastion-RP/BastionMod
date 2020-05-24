@@ -46,7 +46,7 @@ class ActionTouchOffIED : ActionSingleUseBase
 		}
 		if ( bombArraySize == 0 )
 		{
-			Print("[RS][DEBUG] Bomb count == 0!");
+			//Print("[RS][DEBUG] Bomb count == 0!");
 			return false;
 		}
 

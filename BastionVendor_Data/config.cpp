@@ -1,6 +1,6 @@
 ﻿class CfgPatches
 {
-	class BastionVendor
+	class BastionVendor_Data
 	{
 		units[] = {};
 		weapons[] = {};
