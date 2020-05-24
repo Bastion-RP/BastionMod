@@ -3,6 +3,7 @@
 		{
 			"QuestID" : 25,
 			"Type" : "Delivery",
+			"TargetsForKilling": [],
 			"Repeatable" : 0,
 			"Delay" : 60,
 			"Required" : [],
@@ -33,6 +34,7 @@
 		{
 			"QuestID" : 35,
 			"Type" : "Delivery",
+			"TargetsForKilling":[],
 			"Repeatable" : 1,
 			"Delay" : 60,
 			"Required" : [],
@@ -43,6 +45,7 @@
 		{
 			"QuestID" : 50,
 			"Type" : "FindAndDelivery",
+			"TargetsForKilling": [],
 			"Repeatable" : 1,
 			"Delay" : 60,
 			"Required" : [],
@@ -70,6 +73,31 @@
 					"PackageOri" : [ 0, 0, 0]
 				}
 			],
+			"Rewards" : [
+				{
+					"Classname" : "AKM",
+					"Count"     : 1
+				}
+			]
+		},
+		{
+			"QuestID" : 66,
+			"Type" : "KillSomething",
+			"TargetsForKilling": [
+				{
+					"Classname" : "Zombie",
+					"Count" : 5
+				},
+				{
+					"Classname" : "WaterBottle",
+					"Count" : 5
+				}
+			],
+			"Repeatable" : 1,
+			"Delay" : 120,
+			"Required" : [],
+			"CanDoneAnyway" : 0,
+			"Shipments" : [],
 			"Rewards" : [
 				{
 					"Classname" : "AKM",

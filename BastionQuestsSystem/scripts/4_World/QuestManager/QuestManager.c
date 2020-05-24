@@ -113,6 +113,9 @@ class QuestManager
 			case "FindAndDelivery":
 				TakeFindAndDelivery(qt);
 			break;
+			case "KillSomething":
+				TakeKillSomething(qt);
+			break;
 		}
 		RequestSyncData();
 	}
@@ -121,6 +124,7 @@ class QuestManager
 	{
 		AppliedQuestStatus qs = new AppliedQuestStatus();
 		qs.QuestID = qt.QuestID;
+		qs.Type = qt.Type;
 		m_QuestManagerStg.QuestStatusArr.Insert(qs);
 	}
 
@@ -128,9 +132,24 @@ class QuestManager
 	{
 		AppliedQuestStatus qs = new AppliedQuestStatus();
 		qs.QuestID = qt.QuestID;
+		qs.Type = qt.Type;
 		for (int i = 0; i < qt.Shipments.Count(); i++)
 		{
 			qs.SaveCountSpawnedItems.Insert(0);
+		}
+		m_QuestManagerStg.QuestStatusArr.Insert(qs);
+	}
+
+	void TakeKillSomething(Quest qt)
+	{
+		AppliedQuestStatus qs = new AppliedQuestStatus();
+		qs.QuestID = qt.QuestID;
+		qs.Type = qt.Type;
+		for (int i = 0; i < qt.TargetsForKilling.Count(); i++)
+		{
+			QKillTgt qkt = qt.TargetsForKilling.Get(i);
+			qkt.KillCount = 0;
+			qs.SaveCountKilledSomething.Insert(qkt);
 		}
 		m_QuestManagerStg.QuestStatusArr.Insert(qs);
 	}
@@ -246,8 +265,8 @@ class QuestManager
 		Param1<ref QuestManagerStg> rpb;
 		if (!ctx.Read(rpb)) return;
 		m_QuestManagerStg = rpb.param1;
+		if (!IsInit) FirstSyncCooldown();
 		IsInit = true;
-		FirstSyncCooldown();
 	}
 
 	void RequestSyncData()

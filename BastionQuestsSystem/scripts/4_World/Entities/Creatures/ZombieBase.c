@@ -1,32 +1,7 @@
-modded class ItemBase
+modded class ZombieBase
 {
-	private int		UnicID;
-
-	void ItemBase()
-	{
-		UnicID = -1;
-		RegisterNetSyncVariableInt("UnicID");
-	}
-
-	void SetQuestNPC(int id)
-	{
-		SetAllowDamage(false);
-		UnicID = id;
-		SetSynchDirty();
-	}
-
-	int GetQuestID()
-	{
-		return UnicID;
-	}
-
-	override void SetActions()
-	{
-		super.SetActions();
-		AddAction(ActionInteractQuestItemNPC);
-	}
-
-	override void EEKilled( Object killer )
+    
+    override void EEKilled( Object killer )
     {
         PlayerBase v_Killer;
         if (killer)
@@ -46,9 +21,9 @@ modded class ItemBase
                 {
                     v_Killer = PlayerBase.Cast(wb.GetHierarchyRootPlayer());
                     if (v_Killer && v_Killer.GetPersonalQuestManager())
-					{
-						v_Killer.GetPersonalQuestManager().KilledSomething(this);
-					}
+                    {
+                        v_Killer.GetPersonalQuestManager().KilledSomething(this);
+                    }
                 }
             }
         }
