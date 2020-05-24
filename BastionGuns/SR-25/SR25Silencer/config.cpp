@@ -14,7 +14,7 @@ class cfgVehicles
 	class ItemBarrel: Inventory_Base{};
 	class ItemSuppressor: Inventory_Base{};
 	class M4_Suppressor: ItemSuppressor{};
-	class SR25_Suppressor: M4_Suppressor
+	class BRP_SR25_Suppressor: M4_Suppressor
 	{
 		scope = 2;
 		displayName = "SR-25 Suppressor";

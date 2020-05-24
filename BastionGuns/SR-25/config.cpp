@@ -16,7 +16,7 @@ class Mode_SemiAuto;
 class cfgWeapons
 {
 	class M4A1;
-	class SR25_Base: M4A1
+	class BRP_SR25_Base: M4A1
 	{
 		scope = 0;
 		absorbency = 0.1;
@@ -111,19 +111,19 @@ class cfgWeapons
 			};
 		};
 	};
-	class SR25_Black: SR25_Base
+	class BRP_SR25_Black: BRP_SR25_Base
 	{
 		scope = 2;
 		displayName = "SR-25 Black";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionGuns\SR-25\data\SR-25_Base_Co.paa"};
 	};
-	class SR25_Green: SR25_Base
+	class BRP_SR25_Green: BRP_SR25_Base
 	{
 		scope = 2;
 		displayName = "SR-25 Green(Muddy)";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionGuns\SR-25\data\SR-25_GreenMud.paa"};
 	};
-	class SR25_Tan: SR25_Base
+	class BRP_SR25_Tan: BRP_SR25_Base
 	{
 		scope = 2;
 		displayName = "SR-25 Tan";
@@ -134,7 +134,7 @@ class cfgWeapons
 class CfgMagazines
 {
 	class Mag_AKM_30Rnd;
-	class SR25_Magazine: Mag_AKM_30Rnd
+	class BRP_SR25_Magazine: Mag_AKM_30Rnd
 	{
 		scope = 2;
 		displayName = "SR-25 Magazine";
@@ -148,7 +148,7 @@ class CfgMagazines
 		isMeleeWeapon = 0;
 		tracersEvery = 1;
 	};
-	class SR25_Magazine_Extendo: Mag_AKM_30Rnd
+	class BRP_SR25_Magazine_Extendo: Mag_AKM_30Rnd
 	{
 		scope = 2;
 		displayName = "SR-25 Extended Magazine";

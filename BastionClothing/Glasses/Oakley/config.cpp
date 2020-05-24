@@ -11,7 +11,7 @@ class CfgPatches
 class CfgVehicles
 {
 	class AviatorGlasses;
-	class OakleyTacGlasses_Base: AviatorGlasses
+	class BRP_OakleyTacGlasses_Base: AviatorGlasses
 	{
 		scope = 0;
 		displayName = "Oakley Tactical Goggles";
@@ -46,7 +46,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class OakleyTacGlasses_BlackTrim: OakleyTacGlasses_Base
+	class BRP_ISF_DTAC_Glasses: BRP_OakleyTacGlasses_Base
 	{
 		scope = 2;
 		displayName = "Oakley Tactical Glasses";
