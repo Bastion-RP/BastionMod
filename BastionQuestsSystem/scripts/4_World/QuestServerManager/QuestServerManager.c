@@ -15,7 +15,7 @@ class PersonalQuestManager
 		m_QuestStorageLoader	= new QuestStorageLoader();
 		m_QuestStorageLoader	= QuestStorageLoader.LoadData(m_Player.GetMultiCharactersPlayerId().ToString());
 		//m_QuestStorageLoader	= QuestStorageLoader.LoadData(m_Player.GetIdentity().GetPlainId());
-		Print("[QUEST]m_QuestStorageLoader load data id= "+m_Player.GetMultiCharactersPlayerId().ToString());
+		//Print("[QUEST]m_QuestStorageLoader load data id= "+m_Player.GetMultiCharactersPlayerId().ToString());
 	}
 
 	void OnConnect()
@@ -56,7 +56,6 @@ class PersonalQuestManager
 		m_QuestStorageLoader.m_QuestManagerStg = rpb.param1;
 		//QuestStorageLoader.SaveData(m_QuestStorageLoader, m_Player.GetIdentity().GetPlainId());
 		QuestStorageLoader.SaveData(m_QuestStorageLoader, m_Player.GetMultiCharactersPlayerId().ToString());
-		Print("[QUEST]handleSyncData save id= "+m_Player.GetMultiCharactersPlayerId().ToString());
 	}
 
 	void handleGiveShipment(ParamsReadContext ctx)
@@ -408,5 +407,68 @@ class PersonalQuestManager
 		if (!ctx.Read(rpb)) return;
 		ref Shipment sh = rpb.param1;
 		OverflowCountSpawn(sh.Classname, sh.Count, true, sh.PackagePos, sh.PackageOri);		
+	}
+
+
+
+	void KilledSomething(Object target)
+	{
+		bool needSave = false;
+		bool needSync = false;
+		for (int i = 0; i < m_QuestStorageLoader.m_QuestManagerStg.QuestStatusArr.Count(); i++)
+		{
+			AppliedQuestStatus qs = m_QuestStorageLoader.m_QuestManagerStg.QuestStatusArr.Get(i);
+			if (qs.Type == "KillSomething")
+			{
+				for (int j = 0; j < qs.SaveCountKilledSomething.Count(); j++)
+				{
+					QKillTgt qkt = qs.SaveCountKilledSomething.Get(j);
+					if (IsRightTarget(target, qkt.Classname))
+					{
+						needSave = true;
+						qkt.KillCount += 1;
+						if (IsKillQuestComplete(qs)) 
+						needSync = true;
+					}
+				}
+			}
+		}
+		if (needSave)
+		{
+			//QuestStorageLoader.SaveData(m_QuestStorageLoader, m_Player.GetIdentity().GetPlainId());
+			QuestStorageLoader.SaveData(m_QuestStorageLoader, m_Player.GetMultiCharactersPlayerId().ToString());
+		}
+		if (needSync)
+		{
+			SendData();
+		}
+	}
+
+	bool IsKillQuestComplete(AppliedQuestStatus qs)
+	{
+		for (int i = 0; i < qs.SaveCountKilledSomething.Count(); i++)
+		{
+			QKillTgt qkt = qs.SaveCountKilledSomething.Get(i);
+			if (qkt.Count > qkt.KillCount)
+			return false;
+		}
+		return true;
+	}
+
+	bool IsRightTarget(Object obj, string tgtName)
+	{
+		if (tgtName == "Zombie" && obj.IsInherited(ZombieBase))
+		{
+			return true;
+		}
+		if (tgtName == "Animal" && obj.IsInherited(Animal))
+		{
+			return true;
+		}
+		if (obj.GetType() == tgtName)
+		{
+			return true;
+		}
+		return false;
 	}
 }

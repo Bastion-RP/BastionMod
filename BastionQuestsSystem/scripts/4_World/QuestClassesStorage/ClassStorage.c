@@ -35,8 +35,9 @@ class Choice
 class Quest
 {
     int                         QuestID;	// absolutely unique id relative to all other quests !must be greater than 0!
-    string                      Type;		// type 'Delivery', 'FindAndDelivery'
-	bool						Repeatable;	// can I take this quest again after a period of time
+    string                      Type;		// type 'Delivery', 'FindAndDelivery', 'KillSomething'
+	ref array<ref QKillTgt>		TargetsForKilling = new array<ref QKillTgt>();
+	bool						Repeatable;	// do this quest again after a period of time
 	int							Delay;		// in sec
 	ref array<int>				Required = new array<int>();	// list of completed quests required to take this (contains QuestID)
 	bool						CanDoneAnyway;	// ignore delay, repetable, required. This task can be passed without taking it if there are completed goals
@@ -57,6 +58,13 @@ class Reward
     int							Count; 		// If the item has a quantity, specify it in conventional units. For example for a water bottle specify 1000
 }
 
+class QKillTgt
+{
+	string						Classname; // classname of object, If you write "Zombie" then all zombies will be counted regardless of the classname, as well as with animals "Animal"
+	int							Count;	   // the required number of kills to complete the goal
+	int							KillCount; // need for store the progress 
+}
+
 //================================ need to store progress =====================================
 class QuestManagerStg
 {
@@ -69,6 +77,7 @@ class AppliedQuestStatus
 {
 	int							QuestID;
 	ref array<int>				SaveCountSpawnedItems = new array<int>();
-	int							CompletedTasks;
+	ref array<ref QKillTgt>		SaveCountKilledSomething = new array<ref QKillTgt>();
+	string						Type;
 }
 //=============================================================================================

@@ -239,6 +239,9 @@ class QuestHud extends UIScriptedMenu
 			case "FindAndDelivery":
 				flag = CheckDeliveryCondition(qt);
 			break;
+			case "KillSomething":
+				flag = CheckKillCondition(qt);
+			break;
 		}
 		if (!qt.CanDoneAnyway)
 		{
@@ -275,6 +278,27 @@ class QuestHud extends UIScriptedMenu
 			}
 		}
 
+		return true;
+	}
+
+	bool CheckKillCondition(Quest qt)
+	{
+		for (int i = 0; i < g_QM.m_QuestManagerStg.QuestStatusArr.Count(); i++)
+		{
+			AppliedQuestStatus qs = g_QM.m_QuestManagerStg.QuestStatusArr.Get(i);
+			if (qt.QuestID == qs.QuestID)
+			{
+				for (int j = 0; j < qs.SaveCountKilledSomething.Count(); j++)
+				{
+					QKillTgt qkt = qs.SaveCountKilledSomething.Get(j);
+					int needDead = qkt.Count;
+					if (needDead > qkt.KillCount)
+					{
+						return false;
+					}
+				}
+			}
+		}
 		return true;
 	}
 

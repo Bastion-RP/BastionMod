@@ -1,32 +1,6 @@
-modded class ItemBase
+modded class AnimalBase
 {
-	private int		UnicID;
-
-	void ItemBase()
-	{
-		UnicID = -1;
-		RegisterNetSyncVariableInt("UnicID");
-	}
-
-	void SetQuestNPC(int id)
-	{
-		SetAllowDamage(false);
-		UnicID = id;
-		SetSynchDirty();
-	}
-
-	int GetQuestID()
-	{
-		return UnicID;
-	}
-
-	override void SetActions()
-	{
-		super.SetActions();
-		AddAction(ActionInteractQuestItemNPC);
-	}
-
-	override void EEKilled( Object killer )
+    override void EEKilled( Object killer )
     {
         PlayerBase v_Killer;
         if (killer)
