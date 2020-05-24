@@ -1,0 +1,42 @@
+[
+    {
+        "location": "SEC-1 Inside Factory",
+        "orientation": "89 0 0",
+        "position": "4674.4 10 4467.7"
+    },
+    {
+        "location": "SEC-4 Spawn Point",
+        "orientation": "136 0 0",
+        "position": "4783.8 10 4085.6"
+    },
+    {
+        "location": "SEC-4 Outside Store",
+        "orientation": "137 0 0",
+        "position": "4913.9 10 4143.1"
+    },
+    {
+        "location": "SEC-3 Store",
+        "orientation": "-44 0 0",
+        "position": "4766.7 10.63 4239.2"
+    },
+    {
+        "location": "SEC-3 Town Square",
+        "orientation": "135 0 0",
+        "position": "4613.1 10.224 4187"
+    },
+    {
+        "location": "SEC-3 Outside Trash Park",
+        "orientation": "46 0 0",
+        "position": "4613.4 8.24 4258.6"
+    },
+    {
+        "location": "SEC-0 Island Inside HQ",
+        "orientation": "29 0 0",
+        "position": "4443.6 9.715 4723.9"
+    },
+    {
+        "location": "SEC-2 Outside Clinic",
+        "orientation": "31 0 0",
+        "position": "4924.7 9.647 4426.1"
+    }
+]

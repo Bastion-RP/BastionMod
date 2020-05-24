@@ -1,0 +1,90 @@
+{
+    "VendingMachineSettings": [
+        {
+            "Position": [
+                4765.1,
+                10.6,
+                4329.2
+            ],
+            "Direction": [
+                45,
+                0,
+                0
+            ],
+            "Ration": "BRP_AION",
+            "Price": 1
+        },
+        {
+            "Position": [
+                4732.7,
+                9.8638,
+                4356.2
+            ],
+            "Direction": [
+                -135,
+                0,
+                0
+            ],
+            "Ration": "BRP_AION",
+            "Price": 1
+        },
+        {
+            "Position": [
+                4667.7,
+                10.13,
+                4422
+            ],
+            "Direction": [
+                39,
+                0,
+                0
+            ],
+            "Ration": "BRP_AION",
+            "Price": 1
+        },
+        {
+            "Position": [
+                4930.4,
+                10,
+                4233.0
+            ],
+            "Direction": [
+                68,
+                0,
+                0
+            ],
+            "Ration": "BRP_AION",
+            "Price": 1
+        },
+        {
+            "Position": [
+                4685.3,
+                10.224,
+                4130.4
+            ],
+            "Direction": [
+                -45,
+                0,
+                0
+            ],
+            "Ration": "BRP_AION",
+            "Price": 1
+        },
+        {
+            "Position": [
+                4546.3,
+                9.3355,
+                4235.7
+            ],
+            "Direction": [
+                -96,
+                0,
+                0
+            ],
+            "Ration": "BRP_AION",
+            "Price": 1
+        }
+    ],
+    "m_defaultRation": "BRP_AION",
+    "m_defaultPrice": 1
+}

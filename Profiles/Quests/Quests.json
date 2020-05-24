@@ -1,0 +1,81 @@
+{
+	"AllQuests": [
+		{
+			"QuestID" : 25,
+			"Type" : "Delivery",
+			"Repeatable" : 0,
+			"Delay" : 60,
+			"Required" : [],
+			"CanDoneAnyway" : 0,
+			"Shipments" : [
+				{
+					"Classname" : "WaterBottle",
+					"Count"     : 4500,
+					"DistanceForSpawn" : 5,
+					"PackagePos" : [ 0, 0, 0],
+					"PackageOri" : [ 0, 0, 0]
+				},
+				{
+					"Classname" : "Rice",
+					"Count"     : 400,
+					"DistanceForSpawn" : 5,
+					"PackagePos" : [ 0, 0, 0],
+					"PackageOri" : [ 0, 0, 0]
+				}
+			],
+			"Rewards" : [
+				{
+					"Classname" : "Rice",
+					"Count" : 200
+				}
+			]
+		},
+		{
+			"QuestID" : 35,
+			"Type" : "Delivery",
+			"Repeatable" : 1,
+			"Delay" : 60,
+			"Required" : [],
+			"CanDoneAnyway" : 0,
+			"Shipments" : [],
+			"Rewards" : []
+		},
+		{
+			"QuestID" : 50,
+			"Type" : "FindAndDelivery",
+			"Repeatable" : 1,
+			"Delay" : 60,
+			"Required" : [],
+			"CanDoneAnyway" : 0,
+			"Shipments" : [
+				{
+					"Classname" : "WaterBottle",
+					"Count"     : 1000,
+					"DistanceForSpawn" : 5,
+					"PackagePos" : [ 2137.82, 5.907, 2283.84 ],
+					"PackageOri" : [ 0, 0, 0]
+				},
+				{
+					"Classname" : "WaterBottle",
+					"Count"     : 1000,
+					"DistanceForSpawn" : 5,
+					"PackagePos" : [ 2143.22, 6.025, 2284.43],
+					"PackageOri" : [ 0, 0, 0]
+				},
+				{
+					"Classname" : "WaterBottle",
+					"Count"     : 1000,
+					"DistanceForSpawn" : 5,
+					"PackagePos" : [ 2148.65, 6.038, 2284.54],
+					"PackageOri" : [ 0, 0, 0]
+				}
+			],
+			"Rewards" : [
+				{
+					"Classname" : "AKM",
+					"Count"     : 1
+				}
+			]
+		}
+	]
+}

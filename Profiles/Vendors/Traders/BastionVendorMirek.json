@@ -1,0 +1,116 @@
+{
+    "VehiclePosition": [
+        0,
+        0,
+        0
+    ],
+    "TraderName": "BastionVendorMirek",
+    "DisplayName": "Default Trader",
+    "Loadout": [
+        "QuiltedJacket_Black",
+        "SlacksPants_Black",
+        "HikingBoots_Black"
+    ],
+    "CategoriesItems": [
+        {
+            "Name": "Bandanas",
+            "Items": [
+                {
+                    "ClassName": "Bandana_BlackPattern",
+                    "SellPrice": 1,
+                    "BuyPrice": 1,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Bandana_PolkaPattern",
+                    "SellPrice": 1,
+                    "BuyPrice": 1,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Bandana_Greenpattern",
+                    "SellPrice": 1,
+                    "BuyPrice": 1,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Bandana_CamoPattern",
+                    "SellPrice": 1,
+                    "BuyPrice": 1,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Bandana_RedPattern",
+                    "SellPrice": 1,
+                    "BuyPrice": 1,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Something",
+            "Items": [
+                {
+                    "ClassName": "Bandana_BlackPattern",
+                    "SellPrice": 1,
+                    "BuyPrice": 1,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Bandana_PolkaPattern",
+                    "SellPrice": 1,
+                    "BuyPrice": 1,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Bandana_Greenpattern",
+                    "SellPrice": 1,
+                    "BuyPrice": 1,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Bandana_CamoPattern",
+                    "SellPrice": 1,
+                    "BuyPrice": 1,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                },
+                {
+                    "ClassName": "Bandana_RedPattern",
+                    "SellPrice": 1,
+                    "BuyPrice": 1,
+                    "Vehicle": 0,
+                    "VehicleParts": [
+                        ""
+                    ]
+                }
+            ]
+        }
+    ]
+}

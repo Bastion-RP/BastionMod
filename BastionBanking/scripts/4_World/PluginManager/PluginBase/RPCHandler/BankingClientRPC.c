@@ -97,6 +97,11 @@ class BankingClientRPC : PluginBase {
                                     return;
                                     break;
                                 }
+                            case BBRPCTypes.ACCOUNT_RESET:
+                                {
+                                    menu.CreateTextGrid("Account password reset! You can now login using your new password", true);
+                                    break;
+                                }
                             case BBRPCTypes.ERROR_ACCEPT_TRANSFER:
                                 {
                                     menu.CreateTextGrid("Error! A '" + (errorData.Get(BBConst.ACCOUNT_TRANSFER_FEE).ToFloat() * 100) + "%` fee is applied to transfers!", true);
@@ -150,6 +155,11 @@ class BankingClientRPC : PluginBase {
                                     menu.CreateTextGrid("Error! '" + errorData.Get(BBConst.ACCOUNT_TO_OVERFLOW) + "' credits will be transferred to overflow!", true);
                                     menu.SetConfirmation("Do you accept? (Y/N):");
                                     return;
+                                    break;
+                                }
+                            case BBRPCTypes.ERROR_RESET:
+                                {
+                                    menu.CreateTextGrid("Error! Account password could not be reset due to an unknown error!");
                                     break;
                                 }
                         }

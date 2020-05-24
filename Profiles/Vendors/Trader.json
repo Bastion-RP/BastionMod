@@ -1,0 +1,32 @@
+{
+    "Enabled": 1,
+    "Currency": "NCC_CopperCoin",
+    "TraderZones": [
+        {
+            "Name": "BRP_MedicalVendor1_Bloody",
+            "Position": [
+                4441,
+                9.7197,
+                4719.1
+            ],
+            "Orientation": [
+                116,
+                0,
+                0
+            ]
+        },
+        {
+            "Name": "BRP_MedicalVendor_1",
+            "Position": [
+                4651.8,
+                10.224,
+                4222.4
+            ],
+            "Orientation": [
+                -46,
+                0,
+                0
+            ]
+        }
+    ]
+}

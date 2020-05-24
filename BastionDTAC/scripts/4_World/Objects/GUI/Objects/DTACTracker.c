@@ -2,7 +2,7 @@ class DTACTracker {
     private static const int MAX_HEALTH = 100;
     private static const int MAX_BLOOD = 5000;
     private static const int MAX_WATER = 5000;
-    private static const int MAX_FOOD = 5000;
+    private static const int MAX_FOOD = 20000;
     private static const int BLOOD_DEATH_THRESHOLD = 2500;
     private static const int FRAME_PADDING = 4;
     private static const int GRID_PADDING = 6;

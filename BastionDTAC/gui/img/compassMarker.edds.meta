@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{D150F2CAA292C5F2}BastionMod/BastionDTAC/gui/img/compassMarker.edds"
+ Author "bryanpc"
+ ChangeDate 228092051
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "compassMarker.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

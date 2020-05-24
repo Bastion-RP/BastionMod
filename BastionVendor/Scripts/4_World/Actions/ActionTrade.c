@@ -56,4 +56,4 @@ class ActionTrade: ActionInteractBase
 
 		// m_Trader.LoadTraderData( m_TraderBase, action_data.m_Player.GetIdentity() );
 	}
-};
+}
