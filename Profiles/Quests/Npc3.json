@@ -6,7 +6,69 @@
         "NPCPos" : [ 2142, 15, 2276 ],
         "NPCOri" : [ 180, 0, 0 ],
         "NPCUnicID" : 3,
-        "Dialogues":[],
-		"QuestFinishDialogs": []
+        "Dialogues":[
+			{
+                "ID" : 1,
+                "Message" : "Bzzz, bzzzz, bzzzz, okay, I tired to portray the coffee machine that you need?",
+                "Choices" : [
+                    {
+                        "ChoiceMsg" : "Holy shit, the barrel is talking.",
+                        "MoveToDialog" : 2
+                    }
+                ]
+			},
+			{
+                "ID" : 2,
+                "Message" : "What? Are you some kind of mechanical racist? I could have incinerated you with my lasers, if I had any.....",
+                "Choices" : [
+                    {
+                        "ChoiceMsg" : "...",
+                        "MoveToDialog" : 3
+                    }
+                ]
+            },
+			{
+                "ID" : 3,
+                "Message" : "At least I can only burn you with hot coffee if you come closer, because I can't reach you.",
+                "Choices" : [
+                    {
+                        "ChoiceMsg" : "Calm down, do you need anything?",
+                        "MoveToDialog" : 4
+                    }
+                ]
+			},
+			{
+                "ID" : 4,
+                "Message" : "Yes these annoying zombies constantly walk around me and scare away customers could you deal with them? And one more thing, destroy a few bottles of water, it's necessary to calm my circuits.",
+                "Choices" : [
+                    {
+                        "ChoiceMsg" : "It's weird, but okay, I'll do it.",
+                        "ApplyQuest" : 66
+                    }
+                ]
+			},
+			{
+				"ID" : 5,
+                "Message" : "Great, I can pour you a couple of cups of coffee.",
+                "Choices" : [
+                    {
+                        "ChoiceMsg" : "What the hell is coffee? I need money!",
+                        "MoveToDialog" : 6
+                    }
+                ]
+			},
+			{
+				"ID" : 6,
+                "Message" : "What money? Do you see any pockets on me? - no, so hold up your glass or get out of here while you're still alive.",
+                "Choices" : []
+			}
+		],
+		"QuestFinishDialogs": [
+			{
+				"ForQuest" : 66,
+				"MoveToDialog": 5,
+				"ChoiceMsg" : "We're done with the bottles and the zombies, what about the reward?"
+			}
+		]
     }
 }

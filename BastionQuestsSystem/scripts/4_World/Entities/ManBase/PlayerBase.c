@@ -33,7 +33,6 @@ modded class PlayerBase
     {
         super.OnConnect();
 
-		Print("[QUEST]OnConnect "+this.GetMultiCharactersPlayerId().ToString());
 		if (GetGame().IsServer() && GetIdentity())
 		{
 			m_PersonQuestManag = new PersonalQuestManager(this);
@@ -41,6 +40,11 @@ modded class PlayerBase
 		
 		m_PersonQuestManag.OnConnect();
     }
+
+	PersonalQuestManager GetPersonalQuestManager()
+	{
+		return m_PersonQuestManag;
+	}
 
     override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
 	{

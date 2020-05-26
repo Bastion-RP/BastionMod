@@ -31,7 +31,6 @@ class QuestsData
             Print("[QUESTS] File GeneralSettings not found!");
         }
 
-		Print(data.m_GeneralSettings.NPCCount); // remove this
         return data;
     }
 
@@ -75,7 +74,7 @@ class QuestsLoader
         }
         else
         {
-            Print("[QUESTS] File GeneralSettings not found!");
+            Print("[QUESTS] File Quests not found!");
         }
         return data;
     }
