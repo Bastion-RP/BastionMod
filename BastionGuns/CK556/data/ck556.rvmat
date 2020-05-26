@@ -1,4 +1,13 @@
-﻿ambient[] = {1,1,1,1};
+﻿////////////////////////////////////////////////////////////////////
+//DeRap: P:\BastionMod\BastionGuns\CK556\data\ck556.rvmat
+//Produced from mikero's Dos Tools Dll version 7.60
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Apr 28 20:42:33 2020 : 'file' last modified on Tue Apr 28 20:42:33 2020
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {1,1,1,1};
 diffuse[] = {1,1,1,1};
 forcedDiffuse[] = {0,0,0,0};
 emmisive[] = {0,0,0,1};
