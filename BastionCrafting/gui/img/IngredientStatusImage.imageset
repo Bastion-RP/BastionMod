@@ -1,0 +1,26 @@
+ImageSetClass {
+ Name "BST_Crafting_StatusImageSet"
+ RefSize 128 64
+ Textures {
+  ImageSetTextureClass {
+   mpix 1
+   path "{A933834FCAFB3531}BastionMod/BastionCrafting/gui/img/IngredientStatusImageset.edds"
+  }
+ }
+ Images {
+  ImageSetDefClass greencheckmark {
+   Name "greencheckmark"
+   Pos 0 6
+   Size 64 52
+   Flags 0
+  }
+  ImageSetDefClass redx {
+   Name "redx"
+   Pos 68 4
+   Size 56 56
+   Flags 0
+  }
+ }
+ Groups {
+ }
+}

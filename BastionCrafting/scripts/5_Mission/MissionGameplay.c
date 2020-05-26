@@ -1,13 +1,11 @@
 modded class MissionGameplay {
-    private static const int BST_CRAFTING_MENU_ID = 9998754;
-
     override UIScriptedMenu CreateScriptedMenu(int id) {
         UIScriptedMenu menu = null;
         menu = super.CreateScriptedMenu(id);
 
         if (!menu) {
             switch (id) {
-                case BST_CRAFTING_MENU_ID:
+                case BST_CraftingConst.CONST_CRAFTING_MENU_ID:
                     {
                         menu = new BST_CraftingMenu();
                         break;
@@ -41,7 +39,7 @@ modded class MissionGameplay {
             if (craftingMenu) {
                 craftingMenu.Close();
             } else {
-                GetUIManager().EnterScriptedMenu(BST_CRAFTING_MENU_ID, null);
+                GetUIManager().EnterScriptedMenu(BST_CraftingConst.CONST_CRAFTING_MENU_ID, null);
             }
         }
     }

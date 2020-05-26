@@ -9,14 +9,18 @@ modded class PluginManager {
 		super.Init();
 
 		craftingPluginList.Insert("BST_ServerCraftingManager");
-		craftingPluginList.Insert("BST_ServerRPCHandler");
+		craftingPluginList.Insert("BST_ServerCraftingRPCHandler");
+		craftingPluginList.Insert("BST_ClientCraftingManager");
+		craftingPluginList.Insert("BST_ClientCraftingRPCHandler");
 		//----------------------------------------------------------------------
 		// Register modules
 		//----------------------------------------------------------------------
 		//				Module Class Name 						Client	Server
 		//----------------------------------------------------------------------
 		RegisterPlugin("BST_ServerCraftingManager", false, true);
-		RegisterPlugin("BST_ServerRPCHandler", false, true);
+		RegisterPlugin("BST_ServerCraftingRPCHandler", false, true);
+		RegisterPlugin("BST_ClientCraftingManager", true, false);
+		RegisterPlugin("BST_ClientCraftingRPCHandler", true, false);
 	}
 	
 	//=================================

@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{A933834FCAFB3531}BastionMod/BastionCrafting/gui/img/IngredientStatusImageset.edds"
+ Author "bryanpc"
+ ChangeDate 1702701239
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "IngredientStatusImageset.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

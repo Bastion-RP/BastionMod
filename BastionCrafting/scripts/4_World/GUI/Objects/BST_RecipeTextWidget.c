@@ -19,11 +19,11 @@ class BST_RecipeTextWidget {
     }
 
     void Select() {
-        wRoot.SetColor(ARGB(255, 255, 0, 0));
+        wRoot.SetColor(BST_CraftingMenu.CONST_COLOR_BST_ORANGE);
     }
 
     void Deselect() {
-        wRoot.SetColor(ARGB(255, 255, 255, 255));
+        wRoot.SetColor(BST_CraftingMenu.CONST_COLOR_WHITE);
     }
 
     TextWidget GetText() { return wRoot; }

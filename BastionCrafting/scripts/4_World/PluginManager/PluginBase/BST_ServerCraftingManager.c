@@ -5,7 +5,10 @@
 // server doesn't have to give a shit about categories
 
 class BST_ServerCraftingManager : PluginBase {
+    private static const string CONST_CRAFTING_BENCH_CONFIG_DIR = BST_CraftingConst.rootDir + "BenchConfig.json";
+
     private ref array<ref BST_CraftingLoadedRecipe> arrayCraftingRecipes;
+    private ref BST_CraftingBenchConfig configBenches;
 
     void BST_ServerCraftingManager() {
         arrayCraftingRecipes = new array<ref BST_CraftingLoadedRecipe>();
@@ -16,29 +19,40 @@ class BST_ServerCraftingManager : PluginBase {
         if (!FileExist(BST_CraftingConst.recipeDir)) {
             MakeDirectory(BST_CraftingConst.recipeDir);
         }
+        LoadConfig();
         LoadRecipes();
         //GenerateRandomRecipes();
     }
 
-/*     private void GenerateRandomRecipes() {
+    /* private void GenerateRandomRecipes() {
         for (int i = 0; i < 200; i++) {
-            map<string, int> mapRequiredItems = new map<string, int>();
-            BST_CraftingRecipe newRecipe = new BST_CraftingRecipe();
-
             int item1 = Math.RandomInt(1, 100);
             int item2 = Math.RandomInt(1, 100);
             int item3 = Math.RandomInt(1, 100);
             int crafttime = Math.RandomInt(30, 5000);
-            int fileName = Math.RandomInt(0, 999999999)
+            int fileName = Math.RandomInt(0, 999999999);
 
-            mapRequiredItems.Insert("nail", item1);
-            mapRequiredItems.Insert("shovel", item2);
-            mapRequiredItems.Insert("ducttape", item3);
-            newRecipe.SetRequiredItems(mapRequiredItems);
+            array<ref BST_CraftingIngredient> arrayIngredients = new array<ref BST_CraftingIngredient>();
+            
+            arrayIngredients.Insert(new BST_CraftingIngredient("nail", 50, true));
+            arrayIngredients.Insert(new BST_CraftingIngredient("shovel", 1, true));
+            arrayIngredients.Insert(new BST_CraftingIngredient("ducttape", 1, false));
+
+            BST_CraftingRecipe newRecipe = new BST_CraftingRecipe(arrayIngredients);
+
             newRecipe.SetRecipeInfo(crafttime);
             JsonFileLoader<BST_CraftingRecipe>.JsonSaveFile(BST_CraftingConst.recipeDir + "" + fileName + ".json", newRecipe);;
         }
     } */
+
+    private void LoadConfig() {
+        if (!FileExist(CONST_CRAFTING_BENCH_CONFIG_DIR)) {
+            configBenches = new BST_CraftingBenchConfig();
+        } else {
+            JsonFileLoader<BST_CraftingBenchConfig>.JsonLoadFile(CONST_CRAFTING_BENCH_CONFIG_DIR, configBenches);
+        }
+        JsonFileLoader<BST_CraftingBenchConfig>.JsonSaveFile(CONST_CRAFTING_BENCH_CONFIG_DIR, configBenches);
+    }
 
     private void LoadRecipes() {
         array<string> arrayFileNames;
@@ -70,9 +84,9 @@ class BST_ServerCraftingManager : PluginBase {
                     if (foundRecipe) {
                         foundRecipe.SetFileName(foundFileName);
 
-                        if (foundRecipe.Validate()) {
+                        //if (foundRecipe.Validate()) {
                             arrayCraftingRecipes.Insert(foundRecipe);
-                        }
+                        //}
                         JsonFileLoader<BST_CraftingRecipe>.JsonSaveFile(BST_CraftingConst.recipeDir + foundFileName, foundRecipe);
                     }
                 }
@@ -82,40 +96,40 @@ class BST_ServerCraftingManager : PluginBase {
     }
 
     private void CreateExampleRecipe() {
-        map<string, int> mapRequiredItems = new map<string, int>();
+        array<ref BST_CraftingIngredient> arrayIngredients = new array<ref BST_CraftingIngredient>();
+        
+        arrayIngredients.Insert(new BST_CraftingIngredient("nail", 50, true));
+        arrayIngredients.Insert(new BST_CraftingIngredient("shovel", 1, true));
+        arrayIngredients.Insert(new BST_CraftingIngredient("ducttape", 1, false));
 
-        mapRequiredItems.Insert("nail", 50);
-        mapRequiredItems.Insert("shovel", 1);
-        mapRequiredItems.Insert("ducttape", 1);
-
-        BST_CraftingRecipe newRecipe = new BST_CraftingRecipe(mapRequiredItems);
+        BST_CraftingRecipe newRecipe = new BST_CraftingRecipe(arrayIngredients);
 
         JsonFileLoader<BST_CraftingRecipe>.JsonSaveFile(BST_CraftingConst.recipeDir + "ExampleRecipe.json", newRecipe);
     }
 
     void Craft(BST_CraftingRecipe recipe, PlayerBase player, ref array<EntityAI> arrayFoundItems) {
-        map<string, int> mapIngredients = recipe.GetIngredients();
+        array<ref BST_CraftingIngredient> arrayIngredients = recipe.GetIngredients();
 
-        for (int i = 0; i < mapIngredients.Count(); i++) {
-            string className = mapIngredients.GetKey(i);
-            int requiredAmount = mapIngredients.GetElement(i);
-            int amountRemaining = requiredAmount;
-            int removedAmount;
+        foreach (BST_CraftingIngredient ingredient : arrayIngredients) {
+            if (!ingredient) { continue; }
+            int amountRemaining = ingredient.GetRequiredAmount();
+            int removedAmount = 0;
 
-            for (int j = (arrayFoundItems.Count() - 1); j >= 0; j--) {
-                EntityAI item = arrayFoundItems[j];
+            for (int i = (arrayFoundItems.Count() - 1); i >= 0; i--) {
+                EntityAI item = arrayFoundItems[i];
 
                 if (item) {
                     string loweredTypeName = item.GetType();
                     loweredTypeName.ToLower();
 
-                    if (className == loweredTypeName) {
-                        arrayFoundItems.Remove(j);
+                    if (loweredTypeName == ingredient.GetLoweredClassname()) {
+                        arrayFoundItems.Remove(i);
 
+                        if (!ingredient.IsConsumable()) { continue; }
                         int itemQuantity = QuantityConversions.GetItemQuantity(item);
 
-                        if (itemQuantity > requiredAmount) {
-                            SetItemQuantity(item, itemQuantity - requiredAmount);
+                        if (itemQuantity > ingredient.GetRequiredAmount()) {
+                            SetItemQuantity(item, itemQuantity - ingredient.GetRequiredAmount());
                         } else {
                             GetGame().ObjectDelete(item);
                         }
@@ -123,7 +137,13 @@ class BST_ServerCraftingManager : PluginBase {
                 }
             }
         }
-        player.GetHumanInventory().CreateInInventory(recipe.GetProduct());
+        EntityAI entityCrafted = player.GetHumanInventory().CreateInInventory(recipe.GetProduct());
+
+        if (!entityCrafted) {
+            entityCrafted = GetGame().CreateObject(recipe.GetProduct(), player.GetPosition());
+
+            entityCrafted.PlaceOnSurface();
+        }
         delete arrayFoundItems;
     }
 
@@ -148,22 +168,18 @@ class BST_ServerCraftingManager : PluginBase {
     
     bool HasIngredients(BST_CraftingRecipe recipe, PlayerBase player, out ref array<EntityAI> arrayFoundItems) {
         array<EntityAI> arrayInventoryItems = new array<EntityAI>();
-        map<string, int> mapIngredients = recipe.GetIngredients();
+        array<ref BST_CraftingIngredient> arrayIngredients = recipe.GetIngredients();
         arrayFoundItems = new array<EntityAI>();
 
         player.GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER, arrayInventoryItems);
-        Print("[DEBUG] Checking map " + mapIngredients.Count());
+        Print("[DEBUG] Checking ingredient array " + arrayIngredients.Count());
 
-        for (int i = 0; i < mapIngredients.Count(); i++) {
-            string className = mapIngredients.GetKey(i);
-            int requiredAmount = mapIngredients.GetElement(i);
+        foreach (BST_CraftingIngredient ingredient : arrayIngredients) {
+            if (!ingredient) { continue; }
             int itemAmount = 0;
 
-            className.ToLower();
-            Print("[DEBUG] Iterating through map " + className);
-
-            for (int j = (arrayInventoryItems.Count() - 1); j >= 0; j--) {
-                EntityAI item = arrayInventoryItems[j];
+            for (int i = (arrayInventoryItems.Count() - 1); i >= 0; i--) {
+                EntityAI item = arrayInventoryItems[i];
 
                 Print("[DEBUG] Iterating item array " + item);
 
@@ -171,15 +187,15 @@ class BST_ServerCraftingManager : PluginBase {
                     string loweredTypeName = item.GetType();
                     loweredTypeName.ToLower();
 
-                    Print("[DEBUG] Searching for class name=" + className + " | type name=" + loweredTypeName);
-                    if (className == loweredTypeName) {
-                        if (itemAmount >= requiredAmount) {
+                    Print("[DEBUG] Searching for class name=" + ingredient.GetLoweredClassname() + " | type name=" + loweredTypeName);
+                    if (loweredTypeName == ingredient.GetLoweredClassname()) {
+                        if (itemAmount >= ingredient.GetRequiredAmount()) {
                             Print("[DEBUG] Item amount already met, breaking");
                             break;
                         }
                         Print("[DEBUG] Item found, adding to array");
                         arrayFoundItems.Insert(item);
-                        arrayInventoryItems.Remove(j);
+                        arrayInventoryItems.Remove(i);
 
                         int itemQuant = QuantityConversions.GetItemQuantity(item);
 
@@ -191,7 +207,7 @@ class BST_ServerCraftingManager : PluginBase {
                     }
                 }
             }
-            if (itemAmount < requiredAmount) {
+            if (itemAmount < ingredient.GetRequiredAmount()) {
                 Print("[DEBUG] Required item amount not found, exiting");
                 return false;
             }
@@ -203,6 +219,7 @@ class BST_ServerCraftingManager : PluginBase {
     }
 
     ref array<ref BST_CraftingLoadedRecipe> GetCraftingRecipes() { return arrayCraftingRecipes; }
+    ref BST_CraftingBenchConfig GetBenchConfig() { return configBenches; }
 }
 
 BST_ServerCraftingManager GetServerCraftingManager() {

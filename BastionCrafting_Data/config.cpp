@@ -11,22 +11,23 @@
 class CfgVehicles
 {
 	class HouseNoDestruct;
-	class BRP_CraftingTable: HouseNoDestruct
+	class BST_CraftingBenchBase : HouseNoDestruct {};
+	class BRP_CraftingTable: BST_CraftingBenchBase
 	{
 		scope = 1;
 		model = "\BastionMod\BastionCrafting_Data\craftingtable\craftingtable.p3d";
 	};
-	class BRP_Workbench1: HouseNoDestruct
+	class BRP_Workbench1: BST_CraftingBenchBase
 	{
 		scope = 1;
 		model = "\BastionMod\BastionCrafting_Data\workbench\workbench1.p3d";
 	};
-	class `: HouseNoDestruct
+	class BRP_Workbench2: BST_CraftingBenchBase
 	{
 		scope = 1;
 		model = "\BastionMod\BastionCrafting_Data\workbench\workbench2.p3d";
 	};
-	class BRP_Toolsbench_Base: HouseNoDestruct
+	class BRP_Toolsbench_Base: BST_CraftingBenchBase
 	{
 		scope = 0;
 		model = "\BastionMod\BastionCrafting_Data\toolsbench\toolsbench.p3d";

@@ -2,29 +2,24 @@ class BST_CraftingRecipe {
     private static const string DEFAULT_RECIPE_STRING = "CHANGE ME";
     private static const int DEFAULT_CRAFT_TIME = 60;
 
-    private ref map<string, int> Ingredients;
-    private string RecipeName, RecipeDescription, ProductClassName;
+    private ref array<ref BST_CraftingIngredient> Ingredients;
+    private string RecipeName, RecipeDescription, ProductClassName, RequiredCraftingBench;
     private int CraftTime;
 
-    void BST_CraftingRecipe(map<string, int> Ingredients) {
+    void BST_CraftingRecipe(array<ref BST_CraftingIngredient> Ingredients) {
         this.Ingredients = Ingredients;
         this.RecipeName = DEFAULT_RECIPE_STRING;
         this.RecipeDescription = DEFAULT_RECIPE_STRING;
         this.ProductClassName = DEFAULT_RECIPE_STRING;
         this.CraftTime = DEFAULT_CRAFT_TIME;
-    }
-
-    void SetRequiredItems(map<string, int> Ingredients) {
-        if (GetGame().IsServer() && GetGame().IsMultiplayer()) {
-            this.Ingredients = Ingredients;
-        }
+        this.RequiredCraftingBench = string.Empty;
     }
 
     // Remove this later, using only for testing
-    void SetRecipeInfo(int CraftTime) {
+    /* void SetRecipeInfo(int CraftTime) {
         this.CraftTime = CraftTime;
         Validate();
-    }
+    } */
 
     bool Validate() {
         if (RecipeName == string.Empty) {
@@ -45,7 +40,21 @@ class BST_CraftingRecipe {
         return true;
     }
 
-    map<string, int> GetIngredients() { return Ingredients; }
+    string GetLoweredName() {
+        string loweredName = RecipeName;
+
+        loweredName.ToLower();
+        return loweredName;
+    }
+
+    string GetRequiredBench() {
+        string loweredType = RequiredCraftingBench;
+
+        loweredType.ToLower();
+        return loweredType;
+    }
+
+    array<ref BST_CraftingIngredient> GetIngredients() { return Ingredients; }
     string GetName() { return RecipeName; }
     string GetDescription() { return RecipeDescription; }
     string GetProduct() { return ProductClassName; }

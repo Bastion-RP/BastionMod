@@ -1,16 +1,17 @@
 FrameWidgetClass rootFrame {
  ignorepointer 1
  size 1 1
- valign center_ref
  hexactpos 1
  vexactpos 1
  hexactsize 0
  vexactsize 0
  {
   PanelWidgetClass pnlRecipes {
+   clipchildren 0
    ignorepointer 1
    color 0 0 0 0.7843
-   size 400 1
+   position 50 0
+   size 400 0.8
    valign center_ref
    hexactpos 1
    vexactpos 1
@@ -20,9 +21,8 @@ FrameWidgetClass rootFrame {
    {
     ScrollWidgetClass scrollerRecipes {
      ignorepointer 1
-     size 1 1
-     halign center_ref
-     valign center_ref
+     size 1 0.95
+     valign bottom_ref
      hexactpos 1
      vexactpos 1
      hexactsize 0
@@ -44,14 +44,57 @@ FrameWidgetClass rootFrame {
       }
      }
     }
+    TextWidgetClass headerRecipes {
+     ignorepointer 1
+     color 1 0.5843 0 1
+     position 0 -64
+     size 48 64
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "BLUEPRINTS"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    EditBoxWidgetClass edtSearch {
+     clipchildren 0
+     position 0 0
+     size 1 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style ServerBrowser
+     "no focus" 0
+     text "Search for blueprints"
+     "Use default text" 0
+     "exact text" 0
+     {
+      PanelWidgetClass pnlUnderline {
+       ignorepointer 1
+       position 0 -3
+       size 0.98 2
+       halign center_ref
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style rover_sim_colorable
+      }
+     }
+    }
    }
   }
   PanelWidgetClass pnlSelectedRecipe {
    visible 0
+   clipchildren 0
    ignorepointer 1
    color 0 0 0 0.7843
-   size 500 500
-   halign center_ref
+   position 500 0
+   size 600 600
    valign center_ref
    hexactpos 1
    vexactpos 1
@@ -59,28 +102,182 @@ FrameWidgetClass rootFrame {
    vexactsize 1
    style rover_sim_colorable
    {
-    ButtonWidgetClass btnCraft {
-     color 1 0.6667 0 1
+    TextWidgetClass headerCrafting {
+     ignorepointer 1
+     color 1 0.5843 0 1
+     position 0 -64
+     size 48 64
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "CRAFTING"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    ItemPreviewWidgetClass prvRecipeItem {
+     ignorepointer 1
      position 0 10
-     size 80 30
+     size 300 200
      halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+    }
+    TextWidgetClass txtSelectedRecipeName {
+     ignorepointer 1
+     position 7 212
+     size 576 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    TextWidgetClass txtSelectedRecipeDesc {
+     ignorepointer 1
+     position 7 246
+     size 576 16
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    TextWidgetClass txtSelectedRecipeRequire {
+     ignorepointer 1
+     position 7 276
+     size 576 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "YOU'LL NEED"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    ScrollWidgetClass scrollerRecipeRequire {
+     visible 1
+     ignorepointer 1
+     position 7 310
+     size 586 80
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     "Scrollbar V" 1
+     {
+      GridSpacerWidgetClass gridRecipeRequire {
+       ignorepointer 0
+       size 1 0.32
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       Padding 0
+       Margin 0
+       "Size To Content V" 1
+       Columns 1
+       Rows 100
+      }
+     }
+    }
+    TextWidgetClass txtSelectedRecipeToolRequire {
+     ignorepointer 1
+     position 7 416
+     size 576 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "CRAFTABLE USING"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    GridSpacerWidgetClass gridRecipeToolRequire {
+     ignorepointer 0
+     position 7 450
+     size 586 16
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     Padding 0
+     Margin 0
+     Columns 1
+     Rows 1
+    }
+    TextWidgetClass txtSelectedRecipeTimeRequire {
+     ignorepointer 1
+     position 7 492
+     size 576 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "TIME TO CRAFT"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    TextWidgetClass txtSelectedRecipeTimetoCraft {
+     ignorepointer 1
+     position 7 526
+     size 576 16
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    ButtonWidgetClass btnCraft {
+     color 1 0.5843 0 1
+     position 7 7
+     size 120 30
+     halign right_ref
      valign bottom_ref
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
      style DayZDefaultButton
-     text "CRAFT"
      text_proportion 0.8
-    }
-    TextWidgetClass txtSelectedRecipeName {
-     ignorepointer 1
-     position 10 10
-     size 0.96 32
-     hexactpos 1
-     vexactpos 1
-     hexactsize 0
-     vexactsize 1
+     {
+      PanelWidgetClass pnlProgress {
+       visible 0
+       ignorepointer 1
+       color 1 0.5843 0 1
+       position 0 0
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+      }
+      TextWidgetClass txtCraft {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "CRAFT"
+       "text halign" center
+       "text valign" center
+      }
+     }
     }
    }
   }

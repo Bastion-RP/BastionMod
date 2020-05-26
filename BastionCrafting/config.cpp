@@ -5,7 +5,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = {};
+		requiredAddons[] = {"BastionCrafting_Data"};
 	};
 };
 class CfgMods
@@ -25,9 +25,14 @@ class CfgMods
 		version = "1.0";
 		extra = 0;
 		type = "mod";
-		dependencies[] = {"Game","World","Mission"};
+		dependencies[] = {"Game","World","Mission", "gui"};
 		class defs
 		{
+			class imageSets
+			{
+				value = "";
+				files[] = {"BastionMod/BastionCrafting/gui/img/IngredientStatusImage.imageset"};
+			};
 			class gameScriptModule
 			{
 				value = "";

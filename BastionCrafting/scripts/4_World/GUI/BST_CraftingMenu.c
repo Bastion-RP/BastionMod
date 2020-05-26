@@ -1,11 +1,28 @@
 class BST_CraftingMenu : UIScriptedMenu {
-    private ref Widget wRoot, recipeRoot;
-    private ref GridSpacerWidget gridRoot;
-    private ref TextWidget recipeTitle;
+    static const int CONST_COLOR_RED = ARGB(255, 255, 0, 0);
+    static const int CONST_COLOR_GREEN = ARGB(255, 0, 255, 0);
+    static const int CONST_COLOR_WHITE = ARGB(255, 255, 255, 255);
+    static const int CONST_COLOR_BST_ORANGE = ARGB(255, 255, 149, 0);
+    static const int CONST_COLOR_GRAY = ARGB(255, 180, 180, 180);
+    static const string CONST_STRING_SEARCH = "Search for blueprints";
+
+    private ref array<ref BST_CraftingLoadedRecipe> arrayRecipes;
+    private ref Widget wRoot, recipeRoot, pnlCraftingProgressBar;
+    private ref GridSpacerWidget gridRoot, gridRecipeIngredients, gridRecipeToolRequirements;
+    private ref TextWidget txtRecipeTitle, txtRecipeDesc, txtRecipeCraftTime;
+    private ref ItemPreviewWidget prvRecipeProduct;
+    private ref EditBoxWidget edtSearch;
     private ref ButtonWidget btnCraft;
+    private ref ScrollWidget scrollerRecipes;
     private ref BST_RecipeGridSpacer activeGrid;
-    private ref BST_RecipeTextWidget activeRecipe;
+    private ref BST_RecipeTextWidget activeRecipe, craftingRecipe;
     private ref array<ref BST_RecipeGridSpacer> arrayGridSpacers;
+    private ref array<ref BST_RecipeRequireGrid> arrayGridIngredients;
+    private EntityAI entityRecipeProduct;
+    private EntityAI benchBase;
+    private bool isCrafting, requiresBench, hasRequiredBench, hasIngredients;
+    private string previousEntry;
+    private float craftingTimePassed;
 
     void ~BST_CraftingMenu() {
         Cleanup();
@@ -13,13 +30,23 @@ class BST_CraftingMenu : UIScriptedMenu {
 
     override Widget Init() {
         arrayGridSpacers = new array<ref BST_RecipeGridSpacer>();
+        arrayGridIngredients = new array<ref BST_RecipeRequireGrid>();
+        arrayRecipes = new array<ref BST_CraftingLoadedRecipe>();
 
         wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionCrafting\\gui\\layout\\CraftingMenu.layout");
+        pnlCraftingProgressBar = wRoot.FindAnyWidget("pnlProgress");
         gridRoot = GridSpacerWidget.Cast(wRoot.FindAnyWidget("gridRecipesRoot"));
+        gridRecipeIngredients = GridSpacerWidget.Cast(wRoot.FindAnyWidget("gridRecipeRequire"));
+        gridRecipeToolRequirements = GridSpacerWidget.Cast(wRoot.FindAnyWidget("gridRecipeToolRequire"));
+        edtSearch = EditBoxWidget.Cast(wRoot.FindAnyWidget("edtSearch"));
+        prvRecipeProduct = ItemPreviewWidget.Cast(wRoot.FindAnyWidget("prvRecipeItem"));
         recipeRoot = wRoot.FindAnyWidget("pnlSelectedRecipe");
-        recipeTitle = TextWidget.Cast(wRoot.FindAnyWidget("txtSelectedRecipeName"));
+        scrollerRecipes = wRoot.FindAnyWidget("scrollerRecipes")
+        txtRecipeTitle = TextWidget.Cast(wRoot.FindAnyWidget("txtSelectedRecipeName"));
+        txtRecipeDesc = TextWidget.Cast(wRoot.FindAnyWidget("txtSelectedRecipeDesc"));
+        txtRecipeCraftTime = TextWidget.Cast(wRoot.FindAnyWidget("txtSelectedRecipeTimetoCraft"));
         btnCraft = ButtonWidget.Cast(wRoot.FindAnyWidget("btnCraft"));
-
+        
         return wRoot;
     }
 
@@ -27,24 +54,60 @@ class BST_CraftingMenu : UIScriptedMenu {
         if (activeGrid) {
             delete activeGrid;
         }
-        foreach (BST_RecipeGridSpacer grid : arrayGridSpacers) {
-            if (grid) {
-                delete grid;
-            }
+        if (benchBase) {
+            benchBase = null;
         }
+        previousEntry = string.Empty;
+        isCrafting = false;
+        requiresBench = false;
+        hasRequiredBench = false;
+        hasIngredients = false;
+        craftingTimePassed = 0.0;
+
+        CleanupRecipes();
+        CleanupIngredients();
     }
 
-    void BuildMenu() {
-        array<ref BST_CraftingLoadedRecipe> arrayRecipes = PlayerBase.Cast(GetGame().GetPlayer()).arrayCraftingRecipes;
-
+    void BuildMenu(string searchString = "") {
         foreach (BST_CraftingLoadedRecipe recipe : arrayRecipes) {
             if (recipe) {
+                if (searchString != "") {
+                    searchString = searchString.Trim();
+                    searchString.ToLower();
+
+                    if (recipe.GetLoweredName().IndexOf(searchString) == -1) { continue; }
+                }
                 CheckCurrentGridSpacer();
 
-                BST_RecipeTextWidget newRecipe = new BST_RecipeTextWidget(recipe.GetName() + " | " + recipe.GetDescription() + " | " + recipe.GetCraftTime(), activeGrid.GetGrid(), recipe);
+                BST_RecipeTextWidget newRecipe = new BST_RecipeTextWidget(recipe.GetName(), activeGrid.GetGrid(), recipe);
 
                 activeGrid.AddChild(newRecipe);
             }
+        }
+        scrollerRecipes.VScrollToPos01(0);
+    }
+
+    void CleanupRecipes() {
+        if (arrayGridSpacers) {
+            foreach (BST_RecipeGridSpacer grid : arrayGridSpacers) {
+                if (grid) {
+                    delete grid;
+                }
+            }
+            delete arrayGridSpacers;
+            arrayGridSpacers = new array<ref BST_RecipeGridSpacer>();
+        }
+    }
+
+    void CleanupIngredients() {
+        if (!arrayGridIngredients) { return; }
+        for (int i = (arrayGridIngredients.Count() - 1); i >= 0; i--) {
+            BST_RecipeRequireGrid deleteGrid = arrayGridIngredients[i];
+
+            if (deleteGrid) {
+                delete deleteGrid;
+            }
+            arrayGridIngredients.Remove(i);
         }
     }
     
@@ -56,12 +119,145 @@ class BST_CraftingMenu : UIScriptedMenu {
         }
     }
 
+    override void Update(float timeslice) {
+        if (GetFocus() == edtSearch) {
+            if (edtSearch.GetText() == CONST_STRING_SEARCH) {
+                edtSearch.SetText(string.Empty);
+            }
+        } else {
+            if (edtSearch.GetText() == string.Empty) {
+                edtSearch.SetText(CONST_STRING_SEARCH);
+            }
+        }
+        if (recipeRoot.IsVisible()) {
+            if (isCrafting || !hasIngredients || (requiresBench && !hasRequiredBench)) {
+                if (btnCraft.GetColor() != CONST_COLOR_GRAY) {
+                    btnCraft.SetColor(CONST_COLOR_GRAY);
+                }
+            } else {
+                if (btnCraft.GetColor() != CONST_COLOR_BST_ORANGE) {
+                    btnCraft.SetColor(CONST_COLOR_BST_ORANGE);
+                }
+            }
+        }
+        if (craftingRecipe && isCrafting) {
+            if (craftingRecipe == activeRecipe) {
+                int craftTime = activeRecipe.GetRecipe().GetCraftTime();
+                craftingTimePassed += timeslice;
+
+                pnlCraftingProgressBar.SetSize((craftingTimePassed / craftTime), 1);
+
+                if (!pnlCraftingProgressBar.IsVisible()) {
+                    pnlCraftingProgressBar.Show(true);
+                }
+                if (craftingTimePassed >= craftTime) {
+                    isCrafting = false;
+                    hasIngredients = false;
+                    craftingTimePassed = 0.0;
+                    
+                    GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_CraftingRPC.SERVER_CRAFT_ITEM, new Param2<string, EntityAI>(activeRecipe.GetRecipe().GetFileName(), benchBase), true);
+                    GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(this.RefreshBuildWindow, 2000);
+                }
+            } else {
+                craftingTimePassed = 0.0;
+                isCrafting = false;
+
+                pnlCraftingProgressBar.Show(false);
+            }
+        }
+        super.Update(timeslice);
+    }
+
+    void RefreshBuildWindow() {
+        pnlCraftingProgressBar.Show(false);
+        CleanupIngredients();
+        BuildRecipeWindow();
+    }
+
+    void BuildRecipeWindow() {
+        BST_RecipeRequireGrid newGridIngredient;
+        array<ref BST_CraftingIngredient> arrayCraftingIngredients = activeRecipe.GetRecipe().GetIngredients();
+        map<string, int> mapIngredientAmount = GetClientCraftingManager().GetIngredientAmount(arrayCraftingIngredients);
+        string requiredBench = activeRecipe.GetRecipe().GetRequiredBench();
+
+        requiresBench = false;
+        hasIngredients = true;
+
+        // Build ingredient grid
+        if (mapIngredientAmount == null) {
+            newGridIngredient = new BST_RecipeRequireGrid(gridRecipeIngredients, "ERROR OCCURRED WHEN TRYING TO GRAB CLIENT. REFRESH", false);
+            arrayGridIngredients.Insert(newGridIngredient);
+        } else {
+            for (int i = 0; i < arrayCraftingIngredients.Count(); i++) {
+                BST_CraftingIngredient ingredient = arrayCraftingIngredients[i];
+
+                if (!ingredient) { continue; }
+                EntityAI tempObject;
+                bool hasRequiredAmount = false;
+
+                if (mapIngredientAmount.Contains(ingredient.GetClassname())) {
+
+                    if (mapIngredientAmount.Get(ingredient.GetClassname()) >= ingredient.GetRequiredAmount()) {
+                        hasRequiredAmount = true;
+                    }
+                }
+                if (!hasRequiredAmount) {
+                    hasIngredients = false;
+                }
+                tempObject = GetGame().CreateObject(ingredient.GetClassname(), "0 0 0", true);
+
+                if (tempObject) {
+                    newGridIngredient = new BST_RecipeRequireGrid(gridRecipeIngredients, "(" + ingredient.GetRequiredAmount() + ") " + tempObject.GetDisplayName(), hasRequiredAmount);
+                    GetGame().ObjectDelete(tempObject);
+                } else {
+                    newGridIngredient = new BST_RecipeRequireGrid(gridRecipeIngredients, "(" + ingredient.GetRequiredAmount() + ") " + ingredient.GetClassname() + " (BAD CLASSNAME, NOTIFY AN ADMIN!!!)", false);
+                }
+                arrayGridIngredients.Insert(newGridIngredient);
+            }
+        }
+        // Build bench requirement grid
+        if (requiredBench == string.Empty) {
+            newGridIngredient = new BST_RecipeRequireGrid(gridRecipeToolRequirements, "Your Hands", true);
+
+            arrayGridIngredients.Insert(newGridIngredient);
+        } else {
+            BST_CraftingConfigBench configBenchRequired, configBenchFound;
+
+            configBenchRequired = GetClientCraftingManager().GetBenchConfig().GetBenchByType(requiredBench);
+            requiresBench = true;
+
+            if (configBenchRequired) {
+                string benchBaseType = benchBase.GetType();
+                configBenchFound = GetClientCraftingManager().GetBenchConfig().GetBenchByItemType(benchBaseType);
+
+                if (configBenchFound && configBenchFound == configBenchRequired) {
+                    hasRequiredBench = true;
+                    newGridIngredient = new BST_RecipeRequireGrid(gridRecipeToolRequirements, configBenchRequired.GetType(), true);
+                } else {
+                    hasRequiredBench = false;
+                    newGridIngredient = new BST_RecipeRequireGrid(gridRecipeToolRequirements, configBenchRequired.GetType(), false);
+                }
+            } else {
+                hasRequiredBench = false;
+                newGridIngredient = new BST_RecipeRequireGrid(gridRecipeToolRequirements, "Invalid Bench Type! Contact a server admin!", false);
+            }
+            arrayGridIngredients.Insert(newGridIngredient);
+        }
+    }
+
+    void SetBench(EntityAI benchBase) {
+        this.benchBase = benchBase;
+    }
+
     void OnShow() {
+        arrayRecipes = GetClientCraftingManager().GetRecipes();
+
         super.OnShow();
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
         GetGame().GetUIManager().ShowCursor(true);
         GetGame().GetMission().GetHud().Show(false);
         BuildMenu();
+        SetFocus(null);
     }
 
     void OnHide() {
@@ -87,10 +283,39 @@ class BST_CraftingMenu : UIScriptedMenu {
 
     override bool OnClick(Widget w, int x, int y, int button) {
         if (w == btnCraft) {
-            Print("[DEBUG] Sending RPC to server");
-            GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_CraftingRPC.SERVER_CRAFT_ITEM, new Param1<string>(activeRecipe.GetRecipe().GetFileName()), true);
+            if (hasIngredients) {
+                if ((requiresBench && hasRequiredBench) || !requiresBench) {
+                    Print("[DEBUG] Can craft, starting timer");
+                    craftingRecipe = activeRecipe;
+                    isCrafting = true;
+                }
+            }
         }
         return super.OnClick(w, x, y, button);
+    }
+    
+	override bool OnMouseLeave(Widget w, Widget enterW, int x, int y) {
+        if (w == edtSearch) {
+            SetFocus(null);
+        }
+        return super.OnMouseLeave(w, enterW, x, y);
+    }
+
+    override bool OnChange(Widget w, int x, int y, bool finished) {
+        super.OnChange(w, x, y, finished);
+
+        if (w == edtSearch) {
+            CleanupRecipes();
+
+            if (edtSearch.GetText() != previousEntry && edtSearch.GetText() != string.Empty && edtSearch.GetText() != CONST_STRING_SEARCH) {
+                previousEntry = edtSearch.GetText();
+
+                BuildMenu(previousEntry);
+            } else {
+                BuildMenu();
+            }
+        }
+        return true;
     }
 
     override bool OnMouseButtonUp(Widget w, int x, int y, int button) {
@@ -102,11 +327,37 @@ class BST_CraftingMenu : UIScriptedMenu {
                     if (activeRecipe) {
                         activeRecipe.Deselect();
                     }
+                    if (entityRecipeProduct) {
+                        GetGame().ObjectDelete(entityRecipeProduct);
+                    }
                     activeRecipe = txtWidget;
+                    entityRecipeProduct = GetGame().CreateObject(activeRecipe.GetRecipe().GetProduct(), "0 0 0", true);
 
+                    if (entityRecipeProduct) {
+                        prvRecipeProduct.SetItem(entityRecipeProduct);
+                    }
+                    txtRecipeTitle.SetText(activeRecipe.GetRecipe().GetName()); // Could make this the object's display name.
+                    txtRecipeDesc.SetText(activeRecipe.GetRecipe().GetDescription());
+
+                    int craftTime = activeRecipe.GetRecipe().GetCraftTime();
+                    int craftMinutes = craftTime / 60;
+                    int craftSeconds = craftTime;
+
+                    if (craftMinutes > 0) {
+                        craftSeconds -= craftMinutes * 60;
+
+                        if (craftSeconds > 0) {
+                            txtRecipeCraftTime.SetText("" + craftMinutes + " m, " + craftSeconds + "s");
+                        } else {
+                            txtRecipeCraftTime.SetText("" + craftMinutes + " m");
+                        }
+                    } else {
+                        txtRecipeCraftTime.SetText("" + craftSeconds + "s");
+                    }
                     txtWidget.Select();
                     recipeRoot.Show(true);
-                    recipeTitle.SetText(txtWidget.GetRecipe().GetName());
+                    CleanupIngredients();
+                    BuildRecipeWindow();
                 } else {
                     activeRecipe.Deselect();
 
@@ -114,6 +365,7 @@ class BST_CraftingMenu : UIScriptedMenu {
 
                     recipeRoot.Show(false);
                 }
+                SetFocus(null);
             }
         }
         return super.OnMouseButtonUp(w, x, y, button);
