@@ -1,6 +1,6 @@
 class CfgPatches
 {
-	class VerticalGrip_Base
+	class BRP_VerticalGrip_Base
 	{
 		units[] = {"VerticalGrip_Black","Bipod_Black"};
 		weapons[] = {};
@@ -23,7 +23,7 @@ class CfgVehicles
 		hiddenSelections[] = {"camo"};
 		recoilModifier[] = {0.5,0.5,0.5};
 	};
-	class BRP_VerticalGrip_Black: VerticalGrip_Base
+	class BRP_VerticalGrip_Black: BRP_VerticalGrip_Base
 	{
 		scope = 2;
 		displayName = "Vertical Grip (Black)";
@@ -42,7 +42,7 @@ class CfgVehicles
 		hiddenSelections[] = {"camo"};
 		recoilModifier[] = {0.3,0.3,0.3};
 	};
-	class BRP_Bipod_Black: Bipod_Base
+	class BRP_Bipod_Black: BRP_Bipod_Base
 	{
 		scope = 2;
 		displayName = "Bipod (Black)";
