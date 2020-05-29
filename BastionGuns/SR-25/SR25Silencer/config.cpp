@@ -1,6 +1,6 @@
 class CfgPatches
 {
-	class BWAF_Weapons
+	class BRP_CSM762_Suppressor
 	{
 		units[] = {"BRP_CSM762_Suppressor"};
 		weapons[] = {};
@@ -21,6 +21,6 @@ class cfgVehicles
 		inventorySlot = "BRP_CSM762_Suppressor";
 		itemSize[] = {1,3};
 		descriptionShort = "Suppressor made for the SR25.";
-		model = "BastionMod\BastionGuns\SR-25\SR25Silencer\SR25_Suppressor.p3d";
+		model = "BastionMod\BastionGuns\SR-25\SR25Silencer\BRP_CSM762_Suppressor.p3d";
 	};
 };
