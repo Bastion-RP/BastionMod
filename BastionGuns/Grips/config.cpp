@@ -1,6 +1,6 @@
 class CfgPatches
 {
-	class VerticalGrip_Base
+	class BRP_VerticalGrip_Base
 	{
 		units[] = {"VerticalGrip_Black","Bipod_Black"};
 		weapons[] = {};
@@ -11,7 +11,7 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_base;
-	class VerticalGrip_Base: Inventory_base
+	class BRP_VerticalGrip_Base: Inventory_base
 	{
 		scope = 0;
 		displayName = "Vertical Grip";
@@ -23,14 +23,14 @@ class CfgVehicles
 		hiddenSelections[] = {"camo"};
 		recoilModifier[] = {0.5,0.5,0.5};
 	};
-	class VerticalGrip_Black: VerticalGrip_Base
+	class BRP_VerticalGrip_Black: BRP_VerticalGrip_Base
 	{
 		scope = 2;
 		displayName = "Vertical Grip (Black)";
 		inventorySlot = "grip1";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionGuns\Grips\Data\VGRIP_Base_co.paa"};
 	};
-	class Bipod_Base: Inventory_base
+	class BRP_Bipod_Base: Inventory_base
 	{
 		scope = 0;
 		displayName = "Bipod";
@@ -42,7 +42,7 @@ class CfgVehicles
 		hiddenSelections[] = {"camo"};
 		recoilModifier[] = {0.3,0.3,0.3};
 	};
-	class Bipod_Black: Bipod_Base
+	class BRP_Bipod_Black: BRP_Bipod_Base
 	{
 		scope = 2;
 		displayName = "Bipod (Black)";
