@@ -214,13 +214,13 @@ class BRP_Shock_ShockEffect {
 		if (t_time < m_ShockEffectForceExtraNext && m_ShockEffectForceExtra) {
 			return;
 		};
-		m_ShockEffectForceExtraNext = t_time + (f_size * 0.2);
+		m_ShockEffectForceExtraNext = t_time + (f_size * 0.25);
 
 		f_size = Math.Clamp(f_size,1,8);
 
 
 		// arbitary shock size
-		float t_ForceExtraSize = 0.0075;
+		float t_ForceExtraSize = 0.005;
 		//t_ForceExtraSize = t_ForceExtraSize + Math.Lerp(0.0,0.03,Math.Clamp(Math.InverseLerp(0.9,1.0,GetShockHealth()),0,1));
 		
 
@@ -269,7 +269,7 @@ class BRP_Shock_ShockEffect {
 		};
 		if (m_ShockEffectForceExtraSize < (m_ShockEffectForceExtraMax/2)) {
 
-			float t_ChangeSize = 0.5 * deltatime;
+			float t_ChangeSize = 0.35 * deltatime;
 			
 			// keep the extra eneabled until the limit has been cleared
 			if (m_ShockEffectForceExtraSize > 0) {
