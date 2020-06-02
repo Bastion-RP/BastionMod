@@ -1,0 +1,2382 @@
+FrameWidgetClass rootFrame {
+ size 1 1
+ halign center_ref
+ valign center_ref
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ {
+  PanelWidgetClass PanelCreateHouse {
+   visible 0
+   ignorepointer 0
+   color 0 0 0 0.4706
+   position 0 0
+   size 950 800
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    ButtonWidgetClass Btn_Save {
+     color 1 0.502 0.0314 1
+     position 10 10
+     size 0.45 0.04
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Save"
+    }
+    ButtonWidgetClass Btn_Cancel {
+     color 1 0.502 0.0314 1
+     position 10 9.99996
+     size 0.45 0.04
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Cancel"
+    }
+    EditBoxWidgetClass BName {
+     position 0.01 0.0827
+     size 0.46 0.057
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     userID 20
+     style ServerBrowser
+     "no focus" 0
+     text "Building Name"
+     "Use default text" 0
+     "exact text" 1
+     {
+      ButtonWidgetClass ButtonWidget0 {
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       userID 20
+       style Empty
+      }
+     }
+    }
+    TextWidgetClass BPos {
+     position 0.01 0.1764
+     size 0.46 0.0326
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Normal
+     text "5000.500 100.500 5000.500"
+     "exact text" 1
+     "text valign" center
+    }
+    EditBoxWidgetClass BPrice {
+     position 0.01 0.285
+     size 0.46 0.057
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     userID 20
+     style ServerBrowser
+     "no focus" 0
+     text "Rent Price"
+     "exact text" 1
+     {
+      ButtonWidgetClass ButtonWidget1 {
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       userID 20
+       style Empty
+      }
+     }
+    }
+    EditBoxWidgetClass BTime {
+     position 0.01 0.22
+     size 0.46 0.057
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     priority 20
+     style ServerBrowser
+     "no focus" 0
+     text "Lease Time(in hours)"
+     "exact text" 1
+     {
+      ButtonWidgetClass ButtonWidget2 {
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       userID 20
+       style Empty
+      }
+     }
+    }
+    TextWidgetClass TextWidget3 {
+     ignorepointer 1
+     position 0.01 0.35
+     size 0.46 0.0475
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     text "Allow classes"
+     "exact text" 1
+     "text halign" center
+     "text valign" center
+    }
+    TextWidgetClass TextWidget4 {
+     ignorepointer 1
+     position 0.01 0.59
+     size 0.46 0.04
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     text "Allow doors"
+     "text halign" center
+     "text valign" center
+    }
+    PanelWidgetClass PanelWidget1 {
+     ignorepointer 1
+     position 0.0096 0.4063
+     size 0.4611 0.07
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style blank
+     {
+      CheckBoxWidgetClass CLA {
+       color 1 0.502 0.0314 1
+       position 0.05 0.18
+       size 60 40
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       userID 1
+       text "A"
+      }
+      CheckBoxWidgetClass CLB {
+       color 1 0.502 0.0314 1
+       position 0.245 0.18
+       size 60 40
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       userID 2
+       text "B"
+      }
+      CheckBoxWidgetClass CLC {
+       color 1 0.502 0.0314 1
+       position 0 0.18
+       size 60 40
+       halign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       userID 3
+       text "C"
+      }
+      CheckBoxWidgetClass CLD {
+       color 1 0.502 0.0314 1
+       position 0.24 0.18
+       size 60 40
+       halign right_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       userID 4
+       text "D"
+      }
+      CheckBoxWidgetClass CLS {
+       color 1 0.502 0.0314 1
+       position 0.05 0.18
+       size 60 40
+       halign right_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       userID 5
+       text "S"
+      }
+     }
+    }
+    ScrollWidgetClass ScrollDoors {
+     ignorepointer 0
+     position 0.01 0.64
+     size 0.46 0.29
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     priority 1
+     "Scrollbar V" 1
+     {
+      WrapSpacerWidgetClass WrapDoor {
+       ignorepointer 1
+       color 0 0 0 0.902
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       Padding 0
+       Margin 0
+       "Size To Content V" 1
+      }
+     }
+    }
+    TextWidgetClass TextWidget5 {
+     ignorepointer 1
+     position 0.01 0.11
+     size 0.5 0.0403
+     halign right_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     text "Description"
+     "text halign" center
+     "text valign" center
+    }
+    MultilineEditBoxWidgetClass Description {
+     position 0.01 0.2856
+     size 0.5 0.28911
+     halign right_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     priority 1
+     style DayZBold
+     "text offset" 10 10
+     "exact text" 1
+     "size to text h" 0
+     "size to text v" 0
+     lines 2
+     "limit visible" 1
+    }
+    ItemPreviewWidgetClass HousePreview {
+     ignorepointer 0
+     position 0.01 0.01
+     size 0.5 0.5
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     priority 1
+    }
+    CheckBoxWidgetClass Approval {
+     color 1 0.502 0.0314 1
+     position 0.0111 0.495
+     size 0.32 0.03
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     userID 22
+     style Default
+     text "Need admin approval"
+     checked 0
+    }
+    ButtonWidgetClass BtnSwitchToMap {
+     color 1 0.502 0.0314 1
+     position 0.01 0.52
+     size 0.5 0.06
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Switch To Map"
+    }
+    ButtonWidgetClass BtnSwitchTo3D {
+     visible 0
+     color 1 0.502 0.0314 1
+     position 0.01 0.52
+     size 0.5 0.06
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Switch to 3D"
+    }
+    MapWidgetClass MapHousePos {
+     visible 0
+     position 0.01 0.01
+     size 0.5 0.5
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     priority 1
+    }
+    PanelWidgetClass OrngLine0 {
+     ignorepointer 1
+     color 1 0.502 0.0314 1
+     position 0.01 0.137
+     size 0.46 0.003
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style rover_sim_colorable
+    }
+    PanelWidgetClass OrngLine1 {
+     ignorepointer 1
+     color 1 0.502 0.0314 1
+     position 0.01 0.207
+     size 0.46 0.003
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style rover_sim_colorable
+    }
+    PanelWidgetClass OrngLine2 {
+     ignorepointer 1
+     color 1 0.502 0.0314 1
+     position 0.01 0.2725
+     size 0.46 0.003
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style rover_sim_colorable
+    }
+    PanelWidgetClass OrngLine3 {
+     ignorepointer 1
+     color 1 0.502 0.0314 1
+     position 0.01 0.337
+     size 0.46 0.003
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style rover_sim_colorable
+    }
+    TextWidgetClass TextWidget0 {
+     ignorepointer 1
+     position 0.01 0.02
+     size 0.46 0.0578
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     text "Adding a house for rent"
+     "exact text" 1
+     "text halign" center
+     "text valign" center
+    }
+    PanelWidgetClass HousePreview0 {
+     ignorepointer 0
+     color 1 0.502 0.0314 1
+     position 0.01 0.01
+     size 0.5 0.5
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style editor_quad
+    }
+    PanelWidgetClass Description0 {
+     color 1 0.502 0.0314 1
+     position 0.01 0.2856
+     size 0.5 0.28911
+     halign right_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style editor_quad
+    }
+    PanelWidgetClass ScrollDoors0 {
+     ignorepointer 0
+     color 1 0.502 0.0314 1
+     position 0.01 0.64
+     size 0.46 0.29
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style editor_quad
+    }
+   }
+  }
+  PanelWidgetClass PanelInfoForMainTenant {
+   visible 0
+   ignorepointer 1
+   color 0 0 0 0.4706
+   position 0 0
+   size 950 800
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    GridSpacerWidgetClass InfoGridMainWrap {
+     ignorepointer 1
+     color 0 0 0 1
+     position 0 0.18
+     size 0.78 0.11
+     halign center_ref
+     valign bottom_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style outline
+     Padding 0
+     Margin 0
+     Columns 4
+     Rows 2
+     {
+      PanelWidgetClass PanelWidget0 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass TextWidget6 {
+         ignorepointer 1
+         position 0 0
+         size 1 0.75
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         text "Price"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget2 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass TextWidget7 {
+         ignorepointer 1
+         position 0 0
+         size 1 0.75
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         text "Time"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget3 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass TextWidget8 {
+         ignorepointer 1
+         position 0 0
+         size 1 0.75
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         text "Classes"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget4 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass TextWidget9 {
+         ignorepointer 1
+         position 0 0
+         size 1 0.75
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         text "Doors"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget5 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass InfoPriceTxt {
+         ignorepointer 1
+         position 0 0
+         size 1 0.75
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget6 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass InfoTimeTxt {
+         ignorepointer 1
+         position 0 0
+         size 1 0.75
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget7 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass InfoClassTxt {
+         ignorepointer 1
+         position 0 0
+         size 1 0.76
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget8 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        ScrollWidgetClass ScrollWidget0 {
+         ignorepointer 1
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Colorable
+         "Scrollbar V" 1
+         {
+          WrapSpacerWidgetClass InfoWrapDoors {
+           ignorepointer 1
+           size 1 1
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           Padding 0
+           Margin 0
+           "Size To Content V" 1
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+    MapWidgetClass InfoMapHousePos {
+     visible 0
+     position 0.01 0.01
+     size 0.5 0.5
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     priority 1
+    }
+    ButtonWidgetClass InfoBtnSwitchToMap {
+     color 1 0.502 0.0314 1
+     position 0.01 0.52
+     size 0.5 0.06
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Switch To Map"
+    }
+    ButtonWidgetClass InfoBtnSwitchTo3D {
+     visible 0
+     color 1 0.502 0.0314 1
+     position 0.01 0.52
+     size 0.5 0.06
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Switch to 3D"
+    }
+    ItemPreviewWidgetClass InfoHousePreview {
+     ignorepointer 0
+     position 0.01 0.01
+     size 0.5 0.5
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     priority 1
+    }
+    TextWidgetClass InfoHouseName {
+     ignorepointer 1
+     position 0.01 0.01
+     size 0.468 0.06
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Bold
+     text "House Kactet"
+     "exact text" 1
+     "text halign" center
+     "text valign" center
+    }
+    TextWidgetClass TextWidget10 {
+     ignorepointer 1
+     position 0 0.64
+     size 0.5 0.05
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Bold
+     text "The terms of the lease"
+     "exact text" 1
+     "text halign" center
+     "text valign" center
+    }
+    ButtonWidgetClass InfoBtnRent {
+     visible 1
+     disabled 0
+     color 1 0.502 0.0314 1
+     position 0 0.03
+     size 0.5 0.0498
+     halign center_ref
+     valign bottom_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Rent"
+     "disabled text color" 0.7882 0.7882 0.7882 1
+    }
+    ButtonWidgetClass InfoBtnApproval {
+     visible 0
+     color 1 0.502 0.0314 1
+     position 0 0.03
+     size 0.5 0.0512
+     halign center_ref
+     valign bottom_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Submit a request"
+    }
+    TextWidgetClass TextWidget01 {
+     ignorepointer 1
+     position 0.01 0.08
+     size 0.468 0.04
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Light
+     text "Description"
+     "exact text" 1
+     "text halign" center
+     "text valign" center
+    }
+    MultilineTextWidgetClass InfoDescription {
+     ignorepointer 1
+     position 0.01 0.1288
+     size 0.468 0.04
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style DayZNormal
+     text "zdarova pizda y korovi"
+     "text offset" 10 0
+     "exact text" 1
+     "size to text v" 0
+     wrap 1
+     {
+      PanelWidgetClass InfoDescription0 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       scaled 1
+       style editor_quad
+      }
+     }
+    }
+    PanelWidgetClass InfoHousePreview0 {
+     ignorepointer 0
+     color 1 0.502 0.0314 1
+     position 0.01 0.01
+     size 0.5 0.5
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style editor_quad
+    }
+    PanelWidgetClass OrngLine4 {
+     ignorepointer 1
+     color 1 0.502 0.0314 1
+     position 0.01 0.067
+     size 0.468 0.003
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style rover_sim_colorable
+    }
+   }
+  }
+  PanelWidgetClass PanelManageHouse {
+   visible 0
+   ignorepointer 1
+   color 0 0 0 0.4706
+   position 0 0
+   size 950 577.22003
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    ButtonWidgetClass MHBtnInfo {
+     disabled 1
+     color 1 0.502 0.0314 1
+     size 0.333 0.07
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "House Info"
+    }
+    ButtonWidgetClass MHBtnDoorsControl {
+     color 1 0.502 0.0314 1
+     size 0.333 0.07
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Doors control"
+    }
+    ButtonWidgetClass MHBtnRequests {
+     visible 1
+     color 1 0.502 0.0314 1
+     size 0.333 0.07
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Requests"
+    }
+    PanelWidgetClass MHPanelInfo {
+     visible 1
+     ignorepointer 1
+     position 0 0.07
+     size 1 0.93
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      GridSpacerWidgetClass GridSpacerWidget0 {
+       ignorepointer 1
+       position 0.05 0.06
+       size 0.5 0.66
+       halign right_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       Padding 0
+       Margin 0
+       Columns 2
+       Rows 5
+       {
+        PanelWidgetClass PanelWidget9 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style editor_quad
+         {
+          TextWidgetClass TextWidget11 {
+           ignorepointer 1
+           position 0 0
+           size 1 0.6
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           text "Start rent"
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass PanelWidget10 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style editor_quad
+         {
+          TextWidgetClass MHTextRentDate {
+           ignorepointer 1
+           size 1 0.52
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass PanelWidget11 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style editor_quad
+         {
+          TextWidgetClass TextWidget13 {
+           ignorepointer 1
+           size 1 0.6
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           text "Time left"
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass PanelWidget12 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style editor_quad
+         {
+          TextWidgetClass MHTextRentTime {
+           ignorepointer 1
+           size 1 0.52
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass PanelWidget13 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style editor_quad
+         {
+          TextWidgetClass TextWidget15 {
+           ignorepointer 1
+           size 1 0.6
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           text "Rent price"
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass PanelWidget14 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style editor_quad
+         {
+          TextWidgetClass MHTextRentPrice {
+           ignorepointer 1
+           size 1 0.52
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass PanelWidget15 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style editor_quad
+         {
+          TextWidgetClass TextWidget17 {
+           ignorepointer 1
+           size 1 0.6
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           text "Guest number"
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass PanelWidget16 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style editor_quad
+         {
+          TextWidgetClass MHTextGuestNum {
+           ignorepointer 1
+           size 1 0.6
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass PanelWidget17 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style editor_quad
+         {
+          TextWidgetClass TextWidget110 {
+           ignorepointer 1
+           position 0 0
+           size 1 0.6
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           text "Doors count"
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass PanelWidget18 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style editor_quad
+         {
+          TextWidgetClass MHTextDoorCount {
+           ignorepointer 1
+           position 0 0
+           size 1 0.6
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+       }
+      }
+      TextWidgetClass MHTextHouseName {
+       ignorepointer 1
+       position 0.03 0.06
+       size 0.38 0.078
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Bold
+       text "Kactet House"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+      }
+      PanelWidgetClass OrngLine {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 0.03 0.1315
+       size 0.38 0.003
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+      }
+      TextWidgetClass TextWidget112 {
+       ignorepointer 1
+       position 0.03 0.16
+       size 0.38 0.058
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Light
+       text "Description"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+      }
+      MultilineTextWidgetClass MHDescription {
+       ignorepointer 1
+       position 0.03 0.2388
+       size 0.38 0.06
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style DayZNormal
+       "text offset" 10 0
+       "exact text" 1
+       "size to text v" 0
+       wrap 1
+       {
+        PanelWidgetClass InfoDescription2 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         size 1 1
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         scaled 1
+         style editor_quad
+        }
+       }
+      }
+      ButtonWidgetClass MHBtnPayRent {
+       color 1 0.502 0.0314 1
+       position 0.15 0.05
+       size 0.3 0.09
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style MenuDefault
+       text "Pay lease"
+      }
+      ButtonWidgetClass MHBtnCancelLease {
+       color 1 0.502 0.0314 1
+       position 0.15 0.05
+       size 0.3 0.09
+       halign right_ref
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style MenuDefault
+       text "Cancel lease"
+      }
+     }
+    }
+    PanelWidgetClass MHPanelRequests {
+     visible 0
+     ignorepointer 1
+     position 0 0.07
+     size 1 0.93
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ScrollWidgetClass MHScrollWidgetDoors0 {
+       ignorepointer 1
+       color 1 0.502 0.0314 0.3922
+       size 0.2 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       "Scrollbar V" 1
+       {
+        WrapSpacerWidgetClass MHWrapReqDoors {
+         ignorepointer 1
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         Padding 0
+         Margin 0
+         "Size To Content V" 1
+        }
+       }
+      }
+      ScrollWidgetClass MHScrollWidgetGuests0 {
+       ignorepointer 1
+       color 1 0.502 0.0314 0.3922
+       position 0.2 0
+       size 0.4 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       "Scrollbar V" 1
+       {
+        WrapSpacerWidgetClass MHWrapGuestsRequests {
+         ignorepointer 1
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         Padding 0
+         Margin 0
+         "Size To Content V" 1
+        }
+       }
+      }
+      PanelWidgetClass MHPanelRequesterInfo {
+       visible 0
+       ignorepointer 1
+       size 0.4 1
+       halign right_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+      }
+      PanelWidgetClass MHPanelGuestInfoRequest {
+       visible 0
+       ignorepointer 1
+       size 0.4 1
+       halign right_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       {
+        TextWidgetClass MHReqNam {
+         ignorepointer 1
+         position 0 0.03
+         size 0.8 0.07
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         text "George Bush"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+        PanelWidgetClass OrngLine6 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 0 0.095
+         size 0.79 0.003
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+        }
+        WrapSpacerWidgetClass MHGuestsWrap0 {
+         ignorepointer 1
+         position 0 0.14
+         size 0.75 0.5
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         Padding 0
+         Margin 0
+         {
+          PanelWidgetClass PanelWidget23 {
+           ignorepointer 1
+           size 1 0.15
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            PanelWidgetClass Panel33Orng2 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             size 0.34 1
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Outline
+             {
+              TextWidgetClass TextWidget2 {
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               style Bold
+               text "ID"
+               "exact text" 1
+               "text halign" center
+               "text valign" center
+              }
+             }
+            }
+            PanelWidgetClass Panel66Orng2 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             size 0.66 1
+             halign right_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Outline
+             {
+              TextWidgetClass MHReqId {
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               style Bold
+               text "125324"
+               "exact text" 1
+               "text halign" center
+               "text valign" center
+              }
+             }
+            }
+           }
+          }
+          PanelWidgetClass PanelWidget25 {
+           ignorepointer 1
+           size 1 0.15
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            PanelWidgetClass Panel33Orng4 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             size 0.34 1
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Outline
+             {
+              TextWidgetClass TextWidget23 {
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               style Bold
+               text "Class"
+               "exact text" 1
+               "text halign" center
+               "text valign" center
+              }
+             }
+            }
+            PanelWidgetClass Panel66Orng4 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             size 0.66 1
+             halign right_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Outline
+             {
+              TextWidgetClass MHReqClass {
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               style Bold
+               text "B"
+               "exact text" 1
+               "text halign" center
+               "text valign" center
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+        ButtonWidgetClass MHBtnAccept {
+         color 1 0.502 0.0314 1
+         position -0.22 0.04
+         size 0.38 0.06
+         halign center_ref
+         valign bottom_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style MenuDefault
+         text "Accept"
+        }
+        ButtonWidgetClass MHBtnDeny {
+         color 1 0.502 0.0314 1
+         position 0.22 0.04
+         size 0.38 0.06
+         halign center_ref
+         valign bottom_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style MenuDefault
+         text "Deny"
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass MHPanelDoorsControl {
+     visible 0
+     ignorepointer 1
+     position 0 0.07
+     size 1 0.93
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ScrollWidgetClass MHScrollWidgetDoors {
+       ignorepointer 1
+       color 1 0.502 0.0314 0.3922
+       size 0.2 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       "Scrollbar V" 1
+       {
+        WrapSpacerWidgetClass MHWrapDoorsId {
+         ignorepointer 1
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         Padding 0
+         Margin 0
+         "Size To Content V" 1
+        }
+       }
+      }
+      ScrollWidgetClass MHScrollWidgetGuests {
+       ignorepointer 1
+       color 1 0.502 0.0314 0.3922
+       position 0.2 0
+       size 0.4 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       "Scrollbar V" 1
+       {
+        WrapSpacerWidgetClass MHWrapGuestsNames {
+         ignorepointer 1
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         Padding 0
+         Margin 0
+         "Size To Content V" 1
+        }
+       }
+      }
+      PanelWidgetClass MHPanelGuestInfo {
+       visible 0
+       ignorepointer 1
+       position 0 0
+       size 0.4 0.87821
+       halign right_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       {
+        TextWidgetClass MHGuestName {
+         ignorepointer 1
+         position 0 0.03
+         size 0.8 0.0777
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         text "George Bush"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+        PanelWidgetClass OrngLine5 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 0 0.1
+         size 0.79 0.003
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+        }
+        WrapSpacerWidgetClass MHGuestsWrap {
+         visible 1
+         ignorepointer 1
+         position 0 0.18
+         size 0.75 0.5
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         Padding 0
+         Margin 0
+         {
+          PanelWidgetClass PanelWidget20 {
+           ignorepointer 1
+           size 1 0.15
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            PanelWidgetClass Panel33Orng {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             size 0.34 1
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Outline
+             {
+              TextWidgetClass TextWidget1 {
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               style Bold
+               text "ID"
+               "exact text" 1
+               "text halign" center
+               "text valign" center
+              }
+             }
+            }
+            PanelWidgetClass Panel66Orng {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             size 0.66 1
+             halign right_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Outline
+             {
+              TextWidgetClass MHGuestId {
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               style Bold
+               text "125324"
+               "exact text" 1
+               "text halign" center
+               "text valign" center
+              }
+             }
+            }
+           }
+          }
+          PanelWidgetClass PanelWidget21 {
+           ignorepointer 1
+           size 1 0.15
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            PanelWidgetClass Panel33Orng0 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             size 0.34 1
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Outline
+             {
+              TextWidgetClass TextWidget20 {
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               style Bold
+               text "Since"
+               "exact text" 1
+               "text halign" center
+               "text valign" center
+              }
+             }
+            }
+            PanelWidgetClass Panel66Orng0 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             size 0.66 1
+             halign right_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Outline
+             {
+              TextWidgetClass MHGuestSince {
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               style Bold
+               text "05/07/2040"
+               "exact text" 1
+               "text halign" center
+               "text valign" center
+              }
+             }
+            }
+           }
+          }
+          PanelWidgetClass PanelWidget22 {
+           ignorepointer 1
+           size 1 0.15
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            PanelWidgetClass Panel33Orng1 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             size 0.34 1
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Outline
+             {
+              TextWidgetClass TextWidget22 {
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               style Bold
+               text "Class"
+               "exact text" 1
+               "text halign" center
+               "text valign" center
+              }
+             }
+            }
+            PanelWidgetClass Panel66Orng1 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             size 0.66 1
+             halign right_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Outline
+             {
+              TextWidgetClass MHGuestClass {
+               ignorepointer 1
+               size 1 1
+               halign center_ref
+               valign center_ref
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               style Bold
+               text "B"
+               "exact text" 1
+               "text halign" center
+               "text valign" center
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+        ButtonWidgetClass MHBtnEvict {
+         color 1 0.502 0.0314 1
+         position 0 0.04
+         size 0.52 0.08027
+         halign center_ref
+         valign bottom_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style MenuDefault
+         text "Evict"
+        }
+       }
+      }
+      ButtonWidgetClass MHBtnEditDoorInfo {
+       visible 0
+       color 1 0.502 0.0314 1
+       position 0.02 0.02
+       size 0.36 0.0803
+       halign right_ref
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style MenuDefault
+       text "Edit door info"
+      }
+      PanelWidgetClass MHPanelEditDoorInfo {
+       visible 0
+       ignorepointer 1
+       color 0.4902 0.4902 0.4902 1
+       position 0.2 0
+       size 0.40001 0.99439
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+       {
+        ButtonWidgetClass MHBtnEditDoorSave {
+         color 1 0.502 0.0314 1
+         position 0.02 0.02
+         size 0.45 0.06
+         valign bottom_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style MenuDefault
+         text "Save"
+        }
+        ButtonWidgetClass MHBtnEditDoorCancel {
+         color 1 0.502 0.0314 1
+         position 0.02 0.02
+         size 0.45 0.06
+         halign right_ref
+         valign bottom_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style MenuDefault
+         text "Cancel"
+        }
+        EditBoxWidgetClass MHDoorName {
+         position 0 0.06454
+         size 0.77 0.06246
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         userID 20
+         style ServerBrowser
+         "no focus" 0
+         text "Door name"
+         "limit visible" 0
+         "Use default text" 0
+         "exact text" 1
+         {
+          ButtonWidgetClass ButtonWidget3 {
+           position 0 0
+           size 1 1
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           userID 20
+           style Empty
+          }
+         }
+        }
+        PanelWidgetClass OrngLine7 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 0 0.13
+         size 0.77 0.003
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+        }
+        MultilineEditBoxWidgetClass MHDescriptionDoor {
+         visible 1
+         position 0 0.35
+         size 0.77 0.109
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         priority 1
+         text "Description desc"
+         "text offset" 3 3
+         "exact text" 1
+         lines 10
+         "limit visible" 1
+         {
+          PanelWidgetClass PanelWidget19 {
+           ignorepointer 1
+           color 1 0.502 0.0314 1
+           size 1 1
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Outline
+          }
+         }
+        }
+        EditBoxWidgetClass MHDoorRentPrice {
+         position 0 0.1545
+         size 0.77 0.06246
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         userID 20
+         style ServerBrowser
+         "no focus" 0
+         text "Rent price"
+         "limit visible" 0
+         "Use default text" 0
+         "exact text" 1
+         {
+          ButtonWidgetClass ButtonWidget4 {
+           position 0 0
+           size 1 1
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           userID 20
+           style Empty
+          }
+         }
+        }
+        PanelWidgetClass OrngLine8 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 0 0.22
+         size 0.77 0.003
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+        }
+        EditBoxWidgetClass MHDoorRentTime {
+         position 0 0.2445
+         size 0.77 0.06246
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         userID 20
+         style ServerBrowser
+         "no focus" 0
+         text "Rent time (in hours)"
+         "limit visible" 0
+         "Use default text" 0
+         "exact text" 1
+         {
+          ButtonWidgetClass ButtonWidget5 {
+           position 0 0
+           size 1 1
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           userID 20
+           style Empty
+          }
+         }
+        }
+        PanelWidgetClass OrngLine9 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 0 0.31
+         size 0.77 0.003
+         halign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  PanelWidgetClass PanelDoorInfo {
+   visible 0
+   ignorepointer 1
+   color 0 0 0 0.4706
+   position 0 0
+   size 500 577
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    TextWidgetClass DIDoorName {
+     ignorepointer 1
+     position 0 0.07
+     size 0.6 0.078
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Bold
+     text "Kactet House"
+     "exact text" 1
+     "text halign" center
+     "text valign" center
+    }
+    PanelWidgetClass OrngLine10 {
+     ignorepointer 1
+     color 1 0.502 0.0314 1
+     position 0 0.135
+     size 0.6 0.003
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style rover_sim_colorable
+    }
+    GridSpacerWidgetClass InfoGridMainWrap0 {
+     ignorepointer 1
+     color 0 0 0 1
+     position 0 0.55
+     size 0.6 0.13
+     halign center_ref
+     valign bottom_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style outline
+     Padding 0
+     Margin 0
+     Columns 2
+     Rows 2
+     {
+      PanelWidgetClass PanelWidget24 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass TextWidget12 {
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         text "Price"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget26 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass TextWidget14 {
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         text "Time"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget30 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass DIPrice {
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget31 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass DITime {
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    MultilineTextWidgetClass DIDescription {
+     ignorepointer 1
+     position 0 0.5
+     size 0.6 0.06
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style DayZNormal
+     "text offset" 10 0
+     "exact text" 1
+     "size to text v" 0
+     wrap 1
+     {
+      PanelWidgetClass InfoDescription1 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       scaled 1
+       style editor_quad
+      }
+     }
+    }
+    ButtonWidgetClass DIBtnRequest {
+     color 1 0.502 0.0314 1
+     position -0 0.04
+     size 0.45 0.05902
+     halign center_ref
+     valign bottom_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Send request"
+    }
+   }
+  }
+ }
+}

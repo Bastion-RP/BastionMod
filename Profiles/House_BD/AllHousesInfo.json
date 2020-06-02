@@ -1,0 +1,263 @@
+{
+    "m_GenHosData": {
+        "Admins": [
+            "t6goVGbhstnvoqE9d_apyTpfMglcUNy099wKuvhVnmo"
+        ],
+        "MaxHoursNonPayment": 0.05,
+        "HousesData": [
+            {
+                "Low": 932098632,
+                "High": -2147393536,
+                "BuldingName": "PianoHouse",
+                "BuldingDescription": "Hello nice house",
+                "BuildingPos": "<6675.802734, 12.036101, 2661.442383>",
+                "MainOwner": {
+                    "Name": "",
+                    "MilticharacterID": "",
+                    "SteamID": "",
+                    "HashID": "",
+                    "Date": "",
+                    "BastionClass": "",
+                    "BankAccountId": 0,
+                    "RentTimeLeft": 0
+                },
+                "LeaseTime": 2,
+                "RentPrice": 10,
+                "NeedApproval": 0,
+                "DoorsData": [
+                    {
+                        "Index": 0,
+                        "RentPrice": 0,
+                        "Renters": [],
+                        "LeaseTime": 0,
+                        "Name": "",
+                        "Description": "",
+                        "RentSuggestions": []
+                    },
+                    {
+                        "Index": 1,
+                        "RentPrice": 0,
+                        "Renters": [],
+                        "LeaseTime": 0,
+                        "Name": "",
+                        "Description": "",
+                        "RentSuggestions": []
+                    }
+                ],
+                "AllowCitizenClasses": [
+                    1,
+                    2
+                ],
+                "RentSuggestions": []
+            },
+            {
+                "Low": 923709972,
+                "High": -2147393536,
+                "BuldingName": "Red house",
+                "BuldingDescription": "Очень пиздатый дом для бомжей",
+                "BuildingPos": "<6638.391113, 12.112323, 2652.557129>",
+                "MainOwner": {
+                    "Name": "Tixonov",
+                    "MilticharacterID": "",
+                    "SteamID": "76561198074486833",
+                    "HashID": "t6goVGbhstnvoqE9d_apyTpfMglcUNy099wKuvhVnmo=",
+                    "Date": "31/5/2040",
+                    "BastionClass": "",
+                    "BankAccountId": 0,
+                    "RentTimeLeft": 424
+                },
+                "LeaseTime": 10,
+                "RentPrice": 50,
+                "NeedApproval": 0,
+                "DoorsData": [
+                    {
+                        "Index": 0,
+                        "RentPrice": 2,
+                        "Renters": [],
+                        "LeaseTime": 3,
+                        "Name": "1",
+                        "Description": "4",
+                        "RentSuggestions": []
+                    },
+                    {
+                        "Index": 1,
+                        "RentPrice": 0,
+                        "Renters": [],
+                        "LeaseTime": 0,
+                        "Name": "",
+                        "Description": "",
+                        "RentSuggestions": []
+                    }
+                ],
+                "AllowCitizenClasses": [
+                    1
+                ],
+                "RentSuggestions": []
+            },
+            {
+                "Low": 881765044,
+                "High": -2147393536,
+                "BuldingName": "TestAdmonHouse",
+                "BuldingDescription": "Hello very good houseEditBoxWidget.Cast(w.GetParent()).SetText(\"\");EditBoxWidget.Cast(w",
+                "BuildingPos": "<6304.585449, 14.516875, 2670.612793>",
+                "MainOwner": {
+                    "Name": "Tixonov",
+                    "MilticharacterID": "",
+                    "SteamID": "76561198074486833",
+                    "HashID": "t6goVGbhstnvoqE9d_apyTpfMglcUNy099wKuvhVnmo=",
+                    "Date": "2/6/2040",
+                    "BastionClass": "",
+                    "BankAccountId": 0,
+                    "RentTimeLeft": 1268
+                },
+                "LeaseTime": 22,
+                "RentPrice": 33,
+                "NeedApproval": 0,
+                "DoorsData": [
+                    {
+                        "Index": 0,
+                        "RentPrice": 25,
+                        "Renters": [],
+                        "LeaseTime": 125,
+                        "Name": "Door 0",
+                        "Description": "Very good door",
+                        "RentSuggestions": []
+                    },
+                    {
+                        "Index": 1,
+                        "RentPrice": 0,
+                        "Renters": [],
+                        "LeaseTime": 0,
+                        "Name": "",
+                        "Description": "",
+                        "RentSuggestions": []
+                    },
+                    {
+                        "Index": 2,
+                        "RentPrice": 0,
+                        "Renters": [],
+                        "LeaseTime": 0,
+                        "Name": "",
+                        "Description": "",
+                        "RentSuggestions": []
+                    },
+                    {
+                        "Index": 3,
+                        "RentPrice": 0,
+                        "Renters": [],
+                        "LeaseTime": 0,
+                        "Name": "",
+                        "Description": "",
+                        "RentSuggestions": []
+                    }
+                ],
+                "AllowCitizenClasses": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "RentSuggestions": []
+            },
+            {
+                "Low": 923710415,
+                "High": -2147395584,
+                "BuldingName": "PianoHouse2",
+                "BuldingDescription": "Very long description which shouldnt exitedet in this game because widget developers very ",
+                "BuildingPos": "<6601.415039, 12.036098, 2606.344727>",
+                "MainOwner": {
+                    "Name": "Tixonov",
+                    "MilticharacterID": "",
+                    "SteamID": "76561198074486833",
+                    "HashID": "t6goVGbhstnvoqE9d_apyTpfMglcUNy099wKuvhVnmo",
+                    "Date": "2/6/2040",
+                    "BastionClass": "",
+                    "BankAccountId": 0,
+                    "RentTimeLeft": 268
+                },
+                "LeaseTime": 5,
+                "RentPrice": 25,
+                "NeedApproval": 0,
+                "DoorsData": [
+                    {
+                        "Index": 0,
+                        "RentPrice": 0,
+                        "Renters": [
+                            {
+                                "Name": "Tixonov",
+                                "MilticharacterID": "",
+                                "SteamID": "76561198074486833",
+                                "HashID": "t6goVGbhstnvoqE9d_apyTpfMglcUNy099wKuvhVnmo=",
+                                "Date": "2/6/2040",
+                                "BastionClass": "",
+                                "BankAccountId": 0,
+                                "RentTimeLeft": 0
+                            }
+                        ],
+                        "LeaseTime": 0,
+                        "Name": "Door0",
+                        "Description": "This is door with id 0, rent 0, time 0",
+                        "RentSuggestions": [
+                            {
+                                "Name": "Tixonov",
+                                "MilticharacterID": "",
+                                "SteamID": "76561198074486833",
+                                "HashID": "t6goVGbhstnvoqE9d_apyTpfMglcUNy099wKuvhVnmo=",
+                                "Date": "2/6/2040",
+                                "BastionClass": "",
+                                "Approved": 0,
+                                "Checked": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Index": 1,
+                        "RentPrice": 1,
+                        "Renters": [],
+                        "LeaseTime": 1,
+                        "Name": "Door1",
+                        "Description": "This is door with id 1, rent 1, time 1",
+                        "RentSuggestions": []
+                    },
+                    {
+                        "Index": 2,
+                        "RentPrice": 2,
+                        "Renters": [
+                            {
+                                "Name": "Tixonov",
+                                "MilticharacterID": "",
+                                "SteamID": "76561198074486833",
+                                "HashID": "t6goVGbhstnvoqE9d_apyTpfMglcUNy099wKuvhVnmo=",
+                                "Date": "2/6/2040",
+                                "BastionClass": "",
+                                "BankAccountId": 0,
+                                "RentTimeLeft": 0
+                            }
+                        ],
+                        "LeaseTime": 2,
+                        "Name": "Door2",
+                        "Description": "This is door with id 2, rent 2, time 2",
+                        "RentSuggestions": []
+                    },
+                    {
+                        "Index": 3,
+                        "RentPrice": 3,
+                        "Renters": [],
+                        "LeaseTime": 3,
+                        "Name": "Door3",
+                        "Description": "This is door with id 3, rent 3, time 3",
+                        "RentSuggestions": []
+                    }
+                ],
+                "AllowCitizenClasses": [
+                    1,
+                    2,
+                    3,
+                    4
+                ],
+                "RentSuggestions": []
+            }
+        ]
+    }
+}
