@@ -1,12 +1,12 @@
 class CfgPatches
 {
-	class SR25_Base
+	class CSM762_Base
 	{
 		units[] = {};
 		weapons[] = {"SR25_Black","SR25_Green","SR25_Tan"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Weapons_Firearms","DZ_Weapons_Ammunition","DZ_Weapons_Magazines"};
-		magazines[] = {"SR25_Magazine","SR25_Magazine_Extendo","Mass308STANAG"};
+		magazines[] = {"BRP_CSM762_Magazine","BRP_CSM762_Magazine_Extendo","Mass308STANAG"};
 		ammo[] = {};
 	};
 };
@@ -16,14 +16,14 @@ class Mode_SemiAuto;
 class cfgWeapons
 {
 	class M4A1;
-	class SR25_Base: M4A1
+	class CSM762_Base: M4A1
 	{
 		scope = 0;
 		absorbency = 0.1;
 		displayName = "SR25";
 		descriptionShort = "The SR-25 is a designated marksman rifle/semi-automatic sniper rifle designed by Eugene Stoner and manufactured by Knight's Armament Company. The SR-25 uses a rotating bolt and a direct impingement gas system. It is loosely based on Stoner's AR-10, rebuilt in its original 7.62×51mm NATO caliber.(.308win)";
 		model = "BastionMod\BastionGuns\SR-25\SR25.p3d";
-		magazines[] = {"SR25_Magazine","Mass308STANAG","SR25_Magazine_Extendo"};
+		magazines[] = {"BRP_CSM762_Magazine","BRP_CSM762_Magazine_Extendo"};
 		itemSize[] = {8,3};
 		repairableWithKits[] = {5,1};
 		repairCosts[] = {30,25};
@@ -34,7 +34,7 @@ class cfgWeapons
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsMaterials[] = {"BastionMod\BastionGuns\SR-25\data\SR-25.rvmat"};
 		chamberableFrom[] = {"Ammo_308Win","Ammo_308WinTracer"};
-		attachments[] = {"weaponOptics","weaponOpticsHunting","weaponWrap","SR25_Suppressor","weaponFlashlight","grip1","grip2"};
+		attachments[] = {"weaponOptics","weaponOpticsHunting","weaponWrap","BRP_CSM762_Suppressor","weaponFlashlight","grip1","grip2"};
 		modes[] = {"SemiAuto"};
 		class SemiAuto: Mode_SemiAuto
 		{
@@ -111,22 +111,22 @@ class cfgWeapons
 			};
 		};
 	};
-	class SR25_Black: SR25_Base
+	class BRP_CSM762_Black: CSM762_Base
 	{
 		scope = 2;
-		displayName = "SR-25 Black";
+		displayName = "CSM-762 Black";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionGuns\SR-25\data\SR-25_Base_Co.paa"};
 	};
-	class SR25_Green: SR25_Base
+	class BRP_CSM762_Green: CSM762_Base
 	{
 		scope = 2;
-		displayName = "SR-25 Green(Muddy)";
+		displayName = "CSM-762 Green(Muddy)";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionGuns\SR-25\data\SR-25_GreenMud.paa"};
 	};
-	class SR25_Tan: SR25_Base
+	class BRP_CSM762_Tan: CSM762_Base
 	{
 		scope = 2;
-		displayName = "SR-25 Tan";
+		displayName = "CSM-762 Tan";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionGuns\SR-25\data\SR-25_Tan.paa"};
 	};
 };
@@ -134,10 +134,10 @@ class cfgWeapons
 class CfgMagazines
 {
 	class Mag_AKM_30Rnd;
-	class SR25_Magazine: Mag_AKM_30Rnd
+	class BRP_CSM762_Magazine: Mag_AKM_30Rnd
 	{
 		scope = 2;
-		displayName = "SR-25 Magazine";
+		displayName = "CSM-762 Magazine";
 		descriptionShort = "Magazine for the SR-25.";
 		model = "BastionMod\BastionGuns\SR-25\SR25_Magazine.p3d";
 		weight = 230;
@@ -148,10 +148,10 @@ class CfgMagazines
 		isMeleeWeapon = 0;
 		tracersEvery = 1;
 	};
-	class SR25_Magazine_Extendo: Mag_AKM_30Rnd
+	class BRP_CSM762_Magazine_Extendo: Mag_AKM_30Rnd
 	{
 		scope = 2;
-		displayName = "SR-25 Extended Magazine";
+		displayName = "CSM-762 Extended Magazine";
 		descriptionShort = "Extended Magazine for the SR-25.";
 		model = "BastionMod\BastionGuns\SR-25\SR25_Magazine_Extendo.p3d";
 		weight = 230;
@@ -228,11 +228,11 @@ class CfgSoundSets
 class CfgNonAIVehicles
 {
 	class ProxyAttachment;
-	class ProxySR25_Suppressor: ProxyAttachment
+	class ProxyBRP_CSM762_Suppressor: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "SR25_Suppressor";
-		model = "BastionMod\BastionGuns\SR-25\SR25Silencer\SR25_Suppressor.p3d";
+		inventorySlot = "BRP_CSM762_Suppressor";
+		model = "BastionMod\BastionGuns\SR-25\SR25Silencer\BRP_CSM762_Suppressor.p3d";
 	};
 	class Proxysr25magazine: ProxyAttachment
 	{
@@ -257,10 +257,10 @@ class CfgNonAIVehicles
 
 class CfgSlots
 {
-	class Slot_SR25_Suppressor
+	class Slot_BRP_CSM762_Suppressor
 	{
-		name = "SR25_Suppressor";
-		displayName = "SR25_Suppressor";
+		name = "BRP_CSM762_Suppressor";
+		displayName = "CSM-762 Suppressor";
 		ghostIcon = "supressor";
 	};
 	class Slot_grip1
