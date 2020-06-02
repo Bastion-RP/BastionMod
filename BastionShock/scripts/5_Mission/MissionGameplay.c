@@ -13,6 +13,6 @@ modded class MissionGameplay {
             return;
         };
 
-        BRP_Shock_ShockEffect t_ShockEffect = new BRP_Shock_ShockEffect;
+        ref BRP_Shock_ShockEffect t_ShockEffect = new BRP_Shock_ShockEffect;
     }
 };

@@ -225,7 +225,7 @@ class BRP_Shock_ShockEffect {
 		
 
 		// choose the size:
-		m_ShockEffectForceExtraMax = 0.10 + t_ForceExtraSize * f_size;
+		m_ShockEffectForceExtraMax = 0.08 + t_ForceExtraSize * f_size;
 		m_ShockEffectForceExtraSize = 0 - m_ShockEffectForceExtraMax*0.5;
 
 		m_ShockEffectForceExtra = true;
