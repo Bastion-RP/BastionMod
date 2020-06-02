@@ -1,0 +1,12 @@
+TextWidgetClass rootFrame {
+ position 0 0
+ size 0.33 0.5
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ text "[ID:2]"
+ "exact text" 1
+ "text halign" center
+ "text valign" center
+}
