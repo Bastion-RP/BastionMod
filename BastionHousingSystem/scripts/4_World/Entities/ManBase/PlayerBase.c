@@ -13,6 +13,7 @@ modded class PlayerBase
 	{
 		super.OnConnect();
 		g_HSL.SendAdmins(this);
+		Print("Player name: "+this.GetIdentity().GetName()+" id: "+this.GetIdentity().GetId()+"has joined.");
 	}
 
 	bool CanSyncHouseData()
