@@ -347,3 +347,5 @@ class BRP_House extends Building
 
 class Land_House_2B03 : BRP_House {};
 class Land_House_2W04 : BRP_House {};
+class Land_Tenement_Big : BRP_House {};
+class Land_Tenement_Small : BRP_House {};
