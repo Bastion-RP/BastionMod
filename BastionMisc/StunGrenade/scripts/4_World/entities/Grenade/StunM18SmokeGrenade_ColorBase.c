@@ -16,9 +16,9 @@ class StunM18SmokeGrenade_ColorBase extends StunSmoke
 	void ~StunM18SmokeGrenade_ColorBase() {}
 }
 
-class StunM18SmokeGrenade_Blue extends StunM18SmokeGrenade_ColorBase
+class BRP_Kolokol2 extends StunM18SmokeGrenade_ColorBase
 {
-	void StunM18SmokeGrenade_Blue()
+	void BRP_Kolokol2()
 	{
 		SetParticleSmokeStart(ParticleList.STUN_BLUESMOKE);
 		SetParticleSmokeLoop(ParticleList.STUN_BLUESMOKE);
