@@ -10,7 +10,7 @@ FrameWidgetClass rootFrame {
   PanelWidgetClass PanelCreateHouse {
    visible 0
    ignorepointer 0
-   color 0 0 0 0.4706
+   color 0 0 0 0.7843
    position 0 0
    size 950 800
    halign center_ref
@@ -288,7 +288,6 @@ FrameWidgetClass rootFrame {
      "exact text" 1
      "size to text h" 0
      "size to text v" 0
-     lines 2
      "limit visible" 1
     }
     ItemPreviewWidgetClass HousePreview {
@@ -448,7 +447,7 @@ FrameWidgetClass rootFrame {
   PanelWidgetClass PanelInfoForMainTenant {
    visible 0
    ignorepointer 1
-   color 0 0 0 0.4706
+   color 0 0 0 0.7843
    position 0 0
    size 950 800
    halign center_ref
@@ -894,7 +893,7 @@ FrameWidgetClass rootFrame {
   PanelWidgetClass PanelManageHouse {
    visible 0
    ignorepointer 1
-   color 0 0 0 0.4706
+   color 0 0 0 0.7843
    position 0 0
    size 950 577.22003
    halign center_ref
@@ -908,7 +907,7 @@ FrameWidgetClass rootFrame {
     ButtonWidgetClass MHBtnInfo {
      disabled 1
      color 1 0.502 0.0314 1
-     size 0.333 0.07
+     size 0.25 0.07
      hexactpos 0
      vexactpos 0
      hexactsize 0
@@ -918,20 +917,20 @@ FrameWidgetClass rootFrame {
     }
     ButtonWidgetClass MHBtnDoorsControl {
      color 1 0.502 0.0314 1
-     size 0.333 0.07
-     halign center_ref
+     position 0.25 0
+     size 0.25 0.07
      hexactpos 0
      vexactpos 0
      hexactsize 0
      vexactsize 0
      style MenuDefault
-     text "Doors control"
+     text "Groups control"
     }
     ButtonWidgetClass MHBtnRequests {
      visible 1
      color 1 0.502 0.0314 1
-     size 0.333 0.07
-     halign right_ref
+     position 0.5 0
+     size 0.25 0.07
      hexactpos 0
      vexactpos 0
      hexactsize 0
@@ -961,7 +960,7 @@ FrameWidgetClass rootFrame {
        Padding 0
        Margin 0
        Columns 2
-       Rows 5
+       Rows 6
        {
         PanelWidgetClass PanelWidget9 {
          ignorepointer 1
@@ -1206,7 +1205,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            style Bold
-           text "Doors count"
+           text "Groups count"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1225,6 +1224,63 @@ FrameWidgetClass rootFrame {
          style editor_quad
          {
           TextWidgetClass MHTextDoorCount {
+           ignorepointer 1
+           position 0 0
+           size 1 0.6
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass PanelWidget110 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style editor_quad
+         {
+          TextWidgetClass TextWidget115 {
+           ignorepointer 1
+           position 0 0
+           size 1 0.6
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           text "Doors count"
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        PanelWidgetClass PanelWidget111 {
+         ignorepointer 1
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style editor_quad
+         {
+          TextWidgetClass MHTextDoorRealCount {
            ignorepointer 1
            position 0 0
            size 1 0.6
@@ -1631,9 +1687,11 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      {
       ScrollWidgetClass MHScrollWidgetDoors {
+       visible 1
        ignorepointer 1
        color 1 0.502 0.0314 0.3922
-       size 0.2 1
+       position 0 0.1
+       size 0.3 0.9
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -1656,8 +1714,8 @@ FrameWidgetClass rootFrame {
       ScrollWidgetClass MHScrollWidgetGuests {
        ignorepointer 1
        color 1 0.502 0.0314 0.3922
-       position 0.2 0
-       size 0.4 1
+       position 0.3 0.1
+       size 0.3 0.9
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -1680,8 +1738,8 @@ FrameWidgetClass rootFrame {
       PanelWidgetClass MHPanelGuestInfo {
        visible 0
        ignorepointer 1
-       position 0 0
-       size 0.4 0.87821
+       position 0 0.1
+       size 0.4 0.9
        halign right_ref
        hexactpos 0
        vexactpos 0
@@ -1946,11 +2004,764 @@ FrameWidgetClass rootFrame {
         }
        }
       }
-      ButtonWidgetClass MHBtnEditDoorInfo {
-       visible 0
+      TextWidgetClass TextWidget26 {
+       ignorepointer 1
+       position 0 0.02
+       size 0.3 0.06
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Group list"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+      }
+      TextWidgetClass TextWidget27 {
+       ignorepointer 1
+       position 0.3 0.02
+       size 0.3 0.06
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Guest list"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+      }
+      TextWidgetClass TextWidget28 {
+       ignorepointer 1
+       position 0.6 0.02
+       size 0.4 0.06
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Guest info"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass MHBtnDoorGroups {
+     visible 1
+     color 1 0.502 0.0314 1
+     size 0.25 0.07
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Door groups"
+    }
+    PanelWidgetClass MHPanelDoorGroups {
+     visible 0
+     ignorepointer 1
+     position 0 0.07
+     size 1 0.93
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      PanelWidgetClass PanelWidget27 {
+       ignorepointer 1
+       size 1 0.88
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       {
+        PanelWidgetClass MHPanelDGCreate {
+         visible 0
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          TextWidgetClass TextWidget16 {
+           ignorepointer 1
+           position 0.02 0.0545
+           size 0.26 0.0772
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "Group Name"
+           "exact text" 1
+           "text valign" center
+          }
+          EditBoxWidgetClass MHDGGroupName {
+           position 0.325 0.0481
+           size 0.3 0.09
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style ServerBrowser
+           text "text"
+           "exact text" 1
+          }
+          TextWidgetClass TextWidget18 {
+           ignorepointer 1
+           position 0.02 0.22
+           size 0.26 0.09
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "Group Description"
+           "exact text" 1
+           "text valign" center
+          }
+          MultilineEditBoxWidgetClass MHDGDoorDescrip {
+           position 0.325 0.1995
+           size 0.26 0.22
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "very long text "
+           "text offset" 4 2
+           "exact text" 1
+           "size to text h" 0
+           "size to text v" 0
+           lines 7
+           "limit visible" 1
+           {
+            PanelWidgetClass PanelWidget28 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             position 0 0
+             size 1 1
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style editor_quad
+             "no focus" 0
+            }
+           }
+          }
+          TextWidgetClass TextWidget19 {
+           ignorepointer 1
+           position 0.02 0.4781
+           size 0.26 0.09
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "Group Rent Price"
+           "exact text" 1
+           "text valign" center
+          }
+          EditBoxWidgetClass MHDGGroupPrice {
+           position 0.325 0.4781
+           size 0.25825 0.09
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style ServerBrowser
+           text "text"
+           "exact text" 1
+          }
+          TextWidgetClass TextWidget111 {
+           ignorepointer 1
+           position 0.02 0.6514
+           size 0.26 0.09
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "Group Lease Time"
+           "exact text" 1
+           "text valign" center
+          }
+          EditBoxWidgetClass MHDGGroupLeaseTime {
+           position 0.325 0.6514
+           size 0.25825 0.09
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style ServerBrowser
+           text "text"
+           "exact text" 1
+          }
+          TextWidgetClass TextWidget113 {
+           ignorepointer 1
+           position 0.07 0.0545
+           size 0.26 0.0772
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "Group Doors"
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+          PanelWidgetClass Panelwidget121 {
+           ignorepointer 1
+           color 1 0.502 0.0314 1
+           position 0.1 0.14
+           size 0.2 0.6
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style editor_quad
+           {
+            ScrollWidgetClass ScrollWidget1 {
+             ignorepointer 1
+             position 0 0.01
+             size 0.98 0.98
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             "Scrollbar V" 1
+             {
+              WrapSpacerWidgetClass MHDGGroupAllowDoors {
+               ignorepointer 1
+               position 0.02 0
+               size 0.98 1
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               Padding 0
+               Margin 0
+               "Size To Content V" 1
+              }
+             }
+            }
+           }
+          }
+          ButtonWidgetClass MHDGBtnSave {
+           visible 1
+           color 1 0.502 0.0314 1
+           position 0.21 0.02
+           size 0.25 0.09
+           valign bottom_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style MenuDefault
+           text "Save group"
+          }
+          ButtonWidgetClass MHDGBtnCancel {
+           visible 1
+           color 1 0.502 0.0314 1
+           position 0.21 0.02
+           size 0.25 0.09
+           halign right_ref
+           valign bottom_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style MenuDefault
+           text "Cancel"
+          }
+          PanelWidgetClass OrngLine11 {
+           ignorepointer 1
+           color 1 0.502 0.0314 1
+           position 0.325 0.1422
+           size 0.3 0.003
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_colorable
+          }
+          PanelWidgetClass OrngLine12 {
+           ignorepointer 1
+           color 1 0.502 0.0314 1
+           position 0.325 0.5722
+           size 0.3 0.003
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_colorable
+          }
+          PanelWidgetClass OrngLine13 {
+           ignorepointer 1
+           color 1 0.502 0.0314 1
+           position 0.325 0.7422
+           size 0.3 0.003
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style rover_sim_colorable
+          }
+         }
+        }
+        PanelWidgetClass MHPanelDGEdit {
+         visible 1
+         ignorepointer 1
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         {
+          PanelWidgetClass PanelWidget29 {
+           visible 1
+           ignorepointer 1
+           color 1 0.502 0.0314 1
+           position 0.03 0.13
+           size 0.3 0.82
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style editor_quad
+           {
+            ScrollWidgetClass ScrollWidget2 {
+             ignorepointer 1
+             position 0 0.01
+             size 0.98 0.98
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             "Scrollbar V" 1
+             {
+              WrapSpacerWidgetClass MHDGListGroups {
+               ignorepointer 1
+               size 1 1
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               Padding 0
+               Margin 0
+               "Size To Content V" 1
+              }
+             }
+            }
+           }
+          }
+          TextWidgetClass TextWidget21 {
+           ignorepointer 1
+           position 0.03 0.04
+           size 0.3 0.093
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           style Bold
+           text "List of groups"
+           "exact text" 1
+           "text halign" center
+           "text valign" center
+          }
+          PanelWidgetClass MHDGPanelEdit {
+           visible 0
+           disabled 0
+           ignorepointer 1
+           size 0.65 1
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            ButtonWidgetClass MHDGEditBtnDeleteGroup {
+             visible 1
+             disabled 0
+             color 1 0.502 0.0314 1
+             position 0.07 0.02
+             size 0.27 0.07
+             halign right_ref
+             valign bottom_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style MenuDefault
+             text "Delete group"
+            }
+            ButtonWidgetClass MHDGEditBtnSaveGroup {
+             visible 1
+             disabled 0
+             color 1 0.502 0.0314 1
+             position 0.07 0.02
+             size 0.27 0.07
+             valign bottom_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style MenuDefault
+             text "Save group"
+            }
+            ButtonWidgetClass MHDGEditBtnCancel {
+             visible 1
+             disabled 0
+             color 1 0.502 0.0314 1
+             position 0 0.02
+             size 0.27 0.07
+             halign center_ref
+             valign bottom_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style MenuDefault
+             text "Cancel"
+            }
+            EditBoxWidgetClass MHDGEditName {
+             position 0.0543 0.02053
+             size 0.4 0.0819
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style ServerBrowser
+             text "Name"
+             "limit visible" 1
+             "exact text" 1
+            }
+            EditBoxWidgetClass MHDGEditPrice {
+             position 0.0543 0.1305
+             size 0.4 0.082
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style ServerBrowser
+             text "Price"
+             "limit visible" 1
+             "exact text" 1
+            }
+            EditBoxWidgetClass MHDGEditTime {
+             position 0.0543 0.2505
+             size 0.4 0.082
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style ServerBrowser
+             text "Lease time"
+             "limit visible" 1
+             "exact text" 1
+            }
+            MultilineEditBoxWidgetClass MHDGEditDescription {
+             position 0.0543 0.3805
+             size 0.4 0.44
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style DayZNormal
+             text "Lease time"
+             "text offset" 4 2
+             "exact text" 1
+             "limit visible" 1
+             {
+              PanelWidgetClass PanelWidget32 {
+               ignorepointer 1
+               color 1 0.502 0.0314 1
+               size 1 1
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               style editor_quad
+              }
+             }
+            }
+            TextWidgetClass TextWidget24 {
+             ignorepointer 1
+             position 0.02 0.0205
+             size 0.44929 0.08947
+             halign right_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             text "Allow Doors"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+            PanelWidgetClass PanelWidget210 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             position 0.61 0.123
+             size 0.3 0.7
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style editor_quad
+             {
+              ScrollWidgetClass ScrollWidget3 {
+               ignorepointer 1
+               position 0 0.01
+               size 0.98 0.98
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               "Scrollbar V" 1
+               {
+                WrapSpacerWidgetClass MHDGEditListDoors {
+                 ignorepointer 1
+                 position 0.02 0
+                 size 0.98 1
+                 hexactpos 0
+                 vexactpos 0
+                 hexactsize 0
+                 vexactsize 0
+                 Padding 0
+                 Margin 0
+                 "Size To Content V" 1
+                }
+               }
+              }
+             }
+            }
+           }
+          }
+          PanelWidgetClass MHDGPanelShowInfo {
+           visible 0
+           ignorepointer 1
+           size 0.65 1
+           halign right_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           {
+            TextWidgetClass MHDGTxt212 {
+             position 0.05 0.0205
+             size 0.4 0.0819
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Normal
+             text "Name"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+            TextWidgetClass MHDGtexgtgr {
+             position 0.05 0.19
+             size 0.4 0.082
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Normal
+             text "Price"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+            TextWidgetClass MHDGEditTime0 {
+             position 0.05 0.36
+             size 0.4 0.082
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style Normal
+             text "Lease time"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+            MultilineTextWidgetClass MHDGTxtDescrip {
+             position 0.05 0.02
+             size 0.4 0.35029
+             valign bottom_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style DayZNormal
+             text "Lease time"
+             "text offset" 4 2
+             "exact text" 1
+             wrap 1
+             "condense whitespace" 1
+             {
+              PanelWidgetClass PanelWidget33 {
+               ignorepointer 1
+               color 1 0.502 0.0314 1
+               position 0 0
+               size 1 1
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               style editor_quad
+              }
+             }
+            }
+            TextWidgetClass TextWidget25 {
+             ignorepointer 1
+             position 0.03 0.0205
+             size 0.44929 0.08947
+             halign right_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             text "Group Doors"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+            PanelWidgetClass PanelWidget211 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             position 0.1 0.02
+             size 0.3 0.85378
+             halign right_ref
+             valign bottom_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style editor_quad
+             {
+              ScrollWidgetClass ScrollWidget4 {
+               ignorepointer 1
+               position 0 0.01
+               size 0.98 0.98
+               hexactpos 0
+               vexactpos 0
+               hexactsize 0
+               vexactsize 0
+               "Scrollbar V" 1
+               {
+                WrapSpacerWidgetClass MHDGTxtListDoors {
+                 ignorepointer 1
+                 position 0.02 0
+                 size 0.98 1
+                 hexactpos 0
+                 vexactpos 0
+                 hexactsize 0
+                 vexactsize 0
+                 Padding 0
+                 Margin 0
+                 "Size To Content V" 1
+                }
+               }
+              }
+             }
+            }
+            TextWidgetClass MHDGTxtName {
+             ignorepointer 1
+             position 0.05 0.1
+             size 0.4 0.08
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+            TextWidgetClass MHDGTxtPrice {
+             ignorepointer 1
+             position 0.05 0.27
+             size 0.4 0.08
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+            TextWidgetClass MHDGTxtTime {
+             ignorepointer 1
+             position 0.05 0.44
+             size 0.4 0.08
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+            PanelWidgetClass OrngLine14 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             position 0.05 0.18
+             size 0.4 0.003
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_colorable
+            }
+            PanelWidgetClass OrngLine15 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             position 0.05 0.35
+             size 0.4 0.003
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_colorable
+            }
+            PanelWidgetClass OrngLine16 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             position 0.05 0.52
+             size 0.4 0.003
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_colorable
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+      ButtonWidgetClass MHBtnDoorGroupsCreate {
+       visible 1
        color 1 0.502 0.0314 1
-       position 0.02 0.02
-       size 0.36 0.0803
+       position 0.15 0.02
+       size 0.25 0.07
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style MenuDefault
+       text "Create group"
+      }
+      ButtonWidgetClass MHBtnDoorGroupsEdit {
+       visible 1
+       disabled 1
+       color 1 0.502 0.0314 1
+       position 0.15 0.02
+       size 0.25 0.07
        halign right_ref
        valign bottom_ref
        hexactpos 0
@@ -1958,202 +2769,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        style MenuDefault
-       text "Edit door info"
-      }
-      PanelWidgetClass MHPanelEditDoorInfo {
-       visible 0
-       ignorepointer 1
-       color 0.4902 0.4902 0.4902 1
-       position 0.2 0
-       size 0.40001 0.99439
-       hexactpos 0
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       style rover_sim_colorable
-       {
-        ButtonWidgetClass MHBtnEditDoorSave {
-         color 1 0.502 0.0314 1
-         position 0.02 0.02
-         size 0.45 0.06
-         valign bottom_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         style MenuDefault
-         text "Save"
-        }
-        ButtonWidgetClass MHBtnEditDoorCancel {
-         color 1 0.502 0.0314 1
-         position 0.02 0.02
-         size 0.45 0.06
-         halign right_ref
-         valign bottom_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         style MenuDefault
-         text "Cancel"
-        }
-        EditBoxWidgetClass MHDoorName {
-         position 0 0.06454
-         size 0.77 0.06246
-         halign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         userID 20
-         style ServerBrowser
-         "no focus" 0
-         text "Door name"
-         "limit visible" 0
-         "Use default text" 0
-         "exact text" 1
-         {
-          ButtonWidgetClass ButtonWidget3 {
-           position 0 0
-           size 1 1
-           halign center_ref
-           valign center_ref
-           hexactpos 0
-           vexactpos 0
-           hexactsize 0
-           vexactsize 0
-           userID 20
-           style Empty
-          }
-         }
-        }
-        PanelWidgetClass OrngLine7 {
-         ignorepointer 1
-         color 1 0.502 0.0314 1
-         position 0 0.13
-         size 0.77 0.003
-         halign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         style rover_sim_colorable
-        }
-        MultilineEditBoxWidgetClass MHDescriptionDoor {
-         visible 1
-         position 0 0.35
-         size 0.77 0.109
-         halign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         priority 1
-         text "Description desc"
-         "text offset" 3 3
-         "exact text" 1
-         lines 10
-         "limit visible" 1
-         {
-          PanelWidgetClass PanelWidget19 {
-           ignorepointer 1
-           color 1 0.502 0.0314 1
-           size 1 1
-           halign center_ref
-           valign center_ref
-           hexactpos 0
-           vexactpos 0
-           hexactsize 0
-           vexactsize 0
-           style Outline
-          }
-         }
-        }
-        EditBoxWidgetClass MHDoorRentPrice {
-         position 0 0.1545
-         size 0.77 0.06246
-         halign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         userID 20
-         style ServerBrowser
-         "no focus" 0
-         text "Rent price"
-         "limit visible" 0
-         "Use default text" 0
-         "exact text" 1
-         {
-          ButtonWidgetClass ButtonWidget4 {
-           position 0 0
-           size 1 1
-           halign center_ref
-           valign center_ref
-           hexactpos 0
-           vexactpos 0
-           hexactsize 0
-           vexactsize 0
-           userID 20
-           style Empty
-          }
-         }
-        }
-        PanelWidgetClass OrngLine8 {
-         ignorepointer 1
-         color 1 0.502 0.0314 1
-         position 0 0.22
-         size 0.77 0.003
-         halign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         style rover_sim_colorable
-        }
-        EditBoxWidgetClass MHDoorRentTime {
-         position 0 0.2445
-         size 0.77 0.06246
-         halign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         userID 20
-         style ServerBrowser
-         "no focus" 0
-         text "Rent time (in hours)"
-         "limit visible" 0
-         "Use default text" 0
-         "exact text" 1
-         {
-          ButtonWidgetClass ButtonWidget5 {
-           position 0 0
-           size 1 1
-           halign center_ref
-           valign center_ref
-           hexactpos 0
-           vexactpos 0
-           hexactsize 0
-           vexactsize 0
-           userID 20
-           style Empty
-          }
-         }
-        }
-        PanelWidgetClass OrngLine9 {
-         ignorepointer 1
-         color 1 0.502 0.0314 1
-         position 0 0.31
-         size 0.77 0.003
-         halign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         style rover_sim_colorable
-        }
-       }
+       text "Edit group"
       }
      }
     }
@@ -2162,9 +2778,9 @@ FrameWidgetClass rootFrame {
   PanelWidgetClass PanelDoorInfo {
    visible 0
    ignorepointer 1
-   color 0 0 0 0.4706
+   color 0 0 0 0.7843
    position 0 0
-   size 500 577
+   size 700 577
    halign center_ref
    valign center_ref
    hexactpos 0
@@ -2203,10 +2819,9 @@ FrameWidgetClass rootFrame {
     GridSpacerWidgetClass InfoGridMainWrap0 {
      ignorepointer 1
      color 0 0 0 1
-     position 0 0.55
-     size 0.6 0.13
+     position -0.1 0.2
+     size 0.4 0.25
      halign center_ref
-     valign bottom_ref
      hexactpos 0
      vexactpos 0
      hexactsize 0
@@ -2215,7 +2830,6 @@ FrameWidgetClass rootFrame {
      Padding 0
      Margin 0
      Columns 2
-     Rows 2
      {
       PanelWidgetClass PanelWidget24 {
        ignorepointer 1
@@ -2240,35 +2854,6 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style Bold
          text "Price"
-         "exact text" 1
-         "text halign" center
-         "text valign" center
-        }
-       }
-      }
-      PanelWidgetClass PanelWidget26 {
-       ignorepointer 1
-       color 1 0.502 0.0314 1
-       position 10 10
-       size 48 48
-       hexactpos 1
-       vexactpos 1
-       hexactsize 1
-       vexactsize 1
-       style editor_quad
-       {
-        TextWidgetClass TextWidget14 {
-         ignorepointer 1
-         position 0 0
-         size 1 1
-         halign center_ref
-         valign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         style Bold
-         text "Time"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -2314,7 +2899,93 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        style editor_quad
        {
+        TextWidgetClass TextWIdgget212 {
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         text "Time"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget35 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
         TextWidgetClass DITime {
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget34 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass Textwid {
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         halign center_ref
+         valign center_ref
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Bold
+         text "Classes"
+         "exact text" 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget36 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 10 10
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_quad
+       {
+        TextWidgetClass DIClasses {
          ignorepointer 1
          position 0 0
          size 1 1
@@ -2335,7 +3006,7 @@ FrameWidgetClass rootFrame {
     }
     MultilineTextWidgetClass DIDescription {
      ignorepointer 1
-     position 0 0.5
+     position 0 0.57
      size 0.6 0.06
      halign center_ref
      hexactpos 0
@@ -2365,7 +3036,7 @@ FrameWidgetClass rootFrame {
     }
     ButtonWidgetClass DIBtnRequest {
      color 1 0.502 0.0314 1
-     position -0 0.04
+     position 0 0.04
      size 0.45 0.05902
      halign center_ref
      valign bottom_ref
@@ -2375,6 +3046,89 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style MenuDefault
      text "Send request"
+    }
+    PanelWidgetClass PanelWidget37 {
+     ignorepointer 1
+     color 1 0.502 0.0314 1
+     position 0.21 0.2
+     size 0.181 48
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 1
+     style editor_quad
+     {
+      TextWidgetClass tesxte {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Bold
+       text "Doors"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+      }
+     }
+    }
+    PanelWidgetClass PanelWidget38 {
+     ignorepointer 1
+     color 1 0.502 0.0314 1
+     position 0.21 0.28
+     size 0.181 98
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 1
+     style editor_quad
+     {
+      ScrollWidgetClass ScrollWidget5 {
+       ignorepointer 1
+       position 0.03 0.02
+       size 0.94 0.94
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       "Scrollbar V" 1
+       {
+        WrapSpacerWidgetClass DIDoorsList {
+         ignorepointer 1
+         position 0.02 0.01
+         size 0.98 2.5
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         Padding 0
+         Margin 0
+         "Size To Content V" 1
+        }
+       }
+      }
+     }
+    }
+    TextWidgetClass DIDoorName0 {
+     ignorepointer 1
+     position 0 0.49
+     size 0.6 0.078
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Bold
+     text "Description"
+     "exact text" 1
+     "text halign" center
+     "text valign" center
     }
    }
   }

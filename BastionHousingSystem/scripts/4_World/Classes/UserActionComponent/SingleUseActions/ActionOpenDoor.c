@@ -1,5 +1,6 @@
 modded class ActionOpenDoors
 {
+	int doorIdx;
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 		if( !target ) return false;
@@ -12,12 +13,12 @@ modded class ActionOpenDoors
 			{
 				if (GetGame().IsClient())
 				{
-					if ((g_HM.AdminsArr.Find(player.GetIdentity().GetId()) + 1))
+					doorIdx = building.GetDoorIndex(target.GetComponentIndex());
+					if (!building.m_HouseData)
 					{return true;}
-					if (building.m_HouseData && building.m_HouseData.MainOwner && (building.m_HouseData.MainOwner.HashID == player.GetIdentity().GetId()))
+					if (building.m_HouseData && building.m_HouseData.MainOwner && (building.m_HouseData.MainOwner.HashID == player.GetIdentity().GetId()) && g_HM.IsDoorAllow(doorIdx, building)) // TODO change to multicharID
 					{return true;}
-					int doorIndex = building.GetDoorIndex(target.GetComponentIndex());
-					return g_HM.IsDoorOwner(player, building, doorIndex);
+					return g_HM.IsDoorOwner(player, building, doorIdx);
 				}
 			}
 			else

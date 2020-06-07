@@ -16,7 +16,8 @@ class HouseData
 	int								LeaseTime;
 	int								RentPrice;
 	bool							NeedApproval;
-	ref array<ref HouseDoorData>	DoorsData = new array<ref HouseDoorData>();
+	ref array<int>					AllowDoors = new array<int>();
+	ref array<ref HouseGroupData>	GroupsData = new array<ref HouseGroupData>();
 	ref array<int>					AllowCitizenClasses = new array<int>();
 	ref array<ref RentSuggestion>	RentSuggestions = new array<ref RentSuggestion>();
 }
@@ -40,9 +41,9 @@ class HousePersonData
 
 }
 
-class HouseDoorData
+class HouseGroupData
 {
-	int								Index;
+	ref array<int>					Indexes = new array<int>();
 	int								RentPrice;
 	ref array<ref HousePersonData>	Renters = new array<ref HousePersonData>();
 	int								LeaseTime;

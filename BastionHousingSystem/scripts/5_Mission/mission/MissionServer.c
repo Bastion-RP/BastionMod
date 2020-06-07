@@ -21,7 +21,6 @@ modded class MissionServer
 		Sleep((saveDelay * 60000));
 		while ( true )
 		{
-			Print("UpdateRentalTime");
 			for (int i = 0; i < g_HSL.m_GenHosData.HousesData.Count(); i++)
 			{
 				HouseData hd = g_HSL.m_GenHosData.HousesData.Get(i);

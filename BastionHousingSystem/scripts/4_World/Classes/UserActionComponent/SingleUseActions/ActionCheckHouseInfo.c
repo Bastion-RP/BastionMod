@@ -1,4 +1,4 @@
-class ActionShowDoorInfo: ActionInteractBase
+class ActionShowDoorInfo : ActionInteractBase
 {
 	string ID = "-1";
 	int type = -1;
@@ -17,9 +17,19 @@ class ActionShowDoorInfo: ActionInteractBase
 		m_ConditionTarget = new CCTNone;
 	}
 
+	override typename GetInputType()
+	{
+		return ContinuousInteractActionInput;
+	}
+
 	override string GetText()
 	{
 		return ID;
+	}
+
+	override bool HasProgress()
+	{
+		return false;
 	}
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
@@ -48,19 +58,19 @@ class ActionShowDoorInfo: ActionInteractBase
 						ID += " Admin Manage building.";
 						type = 0;
 					}
-					else if (building.m_HouseData && !building.m_HouseData.MainOwner.HashID)
+					else if (building.m_HouseData && !building.m_HouseData.MainOwner.HashID && g_HM.IsDoorAllow(doorIndex, building))
 					{
 						ID += " Show rental conditions.";
 						type = 1;
 					}
-					else if (building.m_HouseData && building.m_HouseData.MainOwner.HashID == plId)
+					else if (building.m_HouseData && building.m_HouseData.MainOwner.HashID == plId && g_HM.IsDoorAllow(doorIndex, building))
 					{
 						ID += " Show info.";
 						type = 2;
 					}
-					else if (building.m_HouseData && building.m_HouseData.MainOwner.HashID)
+					else if (building.m_HouseData && building.m_HouseData.MainOwner.HashID && g_HM.IsDoorAllow(doorIndex, building))
 					{
-						ID += " Show door info.";
+						ID += " Show rent info.";
 						type = 3;
 					}
 					return true;
@@ -71,7 +81,7 @@ class ActionShowDoorInfo: ActionInteractBase
 		return true;
 	}
 	
-	override void OnStartClient( ActionData action_data )
+	override void OnEndClient( ActionData action_data  )
 	{
 		if (type == -1) return;
 		BRP_House building;
