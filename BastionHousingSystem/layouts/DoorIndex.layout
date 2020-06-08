@@ -1,8 +1,10 @@
 CheckBoxWidgetClass rootFrame {
+ color 1 0.502 0.0314 1
  position 10 10
  size 1 0.1
  hexactpos 1
  vexactpos 1
  hexactsize 0
  vexactsize 0
+ "text color" 1 0.502 0.0314 1
 }

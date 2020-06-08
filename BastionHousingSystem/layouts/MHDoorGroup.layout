@@ -1,0 +1,52 @@
+FrameWidgetClass rootFrame {
+ size 1 0.06
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ userID -1
+ {
+  ButtonWidgetClass ButtonWidget0 {
+   color 1 0.502 0.0314 1
+   size 1 1
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   userID 68
+  }
+  TextWidgetClass MHDoorGroupName {
+   ignorepointer 1
+   size 1 1
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   "exact text" 1
+   "text halign" center
+   "text valign" center
+  }
+  TextWidgetClass NewSugg {
+   visible 0
+   ignorepointer 1
+   color 1 0 0 1
+   position 0.06 0
+   size 0.2 0.897
+   halign right_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   text "New"
+   "text color" 1 0 0 1
+   "exact text" 1
+   "text halign" center
+   "text valign" center
+  }
+ }
+}

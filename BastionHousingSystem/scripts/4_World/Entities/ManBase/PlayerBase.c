@@ -6,7 +6,7 @@ modded class PlayerBase
 	void PlayerBase()
 	{
 		CanSyncHouseData	= true;
-		HDataSyncDelay		= 5;
+		HDataSyncDelay		= 3;
 	}
 
 	override void OnConnect()
