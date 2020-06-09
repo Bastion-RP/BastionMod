@@ -15,25 +15,63 @@ class CfgPatches
 };
 class CfgVehicles
 {
-/*	class HouseNoDestruct;
-	class BST_CraftingBenchBase : HouseNoDestruct {};
-	class BRP_CraftingTable: BST_CraftingBenchBase
+	class Inventory_Base;
+	class Container_Base;
+	class Barrel_ColorBase;
+	class BarrelHoles_ColorBase;
+	class BRP_CraftingBenchBase : Container_Base
 	{
 		scope = 1;
+		itemSize[]={10,15};
+		overrideDrawArea="8.0";
+		forceFarBubble="true";
+		slopeTolerance=0.30000001;
+		destroyOnEmpty=0;
+		varQuantityDestroyOnMin=0;
+		quantityBar=1;
+		carveNavmesh=1;
+		canBeDigged=0;
+		heavyItem=1;
+		weight=10000;
+		itemBehaviour=0;
+		stackedUnit="ml";
+		randomQuantity=2;
+		varQuantityInit=0;
+		varQuantityMin=0;
+		varQuantityMax=200000;
+		absorbency=0.1;
+		physLayer="item_large";
+		allowOwnedCargoManipulation=1;
+		class Cargo
+		{
+			itemsCargoSize[]={10,15};
+			openable=0;
+			allowOwnedCargoManipulation=1;
+		};
+	};
+	class BRP_CraftingTable: BRP_CraftingBenchBase
+	{
+		displayName="Crafting Table";
+		descriptionShort="Table used for crafting";
 		model = "\BastionMod\BastionCrafting_Data\craftingtable\craftingtable.p3d";
 	};
-	class BRP_Workbench1: BST_CraftingBenchBase
+	class BRP_Workbench_Base : BRP_CraftingBenchBase
 	{
-		scope = 1;
+		displayName="Workbench";
+		descriptionShort="Table used for crafting";
+	};
+	class BRP_Workbench1: BRP_Workbench_Base
+	{
 		model = "\BastionMod\BastionCrafting_Data\workbench\workbench1.p3d";
 	};
-	class BRP_Workbench2: BST_CraftingBenchBase
+	class BRP_Workbench2: BRP_Workbench_Base
 	{
-		scope = 1;
 		model = "\BastionMod\BastionCrafting_Data\workbench\workbench2.p3d";
 	};
-	class BRP_Toolsbench_Base: BST_CraftingBenchBase
+	class BRP_Toolsbench_Base: BRP_CraftingBenchBase
 	{
+		displayName="Toolbench";
+		descriptionShort="Table used for crafting";
 		scope = 0;
 		model = "\BastionMod\BastionCrafting_Data\toolsbench\toolsbench.p3d";
 		hiddenSelections[]=
@@ -78,11 +116,7 @@ class CfgVehicles
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_grey_co.paa",
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_wood_co.paa"
 		};
-	}; */
-	class Inventory_Base;
-	class Container_Base;
-	class Barrel_ColorBase;
-	class BarrelHoles_ColorBase;
+	};
 	class BRP_BarrelChair_Avgas: Container_Base
 	{
 		scope = 2;
