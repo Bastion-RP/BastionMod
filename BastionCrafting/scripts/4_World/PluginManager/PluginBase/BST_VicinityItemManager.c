@@ -79,7 +79,6 @@ class BST_VicinityItemManager : PluginBase {
 
     array<EntityAI> RefreshVicinityItems(PlayerBase player) {
         array<EntityAI> arrayVicinityItems = new array<EntityAI>();
-        array<EntityAI> arrayFilteredItems = new array<EntityAI>();
         array<Object> arrayVicinityObjects = new array<Object>();
         array<CargoBase> proxyCargos = new array<CargoBase>();
         float vicinityDistance = GetBSTCraftingManager().GetConfig().GetVicinityDistance();
@@ -92,17 +91,8 @@ class BST_VicinityItemManager : PluginBase {
         foreach (Object object : arrayVicinityObjects) {
             EntityAI entity = EntityAI.Cast(object);
 
-            if (entity && entity.GetInventory().GetCargo()) {
-                arrayFilteredItems.Insert(entity);
-            }
-        }
-        foreach (EntityAI filteredItem : arrayFilteredItems) {
-            bool isObstructed = false;
-            
-            if (!filteredItem) { continue; }
-            if (vector.DistanceSq(player.GetPosition(), filteredItem.GetPosition()) > vicinityDistance * vicinityDistance) { continue; }
-            if (!IsObstructed(filteredItem, player)) {
-                arrayVicinityItems.Insert(filteredItem);
+            if (entity && entity.GetInventory().GetCargo() && !IsObstructed(filteredItem, player) && vector.DistanceSq(player.GetPosition(), filteredItem.GetPosition()) < vicinityDistance * vicinityDistance) {
+                arrayVicinityItems.Insert(entity);
             }
         }
         return arrayVicinityItems;
