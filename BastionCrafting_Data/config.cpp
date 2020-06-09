@@ -1,16 +1,21 @@
-﻿class CfgPatches
+class CfgPatches
 {
 	class BastionCrafting_Data
 	{
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = {"DZ_Data"};
+		requiredAddons[] = 
+		{
+			"DZ_Gear_Containers",
+			"DZ_Gear_Crafting",
+			"DZ_Data"
+		};
 	};
 };
 class CfgVehicles
 {
-	class HouseNoDestruct;
+/*	class HouseNoDestruct;
 	class BST_CraftingBenchBase : HouseNoDestruct {};
 	class BRP_CraftingTable: BST_CraftingBenchBase
 	{
@@ -73,5 +78,261 @@ class CfgVehicles
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_grey_co.paa",
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_wood_co.paa"
 		};
+	}; */
+	class Inventory_Base;
+	class Container_Base;
+	class Barrel_ColorBase;
+	class BarrelHoles_ColorBase;
+	class BRP_BarrelChair_Avgas: Container_Base
+	{
+		scope = 2;
+		color = "Avgas";
+		displayName = "Barrel Chair";
+		descriptionShort = "A comfy seat crafted from an oil barrel.";
+		model = "BastionMod\BastionCrafting_Data\barrelfurniture\BRP_BarrelChair.p3d";
+		heavyItem = 1;
+		weight = 10000;
+		itemSize[] = {10,15};
+		itemsCargoSize[] = {10,8};
+		physLayer = "item_large";
+		reversed = 2;
+		itemBehaviour = 2;
+		hiddenSelections[] = {"OilDrumSeat"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Avgas_co.paa"};
 	};
+	class BRP_BarrelChair_Green: BRP_BarrelChair_Avgas
+	{
+		scope = 2;
+		color = "Green";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Green_co.paa"};
+	};
+	class BRP_BarrelChair_Blue: BRP_BarrelChair_Avgas
+	{
+		scope = 2;
+		color = "Blue";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Blue_co.paa"};
+	};
+	class BRP_BarrelChair_Red: BRP_BarrelChair_Avgas
+	{
+		scope = 2;
+		color = "Red";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Red_co.paa"};
+	};
+	class BRP_BarrelChair_Yellow: BRP_BarrelChair_Avgas
+	{
+		scope = 2;
+		color = "Yellow";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Yellow_co.paa"};
+	};
+	class BRP_BarrelChair_Danmak: BRP_BarrelChair_Avgas
+	{
+		scope = 2;
+		color = "Danmak";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Danmak_co.paa"};
+	};
+	class BRP_BarrelTable_Danmak: Container_Base
+	{
+		scope = 2;
+		color = "Danmak";
+		displayName = "Barrel Table";
+		descriptionShort = "A table crafted from an oil barrel.";
+		model = "BastionMod\BastionCrafting_Data\barrelfurniture\BRP_BarrelTable.p3d";
+		heavyItem = 1;
+		weight = 10000;
+		itemSize[] = {10,15};
+		itemsCargoSize[] = {10,8};
+		physLayer = "item_large";
+		itemBehaviour = 2;
+		hiddenSelections[] = {"OilDrumTable"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelTable_Danmak_ca.paa"};
+	};
+	class BRP_BarrelTable_Green: BRP_BarrelTable_Danmak
+	{
+		scope = 2;
+		color = "Green";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelTable_Green_ca.paa"};
+	};
+	class BRP_BarrelTable_Blue: BRP_BarrelTable_Danmak
+	{
+		scope = 2;
+		color = "Blue";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelTable_Blue_ca.paa"};
+	};
+	class BRP_BarrelTable_Red: BRP_BarrelTable_Danmak
+	{
+		scope = 2;
+		color = "Red";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelTable_Red_ca.paa"};
+	};
+	class BRP_BarrelTable_Yellow: BRP_BarrelTable_Danmak
+	{
+		scope = 2;
+		color = "Yellow";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelTable_Yellow_ca.paa"};
+	};
+	class BRP_BarrelTable_Avgas: BRP_BarrelTable_Danmak
+	{
+		scope = 2;
+		color = "Avgas";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelTable_Avgas_ca.paa"};
+	};
+	class BRP_BarrelTableCactus: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Cactus";
+		descriptionShort = "A decorative table cactus.";
+		model = "BastionMod\BastionCrafting_Data\barrelfurniture\BRP_BarrelTableCactus.p3d";
+		weight = 100;
+		itemSize[] = {2,2};
+		itemsCargoSize[] = {1,1};
+		itemBehaviour = 2;
+	};
+	class BRP_Barrel_Danmak: Barrel_ColorBase
+	{
+		scope = 2;
+		color = "Danmak";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_Barrel_Danmak_co.paa"};
+		hologramMaterial = "barrel";
+		hologramMaterialPath = "";
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1,{"DZ\gear\containers\data\Barrel_yellow.rvmat"}},{0.7,{"DZ\gear\containers\data\Barrel_yellow.rvmat"}},{0.5,{"DZ\gear\containers\data\Barrel_yellow_damage.rvmat"}},{0.3,{"DZ\gear\containers\data\Barrel_yellow_damage.rvmat"}},{0,{"DZ\gear\containers\data\Barrel_yellow_destruct.rvmat"}}};
+				};
+			};
+			class GlobalArmor
+			{
+				class Projectile
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
+			};
+		};
+	};
+	class BarrelHoles_Danmak: BarrelHoles_ColorBase
+	{
+		scope = 2;
+		color = "Danmak";
+		hiddenSelectionsTextures[] = {"\dz\gear\cooking\data\stoneground_co.paa","BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_Barrel_Danmak_co.paa","BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_Barrel_Danmak_co.paa"};
+		hologramMaterial = "Barrel";
+		hologramMaterialPath = "";
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1,{"DZ\gear\cooking\data\Barrel_yellow_holes.rvmat"}},{0.7,{"DZ\gear\cooking\data\Barrel_yellow_holes.rvmat"}},{0.5,{"DZ\gear\cooking\data\Barrel_yellow_holes_damage.rvmat"}},{0.3,{"DZ\gear\cooking\data\Barrel_yellow_holes_damage.rvmat"}},{0,{"DZ\gear\cooking\data\Barrel_yellow_holes_destruct.rvmat"}}};
+				};
+			};
+			class GlobalArmor
+			{
+				class Projectile
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
+			};
+		};
+	};
+	class BRP_Barrel_Avgas: Barrel_ColorBase
+	{
+		scope = 2;
+		color = "Avgas";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_Barrel_Avgas_co.paa"};
+		hologramMaterial = "barrel";
+		hologramMaterialPath = "";
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1,{"DZ\gear\containers\data\Barrel_red.rvmat"}},{0.7,{"DZ\gear\containers\data\Barrel_red.rvmat"}},{0.5,{"DZ\gear\containers\data\Barrel_red_damage.rvmat"}},{0.3,{"DZ\gear\containers\data\Barrel_red_damage.rvmat"}},{0,{"DZ\gear\containers\data\Barrel_red_destruct.rvmat"}}};
+				};
+			};
+			class GlobalArmor
+			{
+				class Projectile
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
+			};
+		};
+	};
+	class BarrelHoles_Avgas: BarrelHoles_ColorBase
+	{
+		scope = 2;
+		color = "Avgas";
+		hiddenSelectionsTextures[] = {"\dz\gear\cooking\data\stoneground_co.paa","BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_Barrel_Avgas_co.paa","BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_Barrel_Avgas_co.paa"};
+		hologramMaterial = "Barrel";
+		hologramMaterialPath = "";
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1,{"DZ\gear\cooking\data\Barrel_red_holes.rvmat"}},{0.7,{"DZ\gear\cooking\data\Barrel_red_holes.rvmat"}},{0.5,{"DZ\gear\cooking\data\Barrel_red_holes_damage.rvmat"}},{0.3,{"DZ\gear\cooking\data\Barrel_red_holes_damage.rvmat"}},{0,{"DZ\gear\cooking\data\Barrel_red_holes_destruct.rvmat"}}};
+				};
+			};
+			class GlobalArmor
+			{
+				class Projectile
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
+			};
+		};
+	};	
 };
