@@ -1,6 +1,20 @@
 class BST_CraftingConfig {
-    // How to do categories? Set it on the item? Or create a category object which holds the recipe?
-    // Really not sure, it'll only be needed for the client. the server won't have to care about it...
-    // Also, how to make collapsable categories? Idk, scripting UI's is annoying...
-    
+    private const float CONST_DEFAULT_DISTANCE = 3.0;
+
+    private float VicinityDistance;
+    private bool AllowVicinitySearch;
+
+    void BST_CraftingConfig() {
+        this.VicinityDistance = CONST_DEFAULT_DISTANCE;
+        this.AllowVicinitySearch = true;
+    }
+
+    void Validate() {
+        if (VicinityDistance <= 0.0) {
+            this.VicinityDistance = CONST_DEFAULT_DISTANCE;
+        }
+    }
+
+    float GetVicinityDistance() { return VicinityDistance; }
+    bool CanSearchVicinity() { return AllowVicinitySearch; }
 }

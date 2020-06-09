@@ -8,6 +8,8 @@ modded class PluginManager {
 	override void Init() {
 		super.Init();
 
+		craftingPluginList.Insert("BST_VicinityItemManager");
+		craftingPluginList.Insert("BST_CraftingManager");
 		craftingPluginList.Insert("BST_ServerCraftingManager");
 		craftingPluginList.Insert("BST_ServerCraftingRPCHandler");
 		craftingPluginList.Insert("BST_ClientCraftingManager");
@@ -17,6 +19,8 @@ modded class PluginManager {
 		//----------------------------------------------------------------------
 		//				Module Class Name 						Client	Server
 		//----------------------------------------------------------------------
+		RegisterPlugin("BST_VicinityItemManager", true, true);
+		RegisterPlugin("BST_CraftingManager", true, true);
 		RegisterPlugin("BST_ServerCraftingManager", false, true);
 		RegisterPlugin("BST_ServerCraftingRPCHandler", false, true);
 		RegisterPlugin("BST_ClientCraftingManager", true, false);

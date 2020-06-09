@@ -15,12 +15,6 @@ class BST_CraftingRecipe {
         this.RequiredCraftingBench = string.Empty;
     }
 
-    // Remove this later, using only for testing
-    /* void SetRecipeInfo(int CraftTime) {
-        this.CraftTime = CraftTime;
-        Validate();
-    } */
-
     bool Validate() {
         if (RecipeName == string.Empty) {
             RecipeName = DEFAULT_RECIPE_STRING;

@@ -1,61 +1,62 @@
 class BST_ClientCraftingManager : PluginBase {
-    private ref BST_CraftingBenchConfig configBenches;
-    private ref array<ref BST_CraftingLoadedRecipe> arrayCraftingRecipes;
+    map<string, int> GetIngredientAmountFromArray(BST_CraftingRecipe recipe, array<EntityAI> arrEntities) {
+        map<string, int> mapRequiredCount = GetBSTCraftingManager().GetRecipeIngredientRequirement(recipe);
+        
+        // This should be O(n) complexity
+        // I'm not sure whether or not map.Set is O(n) complex or constant-time.
+        foreach (EntityAI entity : arrEntities) {
+            if (!entity) continue;
+            string entityClassname = entity.GetType();
 
-    void BST_ClientCraftingManager() {
-        arrayCraftingRecipes = new array<ref BST_CraftingLoadedRecipe>();
+            entityClassname.ToLower();
+
+            if (mapRequiredCount.Contains(entityClassname)) {
+                int entityCount = QuantityConversions.GetItemQuantity(entity);
+
+                if (entityCount == 0) entityCount = 1;
+                mapRequiredCount.Set(entityClassname, mapRequiredCount.Get(entityClassname) - entityCount);
+            }
+        }
+        return mapRequiredCount;
     }
 
-    void SetCraftingRecipes(array<ref BST_CraftingLoadedRecipe> arrayCraftingRecipes) {
-        this.arrayCraftingRecipes = arrayCraftingRecipes;
-        arrayCraftingRecipes.Debug();
+    map<string, int> GetIngredientAmountOnPlayer(BST_CraftingRecipe recipe) {
+        PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+        array<EntityAI> arrayInventory = new array<EntityAI>();
+
+        if (!player) { return null; }
+        player.GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER, arrayInventory);
+
+        return GetIngredientAmountFromArray(recipe, arrayInventory);
     }
 
-    void SetBenchConfig(BST_CraftingBenchConfig configBenches) {
-        this.configBenches = configBenches;
+    map<string, int> GetIngredientAmountInVicinityandPlayer(BST_CraftingRecipe recipe, array<EntityAI> arrayVicinityContainers) {
+        array<EntityAI> arrayItems = new array<EntityAI>();
+        PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 
-        Print("[DEBUG] CONFIG BENCHES..." + configBenches);
-    }
+        if (!player) { return null; }
+        player.GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER, arrayItems);
 
-    map<string, int> GetIngredientAmount(array<ref BST_CraftingIngredient> arrayIngredients) {
-        array<EntityAI> arrayInventoryItems = new array<EntityAI>();
-        map<string, int> mapIngredientAmount = new map<string, int>();
+        // This has to be nested... I do believe. O(n^2) complex :(
+        // Realistically arrays will be nice and small in dayz so this won't be a problem
+        foreach (EntityAI container : arrayVicinityContainers) {
+            if (container) {
+                array<EntityAI> tempArray = new array<EntityAI>();
 
-        if (!PlayerBase.Cast(GetGame().GetPlayer())) { return null; }
+                container.GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER, tempArray);
 
-        PlayerBase.Cast(GetGame().GetPlayer()).GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER, arrayInventoryItems);
-
-        foreach (BST_CraftingIngredient ingredient : arrayIngredients) {
-            Print("[DEBUG] BST_ClientCraftingManager | GetIngredientAmount | Iterating ingredient list " + ingredient + " | " + ingredient.GetClassname());
-            if (!ingredient) { continue; }
-            int totalItemCount = 0;
-
-            for (int i = (arrayInventoryItems.Count() - 1); i >= 0; i--) {
-                EntityAI entity = arrayInventoryItems[i];
-
-                if (!entity) { continue; }
-                string itemType = entity.GetType();
-
-                itemType.ToLower();
-
-                if (itemType == ingredient.GetLoweredClassname()) {
-                    int itemCount = QuantityConversions.GetItemQuantity(entity);
-
-                    if (itemCount == 0) {
-                        totalItemCount += 1;
-                    } else {
-                        totalItemCount += itemCount;
+                // Idk how array.Copy works...
+                foreach (EntityAI tempEntity : tempArray) {
+                    if (tempEntity) {
+                        arrayItems.Insert(tempEntity);
                     }
                 }
             }
-            mapIngredientAmount.Insert(ingredient.GetClassname(), totalItemCount);
         }
-        return mapIngredientAmount;
+        return GetIngredientAmountFromArray(recipe, arrayItems);
     }
-
-    array<ref BST_CraftingLoadedRecipe> GetRecipes() { return arrayCraftingRecipes; }
-    BST_CraftingBenchConfig GetBenchConfig() { return configBenches; }
 }
-BST_ClientCraftingManager GetClientCraftingManager() {
+
+BST_ClientCraftingManager GetBSTClientCraftingManager() {
     return BST_ClientCraftingManager.Cast(GetPlugin(BST_ClientCraftingManager));
 }

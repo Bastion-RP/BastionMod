@@ -17,18 +17,19 @@ class BST_ClientCraftingRPCHandler : PluginBase {
                     if (!ctx.Read(dataRecipes)) { return; }
                     Print("[DEBUG] CLIENT_RECEIVE_RECIPES | Read recipes");
 
-                    GetClientCraftingManager().SetCraftingRecipes(dataRecipes.param1);
+                    GetBSTCraftingManager().SetCraftingRecipes(dataRecipes.param1);
                     break;
                 }
             case BST_CraftingRPC.CLIENT_RECEIVE_CONFIG:
                 {
-                    Param1<ref BST_CraftingBenchConfig> dataConfig;
+                    Param2<ref BST_CraftingConfig, ref BST_CraftingBenchConfig> dataConfig;
 
                     Print("[DEBUG] CLIENT_RECEIVE_CONFIG | Reading config");
                     if (!ctx.Read(dataConfig)) { return; }
                     Print("[DEBUG] CLIENT_RECEIVE_CONFIG | Read config");
 
-                    GetClientCraftingManager().SetBenchConfig(dataConfig.param1);
+                    GetBSTCraftingManager().SetConfig(dataConfig.param1);
+                    GetBSTCraftingManager().SetBenchConfig(dataConfig.param2);
                     break;
                 }
         }

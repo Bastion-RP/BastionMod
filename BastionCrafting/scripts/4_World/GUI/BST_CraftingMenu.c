@@ -18,8 +18,9 @@ class BST_CraftingMenu : UIScriptedMenu {
     private ref BST_RecipeTextWidget activeRecipe, craftingRecipe;
     private ref array<ref BST_RecipeGridSpacer> arrayGridSpacers;
     private ref array<ref BST_RecipeRequireGrid> arrayGridIngredients;
+    private PlayerBase player;
     private EntityAI entityRecipeProduct;
-    private EntityAI benchBase;
+    private BRP_CraftingBenchBase benchBase;
     private bool isCrafting, requiresBench, hasRequiredBench, hasIngredients;
     private string previousEntry;
     private float craftingTimePassed;
@@ -155,7 +156,7 @@ class BST_CraftingMenu : UIScriptedMenu {
                     hasIngredients = false;
                     craftingTimePassed = 0.0;
                     
-                    GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_CraftingRPC.SERVER_CRAFT_ITEM, new Param2<string, EntityAI>(activeRecipe.GetRecipe().GetFileName(), benchBase), true);
+                    GetGame().RPCSingleParam(player, BST_CraftingRPC.SERVER_CRAFT_ITEM, new Param2<string, EntityAI>(activeRecipe.GetRecipe().GetFileName(), benchBase), true);
                     GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(this.RefreshBuildWindow, 2000);
                 }
             } else {
@@ -176,35 +177,45 @@ class BST_CraftingMenu : UIScriptedMenu {
 
     void BuildRecipeWindow() {
         BST_RecipeRequireGrid newGridIngredient;
+        map<string, int> mapRequiredCount;
         array<ref BST_CraftingIngredient> arrayCraftingIngredients = activeRecipe.GetRecipe().GetIngredients();
-        map<string, int> mapIngredientAmount = GetClientCraftingManager().GetIngredientAmount(arrayCraftingIngredients);
+        array<EntityAI> arrayVicinityContainers = GetBSTVicinityItemManager().RefreshVicinityItems(player);
+
+        Print("[Menu DEBUG] array=" + arrayVicinityContainers);
+        if (benchBase && arrayVicinityContainers.Count() > 0) {
+            Print("[DEBUG] Grabbing ingredients in vicinity");
+            mapRequiredCount = GetBSTClientCraftingManager().GetIngredientAmountInVicinityandPlayer(activeRecipe.GetRecipe(), arrayVicinityContainers);
+        } else {
+            Print("[DEBUG] Grabbing ingredients only on player");
+            mapRequiredCount = GetBSTClientCraftingManager().GetIngredientAmountOnPlayer(activeRecipe.GetRecipe())
+        }
         string requiredBench = activeRecipe.GetRecipe().GetRequiredBench();
 
         requiresBench = false;
         hasIngredients = true;
 
         // Build ingredient grid
-        if (mapIngredientAmount == null) {
+        if (mapRequiredCount == null) {
             newGridIngredient = new BST_RecipeRequireGrid(gridRecipeIngredients, "ERROR OCCURRED WHEN TRYING TO GRAB CLIENT. REFRESH", false);
             arrayGridIngredients.Insert(newGridIngredient);
         } else {
-            for (int i = 0; i < arrayCraftingIngredients.Count(); i++) {
-                BST_CraftingIngredient ingredient = arrayCraftingIngredients[i];
-
+            foreach (BST_CraftingIngredient ingredient : arrayCraftingIngredients) {
                 if (!ingredient) { continue; }
+
                 EntityAI tempObject;
-                bool hasRequiredAmount = false;
+                bool hasRequiredAmount;
+                string ingredientClassname;
 
-                if (mapIngredientAmount.Contains(ingredient.GetClassname())) {
+                hasRequiredAmount = true;
+                ingredientClassname = ingredient.GetLoweredClassname();
 
-                    if (mapIngredientAmount.Get(ingredient.GetClassname()) >= ingredient.GetRequiredAmount()) {
-                        hasRequiredAmount = true;
+                if (mapRequiredCount.Contains(ingredientClassname)) {
+                    if (mapRequiredCount.Get(ingredientClassname) > 0) {
+                        hasRequiredAmount = false;
+                        hasIngredients = false;
                     }
                 }
-                if (!hasRequiredAmount) {
-                    hasIngredients = false;
-                }
-                tempObject = GetGame().CreateObject(ingredient.GetClassname(), "0 0 0", true);
+                tempObject = GetGame().CreateObject(ingredientClassname, vector.Zero, true);
 
                 if (tempObject) {
                     newGridIngredient = new BST_RecipeRequireGrid(gridRecipeIngredients, "(" + ingredient.GetRequiredAmount() + ") " + tempObject.GetDisplayName(), hasRequiredAmount);
@@ -221,24 +232,18 @@ class BST_CraftingMenu : UIScriptedMenu {
 
             arrayGridIngredients.Insert(newGridIngredient);
         } else {
-            BST_CraftingConfigBench configBenchRequired, configBenchFound;
-
-            configBenchRequired = GetClientCraftingManager().GetBenchConfig().GetBenchByType(requiredBench);
+            BST_CraftingConfigBench configBenchRequired = GetBSTCraftingManager().GetBenchConfig().GetBenchByType(requiredBench);
             requiresBench = true;
+            hasRequiredBench = false;
 
             if (configBenchRequired) {
-                string benchBaseType = benchBase.GetType();
-                configBenchFound = GetClientCraftingManager().GetBenchConfig().GetBenchByItemType(benchBaseType);
-
-                if (configBenchFound && configBenchFound == configBenchRequired) {
-                    hasRequiredBench = true;
-                    newGridIngredient = new BST_RecipeRequireGrid(gridRecipeToolRequirements, configBenchRequired.GetType(), true);
+                if (!benchBase || configBenchRequired != GetBSTCraftingManager().GetBenchConfig().GetBenchByItemType(benchBase.GetType())) {
+                    newGridIngredient = new BST_RecipeRequireGrid(gridRecipeToolRequirements, requiredBench, false);
                 } else {
-                    hasRequiredBench = false;
-                    newGridIngredient = new BST_RecipeRequireGrid(gridRecipeToolRequirements, configBenchRequired.GetType(), false);
+                    hasRequiredBench = true;
+                    newGridIngredient = new BST_RecipeRequireGrid(gridRecipeToolRequirements, requiredBench, true);
                 }
             } else {
-                hasRequiredBench = false;
                 newGridIngredient = new BST_RecipeRequireGrid(gridRecipeToolRequirements, "Invalid Bench Type! Contact a server admin!", false);
             }
             arrayGridIngredients.Insert(newGridIngredient);
@@ -249,8 +254,21 @@ class BST_CraftingMenu : UIScriptedMenu {
         this.benchBase = benchBase;
     }
 
+    void GetItemsinVicinity() {
+        array<EntityAI> vicinityEntities = GetBSTVicinityItemManager().RefreshVicinityItems(player);
+
+        Print("Grabbed vicinity array=" + vicinityEntities.Count());
+        
+        foreach (EntityAI item : vicinityEntities) {
+            if (item) {
+                Print("[DEBUG] item=" + item);
+            }
+        }
+    }
+
     void OnShow() {
-        arrayRecipes = GetClientCraftingManager().GetRecipes();
+        arrayRecipes = GetBSTCraftingManager().GetCraftingRecipes();
+        player = PlayerBase.Cast(GetGame().GetPlayer());
 
         super.OnShow();
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
@@ -258,6 +276,7 @@ class BST_CraftingMenu : UIScriptedMenu {
         GetGame().GetMission().GetHud().Show(false);
         BuildMenu();
         SetFocus(null);
+        //GetItemsinVicinity();
     }
 
     void OnHide() {

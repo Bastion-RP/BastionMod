@@ -7,6 +7,12 @@ class BST_CraftingBenchConfig {
         CraftingBenches.Insert(new BST_CraftingConfigBench());
     }
 
+    void Validate() {
+        if (CraftingBenches.Count() == 0) {
+            CraftingBenches.Insert(new BST_CraftingConfigBench());
+        }
+    }
+
     array<string> GetBenchClassnamesByType(string type) {
         BST_CraftingConfigBench bench = GetBenchByType(type);
 
