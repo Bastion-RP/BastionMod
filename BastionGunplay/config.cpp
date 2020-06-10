@@ -1,6 +1,6 @@
 class CfgPatches
 {
-	class BastionGunplay
+	class BastionGunPlay
 	{
 		units[]={
 		};
@@ -14,7 +14,7 @@ class CfgPatches
 };
 class CfgMods
 {
-	class BastionGunplay
+	class BastionGunPlay
 	{
 	    type = "mod";
 	    dependencies[] = {"Game","World","Mission"};
@@ -23,17 +23,17 @@ class CfgMods
 			class gameScriptModule
             {
                 value = "";
-                files[] = {"BastionMod/BastionGunplay/scripts/3_Game"};
+                files[] = {"BastionMod/BastionGunPlay/scripts/3_Game"};
             };
 			class worldScriptModule
             {
                 value = "";
-                files[] = {"BastionMod/BastionGunplay/scripts/4_World"};
+                files[] = {"BastionMod/BastionGunPlay/scripts/4_World"};
             };
 			class missionScriptModule
             {
                 value = "";
-                files[] = {"BastionMod/BastionGunplay/scripts/5_Mission"};
+                files[] = {"BastionMod/BastionGunPlay/scripts/5_Mission"};
             };
         };
     };
