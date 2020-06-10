@@ -50,6 +50,14 @@ class CfgMods
 					"BastionMod/BastionMisc/StunGrenade/scripts/4_World"
 				};
 			};
+			class missionScriptModule
+			{
+				value="";
+				files[]=
+				{
+					"BastionMod/BastionMisc/StunGrenade/scripts/5_Mission"
+				};
+			};
 		};
 	};
 };
@@ -129,7 +137,7 @@ class CfgVehicles
 		};
 		class EnergyManager
 		{
-			energyAtSpawn=90;
+			energyAtSpawn=150;
 			energyUsagePerSecond=1;
 			wetnessExposure=0.1;
 		};
