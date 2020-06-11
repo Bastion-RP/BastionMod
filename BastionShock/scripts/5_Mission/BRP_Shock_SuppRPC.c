@@ -48,7 +48,7 @@ class BRP_Shock_SuppRPC {
         };
 
         // do stamina damage
-        BRP_t_Player.GetStaminaHandler().DepleteStamina(BRP_f_SuppCount * 0.75);
+        BRP_t_Player.GetStaminaHandler().DepleteStamina(BRP_f_SuppCount * 0.50);
 
 
         // check curretn shock
