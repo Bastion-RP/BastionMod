@@ -960,27 +960,32 @@ modded class DayZPlayerImplementAiming {
 
             //BRP_GunPlay_Say("speed: " + t_Speed);
 
+            // uniform hipfire sway
+            //BRP_GunPlay_t_AimWeight *= (10 * BRP_GunPlay_m_Mod + 1);
+            BRP_GunPlay_t_AimWeight += Math.Lerp(0.2,2,Math.InverseLerp(0,3,BRP_GunPlay_m_Mod));  // hipfire aim penalty from aiming mod (how stable the aim currently)
+
             if (t_Speed == DayZPlayerConstants.MOVEMENTIDX_IDLE) {
                 // standing still
 
-                BRP_GunPlay_t_AimWeight *= (0.1 * BRP_GunPlay_m_Mod + 1);
+                //BRP_GunPlay_t_AimWeight *= (5.5 * BRP_GunPlay_m_Mod + 1);
             } else if (t_Speed == DayZPlayerConstants.MOVEMENTIDX_WALK) {
                 // walking
 
-                BRP_GunPlay_t_AimWeight *= (0.5 * BRP_GunPlay_m_Mod + 1);
+                //BRP_GunPlay_t_AimWeight *= (10 * BRP_GunPlay_m_Mod + 1);
             } else {
                 // jogging or default
 
-                BRP_GunPlay_t_AimWeight *= (1 * BRP_GunPlay_m_Mod + 1);
+                //BRP_GunPlay_t_AimWeight *= (15 * BRP_GunPlay_m_Mod + 1);
             };
-            BRP_GunPlay_t_AimWeight *= t_WeaponMod;
+
+            //BRP_GunPlay_t_AimWeight *= t_WeaponMod;
+            BRP_GunPlay_t_AimWeight += (t_WeaponMod * 0.25);    // perma effect for hipfire aim based on weapon size
         };
         BRP_GunPlay_Say("weight: " + BRP_GunPlay_t_AimWeight);
 
         return BRP_GunPlay_t_AimWeight;
     
 	};
-    
 
 	override void ApplyHorizontalNoise(out float x_axis, out float y_axis, float smooth_time,float max_velocity_low, float max_velocity_high, float velocity_modifier,  float max_distance, float weight, float pDt)
 	{
