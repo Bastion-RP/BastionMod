@@ -20,7 +20,7 @@ class CfgVehicles
 	class Barrel_ColorBase;
 	class BarrelHoles_ColorBase;
 	class FireplaceBase;		
-/*	class BRP_CraftingBenchBase : Container_Base
+	class BRP_CraftingBenchBase : Container_Base
 	{
 		scope = 1;
 		itemSize[]={10,15};
@@ -117,7 +117,7 @@ class CfgVehicles
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_grey_co.paa",
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_wood_co.paa"
 		};
-	}; */
+	};
 	
 	//==============================================Barrel Furniture================================================>	
 	
