@@ -5,18 +5,35 @@
 // server doesn't have to give a shit about categories
 
 class BST_ServerCraftingManager : PluginBase {
+    private static const string CONST_FURNACE_CONFIG_DIR = BST_CraftingConst.rootDir + "FurnaceConfig.json";
     private static const string CONST_CRAFTING_CONFIG_DIR = BST_CraftingConst.rootDir + "Config.json";
     private static const string CONST_CRAFTING_BENCH_CONFIG_DIR = BST_CraftingConst.rootDir + "BenchConfig.json";
 
+    private ref BST_FurnaceConfig cfgFurnace;
+    private ref map<string, ref BST_FurnaceRecipe> mapFurnaceRecipes;
+    private ref map<string, ref BST_FurnaceFuel> mapFurnaceFuels;
+
     void BST_ServerCraftingManager() {
+        mapFurnaceRecipes = new map<string, ref BST_FurnaceRecipe>();
+        mapFurnaceFuels = new map<string, ref BST_FurnaceFuel>();
+
         if (!FileExist(BST_CraftingConst.rootDir)) {
             MakeDirectory(BST_CraftingConst.rootDir);
         }
         if (!FileExist(BST_CraftingConst.recipeDir)) {
             MakeDirectory(BST_CraftingConst.recipeDir);
         }
+        if (!FileExist(BST_CraftingConst.furnaceDir)) {
+            MakeDirectory(BST_CraftingConst.furnaceDir)
+        }
+        if (!FileExist(BST_CraftingConst.furnaceFuelDir)) {
+            MakeDirectory(BST_CraftingConst.furnaceFuelDir);
+        }
         LoadConfig();
         LoadRecipes();
+        LoadFurnaceConfig();
+        LoadFurnaceRecipes();
+        LoadFurnaceFuels();
     }
 
     private void LoadConfig() {
@@ -39,6 +56,16 @@ class BST_ServerCraftingManager : PluginBase {
         }
         JsonFileLoader<BST_CraftingConfig>.JsonSaveFile(CONST_CRAFTING_CONFIG_DIR, GetBSTCraftingManager().GetConfig());
         JsonFileLoader<BST_CraftingBenchConfig>.JsonSaveFile(CONST_CRAFTING_BENCH_CONFIG_DIR, GetBSTCraftingManager().GetBenchConfig());
+    }
+
+    private void LoadFurnaceConfig() {
+        if (!FileExist(CONST_FURNACE_CONFIG_DIR)) {
+            cfgFurnace = new BST_FurnaceConfig();
+        } else {
+            JsonFileLoader<BST_FurnaceConfig>.JsonLoadFile(CONST_FURNACE_CONFIG_DIR, cfgFurnace);
+            cfgFurnace.Validate();
+        }
+        JsonFileLoader<BST_FurnaceConfig>.JsonSaveFile(CONST_FURNACE_CONFIG_DIR, cfgFurnace);
     }
 
     private void LoadRecipes() {
@@ -68,7 +95,6 @@ class BST_ServerCraftingManager : PluginBase {
                     BST_CraftingLoadedRecipe foundRecipe;
 
                     JsonFileLoader<BST_CraftingLoadedRecipe>.JsonLoadFile(BST_CraftingConst.recipeDir + foundFileName, foundRecipe);
-                    Print("[DEBUG] Found file name=" + foundFileName);
 
                     if (foundRecipe) {
                         foundRecipe.SetFileName(foundFileName);
@@ -81,6 +107,79 @@ class BST_ServerCraftingManager : PluginBase {
                 }
             }
             GetBSTCraftingManager().SetCraftingRecipes(arrayCraftingRecipes);
+        }
+    }
+
+    private void LoadFurnaceRecipes() {
+        array<string> arrayFileNames;
+        FindFileHandle fileHandler;
+        string filePattern;
+        string fileName;
+        int fileAttr, flags;
+
+        arrayFileNames = new array<string>();
+        filePattern = BST_CraftingConst.furnaceDir + "*.json";
+        fileHandler = FindFile(filePattern, fileName, fileAttr, flags);
+
+        if (fileName != string.Empty) {
+            arrayFileNames.Insert(fileName);
+        }
+        while (FindNextFile(fileHandler, fileName, fileAttr)) {
+            arrayFileNames.Insert(fileName);
+        }
+        if (arrayFileNames.Count() == 0) {;
+            JsonFileLoader<BST_FurnaceRecipe>.JsonSaveFile(BST_CraftingConst.furnaceDir + "ExampleRecipe.json", new BST_FurnaceRecipe());
+        } else {
+            foreach (string foundFileName : arrayFileNames) {
+                if (foundFileName != string.Empty) {
+                    BST_FurnaceRecipe foundRecipe;
+
+                    JsonFileLoader<BST_FurnaceRecipe>.JsonLoadFile(BST_CraftingConst.furnaceDir + foundFileName, foundRecipe);
+
+                    if (foundRecipe) {
+                        if (foundRecipe.Validate()) {
+                            mapFurnaceRecipes.Insert(foundRecipe.GetLoweredType(), foundRecipe);
+                        }
+                        JsonFileLoader<BST_FurnaceRecipe>.JsonSaveFile(BST_CraftingConst.furnaceDir + foundFileName, foundRecipe);
+                    }
+                }
+            }
+        }
+    }
+
+    private void LoadFurnaceFuels() {
+        array<string> arrayFileNames;
+        FindFileHandle fileHandler;
+        string filePattern;
+        string fileName;
+        int fileAttr, flags;
+
+        arrayFileNames = new array<string>();
+        filePattern = BST_CraftingConst.furnaceFuelDir + "*.json";
+        fileHandler = FindFile(filePattern, fileName, fileAttr, flags);
+
+        if (fileName != string.Empty) {
+            arrayFileNames.Insert(fileName);
+        }
+        while (FindNextFile(fileHandler, fileName, fileAttr)) {
+            arrayFileNames.Insert(fileName);
+        }
+        if (arrayFileNames.Count() == 0) {;
+            JsonFileLoader<BST_FurnaceFuel>.JsonSaveFile(BST_CraftingConst.furnaceFuelDir + "ExampleFuel.json", new BST_FurnaceFuel());
+        } else {
+            foreach (string foundFileName : arrayFileNames) {
+                if (foundFileName != string.Empty) {
+                    BST_FurnaceFuel foundFuel;
+
+                    JsonFileLoader<BST_FurnaceFuel>.JsonLoadFile(BST_CraftingConst.furnaceFuelDir + foundFileName, foundFuel);
+
+                    if (foundFuel) {
+                        foundFuel.Validate()
+                        mapFurnaceFuels.Insert(foundFuel.GetLoweredType(), foundFuel);
+                        JsonFileLoader<BST_FurnaceFuel>.JsonSaveFile(BST_CraftingConst.furnaceFuelDir + foundFileName, foundFuel);
+                    }
+                }
+            }
         }
     }
 
@@ -237,6 +336,10 @@ class BST_ServerCraftingManager : PluginBase {
 
         return MapContainsRequiredIngredients(recipe, mapRequiredIngredients);
     }
+
+    map<string, ref BST_FurnaceRecipe> GetFurnaceRecipes() { return mapFurnaceRecipes; }
+    map<string, ref BST_FurnaceFuel> GetFuelsMap() { return mapFurnaceFuels; }
+    BST_FurnaceConfig GetFurnaceConfig() { return cfgFurnace; }
 }
 
 BST_ServerCraftingManager GetBSTServerCraftingManager() {

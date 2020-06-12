@@ -91,7 +91,7 @@ class BST_VicinityItemManager : PluginBase {
         foreach (Object object : arrayVicinityObjects) {
             EntityAI entity = EntityAI.Cast(object);
 
-            if (entity && entity.GetInventory().GetCargo() && !IsObstructed(filteredItem, player) && vector.DistanceSq(player.GetPosition(), filteredItem.GetPosition()) < vicinityDistance * vicinityDistance) {
+            if (entity && entity.GetInventory().GetCargo() && vector.DistanceSq(player.GetPosition(), entity.GetPosition()) < vicinityDistance * vicinityDistance && !IsObstructed(entity, player)) {
                 arrayVicinityItems.Insert(entity);
             }
         }
