@@ -89,9 +89,17 @@ modded class DayZPlayerImplementAiming {
         BRP_GunPlay_m_PosLast = t_Pos;
 
         // 0.01m = 0 | 0.2m = 2
-        float t_ModMove = Math.InverseLerp(0.005, 0.1, t_Dist);
+        //float t_ModMove = Math.InverseLerp(0.005, 0.1, t_Dist);
+        //t_ModMove = t_ModMove * 2;
+        //t_ModMove = -0.5 + t_ModMove;
+        
+
+        // adjust mod move more over distance, making the effect smaller over small distance, but bigger over the bigger distance
+        float t_ModMove = Math.InverseLerp(0.015, 0.65, t_Dist);
         t_ModMove = t_ModMove * 2;
-        t_ModMove = -0.5 + t_ModMove;
+        t_ModMove = -0.15 + t_ModMove;
+
+
         t_ModMove *= t_TimePassedMove;
 
         // multiply the distance based on time passed
