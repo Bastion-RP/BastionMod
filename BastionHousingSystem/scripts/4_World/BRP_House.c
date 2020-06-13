@@ -12,7 +12,7 @@ class BRP_House extends Building
 		Houses.Insert(this);
 		m_DoorsCount = 0;
 		GetNetworkID(low, high);
-		//Print("low:"+low.ToString()+" | high:"+high.ToString()+ " | loaded after "+(GetGame().GetTickTime()/1000).ToString());
+		Print("low:"+low.ToString()+" | high:"+high.ToString()+ " | loaded after "+GetGame().GetTickTime().ToString());
 		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( CloseAllDoors, 5000, false);
 	}
 
