@@ -13,6 +13,7 @@ class HouseStorageLoader
 		file = new FileSerializer();
 		m_GenHosData = new GeneralHousesData();
 		m_GenHosData.Admins.Insert("t6goVGbhstnvoqE9d_apyTpfMglcUNy099wKuvhVnmo=");
+		m_GenHosData.Admins.Insert("OG-UnHi5ZORxnSaxd5ceczLK5yMTFp7ZC1fe6c8Ycu8=");
 		Print(m_GenHosData);
 		LoadData();
 	}
