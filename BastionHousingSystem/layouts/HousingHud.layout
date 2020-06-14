@@ -60,7 +60,7 @@ FrameWidgetClass rootFrame {
      "Use default text" 0
      "exact text" 1
      {
-      ButtonWidgetClass ButtonWidget0 {
+      ButtonWidgetClass PlaceHolder1 {
        size 1 1
        halign center_ref
        valign center_ref
@@ -73,20 +73,8 @@ FrameWidgetClass rootFrame {
       }
      }
     }
-    TextWidgetClass BPos {
-     position 0.01 0.1764
-     size 0.46 0.0326
-     hexactpos 0
-     vexactpos 0
-     hexactsize 0
-     vexactsize 0
-     style Normal
-     text "5000.500 100.500 5000.500"
-     "exact text" 1
-     "text valign" center
-    }
     EditBoxWidgetClass BPrice {
-     position 0.01 0.285
+     position 0.01 0.215
      size 0.46 0.057
      hexactpos 0
      vexactpos 0
@@ -98,7 +86,8 @@ FrameWidgetClass rootFrame {
      text "Rent Price"
      "exact text" 1
      {
-      ButtonWidgetClass ButtonWidget1 {
+      ButtonWidgetClass PlaceHolder2 {
+       position 0 0
        size 1 1
        halign center_ref
        valign center_ref
@@ -112,7 +101,7 @@ FrameWidgetClass rootFrame {
      }
     }
     EditBoxWidgetClass BTime {
-     position 0.01 0.22
+     position 0.01 0.15
      size 0.46 0.057
      hexactpos 0
      vexactpos 0
@@ -124,7 +113,8 @@ FrameWidgetClass rootFrame {
      text "Lease Time(in hours)"
      "exact text" 1
      {
-      ButtonWidgetClass ButtonWidget2 {
+      ButtonWidgetClass PlaceHolder3 {
+       position 0 0
        size 1 1
        halign center_ref
        valign center_ref
@@ -139,7 +129,7 @@ FrameWidgetClass rootFrame {
     }
     TextWidgetClass TextWidget3 {
      ignorepointer 1
-     position 0.01 0.35
+     position 0.01 0.28
      size 0.46 0.0475
      hexactpos 0
      vexactpos 0
@@ -164,7 +154,7 @@ FrameWidgetClass rootFrame {
     }
     PanelWidgetClass PanelWidget1 {
      ignorepointer 1
-     position 0.0096 0.4063
+     position 0.0096 0.3363
      size 0.4611 0.07
      hexactpos 0
      vexactpos 0
@@ -274,8 +264,8 @@ FrameWidgetClass rootFrame {
      "text valign" center
     }
     MultilineEditBoxWidgetClass Description {
-     position 0.01 0.2856
-     size 0.5 0.28911
+     position 0.023 0.2856
+     size 0.48 0.2691
      halign right_ref
      valign center_ref
      hexactpos 0
@@ -284,10 +274,10 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      priority 1
      style DayZBold
-     "text offset" 10 10
      "exact text" 1
      "size to text h" 0
      "size to text v" 0
+     lines 4
      "limit visible" 1
     }
     ItemPreviewWidgetClass HousePreview {
@@ -303,7 +293,7 @@ FrameWidgetClass rootFrame {
     }
     CheckBoxWidgetClass Approval {
      color 1 0.502 0.0314 1
-     position 0.0111 0.495
+     position 0.0111 0.55
      size 0.32 0.03
      hexactpos 0
      vexactpos 0
@@ -361,21 +351,10 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style rover_sim_colorable
     }
-    PanelWidgetClass OrngLine1 {
-     ignorepointer 1
-     color 1 0.502 0.0314 1
-     position 0.01 0.207
-     size 0.46 0.003
-     hexactpos 0
-     vexactpos 0
-     hexactsize 0
-     vexactsize 0
-     style rover_sim_colorable
-    }
     PanelWidgetClass OrngLine2 {
      ignorepointer 1
      color 1 0.502 0.0314 1
-     position 0.01 0.2725
+     position 0.01 0.2025
      size 0.46 0.003
      hexactpos 0
      vexactpos 0
@@ -386,7 +365,7 @@ FrameWidgetClass rootFrame {
     PanelWidgetClass OrngLine3 {
      ignorepointer 1
      color 1 0.502 0.0314 1
-     position 0.01 0.337
+     position 0.01 0.267
      size 0.46 0.003
      hexactpos 0
      vexactpos 0
@@ -441,6 +420,106 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      style editor_quad
+    }
+    TextWidgetClass TextWidget14 {
+     ignorepointer 1
+     position 0.01 0.42
+     size 0.46 0.0475
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     text "Sector"
+     "exact text" 1
+     "text halign" center
+     "text valign" center
+    }
+    GridSpacerWidgetClass PanelWidget19 {
+     ignorepointer 1
+     position 0.0096 0.4663
+     size 0.4611 0.07
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Colorable
+     Padding 7
+     Margin 7
+     Columns 6
+     Rows 1
+     {
+      CheckBoxWidgetClass SEC0 {
+       color 1 0.502 0.0314 1
+       position 0.01 0
+       size 60 40
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "[0]"
+      }
+      CheckBoxWidgetClass SEC1 {
+       color 1 0.502 0.0314 1
+       position 0.17 0
+       size 60 40
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       userID 1
+       text "[1]"
+      }
+      CheckBoxWidgetClass SEC2 {
+       color 1 0.502 0.0314 1
+       position 0.34 0
+       size 60 40
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       userID 2
+       text "[2]"
+      }
+      CheckBoxWidgetClass SEC3 {
+       color 1 0.502 0.0314 1
+       position 0.51 0
+       size 60 40
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       userID 3
+       text "[3]"
+      }
+      CheckBoxWidgetClass SEC4 {
+       color 1 0.502 0.0314 1
+       position 0.68 0
+       size 60 40
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       userID 4
+       text "[4]"
+      }
+      CheckBoxWidgetClass SEC5 {
+       color 1 0.502 0.0314 1
+       position 0.85 0
+       size 60 40
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       userID 5
+       text "[5]"
+      }
+     }
     }
    }
   }
@@ -904,6 +983,18 @@ FrameWidgetClass rootFrame {
    vexactsize 1
    style rover_sim_colorable
    {
+    ButtonWidgetClass MHBtnDoorGroups {
+     visible 1
+     color 1 0.502 0.0314 1
+     size 0.25 0.07
+     halign right_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style MenuDefault
+     text "Door groups"
+    }
     ButtonWidgetClass MHBtnInfo {
      disabled 1
      color 1 0.502 0.0314 1
@@ -2045,18 +2136,6 @@ FrameWidgetClass rootFrame {
       }
      }
     }
-    ButtonWidgetClass MHBtnDoorGroups {
-     visible 1
-     color 1 0.502 0.0314 1
-     size 0.25 0.07
-     halign right_ref
-     hexactpos 0
-     vexactpos 0
-     hexactsize 0
-     vexactsize 0
-     style MenuDefault
-     text "Door groups"
-    }
     PanelWidgetClass MHPanelDoorGroups {
      visible 0
      ignorepointer 1
@@ -2425,7 +2504,7 @@ FrameWidgetClass rootFrame {
              text "Cancel"
             }
             EditBoxWidgetClass MHDGEditName {
-             position 0.0543 0.02053
+             position 0.05 0.0905
              size 0.4 0.0819
              hexactpos 0
              vexactpos 0
@@ -2437,7 +2516,7 @@ FrameWidgetClass rootFrame {
              "exact text" 1
             }
             EditBoxWidgetClass MHDGEditPrice {
-             position 0.0543 0.1305
+             position 0.05 0.2705
              size 0.4 0.082
              hexactpos 0
              vexactpos 0
@@ -2449,7 +2528,7 @@ FrameWidgetClass rootFrame {
              "exact text" 1
             }
             EditBoxWidgetClass MHDGEditTime {
-             position 0.0543 0.2505
+             position 0.05 0.4505
              size 0.4 0.082
              hexactpos 0
              vexactpos 0
@@ -2461,8 +2540,8 @@ FrameWidgetClass rootFrame {
              "exact text" 1
             }
             MultilineEditBoxWidgetClass MHDGEditDescription {
-             position 0.0543 0.3805
-             size 0.4 0.44
+             position 0.05 0.55987
+             size 0.4 0.26059
              hexactpos 0
              vexactpos 0
              hexactsize 0
@@ -2476,6 +2555,7 @@ FrameWidgetClass rootFrame {
               PanelWidgetClass PanelWidget32 {
                ignorepointer 1
                color 1 0.502 0.0314 1
+               position 0 0
                size 1 1
                hexactpos 0
                vexactpos 0
@@ -2535,6 +2615,78 @@ FrameWidgetClass rootFrame {
                }
               }
              }
+            }
+            TextWidgetClass TextWidget31 {
+             ignorepointer 1
+             position 0.05 0.01
+             size 0.4 0.08
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             text "Name"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+            PanelWidgetClass OrngLine17 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             position 0.05 0.17
+             size 0.4 0.003
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_colorable
+            }
+            TextWidgetClass TextWidget32 {
+             ignorepointer 1
+             position 0.05 0.19
+             size 0.4 0.08
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             text "Price"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+            PanelWidgetClass OrngLine18 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             position 0.05 0.35
+             size 0.4 0.003
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_colorable
+            }
+            TextWidgetClass TextWidget33 {
+             ignorepointer 1
+             position 0.05 0.37
+             size 0.4 0.08
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             text "Lease time"
+             "exact text" 1
+             "text halign" center
+             "text valign" center
+            }
+            PanelWidgetClass OrngLine19 {
+             ignorepointer 1
+             color 1 0.502 0.0314 1
+             position 0.05 0.53
+             size 0.4 0.003
+             hexactpos 0
+             vexactpos 0
+             hexactsize 0
+             vexactsize 0
+             style rover_sim_colorable
             }
            }
           }
@@ -3129,6 +3281,424 @@ FrameWidgetClass rootFrame {
      "exact text" 1
      "text halign" center
      "text valign" center
+    }
+   }
+  }
+  PanelWidgetClass ModalWrap {
+   visible 0
+   ignorepointer 0
+   color 0 0 0 0.9804
+   size 1 1
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   priority 10
+   style rover_sim_colorable
+   {
+    PanelWidgetClass PanelWidget26 {
+     ignorepointer 1
+     color 0 0 0 1
+     position 0.00075 0
+     size 300 162
+     halign center_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      TextWidgetClass TextWidget29 {
+       ignorepointer 1
+       position 0 0.15
+       size 1 45
+       halign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 1
+       text "Are you"
+       "text offset" 70 0
+       "exact text" 1
+       "text valign" center
+      }
+      TextWidgetClass TextWidget30 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 0 0.15
+       size 1 45
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 1
+       text "sure?"
+       "text offset" 165 0
+       "exact text" 1
+       "text valign" center
+      }
+      PanelWidgetClass PanelWidget39 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style editor_quad
+      }
+      ButtonWidgetClass ModalBtnYes {
+       color 0.1961 0.1961 0.1961 1
+       position 0.12 0.06
+       size 100 35
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "Yes"
+       "text color" 1 0.502 0.0314 1
+      }
+      ButtonWidgetClass ModalBtnNo {
+       color 0.1961 0.1961 0.1961 1
+       position 0.12 0.06
+       size 100 35
+       halign right_ref
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 1
+       vexactsize 1
+       text "No"
+      }
+     }
+    }
+   }
+  }
+  PanelWidgetClass PanelTerminalWrap {
+   visible 0
+   ignorepointer 0
+   color 0 0 0 0.902
+   position -618 0
+   size 285 800
+   halign center_ref
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   draggable 1
+   style rover_sim_colorable
+   {
+    PanelWidgetClass InnerWrap {
+     ignorepointer 1
+     size 1 0.3
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      TextWidgetClass TextWidget34 {
+       ignorepointer 1
+       size 1 0.12
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Search"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+      }
+      EditBoxWidgetClass SearchBox {
+       position 0 0.12
+       size 0.9 0.11
+       halign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style ServerBrowser
+      }
+      PanelWidgetClass OrngLine1 {
+       ignorepointer 1
+       color 1 0.502 0.0314 1
+       position 0 0.23
+       size 0.9 0.006
+       halign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+      }
+      TextWidgetClass TextWidget36 {
+       ignorepointer 1
+       position 0 0.25
+       size 1 0.12
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Allow classes"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+      }
+      GridSpacerWidgetClass SearchPanelClasses {
+       ignorepointer 1
+       position 0 0.37
+       size 1 0.12
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       Padding 0
+       Margin 0
+       content_halign center
+       content_valign center
+       Columns 5
+       Rows 1
+       {
+        CheckBoxWidgetClass SchCheckBoxA {
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "A"
+         "text color" 1 0.502 0.0314 1
+        }
+        CheckBoxWidgetClass SchCheckBoxB {
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "B"
+         "text color" 1 0.502 0.0314 1
+        }
+        CheckBoxWidgetClass SchCheckBoxC {
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "C"
+         "text color" 1 0.502 0.0314 1
+        }
+        CheckBoxWidgetClass SchCheckBoxD {
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "D"
+         "text color" 1 0.502 0.0314 1
+        }
+        CheckBoxWidgetClass SchCheckBoxS {
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "S"
+         "text color" 1 0.502 0.0314 1
+        }
+       }
+      }
+      TextWidgetClass TextWidget37 {
+       ignorepointer 1
+       position 0 0.49
+       size 1 0.12
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Sectors"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+      }
+      GridSpacerWidgetClass SearchPanelSectors {
+       ignorepointer 1
+       position 0 0.61
+       size 1 0.1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       Padding 0
+       Margin 0
+       Columns 6
+       Rows 1
+       {
+        CheckBoxWidgetClass SchChBSec0 {
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "0"
+         "text color" 1 0.502 0.0314 1
+        }
+        CheckBoxWidgetClass SchChBSec1 {
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "1"
+         "text color" 1 0.502 0.0314 1
+        }
+        CheckBoxWidgetClass SchChBSec2 {
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "2"
+         "text color" 1 0.502 0.0314 1
+        }
+        CheckBoxWidgetClass SchChBSec3 {
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "3"
+         "text color" 1 0.502 0.0314 1
+        }
+        CheckBoxWidgetClass SchChBSec4 {
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "4"
+         "text color" 1 0.502 0.0314 1
+        }
+        CheckBoxWidgetClass SchChBSec5 {
+         color 1 0.502 0.0314 1
+         position 10 10
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "5"
+         "text color" 1 0.502 0.0314 1
+        }
+       }
+      }
+      PanelWidgetClass SearchCheckBoxRentable {
+       color 1 0.502 0.0314 1
+       position 0 0.72
+       size 1 0.1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       {
+        CheckBoxWidgetClass SchCheckBoxRentable {
+         color 1 0.502 0.0314 1
+         position 0 0
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         text "Already rentable"
+         "text color" 1 0.502 0.0314 1
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass BottomWrap {
+     ignorepointer 1
+     position 0.05 0.0561
+     size 0.9 0.5939
+     halign right_ref
+     valign bottom_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ScrollWidgetClass SearchScroll {
+       ignorepointer 1
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Colorable
+       "Scrollbar V" 1
+       {
+        WrapSpacerWidgetClass SearchHouseContainer {
+         ignorepointer 1
+         position 0 0
+         size 1.035 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         Padding 0
+         Margin 0
+         "Size To Content V" 1
+        }
+       }
+      }
+     }
+    }
+    TextWidgetClass TextWidget35 {
+     ignorepointer 1
+     position 0 0.3
+     size 1 0.05
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     text "Houses"
+     "exact text" 1
+     "text halign" center
+     "text valign" center
+    }
+    ButtonWidgetClass SearchRefreshBtn {
+     color 1 0.502 0.0314 1
+     position 0 0.005
+     size 0.58 0.04
+     halign center_ref
+     valign bottom_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     text "Refresh"
+     "text color" 1 0.502 0.0314 1
     }
    }
   }

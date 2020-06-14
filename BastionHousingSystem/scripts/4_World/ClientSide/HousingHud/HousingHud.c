@@ -7,11 +7,20 @@ class HousingHud extends UIScriptedMenu
 
 	private MultilineEditBoxWidget		m_Description;
 
+	private ScrollWidget				m_ScrollDoors;
+
 	private CheckBoxWidget				m_CLA;
 	private CheckBoxWidget				m_CLB;
 	private CheckBoxWidget				m_CLC;
 	private CheckBoxWidget				m_CLD;
 	private CheckBoxWidget				m_CLS;
+
+	private CheckBoxWidget				m_SEC0;
+	private CheckBoxWidget				m_SEC1;
+	private CheckBoxWidget				m_SEC2;
+	private CheckBoxWidget				m_SEC3;
+	private CheckBoxWidget				m_SEC4;
+	private CheckBoxWidget				m_SEC5;
 
 	private CheckBoxWidget				m_Approval;
 
@@ -23,6 +32,10 @@ class HousingHud extends UIScriptedMenu
 	private ButtonWidget				m_Btn_Cancel;
 	private ButtonWidget				m_BtnSwitchTo3D;
 	private ButtonWidget				m_BtnSwitchToMap;
+
+	private ButtonWidget				m_PlaceHolder1;
+	private ButtonWidget				m_PlaceHolder2;
+	private ButtonWidget				m_PlaceHolder3;
 
 	private Widget						m_PanelCreateHouse;
 
@@ -173,33 +186,74 @@ class HousingHud extends UIScriptedMenu
 
 	private ButtonWidget				m_DIBtnRequest;
 
+//=========================== search terminal =============================
+
+	private Widget						m_PanelTerminalWrap;
+	private EditBoxWidget				m_SearchBox;
+	private ButtonWidget				m_SearchRefreshBtn;
+	private WrapSpacerWidget			m_SearchHouseContainer;
+	private ScrollWidget				m_SearchScroll;
+
+	private CheckBoxWidget				m_SchCheckBoxA;
+	private CheckBoxWidget				m_SchCheckBoxB;
+	private CheckBoxWidget				m_SchCheckBoxC;
+	private CheckBoxWidget				m_SchCheckBoxD;
+	private CheckBoxWidget				m_SchCheckBoxS;
+
+	private CheckBoxWidget				m_SchChBSec0;
+	private CheckBoxWidget				m_SchChBSec1;
+	private CheckBoxWidget				m_SchChBSec2;
+	private CheckBoxWidget				m_SchChBSec3;
+	private CheckBoxWidget				m_SchChBSec4;
+	private CheckBoxWidget				m_SchChBSec5;
+
+	private CheckBoxWidget				m_SchCheckBoxRentable;
+
 //=========================== other =======================================
+
 	private ref array<CheckBoxWidget>	m_DoorsIdxWidgets;
+	private ref array<CheckBoxWidget>	m_SearchClasses;
+	private ref array<CheckBoxWidget>	m_SearchSectors;
+	private ref array<CheckBoxWidget>	m_ClassesWidget;
 	private ref array<Widget>			m_ForGroupsIds;
 	private ref array<Widget>			m_ForGuestStorage;
 
+	private ref array<Widget>			m_Placeholders;
+
+	private ref array<CheckBoxWidget>	m_SectorsWidget;
+
+	private ref BstModal				m_BstModal;
+
 	private int							m_Type;
-	//private int							m_CurrentGroupId;
 	private int							m_CurrentGuestId;
 	private int							m_CurrentGroupId;
-
-	//private int							m_DoorIdx;
 	private int							m_StartGroupIdx;
-
 	private int							COLOR_ORNG = -32760;
 	private int							COLOR_TRANSPARENT = 16744456;
+
+	private bool						IsAdmin;
+
+	private string 						m_SearchPattern;
 
 	void HousingHud(int type, int idx)
     {
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
 		m_Type = type;
 		m_DoorsIdxWidgets 	= new array<CheckBoxWidget>();
+		m_SectorsWidget 	= new array<CheckBoxWidget>();
+		m_SearchClasses 	= new array<CheckBoxWidget>();
+		m_SearchSectors 	= new array<CheckBoxWidget>();
+		m_ClassesWidget 	= new array<CheckBoxWidget>();
 		m_ForGuestStorage 	= new array<Widget>();
 		m_ForGroupsIds 		= new array<Widget>();
+		m_Placeholders 		= new array<Widget>();
 		//m_CurrentGroupId	= -1;
 		m_CurrentGuestId	= -1;
 		m_CurrentGroupId	= -1;
+		IsAdmin				= false;
 		m_StartGroupIdx		= g_HM.GetGroupIdxByDoorIndex(idx);
+
+		g_HM.RequestMainData();
     }
 
     void ~HousingHud()
@@ -218,11 +272,20 @@ class HousingHud extends UIScriptedMenu
 
 		m_Description				=	MultilineEditBoxWidget.Cast(GetWid("Description"));
 
+		m_ScrollDoors				=	ScrollWidget.Cast(GetWid("ScrollDoors"));
+
 		m_CLA						=	CheckBoxWidget.Cast(GetWid("CLA"));
 		m_CLB						=	CheckBoxWidget.Cast(GetWid("CLB"));
 		m_CLC						=	CheckBoxWidget.Cast(GetWid("CLC"));
 		m_CLD						=	CheckBoxWidget.Cast(GetWid("CLD"));
 		m_CLS						=	CheckBoxWidget.Cast(GetWid("CLS"));
+
+		m_SEC0						=	CheckBoxWidget.Cast(GetWid("SEC0"));
+		m_SEC1						=	CheckBoxWidget.Cast(GetWid("SEC1"));
+		m_SEC2						=	CheckBoxWidget.Cast(GetWid("SEC2"));
+		m_SEC3						=	CheckBoxWidget.Cast(GetWid("SEC3"));
+		m_SEC4						=	CheckBoxWidget.Cast(GetWid("SEC4"));
+		m_SEC5						=	CheckBoxWidget.Cast(GetWid("SEC5"));
 
 		m_Approval					=	CheckBoxWidget.Cast(GetWid("Approval"));
 
@@ -234,6 +297,10 @@ class HousingHud extends UIScriptedMenu
 		m_Btn_Cancel				=	ButtonWidget.Cast(GetWid("Btn_Cancel"));
 		m_BtnSwitchTo3D				=	ButtonWidget.Cast(GetWid("BtnSwitchTo3D"));
 		m_BtnSwitchToMap			=	ButtonWidget.Cast(GetWid("BtnSwitchToMap"));
+
+		m_PlaceHolder1				=	ButtonWidget.Cast(GetWid("PlaceHolder1"));
+		m_PlaceHolder2				=	ButtonWidget.Cast(GetWid("PlaceHolder2"));
+		m_PlaceHolder3				=	ButtonWidget.Cast(GetWid("PlaceHolder3"));
 
 		m_PanelCreateHouse			=	Widget.Cast(GetWid("PanelCreateHouse"));
 
@@ -371,17 +438,46 @@ class HousingHud extends UIScriptedMenu
 
 		m_DIBtnRequest				=	ButtonWidget.Cast(GetWid("DIBtnRequest"));
 
+		//=========================== search terminal =============================
+
+		m_PanelTerminalWrap			=	Widget.Cast(GetWid("PanelTerminalWrap"));
+		m_SearchBox					=	EditBoxWidget.Cast(GetWid("SearchBox"));
+		m_SearchRefreshBtn			=	ButtonWidget.Cast(GetWid("SearchRefreshBtn"));
+		m_SearchHouseContainer		=	WrapSpacerWidget.Cast(GetWid("SearchHouseContainer"));
+		m_SearchScroll				=	ScrollWidget.Cast(GetWid("SearchScroll"));
+
+		m_SchCheckBoxA				=	CheckBoxWidget.Cast(GetWid("SchCheckBoxA"));
+		m_SchCheckBoxB				=	CheckBoxWidget.Cast(GetWid("SchCheckBoxB"));
+		m_SchCheckBoxC				=	CheckBoxWidget.Cast(GetWid("SchCheckBoxC"));
+		m_SchCheckBoxD				=	CheckBoxWidget.Cast(GetWid("SchCheckBoxD"));
+		m_SchCheckBoxS				=	CheckBoxWidget.Cast(GetWid("SchCheckBoxS"));
+
+		m_SchChBSec0				=	CheckBoxWidget.Cast(GetWid("SchChBSec0"));	
+		m_SchChBSec1				=	CheckBoxWidget.Cast(GetWid("SchChBSec1"));	
+		m_SchChBSec2				=	CheckBoxWidget.Cast(GetWid("SchChBSec2"));	
+		m_SchChBSec3				=	CheckBoxWidget.Cast(GetWid("SchChBSec3"));	
+		m_SchChBSec4				=	CheckBoxWidget.Cast(GetWid("SchChBSec4"));
+		m_SchChBSec5				=	CheckBoxWidget.Cast(GetWid("SchChBSec5"));
+
+		m_SchCheckBoxRentable		=	CheckBoxWidget.Cast(GetWid("SchCheckBoxRentable"));
+
 		// other		===================================================================
 
+		m_BstModal					=	new BstModal(layoutRoot);
+
+		FillPlaceholdersArr();
+		FillSectorsArr();
+		FillSearchArr();
+		FillClassesWidgets();
 
 		if (m_Type == 0)
 		{
-			SetupCreateHouseSetting();
+			SetupCreateHouseSetting(g_HM.m_House.m_HouseData);
 			m_PanelCreateHouse.Show(true);
 		}
 		else if (m_Type == 1)
 		{
-			SetupShowInfo();
+			SetupShowInfo(g_HM.m_House.m_HouseData);
 			m_PanelInfoForMainTenant.Show(true);
 		}
 		else if (m_Type == 2)
@@ -395,6 +491,23 @@ class HousingHud extends UIScriptedMenu
 			m_PanelDoorInfo.Show(true);
 			//need door panel
 		}
+		else if (m_Type == 5) // admin use terminal
+		{
+			m_PanelTerminalWrap.Show(true);
+			m_PanelCreateHouse.Show(true);
+			IsAdmin = true;
+		}
+		else if (m_Type == 6) // player use terminal
+		{
+			m_PanelTerminalWrap.Show(true);
+			m_SchCheckBoxRentable.SetChecked(true);
+			m_SchCheckBoxRentable.Show(false);
+			SetupShowInfo(g_HM.m_House.m_HouseData);
+			m_PanelInfoForMainTenant.Show(true);
+		}
+
+		SearchHouses();
+
 		return layoutRoot;
 	}
 
@@ -405,17 +518,16 @@ class HousingHud extends UIScriptedMenu
 
 	override bool OnClick(Widget w, int x, int y, int button)
 	{
-		// super.OnClick(w, x, y, button);
-		Print("Click on "+w+" userID "+w.GetUserID());
-		if (w.GetUserID() == 20) // placeholder for editboxs
+		if (!ButtonWidget.Cast(w)) return false;
+		if (w.GetUserID() == 20 ) // placeholder for editboxs
 		{
 			EditBoxWidget.Cast(w.GetParent()).SetText("");
-			w.Unlink();
+			w.Show(false);
 			return true;
 		}
 		if (w.GetUserID() == 33) // door id btn
 		{
-			CancelDoorInfo();
+			//CancelDoorInfo();
 			BlockButton(w);
 			FillGroupGuest(w.GetParent().GetUserID());
 			FillDoorRequest(w.GetParent().GetUserID());
@@ -433,20 +545,33 @@ class HousingHud extends UIScriptedMenu
 			ShowGroupInfo(w.GetParent().GetUserID());
 			return true;
 		}
-		if (!ButtonWidget.Cast(w)) return false;
+		if (w.GetUserID() == 777) // click on house elem in search area
+		{
+			ShowHouseInfo(w.GetParent().GetUserID());
+			return true;
+		}
+		if (w.GetName() == "ModalBtnYes")
+		{
+			m_BstModal.OnClick(true);
+		}
+		if (w.GetName() == "ModalBtnNo")
+		{
+			m_BstModal.OnClick(false);
+		}
+		// if (!ButtonWidget.Cast(w)) return false;
 		{
 			switch (w)
 			{
 				case m_Btn_Save:
 					SaveBuildingInfo();
-					g_HM.ShowBastionNotification("The information is saved and the building is added for rent");
 				break;
 				case m_Btn_Cancel:
 					g_HM.CloseMenu();
 				break;
 				case m_InfoBtnRent:
-					g_HM.TryRentBuilding();
-					g_HM.ShowBastionNotification("A rental request is sent");
+					m_BstModal.RequestConfirm("TryRentBuilding");
+					// g_HM.TryRentBuilding();
+					// g_HM.ShowBastionNotification("A rental request is sent");
 				break;
 				case m_InfoBtnApproval:
 					g_HM.SendHouseRentRequest();
@@ -514,10 +639,11 @@ class HousingHud extends UIScriptedMenu
 					// pay rent TODO: pay rent
 				break;
 				case m_MHBtnCancelLease:
-					g_HM.RequestCancelLease();
-					m_MHBtnCancelLease.Enable(false);
-					g_HM.CloseMenu();
-					g_HM.ShowBastionNotification("You are no longer the owner of this building");
+					// g_HM.RequestCancelLease();
+					m_BstModal.RequestConfirm("CancelLease");
+					//m_MHBtnCancelLease.Enable(false);
+					// g_HM.CloseMenu();
+					// g_HM.ShowBastionNotification("You are no longer the owner of this building");
 				break;
 				case m_MHBtnEditDoorInfo:
 					EditDoorInfo();
@@ -529,9 +655,10 @@ class HousingHud extends UIScriptedMenu
 					CancelDoorInfo();
 				break;
 				case m_DIBtnRequest:
-					g_HM.SendRequestGroup(m_StartGroupIdx);
-					m_DIBtnRequest.Enable(false);
-					g_HM.ShowBastionNotification("A request to rent this door group has been sent");
+					m_BstModal.RequestConfirm("ReqGroup", this);
+					// g_HM.SendRequestGroup(m_StartGroupIdx);
+					// m_DIBtnRequest.Enable(false);
+					// g_HM.ShowBastionNotification("A request to rent this door group has been sent");
 				break;
 				case m_MHBtnDoorGroupsCreate:
 					CreateNewGroup();
@@ -554,33 +681,80 @@ class HousingHud extends UIScriptedMenu
 				case m_MHDGEditBtnDeleteGroup:
 					DeleteGroup();
 				break;
+				case m_SearchRefreshBtn:
+					//g_HM.RequestMainData();
+					//g_HM.RequestBRPHouses();
+				break;
 			}
 		}	
 		return false;
 		//return super.OnClick(w, x, y, button);
 	}
 
-	void SetupCreateHouseSetting()
+	void SetupCreateHouseSetting(HouseData hd)
 	{
 		m_DoorsIdxWidgets.Clear();
-		m_BPos.SetText(g_HM.m_House.GetPosition().ToString());
+		ClearAllChildren(m_WrapDoor);
+		ClearCheckboxes();
+		m_ScrollDoors.VScrollToPos01(0);
 		m_HousePreview.SetItem( g_HM.m_House );
 		m_HousePreview.SetView( g_HM.m_House.GetViewIndex() );
 		m_HousePreview.SetModelOrientation( Vector( 0,0,0 ) );
-		for (int i = 0; i < g_HM.m_House.GetDoorsCount(); i++)
+
+		if (hd.BuldingName)
+		m_BName.SetText(hd.BuldingName);
+		else
+		m_BName.SetText("Name");
+
+		if (hd.RentPrice)
+		m_BPrice.SetText(hd.RentPrice.ToString());
+		else
+		m_BPrice.SetText("Rent price");
+
+		if (hd.LeaseTime)
+		m_BTime.SetText(hd.LeaseTime.ToString());
+		else
+		m_BTime.SetText("Lease Time(in hours)");
+
+		if (hd.BuildingSector != -1)
+		CheckBoxWidget.Cast(m_SectorsWidget.Get(hd.BuildingSector)).SetChecked(true);
+
+		if (hd.BuldingDescription)
+			m_Description.SetText(hd.BuldingDescription);
+		else
+			m_Description.SetText("");
+	
+		for (int k = 0; k < hd.AllowCitizenClasses.Count(); k++)
+		{
+			m_ClassesWidget.Get((hd.AllowCitizenClasses.Get(k) - 1)).SetChecked(true);
+		}
+
+		for (int i = 0; i < hd.TotalDoors; i++)
 		{
 			CheckBoxWidget temp = CheckBoxWidget.Cast(GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionHousingSystem/layouts/DoorIndex.layout", m_WrapDoor));
 			temp.SetUserID(i);
 			string txt = "ID ["+i+"]";
 			temp.SetText(txt);
 			m_DoorsIdxWidgets.Insert(temp);
+			if ((hd.AllowDoors.Find(i) + 1))
+			{temp.SetChecked(true);}
+		}
+		for (int j = 0; j < 3; j++)
+		{
+			m_Placeholders.Get(j).Show(true);
+		}
+
+		if (hd.NeedApproval)
+		{
+			m_Approval.SetChecked(true);
 		}
 	}
 
-	void SetupShowInfo()
+	void SetupShowInfo(HouseData hd)
 	{
 		string temp;
-		HouseData hd = g_HM.m_House.m_HouseData;
+		//HouseData hd = g_HM.m_House.m_HouseData;
+		if (!hd) return;
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		m_InfoHousePreview.SetItem( g_HM.m_House );
 		m_InfoHousePreview.SetView( g_HM.m_House.GetViewIndex() );
@@ -588,7 +762,6 @@ class HousingHud extends UIScriptedMenu
 
 		m_InfoHouseName.SetText(hd.BuldingName);
 		m_InfoDescription.SetText(hd.BuldingDescription);
-		//HouseManager.CalcRightHeight(m_InfoDescription, hd.BuldingDescription.Length());
 		m_InfoPriceTxt.SetText(hd.RentPrice.ToString());
 		m_InfoTimeTxt.SetText(hd.LeaseTime.ToString());
 		SetupAllowClasses(hd);
@@ -625,7 +798,8 @@ class HousingHud extends UIScriptedMenu
 		hd.BuildingPos = g_HM.m_House.GetPosition().ToString();
 		hd.LeaseTime = m_BTime.GetText().ToInt();
 		hd.RentPrice = m_BPrice.GetText().ToInt();
-
+		hd.BuildingSector = -1;
+		hd.TotalDoors = g_HM.m_House.GetDoorsCount();
 		for (int i = 0; i < m_DoorsIdxWidgets.Count(); i++)
 		{
 			CheckBoxWidget cb = m_DoorsIdxWidgets.Get(i);
@@ -638,15 +812,31 @@ class HousingHud extends UIScriptedMenu
 			}
 		}
 
+		for (int j = 0; j < m_SectorsWidget.Count(); j++)
+		{
+			if (m_SectorsWidget.Get(j).IsChecked())
+			{
+				hd.BuildingSector = m_SectorsWidget.Get(j).GetUserID();
+				break;
+			}
+		}
+
 		if (m_Approval.IsChecked()) hd.NeedApproval = true;
 
-		if (m_CLA.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLA.GetUserID());
-		if (m_CLB.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLB.GetUserID());
-		if (m_CLC.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLC.GetUserID());
-		if (m_CLD.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLD.GetUserID());
-		if (m_CLS.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLS.GetUserID());
-		Print("SaveBuildingInfo packet applied");
+		// if (m_CLA.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLA.GetUserID());
+		// if (m_CLB.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLB.GetUserID());
+		// if (m_CLC.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLC.GetUserID());
+		// if (m_CLD.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLD.GetUserID());
+		// if (m_CLS.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLS.GetUserID());
+
+		for (int k = 0; k < 5; k++)
+		{
+			if (m_ClassesWidget.Get(k).IsChecked())
+			{hd.AllowCitizenClasses.Insert(m_ClassesWidget.Get(k).GetUserID());}
+		}
+
 		g_HM.m_House.RPCSingleParam(HRPC.REQUEST_ADD_HOUSE_INFO, new Param1<ref HouseData>(hd), true, null);
+		g_HM.ShowBastionNotification("The information is saved and the building is added for rent");
 		g_HM.CloseMenu();
 	}
 
@@ -658,6 +848,7 @@ class HousingHud extends UIScriptedMenu
 	bool ValidateInfo()
 	{
 		bool oneSelected = false;
+		int SectorsCount = 0;
 		string temp;
 		m_Description.GetText(temp);
 		if (!m_BName.GetText() || !m_BPrice.GetText() || !m_BTime.GetText() || !temp)
@@ -681,6 +872,19 @@ class HousingHud extends UIScriptedMenu
 			g_HM.ShowBastionNotification("Error! Select at least 1 door.");
 			return false;
 		}
+
+		foreach (CheckBoxWidget cbs : m_SectorsWidget)
+		{
+			if (cbs.IsChecked())
+			{SectorsCount++;}
+		}
+
+		if (SectorsCount > 1)
+		{
+			g_HM.ShowBastionNotification("Error! You cannot select more than 1 sector.");
+			return false;
+		}
+
 
 		return true;
 	}
@@ -950,7 +1154,7 @@ class HousingHud extends UIScriptedMenu
 		}
 		w.GetParent().FindAnyWidget("ButtonWidget0").Enable(false);
 		w.GetParent().SetColor(COLOR_ORNG);
-		m_MHBtnEditDoorInfo.Show(true);
+		//m_MHBtnEditDoorInfo.Show(true);
 	}
 
 	void ReloadRequests()
@@ -1318,5 +1522,152 @@ class HousingHud extends UIScriptedMenu
 		g_HM.RequestRemoveGroup(m_CurrentGroupId);
 		SetupDoorGroups();
 	}
+
+	void FillSectorsArr()
+	{
+		m_SectorsWidget.Clear()
+		m_SectorsWidget.Insert(m_SEC0);
+		m_SectorsWidget.Insert(m_SEC1);
+		m_SectorsWidget.Insert(m_SEC2);
+		m_SectorsWidget.Insert(m_SEC3);
+		m_SectorsWidget.Insert(m_SEC4);
+		m_SectorsWidget.Insert(m_SEC5);
+	}
+
+	void ReqGroup()
+	{
+		g_HM.SendRequestGroup(m_StartGroupIdx);
+		m_DIBtnRequest.Enable(false);
+		g_HM.ShowBastionNotification("A request to rent this door group has been sent");
+	}
+
+	override bool OnChange(Widget w, int x, int y, bool finished)
+	{
+		if ((w == m_SearchBox) || (CheckBoxWidget.Cast(w) && w.GetParent().GetName().Contains("Search")))
+		{
+			Print("Hud::OnChange::SearchBox");
+			SearchHouses();
+		}
+		return false;
+	}
+
+	void SearchHouses()
+	{
+		m_SearchPattern = m_SearchBox.GetText();
+		FillHouses();
+	}
+
+	void FillHouses()
+	{
+		ClearAllChildren(m_SearchHouseContainer);
+		m_SearchScroll.VScrollToPos01( 0 );
+		for (int i = 0; i < g_HM.AllHouseData.Count(); i++)
+		{
+			HouseData hd = g_HM.AllHouseData.Get(i);
+			if(AllowFilters(hd))
+			{
+				Widget houseElem = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionHousingSystem/layouts/HouseElem.layout", m_SearchHouseContainer);
+				TextWidget.Cast(houseElem.FindAnyWidget("HouseName")).SetText(hd.BuldingName);
+				houseElem.SetUserID(i);
+			}
+		}
+	}
+
+	bool AllowFilters(HouseData hd)
+	{
+		string name = hd.BuldingName;
+		string pattern = m_SearchPattern;
+		name.ToLower();
+		pattern.ToLower();
+		if (!name.Contains(pattern))
+		{return false;}
+
+		for (int j = 0; j < 6; j++)
+		{
+			if (m_SearchSectors.Get(j).IsChecked() && hd.BuildingSector != j)
+			{return false;}
+		}
+
+		for (int i = 1; i < 6; i++)
+		{
+			if (m_SearchClasses.Get(i).IsChecked() && !(hd.AllowCitizenClasses.Find(i) + 1))
+			{return false;}
+		}
+
+		if (m_SchCheckBoxRentable.IsChecked() && !hd.LeaseTime)
+		{return false;}
+
+		if (!IsAdmin)
+		{
+			if (hd.MainOwner.Name)
+			{return false;}
+		}
+
+		return true;
+	}
+
+	void ShowHouseInfo(int idx)
+	{
+		HouseData hd = g_HM.AllHouseData.Get(idx);
+		if (!hd) return;
+		BRP_House house = BRP_House.Cast(GetGame().GetObjectByNetworkId(hd.Low, hd.High));
+		if (house)
+		{
+			g_HM.SetBuilding(house);
+			SetupCreateHouseSetting(hd);
+			SetupShowInfo(hd);
+		}
+		else
+		{
+			g_HM.ShowBastionNotification("House NOT found");
+		}
+	}
+
+	void FillPlaceholdersArr()
+	{
+		m_Placeholders.Insert(m_PlaceHolder1);
+		m_Placeholders.Insert(m_PlaceHolder2);
+		m_Placeholders.Insert(m_PlaceHolder3);
+	}
+
+	void FillSearchArr()
+	{
+		m_SearchSectors.Insert(m_SchChBSec0);
+		m_SearchSectors.Insert(m_SchChBSec1);
+		m_SearchSectors.Insert(m_SchChBSec2);
+		m_SearchSectors.Insert(m_SchChBSec3);
+		m_SearchSectors.Insert(m_SchChBSec4);
+		m_SearchSectors.Insert(m_SchChBSec5);
+
+		m_SearchClasses.Insert(m_SchCheckBoxA);// fix
+		m_SearchClasses.Insert(m_SchCheckBoxA);
+		m_SearchClasses.Insert(m_SchCheckBoxB);
+		m_SearchClasses.Insert(m_SchCheckBoxC);
+		m_SearchClasses.Insert(m_SchCheckBoxD);
+		m_SearchClasses.Insert(m_SchCheckBoxS);
+	}
+
+	void FillClassesWidgets()
+	{
+		m_ClassesWidget.Insert(m_CLA);
+		m_ClassesWidget.Insert(m_CLB);
+		m_ClassesWidget.Insert(m_CLC);
+		m_ClassesWidget.Insert(m_CLD);
+		m_ClassesWidget.Insert(m_CLS);
+	}
+
+	void ClearCheckboxes()
+	{
+		foreach (CheckBoxWidget cwid : m_ClassesWidget)
+		{
+			cwid.SetChecked(false);
+		}
+		foreach (CheckBoxWidget swid : m_SectorsWidget)
+		{
+			swid.SetChecked(false);
+		}
+		m_Approval.SetChecked(false);
+	}
+
 }
 // Проверка класса перед арендой.

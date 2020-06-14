@@ -2,11 +2,12 @@ modded class MissionServer
 {
 	private int			saveDelay;
 	private int			maxHoursNonPayment;
+
 	override void OnInit()
 	{
 		super.OnInit();
-		g_HSL	= new HouseStorageLoader();
-		g_HSL	= HouseStorageLoader.LoadData();
+		// g_HSL	= new HouseStorageLoader();
+		// g_HSL	= HouseStorageLoader.LoadData();
 		g_HSL.m_GenHosData.HousesData.Debug();
 		if ( GetGame().IsServer() )
 		{
@@ -30,8 +31,8 @@ modded class MissionServer
 				{
 					BRP_House.DeleteOwnerHouse(hd);
 				}
+				g_HSL.SaveData(hd);
 			}
-			HouseStorageLoader.SaveData(g_HSL);
 			Sleep((saveDelay * 60000)); //save each saveDelay minutes
 		}
 	}

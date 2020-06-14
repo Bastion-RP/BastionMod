@@ -23,7 +23,6 @@ class BstNot
 		g_HM.BstNotifications.Insert(this);
 		m_FadeTimer.FadeIn(m_Root, 1);
 		GetGame().GetCallQueue( CALL_CATEGORY_GUI ).CallLater( this.UpdatePB, 10, true);
-		// GetGame().GetCallQueue( CALL_CATEGORY_GUI ).CallLater( this.NotificationFadeOut, 3000, false);
 	}
 
 	void UpdatePB()
@@ -34,11 +33,6 @@ class BstNot
 		{
 			NotificationFadeOut();
 			GetGame().GetCallQueue( CALL_CATEGORY_GUI ).Remove( this.UpdatePB );
-			// m_FadeTimer.Stop();
-			// if (this) 
-			// {
-			// 	delete this;
-			// }
 		}
 		m_PB.SetCurrent(progress);
 	}
@@ -46,7 +40,6 @@ class BstNot
 	void ~BstNot()
 	{
 		this.Destroy();
-		// GetGame().GetCallQueue( CALL_CATEGORY_GUI ).Remove( this.UpdatePB );
 		int idx = g_HM.BstNotifications.Find(this);
 		if (idx != -1)
 		{g_HM.BstNotifications.Remove(idx);}
@@ -73,5 +66,3 @@ class BstNot
 		}
 	}
 }
-
-//GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Call(GetGame().ObjectDelete, this);
