@@ -12,7 +12,7 @@ modded class Hammer
 	{
 		super.SetActions();
 		
-		AddAction(ActionBRPUpgradeFurnace);
+		AddAction(BST_ActionUpgradeFurnace);
 	}	
 }
 modded class Hatchet
@@ -21,6 +21,6 @@ modded class Hatchet
 	{
 		super.SetActions();
 		
-		AddAction(ActionBRPUpgradeFurnace);
+		AddAction(BST_ActionUpgradeFurnace);
 	}
 };

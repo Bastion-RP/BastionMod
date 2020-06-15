@@ -602,39 +602,12 @@ class CfgVehicles
 		overrideDrawArea = "8.0";
 		slopeTolerance = 0.3;
 		physLayer = "item_large";
-		openable = 0;
 		lootCategory = "Crafted";
 		itemSize[] = {10,20};
-		itemsCargoSize[] = {10,20};
+		itemsCargoSize[]={10,10};
+		openable=0;
+		allowOwnedCargoManipulation=1;
 		useEntityHierarchy = "true";
-		attachments[] = {"Firewood","WoodenStick","CookingEquipment","Rags","MedicalBandage","Paper","Book","OakBark","BirchBark"};
-		class GUIInventoryAttachmentsProps
-		{
-			class CookingEquipment
-			{
-				name = "$STR_attachment_CookingEquipment0";
-				description = "";
-				attachmentSlots[] = {"CookingEquipment"};
-				icon = "cat_fp_cooking";
-				view_index = 1;
-			};
-			class Fuel
-			{
-				name = "$STR_attachment_Fuel0";
-				description = "";
-				attachmentSlots[] = {"Firewood","WoodenStick"};
-				icon = "cat_fp_fuel";
-				view_index = 4;
-			};
-			class Kindling
-			{
-				name = "$STR_attachment_Kindling0";
-				description = "";
-				attachmentSlots[] = {"Rags","MedicalBandage","Paper","Book","OakBark","BirchBark"};
-				icon = "cat_fp_kindling";
-				view_index = 3;
-			};
-		};
 		hiddenSelections[] = {"ashes","camoGround","inventory"};
 		hiddenSelectionsTextures[] = {"\dz\gear\cooking\data\stoneground_co.paa","\BastionMod\BastionCrafting_Data\furnace\data\BRP_Furnace_Co.paa","\BastionMod\BastionCrafting_Data\furnace\data\BRP_Furnace_Co.paa"};
 		hiddenSelectionsMaterials[] = {"\dz\gear\cooking\data\stonegroundnoemit.rvmat","\dz\gear\cooking\data\fireplacekit.rvmat"};

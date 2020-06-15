@@ -42,7 +42,7 @@ class BST_CraftingMenu : UIScriptedMenu {
         edtSearch = EditBoxWidget.Cast(wRoot.FindAnyWidget("edtSearch"));
         prvRecipeProduct = ItemPreviewWidget.Cast(wRoot.FindAnyWidget("prvRecipeItem"));
         recipeRoot = wRoot.FindAnyWidget("pnlSelectedRecipe");
-        scrollerRecipes = wRoot.FindAnyWidget("scrollerRecipes")
+        scrollerRecipes = wRoot.FindAnyWidget("scrollerRecipes");
         txtRecipeTitle = TextWidget.Cast(wRoot.FindAnyWidget("txtSelectedRecipeName"));
         txtRecipeDesc = TextWidget.Cast(wRoot.FindAnyWidget("txtSelectedRecipeDesc"));
         txtRecipeCraftTime = TextWidget.Cast(wRoot.FindAnyWidget("txtSelectedRecipeTimetoCraft"));
@@ -187,7 +187,7 @@ class BST_CraftingMenu : UIScriptedMenu {
             mapRequiredCount = GetBSTClientCraftingManager().GetIngredientAmountInVicinityandPlayer(activeRecipe.GetRecipe(), arrayVicinityContainers);
         } else {
             Print("[DEBUG] Grabbing ingredients only on player");
-            mapRequiredCount = GetBSTClientCraftingManager().GetIngredientAmountOnPlayer(activeRecipe.GetRecipe())
+            mapRequiredCount = GetBSTClientCraftingManager().GetIngredientAmountOnPlayer(activeRecipe.GetRecipe());
         }
         string requiredBench = activeRecipe.GetRecipe().GetRequiredBench();
 

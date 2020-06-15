@@ -12,7 +12,7 @@ class BST_CraftingManager : PluginBase {
     }
 
     void SetBenchConfig(BST_CraftingBenchConfig configBenches) {
-        this.configBenches = configBenches
+        this.configBenches = configBenches;
     }
 
     void SetCraftingRecipes(array<ref BST_CraftingLoadedRecipe> arrayCraftingRecipes) {
