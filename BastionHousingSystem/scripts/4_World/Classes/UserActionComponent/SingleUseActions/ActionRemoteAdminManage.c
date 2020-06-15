@@ -1,7 +1,7 @@
 class ActionRemoteAdminManageHouses : ActionInteractBase
 {
-	string ID = "";
-	int type = -1;
+	string ID = "Remote Admin Manage building.";
+	int type = 5;
 
 	void ActionRemoteAdminManageHouses()
 	{
@@ -33,22 +33,22 @@ class ActionRemoteAdminManageHouses : ActionInteractBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		if (GetGame().IsClient())
-		{
-			Barrel_ColorBase barrel;
-			if( Class.CastTo(barrel, target.GetObject()) ) //TODO: change to terminal
-			{
-				string plId = player.GetIdentity().GetId();
-				type = -1;
-				if (barrel && ((g_HM.AdminsArr.Find(player.GetIdentity().GetId()) + 1)))
-				{
-					ID = "Remote Admin Manage building.";
-					type = 5;
-				}
-				return true;
-			}
-			return false;
-		}
+		// if (GetGame().IsClient())
+		// {
+		// 	Barrel_ColorBase barrel;
+		// 	if( Class.CastTo(barrel, target.GetObject()) ) //TODO: change to terminal
+		// 	{
+		// 		string plId = player.GetIdentity().GetId();
+		// 		type = -1;
+		// 		if (barrel && ((g_HM.AdminsArr.Find(player.GetIdentity().GetId()) + 1)))
+		// 		{
+		// 			ID = "Remote Admin Manage building.";
+		// 			type = 5;
+		// 			return true;
+		// 		}
+		// 	}
+		// 	return false;
+		// }
 		return true;
 	}
 	
