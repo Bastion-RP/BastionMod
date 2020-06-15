@@ -12,7 +12,10 @@ class HouseData
 	string							BuldingName;
 	string							BuldingDescription;
 	string							BuildingPos;
+	string							BuildingType;
+	int								BuildingSector;
 	ref HousePersonData				MainOwner = new HousePersonData();
+	int								TotalDoors;
 	int								LeaseTime;
 	int								RentPrice;
 	bool							NeedApproval;

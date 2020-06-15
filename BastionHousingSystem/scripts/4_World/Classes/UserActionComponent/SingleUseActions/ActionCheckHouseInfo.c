@@ -53,7 +53,11 @@ class ActionShowDoorInfo : ActionInteractBase
 					}
 					ID = "Door Id : ["+doorIndex.ToString()+"]";
 					type = -1;
-					if (!building.m_HouseData && ((g_HM.AdminsArr.Find(player.GetIdentity().GetId()) + 1)))
+					if (!building.m_HouseData)
+					{
+						return false;
+					}
+					if (!building.m_HouseData.LeaseTime && ((g_HM.AdminsArr.Find(player.GetIdentity().GetId()) + 1)))
 					{
 						ID += " Admin Manage building.";
 						type = 0;
@@ -68,7 +72,7 @@ class ActionShowDoorInfo : ActionInteractBase
 						ID += " Show info.";
 						type = 2;
 					}
-					else if (building.m_HouseData && building.m_HouseData.MainOwner.HashID && g_HM.IsDoorAllow(doorIndex, building))
+					else if (building.m_HouseData && building.m_HouseData.MainOwner.HashID && g_HM.IsDoorAllow(doorIndex, building) && g_HM.IsRentableDoor(doorIndex, building))
 					{
 						ID += " Show rent info.";
 						type = 3;

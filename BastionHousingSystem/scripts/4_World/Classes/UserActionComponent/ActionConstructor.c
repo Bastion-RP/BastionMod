@@ -4,6 +4,8 @@ modded class ActionConstructor
 	{
 		super.RegisterActions(actions);
 		actions.Insert(ActionShowDoorInfo);
+		actions.Insert(ActionRemoteAdminManageHouses);
+		actions.Insert(ActionRemoteManageHouses);
 	}
 }
 

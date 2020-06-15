@@ -1,13 +1,15 @@
 class HouseManager
 {
-	ref array<string> 		AdminsArr;
-	BRP_House				m_House;
-	ref HousingHud			m_HousingHud;
-	private bool			HudIsOpen;
-	int						m_DoorsCount;
-	ref array<ref BstNot>	BstNotifications;
+	ref array<string> 			AdminsArr;
+	BRP_House					m_House;
+	ref HousingHud				m_HousingHud;
+	private bool				HudIsOpen;
+	int							m_DoorsCount;
+	ref array<ref BstNot>		BstNotifications;
+	ref array<ref BRP_House>	AllHouses;
+	ref array<ref HouseData>	AllHouseData;
 
-	Widget					m_BstNotStg;
+	Widget						m_BstNotStg;
 
 	void HouseManager()
 	{
@@ -15,6 +17,8 @@ class HouseManager
 		m_DoorsCount 		= 0;
 		HudIsOpen	 		= false;
 		BstNotifications	= new array<ref BstNot>();
+		AllHouses			= new array<ref BRP_House>();
+		AllHouseData		= new array<ref HouseData>();
 	}
 
 	void OnRPC(PlayerIdentity sender, int rpc_type,ParamsReadContext  ctx)
@@ -24,6 +28,12 @@ class HouseManager
 			case HRPC.SEND_ADMINS_ID:
 				handleApplyAminsIDS(ctx);
 			break;
+			case HRPC.SEND_HOUSES_DATA:
+				handleApplyHousesData(ctx);
+			break;
+			case HRPC.SEND_BRP_HOUSES:
+				handleApplyBRPHouses(ctx);
+			break;
 		}
 	}
 
@@ -32,6 +42,22 @@ class HouseManager
 		Param1<ref array<string>> rpb;
 		if (!ctx.Read(rpb)) return;
 		AdminsArr = rpb.param1;
+	}
+
+	void handleApplyHousesData(ParamsReadContext  ctx)
+	{
+		Param1<ref array<ref HouseData>> rpb;
+		if (!ctx.Read(rpb)) return;
+		AllHouseData = rpb.param1;
+		Print("Main data aplied");
+		AllHouseData.Debug();
+	}
+
+	void handleApplyBRPHouses(ParamsReadContext  ctx)
+	{
+		Param1<ref array<ref BRP_House>> rpb;
+		if (!ctx.Read(rpb)) return;
+		AllHouses = rpb.param1;
 	}
 
 	void OnKeyPress(int key)
@@ -85,6 +111,7 @@ class HouseManager
 		// проверка хватает ли денег
 		m_House.RPCSingleParam(HRPC.REQUEST_RENT_HOUSE, new Param2<int,int>(low, high), true, NULL);
 		CloseMenu();
+		ShowBastionNotification("A rental request is sent");
 	}
 
 	bool IsDoorHaveOwner(PlayerBase player, BRP_House building, int doorIndex)
@@ -132,6 +159,18 @@ class HouseManager
 		return false;
 	}
 
+	bool IsRentableDoor(int idx, BRP_House building)
+	{
+		HouseData hd = building.m_HouseData;
+		if (!hd) return false;
+		for (int i = 0; i < hd.GroupsData.Count(); i++)
+		{
+			if ((hd.GroupsData.Get(i).Indexes.Find(idx) + 1))
+			{return true;}
+		}
+		return false;
+	}
+
 	void SendHouseRentRequest()
 	{
 		if (m_House)
@@ -148,7 +187,6 @@ class HouseManager
 		m_House.GetNetworkID(low,high);
 		m_House.RPCSingleParam(HRPC.REQUEST_EVICT_PLAYER, new Param4<int, int, int, int>(low, high, dIdx, gIdx), true, NULL);
 	}
-
 	void RequestAddGuestToDoor(int dIdx, int gIdx)
 	{
 		int low,high;
@@ -224,6 +262,13 @@ class HouseManager
 		m_House.RPCSingleParam(HRPC.REQUEST_CANCEL_LEASE, new Param2<int,int>(low,high), true, NULL);
 	}
 
+	void CancelLease()
+	{
+		RequestCancelLease();
+		CloseMenu();
+		ShowBastionNotification("You are no longer the owner of this building");
+	}
+
 	bool HasDuplicateSuggestion(string HashID, ref array<ref RentSuggestion> RentSuggestions)
 	{
 		for (int i = 0; i < RentSuggestions.Count(); i++)
@@ -273,6 +318,8 @@ class HouseManager
 
 	int GetGroupIdxByDoorIndex(int dIdx)
 	{
+		if (!m_House) {return -1;}
+		if (!m_House.m_HouseData) {return -1;}
 		for (int i = 0; i < m_House.m_HouseData.GroupsData.Count(); i++)
 		{
 			HouseGroupData hgd = m_House.m_HouseData.GroupsData.Get(i);
@@ -294,6 +341,16 @@ class HouseManager
 		int low, high;
 		m_House.GetNetworkID(low,high);
 		m_House.RPCSingleParam(HRPC.REQUEST_DELETE_GROUP, new Param3<int,int,int>(low,high,gIdx), true, NULL);
+	}
+
+	void RequestMainData()
+	{
+		GetGame().GetPlayer().RPCSingleParam(HRPC.REQUEST_HOUSES_DATA, null, true, null);
+	}
+
+	void RequestBRPHouses()
+	{
+		GetGame().GetPlayer().RPCSingleParam(HRPC.REQUEST_BRP_HOUSES, null, true, null);
 	}
 }
 ref HouseManager g_HM;
