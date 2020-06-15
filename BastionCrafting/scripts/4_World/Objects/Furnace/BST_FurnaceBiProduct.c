@@ -10,7 +10,7 @@ class BST_FurnaceBiProduct {
     string GetLoweredType() {
         string loweredType = ProductClassname;
 
-        loweredType.ToLower()
+        loweredType.ToLower();
         return loweredType;
     }
 

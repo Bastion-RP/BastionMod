@@ -1,35 +1,43 @@
 class BST_ActionStartStopSmelting : ActionInteractBase {
+    private string _actionText;
+
     override void CreateConditionComponents() {
         m_ConditionItem = new CCINone();
         m_ConditionTarget = new CCTNone();
     }
 
     override string GetText() {
-        return "Turn On/Off Furnace";
+        return _actionText;
     }
 
     override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item) {
-        ItemBase targetObject = ItemBase.Cast(target.GetObject());
+        BRP_FurnaceFireplace furnace = BRP_FurnaceFireplace.Cast(target.GetObject());
 
-        if (targetObject && Math.AbsFloat(vector.Distance(targetObject.GetPosition(), player.GetPosition())) < UAMaxDistances.DEFAULT) {
+        if (furnace && Math.AbsFloat(vector.Distance(furnace.GetPosition(), player.GetPosition())) < UAMaxDistances.DEFAULT) {
+            _actionText = "Turn ";
+
+            if (furnace.IsBurning()) {
+                _actionText += "Off Furnace";
+            } else if (furnace.CanStartSmelting()) {
+                _actionText += "On Furnace";
+            } else {
+                return false;
+            }
             return true;
         }
         return false;
     }
 
     override void OnExecuteServer(ActionData action_data) {
-        ItemBase targetObject = ItemBase.Cast(action_data.m_Target.GetObject());
-        
-        if (targetObject) {
-            if (!targetObject.GetBSTFurnaceHandler()) {
-                targetObject.CreateFurnaceHandler();
-            }
-            BST_FurnaceHandler furnaceHandler = targetObject.GetBSTFurnaceHandler();
+        BRP_FurnaceFireplace furnace = BRP_FurnaceFireplace.Cast(action_data.m_Target.GetObject());
 
-            if (furnaceHandler.IsSmelting()) {
-                furnaceHandler.StopSmelting();
-            } else {
-                furnaceHandler.StartSmelting();
+        if (furnace) {
+            if (furnace.IsBurning()) {
+                Print("[DEBUG] BST_ActionStartStopSmelting | OnExecuteServer | Stopping smelting!");
+                furnace.StopSmelting();
+            } else if (furnace.CanStartSmelting()) {
+                Print("[DEBUG] BST_ActionStartStopSmelting | OnExecuteServer | Starting smelting!");
+                furnace.StartSmelting();
             }
         }
     }

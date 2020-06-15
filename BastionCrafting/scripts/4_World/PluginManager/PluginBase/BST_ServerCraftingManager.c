@@ -24,7 +24,7 @@ class BST_ServerCraftingManager : PluginBase {
             MakeDirectory(BST_CraftingConst.recipeDir);
         }
         if (!FileExist(BST_CraftingConst.furnaceDir)) {
-            MakeDirectory(BST_CraftingConst.furnaceDir)
+            MakeDirectory(BST_CraftingConst.furnaceDir);
         }
         if (!FileExist(BST_CraftingConst.furnaceFuelDir)) {
             MakeDirectory(BST_CraftingConst.furnaceFuelDir);
@@ -174,7 +174,7 @@ class BST_ServerCraftingManager : PluginBase {
                     JsonFileLoader<BST_FurnaceFuel>.JsonLoadFile(BST_CraftingConst.furnaceFuelDir + foundFileName, foundFuel);
 
                     if (foundFuel) {
-                        foundFuel.Validate()
+                        foundFuel.Validate();
                         mapFurnaceFuels.Insert(foundFuel.GetLoweredType(), foundFuel);
                         JsonFileLoader<BST_FurnaceFuel>.JsonSaveFile(BST_CraftingConst.furnaceFuelDir + foundFileName, foundFuel);
                     }

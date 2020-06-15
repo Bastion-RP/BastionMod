@@ -1,182 +1,237 @@
-class BRP_FurnaceFireplace extends BarrelHoles_ColorBase
-{
-	void BRP_FurnaceFireplace()
-	{
-		//Particles - default for FireplaceBase
-		PARTICLE_FIRE_START 	= ParticleList.BARREL_FIRE_START;
-		PARTICLE_SMALL_FIRE 	= ParticleList.BARREL_SMALL_FIRE;
-		PARTICLE_NORMAL_FIRE	= ParticleList.BARREL_NORMAL_FIRE;
-		PARTICLE_SMALL_SMOKE 	= ParticleList.BARREL_SMALL_SMOKE;
-		PARTICLE_NORMAL_SMOKE	= ParticleList.BARREL_NORMAL_SMOKE;
-		//PARTICLE_SMALL_SMOKE 	= ParticleList.INVALID;
-		//PARTICLE_NORMAL_SMOKE	= ParticleList.INVALID;
-		PARTICLE_FIRE_END 		= ParticleList.BARREL_FIRE_END;
-		PARTICLE_STEAM_END		= ParticleList.BARREL_FIRE_STEAM_2END;
+class BRP_FurnaceFireplace : FireplaceBase {
+	const string ANIMATION_OPENED = "LidOff";
+	const string ANIMATION_CLOSED = "LidOn";
+	protected bool _isOpenedOnClient = false;
+	protected bool _hasFuel = false;
+	protected ref OpenableBehaviour _openable;
+	private ref BST_FurnaceHandler _furnaceHandler;
+
+	void BRP_FurnaceFireplace() {
+		PARTICLE_FIRE_START = ParticleList.BARREL_FIRE_START;
+		PARTICLE_SMALL_FIRE = ParticleList.BARREL_SMALL_FIRE;
+		PARTICLE_NORMAL_FIRE = ParticleList.BARREL_NORMAL_FIRE;
+		PARTICLE_SMALL_SMOKE = ParticleList.BARREL_SMALL_SMOKE;
+		PARTICLE_NORMAL_SMOKE = ParticleList.BARREL_NORMAL_SMOKE;
+		PARTICLE_FIRE_END = ParticleList.BARREL_FIRE_END;
+		PARTICLE_STEAM_END = ParticleList.BARREL_FIRE_STEAM_2END;
+		_openable = new OpenableBehaviour(false);
+		_furnaceHandler = new BST_FurnaceHandler(this);
+
+		//synchronized variables
+		RegisterNetSyncVariableBool("_openable.m_IsOpened");
+		RegisterNetSyncVariableBool("_hasFuel");
 	}
-	
-	override void EEInit()
-	{
-		super.EEInit();
-		
-		//hide in inventory
-		GetInventory().LockInventory(HIDE_INV_FROM_SCRIPT);
-	}
-	
-	override bool IsBarrelWithHoles()
-	{
-		return true;
-	}
-	
-	//Destroy
-	override void DestroyFireplace()
-	{
-		//delete object
-		//GetGame().ObjectDelete( this );
-	}
-	
-	//ATTACHMENTS
-	override bool CanReceiveAttachment( EntityAI attachment, int slotId )
-	{
-		ItemBase item = ItemBase.Cast( attachment );
-		
-		//kindling items
-		if ( IsKindling ( item ) && IsOpen() )
-		{
-			return true;
-		}
-		
-		//fuel items
-		if ( IsFuel ( item ) && IsOpen() )
-		{
-			return true;
-		}
-		
-		//cookware
-		if ( item.Type() == ATTACHMENT_COOKING_POT && IsOpen() )
-		{
-			return true;
-		}
-		
-		return false;
-	}
-	
-	override bool CanDisplayAttachmentSlot( string slot_name )
-	{
-		/*//super
-		if( !super.CanDisplayAttachmentSlot( slot_name ) )
-		{
-			return false;
-		}
-		//*/
-		return IsOpen();
+	override void AfterStoreLoad() {
+		m_IsBurning = false;
+		_hasFuel = _furnaceHandler.HasFuel();
+
+		super.AfterStoreLoad();
 	}
 
-	override bool CanDisplayAttachmentCategory( string category_name )
-	{
-		/*//super
-		if( !super.CanDisplayAttachmentCategory( category_name ) )
-		{
-			return false;
-		}
-		//*/
-		return IsOpen();
+	override void EEInit() {
+		super.EEInit();
 	}
-	
+
+	void StartSmelting() {
+		if (!GetGame().IsMultiplayer() || !GetGame().IsServer()) { return; }
+		if (IsBurning()) { return; }
+		SetBurningState(true);
+		SetObjectMaterial(0, MATERIAL_FIREPLACE_GLOW);
+		SetFireState(FireplaceFireState.NORMAL_FIRE);
+		_furnaceHandler.StartSmelting();
+
+	}
+
+	void StopSmelting() {
+		if (!GetGame().IsMultiplayer() || !GetGame().IsServer()) { return; }
+		SetBurningState(false);
+		SetObjectMaterial(0, MATERIAL_FIREPLACE_NOGLOW);
+		SetFireState(FireplaceFireState.NO_FIRE);
+		_furnaceHandler.StopSmelting();
+	}
+
+	void SetFuel(bool hasFuel) {
+		_hasFuel = hasFuel;
+		Synchronize();
+	}
+
+	override void EECargoIn(EntityAI item) {
+		super.EECargoIn(item);
+
+		if (!GetGame().IsMultiplayer() || !GetGame().IsServer()) { return; }
+		SetFuel(_furnaceHandler.HasFuel());
+	}
+
+	override void EECargoOut(EntityAI item) {
+		super.EECargoOut(item);
+
+		if (!GetGame().IsMultiplayer() || !GetGame().IsServer()) { return; }
+		SetFuel(_furnaceHandler.HasFuel());
+	}
+
+	override void OnVariablesSynchronized() {
+		super.OnVariablesSynchronized();
+
+		if (!IsBeingPlaced()) {
+			//Refresh particles and sounds
+			RefreshFireParticlesAndSounds(true);
+
+			//sound sync
+			if (IsOpen() && IsSoundSynchRemote()) {
+				SoundBarrelOpenPlay();
+			}
+
+			if (!IsOpen() && IsSoundSynchRemote()) {
+				SoundBarrelClosePlay();
+			}
+		}
+		UpdateVisualState();
+	}
+
+	bool CanStartSmelting() {
+		return _hasFuel;
+	}
+
+	//ATTACHMENTS
+	override bool CanReceiveAttachment(EntityAI attachment, int slotId) {
+		return false;
+	}
+
+	override bool CanReleaseAttachment(EntityAI attachment) {
+		return false;
+	}
+
 	//CONDITIONS
 	//this into/outo parent.Cargo
-	override bool CanPutInCargo( EntityAI parent )
-	{
+	override bool CanPutInCargo(EntityAI parent) {
 		return false;
 	}
-	
-	//hands
-	override bool CanPutIntoHands( EntityAI parent )
-	{
+
+	override bool CanPutIntoHands(EntityAI parent) {
 		return false;
 	}
-	
-	override bool IsThisIgnitionSuccessful( EntityAI item_source = NULL )
-	{
-		//check kindling
-		if ( !HasAnyKindling() && IsOpen() )
-		{
+
+	override bool CanRemoveFromCargo(EntityAI parent) {
+		return true;
+	}
+
+	override bool CanReceiveItemIntoCargo(EntityAI cargo) {
+		if (GetHierarchyParent() || cargo.GetInventory().GetCargo()) {
 			return false;
 		}
-		
-		//check roof
-		if ( !HasEnoughRoomForFireAbove() )
-		{
-			return true;
-		}
-		
-		//check surface
-		if ( IsOnWaterSurface() )
-		{
-			return true;
-		}
-		
-		//check wetness/rain/wind
-		if ( IsWet() || IsRainingAbove() || FireplaceBase.IsWindy() )
-		{
-			return true;
-		}
-		
-		return true;	
+
+		return true;
 	}
-	
-	//Check if there is enough room for smoke above fireplace
-	override bool HasEnoughRoomForSmokeAbove( out float actual_height )
-	{
+
+	override bool CanReleaseCargo(EntityAI cargo) {
+		if (!IsOpen()) {
+			return false;
+		}
+		return true;
+	}
+
+	override bool CanDisplayCargo() {
+		if (!super.CanDisplayCargo()) {
+			return false;
+		}
+		return IsOpen();
+	}
+
+	override bool CanDisplayAttachmentSlot(string slot_name) {
 		return false;
-	}	
-	
+	}
+
+	override bool CanDisplayAttachmentCategory(string category_name) {
+		return false;
+	}
+	// ---	
+
 	//ACTIONS
-	override void Open()
-	{
-		m_Openable.Open();
-		GetInventory().UnlockInventory(HIDE_INV_FROM_SCRIPT);
+	override void Open() {
+		_openable.Open();
 
 		SoundSynchRemote();
-		//SetSynchDirty(); //! called also in SoundSynchRemote - TODO
 		UpdateVisualState();
 	}
-	
-	override void Close()
-	{
-		m_Openable.Close();
-		GetInventory().LockInventory(HIDE_INV_FROM_SCRIPT);
-		
+
+	override void Close() {
+		_openable.Close();
+
 		SoundSynchRemote();
-		//SetSynchDirty(); //! called also in SoundSynchRemote - TODO
 		UpdateVisualState();
 	}
-	
-	//particles
-	override bool CanShowSmoke()
-	{
-		//return IsOpen();
+
+	override bool IsOpen() {
+		return _openable.IsOpened();
+	}
+
+	protected void UpdateVisualState() {
+		if (IsOpen()) {
+			SetAnimationPhase(ANIMATION_OPENED, 0);
+			SetAnimationPhase(ANIMATION_CLOSED, 1);
+		} else {
+			SetAnimationPhase(ANIMATION_OPENED, 1);
+			SetAnimationPhase(ANIMATION_CLOSED, 0);
+		}
+	}
+
+	//Can extinguish fire
+	override bool CanExtinguishFire() {
 		return false;
 	}
-	
-	//small smoke
-	protected void ParticleSmallSmokeStart()
-	{
-		
+
+	//particles
+	override bool CanShowSmoke() {
+		return false;
 	}
-	
-	protected void ParticleSmallSmokeStop()
-	{
-		
+
+	// Item-to-item fire distribution
+	override bool HasFlammableMaterial() {
+		return false;
 	}
-	
-	//normal smoke
-	protected void ParticleNormalSmokeStart()
-	{
-		
+
+	override bool CanBeIgnitedBy(EntityAI igniter = NULL) {
+		return false;
 	}
-	
-	protected void ParticleNormalSmokeStop()
-	{
-		
+
+	override bool CanIgniteItem(EntityAI ignite_target = NULL) {
+		return false;
+	}
+
+	override void OnIgnitedTarget(EntityAI ignited_item) { }
+	override void OnIgnitedThis(EntityAI fire_source) { }
+
+	void SoundBarrelOpenPlay() {
+		EffectSound sound = SEffectManager.PlaySound("barrel_open_SoundSet", GetPosition());
+		sound.SetSoundAutodestroy(true);
+	}
+
+	void SoundBarrelClosePlay() {
+		EffectSound sound = SEffectManager.PlaySound("barrel_close_SoundSet", GetPosition());
+		sound.SetSoundAutodestroy(true);
+	}
+
+	void DestroyClutterCutter(Object clutter_cutter) {
+		GetGame().ObjectDelete(clutter_cutter);
+	}
+
+	override bool IsThisIgnitionSuccessful(EntityAI item_source = NULL) {
+		return false;
+	}
+
+	//================================================================
+	// ADVANCED PLACEMENT
+	//================================================================
+
+	override string GetPlaceSoundset() {
+		return "placeBarrel_SoundSet";
+	}
+
+	override void SetActions() {
+		super.SetActions();
+
+		AddAction(BST_ActionOpenFurnace);
+		AddAction(BST_ActionCloseFurnace);
+		AddAction(BST_ActionStartStopSmelting);
 	}
 }
