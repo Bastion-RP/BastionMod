@@ -696,4 +696,77 @@ class CfgVehicles
 			};
 		};
 	};	
+
+	class BRP_Coal: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Charcoal";
+		descriptionShort = "A briquette of charcoal. Useful for smelting in the furnace.";
+		model = "BastionMod\BastionCrafting_Data\coal\coal.p3d";
+		isMeleeWeapon = 0;
+		weight = 300;
+		absorbency = 0;
+		itemSize[] = {1,1};
+		itemBehaviour = 0;
+	};
+	class BRP_MetalSheet_Small1: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Metal Scrap";
+		descriptionShort = "Small sheets of scrap metal. Useful for crafting.";
+		model = "BastionMod\BastionCrafting_Data\metalsheets\metalscrap_small1.p3d";
+		isMeleeWeapon = 0;
+		weight = 300;
+		absorbency = 0;
+		itemSize[] = {2,2};
+		itemBehaviour = 0;
+	};
+	class BRP_MetalSheet_Small2: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Metal Scrap";
+		descriptionShort = "Small sheets of scrap metal. Useful for crafting.";
+		model = "BastionMod\BastionCrafting_Data\metalsheets\metalscrap_small2.p3d";
+		isMeleeWeapon = 0;
+		weight = 300;
+		absorbency = 0;
+		itemSize[] = {2,2};
+		itemBehaviour = 0;
+	};
+	class BRP_RaspberryPi: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Computer Component";
+		descriptionShort = "A computer component. Useful for crafting.";
+		model = "BastionMod\BastionCrafting_Data\raspberry\pi.p3d";
+		isMeleeWeapon = 0;
+		weight = 300;
+		absorbency = 0;
+		itemSize[] = {2,2};
+		itemBehaviour = 0;
+	};
+	class BRP_Woodscrap1: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Wood Scrap";
+		descriptionShort = "Pieces of wooden scrap. Useful for crafting.";
+		model = "BastionMod\BastionCrafting_Data\woodscrap\woodscrap.p3d";
+		isMeleeWeapon = 0;
+		weight = 300;
+		absorbency = 0;
+		itemSize[] = {3,2};
+		itemBehaviour = 0;
+	};
+	class BRP_Woodscrap2: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Wood Scrap";
+		descriptionShort = "Pieces of wooden scrap. Useful for crafting.";
+		model = "BastionMod\BastionCrafting_Data\woodscrap\woodscrap2.p3d";
+		isMeleeWeapon = 0;
+		weight = 300;
+		absorbency = 0;
+		itemSize[] = {3,2};
+		itemBehaviour = 0;
+	};
 };
