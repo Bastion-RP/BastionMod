@@ -19,10 +19,8 @@ class BRP_House extends Building
 			if (!g_HSL)
 			{
 				g_HSL	= new HouseStorageLoader();
-				//g_HSL	= HouseStorageLoader.LoadData();
 			}
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( InitHouse, 5000, false);
-			//Init();
 		}
 	}
 

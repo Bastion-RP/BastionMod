@@ -695,7 +695,9 @@ class HousingHud extends UIScriptedMenu
 	{
 		m_DoorsIdxWidgets.Clear();
 		ClearAllChildren(m_WrapDoor);
+		m_MapHousePos.ClearUserMarks();
 		ClearCheckboxes();
+		AddPointToMap(m_MapHousePos);
 		m_ScrollDoors.VScrollToPos01(0);
 		m_HousePreview.SetItem( g_HM.m_House );
 		m_HousePreview.SetView( g_HM.m_House.GetViewIndex() );
@@ -753,6 +755,8 @@ class HousingHud extends UIScriptedMenu
 	void SetupShowInfo(HouseData hd)
 	{
 		string temp;
+		m_InfoMapHousePos.ClearUserMarks();
+		AddPointToMap(m_InfoMapHousePos);
 		//HouseData hd = g_HM.m_House.m_HouseData;
 		if (!hd) return;
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
@@ -806,9 +810,6 @@ class HousingHud extends UIScriptedMenu
 			if (cb.IsChecked())
 			{
 				hd.AllowDoors.Insert(cb.GetUserID());
-				// ref HouseGroupData hdd = new HouseGroupData();
-				// hdd.Indexes.Insert(cb.GetUserID());
-				// hd.GroupsData.Insert(hdd);
 			}
 		}
 
@@ -822,12 +823,6 @@ class HousingHud extends UIScriptedMenu
 		}
 
 		if (m_Approval.IsChecked()) hd.NeedApproval = true;
-
-		// if (m_CLA.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLA.GetUserID());
-		// if (m_CLB.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLB.GetUserID());
-		// if (m_CLC.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLC.GetUserID());
-		// if (m_CLD.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLD.GetUserID());
-		// if (m_CLS.IsChecked()) hd.AllowCitizenClasses.Insert(m_CLS.GetUserID());
 
 		for (int k = 0; k < 5; k++)
 		{
@@ -1154,7 +1149,6 @@ class HousingHud extends UIScriptedMenu
 		}
 		w.GetParent().FindAnyWidget("ButtonWidget0").Enable(false);
 		w.GetParent().SetColor(COLOR_ORNG);
-		//m_MHBtnEditDoorInfo.Show(true);
 	}
 
 	void ReloadRequests()
@@ -1213,37 +1207,33 @@ class HousingHud extends UIScriptedMenu
 		HouseData hd = g_HM.m_House.m_HouseData;
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		string uid = player.GetIdentity().GetId();
-		// for (int i = 0; i < hd.GroupsData.Count(); i++)
-		// {
-			ref HouseGroupData hdd = hd.GroupsData.Get(m_StartGroupIdx);
-			//if ( (hdd.Indexes.Find(m_StartGroupIdx) + 1) )
-			if ( hdd )
+		ref HouseGroupData hdd = hd.GroupsData.Get(m_StartGroupIdx);
+		if ( hdd )
+		{
+			m_DIDoorName.SetText(hd.BuldingName);
+			m_DIPrice.SetText(hdd.RentPrice.ToString());
+			m_DITime.SetText(hdd.LeaseTime.ToString());
+			m_DIDescription.SetText(hdd.Description);
+
+			for (int k = 0; k < hdd.Indexes.Count(); k++)
 			{
-				m_DIDoorName.SetText(hd.BuldingName);
-				m_DIPrice.SetText(hdd.RentPrice.ToString());
-				m_DITime.SetText(hdd.LeaseTime.ToString());
-				m_DIDescription.SetText(hdd.Description);
+				CheckBoxWidget dId = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionHousingSystem/layouts/DoorIndex.layout", m_DIDoorsList);
+				string str = "";
+				str = "[ID:"+hdd.Indexes.Get(k).ToString()+"]";
+				dId.SetText(str);
+				dId.SetChecked(true);
+				dId.Enable(false);
+			}
 
-				for (int k = 0; k < hdd.Indexes.Count(); k++)
+			for (int j = 0; j < hdd.RentSuggestions.Count(); j++)
+			{
+				RentSuggestion rs = hdd.RentSuggestions.Get(j);
+				if ( (rs.HashID == uid) || IsDoorOwner(hdd,uid) )
 				{
-					CheckBoxWidget dId = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionHousingSystem/layouts/DoorIndex.layout", m_DIDoorsList);
-					string str = "";
-					str = "[ID:"+hdd.Indexes.Get(k).ToString()+"]";
-					dId.SetText(str);
-					dId.SetChecked(true);
-					dId.Enable(false);
-				}
-
-				for (int j = 0; j < hdd.RentSuggestions.Count(); j++)
-				{
-					RentSuggestion rs = hdd.RentSuggestions.Get(j);
-					if ( (rs.HashID == uid) || IsDoorOwner(hdd,uid) )
-					{
-						m_DIBtnRequest.Enable(false);
-					}
+					m_DIBtnRequest.Enable(false);
 				}
 			}
-		//}
+		}
 	}
 
 	bool IsDoorOwner(ref HouseGroupData hdd, string uid)
@@ -1451,7 +1441,6 @@ class HousingHud extends UIScriptedMenu
 	{
 		m_MHDGPanelEdit.Show(false);
 		m_MHDGPanelShowInfo.Show(false);
-		// m_MHDGPanelShowInfo.Show(true);
 	}
 
 	void SaveGroupEditInfo()
