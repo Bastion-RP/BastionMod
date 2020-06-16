@@ -771,6 +771,8 @@ class HousingHud extends UIScriptedMenu
 		SetupAllowClasses(hd);
 		SetupAllowDoors(hd);
 
+		m_InfoBtnRent.Enable(false);
+
 		if (hd.NeedApproval)
 		{
 			m_InfoBtnRent.Show(false);
@@ -782,8 +784,10 @@ class HousingHud extends UIScriptedMenu
 		}
 		else
 		{
-			//if (multicharacterclass) multicharacterclass TODO: check allow class
-			//m_InfoBtnRent.Enable(false);
+			if ( (hd.AllowCitizenClasses.Find(player.GetMultiCharactersPlayerClass()) + 1) )
+			{
+				m_InfoBtnRent.Enable(true);
+			}
 		}
 	}
 
@@ -1206,7 +1210,8 @@ class HousingHud extends UIScriptedMenu
 		ClearAllChildren(m_DIDoorsList);
 		HouseData hd = g_HM.m_House.m_HouseData;
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
-		string uid = player.GetIdentity().GetId();
+		//string uid = player.GetIdentity().GetId();
+		string uid = player.GetMultiCharactersPlayerId().ToString();
 		ref HouseGroupData hdd = hd.GroupsData.Get(m_StartGroupIdx);
 		if ( hdd )
 		{
@@ -1228,7 +1233,7 @@ class HousingHud extends UIScriptedMenu
 			for (int j = 0; j < hdd.RentSuggestions.Count(); j++)
 			{
 				RentSuggestion rs = hdd.RentSuggestions.Get(j);
-				if ( (rs.HashID == uid) || IsDoorOwner(hdd,uid) )
+				if ( (rs.MilticharacterID == uid) || IsDoorOwner(hdd,uid) )
 				{
 					m_DIBtnRequest.Enable(false);
 				}
@@ -1240,7 +1245,7 @@ class HousingHud extends UIScriptedMenu
 	{
 		for (int i = 0; i < hdd.Renters.Count(); i++)
 		{
-			if (uid == hdd.Renters.Get(i).HashID)//TODO change to multicharID
+			if (uid == hdd.Renters.Get(i).MilticharacterID)//TODO change to multicharID
 			return true;
 		}
 		return false;

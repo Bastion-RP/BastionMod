@@ -6,22 +6,23 @@ modded class ActionOpenDoors
 		if( !target ) return false;
 		if( !IsBuilding(target) ) return false;
 
-		BRP_House building;
-		if( Class.CastTo(building, target.GetObject()) )
+		BRP_House brpbuilding;
+		if( Class.CastTo(brpbuilding, target.GetObject()) )
 		{
 			if (super.ActionCondition(player, target, item))
 			{
 				if (GetGame().IsClient())
 				{
-					doorIdx = building.GetDoorIndex(target.GetComponentIndex());
-					if (!building.m_HouseData)
+					doorIdx = brpbuilding.GetDoorIndex(target.GetComponentIndex());
+					if (!brpbuilding.m_HouseData)
 					{return true;}
-					if (!building.m_HouseData.LeaseTime)
+					if (!brpbuilding.m_HouseData.LeaseTime)
 					{return true;}
-					if (building.m_HouseData && building.m_HouseData.MainOwner && (building.m_HouseData.MainOwner.HashID == player.GetIdentity().GetId()) && g_HM.IsDoorAllow(doorIdx, building)) // TODO change to multicharID
+					if (brpbuilding.m_HouseData && brpbuilding.m_HouseData.MainOwner && (brpbuilding.m_HouseData.MainOwner.MilticharacterID == player.GetMultiCharactersPlayerId().ToString()) && g_HM.IsDoorAllow(doorIdx, brpbuilding)) 
 					{return true;}
-					return g_HM.IsDoorOwner(player, building, doorIdx);
+					return g_HM.IsDoorOwner(player, brpbuilding, doorIdx);
 				}
+				return true;
 			}
 			else
 			{
@@ -31,4 +32,17 @@ modded class ActionOpenDoors
 		return super.ActionCondition(player, target, item);
 	}
 
+	override void OnStartServer( ActionData action_data )
+	{
+		super.OnStartServer(action_data);
+		BRP_House brpbuilding;
+		if( Class.CastTo(brpbuilding, action_data.m_Target.GetObject()) )
+		{
+			int doorIndex = brpbuilding.GetDoorIndex(action_data.m_Target.GetComponentIndex());
+			if( doorIndex != -1 )
+			{
+				brpbuilding.OpenDoor(doorIndex);
+			}
+		}
+	}
 }
