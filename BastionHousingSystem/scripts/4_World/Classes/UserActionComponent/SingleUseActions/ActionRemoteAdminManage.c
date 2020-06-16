@@ -35,7 +35,7 @@ class ActionRemoteAdminManageHouses : ActionInteractBase
 			{
 				string plId = player.GetMultiCharactersPlayerId().ToString();
 				type = -1;
-				if (barrel && ((g_HM.AdminsArr.Find(player.GetIdentity().GetId()) + 1)))
+				if (barrel && ((g_HM.AdminsArr.Find(plId) + 1)))
 				{
 					ID = "Remote Admin Manage building.";
 					type = 5;

@@ -777,7 +777,7 @@ class HousingHud extends UIScriptedMenu
 		{
 			m_InfoBtnRent.Show(false);
 			m_InfoBtnApproval.Show(true);
-			if (g_HM.HasDuplicateSuggestion(player.GetIdentity().GetId(), hd.RentSuggestions))
+			if (g_HM.HasDuplicateSuggestion(player.GetMultiCharactersPlayerId().ToString(), hd.RentSuggestions))
 			{
 				m_InfoBtnApproval.Enable(false);
 			}
@@ -1210,7 +1210,6 @@ class HousingHud extends UIScriptedMenu
 		ClearAllChildren(m_DIDoorsList);
 		HouseData hd = g_HM.m_House.m_HouseData;
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
-		//string uid = player.GetIdentity().GetId();
 		string uid = player.GetMultiCharactersPlayerId().ToString();
 		ref HouseGroupData hdd = hd.GroupsData.Get(m_StartGroupIdx);
 		if ( hdd )
