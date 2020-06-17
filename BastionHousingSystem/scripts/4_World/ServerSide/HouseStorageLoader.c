@@ -13,7 +13,11 @@ class HouseStorageLoader
 		file = new FileSerializer();
 		m_GenHosData = new GeneralHousesData();
 		m_GenHosData.Admins.Insert("t6goVGbhstnvoqE9d_apyTpfMglcUNy099wKuvhVnmo=");
+		m_GenHosData.Admins.Insert("50278");
+		m_GenHosData.Admins.Insert("50110");
+		m_GenHosData.Admins.Insert("50013");
 		m_GenHosData.Admins.Insert("OG-UnHi5ZORxnSaxd5ceczLK5yMTFp7ZC1fe6c8Ycu8=");
+		m_GenHosData.Admins.Insert("IObXq1Qn8EXHK0JHJ5IM09kQ1_04ABRbut1kp6aPj8Q=");
 		Print(m_GenHosData);
 		LoadData();
 	}

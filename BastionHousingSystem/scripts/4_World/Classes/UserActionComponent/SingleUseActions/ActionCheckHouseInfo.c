@@ -43,7 +43,7 @@ class ActionShowDoorInfo : ActionInteractBase
 			if( Class.CastTo(building, target.GetObject()) )
 			{
 				doorIndex = building.GetDoorIndex(target.GetComponentIndex());
-				string plId = player.GetIdentity().GetId();
+				string plId = player.GetMultiCharactersPlayerId().ToString();
 				if ( doorIndex != -1 ) // add check owner
 				{
 					if (player.CanSyncHouseData() /*&& !g_HM.GetHudIsOpen()*/)
@@ -57,7 +57,7 @@ class ActionShowDoorInfo : ActionInteractBase
 					{
 						return false;
 					}
-					if (!building.m_HouseData.LeaseTime && ((g_HM.AdminsArr.Find(player.GetIdentity().GetId()) + 1)))
+					if (!building.m_HouseData.LeaseTime && ((g_HM.AdminsArr.Find(plId) + 1)))
 					{
 						ID += " Admin Manage building.";
 						type = 0;
@@ -67,7 +67,7 @@ class ActionShowDoorInfo : ActionInteractBase
 						ID += " Show rental conditions.";
 						type = 1;
 					}
-					else if (building.m_HouseData && building.m_HouseData.MainOwner.HashID == plId && g_HM.IsDoorAllow(doorIndex, building))
+					else if (building.m_HouseData && building.m_HouseData.MainOwner.MilticharacterID == plId && g_HM.IsDoorAllow(doorIndex, building))
 					{
 						ID += " Show info.";
 						type = 2;

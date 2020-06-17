@@ -133,7 +133,7 @@ class HouseManager
 
 	bool IsDoorOwner(PlayerBase player, BRP_House building, int doorIndex)
 	{
-		string pId = player.GetIdentity().GetId();// TODO change to milticharID
+		string pId = player.GetMultiCharactersPlayerId().ToString();
 		for (int i = 0; i < building.m_HouseData.GroupsData.Count(); i++)
 		{
 			HouseGroupData hdd = building.m_HouseData.GroupsData.Get(i);
@@ -141,7 +141,7 @@ class HouseManager
 			{
 				for (int j = 0; j < hdd.Renters.Count(); j++)
 				{
-					if (pId == hdd.Renters[j].HashID)
+					if (pId == hdd.Renters[j].MilticharacterID)
 					{
 						return true;
 					}
@@ -253,6 +253,7 @@ class HouseManager
 		int low, high;
 		m_House.GetNetworkID(low,high);
 		m_House.RPCSingleParam(HRPC.REQUEST_ADD_GUEST_TO_DOOR, new Param3<int, int, int>(low, high, dIdx), true, NULL);
+		Print("SendRequestGroup::dIdx "+dIdx);
 	}
 
 	void RequestCancelLease()
@@ -269,11 +270,11 @@ class HouseManager
 		ShowBastionNotification("You are no longer the owner of this building");
 	}
 
-	bool HasDuplicateSuggestion(string HashID, ref array<ref RentSuggestion> RentSuggestions)
+	bool HasDuplicateSuggestion(string MilticharacterID, ref array<ref RentSuggestion> RentSuggestions)
 	{
 		for (int i = 0; i < RentSuggestions.Count(); i++)
 		{
-			if (HashID == RentSuggestions.Get(i).HashID)
+			if (MilticharacterID == RentSuggestions.Get(i).MilticharacterID)
 			{return true;}
 		}
 		return false;
