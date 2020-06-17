@@ -3,37 +3,56 @@ class BRP_House extends Building
 	ref HouseData					m_HouseData;
 	private int 					low, high;
 	private int						m_DoorsCount;
-	static ref array<ref BRP_House> Houses = new array<ref BRP_House>();
-
-	bool							isDebug = true;
 	
 	void BRP_House()
 	{
-		Houses.Insert(this);
 		m_DoorsCount = 0;
 		GetNetworkID(low, high);
-		Print("low:"+low.ToString()+" | high:"+high.ToString()+ " | loaded after "+GetGame().GetTickTime().ToString());
-		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( CloseAllDoors, 5000, false);
-	}
+		//Print("low:"+low.ToString()+" | high:"+high.ToString()+ " | loaded after "+GetGame().GetTickTime().ToString());
+		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( CloseAllDoors, 1000, false);
 
-	void ~BRP_House()
-	{
-		int idx = BRP_House.Houses.Find(this);
-		if (idx != -1) BRP_House.Houses.Remove(idx);
+
+		if (GetGame().IsServer())
+		{
+			if (!g_HSL)
+			{
+				g_HSL	= new HouseStorageLoader();
+			}
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( InitHouse, 5000, false);
+		}
 	}
 
 	void CloseAllDoors()
 	{
-		for (int i = 0; i < 300; i++)
+		for (int i = 0; i < 500; i++)
 		{
 			int doorIndex = this.GetDoorIndex(i);
 			if ( doorIndex != -1 )
 			{
 				m_DoorsCount++;
-				// if (GetGame().IsServer())
-				// {this.CloseDoor(doorIndex);}
+				if (GetGame().IsServer())
+				{
+					if (this.IsDoorOpen(doorIndex))
+					this.CloseDoor(doorIndex);
+				}
 			}
 		}
+	}
+
+	void InitHouse()
+	{
+		HouseData hd = GetHouseDataServerByBits(low, high);
+		if (hd) return;
+		hd = new HouseData;
+		hd.Low = low;
+		hd.High = high;
+		hd.BuldingName = this.GetType();
+		hd.BuildingPos = this.GetPosition().ToString();
+		hd.BuildingType = this.GetType();
+		hd.TotalDoors = this.m_DoorsCount;
+		hd.BuildingSector = -1;
+		g_HSL.m_GenHosData.HousesData.Insert(hd);
+		SaveHouseDataServer(hd);
 	}
 
 	int GetDoorsCount()
@@ -134,10 +153,6 @@ class BRP_House extends Building
 		{
 			this.RPCSingleParam(HRPC.SEND_HOUSE_DATA, new Param1<ref HouseData>(hd), true, sender);
 		}
-		else
-		{
-			this.RPCSingleParam(HRPC.SEND_HOUSE_DATA, new Param1<ref HouseData>(null), true, sender);	
-		}
 	}
 
 	void handleApplyHouseData(ParamsReadContext  ctx)
@@ -145,27 +160,29 @@ class BRP_House extends Building
 		Param1<ref HouseData> rpb;
 		if (!ctx.Read(rpb)) return;
 		m_HouseData = rpb.param1;
-		Print(m_HouseData);
 	}
 
-	void handleAddHouseInfo(ParamsReadContext  ctx)
+	void handleAddHouseInfo(ParamsReadContext ctx)
 	{
 		Param1<ref HouseData> rpb;
 		if (!ctx.Read(rpb)) return;
 
 		ref HouseData hd = rpb.param1;
-		Print(hd);
-
-		int idx = g_HSL.m_GenHosData.HousesData.Find(hd);
-		if (idx == -1)
+		bool isNew = true;
+		for (int i = 0; i < g_HSL.m_GenHosData.HousesData.Count(); i++)
+		{
+			if (hd.BuildingPos == g_HSL.m_GenHosData.HousesData.Get(i).BuildingPos)
+			{
+				g_HSL.m_GenHosData.HousesData[i] = hd;
+				isNew = false;
+				break;
+			}
+		}
+		if (isNew)
 		{
 			g_HSL.m_GenHosData.HousesData.Insert(hd);
 		}
-		else
-		{
-			g_HSL.m_GenHosData.HousesData[idx] = hd;
-		}
-		SaveHouseDataServer();
+		SaveHouseDataServer(hd);
 	}
 
 	void handleRequestRentHouse(PlayerIdentity sender, ParamsReadContext  ctx)
@@ -173,7 +190,7 @@ class BRP_House extends Building
 		Param2<int,int> rpb;
 		if (!ctx.Read(rpb)) return;
 		ref HouseData hd = GetHouseDataServerByBits(rpb.param1, rpb.param2);
-		if (hd)
+		if (hd && !hd.MainOwner.Name)
 		{
 			FillRenterInfo(hd, sender);
 		}
@@ -185,27 +202,26 @@ class BRP_House extends Building
 
 		if (player)
 		{
-			hd.MainOwner.Name = player.GetIdentity().GetName();
-			//hd.MainOwner.Name = player.GetMultiCharactersPlayerName();
-			//hd.MainOwner.MilticharacterID = player.GetMultiCharactersPlayerId().ToString();
-			hd.MainOwner.SteamID = player.GetIdentity().GetPlainId();
-			hd.MainOwner.HashID = player.GetIdentity().GetId();
+			hd.MainOwner.Name = player.GetMultiCharactersPlayerName();
+			hd.MainOwner.MilticharacterID = player.GetMultiCharactersPlayerId().ToString();
+			hd.MainOwner.SteamID = sender.GetPlainId();
+			hd.MainOwner.HashID = sender.GetId();
 			hd.MainOwner.Date = HouseManager.GetBastionDate();
-			//hd.MainOwner.BastionClass = player.GetMultiCharactersPlayerClass().ToString();
-			//hd.MainOwner.BankAccountId = 0;
+			hd.MainOwner.BastionClass = player.GetMultiCharactersPlayerClass().ToString();
+			hd.MainOwner.BankAccountId = player.GetBastionPlayerAccount().GetId();
 			hd.MainOwner.RentTimeLeft = (hd.LeaseTime * 60);
 		}
 		int idx = g_HSL.m_GenHosData.HousesData.Find(hd);
 		if (idx != -1)
 		{
 			g_HSL.m_GenHosData.HousesData[idx] = hd;
-			SaveHouseDataServer();
+			SaveHouseDataServer(hd);
 		}
 	}
 
-	void SaveHouseDataServer()
+	void SaveHouseDataServer(HouseData hd)
 	{
-		HouseStorageLoader.SaveData(g_HSL);
+		g_HSL.SaveData(hd);
 	}
 
 	PlayerBase GetPlayerByIdentity(PlayerIdentity sender)
@@ -225,20 +241,19 @@ class BRP_House extends Building
 		{
 			ref RentSuggestion rs = new RentSuggestion();
 			PlayerBase player = GetPlayerByIdentity(sender);
-			rs.Name = sender.GetName();
-			//rs.Name = player.GetMultiCharactersPlayerName();
-			//rs.MilticharacterID = player.GetMultiCharactersPlayerId().ToString();
+			rs.Name = player.GetMultiCharactersPlayerName();
+			rs.MilticharacterID = player.GetMultiCharactersPlayerId().ToString();
 			rs.SteamID = sender.GetPlainId();
 			rs.HashID = sender.GetId();
 			rs.Date = HouseManager.GetBastionDate();
-			rs.BastionClass = "B";
+			rs.BastionClass = player.GetMultiCharactersPlayerClass().ToString();
 			rs.Approved = false;
 			rs.Checked = false;
 
 			if (!HasDuplicateSuggestion(rs, hd))
 			{
 				hd.RentSuggestions.Insert(rs);
-				SaveHouseDataServer();
+				SaveHouseDataServer(hd);
 			}
 		}
 	}
@@ -250,7 +265,7 @@ class BRP_House extends Building
 			for (int i = 0; i < hd.RentSuggestions.Count(); i++)
 			{
 				RentSuggestion Rs = hd.RentSuggestions.Get(i);
-				if (rs.HashID == Rs.HashID) // TODO: change for multicharID
+				if (rs.MilticharacterID == Rs.MilticharacterID)
 				{return true;}
 			}
 			return false;
@@ -260,7 +275,7 @@ class BRP_House extends Building
 			for (int j = 0; j < hdd.RentSuggestions.Count(); j++)
 			{
 				RentSuggestion RRs = hdd.RentSuggestions.Get(j);
-				if (rs.HashID == RRs.HashID) // TODO: change for multicharID
+				if (rs.MilticharacterID == RRs.MilticharacterID)
 				{return true;}
 			}
 			return false;
@@ -275,7 +290,7 @@ class BRP_House extends Building
 	{
 		for (int i = 0; i < Renters.Count(); i++)
 		{
-			if (rs.HashID == Renters.Get(i).HashID)
+			if (rs.MilticharacterID == Renters.Get(i).MilticharacterID)
 			{return true;}
 		}
 		return false;
@@ -301,7 +316,7 @@ class BRP_House extends Building
 		{
 			Print(hd.GroupsData.Get(rpb.param3).Renters.Get(rpb.param4));
 			hd.GroupsData.Get(rpb.param3).Renters.Remove(rpb.param4);
-			SaveHouseDataServer();
+			SaveHouseDataServer(hd);
 		}
 	}
 
@@ -327,7 +342,7 @@ class BRP_House extends Building
 				hd.GroupsData.Get(dIdx).Renters.Insert(hpd);
 			}
 			hd.GroupsData.Get(dIdx).RentSuggestions.Remove(gIdx);
-			SaveHouseDataServer();
+			SaveHouseDataServer(hd);
 		}
 	}
 
@@ -341,7 +356,7 @@ class BRP_House extends Building
 		if (hd && hd.GroupsData.Get(dIdx).RentSuggestions.Get(gIdx))
 		{
 			hd.GroupsData.Get(dIdx).RentSuggestions.Remove(gIdx);
-			SaveHouseDataServer();
+			SaveHouseDataServer(hd);
 		}
 	}
 
@@ -361,7 +376,7 @@ class BRP_House extends Building
 				hdd.Description = tempHdd.Description;
 				hdd.RentPrice = tempHdd.RentPrice;
 				hdd.LeaseTime = tempHdd.LeaseTime;
-				SaveHouseDataServer();
+				SaveHouseDataServer(hd);
 			}
 		}
 
@@ -370,9 +385,11 @@ class BRP_House extends Building
 	void handleAddGuestToGroup(ParamsReadContext  ctx, PlayerIdentity sender)
 	{
 		Param3<int,int,int> rpb;
+		Print("handleAddGuestToGroup::packet applied");
 		if (!ctx.Read(rpb)) return;
 		ref HouseData hd = GetHouseDataServerByBits(rpb.param1, rpb.param2);
 		int dIdx = rpb.param3;
+		Print("handleAddGuestToGroup::dIdx "+dIdx);
 		for (int i = 0; i < hd.GroupsData.Count(); i++)
 		{
 			ref HouseGroupData hdd = hd.GroupsData.Get(i);
@@ -380,19 +397,20 @@ class BRP_House extends Building
 			{
 				PlayerBase player = GetPlayerByIdentity(sender);
 				RentSuggestion rs = new RentSuggestion;
-				rs.Name = sender.GetName();
-				//rs.MilticharacterID
+				rs.Name = player.GetMultiCharactersPlayerName();
+				rs.MilticharacterID = player.GetMultiCharactersPlayerId().ToString();
 				rs.SteamID = sender.GetPlainId();
 				rs.HashID = sender.GetId();
 				rs.Date = HouseManager.GetBastionDate();
-				//rs.BastionClass
+				rs.BastionClass = player.GetMultiCharactersPlayerClass().ToString();
 				rs.Approved = false;
 				rs.Checked = false;
-				if (!HasDuplicateSuggestion(rs, null, hdd))
-				{
+				// if (!HasDuplicateSuggestion(rs, null, hdd))
+				// {
 					hdd.RentSuggestions.Insert(rs);
-					SaveHouseDataServer();
-				}
+					Print("handleAddGuestToGroup::suggestion applied");
+					SaveHouseDataServer(hd);
+				//}
 			}
 		}
 	}
@@ -424,7 +442,7 @@ class BRP_House extends Building
 			tHdd.Description = hdd.Description;
 			tHdd.Indexes = idxs;
 			hd.GroupsData.Insert(tHdd);
-			SaveHouseDataServer();
+			SaveHouseDataServer(hd);
 		}
 	}
 
@@ -447,7 +465,7 @@ class BRP_House extends Building
 			hgd.LeaseTime = data.LeaseTime;
 			hgd.Description = data.Description;
 			hgd.Indexes = data.Indexes;
-			SaveHouseDataServer();
+			SaveHouseDataServer(hd);
 		}
 	}
 
@@ -464,10 +482,12 @@ class BRP_House extends Building
 				return;
 			}
 			hd.GroupsData.Remove(rpb.param3);
-			SaveHouseDataServer();
+			SaveHouseDataServer(hd);
 		}
 	}
 }
+
+//modded class BuildingBase extends BRP_House {};
 
 class Land_House_2B03 : BRP_House {};
 class Land_House_2W04 : BRP_House {};

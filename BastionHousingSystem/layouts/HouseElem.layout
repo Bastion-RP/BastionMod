@@ -1,0 +1,30 @@
+PanelWidgetClass rootFrame {
+ size 1 25
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 1
+ {
+  ButtonWidgetClass ButtonWidget0 {
+   color 1 0.502 0.0314 1
+   size 1 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   userID 777
+  }
+  TextWidgetClass HouseName {
+   ignorepointer 1
+   size 1 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   text "house name"
+   "text offset" 20 0
+   "exact text" 1
+   "text valign" center
+  }
+ }
+}
