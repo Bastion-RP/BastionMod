@@ -405,12 +405,12 @@ class BRP_House extends Building
 				rs.BastionClass = player.GetMultiCharactersPlayerClass().ToString();
 				rs.Approved = false;
 				rs.Checked = false;
-				if (!HasDuplicateSuggestion(rs, null, hdd))
-				{
+				// if (!HasDuplicateSuggestion(rs, null, hdd))
+				// {
 					hdd.RentSuggestions.Insert(rs);
 					Print("handleAddGuestToGroup::suggestion applied");
 					SaveHouseDataServer(hd);
-				}
+				//}
 			}
 		}
 	}
