@@ -390,27 +390,24 @@ class BRP_House extends Building
 		ref HouseData hd = GetHouseDataServerByBits(rpb.param1, rpb.param2);
 		int dIdx = rpb.param3;
 		Print("handleAddGuestToGroup::dIdx "+dIdx);
-		for (int i = 0; i < hd.GroupsData.Count(); i++)
+		ref HouseGroupData hdd = hd.GroupsData.Get(dIdx);
+		if (hdd)
 		{
-			ref HouseGroupData hdd = hd.GroupsData.Get(i);
-			if (hdd.Indexes.Find(dIdx) + 1)
+			PlayerBase player = GetPlayerByIdentity(sender);
+			RentSuggestion rs = new RentSuggestion;
+			rs.Name = player.GetMultiCharactersPlayerName();
+			rs.MilticharacterID = player.GetMultiCharactersPlayerId().ToString();
+			rs.SteamID = sender.GetPlainId();
+			rs.HashID = sender.GetId();
+			rs.Date = HouseManager.GetBastionDate();
+			rs.BastionClass = player.GetMultiCharactersPlayerClass().ToString();
+			rs.Approved = false;
+			rs.Checked = false;
+			if (!HasDuplicateSuggestion(rs, null, hdd))
 			{
-				PlayerBase player = GetPlayerByIdentity(sender);
-				RentSuggestion rs = new RentSuggestion;
-				rs.Name = player.GetMultiCharactersPlayerName();
-				rs.MilticharacterID = player.GetMultiCharactersPlayerId().ToString();
-				rs.SteamID = sender.GetPlainId();
-				rs.HashID = sender.GetId();
-				rs.Date = HouseManager.GetBastionDate();
-				rs.BastionClass = player.GetMultiCharactersPlayerClass().ToString();
-				rs.Approved = false;
-				rs.Checked = false;
-				// if (!HasDuplicateSuggestion(rs, null, hdd))
-				// {
-					hdd.RentSuggestions.Insert(rs);
-					Print("handleAddGuestToGroup::suggestion applied");
-					SaveHouseDataServer(hd);
-				//}
+				hdd.RentSuggestions.Insert(rs);
+				Print("handleAddGuestToGroup::suggestion applied");
+				SaveHouseDataServer(hd);
 			}
 		}
 	}
