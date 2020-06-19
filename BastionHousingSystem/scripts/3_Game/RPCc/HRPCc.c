@@ -4,6 +4,7 @@ enum HRPC
 	SEND_ADMINS_ID,
 	SEND_BRP_HOUSES,
 	SEND_HOUSES_DATA,
+	SEND_RESPONSE,
 
 	REQUEST_HOUSE_DATA,
 	REQUEST_ADD_HOUSE_INFO,
@@ -20,8 +21,19 @@ enum HRPC
 	REQUEST_DELETE_GROUP,
 	REQUEST_BRP_HOUSES,
 	REQUEST_HOUSES_DATA,
+	REQUEST_ALLOW_SUGGEST,
+	REQUEST_DENY_SUGGEST,
+	REQUEST_PAY_RENT,
 	
 }
 
-//923709972
-//-2147393536
+enum HouseResponse
+{
+	//general
+	NECredits = 1, //not enough credits
+	Success,
+	Unsuccess,
+
+	//specific
+	NLBAccount, // not logged in bank acc
+}

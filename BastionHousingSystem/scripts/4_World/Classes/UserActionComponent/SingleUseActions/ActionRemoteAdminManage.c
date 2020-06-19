@@ -30,14 +30,13 @@ class ActionRemoteAdminManageHouses : ActionInteractBase
 	{
 		if (GetGame().IsClient())
 		{
-			Barrel_ColorBase barrel;
-			if( Class.CastTo(barrel, target.GetObject()) ) //TODO: change to terminal
+			if (target.GetObject() && BRP_ATM.Cast(target.GetObject()))
 			{
 				string plId = player.GetMultiCharactersPlayerId().ToString();
 				type = -1;
-				if (barrel && ((g_HM.AdminsArr.Find(plId) + 1)))
+				if ((g_HM.AdminsArr.Find(plId) + 1))
 				{
-					ID = "Remote Admin Manage building.";
+					ID = "Remote Admin Manage building";
 					type = 5;
 					return true;
 				}
