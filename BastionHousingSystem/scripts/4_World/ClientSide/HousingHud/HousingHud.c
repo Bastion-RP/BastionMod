@@ -627,6 +627,7 @@ class HousingHud extends UIScriptedMenu
 				break;
 				case m_BtnSwitchToMap:
 					AddPointToMap(m_MapHousePos);
+					// m_MapHousePos.SetMapPos(g_HM.m_House.GetPosition());
 					m_HousePreview.Show(false);
 					m_BtnSwitchToMap.Show(false);
 					m_MapHousePos.Show(true);
@@ -634,7 +635,7 @@ class HousingHud extends UIScriptedMenu
 					g_HM.ShowBastionNotification("Switched to map");
 				break;
 				case m_BtnSwitchTo3D:
-					m_MapHousePos.ClearUserMarks();
+					// m_MapHousePos.ClearUserMarks();
 					m_MapHousePos.Show(false);
 					m_BtnSwitchTo3D.Show(false);
 					m_BtnSwitchToMap.Show(true);
@@ -643,13 +644,14 @@ class HousingHud extends UIScriptedMenu
 				break;
 				case m_InfoBtnSwitchToMap:
 					AddPointToMap(m_InfoMapHousePos);
+					// m_InfoMapHousePos.SetMapPos(g_HM.m_House.GetPosition());
 					m_InfoHousePreview.Show(false);
 					m_InfoBtnSwitchToMap.Show(false);
 					m_InfoMapHousePos.Show(true);
 					m_InfoBtnSwitchTo3D.Show(true);
 				break;
 				case m_InfoBtnSwitchTo3D:
-					m_InfoMapHousePos.ClearUserMarks();
+					// m_InfoMapHousePos.ClearUserMarks();
 					m_InfoMapHousePos.Show(false);
 					m_InfoBtnSwitchTo3D.Show(false);
 					m_InfoBtnSwitchToMap.Show(true);
@@ -748,9 +750,10 @@ class HousingHud extends UIScriptedMenu
 		HouseData hd = g_HM.m_House.m_HouseData;
 		m_DoorsIdxWidgets.Clear();
 		ClearAllChildren(m_WrapDoor);
-		m_MapHousePos.ClearUserMarks();
+		// m_MapHousePos.ClearUserMarks();
 		ClearCheckboxes();
 		AddPointToMap(m_MapHousePos);
+		// m_MapHousePos.SetMapPos(g_HM.m_House.GetPosition());
 		m_ScrollDoors.VScrollToPos01(0);
 		m_HousePreview.SetItem( g_HM.m_House );
 		m_HousePreview.SetView( g_HM.m_House.GetViewIndex() );
@@ -809,8 +812,9 @@ class HousingHud extends UIScriptedMenu
 	{
 		HouseData hd = g_HM.m_House.m_HouseData;
 		string temp;
-		m_InfoMapHousePos.ClearUserMarks();
+		// m_InfoMapHousePos.ClearUserMarks();
 		AddPointToMap(m_InfoMapHousePos);
+		// m_InfoMapHousePos.SetMapPos(g_HM.m_House.GetPosition());
 		if (!hd) return;
 		m_InfoHousePreview.SetItem( g_HM.m_House );
 		m_InfoHousePreview.SetView( g_HM.m_House.GetViewIndex() );
@@ -914,7 +918,9 @@ class HousingHud extends UIScriptedMenu
 
 	void AddPointToMap(MapWidget w)
 	{
+		w.ClearUserMarks();
 		w.AddUserMark(g_HM.m_House.GetPosition(), "House" , ARGB(255, 255, 128, 8), "\\BastionMod\\BastionHousingSystem\\layouts\\dot.paa");
+		w.SetMapPos(g_HM.m_House.GetPosition());
 	}
 
 	bool ValidateInfo()
@@ -1731,11 +1737,23 @@ class HousingHud extends UIScriptedMenu
 
 		if (m_SchCheckBoxAdminRequests.IsChecked())
 		{
-			if (!hd.RentSuggestions.Count())
+			if (!HasNotCheckedSuggestions(hd))
 			{return false;}
 		}
 
 		return true;
+	}
+
+	bool HasNotCheckedSuggestions(HouseData hd)
+	{
+		for (int i = 0; i < hd.RentSuggestions.Count(); i++)
+		{
+			if (!hd.RentSuggestions.Get(i).Approved)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	void ShowHouseInfo(int idx)
