@@ -28,20 +28,10 @@ class CfgMods
 		dependencies[] = {"Game","World","Mission"};
 		class defs
 		{
-			class gameScriptModule
-			{
-				value = "";
-				files[] = {"BastionMod/BastionMisc/DeadlyWater/scripts/3_Game"};
-			};
 			class worldScriptModule
 			{
 				value = "";
 				files[] = {"BastionMod/BastionMisc/DeadlyWater/scripts/4_World"};
-			};
-			class missionScriptModule
-			{
-				value = "";
-				files[] = {"BastionMod/BastionMisc/DeadlyWater/scripts/5_Mission"};
 			};
 		};
 	};
