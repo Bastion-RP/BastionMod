@@ -242,7 +242,7 @@ class cfgWeapons
 		displayName = "CSP-9";
 		descriptionShort = "CSP-9 is a pistol chambered in 9x19mm and takes a 17 round CSP9 Grach Mag.";
 		model = "BastionMod\BastionGuns\CSP9\CSP9.p3d";
-		attachments[] = {"pistolMuzzle"};
+		attachments[] = {"pistolMuzzle","pistolFlashlight"};
 		itemSize[] = {4,2};
 		class DamageSystem
 		{
@@ -251,7 +251,11 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.7,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},{0.5,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},{0.0,{"DZ\weapons\pistols\fnx45\data\herstal45_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},
+					{0.7,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},
+					{0.5,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},
+					{0.3,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},
+					{0.0,{"DZ\weapons\pistols\fnx45\data\herstal45_destruct.rvmat"}}};
 				};
 			};
 		};
