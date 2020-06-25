@@ -6,9 +6,6 @@ modded class MissionServer
 	override void OnInit()
 	{
 		super.OnInit();
-		// g_HSL	= new HouseStorageLoader();
-		// g_HSL	= HouseStorageLoader.LoadData();
-		g_HSL.m_GenHosData.HousesData.Debug();
 		if ( GetGame().IsServer() )
 		{
 			saveDelay = 2; // minutes
