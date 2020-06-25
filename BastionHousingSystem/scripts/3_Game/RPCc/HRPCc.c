@@ -4,7 +4,6 @@ enum HRPC
 	SEND_ADMINS_ID,
 	SEND_BRP_HOUSES,
 	SEND_HOUSES_DATA,
-	SEND_RESPONSE,
 
 	REQUEST_HOUSE_DATA,
 	REQUEST_ADD_HOUSE_INFO,
@@ -21,30 +20,8 @@ enum HRPC
 	REQUEST_DELETE_GROUP,
 	REQUEST_BRP_HOUSES,
 	REQUEST_HOUSES_DATA,
-	REQUEST_ALLOW_SUGGEST,
-	REQUEST_DENY_SUGGEST,
-	REQUEST_PAY_RENT,
 	
 }
 
-enum HouseResponse
-{
-	//general
-	NECredits = 1, //not enough credits
-	Success,
-	Unsuccess,
-
-	//specific
-	NLBAccount, // not logged in bank acc
-}
-
-enum ActionMenu
-{
-	AdminManageBuildingDirectly = 0,  // directly mean with game action (F)
-	ShowRentalConditionsDirectly,
-	ShowInfoDirectly, // for owner
-	ShowRentInfo,
-
-	RemoteAdminManageBuildingWithTerminal,
-	RemoteManageBuildingTerminal,
-}
+//923709972
+//-2147393536

@@ -1,11 +1,3 @@
-class ActionShowDoorInfoCB : ActionContinuousBaseCB
-{	
-	override void CreateActionComponent()
-	{
-		m_ActionData.m_ActionComponent = new CAContinuousRepeat(3);
-	}
-}
-
 class ActionShowDoorInfo : ActionInteractBase
 {
 	string ID = "-1";
@@ -14,7 +6,6 @@ class ActionShowDoorInfo : ActionInteractBase
 
 	void ActionShowDoorIndex()
 	{
-		m_CallbackClass = ActionShowDoorInfoCB;
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_OPENDOORFW;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
 		m_HUDCursorIcon = CursorIcons.OpenDoors;
@@ -45,7 +36,7 @@ class ActionShowDoorInfo : ActionInteractBase
 	{
 		if( !target ) return false;
 		if( !IsBuilding(target) ) return false;
-		if( !IsInReach(player, target, UAMaxDistances.DEFAULT) ) return false;
+
 		if (GetGame().IsClient())
 		{
 			BRP_House building;
@@ -68,27 +59,23 @@ class ActionShowDoorInfo : ActionInteractBase
 					}
 					if (!building.m_HouseData.LeaseTime && ((g_HM.AdminsArr.Find(plId) + 1)))
 					{
-						ID += " Admin Manage building";
+						ID += " Admin Manage building.";
 						type = 0;
 					}
 					else if (building.m_HouseData && !building.m_HouseData.MainOwner.HashID && g_HM.IsDoorAllow(doorIndex, building))
 					{
-						ID += " Show rental conditions";
+						ID += " Show rental conditions.";
 						type = 1;
 					}
 					else if (building.m_HouseData && building.m_HouseData.MainOwner.MilticharacterID == plId && g_HM.IsDoorAllow(doorIndex, building))
 					{
-						ID += " Show info";
+						ID += " Show info.";
 						type = 2;
 					}
 					else if (building.m_HouseData && building.m_HouseData.MainOwner.HashID && g_HM.IsDoorAllow(doorIndex, building) && g_HM.IsRentableDoor(doorIndex, building))
 					{
-						ID += " Show rent info";
+						ID += " Show rent info.";
 						type = 3;
-					}
-					else
-					{
-						return false;
 					}
 					return true;
 				}

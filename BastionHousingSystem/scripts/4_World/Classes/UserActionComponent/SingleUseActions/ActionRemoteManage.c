@@ -16,6 +16,11 @@ class ActionRemoteManageHouses : ActionInteractBase
 		m_ConditionTarget = new CCTNone;
 	}
 
+	// override typename GetInputType()
+	// {
+	// 	return ContinuousInteractActionInput;
+	// }
+
 	override string GetText()
 	{
 		return ID;
@@ -30,10 +35,12 @@ class ActionRemoteManageHouses : ActionInteractBase
 	{
 		if (GetGame().IsClient())
 		{
-			if (target.GetObject() && BRP_ATM.Cast(target.GetObject()))
+			Barrel_ColorBase barrel;
+			if( Class.CastTo(barrel, target.GetObject()) ) //TODO: change to terminal
 			{
-				ID = "Remote Manage building";
-				type = 5;
+				type = -1;
+				ID = "Remote Manage building.";
+				type = 6;
 				return true;
 			}
 			return false;

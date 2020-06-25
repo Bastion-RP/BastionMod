@@ -1,7 +1,7 @@
 class HouseStorageLoader
 {
 	const private static string m_ProfilePath		= "$profile:\\Bastion\\House_BD";
-	const private static string m_FileName			= "GeneralHouseData";
+	const private static string m_FileName			= "AllHousesInfo";
 
 	private ref FileSerializer 	file;
 	private FileHandle          m_StartFile;
@@ -12,9 +12,13 @@ class HouseStorageLoader
 	{
 		file = new FileSerializer();
 		m_GenHosData = new GeneralHousesData();
-		m_GenHosData.Admins.Insert("50278"); // default
-		m_GenHosData.Admins.Insert("50013"); // default
-		m_GenHosData.MaxHoursNonPayment = 10; // default
+		m_GenHosData.Admins.Insert("t6goVGbhstnvoqE9d_apyTpfMglcUNy099wKuvhVnmo=");
+		m_GenHosData.Admins.Insert("50278");
+		m_GenHosData.Admins.Insert("50110");
+		m_GenHosData.Admins.Insert("50013");
+		m_GenHosData.Admins.Insert("OG-UnHi5ZORxnSaxd5ceczLK5yMTFp7ZC1fe6c8Ycu8=");
+		m_GenHosData.Admins.Insert("IObXq1Qn8EXHK0JHJ5IM09kQ1_04ABRbut1kp6aPj8Q=");
+		Print(m_GenHosData);
 		LoadData();
 	}
 
@@ -25,10 +29,30 @@ class HouseStorageLoader
 			MakeDirectory(m_ProfilePath);
 		}
 
-		LoadGeneralData();
 		LoadHousesData();
+        // if (FileExist(m_ProfilePath + "/" + m_FileName))
+        // {
+		// 	LoadDataFromFile();
+		// 	Print("Load data");
+		// 	m_GenHosData.Admins.Debug();
+        // }
+		// else
+        // {
+		// 	CreateNewData();
+		// 	Print("Create new data");
+        // }
     }
 	
+	// void LoadDataFromFile()
+	// {
+	// 	int elemCount = 0;
+	// 	HouseData hd = new HouseData;
+	// 	if (file.Open(m_ProfilePath + "/" + m_FileName, FileMode.READ))
+	// 	{
+	// 		file.Read(m_GenHosData);
+	// 		file.Close();
+	// 	}
+	// }
 	void SaveData(HouseData hd)
 	{
 		string name = hd.BuildingPos;
@@ -49,17 +73,15 @@ class HouseStorageLoader
 		}
 	}
 
-	void LoadGeneralData()
-	{
-		if (FileExist(m_ProfilePath + "\\" + m_FileName + ".json"))
-		{
-			JsonFileLoader<GeneralHousesData>.JsonLoadFile(m_ProfilePath + "\\" + m_FileName + ".json", m_GenHosData);
-		}
-		else
-		{
-			JsonFileLoader<GeneralHousesData>.JsonSaveFile(m_ProfilePath + "\\" + m_FileName + ".json", m_GenHosData);
-		}
-	}
+	// void CreateNewData()
+	// {
+	// 	m_GenHosData.Admins.Insert("t6goVGbhstnvoqE9d_apyTpfMglcUNy099wKuvhVnmo=");
+	// 	file.Open(m_ProfilePath + "/" + m_FileName, FileMode.WRITE);
+	// 	file.Write(m_GenHosData);
+	// 	file.Close();
+
+	// 	SaveData();
+	// }
 
 	void LoadHousesData()
 	{
@@ -84,12 +106,14 @@ class HouseStorageLoader
 			}
 		}
 		CloseFindFile(houseFile);
+		m_GenHosData.HousesData.Debug();
 	}
 
 	HouseData LoadHouseData(string filename)
 	{
 		ref HouseData data = new HouseData;
 		JsonFileLoader<ref HouseData>.JsonLoadFile(m_ProfilePath + "\\" + filename, data);
+		Print(data.Low);
 		if (!data.Low) return NULL;
 		return data;
 	}
@@ -103,6 +127,12 @@ class HouseStorageLoader
 	void SendMainHouseData(PlayerBase pl)
 	{
 		pl.RPCSingleParam(HRPC.SEND_HOUSES_DATA, new Param1<ref array<ref HouseData>>(m_GenHosData.HousesData), true, pl.GetIdentity());
+		Print("Main house data sended");
+	}
+
+	void SendAllHouses(PlayerBase pl)
+	{
+		//pl.RPCSingleParam(HRPC.SEND_BRP_HOUSES, new Param1<ref array<ref HouseData>>(m_GenHosData.HousesData), true, pl.GetIdentity());
 	}
 }
 ref HouseStorageLoader g_HSL;

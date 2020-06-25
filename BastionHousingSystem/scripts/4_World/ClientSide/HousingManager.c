@@ -34,9 +34,6 @@ class HouseManager
 			case HRPC.SEND_BRP_HOUSES:
 				handleApplyBRPHouses(ctx);
 			break;
-			case HRPC.SEND_RESPONSE:
-				handleApplyResponse(ctx);
-			break;
 		}
 	}
 
@@ -52,11 +49,8 @@ class HouseManager
 		Param1<ref array<ref HouseData>> rpb;
 		if (!ctx.Read(rpb)) return;
 		AllHouseData = rpb.param1;
-		if (m_HousingHud)
-		{
-			m_HousingHud.SearchHouses();
-		}
-		
+		Print("Main data aplied");
+		AllHouseData.Debug();
 	}
 
 	void handleApplyBRPHouses(ParamsReadContext  ctx)
@@ -64,13 +58,6 @@ class HouseManager
 		Param1<ref array<ref BRP_House>> rpb;
 		if (!ctx.Read(rpb)) return;
 		AllHouses = rpb.param1;
-	}
-
-	void handleApplyResponse(ParamsReadContext  ctx)
-	{
-		Param1<int> rpb;
-		if (!ctx.Read(rpb)) return;
-		ShowResponse(rpb.param1);
 	}
 
 	void OnKeyPress(int key)
@@ -266,12 +253,12 @@ class HouseManager
 		int low, high;
 		m_House.GetNetworkID(low,high);
 		m_House.RPCSingleParam(HRPC.REQUEST_ADD_GUEST_TO_DOOR, new Param3<int, int, int>(low, high, dIdx), true, NULL);
+		Print("SendRequestGroup::dIdx "+dIdx);
 	}
 
 	void RequestCancelLease()
 	{
 		int low, high;
-		if (!m_House) return;
 		m_House.GetNetworkID(low,high);
 		m_House.RPCSingleParam(HRPC.REQUEST_CANCEL_LEASE, new Param2<int,int>(low,high), true, NULL);
 	}
@@ -365,48 +352,6 @@ class HouseManager
 	void RequestBRPHouses()
 	{
 		GetGame().GetPlayer().RPCSingleParam(HRPC.REQUEST_BRP_HOUSES, null, true, null);
-	}
-
-	void RequestAllowSuggestion(int sIdx)
-	{
-		int low, high;
-		m_House.GetNetworkID(low,high);
-		m_House.RPCSingleParam(HRPC.REQUEST_ALLOW_SUGGEST, new Param3<int,int,int>(low,high,sIdx), true, NULL);
-	}
-
-	void RequestDenySuggestion(int sIdx)
-	{
-		int low, high;
-		m_House.GetNetworkID(low,high);
-		m_House.RPCSingleParam(HRPC.REQUEST_DENY_SUGGEST, new Param3<int,int,int>(low,high,sIdx), true, NULL);
-	}
-
-	void RequestPayRent()
-	{
-		int low, high;
-		m_House.GetNetworkID(low,high);
-		m_House.RPCSingleParam(HRPC.REQUEST_PAY_RENT, new Param2<int,int>(low,high), true, NULL);
-	}
-
-	void ShowResponse(int resType)
-	{
-		string msg;
-		switch (resType)
-		{
-			case HouseResponse.NECredits:
-				msg = "Request rejected, not enough credits.";
-			break;
-			case HouseResponse.Success:
-				msg = "The request is approved.";
-			break;
-			case HouseResponse.Unsuccess:
-				msg = "Request rejected.";
-			break;
-			case HouseResponse.NLBAccount:
-				msg = "You are not logged in to your Bank account.";
-			break;
-		}
-		ShowBastionNotification(msg);
 	}
 }
 ref HouseManager g_HM;
