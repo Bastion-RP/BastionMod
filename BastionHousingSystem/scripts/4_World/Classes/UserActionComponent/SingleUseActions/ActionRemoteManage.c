@@ -33,7 +33,7 @@ class ActionRemoteManageHouses : ActionInteractBase
 			if (target.GetObject() && BRP_ATM.Cast(target.GetObject()))
 			{
 				ID = "Remote Manage building";
-				type = 6;
+				type = 5;
 				return true;
 			}
 			return false;

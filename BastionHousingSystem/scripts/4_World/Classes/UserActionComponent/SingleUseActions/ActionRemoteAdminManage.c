@@ -37,7 +37,7 @@ class ActionRemoteAdminManageHouses : ActionInteractBase
 				if ((g_HM.AdminsArr.Find(plId) + 1))
 				{
 					ID = "Remote Admin Manage building";
-					type = 5;
+					type = 4;
 					return true;
 				}
 			}

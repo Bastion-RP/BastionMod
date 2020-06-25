@@ -37,3 +37,14 @@ enum HouseResponse
 	//specific
 	NLBAccount, // not logged in bank acc
 }
+
+enum ActionMenu
+{
+	AdminManageBuildingDirectly = 0,  // directly mean with game action (F)
+	ShowRentalConditionsDirectly,
+	ShowInfoDirectly, // for owner
+	ShowRentInfo,
+
+	RemoteAdminManageBuildingWithTerminal,
+	RemoteManageBuildingTerminal,
+}
