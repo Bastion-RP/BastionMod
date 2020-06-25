@@ -1,7 +1,8 @@
-enum eBRPModifiers : eModifiers
+enum eBRPModifiers
 {
-	MDF_DEADLYWATER,
+	MDF_DEADLYWATER = 50,
 }
+
 
 class DeadlyWaterMdfr : ModifierBase
 {
@@ -33,7 +34,7 @@ class DeadlyWaterMdfr : ModifierBase
 	override void OnActivate(PlayerBase player)
 	{
 		player.GetStatHeatComfort().Set(player.GetStatHeatComfort().GetMin());
-		player.GetSymptomManager().QueueUpSecondarySymptom(BRP_SymptomIDs.BRP_SYMPTOM_DEAD_BY_WATER);
+		player.RequestActivateClientEffects();
 	}
 
 	override bool DeactivateCondition(PlayerBase player)
@@ -47,11 +48,18 @@ class DeadlyWaterMdfr : ModifierBase
 
 	override void OnDeactivate(PlayerBase player)
 	{
-		
+		player.RequestDeactivateClientEffects();
+		player.SetHealth("GlobalHealth", "Shock", 100);
 	}
 
 	override void OnTick(PlayerBase player, float deltaT)
 	{
+		player.GetStatHeatComfort().Set(player.GetStatHeatComfort().GetMin());
 		player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_FREEZE);
+		player.AddHealth("GlobalHealth", "Health", -1);
+		if (player.ShouldLoseConsciousness())
+		{
+			player.SetHealth("GlobalHealth", "Shock", 0);
+		}
 	}
 }

@@ -513,35 +513,35 @@ class HousingHud extends UIScriptedMenu
 		FillSearchArr();
 		FillClassesWidgets();
 
-		if (m_Type == ActionMenu.AdminManageBuildingDirectly)
+		if (m_Type == ActionHousingMenu.AdminManageBuildingDirectly)
 		{
 			SetupCreateHouseSetting();
 			m_PanelCreateHouse.Show(true);
 		}
-		else if (m_Type == ActionMenu.ShowRentalConditionsDirectly)
+		else if (m_Type == ActionHousingMenu.ShowRentalConditionsDirectly)
 		{
 			SetupShowInfo();
 			m_PanelInfoForMainTenant.Show(true);
 		}
-		else if (m_Type == ActionMenu.ShowInfoDirectly)
+		else if (m_Type == ActionHousingMenu.ShowInfoDirectly)
 		{
 			SetupMHPanelInfo();
 			m_PanelManageHouse.Show(true);
 		}
-		else if (m_Type == ActionMenu.ShowRentInfo)
+		else if (m_Type == ActionHousingMenu.ShowRentInfo)
 		{
 			SetupDoorInfo();
 			m_PanelDoorInfo.Show(true);
 			//need door panel
 		}
-		else if (m_Type == ActionMenu.RemoteAdminManageBuildingWithTerminal) // admin use terminal
+		else if (m_Type == ActionHousingMenu.RemoteAdminManageBuildingWithTerminal) // admin use terminal
 		{
 			m_PanelTerminalWrap.Show(true);
 			m_PanelCreateHouse.Show(true);
 			m_SchCheckBoxOwnHouses.Show(false);
 			IsAdmin = true;
 		}
-		else if (m_Type == ActionMenu.RemoteManageBuildingTerminal) // m_Player use terminal
+		else if (m_Type == ActionHousingMenu.RemoteManageBuildingTerminal) // m_Player use terminal
 		{
 			m_PanelTerminalWrap.Show(true);
 			m_SchCheckBoxRentable.SetChecked(true);
