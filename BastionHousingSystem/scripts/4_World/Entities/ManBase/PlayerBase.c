@@ -48,12 +48,7 @@ modded class PlayerBase
 		{
 			if (rpc_type == HRPC.REQUEST_HOUSES_DATA)
 			{
-				Print("Main house data request");
 				g_HSL.SendMainHouseData(this);
-			}
-			if (rpc_type == HRPC.REQUEST_BRP_HOUSES)
-			{
-				g_HSL.SendAllHouses(this);
 			}
 		}
 	}

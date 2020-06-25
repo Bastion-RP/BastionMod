@@ -2,6 +2,7 @@ class GeneralHousesData
 {
 	ref array<string> 				Admins = new array<string>();	// contains steamid64, they have access to all buildings
 	float							MaxHoursNonPayment;
+	ref array<ref DefaultSorage>	Currencies = new array<ref DefaultSorage>();
 	ref array<ref HouseData>		HousesData = new array<ref HouseData>();
 }
 
@@ -28,8 +29,9 @@ class HouseData
 class DefaultSorage
 {
 	string							Classname;
-	int								Count;
+	int								Value;
 }
+
 
 class HousePersonData
 {
