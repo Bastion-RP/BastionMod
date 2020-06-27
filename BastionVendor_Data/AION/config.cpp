@@ -40,8 +40,8 @@ class CfgVehicles
 		stackedRandom=0;
 		stackedUnit="";
 		varLiquidTypeInit=131072;
-		//destroyOnEmpty=0;
-		//varQuantityDestroyOnMin=0;
+		destroyOnEmpty=0;
+		varQuantityDestroyOnMin=0;
 		varQuantityInit=500;
 		varQuantityMin=0;
 		varQuantityMax=500;
