@@ -580,10 +580,50 @@ class BRP_House extends Building
 
 //modded class BuildingBase extends BRP_House {};
 
+class Land_House_1W01 : BRP_House {};
+class Land_House_1W02 : BRP_House {};
+class Land_House_1W03 : BRP_House {};
+class Land_House_1W04 : BRP_House {};
+class Land_House_1W05 : BRP_House {};
+class Land_House_1W06 : BRP_House {};
+class Land_House_1W07 : BRP_House {};
+class Land_House_1W08 : BRP_House {};
+class Land_House_1W09 : BRP_House {};
+class Land_House_1W10 : BRP_House {};
+class Land_House_1W11 : BRP_House {};
+class Land_House_1W12 : BRP_House {};
+class Land_House_2B01 : BRP_House {};
+class Land_House_2B02 : BRP_House {};
 class Land_House_2B03 : BRP_House {};
+class Land_House_2B04 : BRP_House {};
+class Land_House_2W01 : BRP_House {};
+class Land_House_2W02 : BRP_House {};
+class Land_House_2W03 : BRP_House {};
 class Land_House_2W04 : BRP_House {};
 class Land_Tenement_Big : BRP_House {};
 class Land_Tenement_Small : BRP_House {};
-
+class Land_City_Store : BRP_House {};
+class Land_City_Store_With_Stairs : BRP_House {};
+class Land_Village_Store : BRP_House {};
+class Land_Village_Store_Enoch : BRP_House {};
+class Land_HouseBlock_1F_Corner : BRP_House {};
+class Land_HouseBlock_1F1 : BRP_House {};
+class Land_HouseBlock_1F2 : BRP_House {};
+class Land_HouseBlock_1F3 : BRP_House {};
+class Land_HouseBlock_1F4 : BRP_House {};
+class Land_HouseBlock_2F_Corner : BRP_House {};
+class Land_HouseBlock_2F1 : BRP_House {};
+class Land_HouseBlock_2F2 : BRP_House {};
+class Land_HouseBlock_2F3 : BRP_House {};
+class Land_HouseBlock_2F4 : BRP_House {};
+class Land_HouseBlock_2F5 : BRP_House {};
+class Land_HouseBlock_2F6 : BRP_House {};
+class Land_HouseBlock_2F7 : BRP_House {};
+class Land_HouseBlock_2F8 : BRP_House {};
+class Land_HouseBlock_2F9 : BRP_House {};
+class Land_HouseBlock_3F_Corner : BRP_House {};
+class Land_HouseBlock_3F1 : BRP_House {};
+class Land_HouseBlock_3F2 : BRP_House {};
+class Land_HouseBlock_5F : BRP_House {};
 
 //E:\Games\Steam\steamapps\common\DayZServer\@Bastion\Addons
