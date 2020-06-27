@@ -841,11 +841,12 @@ class HousingHud extends UIScriptedMenu
 		else
 		{
 			m_InfoBtnRent.Show(true);
+			m_InfoBtnRent.Enable(true);
 			m_InfoBtnApproval.Show(false);
-			if ( (hd.AllowCitizenClasses.Find(m_Player.GetMultiCharactersPlayerClass()) + 1) )
-			{
-				m_InfoBtnRent.Enable(true);
-			}
+			// if ( (hd.AllowCitizenClasses.Find(m_Player.GetMultiCharactersPlayerClass()) + 1) ) // TODO: rework
+			// {
+			// 	m_InfoBtnRent.Enable(true);
+			// }
 		}
 		if (!g_HM.m_House)
 		{
