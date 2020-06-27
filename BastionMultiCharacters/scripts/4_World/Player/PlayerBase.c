@@ -188,6 +188,21 @@ modded class PlayerBase {
 		}
 	}
 
+	// Function identical to OnConnect, just no other mod relies on it. So I can initialize a client without worrying about mods calling OnConnect to data that doesn't exist.
+	void MultiCharInit() {
+		Print(MCConst.debugPrefix + "PlayerBase | MultiCharInit | Player connected:" + this.ToString());
+
+		// analytics
+		GetGame().GetAnalyticsServer().OnPlayerConnect( this );
+		
+		m_PlayerOldPos = GetPosition();
+		if( m_AnalyticsTimer )
+			m_AnalyticsTimer.Run( 60, this, "UpdatePlayerMeasures", null, true );
+		
+		//construction action data
+		ResetConstructionActionData();
+	}
+
 	void SetMultiCharacterStats(int multicharactersPlayerId, string multicharactersPlayerName, int multicharactersPlayerClass) {
 		this.multicharactersPlayerId = multicharactersPlayerId;
 		this.multicharactersPlayerClass = multicharactersPlayerClass;
