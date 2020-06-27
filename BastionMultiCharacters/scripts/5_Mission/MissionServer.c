@@ -38,11 +38,7 @@ modded class MissionServer {
 								InitializeClient(identity);
 							} else {
 								Print(MCConst.debugPrefix + "MissionServer | OnEvent | ClientNewEventTypeID | Creating new thread to spawn player!");
-								//auto spawnData = new Param3<PlayerIdentity, int, string>(identity, dataCharacterId.param1, dataCharacterType.param1);
-
 								ThreadOnClientNewEvent(identity, dataCharacterId.param1, dataCharacterType.param1);
-
-        						//GetGame().GameScript.Call(this, "ThreadOnClientNewEvent", spawnData);
 							}
 						}
 					}
@@ -56,11 +52,8 @@ modded class MissionServer {
 		}
 	}
 	
-	void ThreadOnClientNewEvent(/*Param3<PlayerIdentity, int, string> spawnData*/PlayerIdentity identity, int characterId, string characterType) {
+	void ThreadOnClientNewEvent(PlayerIdentity identity, int characterId, string characterType) {
 		Print(MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | New thread created to spawn player");
-		/* PlayerIdentity identity = spawnData.param1;
-		int characterId = spawnData.param2;
-		string characterType = spawnData.param3; */
 
 		if (characterId != 0) {
 			Print(MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Loading client! id=" + identity.GetPlainId() + " | char id=" + characterId + " | char type=" + characterType);
@@ -113,6 +106,10 @@ modded class MissionServer {
 				newPlayer.SaveInventory();
 				GetGame().SelectPlayer(identity, newPlayer);
 				FinishSpawningClient(identity, newPlayer);
+
+        		Param params = new Param3<int, string, int>(characterId, webCharData.GetFirstName() + " " + webCharData.GetLastName(), webCharData.GetCitizenClass().ToInt());
+        		GetGame().RPCSingleParam(newPlayer, MultiCharRPC.CLIENT_RECEIVE_PLAYER_API_DATA, params, true, newPlayer.GetIdentity());
+
 			} else {
 				Print(MCConst.debugPrefix + "MissionServer | OnClientNewEvent | Could not validate client! id=" + identity.GetPlainId());
 				GetGame().DisconnectPlayer(identity);
@@ -152,6 +149,7 @@ modded class MissionServer {
 				} else {
 					parent = newPlayer.GetInventory().CreateInInventory(saveObject.GetType());
 				}
+				if (!parent) { continue; }
 				parent.SetHealth("", "Health", saveObject.GetHealth());
 				SetItemQuantity(parent, saveObject.GetQuantity());
 
@@ -185,10 +183,7 @@ modded class MissionServer {
 		} else {
 			localParent = parent.GetInventory().CreateAttachmentEx(type, slot);
 		}
-		if (!localParent) {
-			Print(MCConst.debugPrefix + "Could not spawn item type=" + type + " | playername=" + player.GetIdentity().GetName() + " | Exiting...");
-			return;
-		}
+		if (!localParent) { return; }
 		localParent.SetHealth("", "Health", objectToCreate.GetHealth());
 
 		if (slot != -1) {

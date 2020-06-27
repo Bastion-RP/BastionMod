@@ -85,7 +85,7 @@ class BastionBankingMenu : UIScriptedMenu {
         super.OnShow();
 
         player = PlayerBase.Cast(GetGame().GetPlayer());
-        userDir = "C:\Users\\" + player.GetIdentity().GetName() + ">";
+        userDir = "C:\Users\\" + player.GetMultiCharactersPlayerName() + ">";
 
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_INVENTORY);
         GetGame().GetUIManager().ShowUICursor(true);
