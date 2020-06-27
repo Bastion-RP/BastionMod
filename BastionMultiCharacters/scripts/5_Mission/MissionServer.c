@@ -96,7 +96,7 @@ modded class MissionServer {
 				} else {
 					vector spawnPos;
 
-					if (webCharData.GetCitizenClass().ToInt() == BastionClasses.S) {
+					if (webCharData.GetCitizenClass().ToInt() >= BastionClasses.ISF_F && webCharData.GetCitizenClass().ToInt() <= BastionClasses.ISF_E) {
 						spawnPos = GetMultiCharactersServerManager().GetRandomISFSpawnpoint();
 					} else {
 						spawnPos = GetMultiCharactersServerManager().GetRandomSpawnpoint();
