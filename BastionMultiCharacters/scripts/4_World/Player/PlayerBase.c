@@ -192,15 +192,9 @@ modded class PlayerBase {
 		this.multicharactersPlayerId = multicharactersPlayerId;
 		this.multicharactersPlayerClass = multicharactersPlayerClass;
 		this.multicharactersPlayerName = multicharactersPlayerName;
-
-		Print(MCConst.debugPrefix + "Setting character identifiers! id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass + " | name=" + multicharactersPlayerName);
 	}
 
-	int GetMultiCharactersPlayerId() {
-		return multicharactersPlayerId;
-	}
-
-	int GetMultiCharactersPlayerClass() {
-		return multicharactersPlayerId;
-	}
+	string GetMultiCharactersPlayerName() { return multicharactersPlayerName; }
+	int GetMultiCharactersPlayerId() { return multicharactersPlayerId; }
+	int GetMultiCharactersPlayerClass() { return multicharactersPlayerClass; }
 }
