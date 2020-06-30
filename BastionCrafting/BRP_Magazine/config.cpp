@@ -1,19 +1,15 @@
 class CfgPatches
 {
-	class Lugge_Krone
+	class BRP_Magazine
 	{
 		units[]=
 		{
-			"Lugge_Krone"
+			"BRP_Magazine"
 		};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"DZ_Characters",
-			"DZ_Characters_Pants",
-			"DZ_Characters_Tops",
-			"DZ_Characters_Headgear",
 			"DZ_Data"
 		};
 	};
@@ -23,16 +19,15 @@ class CfgPatches
 class CfgVehicles
 {		
 	class Inventory_Base;
-	class Book_Base: Inventory_Base
+	class BRP_Magazine: Inventory_Base
 	{
-		simulation="ItemBook";
-		model="\BastionMod\BastionCrafting\BRP_Magazine\magazine.p3d";
-		inventorySlot[]=
-		{
-			"Book"
-		};
+		scope=2;
+		model="\BastionMod\BastionCrafting\BRP_Magazine\BRP_Magazine.p3d";
 		itemSize[]={2,2};
+		weight = 500;
+		rotationFlags=16;
 		absorbency=0.89999998;
+		physLayer="item_small";
 		hiddenSelections[]=
 		{
 			"all"
@@ -41,6 +36,59 @@ class CfgVehicles
 		{
 			"BastionMod\BastionCrafting\BRP_Magazine\textures\brp_magazine_co.paa"
 		};
-	
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=100;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"BastionMod\BastionCrafting\BRP_Magazine\data\brp_magazine.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"BastionMod\BastionCrafting\BRP_Magazine\data\brp_magazine.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"BastionMod\BastionCrafting\BRP_Magazine\data\brp_magazine_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"BastionMod\BastionCrafting\BRP_Magazine\data\brp_magazine_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"BastionMod\BastionCrafting\BRP_Magazine\data\brp_magazine_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
+		
 	};
 };
