@@ -1,4 +1,4 @@
-class DTACCurl extends CURLCallback {
+class DTACCurl extends RestCallback {
     static ref ScriptInvoker dtacData = new ScriptInvoker();
 
     override void OnError(int errorCode) {

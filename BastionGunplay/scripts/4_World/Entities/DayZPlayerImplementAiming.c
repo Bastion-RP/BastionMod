@@ -931,7 +931,7 @@ modded class DayZPlayerImplementAiming {
     };
 
     // Calculates the weight that is used inside the processaimfilters
-	override float CalculateWeight(int stance_index, float current_stamina, float camera_sway_modifier) {
+	override float CalculateWeight(int stance_index, float current_stamina, float camera_sway_modifier, bool holding_breath) {
 
         // if gun is supported, replace the stamina
         if (BRP_GunPlay_m_GunSupportStrength != 0) {
