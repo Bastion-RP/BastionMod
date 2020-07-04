@@ -230,7 +230,7 @@ modded class DayZPlayerImplementAiming {
 
         //--- STAMINA CHECK
         // if player can't hold breath, cause destab
-        if (!m_PlayerPb.CanConsumeStamina(EStaminaConsumers.HOLD_BREATH)) {
+        if (!m_PlayerPb.CanStartConsumingStamina(EStaminaConsumers.HOLD_BREATH)) {
             if (BRP_GunPlay_m_Mod < 1) {
                 BRP_GunPlay_m_ModToAdd += 0.01 * t_TimePassed;
             };
@@ -940,7 +940,7 @@ modded class DayZPlayerImplementAiming {
         };
 
 
-        float BRP_GunPlay_t_AimWeight = super.CalculateWeight(stance_index, current_stamina, camera_sway_modifier);
+        float BRP_GunPlay_t_AimWeight = super.CalculateWeight(stance_index, current_stamina, camera_sway_modifier,holding_breath);
         BRP_GunPlay_t_AimWeight *= 0.5;
       
 
