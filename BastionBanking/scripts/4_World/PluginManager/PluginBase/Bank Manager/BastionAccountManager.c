@@ -52,10 +52,10 @@ class BastionAccountManager : PluginBase {
                     int accountTimeout = bankAccount.GetTimeout();
 
                     if (accountTimeout <= 0) {
-                        auto params = new Param2<string, string>("logintimeout", ", you have been logged out due to inactivity!");
+                        auto params = new Param2<int, map<string, string>>(BBRPCTypes.ACCOUNT_INACTIVE_LOGOUT, null);
 
                         GetGame().RPCSingleParam(player, BSTBankRPC.RPC_CLIENT_ERROR, params, true, player.GetIdentity());
-                        mapAccountLogins.RemoveElement(i);
+                        mapAccountLogins.Remove(player);
                         Logout(player);
                     } else {
                         bankAccount.DecrementTimeout();

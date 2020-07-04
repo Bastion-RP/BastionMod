@@ -13,6 +13,33 @@ class CfgPatches
 		};
 	};
 };
+class CfgMods
+{
+	class BastionCrafting_Data
+	{
+		dir = "BastionCrafting_Data";
+		picture = "";
+		action = "";
+		hideName = 1;
+		hidePicture = 1;
+		name = "BastionCrafting_Data";
+		credits = "RoomService";
+		author = "RoomService";
+		authorID = "0";
+		version = "1.0";
+		extra = 0;
+		type = "mod";
+		dependencies[] = {"World"};
+		class defs
+		{
+			class worldScriptModule
+			{
+				value = "";
+				files[] = {"BastionMod/BastionCrafting_Data/scripts/4_World"};
+			};
+		};
+	};
+};
 class CfgVehicles
 {
 	class Inventory_Base;
@@ -677,10 +704,11 @@ class CfgVehicles
 		descriptionShort = "A briquette of charcoal. Useful for smelting in the furnace.";
 		model = "BastionMod\BastionCrafting_Data\coal\coal.p3d";
 		isMeleeWeapon = 0;
+		rotationFlags=16;
 		weight = 300;
 		absorbency = 0;
-		itemSize[] = {1,1};
-		itemBehaviour = 0;
+		itemSize[] = {2,2};
+		itemBehaviour = 1;
 	};
 	class BRP_MetalSheet_Small1: Inventory_Base
 	{
@@ -689,10 +717,11 @@ class CfgVehicles
 		descriptionShort = "Small sheets of scrap metal. Useful for crafting.";
 		model = "BastionMod\BastionCrafting_Data\metalsheets\metalscrap_small1.p3d";
 		isMeleeWeapon = 0;
+		rotationFlags=16;
 		weight = 300;
 		absorbency = 0;
-		itemSize[] = {2,2};
-		itemBehaviour = 0;
+		itemSize[] = {3,3};
+		itemBehaviour = 1;
 	};
 	class BRP_MetalSheet_Small2: Inventory_Base
 	{
@@ -701,10 +730,11 @@ class CfgVehicles
 		descriptionShort = "Small sheets of scrap metal. Useful for crafting.";
 		model = "BastionMod\BastionCrafting_Data\metalsheets\metalscrap_small2.p3d";
 		isMeleeWeapon = 0;
+		rotationFlags=16;
 		weight = 300;
 		absorbency = 0;
-		itemSize[] = {2,2};
-		itemBehaviour = 0;
+		itemSize[] = {3,3};
+		itemBehaviour = 1;
 	};
 	class BRP_RaspberryPi: Inventory_Base
 	{
@@ -713,10 +743,11 @@ class CfgVehicles
 		descriptionShort = "A computer component. Useful for crafting.";
 		model = "BastionMod\BastionCrafting_Data\raspberry\pi.p3d";
 		isMeleeWeapon = 0;
-		weight = 300;
+		rotationFlags=16;
+		weight = 50;
 		absorbency = 0;
-		itemSize[] = {2,2};
-		itemBehaviour = 0;
+		itemSize[] = {1,1};
+		itemBehaviour = 1;
 	};
 	class BRP_Woodscrap1: Inventory_Base
 	{
@@ -725,10 +756,11 @@ class CfgVehicles
 		descriptionShort = "Pieces of wooden scrap. Useful for crafting.";
 		model = "BastionMod\BastionCrafting_Data\woodscrap\woodscrap.p3d";
 		isMeleeWeapon = 0;
+		rotationFlags=16;
 		weight = 300;
 		absorbency = 0;
-		itemSize[] = {3,2};
-		itemBehaviour = 0;
+		itemSize[] = {2,3};
+		itemBehaviour = 1;
 	};
 	class BRP_Woodscrap2: Inventory_Base
 	{
@@ -737,9 +769,23 @@ class CfgVehicles
 		descriptionShort = "Pieces of wooden scrap. Useful for crafting.";
 		model = "BastionMod\BastionCrafting_Data\woodscrap\woodscrap2.p3d";
 		isMeleeWeapon = 0;
+		rotationFlags=16;
 		weight = 300;
 		absorbency = 0;
-		itemSize[] = {3,2};
-		itemBehaviour = 0;
+		itemSize[] = {2,3};
+		itemBehaviour = 1;
+	};
+	class BRP_MeltedPlastic: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Melted plastic";
+		descriptionShort = "Pieces of melted plastic. Useful for crafting";
+		model = "BastionMod\BastionCrafting_Data\plasticpieces\plastic.p3d";
+		isMeleeWeapon = 0;
+		rotationFlags=16;
+		weight = 350;
+		absorbency = 0;
+		itemSize[] = {2,2};
+		itemBehaviour = 1;
 	};
 };

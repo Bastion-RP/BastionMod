@@ -586,4 +586,5 @@ class Land_Tenement_Big : BRP_House {};
 class Land_Tenement_Small : BRP_House {};
 
 
+
 //E:\Games\Steam\steamapps\common\DayZServer\@Bastion\Addons

@@ -1,17 +1,17 @@
 modded class PlayerBase
 {
 	private float				m_VignetteValue;
-	private bool				m_ShouldLoseConsciousness;
+	private bool				m_ShouldKillCharacter;
 	private bool				m_DeadByWaterActive;
 
 	const private int			ACTIVATE_DEADBYWATEREFFECT = -776243;
 	const private int			DEACTIVATE_DEADBYWATEREFFECT = -776242;
-	const private int			ACTIVATE_UNCONSCIOUS = -776241;
+	const private int			KILL_CHARACTER = -776241;
 
 	void PlayerBase()
 	{
 		m_VignetteValue				= 0;
-		m_ShouldLoseConsciousness	= false;
+		m_ShouldKillCharacter		= false;
 		m_DeadByWaterActive			= false;
 	}
 
@@ -25,9 +25,9 @@ modded class PlayerBase
 		this.RPCSingleParam(DEACTIVATE_DEADBYWATEREFFECT, null, true, this.GetIdentity());
 	}
 
-	void SendUnconscious()
+	void SendKillRequest()
 	{
-		this.RPCSingleParam(ACTIVATE_UNCONSCIOUS, null, true);
+		this.RPCSingleParam(KILL_CHARACTER, null, true);
 	}
 
 	override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
@@ -47,9 +47,9 @@ modded class PlayerBase
 		}
 		if (GetGame().IsServer())
 		{
-			if (rpc_type == ACTIVATE_UNCONSCIOUS)
+			if (rpc_type == KILL_CHARACTER)
 			{
-				m_ShouldLoseConsciousness = true;
+				m_ShouldKillCharacter = true;
 			}
 		}
 	}
@@ -86,12 +86,25 @@ modded class PlayerBase
 		else if (m_VignetteValue > 2)
 		{
 			m_VignetteValue = 2;
-			SendUnconscious();
+			SendKillRequest();
 		}
 	}
 
-	bool ShouldLoseConsciousness()
+	bool ShouldKillCharacter()
 	{
-		return m_ShouldLoseConsciousness;
+		return m_ShouldKillCharacter;
+	}
+
+	override void CheckDeath()
+	{
+		if( IsPlayerSelected() && !IsAlive() )
+		{
+			if(GetGame().IsClient())
+			{
+				PPEffects.ResetAll();
+				GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).Remove( DeadByWaterEffect);
+			}
+		}
+		super.CheckDeath();
 	}
 }
