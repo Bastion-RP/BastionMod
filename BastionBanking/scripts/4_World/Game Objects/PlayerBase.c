@@ -7,6 +7,20 @@ modded class PlayerBase {
         }
     }
 
+    override void Init()
+    {
+        if ( !GetGame().IsServer() || !GetGame().IsMultiplayer() ) 
+        {
+			DayzPlayerItemBehaviorCfg toolsOneHanded = new DayzPlayerItemBehaviorCfg;
+			toolsOneHanded.SetToolsOneHanded();
+			
+			GetDayZPlayerType().AddItemInHandsProfileIK("BRP_CopperCoin", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, "dz/anims/anm/player/ik/ammunition/22_LooseRounds.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("BRP_SilverCoin", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, "dz/anims/anm/player/ik/ammunition/22_LooseRounds.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("BRP_GoldCoin", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, "dz/anims/anm/player/ik/ammunition/22_LooseRounds.anm");
+		}
+        super.Init();
+    }
+
     BastionPlayerAccount GetBastionPlayerAccount() {
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return null; }
 
@@ -51,6 +65,8 @@ modded class PlayerBase {
     }
 
     override void OnConnect() {
+        super.OnConnect();
+        
         if (GetGame().IsServer() && GetGame().IsMultiplayer()) {
             Param params = new Param1<BastionBankingConfig>(GetBBankConfig().GetConfig());
 
@@ -58,7 +74,6 @@ modded class PlayerBase {
             GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.DepositPassiveIncome, GetBBankConfig().GetConfig().GetPassivePayInterval() * 60000, true);
             GetGame().RPCSingleParam(this, BSTBankRPC.RPC_CLIENT_INIT, params, true, GetIdentity());
         }
-        super.OnConnect();
     }
 
     override void OnDisconnect() {

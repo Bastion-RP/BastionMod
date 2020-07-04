@@ -17,11 +17,9 @@ class MultiCharactersClientRPCHandler : PluginBase {
         switch (rpc_type) {
             case MultiCharRPC.CLIENT_GRAB_LOADOUTS:
                 {
-                    Print(MCConst.debugPrefix + "MultiCharactersClientRPCHandler | CLIENT_GRAB_LOADOUTS | Received!");
                     Param1<array<ref SavePlayer>> dataGrabLoadouts;
 
                     if (!ctx.Read(dataGrabLoadouts)) { return; }
-                    Print(MCConst.debugPrefix + "MultiCharactersClientRPCHandler | CLIENT_GRAB_LOADOUTS | Data read!");
                     GetMultiCharactersClientManager().SetLoadouts(dataGrabLoadouts.param1);
                     GetMultiCharactersClientManager().HideInitMenu();
                     GetMultiCharactersClientManager().ShowSelectMenu();
@@ -40,6 +38,18 @@ class MultiCharactersClientRPCHandler : PluginBase {
                     int magsRemoved = magCount.param1;
                     //NotificationSystem.AddNotification(NotificationType.NOTIFICATIONS_END, 10, "" + magsRemoved + " mag(s) were removed from your weapon(s)\n and placed into your inventory!" );
                     NotificationSystem.AddNotificationExtended(10, "Mags Moved!", "" + magsRemoved + " mag(s) were removed from your weapon(s)\n and placed into your inventory!");
+                    break;
+                }
+            case MultiCharRPC.CLIENT_RECEIVE_PLAYER_API_DATA:
+                {
+                    Param3<int, string, int> dataAPI;
+                    if (!ctx.Read(dataAPI)) { return; }
+
+                    PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+
+                    if (player) {
+                        player.SetMultiCharacterStats(dataAPI.param1, dataAPI.param2, dataAPI.param3);
+                    }
                     break;
                 }
         }

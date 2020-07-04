@@ -1,5 +1,5 @@
 ﻿ambient[] = {1,1,1,1};
-diffuse[] = {1,1,1,1};
+diffuse[] = {0.4,0.4,0.4,1};
 forcedDiffuse[] = {0,0,0,0};
 emmisive[] = {0,0,0,1};
 specular[] = {0.1,0.14,0.14,1};
@@ -44,7 +44,7 @@ class Stage3
 };
 class Stage4
 {
-	texture = "#(argb,8,8,3)color(0,0,0,0,AS)";
+	texture = "#(argb,8,8,3)color(0.5,0.5,0.5,1,AS)";
 	uvSource = "tex";
 	class uvTransform
 	{
