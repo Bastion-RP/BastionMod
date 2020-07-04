@@ -103,12 +103,12 @@ modded class MainMenu
 		return storedDataHook.LoadData();
 	}
 
-  CURLCore FetchCurlCore()
+  	RestApi FetchCurlCore()
 	{
-		CURLCore curlCore = GetCURLCore();
+		RestApi curlCore = GetRestApi();
 
 		if (!curlCore) {
-			curlCore = CreateCURLCore();
+			curlCore = CreateRestApi();
 		}
 
 		return curlCore;
@@ -119,8 +119,8 @@ modded class MainMenu
 		string string_data, error;
 		bool ok;
 		string apiBase = BASTION_API_ENDPOINT;
-		CURLCore curlCore = FetchCurlCore();
-		CURLContext api = curlCore.GetCURLContext(apiBase);
+		RestApi curlCore = FetchCurlCore();
+		RestContext api = curlCore.GetRestContext(apiBase);
 		JsonSerializer js = new JsonSerializer();
 
 		string_data = api.GET_now( BASTION_API_ANNOUNCEMENTS );
