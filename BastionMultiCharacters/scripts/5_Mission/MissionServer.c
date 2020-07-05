@@ -57,16 +57,16 @@ modded class MissionServer {
 
 		if (characterId != 0) {
 			Print(MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Loading client! id=" + identity.GetPlainId() + " | char id=" + characterId + " | char type=" + characterType);
-			CURLCore curlCore;
+			RestApi curlCore;
 			MultiCharactersCURL mcCurl;
-			CURLContext curlCtx;
+			RestContext curlCtx;
 			MultiCharactersCharacterId webCharData;
 			map<string, string> webSteamData;
 			string error, data;
 
-			curlCore = CreateCURLCore();
+			curlCore = CreateRestApi();
 			mcCurl = new MultiCharactersCURL();
-			curlCtx = curlCore.GetCURLContext("https://bastionrp.com/api/");
+			curlCtx = curlCore.GetRestContext("https://bastionrp.com/api/");
 			jsSerializer.ReadFromString(webCharData, curlCtx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_CHARACTER_ID + characterId), error);
 			jsSerializer.ReadFromString(webSteamData, curlCtx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_STEAM_ID + identity.GetPlainId()), error);
 
@@ -91,7 +91,7 @@ modded class MissionServer {
 				} else {
 					vector spawnPos;
 
-					if (webCharData.GetCitizenClass().ToInt() == BastionClasses.S) {
+					if (webCharData.GetCitizenClass().ToInt() >= BastionClasses.ISF_F && webCharData.GetCitizenClass().ToInt() <= BastionClasses.ISF_E) {
 						spawnPos = GetMultiCharactersServerManager().GetRandomISFSpawnpoint();
 					} else {
 						spawnPos = GetMultiCharactersServerManager().GetRandomSpawnpoint();

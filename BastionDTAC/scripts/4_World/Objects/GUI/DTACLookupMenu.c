@@ -52,7 +52,11 @@ class DTACLookupMenu {
             txtNameLast.SetText("Last Name: " + mapData.Get("last_name"));
             txtDOB.SetText("DOB: " + mapData.Get("date_of_birth"));
             txtSex.SetText("Sex: " + mapData.Get("sex"));
-            txtCivClass.SetText("Class: " + typename.EnumToString(BastionClasses, mapData.Get("citizen_class").ToInt()));
+            
+            // change _ to - for the class (enum can't have hypen in it's name)
+            string t_ClassText = typename.EnumToString(BastionClasses, mapData.Get("citizen_class").ToInt());
+            t_ClassText.Replace("_","-");
+            txtCivClass.SetText("Class: " + t_ClassText);
             txtRace.SetText("Race: " + mapData.Get("race"));
         }
     }

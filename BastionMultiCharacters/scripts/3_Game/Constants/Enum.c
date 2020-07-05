@@ -18,5 +18,22 @@ enum BastionClasses {
 	B,
 	C,
 	D,
-	S
+	ISF_F,
+	ISF_A,
+	ISF_B,
+	ISF_C,
+	ISF_D,
+	ISF_E,
+	OIM_A,
+	OIM_B,
+	OIM_C,
+	OIM_D,
+	OIM_E,
+	OIM_F,
+	OIM_G,
+	OIM_H,
+	E,
+	F,
+	G,
+	X
 }
