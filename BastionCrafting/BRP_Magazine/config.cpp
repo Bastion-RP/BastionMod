@@ -19,13 +19,18 @@ class CfgPatches
 class CfgVehicles
 {		
 	class Inventory_Base;
-	class BRP_Magazine: Inventory_Base
+	
+	class Book_Base;
+	class ItemBook: Book_Base{};
+	class BRP_Magazine: ItemBook
 	{
 		scope=2;
 		model="\BastionMod\BastionCrafting\BRP_Magazine\BRP_Magazine.p3d";
+		displayName="Crafted Magazine";
+		descriptionShort="A Crafted Magazine to read";
 		itemSize[]={2,2};
 		weight = 500;
-		rotationFlags=16;
+		rotationFlags=17;
 		absorbency=0.89999998;
 		physLayer="item_small";
 		hiddenSelections[]=
