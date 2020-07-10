@@ -1,12 +1,12 @@
 class HouseManager
 {
 	ref array<string> 			AdminsArr;
-	BRP_House					m_House;
+	BuildingBase					m_House;
 	ref HousingHud				m_HousingHud;
 	private bool				HudIsOpen;
 	int							m_DoorsCount;
 	ref array<ref BstNot>		BstNotifications;
-	ref array<ref BRP_House>	AllHouses;
+	ref array<ref BuildingBase>	AllHouses;
 	ref array<ref HouseData>	AllHouseData;
 
 	Widget						m_BstNotStg;
@@ -17,7 +17,7 @@ class HouseManager
 		m_DoorsCount 		= 0;
 		HudIsOpen	 		= false;
 		BstNotifications	= new array<ref BstNot>();
-		AllHouses			= new array<ref BRP_House>();
+		AllHouses			= new array<ref BuildingBase>();
 		AllHouseData		= new array<ref HouseData>();
 	}
 
@@ -61,7 +61,7 @@ class HouseManager
 
 	void handleApplyBRPHouses(ParamsReadContext  ctx)
 	{
-		Param1<ref array<ref BRP_House>> rpb;
+		Param1<ref array<ref BuildingBase>> rpb;
 		if (!ctx.Read(rpb)) return;
 		AllHouses = rpb.param1;
 	}
@@ -83,7 +83,7 @@ class HouseManager
         }
 	}
 
-	void SetBuilding(BRP_House val)
+	void SetBuilding(BuildingBase val)
 	{
 		m_House = val;
 	}
@@ -127,7 +127,7 @@ class HouseManager
 		ShowBastionNotification("A rental request is sent");
 	}
 
-	bool IsDoorHaveOwner(PlayerBase player, BRP_House building, int doorIndex)
+	bool IsDoorHaveOwner(PlayerBase player, BuildingBase building, int doorIndex)
 	{
 		for (int i = 0; i < building.m_HouseData.GroupsData.Count(); i++)
 		{
@@ -144,7 +144,7 @@ class HouseManager
 		return false;
 	}
 
-	bool IsDoorOwner(PlayerBase player, BRP_House building, int doorIndex)
+	bool IsDoorOwner(PlayerBase player, BuildingBase building, int doorIndex)
 	{
 		string pId = player.GetMultiCharactersPlayerId().ToString();
 		for (int i = 0; i < building.m_HouseData.GroupsData.Count(); i++)
@@ -164,7 +164,7 @@ class HouseManager
 		return false;
 	}
 
-	bool IsDoorAllow(int idx, BRP_House building)
+	bool IsDoorAllow(int idx, BuildingBase building)
 	{
 		HouseData hd = building.m_HouseData;
 		if ((hd.AllowDoors.Find(idx) + 1))
@@ -172,7 +172,7 @@ class HouseManager
 		return false;
 	}
 
-	bool IsRentableDoor(int idx, BRP_House building)
+	bool IsRentableDoor(int idx, BuildingBase building)
 	{
 		HouseData hd = building.m_HouseData;
 		if (!hd) return false;
