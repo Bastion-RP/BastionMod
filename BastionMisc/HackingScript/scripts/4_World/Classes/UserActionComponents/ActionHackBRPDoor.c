@@ -44,27 +44,40 @@ class ActionHackBRPDoor: ActionContinuousBase
 		BuildingBase brpbuilding;
 		if( Class.CastTo(brpbuilding, target.GetObject()) )
 		{
-			if (super.ActionCondition(player, target, item))
+			if (GetGame().IsClient())
 			{
-				if (GetGame().IsClient())
+				int doorIdx = brpbuilding.GetDoorIndex(target.GetComponentIndex());
+				if (!brpbuilding.m_HouseData)
+				{return false;}
+				if (!brpbuilding.m_HouseData.LeaseTime)
+				{return false;}
+				if (!g_HM.IsDoorOwner(player, brpbuilding, doorIdx))
 				{
-					int doorIdx = brpbuilding.GetDoorIndex(target.GetComponentIndex());
-					if (!brpbuilding.m_HouseData)
-					{return false;}
-					if (!brpbuilding.m_HouseData.LeaseTime)
-					{return false;}
-					if (brpbuilding.m_HouseData && brpbuilding.m_HouseData.MainOwner && (brpbuilding.m_HouseData.MainOwner.MilticharacterID == player.GetMultiCharactersPlayerId().ToString()) && g_HM.IsDoorAllow(doorIdx, brpbuilding)) 
-					{return false;}
-					return !g_HM.IsDoorOwner(player, brpbuilding, doorIdx);
+					return true;
 				}
-				return true;
 			}
-			else
-			{
-				return false;
-			}
+			return true;
 		}
-		return super.ActionCondition(player, target, item);
+		Building building;
+		if( Class.CastTo(building, target.GetObject()) )
+		{
+			if (GetGame().IsClient())
+			{
+				int dIdx = building.GetDoorIndex(target.GetComponentIndex());
+				LockDoorStorage fix;
+				vector doorPos = brpbuilding.GetDoorSoundPos(dIdx);
+				if (GetLockedDoorsManager().IsDoorExist(doorPos, fix) )
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
 	}
 
 	override void OnFinishProgressServer( ActionData action_data )
@@ -89,10 +102,7 @@ class ActionHackBRPDoor: ActionContinuousBase
                 }
                 else
                 {
-                    //BRPHouseSiren_SoundSet
                     hackTool.HackFailed(building);
-                    // EffectSound sound =	SEffectManager.PlaySound( "BRPHouseSiren_SoundSet", building.GetPosition() );
-                    // sound.SetSoundAutodestroy( true );
                 }
 			}
 		}

@@ -1,4 +1,4 @@
-class HackHouseToolBase : ItemBase
+class HackHouseToolBase : ItemBook
 {
     private float   m_ChanceHacking;
     private int     m_TimeHacking;
@@ -51,8 +51,6 @@ class HackHouseToolBase : ItemBase
     override void SetActions()
 	{
 		super.SetActions();
-        RemoveAction(ActionLockDoors);
-        RemoveAction(ActionUnlockDoors);
         AddAction(ActionHackBRPDoor);
     }
 }
@@ -62,6 +60,6 @@ class BRP_HackingTool : HackHouseToolBase
     void BRP_HackingTool()
     {
         SetChanceHacking(0.5);
-        SetTimeHacking(5);
+        SetTimeHacking(30);
     }
 }

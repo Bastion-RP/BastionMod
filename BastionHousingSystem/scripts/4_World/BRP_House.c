@@ -234,7 +234,7 @@ modded class BuildingBase
 			hd.MainOwner.HashID = sender.GetId();
 			hd.MainOwner.Date = HouseManager.GetBastionDate();
 			hd.MainOwner.BastionClass = player.GetMultiCharactersPlayerClass().ToString();
-			hd.MainOwner.BankAccountId = player.GetBastionPlayerAccount().GetId();
+			//hd.MainOwner.BankAccountId = player.GetBastionPlayerAccount().GetId();
 			hd.MainOwner.RentTimeLeft = (hd.LeaseTime * 60);
 			SaveHouseDataServer(hd);
 			return true;
