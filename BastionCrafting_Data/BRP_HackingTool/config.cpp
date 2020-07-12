@@ -1,10 +1,10 @@
 class CfgPatches
 {
-	class BRP_Hackingtool
+	class BRP_HackingTool
 	{
 		units[]=
 		{
-			"BRP_Hackingtool"
+			"BRP_HackingTool"
 		};
 		weapons[]={};
 		requiredVersion=0.1;
@@ -22,7 +22,7 @@ class CfgVehicles
 	
 	class Book_Base;
 	class ItemBook: Book_Base{};
-	class BRP_Hackingtool: ItemBook
+	class BRP_HackingTool: ItemBook
 	{
 		scope=2;
 		model="\BastionMod\BastionCrafting_Data\BRP_HackingTool\BRP_HackingTool.p3d";
