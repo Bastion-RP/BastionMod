@@ -41,7 +41,7 @@ class ActionHackBRPDoor: ActionContinuousBase
 		if( !IsBuilding(target) ) return false;
 		if( !IsInReach(player, target, UAMaxDistances.DEFAULT) ) return false;
 
-		BRP_House brpbuilding;
+		BuildingBase brpbuilding;
 		if( Class.CastTo(brpbuilding, target.GetObject()) )
 		{
 			if (super.ActionCondition(player, target, item))
@@ -74,7 +74,7 @@ class ActionHackBRPDoor: ActionContinuousBase
 
     void TryHackDoor(ActionData action_data)
 	{
-		BRP_House building;
+		BuildingBase building;
         HackHouseToolBase hackTool = HackHouseToolBase.Cast(action_data.m_MainItem);
         if (!hackTool) return;
 		if ( Class.CastTo(building, action_data.m_Target.GetObject()) )

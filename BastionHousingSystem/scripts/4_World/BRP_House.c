@@ -1,10 +1,11 @@
-class BRP_House extends Building
+// class BuildingBase extends Building
+modded class BuildingBase
 {
 	ref HouseData					m_HouseData;
 	private int 					low, high;
 	private int						m_DoorsCount;
 	
-	void BRP_House()
+	void BuildingBase()
 	{
 		m_DoorsCount = 0;
 		GetNetworkID(low, high);
@@ -19,6 +20,11 @@ class BRP_House extends Building
 			}
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( InitHouse, 5000, false);
 		}
+	}
+
+	bool IsRentableHouse()
+	{
+		return false;
 	}
 
 	void CloseAllDoors()
@@ -42,6 +48,7 @@ class BRP_House extends Building
 	{
 		HouseData hd = GetHouseDataServerByBits(low, high);
 		if (hd) return;
+		if (!IsRentableHouse()) return;
 		hd = new HouseData;
 		hd.Low = low;
 		hd.High = high;
@@ -467,7 +474,7 @@ class BRP_House extends Building
 			HouseGroupData hgd = hd.GroupsData.Get(rpb.param4);
 			if (!hgd)
 			{
-				Print("BastionHousing::BRP_HOUSE::handleSaveGroupEditInfo ERROR, group data is corrupted!");
+				Print("BastionHousing::BuildingBase::handleSaveGroupEditInfo ERROR, group data is corrupted!");
 				return;
 			}
 			hgd.Name = data.Name;
@@ -488,7 +495,7 @@ class BRP_House extends Building
 		{
 			if (!hd.GroupsData.Get(rpb.param3))
 			{
-				Print("BastionHousing::BRP_HOUSE::handleSaveGroupEditInfo ERROR, group data is corrupted!");
+				Print("BastionHousing::BuildingBase::handleSaveGroupEditInfo ERROR, group data is corrupted!");
 				return;
 			}
 			hd.GroupsData.Remove(rpb.param3);
@@ -577,14 +584,3 @@ class BRP_House extends Building
 		}
 	}
 }
-
-//modded class BuildingBase extends BRP_House {};
-
-class Land_House_2B03 : BRP_House {};
-class Land_House_2W04 : BRP_House {};
-class Land_Tenement_Big : BRP_House {};
-class Land_Tenement_Small : BRP_House {};
-
-
-
-//E:\Games\Steam\steamapps\common\DayZServer\@Bastion\Addons

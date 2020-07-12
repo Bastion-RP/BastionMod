@@ -48,7 +48,7 @@ class ActionShowDoorInfo : ActionInteractBase
 		if( !IsInReach(player, target, UAMaxDistances.DEFAULT) ) return false;
 		if (GetGame().IsClient())
 		{
-			BRP_House building;
+			BuildingBase building;
 			if( Class.CastTo(building, target.GetObject()) )
 			{
 				doorIndex = building.GetDoorIndex(target.GetComponentIndex());
@@ -101,7 +101,7 @@ class ActionShowDoorInfo : ActionInteractBase
 	override void OnEndClient( ActionData action_data  )
 	{
 		if (type == -1) return;
-		BRP_House building;
+		BuildingBase building;
 		if( Class.CastTo(building, action_data.m_Target.GetObject()) )
 		{
 			g_HM.SetBuilding(building);

@@ -6,7 +6,7 @@ modded class ActionOpenDoors
 		if( !target ) return false;
 		if( !IsBuilding(target) ) return false;
 
-		BRP_House brpbuilding;
+		BuildingBase brpbuilding;
 		if( Class.CastTo(brpbuilding, target.GetObject()) )
 		{
 			if (super.ActionCondition(player, target, item))
@@ -35,7 +35,7 @@ modded class ActionOpenDoors
 	override void OnStartServer( ActionData action_data )
 	{
 		super.OnStartServer(action_data);
-		BRP_House brpbuilding;
+		BuildingBase brpbuilding;
 		if( Class.CastTo(brpbuilding, action_data.m_Target.GetObject()) )
 		{
 			int doorIndex = brpbuilding.GetDoorIndex(action_data.m_Target.GetComponentIndex());
