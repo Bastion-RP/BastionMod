@@ -27,6 +27,25 @@ modded class ActionOpenDoors
 			}
 			return true;
 		}
-		return false
+		return false;
+	}
+
+	override void OnStartServer( ActionData action_data )
+	{
+		Building building;
+		if( Class.CastTo(building, action_data.m_Target.GetObject()) )
+		{
+			int dIdx = building.GetDoorIndex(action_data.m_Target.GetComponentIndex());
+			vector doorPos = building.GetDoorSoundPos(dIdx);
+			if( dIdx != -1 && GetLockedDoorsManager().IsDoorOwner(doorPos, action_data.m_Player))
+			{
+				building.OpenDoor(dIdx);
+				GetLockedDoorsManager().OnDoorOpen(dIdx, building);
+			}
+			else
+			{
+				super.OnStartServer(action_data);
+			}
+		}
 	}
 }
