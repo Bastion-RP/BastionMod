@@ -710,7 +710,7 @@ class CfgVehicles
 		itemSize[] = {2,2};
 		itemBehaviour = 1;
 	};
-	class BRP_MetalSheet_Small1: Inventory_Base
+	class BRP_MetalScrap: Inventory_Base
 	{
 		scope = 2;
 		displayName = "Metal Scrap";
@@ -736,7 +736,7 @@ class CfgVehicles
 		itemSize[] = {3,3};
 		itemBehaviour = 1;
 	};
-	class BRP_RaspberryPi: Inventory_Base
+	class BRP_ComputerComponent: Inventory_Base
 	{
 		scope = 2;
 		displayName = "Computer Component";
@@ -749,7 +749,7 @@ class CfgVehicles
 		itemSize[] = {1,1};
 		itemBehaviour = 1;
 	};
-	class BRP_Woodscrap1: Inventory_Base
+	class BRP_WoodScrap: Inventory_Base
 	{
 		scope = 2;
 		displayName = "Wood Scrap";
@@ -775,10 +775,10 @@ class CfgVehicles
 		itemSize[] = {2,3};
 		itemBehaviour = 1;
 	};
-	class BRP_MeltedPlastic: Inventory_Base
+	class BRP_PlasticScrap: Inventory_Base
 	{
 		scope = 2;
-		displayName = "Melted plastic";
+		displayName = "Plastic Scrap";
 		descriptionShort = "Pieces of melted plastic. Useful for crafting";
 		model = "BastionMod\BastionCrafting_Data\plasticpieces\plastic.p3d";
 		isMeleeWeapon = 0;
