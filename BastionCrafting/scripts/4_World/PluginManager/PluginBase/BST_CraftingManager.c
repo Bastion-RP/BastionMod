@@ -1,6 +1,7 @@
 class BST_CraftingManager : PluginBase {
     private ref BST_CraftingConfig config;
     private ref BST_CraftingBenchConfig configBenches;
+    private ref BST_CraftingCategoryConfig _categoryConfig;
     private ref array<ref BST_CraftingLoadedRecipe> arrayCraftingRecipes;
 
     void BST_CraftingManager() {
@@ -17,6 +18,10 @@ class BST_CraftingManager : PluginBase {
 
     void SetCraftingRecipes(array<ref BST_CraftingLoadedRecipe> arrayCraftingRecipes) {
         this.arrayCraftingRecipes = arrayCraftingRecipes;
+    }
+
+    void SetCategoryConfig(BST_CraftingCategoryConfig categoryConfig) {
+        this._categoryConfig = categoryConfig;
     }
     
     map<string, int> GetRecipeIngredientRequirement(BST_CraftingRecipe recipe) {
@@ -41,6 +46,7 @@ class BST_CraftingManager : PluginBase {
 
     BST_CraftingBenchConfig GetBenchConfig() { return configBenches; }
     BST_CraftingConfig GetConfig() { return config; }
+    BST_CraftingCategoryConfig GetCategoryConfig() { return _categoryConfig; }
     array<ref BST_CraftingLoadedRecipe> GetCraftingRecipes() { return arrayCraftingRecipes; }
 }
 

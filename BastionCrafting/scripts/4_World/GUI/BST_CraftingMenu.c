@@ -181,12 +181,9 @@ class BST_CraftingMenu : UIScriptedMenu {
         array<ref BST_CraftingIngredient> arrayCraftingIngredients = activeRecipe.GetRecipe().GetIngredients();
         array<EntityAI> arrayVicinityContainers = GetBSTVicinityItemManager().RefreshVicinityItems(player);
 
-        Print("[Menu DEBUG] array=" + arrayVicinityContainers);
         if (benchBase && arrayVicinityContainers.Count() > 0) {
-            Print("[DEBUG] Grabbing ingredients in vicinity");
             mapRequiredCount = GetBSTClientCraftingManager().GetIngredientAmountInVicinityandPlayer(activeRecipe.GetRecipe(), arrayVicinityContainers);
         } else {
-            Print("[DEBUG] Grabbing ingredients only on player");
             mapRequiredCount = GetBSTClientCraftingManager().GetIngredientAmountOnPlayer(activeRecipe.GetRecipe());
         }
         string requiredBench = activeRecipe.GetRecipe().GetRequiredBench();
@@ -254,18 +251,6 @@ class BST_CraftingMenu : UIScriptedMenu {
         this.benchBase = benchBase;
     }
 
-    void GetItemsinVicinity() {
-        array<EntityAI> vicinityEntities = GetBSTVicinityItemManager().RefreshVicinityItems(player);
-
-        Print("Grabbed vicinity array=" + vicinityEntities.Count());
-        
-        foreach (EntityAI item : vicinityEntities) {
-            if (item) {
-                Print("[DEBUG] item=" + item);
-            }
-        }
-    }
-
     void OnShow() {
         arrayRecipes = GetBSTCraftingManager().GetCraftingRecipes();
         player = PlayerBase.Cast(GetGame().GetPlayer());
@@ -276,7 +261,6 @@ class BST_CraftingMenu : UIScriptedMenu {
         GetGame().GetMission().GetHud().Show(false);
         BuildMenu();
         SetFocus(null);
-        //GetItemsinVicinity();
     }
 
     void OnHide() {
@@ -304,7 +288,6 @@ class BST_CraftingMenu : UIScriptedMenu {
         if (w == btnCraft) {
             if (hasIngredients) {
                 if ((requiresBench && hasRequiredBench) || !requiresBench) {
-                    Print("[DEBUG] Can craft, starting timer");
                     craftingRecipe = activeRecipe;
                     isCrafting = true;
                 }
@@ -366,12 +349,16 @@ class BST_CraftingMenu : UIScriptedMenu {
                         craftSeconds -= craftMinutes * 60;
 
                         if (craftSeconds > 0) {
-                            txtRecipeCraftTime.SetText("" + craftMinutes + " m, " + craftSeconds + "s");
+                            txtRecipeCraftTime.SetText("" + craftMinutes + "m, " + craftSeconds + "s");
                         } else {
-                            txtRecipeCraftTime.SetText("" + craftMinutes + " m");
+                            txtRecipeCraftTime.SetText("" + craftMinutes + "m");
                         }
                     } else {
-                        txtRecipeCraftTime.SetText("" + craftSeconds + "s");
+                        if (craftSeconds == 0) {
+                            txtRecipeCraftTime.SetText("Instant");
+                        } else {
+                            txtRecipeCraftTime.SetText("" + craftSeconds + "s");
+                        }
                     }
                     txtWidget.Select();
                     recipeRoot.Show(true);

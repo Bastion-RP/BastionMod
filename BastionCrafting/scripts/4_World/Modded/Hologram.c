@@ -1,6 +1,6 @@
 modded class Hologram
 {
-	override void EvaluateCollision()
+	override void EvaluateCollision(ItemBase action_item = null)
     {
 		ItemBase item_in_hands = ItemBase.Cast(m_Player.GetHumanInventory().GetEntityInHands());
 		
