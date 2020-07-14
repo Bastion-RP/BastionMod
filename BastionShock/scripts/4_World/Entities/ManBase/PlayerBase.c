@@ -15,6 +15,8 @@
 modded class PlayerBase {
 	const int SIMPLIFIED_SHOCK_CAP = 255; // more accurate shock effect
 
+	int m_ShockSimplified = SIMPLIFIED_SHOCK_CAP;	// makes the shock effect turned OFF when spawning in
+
 
 	
 	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos, float speedCoef) {
