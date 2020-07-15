@@ -21,9 +21,7 @@ class BST_ServerCraftingRPCHandler : PluginBase {
                 {
                     Param2<string, EntityAI> dataCraftItem;
 
-                    Print("[DEBUG] Reading data");
                     if (!ctx.Read(dataCraftItem)) { return; }
-                    Print("[DEBUG] Data read " + dataCraftItem.param1);
 
                     BST_CraftingLoadedRecipe recipe = GetBSTServerCraftingManager().FindRecipeByFileName(dataCraftItem.param1);
                     benchBase = dataCraftItem.param2;
@@ -34,10 +32,8 @@ class BST_ServerCraftingRPCHandler : PluginBase {
 
                         if (requiredBench != string.Empty && benchBase) {
                             configBenchRequired = GetBSTCraftingManager().GetBenchConfig().GetBenchByType(requiredBench);
-                            Print("[DEBUG] Recipe requires bench, searching!!! " + configBenchRequired);
 
                             if (configBenchRequired && configBenchRequired == GetBSTCraftingManager().GetBenchConfig().GetBenchByItemType(benchBase.GetType())) {
-                                Print("[DEBUG] Bench found!!! checking for ingredients ");
                                 if (GetBSTServerCraftingManager().HasIngredientsOnPerson(player, recipe, arrCargoItems) || GetBSTServerCraftingManager().HasIngredientsInVicinityAndPerson(player, recipe, arrCargoItems)) {
                                     GetBSTServerCraftingManager().Craft(player, recipe, arrCargoItems);
                                 }

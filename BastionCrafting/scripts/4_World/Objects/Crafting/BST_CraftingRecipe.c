@@ -4,7 +4,7 @@ class BST_CraftingRecipe {
 
     private ref array<ref BST_CraftingIngredient> Ingredients;
     private string RecipeName, RecipeDescription, ProductClassName, RequiredCraftingBench;
-    private int CraftTime;
+    private int CraftTime, SubCategoryID;
 
     void BST_CraftingRecipe(array<ref BST_CraftingIngredient> Ingredients) {
         this.Ingredients = Ingredients;
@@ -13,6 +13,7 @@ class BST_CraftingRecipe {
         this.ProductClassName = DEFAULT_RECIPE_STRING;
         this.CraftTime = DEFAULT_CRAFT_TIME;
         this.RequiredCraftingBench = string.Empty;
+        this.SubCategoryID = -1;
     }
 
     bool Validate() {
@@ -53,4 +54,5 @@ class BST_CraftingRecipe {
     string GetDescription() { return RecipeDescription; }
     string GetProduct() { return ProductClassName; }
     int GetCraftTime() { return CraftTime; }
+    int GetCategoryId() { return SubCategoryID; }
 }

@@ -7,8 +7,8 @@ FrameWidgetClass rootFrame {
  vexactsize 1
  {
   TextWidgetClass txtName {
-   position 0 0
-   size 1 24
+   position 0.08 0
+   size 0.92 24
    hexactpos 0
    vexactpos 0
    hexactsize 0

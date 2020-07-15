@@ -1,0 +1,45 @@
+GridSpacerWidgetClass rootFrame {
+ size 1 1
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ Padding 0
+ Margin 0
+ "Size To Content V" 1
+ Columns 1
+ Rows 100
+ {
+  FrameWidgetClass rootCategory {
+   size 1 32
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 1
+   {
+    TextWidgetClass txtName {
+     ignorepointer 1
+     position 0.08 0
+     size 0.84 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     "text valign" center
+    }
+    TextWidgetClass txtCaret {
+     ignorepointer 0
+     size 0.08 1
+     halign right_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     text "^"
+     "text halign" center
+     "text valign" center
+    }
+   }
+  }
+ }
+}
