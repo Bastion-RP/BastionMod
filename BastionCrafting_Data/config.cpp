@@ -788,4 +788,59 @@ class CfgVehicles
 		itemSize[] = {2,2};
 		itemBehaviour = 1;
 	};
+	class BRP_Dosimeter: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Dosimeter";
+		descriptionShort = "A radiation dosimeter is a device that measures dose uptake of external ionizing radiation. It is worn by the person being monitored when used as a personal dosimeter, and is a record of the radiation dose received.";
+		model = "BastionMod\BastionCrafting_Data\dosimeter\geiger.p3d";
+		rotationFlags = 2;
+		weight = 1000;
+		absorbency = 0.0;
+		itemSize[] = {3,2};
+		hiddenSelections[]=
+		{
+			"all"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionCrafting_Data\dosimeter\data\geiger_ca.paa"
+		};			
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 60;
+					healthLevels[] = 
+					{
+						{1.0,{"BastionMod\BastionCrafting_Data\dosimeter\data\geiger.rvmat"}},
+						{0.7,{"BastionMod\BastionCrafting_Data\dosimeter\data\geiger.rvmat"}},
+						{0.5,{"BastionMod\BastionCrafting_Data\dosimeter\data\geiger_damage.rvmat"}},
+						{0.3,{"BastionMod\BastionCrafting_Data\dosimeter\data\geiger_damage.rvmat"}},
+						{0.0,{"BastionMod\BastionCrafting_Data\dosimeter\data\geiger_destruct.rvmat"}}
+					};
+				};
+			};
+		};
+		class MeleeModes
+		{
+			class Default
+			{
+				ammo = "MeleeLightBlunt";
+				range = 1.0;
+			};
+			class Heavy
+			{
+				ammo = "MeleeLightBlunt_Heavy";
+				range = 1.0;
+			};
+			class Sprint
+			{
+				ammo = "MeleeLightBlunt_Heavy";
+				range = 2.8;
+			};
+		};
+	};	
 };
