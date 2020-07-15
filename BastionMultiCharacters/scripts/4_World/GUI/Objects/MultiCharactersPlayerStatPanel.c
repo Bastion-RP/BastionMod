@@ -7,8 +7,8 @@ class MultiCharactersPlayerStatPanel {
     private bool isSelected;
 
     // Consts
-	private const int maxHealth = 100;
-	private const int maxBlood = 5000;
+	private const int maxHealth = 100;  // not used
+	private const int maxBlood = 5000;  // not used
 	private const int maxEnergy = 20000;
 	private const int maxWater = 5000;
 
@@ -86,8 +86,11 @@ class MultiCharactersPlayerStatPanel {
 	}
 
     private void InitStats() {
-		int percentHealth = (savePlayer.GetHealth() * 100) / maxHealth;
-		int percentBlood = (savePlayer.GetBlood() * 100) / maxBlood;
+
+        // Use config value for max HP and max blood
+		int percentHealth = (savePlayer.GetHealth() * 100) / GetGame().ConfigGetFloat("CfgVehicles SurvivorBase DamageSystem GlobalHealth Health hitpoints");
+		int percentBlood = (savePlayer.GetBlood() * 100) / GetGame().ConfigGetFloat("CfgVehicles SurvivorBase DamageSystem GlobalHealth Blood hitpoints");
+
 		int percentEnergy = (savePlayer.GetEnergy() * 100) / maxEnergy;
 		int percentWater = (savePlayer.GetWater() * 100) / maxWater;
         

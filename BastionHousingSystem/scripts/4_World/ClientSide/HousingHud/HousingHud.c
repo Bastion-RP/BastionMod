@@ -841,11 +841,12 @@ class HousingHud extends UIScriptedMenu
 		else
 		{
 			m_InfoBtnRent.Show(true);
+			m_InfoBtnRent.Enable(true);
 			m_InfoBtnApproval.Show(false);
-			if ( (hd.AllowCitizenClasses.Find(m_Player.GetMultiCharactersPlayerClass()) + 1) )
-			{
-				m_InfoBtnRent.Enable(true);
-			}
+			// if ( (hd.AllowCitizenClasses.Find(m_Player.GetMultiCharactersPlayerClass()) + 1) ) // TODO: rework
+			// {
+			// 	m_InfoBtnRent.Enable(true);
+			// }
 		}
 		if (!g_HM.m_House)
 		{
@@ -1761,7 +1762,7 @@ class HousingHud extends UIScriptedMenu
 		m_PanelTipHouseOwner.Show(false);
 		HouseData hd = g_HM.AllHouseData.Get(idx);
 		if (!hd) return;
-		BRP_House house = BRP_House.Cast(GetGame().GetObjectByNetworkId(hd.Low, hd.High));
+		BuildingBase house = BuildingBase.Cast(GetGame().GetObjectByNetworkId(hd.Low, hd.High));
 		if (house)
 		{
 			house.m_HouseData = hd;

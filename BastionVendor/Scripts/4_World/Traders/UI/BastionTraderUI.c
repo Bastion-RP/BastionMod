@@ -169,7 +169,7 @@ class TraderUI extends UIScriptedMenu
 
         BastionVendorItemUI itemUI;
 
-        if ( m_Grid.Find( m_GridItems.Get(0).m_ClassName, itemUI ) )
+        if ( m_Grid && m_GridItems && m_Grid.Find( m_GridItems.Get(0).m_ClassName, itemUI ) )
 		{ 
             SetSelectedItem( m_Grid.Get(m_GridItems.Get(0).m_ClassName) );
         }

@@ -26,7 +26,7 @@ modded class MissionServer
 				hd.MainOwner.RentTimeLeft -= saveDelay;
 				if (hd.MainOwner.RentTimeLeft < maxHoursNonPayment)
 				{
-					BRP_House.DeleteOwnerHouse(hd);
+					BuildingBase.DeleteOwnerHouse(hd);
 				}
 				g_HSL.SaveData(hd);
 			}

@@ -39,8 +39,10 @@ class BankingClientRPC : PluginBase {
                     int enumType = dataError.param1;
                     errorData = dataError.param2;
                     menu = BastionBankingMenu.Cast(GetGame().GetUIManager().GetMenu());
+                    
+                    if (menu && GetGame().GetPlayer()) {
+                        playerName = PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerName();
 
-                    if (menu) {
                         switch(enumType) {
                             case BBRPCTypes.ACCOUNT_REGISTER:
                                 {
@@ -51,7 +53,6 @@ class BankingClientRPC : PluginBase {
                                 }
                             case BBRPCTypes.ACCOUNT_LOGIN:
                                 {
-                                    GetGame().GetPlayerName(playerName);
                                     menu.CreateTextGrid("Welcome back, " + playerName + "!", true);
                                     menu.CreateTextGrid("D2 Account ID: " + errorData.Get(BBConst.ACCOUNT_ID));
                                     menu.CreateTextGrid("D2 Account Credits: " + errorData.Get(BBConst.ACCOUNT_FUNDS));
@@ -60,8 +61,12 @@ class BankingClientRPC : PluginBase {
                                 }
                             case BBRPCTypes.ACCOUNT_LOGOUT:
                                 {
-                                    GetGame().GetPlayerName(playerName);
                                     menu.CreateTextGrid("Goodbye, " + playerName + "!", true);
+                                    break;
+                                }
+                            case BBRPCTypes.ACCOUNT_INACTIVE_LOGOUT:
+                                {
+                                    menu.CreateTextGrid("Goodbye, " + playerName + "! You have been logged out due to inactivity!", true);
                                     break;
                                 }
                             case BBRPCTypes.ACCOUNT_GET_BALANCE:
@@ -166,69 +171,6 @@ class BankingClientRPC : PluginBase {
                         menu.CreateInputGrid();
                         menu.ScrollToBottom();
                     }
-
-                    for (int i = 0; i < errorData.Count(); i++) {
-                        Print("BankingClientRPCHandler | datatype=" + errorData.GetKey(i) + " | data=" + errorData.GetElement(i));
-                    }
-
-/*                     menu = BastionBankingMenu.Cast(GetGame().GetUIManager().GetMenu());
-                    type = dataError.param1;
-                    error = dataError.param2;
-                    GetGame().GetPlayerName(playerName);
-
-                    if (menu) {
-                        switch (type) {
-                            case "loginsuccess":
-                                {
-                                    error.Split(" ", splitError);
-                                    menu.CreateTextGrid("Welcome back, " + playerName + "!", true);
-                                    menu.CreateTextGrid("Account Id: " + splitError[0]);
-                                    menu.CreateTextGrid("Funds: " + splitError[1]);
-                                    menu.CreateTextGrid("Overflow Funds: " + splitError[2], true);
-                                    break;
-                                }
-                            case "invalid":
-                                {
-                                    menu.CreateTextGrid(error, true);
-                                    break;
-                                }
-                            case "depositoverflow":
-                                {
-                                    menu.CreateTextGrid(error + " rations will be deposited to overflow!");
-                                    menu.SetConfirmation("Do you want to deposit '" + error + "' rations? (Y/N):");
-                                    return;
-                                    break;
-                                }
-                            case "transferconfirm":
-                                {
-                                    error.Split(" ", splitError);
-                                    menu.CreateTextGrid("Transferring charges a fee of '" + (splitError[0].ToFloat() * 100) + "%'!", true);
-                                    menu.CreateTextGrid("Transfer total: '" + splitError[2] + "'");
-                                    menu.CreateTextGrid("Transfer Cost: '" + (splitError[2].ToInt() - splitError[1].ToInt()) + "'", true);
-                                    menu.SetConfirmation("Do you want to tranfer '" + splitError[2] + "' rations? (Y/N):");
-                                    return;
-                                    break;
-                                }
-                            case "transferoverflow":
-                                {
-                                    error.Split(" ", splitError);
-                                    menu.CreateTextGrid("Transferring charges a fee of '" + (splitError[0].ToFloat() * 100) + "%'!");
-                                    menu.CreateTextGrid("Your account can only hold '" + splitError[3] + "' more rations!", true);
-                                    menu.CreateTextGrid("Transfer total: '" + splitError[2] + "'");
-                                    menu.CreateTextGrid("Transfer Cost: '" + (splitError[2].ToInt() - splitError[1].ToInt()) + "'", true);
-                                    menu.SetConfirmation("Do you want to tranfer '" + splitError[1] + "' rations? (Y/N):");
-                                    return;
-                                    break;
-                                }
-                            default:
-                                {
-                                    menu.CreateTextGrid(error, true);
-                                    break;
-                                }
-                        }
-                        menu.CreateInputGrid();
-                        menu.ScrollToBottom();
-                    } */
                 }
         }
     }

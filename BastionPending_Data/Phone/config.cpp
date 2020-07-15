@@ -50,8 +50,8 @@ class CfgVehicles
 	class BRP_Phone: Inventory_Base
 	{
 		scope = 2;
-		displayName = "Phone";
-		descriptionShort = "Phone";
+		displayName = "Dyerphone V2";
+		descriptionShort = "Dyerphone V2";
 		model = "\BastionMod\BastionPending_Data\Phone\Bastion_Phone.p3d";
 		weight = 250;
 		itemSize[] = {2,2};
