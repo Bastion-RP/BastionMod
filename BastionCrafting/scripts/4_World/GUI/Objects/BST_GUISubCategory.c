@@ -14,4 +14,11 @@ class BST_GUISubCategory : BST_GUICategory {
         _txtName.SetText(_subCategory.GetName());
         _txtCaret.SetText("v");
     }
+
+    override BST_GUIRecipe AddRecipeWidget(BST_CraftingLoadedRecipe recipe, int type, bool isSearching) {
+        if (isSearching) {
+            _guiParentCategory.ShowChildren();
+        }
+        return super.AddRecipeWidget(recipe, type, isSearching);
+    }
 }

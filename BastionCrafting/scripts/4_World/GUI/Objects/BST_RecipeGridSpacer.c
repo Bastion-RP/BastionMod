@@ -1,9 +1,9 @@
 class BST_RecipeGridSpacer : BST_GUIObject {
     private GridSpacerWidget _root;
-    private ref array<ref BST_GUIObject> _arrGUIOBjects;
+    private ref array<ref BST_GUIObject> _arrGUIObjects;
 
     void BST_RecipeGridSpacer(Widget parent) {
-        _arrGUIOBjects = new array<ref BST_GUIObject>();
+        _arrGUIObjects = new array<ref BST_GUIObject>();
         this._parent = parent;
 
         _root = GridSpacerWidget.Cast(GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionCrafting\\gui\\layout\\GridSpacerWidget.layout", parent));
@@ -13,7 +13,7 @@ class BST_RecipeGridSpacer : BST_GUIObject {
         if (_root) {
             _root.Unlink();
         }
-        foreach (BST_GUIObject object : _arrGUIOBjects) {
+        foreach (BST_GUIObject object : _arrGUIObjects) {
             if (object) {
                 delete object;
             }
@@ -22,10 +22,10 @@ class BST_RecipeGridSpacer : BST_GUIObject {
 
     void AddChild(BST_GUIObject child) {
         if (child) {
-            _arrGUIOBjects.Insert(child);
+            _arrGUIObjects.Insert(child);
         }
     }
 
     GridSpacerWidget GetGrid() { return _root; }
-    int GetChildCount() { return _arrGUIOBjects.Count(); }
+    int GetChildCount() { return _arrGUIObjects.Count(); }
 }

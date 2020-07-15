@@ -115,13 +115,22 @@ class BST_CraftingMenu : UIScriptedMenu {
 
         foreach (BST_CraftingLoadedRecipe recipe : arrRecipes) {
             if (!recipe) { continue; }
+            bool isSearching = false;
+
+            if (searchString != string.Empty) {
+                searchString = searchString.Trim();
+                searchString.ToLower();
+
+                if (recipe.GetLoweredName().IndexOf(searchString) == -1) { continue; }
+                isSearching = true;
+            }
             BST_GUIRecipe newRecipe;
 
             if (mapSubCategories.Contains(recipe.GetCategoryId())) {
                 BST_GUISubCategory sub = mapSubCategories.Get(recipe.GetCategoryId());
-                newRecipe = sub.AddRecipeWidget(recipe, 2);
+                newRecipe = sub.AddRecipeWidget(recipe, 2, isSearching);
             } else {
-                newRecipe = uncategorizedParent.AddRecipeWidget(recipe, 1);
+                newRecipe = uncategorizedParent.AddRecipeWidget(recipe, 1, isSearching);
             }
             _mapGUIObjects.Insert(newRecipe.GetText(), newRecipe);
         }

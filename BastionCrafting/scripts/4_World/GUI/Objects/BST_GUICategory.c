@@ -33,6 +33,7 @@ class BST_GUICategory : BST_GUIObject {
     }
 
     void ShowChildren() {
+        if (!_isCollapsed) { return; }
         foreach (BST_RecipeGridSpacer grid : _arrGrids) {
             if (grid && grid.GetGrid()) {
                 grid.GetGrid().Show(true);
@@ -45,6 +46,7 @@ class BST_GUICategory : BST_GUIObject {
     }
 
     void HideChildren() {
+        if (_isCollapsed) { return; }
         foreach (BST_RecipeGridSpacer grid : _arrGrids) {
             if (grid && grid.GetGrid()) {
                 grid.GetGrid().Show(false);
@@ -56,12 +58,16 @@ class BST_GUICategory : BST_GUIObject {
         _isCollapsed = true;
     }
 
-    BST_GUIRecipe AddRecipeWidget(BST_CraftingLoadedRecipe recipe, int type) {
+    BST_GUIRecipe AddRecipeWidget(BST_CraftingLoadedRecipe recipe, int type, bool isSearching) {
         CheckCurrentGridSpacer();
 
         BST_GUIRecipe newRecipe = new BST_GUIRecipe(_activeGrid.GetGrid(), recipe, type);
         
         _activeGrid.AddChild(newRecipe);
+
+        if (isSearching) {
+            ShowChildren();
+        }
         return (newRecipe);
     }
     
