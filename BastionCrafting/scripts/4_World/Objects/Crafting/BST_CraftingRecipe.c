@@ -54,4 +54,5 @@ class BST_CraftingRecipe {
     string GetDescription() { return RecipeDescription; }
     string GetProduct() { return ProductClassName; }
     int GetCraftTime() { return CraftTime; }
+    int GetCategoryId() { return SubCategoryID; }
 }

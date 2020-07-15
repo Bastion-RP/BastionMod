@@ -1,42 +1,31 @@
-class BST_RecipeGridSpacer {
-    private GridSpacerWidget wRoot;
-    private Widget wParent;
-    private ref array<ref BST_RecipeTextWidget> arrayTextWidgets;
+class BST_RecipeGridSpacer : BST_GUIObject {
+    private GridSpacerWidget _root;
+    private ref array<ref BST_GUIObject> _arrGUIOBjects;
 
-    void BST_RecipeGridSpacer(Widget wParent) {
-        arrayTextWidgets = new array<ref BST_RecipeTextWidget>();
-        this.wParent = wParent;
+    void BST_RecipeGridSpacer(Widget parent) {
+        _arrGUIOBjects = new array<ref BST_GUIObject>();
+        this._parent = parent;
 
-        wRoot = GridSpacerWidget.Cast(GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionCrafting\\gui\\layout\\GridSpacerWidget.layout", wParent));
+        _root = GridSpacerWidget.Cast(GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionCrafting\\gui\\layout\\GridSpacerWidget.layout", parent));
     }
 
     void ~BST_RecipeGridSpacer() {
-        if (wRoot) {
-            wRoot.Unlink();
+        if (_root) {
+            _root.Unlink();
         }
-        foreach (BST_RecipeTextWidget text : arrayTextWidgets) {
-            if (text) {
-                delete text;
+        foreach (BST_GUIObject object : _arrGUIOBjects) {
+            if (object) {
+                delete object;
             }
         }
     }
 
-    void AddChild(BST_RecipeTextWidget child) {
+    void AddChild(BST_GUIObject child) {
         if (child) {
-            arrayTextWidgets.Insert(child);
+            _arrGUIOBjects.Insert(child);
         }
     }
 
-    BST_RecipeTextWidget FindWidget(Widget w) {
-        foreach (BST_RecipeTextWidget txtWidget : arrayTextWidgets) {
-            if (txtWidget && txtWidget.GetText() == w) {
-                return txtWidget;
-                
-            }
-        }
-        return null;
-    }
-
-    GridSpacerWidget GetGrid() { return wRoot; }
-    int GetChildCount() { return arrayTextWidgets.Count(); }
+    GridSpacerWidget GetGrid() { return _root; }
+    int GetChildCount() { return _arrGUIOBjects.Count(); }
 }

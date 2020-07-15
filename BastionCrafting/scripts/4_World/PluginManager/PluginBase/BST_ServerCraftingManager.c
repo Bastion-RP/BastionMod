@@ -101,9 +101,9 @@ class BST_ServerCraftingManager : PluginBase {
                     if (foundRecipe) {
                         foundRecipe.SetFileName(foundFileName);
 
-                        if (foundRecipe.Validate()) {
+                        //if (foundRecipe.Validate()) {
                             arrayCraftingRecipes.Insert(foundRecipe);
-                        }
+                        //}
                         JsonFileLoader<BST_CraftingRecipe>.JsonSaveFile(BST_CraftingConst.recipeDir + foundFileName, foundRecipe);
                     }
                 }
