@@ -35,17 +35,17 @@ class MultiCharactersServerManager : PluginBase {
     }
 
     void ThreadGetPlayerLoadout(PlayerIdentity sender) {
-        CURLCore curlCore;
+        RestApi curlCore;
         MultiCharactersCURL mcCurl;
-        CURLContext ctx;
+        RestContext ctx;
         array<MultiCharactersCharacterId> arrayCharacterData;
         map<string, string> steamData;
         string data, error;
         bool dataFound;
 
-        curlCore = CreateCURLCore();
+        curlCore = CreateRestApi();
         mcCurl = new MultiCharactersCURL();
-        ctx = curlCore.GetCURLContext("https://bastionrp.com/api/");
+        ctx = curlCore.GetRestContext("https://bastionrp.com/api/");
         if (jsSerializer.ReadFromString(steamData, ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_STEAM_ID + sender.GetPlainId()), error) && steamData.Contains(MCCurlConst.memberId) && jsSerializer.ReadFromString(arrayCharacterData, ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_MEMBER_ID + steamData.Get(MCCurlConst.memberId)), error) && arrayCharacterData.Count() > 0) {
             auto savePlayerArray = new array<ref SavePlayer>();
             

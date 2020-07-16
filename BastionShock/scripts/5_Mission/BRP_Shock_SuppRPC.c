@@ -1,3 +1,17 @@
+// Copyright 2020 GlutenFreeVapes All Rights Reserved.
+//
+// Author: GlutenFreeVapes
+// Contact: GlutenFreeVapes@gmail.com
+// Location: Estonia
+// Estonian Copyright Act: https://www.riigiteataja.ee/en/eli/504042019001/consolide
+// 
+//
+//
+// Code provided to BastionRP https://bastionrp.com/ for use in the bastionRP servers, mods.
+// BastionRP, BastionRP staff, BastionRP adminstration and BastionRP developers are allowed to (redistribrute, modify and build upon the code) for use on bastionRP mods and servers.
+//
+//
+// Copyright 2020 GlutenFreeVapes All Rights Reserved.
 class BRP_Shock_SuppRPC {
 
     // the RPC manager for Suppression systems
@@ -48,7 +62,8 @@ class BRP_Shock_SuppRPC {
         };
 
         // do stamina damage
-        BRP_t_Player.GetStaminaHandler().DepleteStamina(BRP_f_SuppCount * 0.75);
+        //BRP_t_Player.GetStaminaHandler().DepleteStamina(BRP_f_SuppCount * 0.50);
+        BRP_t_Player.GetStaminaHandler().DepleteStamina(Math.Clamp(BRP_f_SuppCount * 0.25,0,3));    // clamp and reduce
 
 
         // check curretn shock

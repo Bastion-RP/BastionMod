@@ -50,6 +50,14 @@ class CfgMods
 					"BastionMod/BastionMisc/StunGrenade/scripts/4_World"
 				};
 			};
+			class missionScriptModule
+			{
+				value="";
+				files[]=
+				{
+					"BastionMod/BastionMisc/StunGrenade/scripts/5_Mission"
+				};
+			};
 		};
 	};
 };
@@ -129,7 +137,7 @@ class CfgVehicles
 		};
 		class EnergyManager
 		{
-			energyAtSpawn=90;
+			energyAtSpawn=150;
 			energyUsagePerSecond=1;
 			wetnessExposure=0.1;
 		};
@@ -145,15 +153,31 @@ class CfgVehicles
 			};
 		};
 	};
-	class StunM18SmokeGrenade_Blue: StunM18SmokeGrenade_ColorBase
+	class BRP_Kolokol2: StunM18SmokeGrenade_ColorBase
 	{
 		scope=2;
-		displayName="StunM18SmokeGrenade_Blue";
-		model="\dz\weapons\explosives\smokegrenade.p3d";
-		descriptionShort="After activation, a toxic gaz is spreading on a 8 meter radius. Without a gasmask, you're gonna pass out";
-		hiddenSelectionsTextures[]=
+		displayName="K2";
+		model = "BastionMod\BastionMisc_Data\TearGasGrenade\gasgrenade.p3d";
+		descriptionShort="Experimental gas grenade. It might say CS gas on the front, but CS gas doesn't knock people unconscious...";
+		rotationFlags = 17;
+		weight = 500;
+		class DamageSystem
 		{
-			"BastionMod\BastionMisc\StunGrenade\images\Stungrenade_blue_co.paa"
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 20;
+					healthLevels[] = 
+					{
+						{1.0,{"BastionMod\BastionMisc_Data\TearGasGrenade\data\gasgrenade.rvmat"}},
+						{0.7,{"BastionMod\BastionMisc_Data\TearGasGrenade\data\gasgrenade.rvmat"}},
+						{0.5,{"BastionMod\BastionMisc_Data\TearGasGrenade\data\gasgrenade_damage.rvmat"}},
+						{0.3,{"BastionMod\BastionMisc_Data\TearGasGrenade\data\gasgrenade_damage.rvmat"}},
+						{0.0,{"BastionMod\BastionMisc_Data\TearGasGrenade\data\gasgrenade_destruct.rvmat"}}
+					};
+				};
+			};
 		};
 	};
 };

@@ -13,7 +13,12 @@ class DTACCivIDMenu {
 
         txtName.SetText("Name: " + PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerName());
         txtID.SetText("ID: " + PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerId());
-        txtClass.SetText("Class: " + typename.EnumToString(BastionClasses, PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass()));
+
+        // change _ to - for the class (enum can't have hypen in it's name)
+        string t_ClassText = typename.EnumToString(BastionClasses, PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass());
+        t_ClassText.Replace("_","-");
+
+        txtClass.SetText("Class: " + t_ClassText);
     }
 
     void ~DTACCivIDMenu() {

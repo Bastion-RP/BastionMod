@@ -1,4 +1,4 @@
-class MultiCharactersCURL : CURLCallback {
+class MultiCharactersCURL : RestCallback {
     static ref ScriptInvoker multiCharactersData = new ScriptInvoker();
 
     override void OnError(int errorCode) {

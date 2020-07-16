@@ -23,6 +23,8 @@ class StunSmoke extends Grenade_Base
 	protected string				m_SoundSmokeStartId;
 	protected string				m_SoundSmokeLoopId;
 	protected string				m_SoundSmokeEndId;
+	
+	protected int SGTimerCheck=0;
 
 	void SetParticleSmokeCurrent(int particle)
 	{
@@ -98,6 +100,8 @@ class StunSmoke extends Grenade_Base
 	protected void RefreshParticlesAndSounds()
 	{
 		ESmokeGrenadeState state = GetSmokeGrenadeState();
+		
+		//Print("Energy" + GetCompEM().GetEnergy().ToString());
 
 		if( m_LastSmokeGrenadeState != state )
 		{
@@ -166,7 +170,7 @@ class StunSmoke extends Grenade_Base
 
 		Param1<ESmokeGrenadeState> par = new Param1<ESmokeGrenadeState>(ESmokeGrenadeState.LOOP);
 		m_TimerSmokeLoop.Run(5.0, this, "SetSmokeGrenadeState", par);
-		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater(this.CheckPlayerNearby, 30000 );
+		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater(this.CheckPlayerNearby, 20000 );
 	}
 	
 	void CheckPlayerNearby()
@@ -191,13 +195,19 @@ class StunSmoke extends Grenade_Base
 			if (proche_objects.Get(i).IsKindOf("SurvivorBase"))
 			{
 				FindPlayer=proche_objects.Get(i);
+				SGTimerCheck=FindPlayer.SGTimerCheck*1000;
 				if(!FindPlayer.IsUnconscious())
 				{
 					FindPlayer.CheckProtectionAgainstStun();
 				}
 			}
 		}
-		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater(this.CheckPlayerNearby, 15000 );
+		if(SGTimerCheck!=0){
+		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater(this.CheckPlayerNearby,SGTimerCheck );
+		}
+		else{
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater(this.CheckPlayerNearby,15000 );
+		}
 	}
 	
 	// When the smoke stops
