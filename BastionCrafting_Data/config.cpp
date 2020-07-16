@@ -842,5 +842,45 @@ class CfgVehicles
 				range = 2.8;
 			};
 		};
-	};	
+	};
+	class BRP_Weaponparts: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Weapon Parts";
+		descriptionShort = "Parts of various weapons, some in not very good condition. Can be usefull anyway.";
+		model = "BastionMod\BastionCrafting_Data\weaponparts\weaponparts.p3d";
+		rotationFlags = 2;
+		isMeleeWeapon=0;		
+		weight = 3000;
+		absorbency = 0.0;
+		itemBehaviour = 1;		
+		heavyItem = 1;		
+		itemSize[] = {4,2};
+		hiddenSelections[]=
+		{
+			"all"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionCrafting_Data\dosimeter\data\geiger_ca.paa"
+		};			
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 60;
+					healthLevels[] = 
+					{
+						{1.0,{"BastionMod\BastionCrafting_Data\weaponparts\data\weaponparts.rvmat"}},
+						{0.7,{"BastionMod\BastionCrafting_Data\weaponparts\data\weaponparts.rvmat"}},
+						{0.5,{"BastionMod\BastionCrafting_Data\weaponparts\data\weaponparts_damage.rvmat"}},
+						{0.3,{"BastionMod\BastionCrafting_Data\weaponparts\data\weaponparts_damage.rvmat"}},
+						{0.0,{"BastionMod\BastionCrafting_Data\weaponparts\data\weaponparts_destruct.rvmat"}}
+					};
+				};
+			};
+		};
+	};		
 };
