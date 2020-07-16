@@ -38,20 +38,30 @@ class HackHouseToolBase : ItemBook
         return false;
     }
 
+    bool RollHack(float chance)
+    {
+        if( Math.RandomFloat01() < chance )
+        {
+            return true;
+        }
+        return false;
+    }
+
     void Destroy()
     {
         this.Delete();
     }
 
-    void HackFailed(Object house)
+    void HackFailed(Object obj)
     {
-        GetGame().CreateObject("SirenProp", house.GetPosition());
+        GetGame().CreateObject("SirenProp", obj.GetPosition());
     }
 
     override void SetActions()
 	{
 		super.SetActions();
         AddAction(ActionHackBRPDoor);
+        AddAction(ActionHackISFWeapon);
     }
 }
 
