@@ -1,5 +1,6 @@
 modded class Weapon_Base {
-    private bool    m_IsHacked;
+
+    private bool        m_IsHacked;
 
     void Weapon_Base()
     {
@@ -43,4 +44,8 @@ modded class Weapon_Base {
         SetSynchDirty();
     }
 
+    bool IsHacked()
+    {
+        return m_IsHacked;
+    }
 }
