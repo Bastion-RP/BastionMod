@@ -87,7 +87,7 @@ class ActionHackBRPDoor: ActionContinuousBase
 
     void TryHackDoor(ActionData action_data)
 	{
-		BuildingBase building;
+		Building building;
         HackHouseToolBase hackTool = HackHouseToolBase.Cast(action_data.m_MainItem);
         if (!hackTool) return;
 		if ( Class.CastTo(building, action_data.m_Target.GetObject()) )

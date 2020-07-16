@@ -46,3 +46,12 @@ class Land_HouseBlock_2F6 :         BuildingBase { override bool IsRentableHouse
 class Land_HouseBlock_2F7 :         BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_HouseBlock_3F_Corner :   BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_HouseBlock_3F1 :         BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_HouseBlock3F_Corner1 :   BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_HouseBlock3F_Corner2 :   BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_City_School :   			BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_BusStop_City :   		BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_City_FireStation :   	BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_City_Stand_FastFood :   	BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_City_Stand_Grocery :   	BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_City_Stand_News1 :   	BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_City_Stand_News2 :   	BuildingBase { override bool IsRentableHouse() {return true;} };
