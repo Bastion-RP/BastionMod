@@ -8,6 +8,7 @@ class BST_ServerCraftingManager : PluginBase {
     private static const string CONST_FURNACE_CONFIG_DIR = BST_CraftingConst.rootDir + "FurnaceConfig.json";
     private static const string CONST_CRAFTING_CONFIG_DIR = BST_CraftingConst.rootDir + "Config.json";
     private static const string CONST_CRAFTING_BENCH_CONFIG_DIR = BST_CraftingConst.rootDir + "BenchConfig.json";
+    private static const string CONST_CRAFTING_CATEGORY_CONFIG_DIR = BST_CraftingConst.rootDir + "CategoryConfig.json";
 
     private ref BST_FurnaceConfig cfgFurnace;
     private ref map<string, ref BST_FurnaceRecipe> mapFurnaceRecipes;
@@ -31,6 +32,7 @@ class BST_ServerCraftingManager : PluginBase {
         }
         LoadConfig();
         LoadRecipes();
+        LoadCategories();
         LoadFurnaceConfig();
         LoadFurnaceRecipes();
         LoadFurnaceFuels();
@@ -99,15 +101,27 @@ class BST_ServerCraftingManager : PluginBase {
                     if (foundRecipe) {
                         foundRecipe.SetFileName(foundFileName);
 
-                        if (foundRecipe.Validate()) {
+                        //if (foundRecipe.Validate()) {
                             arrayCraftingRecipes.Insert(foundRecipe);
-                        }
+                        //}
                         JsonFileLoader<BST_CraftingRecipe>.JsonSaveFile(BST_CraftingConst.recipeDir + foundFileName, foundRecipe);
                     }
                 }
             }
             GetBSTCraftingManager().SetCraftingRecipes(arrayCraftingRecipes);
         }
+    }
+
+    private void LoadCategories() {
+        BST_CraftingCategoryConfig categoryConfig;
+
+        if (!FileExist(CONST_CRAFTING_CATEGORY_CONFIG_DIR)) {
+            categoryConfig = new BST_CraftingCategoryConfig();
+        } else {
+            JsonFileLoader<BST_CraftingCategoryConfig>.JsonLoadFile(CONST_CRAFTING_CATEGORY_CONFIG_DIR, categoryConfig);
+        }
+        JsonFileLoader<BST_CraftingCategoryConfig>.JsonSaveFile(CONST_CRAFTING_CATEGORY_CONFIG_DIR, categoryConfig);
+        GetBSTCraftingManager().SetCategoryConfig(categoryConfig);
     }
 
     private void LoadFurnaceRecipes() {

@@ -12,7 +12,6 @@ class BRP_Furnace extends Fence {
 		slot_id = InventorySlots.GetSlotIdFromString("Material_Nails");
 		nails = ItemBase.Cast(GetInventory().FindAttachment(slot_id));
 
-		Print("[DEBUG] BRP_Furnace | CanUpgrade nails=" + nails + " | metal=" + metal);
 		if (metal && nails && QuantityConversions.GetItemQuantity(metal) >= 5 && QuantityConversions.GetItemQuantity(nails) >= 20) {
 			return true;
 		}

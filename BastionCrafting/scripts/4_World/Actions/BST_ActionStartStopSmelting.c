@@ -33,10 +33,8 @@ class BST_ActionStartStopSmelting : ActionInteractBase {
 
         if (furnace) {
             if (furnace.IsBurning()) {
-                Print("[DEBUG] BST_ActionStartStopSmelting | OnExecuteServer | Stopping smelting!");
                 furnace.StopSmelting();
             } else if (furnace.CanStartSmelting()) {
-                Print("[DEBUG] BST_ActionStartStopSmelting | OnExecuteServer | Starting smelting!");
                 furnace.StartSmelting();
             }
         }

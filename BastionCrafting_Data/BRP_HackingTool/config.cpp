@@ -26,8 +26,8 @@ class CfgVehicles
 	{
 		scope=2;
 		model="\BastionMod\BastionCrafting_Data\BRP_HackingTool\BRP_HackingTool.p3d";
-		displayName="Crafted Hacking Tool";
-		descriptionShort="A Crafted Hacking Tool that meight open some door";
+		displayName="Hacking Tool";
+		descriptionShort="A computer device, useful for a variety of purposes.";
 		itemSize[]={2,2};
 		weight = 500;
 		rotationFlags=1;
