@@ -400,7 +400,7 @@ class BRP_NameTags_PlayerTag extends ScriptedWidgetEventHandler
 
 
     void BRP_NameTags_NameTag_Say (string msg) {
-        return; // return debug disabled
+        //return; // return debug disabled
 
         msg = "nameTag." + msg;
         GetGame().GetMission().OnEvent(ChatMessageEventTypeID, new ChatMessageEventParams(CCDirect, "", msg, ""));
@@ -584,19 +584,17 @@ class BRP_NameTags_PlayerTag extends ScriptedWidgetEventHandler
 	};
 
 
-
-	// initalizers the inital player (when added for the first time)
-	// adds the script to update queue
-	void InitPlayer() {
-
-		m_isInitialized = true;
+	void SetName(string f_Name = "") {
 
 		//m_PlayerName = m_Player.GetIdentity().GetName();
-		m_PlayerName = m_Data.m_Name;
+		if (f_Name == "") {
+			m_PlayerName = m_Data.m_Name;
+		};
 		
 		//BRP_NameTags_NameTag_Say("name: "+ m_PlayerName);
 		if (m_PlayerName == "") {
-			m_PlayerName = PlayerBase.Cast(m_Player).GetMultiCharactersPlayerName();
+			// cannot use this because only works on servers
+			//m_PlayerName = PlayerBase.Cast(m_Player).GetMultiCharactersPlayerName();
 			
 			//BRP_NameTags_NameTag_Say("name2: " + PlayerBase.Cast(m_Player).GetMultiCharactersPlayerName());
 			if (m_PlayerName == "") {
@@ -618,6 +616,17 @@ class BRP_NameTags_PlayerTag extends ScriptedWidgetEventHandler
 		if (t_IsLongName) {
 			m_PlayerName += "...";
 		};
+
+	};
+
+
+	// initalizers the inital player (when added for the first time)
+	// adds the script to update queue
+	void InitPlayer() {
+
+		m_isInitialized = true;
+
+		SetName();
 
 
 
@@ -656,6 +665,9 @@ class BRP_NameTags_PlayerTag extends ScriptedWidgetEventHandler
 	void SetData (BRP_NameTagData f_Data) {
 
 		m_Data = f_Data;
+
+		// also update the player name based on the new data
+		SetName();
 	};
 
 	void SetPlayer(Man player) {	
