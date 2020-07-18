@@ -240,18 +240,6 @@ class CfgNonAIVehicles
 		inventorySlot = "magazine";
 		model = "BastionMod\BastionGuns\SR-25\data\magazine\sr25magazine.p3d";
 	};
-	class Proxygrip1: ProxyAttachment
-	{
-		scope = 2;
-		inventorySlot = "grip1";
-		model = "BastionMod\BastionGuns\Grips\grip1.p3d";
-	};
-	class Proxygrip2: ProxyAttachment
-	{
-		scope = 2;
-		inventorySlot = "grip2";
-		model = "BastionMod\BastionGuns\Grips\grip2.p3d";
-	};
 };
 
 
@@ -262,17 +250,5 @@ class CfgSlots
 		name = "BRP_CSM762_Suppressor";
 		displayName = "CSM-762 Suppressor";
 		ghostIcon = "supressor";
-	};
-	class Slot_grip1
-	{
-		name = "grip1";
-		displayName = "grip1";
-		ghostIcon = "";
-	};
-	class Slot_grip2
-	{
-		name = "grip2";
-		displayName = "grip2";
-		ghostIcon = "";
 	};
 };
