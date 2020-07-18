@@ -1,6 +1,6 @@
 class CfgPatches
 {
-	class ReduceNoShoesBleedChance
+	class ISFWeaponLock
 	{
 		units[]={};
 		weapons[]={};
@@ -11,16 +11,16 @@ class CfgPatches
 
 class CfgMods
 {
-	class ReduceNoShoesBleedChance
+	class ISFWeaponLock
 	{
-		dir="ReduceNoShoesBleedChance";
+		dir="ISFWeaponLock";
 		picture="";
 		action="";
 		hideName=1;
 		hidePicture=1;
-		name="ReduceNoShoesBleedChance";
-		credits="Kactet";
-		author="Kactet";
+		name="ISFWeaponLock";
+		credits="";
+		author="Cleetus";
 		authorID="0";
 		version="1.0";
 		extra=0;
@@ -32,7 +32,7 @@ class CfgMods
 			class worldScriptModule
             {
                 value = "";
-                files[] = {"BastionMod/BastionMisc/ReduceNoShoesBleedChance/scripts/4_World"};
+                files[] = {"BastionMod/BastionMisc/ISFWeaponLock/scripts/4_World"};
 			};
 		};
     };
