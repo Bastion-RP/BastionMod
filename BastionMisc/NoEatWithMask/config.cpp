@@ -1,26 +1,26 @@
 class CfgPatches
 {
-	class ISFWeaponLock
+	class NoEatWithMask
 	{
 		units[]={};
 		weapons[]={};
 		requiredVersion=0.1;
-		requiredAddons[]={"BastionMultiCharacters", "BastionDTAC"};
+		requiredAddons[]={"DZ_Data"};
 	};
 };
 
 class CfgMods
 {
-	class ISFWeaponLock
+	class NoEatWithMask
 	{
-		dir="ISFWeaponLock";
+		dir="NoEatWithMask";
 		picture="";
 		action="";
 		hideName=1;
 		hidePicture=1;
-		name="ISFWeaponLock";
-		credits="";
-		author="Cleetus";
+		name="NoEatWithMask";
+		credits="Kactet";
+		author="Kactet";
 		authorID="0";
 		version="1.0";
 		extra=0;
@@ -32,7 +32,7 @@ class CfgMods
 			class worldScriptModule
             {
                 value = "";
-                files[] = {"BastionMod/BastionMisc/ISFWeaponLock/scripts/4_World"};
+                files[] = {"BastionMod/BastionMisc/NoEatWithMask/scripts/4_World"};
 			};
 		};
     };
