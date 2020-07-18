@@ -1,17 +1,8 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionClothing\PlateCarrier\data\isfplatecarrier.rvmat
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 20:26:45 2020 : 'file' last modified on Tue Apr 28 20:26:45 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-ambient[] = {1,1,1,1};
+﻿ambient[] = {1,1,1,1};
 diffuse[] = {1,1,1,1};
 forcedDiffuse[] = {0,0,0,0};
 emmisive[] = {0,0,0,1};
-specular[] = {0.32941177,0.32941177,0.32156864,1};
+specular[] = {0.1,0.1,0.1,1};
 specularPower = 60;
 PixelShaderID = "Super";
 VertexShaderID = "Super";
