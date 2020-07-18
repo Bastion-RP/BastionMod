@@ -1,24 +1,24 @@
 class CfgPatches
 {
-	class ReduceNoShoesBleedChance
+	class NoEatWithMask
 	{
 		units[]={};
 		weapons[]={};
 		requiredVersion=0.1;
-		requiredAddons[]={"BastionMultiCharacters", "BastionDTAC"};
+		requiredAddons[]={"DZ_Data"};
 	};
 };
 
 class CfgMods
 {
-	class ReduceNoShoesBleedChance
+	class NoEatWithMask
 	{
-		dir="ReduceNoShoesBleedChance";
+		dir="NoEatWithMask";
 		picture="";
 		action="";
 		hideName=1;
 		hidePicture=1;
-		name="ReduceNoShoesBleedChance";
+		name="NoEatWithMask";
 		credits="Kactet";
 		author="Kactet";
 		authorID="0";
@@ -32,7 +32,7 @@ class CfgMods
 			class worldScriptModule
             {
                 value = "";
-                files[] = {"BastionMod/BastionMisc/ReduceNoShoesBleedChance/scripts/4_World"};
+                files[] = {"BastionMod/BastionMisc/NoEatWithMask/scripts/4_World"};
 			};
 		};
     };
