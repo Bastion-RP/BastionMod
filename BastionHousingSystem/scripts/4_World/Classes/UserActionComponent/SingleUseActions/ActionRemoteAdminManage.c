@@ -30,7 +30,7 @@ class ActionRemoteAdminManageHouses : ActionInteractBase
 	{
 		if (GetGame().IsClient())
 		{
-			if (target.GetObject() && BRP_ATM.Cast(target.GetObject()))
+			if (target.GetObject() && BRP_PackStation.Cast(target.GetObject()))
 			{
 				string plId = player.GetMultiCharactersPlayerId().ToString();
 				type = -1;
