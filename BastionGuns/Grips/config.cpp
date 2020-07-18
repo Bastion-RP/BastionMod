@@ -50,3 +50,35 @@ class CfgVehicles
 		hiddenSelectionsTextures[] = {"BastionMod\BastionGuns\Grips\Data\BIPOD_Base_co.paa"};
 	};
 };
+class CfgNonAIVehicles
+{
+	class ProxyAttachment;
+	class Proxygrip1: ProxyAttachment
+	{
+		scope = 2;
+		inventorySlot = "grip1";
+		model = "BastionMod\BastionGuns\Grips\grip1.p3d";
+	};
+	class Proxygrip2: ProxyAttachment
+	{
+		scope = 2;
+		inventorySlot = "grip2";
+		model = "BastionMod\BastionGuns\Grips\grip2.p3d";
+	};
+};
+
+class CfgSlots
+{
+	class Slot_grip1
+	{
+		name = "grip1";
+		displayName = "grip1";
+		ghostIcon = "";
+	};
+	class Slot_grip2
+	{
+		name = "grip2";
+		displayName = "grip2";
+		ghostIcon = "";
+	};
+};
