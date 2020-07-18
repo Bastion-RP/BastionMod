@@ -481,13 +481,14 @@ class BRP_NameTags_NameTagHandler extends PluginBase {
 	
 	void AddPlayerRPC(CallType f_Type, ref ParamsReadContext ctx, ref PlayerIdentity sender, ref Object f_Target) {
 
-        Param1< int > data;
+        Param2< int, string > data;
         if (!ctx.Read(data)) {
             return;
         };
         
         //BRP_NameTags_NameTagHandler_Say("AddPlayerRPC: " + data);
         BRP_NameTags_NameTagHandler_Say("AddPlayerRPC: " + data.param1);
+        BRP_NameTags_NameTagHandler_Say("AddPlayerRPC2: " + data.param2);
 
 
 		
@@ -500,7 +501,7 @@ class BRP_NameTags_NameTagHandler extends PluginBase {
 			return;
 		};
 
-        BRP_NameTags_GetNameTagHandler().AddPlayer(t_Player,data.param1);
+        BRP_NameTags_GetNameTagHandler().AddPlayer(t_Player,data.param1,data.param2);
         //BRP_NameTags_NameTagHandler_Say("player: " + t_Player);
 	};
 
@@ -557,7 +558,7 @@ class BRP_NameTags_NameTagHandler extends PluginBase {
     // this data is later processed from the datas
     // returns: nothing
     //
-    void AddData (Man f_Player, int f_Tier) {
+    void AddData (Man f_Player, int f_Tier, string f_Name) {
         BRP_NameTagData t_Data = new BRP_NameTagData;
 
         m_ArrayTagsNew.Insert(t_Data);
@@ -566,7 +567,9 @@ class BRP_NameTags_NameTagHandler extends PluginBase {
         t_Data.m_Pos = f_Player.GetPosition();
         t_Data.m_UID = f_Player.GetIdentity().GetId();
         //t_Data.m_Name = f_Player.GetIdentity().GetName();
-        t_Data.m_Name = PlayerBase.Cast(f_Player).GetMultiCharactersPlayerName();
+        t_Data.m_Name = f_Name;
+
+        BRP_NameTags_NameTagHandler_Say("Name:" + f_Name);
 
         t_Data.m_Tier = f_Tier;
         t_Data.m_Type = 0;
@@ -619,7 +622,7 @@ class BRP_NameTags_NameTagHandler extends PluginBase {
     // the original add function is based on the player object, but after this we will use the UID
     // returns: nothing
     //
-    void AddPlayer (Man f_Player, int f_Tier) {
+    void AddPlayer (Man f_Player, int f_Tier, string f_Name) {
         
         //BRP_NameTags_NameTagHandler_Say("AddPlayer: " + f_Player);
 
@@ -670,7 +673,7 @@ class BRP_NameTags_NameTagHandler extends PluginBase {
         // player was not in the list, add him
         if (!t_IsDataFound) {
             //CreateTag(f_Player);
-            AddData(f_Player,f_Tier);
+            AddData(f_Player,f_Tier,f_Name);
 
             return;
         };

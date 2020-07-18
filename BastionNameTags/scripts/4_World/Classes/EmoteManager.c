@@ -206,7 +206,7 @@ modded class EmoteManager {
                 if (BRP_NameTags_f_ID == ID_EMOTE_TAUNT) {
 
                     // the player will remove the other player from itself as well
-                    GetRPCManager().SendRPC("BRP_NameTags", "AddPlayerRPC", new Param1<int>(BRP_NameTags_o_Tier), true, f_Player.GetIdentity(), i_target);
+                    GetRPCManager().SendRPC("BRP_NameTags", "AddPlayerRPC", new Param2<int,string>(BRP_NameTags_o_Tier,""), true, f_Player.GetIdentity(), i_target);
                 }; 
 
                 // Elbow flip off is more personal, distance decreased behind the player
@@ -248,13 +248,15 @@ modded class EmoteManager {
                     //continue;
 
                     // the player will remove the other player from itself as well
-                    GetRPCManager().SendRPC("BRP_NameTags", "AddPlayerRPC", new Param1<int>(BRP_NameTags_o_Tier), true, f_Player.GetIdentity(), i_target);
+                    GetRPCManager().SendRPC("BRP_NameTags", "AddPlayerRPC", new Param2<int,string>(BRP_NameTags_o_Tier,""), true, f_Player.GetIdentity(), i_target);
                 }; 
 
 
                 // if identity exists, send RPC
                 if (i_target.GetIdentity()) {
-                    GetRPCManager().SendRPC("BRP_NameTags", "AddPlayerRPC", new Param1<int>(BRP_NameTags_o_Tier), true, i_target.GetIdentity(), f_Player);
+                    GetRPCManager().SendRPC("BRP_NameTags", "AddPlayerRPC", new Param2<int,string>(BRP_NameTags_o_Tier,f_Player.GetMultiCharactersPlayerName()), true, i_target.GetIdentity(), f_Player);
+
+                    BRP_NameTags_NameTags_Say("Sending from:" + f_Player.GetMultiCharactersPlayerName());
                     //GetRPCManager().SendRPC("BRP_NameTags", "AddPlayerRPC", new Param, true, i_target.GetIdentity(), player);
                 };
             };
