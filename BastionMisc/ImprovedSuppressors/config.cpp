@@ -9,7 +9,7 @@ class CfgPatches
 	};
 };
 
-class cfgVehicles
+class CfgVehicles
 {
 	class ItemSuppressor;
 	class ImprovisedSuppressor: ItemSuppressor
@@ -33,4 +33,4 @@ class cfgVehicles
 		noiseShootModifier= -3.2;
 		class DamageSystem { class GlobalHealth { class Health { hitpoints= 100; }; }; };
 	};
-}
+};

@@ -20,7 +20,7 @@ modded class Land_HouseBlock_2F1                 { override bool IsRentableHouse
 modded class Land_HouseBlock_2F8                 { override bool IsRentableHouse() {return true;} };
 modded class Land_HouseBlock_2F9                 { override bool IsRentableHouse() {return true;} };
 modded class Land_HouseBlock_3F2                 { override bool IsRentableHouse() {return true;} };
-modded class Land_HouseBlock_5F                 { override bool IsRentableHouse() {return true;} };
+modded class Land_HouseBlock_5F                  { override bool IsRentableHouse() {return true;} };
 
 //modded======================================
 class Land_House_1W07 :             BuildingBase { override bool IsRentableHouse() {return true;} };
