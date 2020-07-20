@@ -67,6 +67,8 @@ class MultiCharactersSurvivorSelector {
         // First, check to see if the widget is a panel. If not, don't do anything. Then, handle the rest.
         bool widgetFound;
 
+        // This needs to be rewritten. No need to loop to check stuff. Just use RAM and store shit in a map...
+
         foreach(MultiCharactersPlayerStatPanel checkStatsPanel : arrayStatPanels) {
             if (checkStatsPanel) {
                 if (checkStatsPanel.GetWidget() == w) {

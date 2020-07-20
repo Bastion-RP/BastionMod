@@ -6,10 +6,13 @@ class MultiCharactersClientManager : PluginBase {
 	private string selectedSurvivorType;
 	private bool isInitialized;
 
+    static ref ScriptInvoker BST_testInvoker;
+
 	void MultiCharactersClientManager() {
 		GetDayZGame().multicharactersSpawnInvoker.Insert(InitClient);
 		isInitialized = false;
 		arrayLoadouts = new array<ref SavePlayer>();
+		BST_testInvoker = new ScriptInvoker();
 	}
 
     void Init() {
@@ -38,18 +41,15 @@ class MultiCharactersClientManager : PluginBase {
 	}
 
 	void InitClient() {
-		Print(MCConst.debugPrefix + "MultiCharactersClientManager | InitClient | Initializing client! " + isInitialized);
 		if (!menuInit) {
 			menuInit = new MultiCharactersInitMenu();
 		}
 		menuInit.Initializing();
 
 		if (!isInitialized) {
-			Print(MCConst.debugPrefix + "MultiCharactersClientManager | InitClient | Client not initialized, sending rpc to server!");
 			menuInit.Loading();
 			GetDayZGame().ContinueSpawn(true);
 		} else {
-			Print(MCConst.debugPrefix + "MultiCharactersClientManager | InitClient | Client initialized, grabbing loadouts!");
 			menuInit.DataWaiting();
 			GetGame().RPCSingleParam(null, MultiCharRPC.SERVER_GRAB_LOADOUTS, null, true);
 		}

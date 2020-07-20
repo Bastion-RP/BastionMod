@@ -20,14 +20,14 @@ class MultiCharactersInitMenu {
 
 	void Initializing() {
 		wRoot.Show(true);
-		txtInit.SetText("Initializing...")
+		txtInit.SetText("Initializing...");
 	}
 	
 	void Loading() {
-		txtInit.SetText("Loading player data...")
+		txtInit.SetText("Loading player data...");
 	}
 	
 	void DataWaiting() {
-		txtInit.SetText("Waiting for Data From Server...")
+		txtInit.SetText("Waiting for Data From Server...");
 	}
 }
