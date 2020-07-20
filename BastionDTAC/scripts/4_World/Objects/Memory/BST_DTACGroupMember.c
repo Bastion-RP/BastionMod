@@ -1,9 +1,9 @@
-class DTACGroupMember {
-    protected ref DTACPlayerData playerData;
+class BST_DTACGroupMember {
+    protected ref BST_DTACPlayerData playerData;
     protected PlayerBase player;
     protected float maxHealth, maxBlood, maxWater, maxFood;
 
-    void DTACGroupMember(DTACPlayerData playerData) {
+    void BST_DTACGroupMember(BST_DTACPlayerData playerData) {
         this.playerData = playerData;
 
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) {
@@ -11,15 +11,15 @@ class DTACGroupMember {
         }
     }
 
-    void ~DTACGroupMember() {
+    void ~BST_DTACGroupMember() {
         if (playerData) {
             delete playerData;
         }
     }
 
     void StartUpdateLoop() {
-        Print("[DEBUG] DTACGroupMember | StartUpdateLoop");
         int updateSens;
+        
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) {
             updateSens = 1000;
         } else {
@@ -36,12 +36,10 @@ class DTACGroupMember {
     }
 
     void StopUpdateLoop() {
-        Print("[DEBUG] DTACGroupMember | StopUpdateLoop");
         GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Remove(this.UpdatePlayer);
     }
     
     void Init() {
-        Print("[DEBUG] DTACGroupMember | Init | Initializing playerbase loop check");
         GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Remove(this.UpdatePlayer);
 
         
@@ -66,19 +64,15 @@ class DTACGroupMember {
 
     void UpdatePlayer() {
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) {
-            Print("[DEBUG] DTACGroupMember | UpdatePlayer | Starting update player loop!!!")
             if (!player || !player.IsAlive()) {
-                Print("[DEBUG] DTACGroupMember | UpdatePlayer | player is null or dead!!!")
                 array<Man> playerList = new array<Man>();
                 playerList = ClientData.m_PlayerBaseList;
                 
                 foreach (Man man : playerList) {
                     if (man) {
-                        Print("[DEBUG] DTACGroupMember | UpdatePlayer | man found!!!")
                         PlayerBase searchPlayer = PlayerBase.Cast(man);
 
                         if (searchPlayer && searchPlayer.IsAlive() && searchPlayer.GetIdentity() && searchPlayer.GetIdentity().GetId() == playerData.GetId()) {
-                            Print("[DEBUG] DTACGroupMember | UpdatePlayer | setting player!!!")
                             player = searchPlayer;
 
                             GetDTACClientGroupManager().playerUpdateInvoker.Invoke();
@@ -113,10 +107,10 @@ class DTACGroupMember {
                     playerData.SetFood(currFood);
 
                     auto rpcParams = new array<ref Param>();
-                    Param params = new Param1<ref DTACPlayerData>(playerData);
+                    Param params = new Param1<ref BST_DTACPlayerData>(playerData);
 
                     rpcParams.Insert(params);
-                    GetDTACGroupManager().dtacStatInvoker.Invoke(playerData.GetId(), DTACRPC.CLIENT_RECEIVE_PLAYER_STAT_UPDATE, rpcParams);
+                    GetDTACGroupManager().dtacStatInvoker.Invoke(playerData.GetId(), BST_DTACRPC.CLIENT_RECEIVE_PLAYER_STAT_UPDATE, rpcParams);
                 }
             } else {
                 GetDTACGroupManager().dtacRemovalInvoker.Invoke(playerData.GetId());
@@ -124,6 +118,6 @@ class DTACGroupMember {
         }
     }
 
-    DTACPlayerData GetPlayerData() { return playerData; }
+    BST_DTACPlayerData GetPlayerData() { return playerData; }
     PlayerBase GetPlayer() { return player; }
 }

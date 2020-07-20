@@ -1,14 +1,14 @@
-class DTACGroupManager : PluginBase {
-    static const string CONST_DTAC_CLASSNAME = "brp_phone";
+class BST_DTACGroupManager : PluginBase {
+    static const string CONST_DTAC_CLASSNAME = "nail";
     static ref ScriptInvoker dtacRemovalInvoker;
     static ref ScriptInvoker dtacStatInvoker;
 
-    void DTACGroupManager() {
+    void BST_DTACGroupManager() {
         dtacRemovalInvoker = new ScriptInvoker();
         dtacStatInvoker = new ScriptInvoker();
     }
 
-    void ~DTACGroupManager() {
+    void ~BST_DTACGroupManager() {
         if (dtacRemovalInvoker) {
             delete dtacRemovalInvoker;
         }
@@ -39,6 +39,6 @@ class DTACGroupManager : PluginBase {
     }
 }
 
-DTACGroupManager GetDTACGroupManager() {
-    return DTACGroupManager.Cast(GetPlugin(DTACGroupManager));
+BST_DTACGroupManager GetDTACGroupManager() {
+    return BST_DTACGroupManager.Cast(GetPlugin(BST_DTACGroupManager));
 }

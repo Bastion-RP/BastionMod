@@ -1,14 +1,14 @@
-class DTACGroupConfig {
+class BST_DTACGroupConfig {
     private static const float DEFAULT_UPDATE_SENS = 1.0;
     private static const int DEFAULT_UPDATE_INTERVAL = 1;
     private static const int DEFAULT_UPDATE_DIST_SENS = 25;
 
-    private ref array<ref DTACGroupConfigObject> arrayConfigGroups;
+    private ref array<ref BST_DTACGroupConfigObject> arrayConfigGroups;
     private float StatUpdateSensitivityPercentage;
     private int StatUpdateIntervalSeconds, DistanceUpdateSensitivityMeters;
 
-    void DTACGroupConfig() {
-        arrayConfigGroups = new array<ref DTACGroupConfigObject>();
+    void BST_DTACGroupConfig() {
+        arrayConfigGroups = new array<ref BST_DTACGroupConfigObject>();
         StatUpdateIntervalSeconds = DEFAULT_UPDATE_INTERVAL;
         StatUpdateSensitivityPercentage = DEFAULT_UPDATE_SENS;
         DistanceUpdateSensitivityMeters = DEFAULT_UPDATE_DIST_SENS;
@@ -17,13 +17,13 @@ class DTACGroupConfig {
     void Validate() {
         if (arrayConfigGroups.Count() == 0) {
             for (int i = 0; i < 4; i++) {
-                DTACGroupConfigObject newObject = new DTACGroupConfigObject();
+                BST_DTACGroupConfigObject newObject = new BST_DTACGroupConfigObject();
 
                 newObject.Validate();
                 arrayConfigGroups.Insert(newObject);
             }
         } else {
-            foreach (DTACGroupConfigObject configObject : arrayConfigGroups) {
+            foreach (BST_DTACGroupConfigObject configObject : arrayConfigGroups) {
                 if (configObject) {
                     configObject.Validate();
                 }
@@ -42,10 +42,10 @@ class DTACGroupConfig {
     }
 
     void Save() {
-        JsonFileLoader<DTACGroupConfig>.JsonSaveFile(DTACConst.configDir, this);
+        JsonFileLoader<BST_DTACGroupConfig>.JsonSaveFile(BST_DTACConst.configDir, this);
     }
 
-    array<ref DTACGroupConfigObject> GetGroups() { return arrayConfigGroups; }
+    array<ref BST_DTACGroupConfigObject> GetGroups() { return arrayConfigGroups; }
     float GetUpdateSensitivity() { return StatUpdateSensitivityPercentage; }
     int GetUpdateInterval() { return StatUpdateIntervalSeconds; }
     int GetDistanceSensitivity() { return DistanceUpdateSensitivityMeters; }

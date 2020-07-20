@@ -1,18 +1,18 @@
-class DTACGroup {
-    protected ref array<ref DTACGroupMember> arrayMembers;
+class BST_DTACGroup {
+    protected ref array<ref BST_DTACGroupMember> arrayMembers;
     protected string groupName;
     protected int groupCapactity, groupColor, groupId;
     
-    void DTACGroup(string groupName, int groupCapactity, int groupColor, int groupId) {
-        this.arrayMembers = new array<ref DTACGroupMember>();
+    void BST_DTACGroup(string groupName, int groupCapactity, int groupColor, int groupId) {
+        this.arrayMembers = new array<ref BST_DTACGroupMember>();
         this.groupName = groupName;
         this.groupCapactity = groupCapactity;
         this.groupColor = groupColor;
         this.groupId = groupId;
     }
 
-    void ~DTACGroup() {
-        foreach (DTACGroupMember memberBase : arrayMembers) {
+    void ~BST_DTACGroup() {
+        foreach (BST_DTACGroupMember memberBase : arrayMembers) {
             if (memberBase) {
                 delete memberBase;
             }
@@ -24,12 +24,8 @@ class DTACGroup {
             GetDTACGroupManager().dtacStatInvoker.Insert(CheckRPC);
             GetDTACGroupManager().dtacRemovalInvoker.Insert(RemoveMember);
         } else {
-            Print("[DEBUG] DTACGroup | Init | Initializing existing members");
-            DebugMembers();
-            foreach (DTACGroupMember member : arrayMembers) {
-                Print("looping " + member);
+            foreach (BST_DTACGroupMember member : arrayMembers) {
                 if (member) {
-                    Print("member exists");
                     member.Init();
                 }
             }
@@ -37,14 +33,14 @@ class DTACGroup {
     }
 
     void AddMember(PlayerBase player) {
-        DTACGroupMember member = GetMember(player.GetIdentity().GetId());
+        BST_DTACGroupMember member = GetMember(player.GetIdentity().GetId());
 
         if (!member) {
-            DTACPlayerData playerData;
+            BST_DTACPlayerData playerData;
             array<ref Param> rpcParams;
-            Param1<ref DTACPlayerData> param;
+            Param1<ref BST_DTACPlayerData> param;
 
-            playerData = new DTACPlayerData();
+            playerData = new BST_DTACPlayerData();
             rpcParams = new array<ref Param>();
 
             playerData.SetName(player.GetMultiCharactersPlayerName());
@@ -55,22 +51,22 @@ class DTACGroup {
             playerData.SetWater(player.GetStatWater().Get());
             playerData.SetFood(player.GetStatEnergy().Get());
 
-            member = new DTACGroupMember(playerData);
-            param = new Param1<ref DTACPlayerData>(playerData);
+            member = new BST_DTACGroupMember(playerData);
+            param = new Param1<ref BST_DTACPlayerData>(playerData);
             
             member.SetPlayer(player);
             member.Init();
             rpcParams.Insert(param);
-            SendRPC(DTACRPC.CLIENT_ADD_GROUP_MEMBER, rpcParams);
+            SendRPC(BST_DTACRPC.CLIENT_ADD_GROUP_MEMBER, rpcParams);
             arrayMembers.Insert(member);
             arrayMembers.Debug();
         }
     }
 
     // CLIENT ONLY
-    void AddMember(DTACPlayerData playerData) {
+    void AddMember(BST_DTACPlayerData playerData) {
         if (playerData && !GetMember(playerData.GetId())) {
-            DTACGroupMember newMember = new DTACGroupMember(playerData);
+            BST_DTACGroupMember newMember = new BST_DTACGroupMember(playerData);
 
             if (GetDTACClientGroupManager()) {
                 GetDTACClientGroupManager().GetHUD().AddTracker(newMember);
@@ -82,8 +78,8 @@ class DTACGroup {
     }
 
     // CLIENT ONLY
-    void UpdateMember(DTACPlayerData playerData) {
-        DTACGroupMember member = GetMember(playerData.GetId());
+    void UpdateMember(BST_DTACPlayerData playerData) {
+        BST_DTACGroupMember member = GetMember(playerData.GetId());
 
         if (member) {
             member.GetPlayerData().SetHealth(playerData.GetHealth());
@@ -95,23 +91,19 @@ class DTACGroup {
     }
 
     void RemoveMember(string id) {
-        Print("[DEBUG] DTACGroup | RemoveMember | Removing member by ID..." + id);
-        DTACGroupMember member = GetMember(id);
+        BST_DTACGroupMember member = GetMember(id);
 
         if (member) {
-            Print("[DEBUG] DTACGroup | RemoveMember | Removing member...");
             if (GetGame().IsServer() && GetGame().IsMultiplayer()) {
                 array<ref Param> rpcParams = new array<ref Param>();
                 Param param = new Param1<string>(id);
 
                 rpcParams.Insert(param);
-                SendRPC(DTACRPC.CLIENT_REMOVE_GROUP_MEMBER, rpcParams);
+                SendRPC(BST_DTACRPC.CLIENT_REMOVE_GROUP_MEMBER, rpcParams);
             } else {
-                Print("[DEBUG] DTACGroup | RemoveMember | Removing...");
                 if (GetDTACClientGroupManager()) {
                     GetDTACClientGroupManager().GetHUD().RemoveTracker(id);
                 }
-                Print("[DEBUG] DTACGroup | RemoveMember | Removed...");
             }
             arrayMembers.RemoveItem(member);
         }
@@ -126,33 +118,15 @@ class DTACGroup {
 
     // SERVER ONLY
     void SendRPC(int rpcType, array<ref Param> rpcParams) {
-        Print("[DEBUG] DTACGroup | SendRPC | Sending RPC=" + typename.EnumToString(DTACRPC, rpcType) + " | data=" + rpcParams);
-        foreach (DTACGroupMember member : arrayMembers) {
+        foreach (BST_DTACGroupMember member : arrayMembers) {
             if (member && member.GetPlayer() && member.GetPlayer().GetIdentity()) {
-                Print("[DEBUG] DTACGroup | SendRPC | Sending RPC to " + member.GetPlayerData().GetName());
                 GetGame().RPC(member.GetPlayer(), rpcType, rpcParams, true, member.GetPlayer().GetIdentity());
             }
         }
     }
 
-    void DebugMembers() {
-        Print("[DEBUG] DTACGroup | DebugMembers | Debugging member array");
-        foreach (DTACGroupMember member : arrayMembers) {
-            if (member) {
-                Print("[DEBUG] DTACGroup | DebugMembers | Getting player data=" + member.GetPlayerData());
-                Print("[DEBUG] DTACGroup | DebugMembers | Getting player name=" + member.GetPlayerData().GetName());
-                Print("[DEBUG] DTACGroup | DebugMembers | Getting player id=" + member.GetPlayerData().GetId());
-                Print("[DEBUG] DTACGroup | DebugMembers | Getting player position=" + member.GetPlayerData().GetPosition());
-                Print("[DEBUG] DTACGroup | DebugMembers | Getting player health=" + member.GetPlayerData().GetHealth());
-                Print("[DEBUG] DTACGroup | DebugMembers | Getting player blood=" + member.GetPlayerData().GetBlood());
-                Print("[DEBUG] DTACGroup | DebugMembers | Getting player water=" + member.GetPlayerData().GetWater());
-                Print("[DEBUG] DTACGroup | DebugMembers | Getting player food=" + member.GetPlayerData().GetFood());
-            }
-        }
-    }
-
-    DTACGroupMember GetMember(string uid) {
-        foreach (DTACGroupMember member : arrayMembers) {
+    BST_DTACGroupMember GetMember(string uid) {
+        foreach (BST_DTACGroupMember member : arrayMembers) {
             if (member.GetPlayerData().GetId() == uid) {
                 return member;
             }
@@ -170,5 +144,5 @@ class DTACGroup {
     int GetId() { return groupId; }
     int GetCapacity() { return groupCapactity; }
     int GetColor() { return groupColor; }
-    array<ref DTACGroupMember> GetMembers() { return arrayMembers; }
+    array<ref BST_DTACGroupMember> GetMembers() { return arrayMembers; }
 }

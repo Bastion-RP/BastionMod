@@ -18,12 +18,12 @@ modded class VPPMapMenu {
     }
 
     void DisplayGroupMarkers() {
-        ref DTACGroup group = GetDTACClientGroupManager().GetActiveGroup();
+        ref BST_DTACGroup group = GetDTACClientGroupManager().GetActiveGroup();
 
         if (group) {
-            ref array<ref DTACGroupMember> arrayMembers = group.GetMembers();
+            ref array<ref BST_DTACGroupMember> arrayMembers = group.GetMembers();
 
-            foreach (DTACGroupMember member : arrayMembers) {
+            foreach (BST_DTACGroupMember member : arrayMembers) {
                 if (!member || member.GetPlayerData().GetId() == GetGame().GetPlayer().GetIdentity().GetId()) { continue; }
 
                 PlayerBase player = member.GetPlayer();

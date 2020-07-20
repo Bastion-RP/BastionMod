@@ -1,4 +1,4 @@
-class DTACPlayerData {
+class BST_DTACPlayerData {
     protected vector position;
     protected string name, id;
     protected float health, blood, water, food;

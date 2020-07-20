@@ -1,4 +1,4 @@
-class DTACGroupConfigObject {
+class BST_DTACGroupConfigObject {
     private static const string DEFAULT_HEADER_COLOR = "255 255 255";
     private static const string DEFAULT_GROUP_NAME = "TEMP GROUP NAME";
     private static const int DEFAULT_GROUP_CAPACITY = 5;

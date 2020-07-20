@@ -1,8 +1,8 @@
-class DTACUserWidget {
+class BST_DTACUserWidget {
     private ref Widget wRoot, wParent;
     private ref TextWidget txtUsername;
 
-    void DTACUserWidget(Widget wParent, string username) {
+    void BST_DTACUserWidget(Widget wParent, string username) {
         this.wParent = wParent;
         wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\UserWidget.layout", wParent);
         txtUsername = TextWidget.Cast(wRoot.FindAnyWidget("txtUsername"));
@@ -10,7 +10,7 @@ class DTACUserWidget {
         txtUsername.SetText(username);
     }
 
-    void ~DTACUserWidget() {
+    void ~BST_DTACUserWidget() {
         if (wRoot) {
             wRoot.Unlink();
         }
