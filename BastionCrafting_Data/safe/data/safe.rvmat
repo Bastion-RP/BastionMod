@@ -8,7 +8,7 @@ PixelShaderID="Super";
 VertexShaderID="Super";
 class Stage1
 {
-	texture="BastionMod\BastionCrafting_Data\safe\textures\safe_nohq.tga";
+	texture="BastionMod\BastionCrafting_Data\safe\data\safe_nohq.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -44,7 +44,7 @@ class Stage3
 };
 class Stage4
 {
-	texture="BastionMod\BastionCrafting_Data\safe\textures\safe_as.tga";
+	texture="BastionMod\BastionCrafting_Data\safe\data\safe_as.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -56,7 +56,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="BastionMod\BastionCrafting_Data\safe\textures\safe_smdi.tga";
+	texture="BastionMod\BastionCrafting_Data\safe\data\safe_smdi.paa";
 	uvSource="tex";
 	class uvTransform
 	{

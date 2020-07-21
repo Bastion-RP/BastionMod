@@ -11,7 +11,7 @@ class BST_ActionCloseFurnace : ActionInteractBase {
 
     override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item) {
         if (!target.GetObject()) { return false; }
-        BRP_FurnaceFireplace furnace = BRP_FurnaceFireplace.Cast(target.GetObject());
+        BRP_Furnace_Fireplace furnace = BRP_Furnace_Fireplace.Cast(target.GetObject());
 
         if (furnace && furnace.IsOpen()) {
             return true;
@@ -21,7 +21,7 @@ class BST_ActionCloseFurnace : ActionInteractBase {
 
     override void OnExecuteServer(ActionData action_data) {
         if (!action_data.m_Target.GetObject()) { return; }
-        BRP_FurnaceFireplace furnace = BRP_FurnaceFireplace.Cast(action_data.m_Target.GetObject());
+        BRP_Furnace_Fireplace furnace = BRP_Furnace_Fireplace.Cast(action_data.m_Target.GetObject());
 
         if (furnace) {
             furnace.Close();
@@ -30,7 +30,7 @@ class BST_ActionCloseFurnace : ActionInteractBase {
 
     override void OnEndServer(ActionData action_data) {
         if (!action_data.m_Target.GetObject()) { return; }
-        BRP_FurnaceFireplace furnace = BRP_FurnaceFireplace.Cast(action_data.m_Target.GetObject());
+        BRP_Furnace_Fireplace furnace = BRP_Furnace_Fireplace.Cast(action_data.m_Target.GetObject());
 
         if (furnace) {
             furnace.SoundSynchRemoteReset();

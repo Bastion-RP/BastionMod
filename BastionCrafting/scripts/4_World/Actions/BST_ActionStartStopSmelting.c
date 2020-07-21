@@ -11,7 +11,7 @@ class BST_ActionStartStopSmelting : ActionInteractBase {
     }
 
     override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item) {
-        BRP_FurnaceFireplace furnace = BRP_FurnaceFireplace.Cast(target.GetObject());
+        BRP_Furnace_Fireplace furnace = BRP_Furnace_Fireplace.Cast(target.GetObject());
 
         if (furnace && Math.AbsFloat(vector.Distance(furnace.GetPosition(), player.GetPosition())) < UAMaxDistances.DEFAULT) {
             _actionText = "Turn ";
@@ -29,7 +29,7 @@ class BST_ActionStartStopSmelting : ActionInteractBase {
     }
 
     override void OnExecuteServer(ActionData action_data) {
-        BRP_FurnaceFireplace furnace = BRP_FurnaceFireplace.Cast(action_data.m_Target.GetObject());
+        BRP_Furnace_Fireplace furnace = BRP_Furnace_Fireplace.Cast(action_data.m_Target.GetObject());
 
         if (furnace) {
             if (furnace.IsBurning()) {
