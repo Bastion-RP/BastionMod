@@ -1,4 +1,4 @@
-class DTACLookupMenu {
+class BST_DTACLookupMenu {
 	private static const int KEYCODE_MIN_NUM = 48;
 	private static const int KEYCODE_MAX_NUM = 57;
 
@@ -10,7 +10,7 @@ class DTACLookupMenu {
     protected ref ButtonWidget btnLookup;
     private bool rateLimited;
 
-    void DTACLookupMenu(Widget wParent) {
+    void BST_DTACLookupMenu(Widget wParent) {
         this.wParent = wParent;
         jsSerializer = new JsonSerializer();
         wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\DBLookup.layout", wParent);
@@ -27,10 +27,10 @@ class DTACLookupMenu {
         edtInputID = EditBoxWidget.Cast(wRoot.FindAnyWidget("edtInputID"));
         btnLookup = ButtonWidget.Cast(wRoot.FindAnyWidget("btnLookup"));
 
-        DTACCurl.dtacData.Insert(this.DisplayData);
+        BST_DTACRestCallback.dtacData.Insert(this.DisplayData);
     }
 
-    void ~DTACLookupMenu() {
+    void ~BST_DTACLookupMenu() {
         if (wRoot) {
             wRoot.Unlink();
         }
@@ -40,7 +40,7 @@ class DTACLookupMenu {
         map<string, string> mapData = new map<string, string>();
         string error;
 
-        Print("[DTAC DEBUG] DTACLookupMenu | DisplayData | Received function call");
+        Print("[DTAC DEBUG] BST_DTACLookupMenu | DisplayData | Received function call");
         if (!jsSerializer.ReadFromString(mapData, data, error)) {
             txtInputHeader.SetText(data);
         } else {

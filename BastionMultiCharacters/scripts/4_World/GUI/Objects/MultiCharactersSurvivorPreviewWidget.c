@@ -13,7 +13,7 @@ class MultiCharactersSurvivorPreviewWidget {
         //cameraPos = GetMultiCharactersClientManager().GetSelectMenu().GetCameraPosition()
         //characterPos = ("" + cameraPos[0] + " " + (cameraPos[1] + 3) + " " + cameraPos[2]).ToVector();
         //dayzPlayer = GetGame().CreateObject(survivorType, characterPos, true);
-        dayzPlayer = GetGame().CreateObject(survivorType, vector.Zero, true);
+        dayzPlayer = DayZPlayer.Cast(GetGame().CreateObject(survivorType, vector.Zero, true));
 
         Print(MCConst.debugPrefix + " | inactive pos=" + characterPos);
         //dayzPlayer.SetPosition(characterPos);

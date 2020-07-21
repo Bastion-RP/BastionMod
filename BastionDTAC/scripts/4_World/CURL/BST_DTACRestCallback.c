@@ -1,4 +1,6 @@
-class DTACCurl extends RestCallback {
+// Rewrite this
+
+class BST_DTACRestCallback : RestCallback {
     static ref ScriptInvoker dtacData = new ScriptInvoker();
 
     override void OnError(int errorCode) {

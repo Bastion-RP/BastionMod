@@ -1,11 +1,11 @@
-class DTACChoiceMenu : UIScriptedMenu {
+class BST_DTACChoiceMenu : UIScriptedMenu {
     private ref Widget wRoot;
     private ref ButtonWidget btnGroup, btnLookup, btnShowID;
-    private ref DTACLookupMenu lookupMenu;
-    private ref DTACGroupMenu groupMenu;
-    private ref DTACCivIDMenu civIDMenu;
+    private ref BST_DTACLookupMenu lookupMenu;
+    private ref BST_DTACGroupMenu groupMenu;
+    private ref BST_DTACCivIDMenu civIDMenu;
 
-    void ~DTACChoiceMenu() {
+    void ~BST_DTACChoiceMenu() {
         DeleteMenus();
     }
     
@@ -56,7 +56,7 @@ class DTACChoiceMenu : UIScriptedMenu {
                     }
                     DeleteMenus();
 
-                    groupMenu = new DTACGroupMenu(wRoot);
+                    groupMenu = new BST_DTACGroupMenu(wRoot);
 
                     groupMenu.OnShow();
                     break;
@@ -69,7 +69,7 @@ class DTACChoiceMenu : UIScriptedMenu {
                     }
                     DeleteMenus();
 
-                    lookupMenu = new DTACLookupMenu(wRoot);
+                    lookupMenu = new BST_DTACLookupMenu(wRoot);
                     break;
                 }
             case btnShowID:
@@ -80,7 +80,7 @@ class DTACChoiceMenu : UIScriptedMenu {
                     }
                     DeleteMenus();
 
-                    civIDMenu = new DTACCivIDMenu(wRoot);
+                    civIDMenu = new BST_DTACCivIDMenu(wRoot);
                     break;
                 }
         }

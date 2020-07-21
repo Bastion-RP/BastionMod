@@ -8,21 +8,21 @@ modded class PluginManager {
 	override void Init() {
 		super.Init();
 
-		clanPluginList.Insert("DTACClientRPCHandler");
-		clanPluginList.Insert("DTACServerGroupManager");
-		clanPluginList.Insert("DTACServerRPCHandler");
-		clanPluginList.Insert("DTACClientGroupManager");
-		clanPluginList.Insert("DTACGroupManager");
+		clanPluginList.Insert("BST_DTACClientRPCHandler");
+		clanPluginList.Insert("BST_DTACServerGroupManager");
+		clanPluginList.Insert("BST_DTACServerRPCHandler");
+		clanPluginList.Insert("BST_DTACClientGroupManager");
+		clanPluginList.Insert("BST_DTACGroupManager");
 		//----------------------------------------------------------------------
 		// Register modules
 		//----------------------------------------------------------------------
 		//				Module Class Name 						Client	Server
 		//----------------------------------------------------------------------
-		RegisterPlugin("DTACGroupManager", true, true);
-		RegisterPlugin("DTACClientRPCHandler", true, false);
-		RegisterPlugin("DTACServerGroupManager", false, true);
-		RegisterPlugin("DTACServerRPCHandler", false, true);
-		RegisterPlugin("DTACClientGroupManager", true, false);
+		RegisterPlugin("BST_DTACGroupManager", true, true);
+		RegisterPlugin("BST_DTACClientRPCHandler", true, false);
+		RegisterPlugin("BST_DTACServerGroupManager", false, true);
+		RegisterPlugin("BST_DTACServerRPCHandler", false, true);
+		RegisterPlugin("BST_DTACClientGroupManager", true, false);
 	}
 	//=================================
 	// RegisterPlugin Except this one fucking works

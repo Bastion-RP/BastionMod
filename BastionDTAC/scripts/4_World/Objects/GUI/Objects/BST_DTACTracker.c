@@ -1,4 +1,4 @@
-class DTACTracker {
+class BST_DTACTracker {
     private static const int MAX_HEALTH = 100;
     private static const int MAX_BLOOD = 5000;
     private static const int MAX_WATER = 5000;
@@ -13,12 +13,12 @@ class DTACTracker {
     private ref Widget wRootVisual;
     private ref TextWidget txtVisualName;
     private ref GridSpacerWidget gridParent;
-    private ref DTACGroupMember groupMember;
+    private ref BST_DTACGroupMember groupMember;
     private bool relativeScreenSide = false; // false = left | true = right
 
-    void DTACTracker(ref DTACGroupMember groupMember, Widget wParent, Widget gridParent) {
+    void BST_DTACTracker(ref BST_DTACGroupMember groupMember, Widget wParent, Widget gridParent) {
         this.wParent = wParent;
-        this.gridParent = gridParent;
+        this.gridParent = GridSpacerWidget.Cast(gridParent);
         this.groupMember = groupMember;
 
         // Data widget
@@ -43,7 +43,7 @@ class DTACTracker {
         //GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(this.CheckForPlayerBase, 1000, true);
     }
 
-    void ~DTACTracker() {
+    void ~BST_DTACTracker() {
         if (wRootData) {
             wRootData.Unlink();
         }
@@ -67,24 +67,8 @@ class DTACTracker {
         GetGame().GetCallQueue(CALL_CATEGORY_GUI).Remove(this.UpdateVisualTracker);
     }
 
-    /* void CheckForPlayerBase() {
-        Print("[DEBUG] DTACTracker | CheckForPlayerBase | Initializing playerbase loop check");
-        if (groupMember.GetPlayer() && groupMember.GetPlayer().IsAlive()) {
-            Print("[DEBUG] DTACTracker | CheckForPlayerBase | Player exists and is alive");
-            if (!wRootVisual.IsVisible()) {
-                Print("[DEBUG] DTACTracker | CheckForPlayerBase | Tracker hidden, starting update");
-                StartUpdateLoop();
-            }
-        } else {
-            Print("[DEBUG] DTACTracker | CheckForPlayerBase | No player found, stopping loop");
-            wRootVisual.Show(false);
-            StopUpdateLoop();
-        }
-    } */
-
     void UpdateVisualTracker() {
         if (!groupMember.GetPlayer()) {
-            Print("[DEBUG] DTACTracker | UpdateVisualTracker | No player found, stopping loop");
             StopUpdateLoop();
             wRootVisual.Show(false);
             return;
@@ -138,11 +122,6 @@ class DTACTracker {
     }
 
     void UpdateDataStats() {
-        Print("[DEBUG] DTACTracker | UpdateDataStats | health=" + groupMember.GetPlayerData().GetHealth());
-        Print("[DEBUG] DTACTracker | UpdateDataStats | blood=" + groupMember.GetPlayerData().GetBlood());
-        Print("[DEBUG] DTACTracker | UpdateDataStats | water=" + groupMember.GetPlayerData().GetWater());
-        Print("[DEBUG] DTACTracker | UpdateDataStats | food=" + groupMember.GetPlayerData().GetFood());
-        Print("[DEBUG] DTACTracker | UpdateDataStats | food=" + groupMember.GetPlayerData().GetPosition());
         txtDataHealth.SetText("" + ((groupMember.GetPlayerData().GetHealth() / MAX_HEALTH) * 100).ToString().ToInt() + "%");
         txtDataBlood.SetText("" + (((groupMember.GetPlayerData().GetBlood() - BLOOD_DEATH_THRESHOLD) / (MAX_BLOOD - BLOOD_DEATH_THRESHOLD)) * 100).ToString().ToInt() + "%");
         txtDataWater.SetText("" + ((groupMember.GetPlayerData().GetWater() / MAX_WATER) * 100).ToString().ToInt() + "%");
@@ -184,5 +163,5 @@ class DTACTracker {
         return "" + nameSplit[0].Substring(0, 1) + ". " + nameSplit[1];
     }
 
-    DTACPlayerData GetPlayerData() { return groupMember.GetPlayerData(); }
+    BST_DTACPlayerData GetPlayerData() { return groupMember.GetPlayerData(); }
 }

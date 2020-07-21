@@ -1,9 +1,9 @@
-class DTACHUD {
+class BST_DTACHUD {
     private ref Widget wRoot;
     private ref GridSpacerWidget gridRoot;
-    private ref array<ref DTACTracker> arrayTrackers;
+    private ref array<ref BST_DTACTracker> arrayTrackers;
 
-    void DTACHUD() {
+    void BST_DTACHUD() {
         wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\HUD.layout");
         gridRoot = GridSpacerWidget.Cast(wRoot.FindAnyWidget("rootGrid"));
         
@@ -11,8 +11,8 @@ class DTACHUD {
         Init();
     }
 
-    void ~DTACHUD() {
-        foreach (DTACTracker tracker : arrayTrackers) {
+    void ~BST_DTACHUD() {
+        foreach (BST_DTACTracker tracker : arrayTrackers) {
             if (tracker) {
                 delete tracker;
             }
@@ -27,10 +27,10 @@ class DTACHUD {
             delete arrayTrackers;
         }
         int i;
-        array<ref DTACGroupMember> arrayMembers = GetDTACClientGroupManager().GetActiveGroup().GetMembers();
-        arrayTrackers = new array<ref DTACTracker>();
+        array<ref BST_DTACGroupMember> arrayMembers = GetDTACClientGroupManager().GetActiveGroup().GetMembers();
+        arrayTrackers = new array<ref BST_DTACTracker>();
 
-        foreach (DTACGroupMember member : arrayMembers) {
+        foreach (BST_DTACGroupMember member : arrayMembers) {
             if (i >= 6) { break; }
             if (member) {
                 AddTracker(member);
@@ -39,19 +39,19 @@ class DTACHUD {
         }
     }
 
-    void AddTracker(DTACGroupMember groupMember) {
-        Print("[DEBUG] DTACHUD | AddTracker | Adding new tracker! data=" + groupMember.GetPlayerData());
+    void AddTracker(BST_DTACGroupMember groupMember) {
+        Print("[DEBUG] BST_DTACHUD | AddTracker | Adding new tracker! data=" + groupMember.GetPlayerData());
         if (groupMember.GetPlayerData().GetId() == GetGame().GetPlayer().GetIdentity().GetId()) { return; }
-        DTACTracker newTracker = new DTACTracker(groupMember, wRoot, gridRoot);
+        BST_DTACTracker newTracker = new BST_DTACTracker(groupMember, wRoot, gridRoot);
 
         arrayTrackers.Insert(newTracker);
     }
 
     void RemoveTracker(string id) {
-        Print("[DEBUG] DTACHUD | RemoveTracker | Removing tracker by id! id=" + id);
-        foreach(DTACTracker tracker : arrayTrackers) {
+        Print("[DEBUG] BST_DTACHUD | RemoveTracker | Removing tracker by id! id=" + id);
+        foreach(BST_DTACTracker tracker : arrayTrackers) {
             if (tracker && tracker.GetPlayerData() && tracker.GetPlayerData().GetId() == id) {
-                Print("[DEBUG] DTACHUD | RemoveTracker | Matching tracker found!");
+                Print("[DEBUG] BST_DTACHUD | RemoveTracker | Matching tracker found!");
                 arrayTrackers.RemoveItem(tracker);
             } 
         }

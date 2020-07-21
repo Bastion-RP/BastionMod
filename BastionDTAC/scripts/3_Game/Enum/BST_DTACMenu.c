@@ -1,4 +1,4 @@
-enum DTACMenu {
+enum BST_DTACMenu {
     CHOICE_MENU = 1983276,
     GROUP_MENU,
     LOOKUP_MENU,

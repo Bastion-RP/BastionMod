@@ -28,7 +28,7 @@ class MultiCharactersPlayerStatPanel {
         //cameraPos = GetMultiCharactersClientManager().GetSelectMenu().GetCameraPosition()
         //characterPos = ("" + cameraPos[0] + " " + (cameraPos[1] + 3) + " " + cameraPos[2]).ToVector();
         //dayzPlayer = GetGame().CreateObject(savePlayer.GetType(), characterPos, true);
-        dayzPlayer = GetGame().CreateObject(savePlayer.GetType(), vector.Zero, true);
+        dayzPlayer = DayZPlayer.Cast(GetGame().CreateObject(savePlayer.GetType(), vector.Zero, true));
 
         /* if (dayzPlayer) {
             dayzPlayer.SetPosition(characterPos);
@@ -108,7 +108,7 @@ class MultiCharactersPlayerStatPanel {
 
             if (saveObject.IsInHands()) {
                 Print(MCConst.debugPrefix + "Save object is in hands!!!");
-                newItem = dayzPlayer.GetHumanInventory().CreateInHands(saveObject.GetType())
+                newItem = dayzPlayer.GetHumanInventory().CreateInHands(saveObject.GetType());
             } else {
 			    newItem = dayzPlayer.GetInventory().CreateInInventory(saveObject.GetType());
             }
