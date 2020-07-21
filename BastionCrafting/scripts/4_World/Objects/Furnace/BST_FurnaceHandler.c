@@ -1,7 +1,7 @@
 class BST_FurnaceHandler {
-    private BRP_FurnaceFireplace parent;
+    private BRP_Furnace_Fireplace parent;
 
-    void BST_FurnaceHandler(BRP_FurnaceFireplace parent) {
+    void BST_FurnaceHandler(BRP_Furnace_Fireplace parent) {
         this.parent = parent;
     }
 
@@ -196,5 +196,5 @@ class BST_FurnaceHandler {
         return false;
     }
 
-    BRP_FurnaceFireplace GetParent() { return parent; }
+    BRP_Furnace_Fireplace GetParent() { return parent; }
 }

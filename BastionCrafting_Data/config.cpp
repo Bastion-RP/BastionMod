@@ -9,6 +9,7 @@ class CfgPatches
 		{
 			"DZ_Gear_Containers",
 			"DZ_Gear_Crafting",
+			"DZ_Gear_Tools",
 			"DZ_Data"
 		};
 	};
@@ -46,30 +47,227 @@ class CfgVehicles
 	class Container_Base;
 	class Barrel_ColorBase;
 	class BarrelHoles_ColorBase;
-	class FireplaceBase;		
-	class BRP_CraftingBenchBase : Container_Base
+	class FireplaceBase;
+	class HouseNoDestruct;
+
+	class BRP_Item: Container_Base
 	{
-		scope = 1;
-		itemSize[]={10,15};
-		overrideDrawArea="8.0";
-		forceFarBubble="true";
-		slopeTolerance=0.30000001;
+		scope=0;
 		destroyOnEmpty=0;
 		varQuantityDestroyOnMin=0;
+		descriptionShort="This can be dismantled with a screwdriver, pliers or hammer.";
 		quantityBar=1;
 		carveNavmesh=1;
+		bounding="BSphere";
+		overrideDrawArea="3.0";
+		visibilityModifier=0.94999999;
 		canBeDigged=0;
+		alignHologramToTerain=0;
 		heavyItem=1;
-		weight=10000;
-		itemBehaviour=0;
-		stackedUnit="ml";
-		randomQuantity=2;
-		varQuantityInit=0;
-		varQuantityMin=0;
-		varQuantityMax=200000;
-		absorbency=0.1;
+		weight=10;
+		itemSize[]={10,10};
+		itemBehaviour=1;
 		physLayer="item_large";
-		allowOwnedCargoManipulation=1;
+		simulation="inventoryItem";
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=100;
+				};
+			};
+			class GlobalArmor
+			{
+				class Projectile
+				{
+					class Health
+					{
+						damage=0;
+					};
+					class Blood
+					{
+						damage=0;
+					};
+					class Shock
+					{
+						damage=0;
+					};
+				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage=0;
+					};
+					class Blood
+					{
+						damage=0;
+					};
+					class Shock
+					{
+						damage=0;
+					};
+				};
+			};
+		};
+	};
+	
+	class BRP_Item_HND: HouseNoDestruct
+	{
+		scope=0;
+		descriptionShort="This can be dismantled with a screwdriver, pliers or hammer.";		
+		storageCategory=1;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=100;
+				};
+			};
+			class GlobalArmor
+			{
+				class Projectile
+				{
+					class Health
+					{
+						damage=0;
+					};
+					class Blood
+					{
+						damage=0;
+					};
+					class Shock
+					{
+						damage=0;
+					};
+				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage=0;
+					};
+					class Blood
+					{
+						damage=0;
+					};
+					class Shock
+					{
+						damage=0;
+					};
+				};
+			};
+		};
+	};
+	class BRP_Kit: Container_Base
+	{
+		scope=0;
+		displayName="Box Kit";
+		descriptionShort="A cardboard box used to transport small items. Place to deploy item inside. The items can be dismantled with a screwdriver or pliers after deployment.";
+		model="\BastionMod\BastionCrafting_Data\kitbox\kitbox.p3d";
+		itemsCargoSize[]={0,0};
+		itemSize[]={6,4};
+		carveNavmesh=1;
+		canBeDigged=0;
+		simulation="inventoryItem";
+		physLayer="item_small";
+		rotationFlags=2;
+		heavyItem=1;
+		weight=3000;
+		itemBehaviour=2;		
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=100;
+				};
+			};
+			class GlobalArmor
+			{
+				class Projectile
+				{
+					class Health
+					{
+						damage=0;
+					};
+					class Blood
+					{
+						damage=0;
+					};
+					class Shock
+					{
+						damage=0;
+					};
+				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage=0;
+					};
+					class Blood
+					{
+						damage=0;
+					};
+					class Shock
+					{
+						damage=0;
+					};
+				};
+			};
+		};
+	};
+
+	class BRP_CraftingBenchBase : BRP_Item
+	{
+		scope = 2;
+		descriptionShort="A table to store your tools and craft items. Attachments: 1x Hammer, 1x Hatchet, 3x Saws, 1x Screwdriver, 1x Pliers, 1x Wrench";
+		attachments[]=
+		{		
+			"Hammer1",
+			"Hatchet1",
+			"Pliers1",
+			"Saw1",
+			"Saw2",
+			"Saw3",
+			"Screwdriver1",
+			"Wrench1"
+		};
+		class GUIInventoryAttachmentsProps
+		{
+			class MediumTools
+			{
+				name="Medium Tools";
+				description="3x Saws, 1x Hatchet, 1x Hammer";
+				attachmentSlots[]=
+				{			
+					"Hatchet1",
+					"Hammer1",
+					"Saw1",
+					"Saw2",
+					"Saw3"
+				};
+				icon="cat_common_cargo";
+			};			
+			class SmallTools
+			{
+				name="Small Tools";
+				description="1x Screwdrivers, 1x Pliers, 1x Wrench";
+				attachmentSlots[]=
+				{		
+					"Pliers1",
+					"Screwdriver1",
+					"Wrench1"
+				};
+				icon="cat_common_cargo";
+			};
+		};
 		class Cargo
 		{
 			itemsCargoSize[]={10,15};
@@ -77,70 +275,179 @@ class CfgVehicles
 			allowOwnedCargoManipulation=1;
 		};
 	};
+	
+	class BRP_CraftingTable_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Crafting Table Kit";
+	};
 	class BRP_CraftingTable: BRP_CraftingBenchBase
 	{
 		displayName="Crafting Table";
 		descriptionShort="Table used for crafting";
 		model = "\BastionMod\BastionCrafting_Data\craftingtable\craftingtable.p3d";
 	};
-	class BRP_Workbench_Base : BRP_CraftingBenchBase
+	
+	class BRP_Workbench1_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Workbench 1 Kit";
+	};
+	class BRP_Workbench1: BRP_CraftingBenchBase
 	{
 		displayName="Workbench";
 		descriptionShort="Table used for crafting";
-	};
-	class BRP_Workbench1: BRP_Workbench_Base
-	{
 		model = "\BastionMod\BastionCrafting_Data\workbench\workbench1.p3d";
 	};
-	class BRP_Workbench2: BRP_Workbench_Base
+	class BRP_Workbench2_Kit: BRP_Kit
 	{
+		scope = 2;
+		displayName = "Workbench 2 Kit";
+	};
+	class BRP_Workbench2: BRP_CraftingBenchBase
+	{
+		displayName="Workbench";
+		descriptionShort="Table used for crafting";
 		model = "\BastionMod\BastionCrafting_Data\workbench\workbench2.p3d";
 	};
 	class BRP_Toolsbench_Base: BRP_CraftingBenchBase
 	{
 		displayName="Toolbench";
-		descriptionShort="Table used for crafting";
+		descriptionShort="A bench to store your tools and craft items. Attachments: Axe, Pickaxe, Shovel, 3x Hammers, 5x Hatchets, 3x Saws, 2x Screwdrivers, 1x Pliers, 3x Metal Wire";
 		scope = 0;
 		model = "\BastionMod\BastionCrafting_Data\toolsbench\toolsbench.p3d";
+		attachments[]=
+		{		
+			"Axe1",
+			"Hammer1",
+			"Hammer2",
+			"Hammer3",
+			"Hatchet",
+			"Hatchet1",
+			"Hatchet2",
+			"Hatchet3",
+			"Hatchet4",
+			"Pickaxe1",
+			"Pliers1",
+			"Saw1",
+			"Saw2",
+			"Saw3",
+			"Screwdriver1",
+			"Screwdriver2",
+			"Shovel1",
+			"Wire1",
+			"Wire2",
+			"Wire3"
+		};
+		class GUIInventoryAttachmentsProps
+		{
+			class Top
+			{
+				name="Top";
+				description="3x Hammers, 5x Hatchets, 3x Saws";
+				attachmentSlots[]=
+				{			
+					"Saw1",
+					"Saw2",
+					"Saw3",
+					"Hatchet2",
+					"Hatchet3",
+					"Hatchet4",
+					"Hatchet",
+					"Hatchet1",
+					"Hammer1",
+					"Hammer2",
+					"Hammer3"
+				};
+				icon="cat_common_cargo";
+			};
+			class Side
+			{
+				name="Side";
+				description="Axe, Pickaxe, Shovel";
+				attachmentSlots[]=
+				{
+					"Shovel1",
+					"Pickaxe1",
+					"Axe1"
+				};
+				icon="cat_common_cargo";
+			};			
+			class SmallTools
+			{
+				name="Small Tools";
+				description="2x Screwdrivers, 1x Pliers";
+				attachmentSlots[]=
+				{		
+					"Pliers1",
+					"Screwdriver1",
+					"Screwdriver2"
+				};
+				icon="cat_common_cargo";
+			};			
+			class Wires
+			{
+				name="Wires";
+				description="3x Metal Wire";
+				attachmentSlots[]=
+				{				
+					"Wire1",
+					"Wire2",
+					"Wire3"
+				};
+				icon="cat_common_cargo";
+			};
+		};
 		hiddenSelections[]=
 		{
-			"",
 			"metalparts",
 			"woodparts"
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"",
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_blue_co.paa",
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_wood_co.paa"
 		};
+	};
+	
+	class BRP_Toolsbench_Blue_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Toolsbench Blue Kit";
 	};
 	class BRP_Toolsbench_Blue: BRP_Toolsbench_Base
 	{
-		scope = 1;
+		scope = 2;
 		hiddenSelectionsTextures[]=
 		{
-			"",
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_blue_co.paa",
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_wood_co.paa"
 		};
 	};
+	class BRP_Toolsbench_Red_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Toolsbench Red Kit";
+	};
 	class BRP_Toolsbench_Red: BRP_Toolsbench_Base
 	{
-		scope = 1;
+		scope = 2;
 		hiddenSelectionsTextures[]=
 		{
-			"",
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_red_co.paa",
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_wood_co.paa"
 		};
 	};
+	class BRP_Toolsbench_Grey_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Toolsbench Grey Kit";
+	};
 	class BRP_Toolsbench_Grey: BRP_Toolsbench_Base
 	{
-		scope = 1;
+		scope = 2;
 		hiddenSelectionsTextures[]=
 		{
-			"",
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_grey_co.paa",
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_wood_co.paa"
 		};
@@ -148,68 +455,125 @@ class CfgVehicles
 	
 	//==============================================Barrel Furniture================================================>	
 	
-	class BRP_BarrelChair_Avgas: Container_Base
+	class BRP_BarrelChair_Avgas_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Barrel Chair Avgas Kit";
+	};
+	class BRP_BarrelChair_Avgas: BRP_Item
 	{
 		scope = 2;
 		color = "Avgas";
 		displayName = "Barrel Chair";
 		descriptionShort = "A comfy seat crafted from an oil barrel.";
 		model = "BastionMod\BastionCrafting_Data\barrelfurniture\BRP_BarrelChair.p3d";
-		heavyItem = 1;
-		weight = 10000;
-		itemSize[] = {10,15};
 		itemsCargoSize[] = {10,8};
-		physLayer = "item_large";
-		reversed = 2;
-		itemBehaviour = 2;
-		hiddenSelections[] = {"OilDrumSeat"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Avgas_co.paa"};
+		hiddenSelections[] = 
+		{
+			"OilDrumCushion",
+			"OilDrumSeat"
+		};
+		hiddenSelectionsTextures[] = 
+		{
+			"bastionmod\bastioncrafting_data\barrelfurniture\data\brp_barrelchaircushions_co.paa",
+			"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Avgas_co.paa"
+		};
+	};
+	class BRP_BarrelChair_Green_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Barrel Chair Green Kit";
 	};
 	class BRP_BarrelChair_Green: BRP_BarrelChair_Avgas
 	{
 		scope = 2;
 		color = "Green";
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Green_co.paa"};
+		hiddenSelectionsTextures[] = 
+		{
+			"bastionmod\bastioncrafting_data\barrelfurniture\data\brp_barrelchaircushions_co.paa",
+			"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Green_co.paa"
+		};
+	};
+	class BRP_BarrelChair_Blue_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Barrel Chair Blue Kit";
 	};
 	class BRP_BarrelChair_Blue: BRP_BarrelChair_Avgas
 	{
 		scope = 2;
 		color = "Blue";
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Blue_co.paa"};
+		hiddenSelectionsTextures[] = 
+		{
+			"bastionmod\bastioncrafting_data\barrelfurniture\data\brp_barrelchaircushions_co.paa",
+			"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Blue_co.paa"
+		};
+	};
+	class BRP_BarrelChair_Red_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Barrel Chair Red Kit";
 	};
 	class BRP_BarrelChair_Red: BRP_BarrelChair_Avgas
 	{
 		scope = 2;
 		color = "Red";
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Red_co.paa"};
+		hiddenSelectionsTextures[] = 
+		{
+			"bastionmod\bastioncrafting_data\barrelfurniture\data\brp_barrelchaircushions_co.paa",
+			"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Red_co.paa"
+		};
+	};
+	class BRP_BarrelChair_Yellow_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Barrel Chair Yellow Kit";
 	};
 	class BRP_BarrelChair_Yellow: BRP_BarrelChair_Avgas
 	{
 		scope = 2;
 		color = "Yellow";
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Yellow_co.paa"};
+		hiddenSelectionsTextures[] = 
+		{
+			"bastionmod\bastioncrafting_data\barrelfurniture\data\brp_barrelchaircushions_co.paa",
+			"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Yellow_co.paa"
+		};
+	};
+	class BRP_BarrelChair_Danmak_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Barrel Chair Danmak Kit";
 	};
 	class BRP_BarrelChair_Danmak: BRP_BarrelChair_Avgas
 	{
 		scope = 2;
 		color = "Danmak";
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Danmak_co.paa"};
+		hiddenSelectionsTextures[] = 
+		{
+			"bastionmod\bastioncrafting_data\barrelfurniture\data\brp_barrelchaircushions_co.paa",
+			"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Danmak_co.paa"
+		};
 	};
-	class BRP_BarrelTable_Danmak: Container_Base
+	class BRP_BarrelTable_Danmak_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Barrel Table Danmak Kit";
+	};
+	class BRP_BarrelTable_Danmak: BRP_Item
 	{
 		scope = 2;
 		color = "Danmak";
 		displayName = "Barrel Table";
 		descriptionShort = "A table crafted from an oil barrel.";
 		model = "BastionMod\BastionCrafting_Data\barrelfurniture\BRP_BarrelTable.p3d";
-		heavyItem = 1;
-		weight = 10000;
-		itemSize[] = {10,15};
 		itemsCargoSize[] = {10,8};
-		physLayer = "item_large";
-		itemBehaviour = 2;
 		hiddenSelections[] = {"OilDrumTable"};
 		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelTable_Danmak_ca.paa"};
+	};
+	class BRP_BarrelTable_Green_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Barrel Table Green Kit";
 	};
 	class BRP_BarrelTable_Green: BRP_BarrelTable_Danmak
 	{
@@ -217,11 +581,21 @@ class CfgVehicles
 		color = "Green";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelTable_Green_ca.paa"};
 	};
+	class BRP_BarrelTable_Blue_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Barrel Table Blue Kit";
+	};
 	class BRP_BarrelTable_Blue: BRP_BarrelTable_Danmak
 	{
 		scope = 2;
 		color = "Blue";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelTable_Blue_ca.paa"};
+	};
+	class BRP_BarrelTable_Red_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Barrel Table Red Kit";
 	};
 	class BRP_BarrelTable_Red: BRP_BarrelTable_Danmak
 	{
@@ -229,11 +603,21 @@ class CfgVehicles
 		color = "Red";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelTable_Red_ca.paa"};
 	};
+	class BRP_BarrelTable_Yellow_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Barrel Table Yellow Kit";
+	};
 	class BRP_BarrelTable_Yellow: BRP_BarrelTable_Danmak
 	{
 		scope = 2;
 		color = "Yellow";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelTable_Yellow_ca.paa"};
+	};
+	class BRP_BarrelTable_Avgas_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Barrel Table Avgas Kit";
 	};
 	class BRP_BarrelTable_Avgas: BRP_BarrelTable_Danmak
 	{
@@ -241,6 +625,8 @@ class CfgVehicles
 		color = "Avgas";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelTable_Avgas_ca.paa"};
 	};
+
+	//small item
 	class BRP_BarrelTableCactus: Inventory_Base
 	{
 		scope = 2;
@@ -252,6 +638,8 @@ class CfgVehicles
 		itemsCargoSize[] = {1,1};
 		itemBehaviour = 2;
 	};
+
+	//retextures
 	class BRP_Barrel_Danmak: Barrel_ColorBase
 	{
 		scope = 2;
@@ -400,23 +788,38 @@ class CfgVehicles
 			};
 		};
 	};	
+
+	class BRP_Safe_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Safe Kit";
+	};
+	class BRP_Safe: BRP_Item
+	{
+		scope = 2;
+		displayName = "Safe";
+		model = "\BastionMod\BastionCrafting_Data\safe\safe.p3d";
+		itemsCargoSize[] = {10,8};
+	};	
 	
+	class BRP_BoxingRing_Kit: BRP_Kit
+	{
+		scope = 2;
+		weight = 10000;
+		displayName = "Boxing Ring Kit";
+	};
+    class BRP_BoxingRing: BRP_Item_HND
+    {
+        scope = 2;
+        model = "\BastionMod\BastionCrafting_Data\boxingring\boxing_ring.p3d";  
+    };	
 	//==============================================Furnace================================================>	
 	
-	class BRP_FurnaceKit: Inventory_Base
+	class BRP_Furnace_Kit: BRP_Kit
 	{
 		scope = 2;
 		displayName = "Furnace Kit";
 		descriptionShort = "A hand made furnace kit. Place to begin construction.";
-		model = "\DZ\gear\camping\wooden_case.p3d";
-		rotationFlags = 0;
-		isMeleeWeapon = 0;
-		weight = 300;
-		absorbency = 0;
-		itemSize[] = {4,2};
-		lootCategory = "Materials";
-		reversed = 0;
-		itemBehaviour = 2;
 	};
 	class BRP_Furnace_Hologram: Inventory_Base
 	{
@@ -434,193 +837,7 @@ class CfgVehicles
 		rotationFlags = 2;
 		class GUIInventoryAttachmentsProps{};
 	};
-	class BRP_Furnace: Inventory_Base
-	{
-		scope = 2;
-		displayName = "Furnace";
-		descriptionShort = "A hand made furnace.";
-		model = "\BastionMod\BastionCrafting_Data\furnace\BRP_Furnace.p3d";
-		overrideDrawArea = "8.0";
-		forceFarBubble = "true";
-		lootCategory = "Crafted";
-		carveNavmesh = 1;
-		weight = 60000;
-		itemSize[] = {10,15};
-		physLayer = "item_large";
-		createProxyPhysicsOnInit = "false";
-		createdProxiesOnInit[] = {"Deployed"};
-		rotationFlags = 2;
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-				};
-			};
-			class GlobalArmor
-			{
-				class Projectile
-				{
-					class Health
-					{
-						damage = 0;
-					};
-					class Blood
-					{
-						damage = 0;
-					};
-					class Shock
-					{
-						damage = 0;
-					};
-				};
-				class FragGrenade
-				{
-					class Health
-					{
-						damage = 0;
-					};
-					class Blood
-					{
-						damage = 0;
-					};
-					class Shock
-					{
-						damage = 0;
-					};
-				};
-			};
-		};
-		attachments[] = {"Material_Nails","Material_MetalSheets"};
-		class GUIInventoryAttachmentsProps
-		{
-			class Materials
-			{
-				name = "Materials";
-				description = "";
-				attachmentSlots[] = {"Material_Nails","Material_MetalSheets"};
-				icon = "cat_bb_material";
-				selection = "furnace_construction";
-			};
-		};
-		class AnimationSources
-		{
-			class AnimSourceShown
-			{
-				source = "user";
-				animPeriod = 0.01;
-				initPhase = 0;
-			};
-			class AnimSourceHidden
-			{
-				source = "user";
-				animPeriod = 0.01;
-				initPhase = 1;
-			};
-			class AnimRotate
-			{
-				source = "user";
-				animPeriod = 0.01;
-				initPhase = 0;
-			};
-			class Material_Nails: AnimSourceHidden{};
-			class Material_MetalSheets: AnimSourceHidden{};
-			class Deployed: AnimSourceHidden{};
-			class Furnace_Base: AnimSourceHidden{};
-			class Furnace_Body: AnimSourceHidden{};
-			class Dummy_Gate: AnimSourceHidden{};
-			class Dummy_Rotate: AnimRotate{};
-		};
-		class Construction
-		{
-			class furnace_construction
-			{
-				class furnace_base
-				{
-					name = "Furnace Base";
-					is_base = 1;
-					id = 1;
-					required_parts[] = {};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "MetalPlate";
-							slot_name = "Material_MetalSheets";
-							quantity = 5;
-						};
-					};
-				};
-				class furnace_body
-				{
-					name = "Furnace Body";
-					id = 2;
-					required_parts[] = {"furnace_base"};
-					conflicted_parts[] = {"furnace_base"};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "MetalPlate";
-							slot_name = "Material_MetalSheets";
-							quantity = 5;
-						};
-					};
-				};
-				class dummy_gate
-				{
-					name = "Dummy Gate";
-					is_gate = 1;
-					id = 3;
-					required_parts[] = {"furnace_body"};
-					conflicted_parts[] = {"furnace_base"};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "MetalPlate";
-							slot_name = "Material_MetalSheets";
-							quantity = 20;
-						};
-					};
-				};
-			};
-		};
-	};
-	class BRP_FurnaceFireplace: FireplaceBase
+	class BRP_Furnace_Fireplace: FireplaceBase
 	{
 		scope = 2;
 		displayName = "Furnace";
@@ -635,11 +852,14 @@ class CfgVehicles
 		openable=0;
 		allowOwnedCargoManipulation=1;
 		useEntityHierarchy = "true";
-		hiddenSelections[] = {"ashes","camoGround","inventory"};
-		hiddenSelectionsTextures[] = {"\dz\gear\cooking\data\stoneground_co.paa","\BastionMod\BastionCrafting_Data\furnace\data\BRP_Furnace_Co.paa","\BastionMod\BastionCrafting_Data\furnace\data\BRP_Furnace_Co.paa"};
-		hiddenSelectionsMaterials[] = {"\dz\gear\cooking\data\stonegroundnoemit.rvmat","\dz\gear\cooking\data\fireplacekit.rvmat"};
-		hologramMaterial = "Barrel";
-		hologramMaterialPath = "";
+		hiddenSelections[] = 
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[] = 
+		{
+			"bastionmod\bastioncrafting_data\furnace\data\brp_furnace_co.paa"
+		};
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -695,8 +915,9 @@ class CfgVehicles
 				};
 			};
 		};
-	};	
+	};
 
+	//crafting materials
 	class BRP_Coal: Inventory_Base
 	{
 		scope = 2;
@@ -882,5 +1103,386 @@ class CfgVehicles
 				};
 			};
 		};
-	};		
+	};
+
+	//slots
+	class Wrench: Inventory_Base
+	{
+		inventorySlot[]=
+		{
+			"Wrench1"
+		};
+	};
+	class WoodAxe: Inventory_Base
+	{
+		inventorySlot[]=
+		{
+			"Shoulder",
+			"Melee",
+			"Axe1"
+		};
+	};
+	class FirefighterAxe: Inventory_Base
+	{
+		inventorySlot[]=
+		{
+			"Shoulder",
+			"Melee",
+			"Axe1"
+		};
+	};
+	class Pickaxe: Inventory_Base
+	{
+		inventorySlot[]=
+		{
+			"Shoulder",
+			"Melee",
+			"Pickaxe1"
+		};
+	};
+	class Hatchet: Inventory_Base
+	{
+		inventorySlot[]=
+		{
+			"MassTool",
+			"Hatchet",
+			"Hatchet1",
+			"Hatchet2",
+			"Hatchet3",
+			"Hatchet4"
+		};
+	};
+	class Hammer: Inventory_Base
+	{
+		inventorySlot[]=
+		{
+			"Hammer",
+			"MassHammer",
+			"Hammer1",
+			"Hammer2",
+			"Hammer3"
+		};
+	};
+	class Shovel: Inventory_Base
+	{
+		inventorySlot[]=
+		{
+			"Shoulder",
+			"Melee",
+			"Shovel1"
+		};
+	};
+	class Pliers: Inventory_Base
+	{
+		inventorySlot[]=
+		{
+			"Pliers",
+			"Pliers1"
+		};
+	};
+	class HandSaw: Inventory_Base
+	{
+		inventorySlot[]=
+		{
+			"HandSaw",
+			"Saw",
+			"Saw1",
+			"Saw2",
+			"Saw3"
+		};
+	};
+	class Hacksaw: Inventory_Base
+	{
+		inventorySlot[]=
+		{
+			"Hacksaw",
+			"Saw",
+			"Saw1",
+			"Saw2",
+			"Saw3"
+		};
+	};
+	class Screwdriver: Inventory_Base
+	{
+		inventorySlot[]=
+		{
+			"Screwdriver",
+			"MassScrewDriver",
+			"Screwdriver1",
+			"Screwdriver2"
+		};
+	};
+	class MetalWire: Inventory_Base
+	{
+		inventorySlot[]=
+		{
+			"MetalWire",
+			"Material_MetalWire",
+			"Wire1",
+			"Wire2",
+			"Wire3"
+		};
+	};
+};
+
+class CfgSlots
+{
+	class Slot_Wrench1
+	{
+		name="Wrench1";
+		displayName="Wrench1";
+		ghostIcon="shoulderleft";
+	};
+	class Slot_Axe1
+	{
+		name="Axe1";
+		displayName="Axe1";
+		ghostIcon="shoulderleft";
+	};
+	class Slot_Hatchet
+	{
+		name="Hatchet";
+		displayName="Hatchet";
+		ghostIcon="shoulderleft";
+	};
+	class Slot_Hatchet1
+	{
+		name="Hatchet1";
+		displayName="Hatchet1";
+		ghostIcon="shoulderleft";
+	};
+	class Slot_Hatchet2
+	{
+		name="Hatchet2";
+		displayName="Hatchet2";
+		ghostIcon="shoulderleft";
+	};
+	class Slot_Hatchet3
+	{
+		name="Hatchet3";
+		displayName="Hatchet3";
+		ghostIcon="shoulderleft";
+	};
+	class Slot_Hatchet4
+	{
+		name="Hatchet4";
+		displayName="Hatchet4";
+		ghostIcon="shoulderleft";
+	};
+	class Slot_Pickaxe1
+	{
+		name="Pickaxe1";
+		displayName="Pickaxe1";
+		ghostIcon="shoulderleft";
+	};
+	class Slot_Pliers1
+	{
+		name="Pliers1";
+		displayName="Pliers1";
+		ghostIcon="";
+	};
+	class Slot_Screwdriver1
+	{
+		name="Screwdriver1";
+		displayName="Screwdriver1";
+		ghostIcon="";
+	};
+	class Slot_Screwdriver2
+	{
+		name="Screwdriver2";
+		displayName="Screwdriver2";
+		ghostIcon="";
+	};
+	class Slot_Shovel1
+	{
+		name="Shovel1";
+		displayName="Shovel1";
+		ghostIcon="shoulderleft";
+	};
+	class Slot_Hammer1
+	{
+		name="Hammer1";
+		displayName="Hammer1";
+		ghostIcon="";
+	};
+	class Slot_Hammer2
+	{
+		name="Hammer2";
+		displayName="Hammer2";
+		ghostIcon="";
+	};
+	class Slot_Hammer3
+	{
+		name="Hammer3";
+		displayName="Hammer3";
+		ghostIcon="";
+	};
+	class Slot_Saw1
+	{
+		name="Saw1";
+		displayName="Saw1";
+		ghostIcon="";
+	};
+	class Slot_Saw2
+	{
+		name="Saw2";
+		displayName="Saw2";
+		ghostIcon="";
+	};
+	class Slot_Saw3
+	{
+		name="Saw3";
+		displayName="Saw3";
+		ghostIcon="";
+	};
+	class Slot_Wire1
+	{
+		name="Wire1";
+		displayName="Wire1";
+		ghostIcon="metalwire";
+	};
+	class Slot_Wire2
+	{
+		name="Wire2";
+		displayName="Wire2";
+		ghostIcon="metalwire";
+	};
+	class Slot_Wire3
+	{
+		name="Wire3";
+		displayName="Wire3";
+		ghostIcon="metalwire";
+	};
+};
+
+class CfgNonAIVehicles
+{
+	class ProxyAttachment;
+	class Proxywrench1: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Wrench1" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\wrench1.p3d";
+	};
+	class Proxyaxe1: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Axe1" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\axe1.p3d";
+	};
+	class Proxypickaxe1: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Pickaxe1" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\pickaxe1.p3d";
+	};
+	class Proxypliers1: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Pliers1" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\pliers1.p3d";
+	};
+	class Proxyhatchet1: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Hatchet1" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\hatchet1.p3d";
+	};
+	class Proxyhatchet2: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Hatchet2" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\hatchet2.p3d";
+	};
+	class Proxyhatchet3: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Hatchet3" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\hatchet3.p3d";
+	};
+	class Proxyhatchet4: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Hatchet4" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\hatchet4.p3d";
+	};
+	class Proxyhatchet5: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Hatchet" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\hatchet5.p3d";
+	};
+	class Proxyscrewdriver1: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Screwdriver1" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\screwdriver1.p3d";
+	};
+	class Proxyscrewdriver2: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Screwdriver2" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\screwdriver2.p3d";
+	};
+	class Proxyshovel1: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Shovel1" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\shovel1.p3d";
+	};
+	
+	class Proxyhammer1: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Hammer1" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\hammer1.p3d";
+	};
+	class Proxyhammer2: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Hammer2" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\hammer2.p3d";
+	};
+	class Proxyhammer3: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Hammer3" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\hammer3.p3d";
+	};
+	class Proxysaw1: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Saw1" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\saw1.p3d";
+	};
+	class Proxysaw2: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Saw2" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\saw2.p3d";
+	};
+	class Proxysaw3: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Saw3" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\saw3.p3d";
+	};
+	class Proxywire1: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Wire1" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\wire1.p3d";
+	};
+	class Proxywire2: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Wire2" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\wire2.p3d";
+	};
+	class Proxywire3: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[] = { "Wire3" };
+		model="\BastionMod\BastionCrafting_Data\proxies\tools\wire3.p3d";
+	};
 };
