@@ -286,6 +286,11 @@ class BRP_Furnace_Fireplace : FireplaceBase
 		return "placeBarrel_SoundSet";
 	}
 
+	override vector GetFireEffectPosition()
+	{
+		return Vector( 0, 0.4, 0 );
+	}
+
 	override void SetActions()
 	{
 		super.SetActions();
