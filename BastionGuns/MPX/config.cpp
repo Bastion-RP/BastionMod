@@ -70,7 +70,9 @@ class cfgWeapons
 			{
 				class MuzzleFlash
 				{
-					overrideParticle = "weapon_shot_fnx_02";
+					overrideParticle = "weapon_shot_mp5k_01";
+					ignoreIfSuppressed = 1;
+					illuminateWorld = 1;					
 				};
 				class SmokeCloud
 				{
