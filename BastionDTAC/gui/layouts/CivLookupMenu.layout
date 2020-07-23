@@ -1,0 +1,500 @@
+FrameWidgetClass rootFrame {
+ ignorepointer 1
+ position 0 0
+ size 1 1
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ {
+  PanelWidgetClass pnlInput {
+   visible 1
+   clipchildren 1
+   ignorepointer 1
+   color 0 0 0 0.8235
+   size 360 119
+   halign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    TextWidgetClass txtInputHeader {
+     ignorepointer 1
+     position 0 2
+     size 48 29
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Enter Civilian ID:"
+     font "gui/fonts/metron"
+     "size to text h" 1
+    }
+    EditBoxWidgetClass edtInputID {
+     position 0 33
+     size 340 50
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style ServerBrowser
+    }
+    ButtonWidgetClass btnLookup {
+     color 1 0.5922 0 1
+     position 0 86
+     size 80 30
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButton
+     text "LOOKUP"
+     text_offset 0 0
+     text_proportion 0.5
+    }
+   }
+  }
+  PanelWidgetClass pnlCiv {
+   visible 1
+   clipchildren 0
+   ignorepointer 0
+   color 0 0 0 0.7843
+   position 140 0
+   size 400 0.8
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 0
+   style rover_sim_colorable
+   {
+    PanelWidgetClass pnlCivData {
+     clipchildren 0
+     ignorepointer 1
+     color 0 0 0 0.7843
+     size 400 63
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      GridSpacerWidgetClass gridName {
+       ignorepointer 1
+       position 6 6
+       size 388 23
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       Padding 6
+       Margin 0
+       "Size To Content H" 1
+       Columns 2
+       Rows 1
+       {
+        TextWidgetClass txtPnlNameFirst {
+         ignorepointer 1
+         position 3 3
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         font "gui/fonts/metronbook"
+         "size to text h" 1
+        }
+        TextWidgetClass txtPnlNameLast {
+         ignorepointer 1
+         position 3 3
+         size 48 16
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         font "gui/fonts/metronbook"
+         "size to text h" 1
+        }
+       }
+      }
+      GridSpacerWidgetClass gridClass {
+       ignorepointer 1
+       position 6 33
+       size 388 24
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       Padding 6
+       Margin 0
+       "Size To Content H" 1
+       Columns 2
+       Rows 1
+       {
+        TextWidgetClass txtPnlDOB {
+         ignorepointer 1
+         position 3 3
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         font "gui/fonts/metronbook"
+         "size to text h" 1
+        }
+        TextWidgetClass txtPnlClass {
+         ignorepointer 1
+         position 3 3
+         size 48 16
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         font "gui/fonts/metronbook"
+         "size to text h" 1
+        }
+       }
+      }
+      PanelWidgetClass pnlCivDataBorder {
+       clipchildren 0
+       ignorepointer 1
+       color 0.498 0.498 0.498 0.7843
+       position 0 0
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Outline
+      }
+     }
+    }
+    ButtonWidgetClass btnGeneralRecords {
+     color 1 0.5843 0 1
+     position 0 63
+     size 200 30
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     "no focus" 1
+     text "GENERAL RECORDS"
+     text_proportion 0.7
+     font "gui/fonts/metron"
+     switch toggle
+    }
+    ButtonWidgetClass btnCriminalRecords {
+     color 1 0.5843 0 1
+     position 200 63
+     size 200 30
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     "no focus" 1
+     text "CRIMINAL RECORDS"
+     text_proportion 0.7
+     font "gui/fonts/metron"
+     switch toggle
+    }
+    ScrollWidgetClass scrollerGeneralRecords {
+     visible 1
+     ignorepointer 1
+     position 0 93
+     size 400 741
+     halign right_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     "Scrollbar V" 1
+     {
+      GridSpacerWidgetClass gridGeneralRecords {
+       ignorepointer 0
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       Padding 0
+       Margin 0
+       "Size To Content V" 1
+       Columns 1
+       Rows 100
+      }
+     }
+    }
+    ScrollWidgetClass scrollerCriminalRecords {
+     visible 0
+     ignorepointer 1
+     position 0 93
+     size 400 741
+     halign right_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     "Scrollbar V" 1
+     {
+      GridSpacerWidgetClass gridCriminalRecords {
+       ignorepointer 0
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       Padding 0
+       Margin 0
+       "Size To Content V" 1
+       Columns 1
+       Rows 100
+      }
+     }
+    }
+    ButtonWidgetClass btnAddGeneralRecord {
+     color 1 0.5843 0 1
+     size 200 30
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     text "+ GENERAL RECORD"
+     text_proportion 0.7
+     font "gui/fonts/metron"
+    }
+    ButtonWidgetClass btnAddCriminalRecord {
+     color 1 0.5843 0 1
+     position 200 0
+     size 200 30
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     text "+ CRIMINAL RECORD"
+     text_proportion 0.7
+     font "gui/fonts/metron"
+     switch normal
+    }
+    TextWidgetClass headerRecipes {
+     ignorepointer 1
+     color 1 0.5843 0 1
+     position 0 -64
+     size 48 64
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Civ Records"
+     font "gui/fonts/metronbook"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+   }
+  }
+  PanelWidgetClass pnlSelectedRecipe {
+   visible 0
+   clipchildren 0
+   ignorepointer 1
+   color 0 0 0 0.7843
+   position 580 0
+   size 600 600
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    TextWidgetClass headerCrafting {
+     ignorepointer 1
+     color 1 0.5843 0 1
+     position 0 -64
+     size 48 64
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "CRAFTING"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    ItemPreviewWidgetClass prvRecipeItem {
+     ignorepointer 1
+     position 0 10
+     size 300 200
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+    }
+    TextWidgetClass txtSelectedRecipeName {
+     ignorepointer 1
+     position 7 212
+     size 576 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    TextWidgetClass txtSelectedRecipeDesc {
+     ignorepointer 1
+     position 7 246
+     size 576 16
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    TextWidgetClass txtSelectedRecipeRequire {
+     ignorepointer 1
+     position 7 276
+     size 576 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "YOU'LL NEED"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    ScrollWidgetClass scrollerRecipeRequire {
+     visible 1
+     ignorepointer 1
+     position 7 310
+     size 586 80
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     "Scrollbar V" 1
+     {
+      GridSpacerWidgetClass gridRecipeRequire {
+       ignorepointer 0
+       size 1 0.32
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       Padding 0
+       Margin 0
+       "Size To Content V" 1
+       Columns 1
+       Rows 100
+      }
+     }
+    }
+    TextWidgetClass txtSelectedRecipeToolRequire {
+     ignorepointer 1
+     position 7 416
+     size 576 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "CRAFTABLE USING"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    GridSpacerWidgetClass gridRecipeToolRequire {
+     ignorepointer 0
+     position 7 450
+     size 586 16
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     Padding 0
+     Margin 0
+     Columns 1
+     Rows 1
+    }
+    TextWidgetClass txtSelectedRecipeTimeRequire {
+     ignorepointer 1
+     position 7 492
+     size 576 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "TIME TO CRAFT"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    TextWidgetClass txtSelectedRecipeTimetoCraft {
+     ignorepointer 1
+     position 7 526
+     size 576 16
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    ButtonWidgetClass btnCraft {
+     color 1 0.5843 0 1
+     position 7 7
+     size 120 30
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButton
+     text_proportion 0.8
+     {
+      PanelWidgetClass pnlProgress {
+       visible 0
+       ignorepointer 1
+       color 1 0.5843 0 1
+       position 0 0
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+      }
+      TextWidgetClass txtCraft {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "CRAFT"
+       "text halign" center
+       "text valign" center
+      }
+     }
+    }
+   }
+  }
+ }
+}
