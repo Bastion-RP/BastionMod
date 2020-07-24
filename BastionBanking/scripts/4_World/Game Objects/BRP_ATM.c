@@ -1,4 +1,4 @@
-class BRP_ATM : BuildingBase {
+class BRP_PackStation : BuildingBase {
     override void SetActions() {
         super.SetActions();
 
