@@ -2,71 +2,136 @@ class BST_DTACLookupMenu {
 	private static const int KEYCODE_MIN_NUM = 48;
 	private static const int KEYCODE_MAX_NUM = 57;
 
-    protected ref JsonSerializer jsSerializer;
-    protected ref Widget wRoot, wParent, pnlInput, pnlResults;
-    protected ref TextWidget txtCivID, txtNameFirst, txtNameLast, txtDOB, txtSex, txtCivClass, txtRace;
-    protected ref TextWidget txtInputHeader;
-    protected ref EditBoxWidget edtInputID;
-    protected ref ButtonWidget btnLookup;
-    private bool rateLimited;
+    protected ref JsonSerializer _jsSerializer;
+    protected ref Widget _root, _parent, _pnlInput, _pnlCivData;
+    protected ref EditBoxWidget _edtInputId;
+    protected ref TextWidget _txtPnlNameFirst, _txtPnlNameLast, _txtPnlDOB, _txtPnlClass;
+    protected ref ButtonWidget _btnLookupId, _btnAddGeneralRecord, _btnAddCriminalRecord, _btnShowGeneralRecords, _btnShowCriminalRecords;
+    protected ref ScrollWidget _scrollerGeneralRecords, _scrollerCriminalRecords;
+    protected ref GridSpacerWidget _gridGeneralRecords, _gridCriminalRecords;
+    private ref BST_GUIRecords _generalRecords;
+    private ref BST_GUIRecords _criminalRecords;
+    private ref BST_DTAC_CURL_GeneralCivData _civGeneralData;
+    private ref map<Widget, BST_GUIRecord> _mapGUIObjects;
+    private bool _isRateLimited;
 
-    void BST_DTACLookupMenu(Widget wParent) {
-        this.wParent = wParent;
-        jsSerializer = new JsonSerializer();
-        wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\DBLookup.layout", wParent);
-        pnlInput = wRoot.FindAnyWidget("pnlInput");
-        pnlResults = wRoot.FindAnyWidget("pnlResults");
-        txtInputHeader = TextWidget.Cast(wRoot.FindAnyWidget("txtInputHeader"));
-        txtCivID = TextWidget.Cast(wRoot.FindAnyWidget("txtCivID"));
-        txtNameFirst = TextWidget.Cast(wRoot.FindAnyWidget("txtNameFirst"));
-        txtNameLast = TextWidget.Cast(wRoot.FindAnyWidget("txtNameLast"));
-        txtDOB = TextWidget.Cast(wRoot.FindAnyWidget("txtDOB"));
-        txtSex = TextWidget.Cast(wRoot.FindAnyWidget("txtSex"));
-        txtCivClass = TextWidget.Cast(wRoot.FindAnyWidget("txtCivClass"));
-        txtRace = TextWidget.Cast(wRoot.FindAnyWidget("txtRace"));
-        edtInputID = EditBoxWidget.Cast(wRoot.FindAnyWidget("edtInputID"));
-        btnLookup = ButtonWidget.Cast(wRoot.FindAnyWidget("btnLookup"));
+    void BST_DTACLookupMenu(Widget parent) {
+        _parent = parent;
+        _jsSerializer = new JsonSerializer();
+        _mapGUIObjects = new map<Widget, BST_GUIRecord>();
+        _root = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\CivLookupMenu.layout", _parent);
+        _pnlInput = _root.FindAnyWidget("pnlInput");
+        _pnlCivData = _root.FindAnyWidget("pnlCiv");
+        _edtInputId = EditBoxWidget.Cast(_root.FindAnyWidget("edtInputID"));
+        _txtPnlNameFirst = TextWidget.Cast(_root.FindAnyWidget("txtPnlNameFirst"));
+        _txtPnlNameLast = TextWidget.Cast(_root.FindAnyWidget("txtPnlNameLast"));
+        _txtPnlDOB = TextWidget.Cast(_root.FindAnyWidget("txtPnlDOB"));
+        _txtPnlClass = TextWidget.Cast(_root.FindAnyWidget("txtPnlClass"));
+        _btnLookupId = ButtonWidget.Cast(_root.FindAnyWidget("btnLookup"));
+        _btnAddGeneralRecord = ButtonWidget.Cast(_root.FindAnyWidget("btnAddGeneralRecord"));
+        _btnAddCriminalRecord = ButtonWidget.Cast(_root.FindAnyWidget("btnAddCriminalRecord"));
+        _btnShowGeneralRecords = ButtonWidget.Cast(_root.FindAnyWidget("btnGeneralRecords"));
+        _btnShowCriminalRecords = ButtonWidget.Cast(_root.FindAnyWidget("btnCriminalRecords"));
+        _scrollerGeneralRecords = ScrollWidget.Cast(_root.FindAnyWidget("scrollerGeneralRecords"));
+        _scrollerCriminalRecords = ScrollWidget.Cast(_root.FindAnyWidget("scrollerCriminalRecords"));
+        _gridGeneralRecords = GridSpacerWidget.Cast(_root.FindAnyWidget("gridGeneralRecords"));
+        _gridCriminalRecords = GridSpacerWidget.Cast(_root.FindAnyWidget("gridCriminalRecords"));
+        _generalRecords = new BST_GUIRecords(_gridGeneralRecords);
+        _criminalRecords = new BST_GUIRecords(_gridCriminalRecords);
 
-        BST_DTACRestCallback.dtacData.Insert(this.DisplayData);
+        _scrollerGeneralRecords.Show(true);
+        _scrollerCriminalRecords.Show(false);
+        _btnShowGeneralRecords.SetState(true);
+        _btnShowCriminalRecords.SetState(false);
+        _pnlInput.Show(true);
+        _pnlCivData.Show(false);
+        BST_DTACCivGeneralDataCallback._civGeneralDataInvoker.Insert(FillGeneralData);
+        BST_DTACGeneralRecordCallback._dtacGeneralRecordInvoker.Insert(BuildGeneralRecords);
+        BST_DTACCriminalRecordCallBack._dtacCriminalRecordInvoker.Insert(BuildCriminalRecords);
     }
 
     void ~BST_DTACLookupMenu() {
-        if (wRoot) {
-            wRoot.Unlink();
+        if (_root) {
+            _root.Unlink();
+        }
+        BST_DTACCivGeneralDataCallback._civGeneralDataInvoker.Remove(FillGeneralData);
+        BST_DTACGeneralRecordCallback._dtacGeneralRecordInvoker.Remove(BuildGeneralRecords);
+        BST_DTACCriminalRecordCallBack._dtacCriminalRecordInvoker.Remove(BuildCriminalRecords);
+    }
+
+    void FillGeneralData(string data) {
+        if (data.Length() <= 0) {
+            _txtPnlNameFirst.SetText("ERROR LOADING DATA!");
+            return;
+        }
+        string error;
+
+        Print("[DTAC DEBUG] BST_DTACLookupMenu | FillGeneralData | Received function call");
+        if (_jsSerializer.ReadFromString(_civGeneralData, data, error)) {
+            string txtClass = typename.EnumToString(BastionClasses, _civGeneralData.GetCitizenClass().ToInt());
+
+            txtClass.Replace("_", "-");
+            _pnlInput.Show(false);
+            _pnlCivData.Show(true);
+            _txtPnlNameFirst.SetText("First: " + _civGeneralData.GetFirstName());
+            _txtPnlNameLast.SetText("Last: " + _civGeneralData.GetLastName());
+            _txtPnlDOB.SetText("DOB: " + _civGeneralData.GetDOB());
+            _txtPnlClass.SetText("Class: " + txtClass);
         }
     }
 
-    void DisplayData(string data) {
-        map<string, string> mapData = new map<string, string>();
+    void BuildGeneralRecords(string data) {
+        BST_GUIRecord newRecord;
+
+        if (data.Length() <= 0) {
+            newRecord = _generalRecords.AddRecord(null, 0);
+            return;
+        }
+        array<ref BST_DTAC_CURL_GeneralRecord> arrRecords;
         string error;
 
-        Print("[DTAC DEBUG] BST_DTACLookupMenu | DisplayData | Received function call");
-        if (!jsSerializer.ReadFromString(mapData, data, error)) {
-            txtInputHeader.SetText(data);
-        } else {
-            pnlInput.Show(false);
-            pnlResults.Show(true);
+        if (_jsSerializer.ReadFromString(arrRecords, data, error)) {
+            for (int i = 0; i < arrRecords.Count(); i++) {
+                BST_DTAC_CURL_GeneralRecord record = arrRecords[i];
 
-            txtCivID.SetText("ID: " + mapData.Get("id"));
-            txtNameFirst.SetText("First Name: " + mapData.Get("first_name"));
-            txtNameLast.SetText("Last Name: " + mapData.Get("last_name"));
-            txtDOB.SetText("DOB: " + mapData.Get("date_of_birth"));
-            txtSex.SetText("Sex: " + mapData.Get("sex"));
-            
-            // change _ to - for the class (enum can't have hypen in it's name)
-            string t_ClassText = typename.EnumToString(BastionClasses, mapData.Get("citizen_class").ToInt());
-            t_ClassText.Replace("_","-");
-            txtCivClass.SetText("Class: " + t_ClassText);
-            txtRace.SetText("Race: " + mapData.Get("race"));
+                if (!record) { continue; }
+                newRecord = _generalRecords.AddRecord(record, i % 2);
+
+                _mapGUIObjects.Insert(newRecord.GetRoot(), newRecord);
+            }
+            _scrollerGeneralRecords.VScrollToPos01(0);
+        }
+    }
+
+    void BuildCriminalRecords(string data) {
+        BST_GUIRecord newRecord;
+        
+        if (data.Length() <= 0) {
+            newRecord = _generalRecords.AddRecord(null, 0);
+            return;
+        }
+        array<ref BST_DTAC_CURL_CriminalRecord> arrRecords;
+        string error;
+
+        if (_jsSerializer.ReadFromString(arrRecords, data, error)) {
+            for (int i = 0; i < arrRecords.Count(); i++) {
+                BST_DTAC_CURL_CriminalRecord record = arrRecords[i];
+
+                if (!record) { continue; }
+                newRecord = _criminalRecords.AddRecord(record, i % 2);
+
+                _mapGUIObjects.Insert(newRecord.GetRoot(), newRecord);
+            }
+            _scrollerCriminalRecords.VScrollToPos01(0);
         }
     }
 
 	bool OnKeyPress(Widget w, int x, int y, int key) {
-        if (w == edtInputID) {
-            string boxText = edtInputID.GetText();
+        if (w == _edtInputId) {
+            string boxText = _edtInputId.GetText();
 
             if (key < KEYCODE_MIN_NUM || key > KEYCODE_MAX_NUM) {
-                edtInputID.SetText(boxText);
+                _edtInputId.SetText(boxText);
                 return true;
             }
         }
@@ -75,32 +140,63 @@ class BST_DTACLookupMenu {
 
     void OnClick(Widget w, int x, int y, int button) {
         switch (w) {
-            case btnLookup:
+            case _btnLookupId:
                 {
-                    Lookup();
+                    
+                    if (!IsRateLimited() && _pnlInput.IsVisible() && _edtInputId.GetText().Length() > 0) {
+                        SetRateLimited();
+                        SendApiRequests();
+                    }
+                    break;
+                }
+            case _btnShowGeneralRecords:
+                {
+                    _scrollerGeneralRecords.Show(true);
+                    _scrollerCriminalRecords.Show(false);
+                    _btnShowCriminalRecords.SetState(false);
+                    _btnShowGeneralRecords.SetState(true);
+                    break;
+                }
+            case _btnShowCriminalRecords:
+                {
+                    _scrollerCriminalRecords.Show(true);
+                    _scrollerGeneralRecords.Show(false);
+                    _btnShowGeneralRecords.SetState(false);
+                    _btnShowCriminalRecords.SetState(true);
                     break;
                 }
         }
     }
 
 	void SetRateLimited() {
-		if (rateLimited) { return; }
-		rateLimited = true;
+		if (_isRateLimited) { return; }
+		_isRateLimited = true;
 
 		GetGame().GetCallQueue(CALL_CATEGORY_GUI).RemoveByName(this, "RemoveRateLimit");
 		GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLaterByName(this, "RemoveRateLimit", 1000, true);
 	}
 
 	void RemoveRateLimit() {
-		rateLimited = false;
+		_isRateLimited = false;
 	}
 
-    void Lookup() {
-        if (!IsRateLimited() && pnlInput.IsVisible() && edtInputID.GetText().Length() > 0) {
-            SetRateLimited();
-            SendCURLRequest(edtInputID.GetText());
+    void SendApiRequests() {
+        Print("[DEBUG] SendCivDataRequest!");
+        RestApi apiCore = GetRestApi();
+
+        if (!apiCore) {
+            apiCore = CreateRestApi();
         }
+        RestContext ctx = apiCore.GetRestContext("https://bastionrp.com/api/");
+        BST_DTACCivGeneralDataCallback generalData = new BST_DTACCivGeneralDataCallback();
+        BST_DTACGeneralRecordCallback generalRecords = new BST_DTACGeneralRecordCallback();
+        BST_DTACCriminalRecordCallBack criminalRecords = new BST_DTACCriminalRecordCallBack();
+        string civId = _edtInputId.GetText();
+
+        ctx.GET(generalData, "characters.php?character_id=" + civId);
+        ctx.GET(generalRecords, "generalrecords.php?generalReportCharacterId=" + civId);
+        ctx.GET(criminalRecords, "criminalrecords.php?criminalCharacterId=" + civId);
     }
 
-	bool IsRateLimited() { return rateLimited; }
+	bool IsRateLimited() { return _isRateLimited; }
 }
