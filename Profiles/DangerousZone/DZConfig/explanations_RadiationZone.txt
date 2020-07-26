@@ -1,0 +1,40 @@
+{
+    "IsRadiationZoneActive": 1,								//Set to 0 and it will disable the RadiationZone
+    "RadCheck": 45000,										//Time in ms (so 45s) where the script check if the player is protected and/or in the radiation zone, increase it to gain performance and decrease it if you have a performant server
+    "IsMsgActive": 1,										//Set to 0 to disable the notification message when you get in the hazard zone
+    "MsgEnterZone": "YOU ARE IN A RADIATION AREA!",			//Notification message that appear when you get in the DZ
+    "MsgExitZone": "YOU LEFT THE RADIATION AREA!",			//Notification message that disapear when you leave the DZ
+    "RadChanceVomit": 0,									//Chance that the player vomit when the player is radiation sick
+    "RadChanceBleeding": 0,									//Chance that the player bleed when the player is radiation sick
+    "RadBloodLossDamage": 5,								//Amount of blood that the player loose every RadCheck for LowLevelZone or every 20s when sick
+    "RadHealthDamage": 2,									//Amount of health that the player loose every RadCheck for LowLevelZone or every 20s when sick
+    "RadHighMultiplier": 2.5,								//Multiply the RadBloodLossDamage and RadHealthDamage when the radiation sickness of the player is critical (above 500)
+    "NbSickGivenForRadiation": 34,							//Amount of sick point given when the player is not protected (every RadCheck) so by default it take 2m15s to get sick (The sickness start above 100)
+    "SuitsDamage": 20,										//Damage in % that the all suits take when you get in the radiation Zone
+    "RadiationAreaLocation": [
+        {
+            "RadiationZoneStatut": "RadZone1",				//Name of the RadiationZone, must be unique
+            "Level": 0,										//0 = low level | 1 = high level
+            "X": 1500,									//X coordonate of the zone
+            "Y": 1500,									//Y coordonate of the zone (in dayz, it's the Z)
+            "Radius": 300,								//Radius of the zone
+            "X1": -1,									//X1 is  bottom left corner
+            "Y1": -1,									//Y1 is  bottem left corner
+            "X2": -1,									//X2 is upper right corner
+            "Y2": -1,									//Y2 is upper right corner
+            "IsSquareZone": 0,							//If set to 1, it will take the X1,Y1,X2,Y2 value instead of X,Y and Radius
+        },
+        {
+            "RadiationZoneStatut": "Tisy",
+            "Level": 1,
+            "X": 1655,
+            "Y": 14068,
+            "Radius": 600,
+            "X1": -1,
+            "Y1": -1,
+            "X2": -1,
+            "Y2": -1,
+            "IsSquareZone": 0
+        }
+    ]
+}
