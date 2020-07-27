@@ -21,17 +21,25 @@ class CfgVehicles
 		model = "BastionMod\BastionClothing\GasMask\gasmask_g.p3d";
 		inventorySlot[] = {"Mask"};
 		itemInfo[] = {"Clothing","Mask"};
-		attachments[] = {"GasMaskFilter"};		
+		attachments[] = {"GasMaskFilter"};
 		rotationFlags = 2;
 		weight = 730;
 		itemSize[] = {3,3};
-		absorbency = 0;		
+		absorbency = 0;
 		heatIsolation = 0.5;
 		visibilityModifier = 0.9;
 		noHelmet = 0;
 		headSelectionsToHide[] = {"Clipping_Gasmask"};
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
 		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\GasMask\data\gasmask_co.paa","BastionMod\BastionClothing\GasMask\data\gasmask_co.paa","BastionMod\BastionClothing\GasMask\data\gasmask_co.paa"};
+		class EnergyManager
+		{
+			autoSwitchOff=0;
+			energyAtSpawn=15;
+			energyStorageMax=100;
+			energyUsagePerSecond=1;
+			updateInterval=59;
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -39,7 +47,7 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = 
+					healthLevels[] =
 					{
 						{1.0,{"BastionMod\BastionClothing\GasMask\data\gasmask.rvmat","BastionMod\BastionClothing\GasMask\data\glass.rvmat"}},
 						{0.7,{"BastionMod\BastionClothing\GasMask\data\gasmask.rvmat","BastionMod\BastionClothing\GasMask\data\glass.rvmat"}},
@@ -90,9 +98,13 @@ class CfgVehicles
 		itemSize[] = {2,2};
 		absorbency = 0;
 		heatIsolation = 0.6;
+		quantityBar=1;
+		varQuantityInit=2700;
+		varQuantityMin=0;
+		varQuantityMax=2700;
 		visibilityModifier = 0.95;
 		hiddenSelections[] = {"camoGround"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\GasMask\data\gasmask_co.paa"};		
+		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\GasMask\data\gasmask_co.paa"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -100,18 +112,18 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = 
+					healthLevels[] =
 					{
 						{1.0,{"BastionMod\BastionClothing\GasMask\data\gasmask.rvmat"}},
 						{0.7,{"BastionMod\BastionClothing\GasMask\data\gasmask.rvmat"}},
 						{0.5,{"BastionMod\BastionClothing\GasMask\data\gasmask_damage.rvmat"}},
 						{0.3,{"BastionMod\BastionClothing\GasMask\data\gasmask_damage.rvmat"}},
 						{0.0,{"BastionMod\BastionClothing\GasMask\data\gasmask_destruct.rvmat"}}
-					};				
+					};
 				};
 			};
 		};
-	};	
+	};
 };
 class CfgNonAIVehicles
 {

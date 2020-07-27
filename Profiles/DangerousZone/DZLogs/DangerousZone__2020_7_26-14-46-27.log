@@ -1,0 +1,94 @@
+Creation Time: 2020_7_26-14-46-27
+14-46-27 | [INFO] DZRadiationZone - Started !
+14-46-27 | [INFO] DZHazardZone - Started !
+14-46-27 | [INFO] InfectedZone : InfectedZone1 spawned !
+14-46-27 | [INFO] [INFECTEDSYSTEM]:InfectedZone - Started !
+14-46-27 | [INFO] [INFECTEDSYSTEM]: [InfectedCleaner] !
+14-46-27 | [INFO] [INFECTEDSYSTEM]: Infected equal to 0!
+14-46-27 | [INFO] [INFECTEDSYSTEM] Spawned: Animal_CanisLupus_Greycount: 7
+14-46-27 | [INFO] [INFECTEDSYSTEM] Spawned: Animal_UrsusArctoscount: 1
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: ZmbM_HermitSkinny_Greencount: 15
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: ZmbM_FarmerFat_Browncount: 1
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: ZmbM_FarmerFat_Bluecount: 5
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: ZmbM_HermitSkinny_Beigecount: 9
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: ZmbM_HermitSkinny_Greencount: 6
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: ZmbM_FarmerFat_Browncount: 17
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: ZmbM_FarmerFat_Bluecount: 5
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: ZmbM_HermitSkinny_Beigecount: 9
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: ZmbM_HermitSkinny_Greencount: 10
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: ZmbM_FarmerFat_Browncount: 6
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: ZmbM_FarmerFat_Bluecount: 9
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: ZmbM_HermitSkinny_Beigecount: 5
+14-46-28 | [INFO] InfectedZone : InfectedZone2 spawned !
+14-46-28 | [INFO] [INFECTEDSYSTEM]:InfectedZone - Started !
+14-46-28 | [INFO] [INFECTEDSYSTEM]: [InfectedCleaner] !
+14-46-28 | [INFO] [INFECTEDSYSTEM]: Infected equal to 0!
+14-46-28 | [INFO] [INFECTEDSYSTEM] Spawned: SurvivorM_Sethcount: 7
+14-46-32 | [INFO] InfectedZone : InfectedZone3 spawned !
+14-46-32 | [INFO] [INFECTEDSYSTEM]:InfectedZone - Started !
+14-46-32 | [INFO] [INFECTEDSYSTEM]: [InfectedCleaner] !
+14-46-32 | [INFO] [INFECTEDSYSTEM]: Infected equal to 0!
+14-46-32 | [INFO] [INFECTEDSYSTEM] Spawned: SurvivorM_Sethcount: 7
+14-46-32 | [INFO] CrateSystem - Started !
+14-46-32 | [INFO] LootSpawner - Started !
+14-46-32 | [INFO] CheckCreatureStatus Started !
+14-46-32 | [INFO] Object:Creature equal to 0!
+14-46-32 | [INFO] [LOOTSYSTEM]: [CrateCleaner] !
+14-46-32 | [INFO] [LOOTSYSTEM]: CrateList equal to 0!
+14-46-32 | [INFO] NumberOfCratePerTime: 1
+14-46-32 | [INFO] [LOOTSYSTEM]: CrateSystem2Spawned: CrateName: Army1- Position: X:1396.16 Y:464.569 Z:14420.1
+14-46-32 | [INFO] AKM
+14-46-32 | [INFO] PSO1Optic
+14-46-32 | [INFO] AK_PlasticHndgrd
+14-46-32 | [INFO] AK_RailHndgrd_Black
+14-46-32 | [INFO] AK_Bayonet
+14-46-32 | [INFO] AK_FoldingBttstck_Black
+14-46-32 | [INFO] M4A1
+14-46-32 | [INFO] Mag_STANAG_30Rnd
+14-46-32 | [INFO] ACOGOptic
+14-46-32 | [INFO] M4_CQBBttstck
+14-46-32 | [INFO] M4_MPHndgrd
+14-46-32 | [INFO] M4_Suppressor
+14-46-32 | [INFO] 7 Animal_CanisLupus_Grey spawned around the crate
+14-46-32 | [INFO] NumberOfCratePerTime: 2
+14-46-32 | [INFO] [LOOTSYSTEM]: CrateSystem2Spawned: CrateName: Army1- Position: X:1386.16 Y:464.569 Z:14422.1
+14-46-32 | [INFO] M4A1
+14-46-32 | [INFO] Mag_STANAG_30Rnd
+14-46-32 | [INFO] Mag_STANAGCoupled_30Rnd
+14-46-32 | [INFO] M4_MPHndgrd
+14-46-32 | [INFO] 7 Animal_CanisLupus_Grey spawned around the crate
+14-46-32 | [INFO] [LOOTSYSTEM]: CrateSystem2Spawned: CrateName: Army1- Position: X:1386.16 Y:464.569 Z:14422.1
+14-46-32 | [INFO] M4A1
+14-46-32 | [INFO] Mag_STANAG_30Rnd
+14-46-32 | [INFO] Mag_STANAGCoupled_30Rnd
+14-46-32 | [INFO] M4_CarryHandleOptic
+14-46-32 | [INFO] M4_MPBttstck
+14-46-32 | [INFO] M4_MPHndgrd
+14-46-32 | [INFO] M4_Suppressor
+14-46-32 | [INFO] AK74
+14-46-32 | [INFO] AK_RailHndgrd_Black
+14-46-32 | [INFO] Mag_AK74_30Rnd
+14-46-32 | [INFO] 7 Animal_CanisLupus_Grey spawned around the crate
+14-46-32 | [INFO] NumberOfCratePerTime: 2
+14-46-32 | [INFO] [LOOTSYSTEM]: CrateSystem2Spawned: CrateName: Army1- Position: X:1286.16 Y:464.569 Z:14422.1
+14-46-32 | [INFO] SVD
+14-46-32 | [INFO] PSO1Optic
+14-46-32 | [INFO] Mag_SVD_10Rnd
+14-46-32 | [INFO] AK74
+14-46-32 | [INFO] AK_RailHndgrd_Black
+14-46-32 | [INFO] AK74_WoodBttstck
+14-46-32 | [INFO] AK_FoldingBttstck_Black
+14-46-32 | [INFO] AK_Suppressor
+14-46-32 | [INFO] 7 Animal_CanisLupus_Grey spawned around the crate
+14-46-32 | [INFO] [LOOTSYSTEM]: CrateSystem2Spawned: CrateName: Army1- Position: X:1286.16 Y:464.569 Z:14422.1
+14-46-32 | [INFO] M4A1
+14-46-32 | [INFO] Mag_STANAG_30Rnd
+14-46-32 | [INFO] Mag_STANAGCoupled_30Rnd
+14-46-32 | [INFO] M4_CarryHandleOptic
+14-46-32 | [INFO] M4_CQBBttstck
+14-46-32 | [INFO] M4_MPBttstck
+14-46-32 | [INFO] M4_Suppressor
+14-46-32 | [INFO] SVD
+14-46-32 | [INFO] PSO1Optic
+14-46-32 | [INFO] Mag_SVD_10Rnd
+14-46-32 | [INFO] 7 Animal_CanisLupus_Grey spawned around the crate

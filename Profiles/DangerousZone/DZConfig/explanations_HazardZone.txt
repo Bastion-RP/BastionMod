@@ -1,0 +1,159 @@
+{
+    "IsHazardZoneActive": 1,							//Set to 0 to disable Hazard Zone
+    "IsMsgActive": 1,									//Set to 0 to disable the notification message when you get in the hazard zone
+    "MsgEnterZone": "YOU ARE IN A Hazard AREA!",		//Notification message that appear when you get in the HZ
+    "MsgExitZone": "YOU LEFT THE Hazard AREA!",			//Notification message that disapear when you leave the HZ
+    "HazardCheck": 45000,								//Time in ms (so 45s) where the script check if the player is protected and/or in the hazard zone, increase it to gain performance and decrease it if you have a performant server
+    "HazardShockValue": 20,								//Value of shock given to the player if the probability of HazardChangeShock wins
+    "HazardChanceCough": 0.1,							//Chance that the player cough every 20s
+    "HazardChanceShock": 1,								//Chance that the player apply the shock value
+    "NbSickGivenForHazard": 34,							//Number of sick point given to the player after check, if the player is not protected, the next check is start again 10s after so by default it take around 20s to get sick after the first check
+    "GasMaskDamage": 20,								//GasMask damage every time the player get in an hazard zone
+    "HazardAreaLocation": [
+        {
+            "HazardZoneStatut": "Kamenks",				//Name of the hazard zone, must be different for each hazard zone
+            "X": 7890,									//X coordonate of the zone
+            "Y": 14697,									//Y coordonate of the zone (in dayz, it's the Z)
+            "Radius": 300,								//Radius of the zone
+            "X1": -1,									//X1 is  bottom left corner
+            "Y1": -1,									//Y1 is  bottem left corner
+            "X2": -1,									//X2 is upper right corner
+            "Y2": -1,									//Y2 is upper right corner
+            "IsSquareZone": 0,							//If set to 1, it will take the X1,Y1,X2,Y2 value instead of X,Y and Radius
+            "ParticlesPosition": [
+                {
+                    "NName": "GreenSpore",				//Name of particle that will spawn at the coordonate below
+                    "PPos": [
+                        8010,
+                        0,
+                        14625
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        7794,
+                        0,
+                        14788
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        7871,
+                        0,
+                        14700
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        7691,
+                        0,
+                        14855
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        7904,
+                        0,
+                        14585
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        7814,
+                        0,
+                        14542
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        7766,
+                        0,
+                        14639
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        7725,
+                        0,
+                        14706
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        8019,
+                        0,
+                        14758
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        7644,
+                        0,
+                        14750
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        7910,
+                        0,
+                        14724
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        7916,
+                        0,
+                        14627
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        8115,
+                        0,
+                        14563
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        8161,
+                        0,
+                        14706
+                    ]
+                },
+                {
+                    "NName": "GreenSpore",
+                    "PPos": [
+                        8003,
+                        0,
+                        14538
+                    ]
+                }
+            ]
+        },
+        {
+            "HazardZoneStatut": "Hazard2",
+            "X": 3000,
+            "Y": 12000,
+            "Radius": 600,
+            "X1": -1,
+            "Y1": -1,
+            "X2": -1,
+            "Y2": -1,
+            "IsSquareZone": 1,
+            "ParticlesPosition": []
+        }
+    ]
+}

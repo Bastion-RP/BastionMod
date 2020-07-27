@@ -1,0 +1,247 @@
+{
+    "ListLoots": [
+        {
+            "Name": "Army1",                                      //name of the loot preset - can be whatever you want and must be added as Name in the crate to link the lootpreset to a crate
+            "Loots": [
+                {		
+                    "LootName": "AKM",						      //classname of the main item						
+                    "ProbToSpawn": 0.6,					      //chance that this item spawn
+                    "AttachmentsToLoot": [					      //attachments list (if the main item has spawned, the loot system will try to spawn the attachment list link to the main item)
+                        {			
+                            "AttachName": "Mag_AKM_30Rnd",			     //classname of the attachment
+                            "ProbAttachToSpawn": 0.5				     //chance that this attachment spawn
+                        },
+                        {
+                            "AttachName": "PSO1Optic",
+                            "ProbAttachToSpawn": 0.5
+                        },
+                        {
+                            "AttachName": "Mag_AKM_Drum75Rnd",
+                            "ProbAttachToSpawn": 0.2
+                        },
+                        {
+                            "AttachName": "AK_SuPressor",
+                            "ProbAttachToSpawn": 0.3
+                        },
+                        {
+                            "AttachName": "AK_PlasticHndgrd",
+                            "ProbAttachToSpawn": 0.85
+                        },
+                        {
+                            "AttachName": "AK_RailHndgrd_Black",
+                            "ProbAttachToSpawn": 0.85
+                        },
+                        {
+                            "AttachName": "AK_Bayonet",
+                            "ProbAttachToSpawn": 0.4
+                        },
+                        {
+                            "AttachName": "AK_FoldingBttstck_Black",
+                            "ProbAttachToSpawn": 0.6
+                        }
+                    ]
+                },
+                {
+                    "LootName": "M4A1",
+                    "ProbToSpawn": 0.6,
+                    "AttachmentsToLoot": [
+                        {
+                            "AttachName": "Mag_STANAG_30Rnd",
+                            "ProbAttachToSpawn": 0.5
+                        },
+                        {
+                            "AttachName": "Mag_STANAGCoupled_30Rnd",
+                            "ProbAttachToSpawn": 0.3
+                        },
+                        {
+                            "AttachName": "ACOGOptic",
+                            "ProbAttachToSpawn": 0.4
+                        },
+                        {
+                            "AttachName": "M4_CarryHandleOptic",
+                            "ProbAttachToSpawn": 0.6
+                        },
+                        {
+                            "AttachName": "M4_CQBBttstck",
+                            "ProbAttachToSpawn": 0.7
+                        },
+                        {
+                            "AttachName": "M4_MPBttstck",
+                            "ProbAttachToSpawn": 0.4
+                        },
+                        {
+                            "AttachName": "M4_MPHndgrd",
+                            "ProbAttachToSpawn": 0.7
+                        },
+                        {
+                            "AttachName": "M4_RISHndgrd",
+                            "ProbAttachToSpawn": 0.5
+                        },
+                        {
+                            "AttachName": "M4_SuPressor",
+                            "ProbAttachToSpawn": 0.4
+                        }
+                    ]
+                },
+                {
+                    "LLootName": "SVD",
+                    "ProbToSpawn": 0.4,
+                    "AttachmentsToLoot": [
+                        {
+                            "AttachName": "PSO1Optic",
+                            "ProbAttachToSpawn": 0.35
+                        },
+                        {
+                            "AttachName": "Mag_SVD_10Rnd",
+                            "ProbAttachToSpawn": 0.5
+                        }
+                    ]
+                },
+                {
+                    "LootName": "AK74",
+                    "ProbToSpawn": 0.6,
+                    "AttachmentsToLoot": [
+                        {
+                            "AttachName": "AK_RailHndgrd_Black",
+                            "ProbAttachToSpawn": 0.7
+                        },
+                        {
+                            "AttachName": "AK74_WoodBttstck",
+                            "ProbAttachToSpawn": 0.7
+                        },
+                        {
+                            "AttachName": "AK_Bayonet",
+                            "ProbAttachToSpawn": 0.6
+                        },
+                        {
+                            "AttachName": "AK_FoldingBttstck_Black",
+                            "ProbAttachToSpawn": 0.7
+                        },
+                        {
+                            "AttachName": "AK_SuPressor",
+                            "ProbAttachToSpawn": 0.45
+                        },
+                        {
+                            "AttachName": "Mag_AK74_30Rnd",
+                            "ProbAttachToSpawn": 0.6
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Army2",
+            "Loots": [
+                {
+                    "LLootName": "FAL",
+                    "ProbToSpawn": 0.3,
+                    "AttachmentsToLoot": [
+                        {
+                            "AttachName": "Fal_FoldingBttstck",
+                            "ProbAttachToSpawn": 0.85
+                        },
+                        {
+                            "AttachName": "Fal_OeBttstck",
+                            "ProbAttachToSpawn": 0.75
+                        },
+                        {
+                            "AttachName": "Mag_FAL_20Rnd",
+                            "ProbAttachToSpawn": 0.6
+                        },
+                        {
+                            "AttachName": "ACOGOptic",
+                            "ProbAttachToSpawn": 0.45
+                        }
+                    ]
+                },
+                {
+                    "LootName": "ToxicCure",
+                    "ProbToSpawn": 0.7,
+                    "AttachmentsToLoot": []
+                },
+                {
+                    "LootName": "AmmoBox_545x39_20Rnd",
+                    "ProbToSpawn": 0.8,
+                    "AttachmentsToLoot": []
+                },
+                {
+                    "LootName": "AmmoBox_556x45_20Rnd",
+                    "ProbToSpawn": 0.8,
+                    "AttachmentsToLoot": []
+                }
+            ]
+        }
+    ],
+    "AreaLocation": [						//List of the different area where a crate will spawn
+        {
+            "DZName": "Zone1",						//name of the area1 ("zone1") can be whatever you want
+            "DZNbCrate": 1,						//number of crate per time in the zone 1
+            "DZCreature": "Animal_CanisLupus_Grey",			//creature that will spawn around the crate in this area
+            "DZNbCreature": 7,						//number of creature that will spawn
+            "CrateLocation": [					//crate list that can spawn in this area
+                {
+                    "DZContainer": "SeaChest",				//classname of the container
+                    "DZMaxLoot": 10,					//Max quantity that can spawn in this crate location
+                    "Name": "Army1",
+                    "POS": [						//vector position
+                        1396.16,
+                        464.569,
+                        14420.1
+                    ],
+                    "ORI": [						vector orientation
+                        115,
+                        0,
+                        -0
+                    ]
+                }
+            ]
+        },
+        {
+            "DZName": "Zone2",
+            "DZNbCrate": 2,
+            "DZCreature": "Animal_CanisLupus_Grey",
+            "DZNbCreature": 7,
+            "CrateLocation": [
+                {
+                    "DZContainer": "SeaChest",
+                    "DZMaxLoot": 10,
+                    "Name": "Army1",
+                    "POS": [
+                        1386.16,
+                        464.569,
+                        14422.1
+                    ],
+                    "ORI": [
+                        115,
+                        0,
+                        -0
+                    ]
+                }
+            ]
+        },
+        {
+            "DZName": "Zone3",
+            "DZNbCrate": 2,
+            "DZCreature": "Animal_CanisLupus_Grey",
+            "DZNbCreature": 7,
+            "DZCrateLocation": [
+                {
+                    "DZContainer": "SeaChest",
+                    "DZMaxLoot": 10,
+                    "Name": "Army1",
+                    "POS": [
+                        1286.16,
+                        464.569,
+                        14422.1
+                    ],
+                    "ORI": [
+                        115,
+                        0,
+                        -0
+                    ]
+                }
+            ]
+        }
+    ],
+    "TimerLoot": 2700000
+}

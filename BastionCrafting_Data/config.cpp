@@ -5,7 +5,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = 
+		requiredAddons[] =
 		{
 			"DZ_Gear_Containers",
 			"DZ_Gear_Crafting",
@@ -113,11 +113,11 @@ class CfgVehicles
 			};
 		};
 	};
-	
+
 	class BRP_Item_HND: HouseNoDestruct
 	{
 		scope=0;
-		descriptionShort="This can be dismantled with a screwdriver, pliers or hammer.";		
+		descriptionShort="This can be dismantled with a screwdriver, pliers or hammer.";
 		storageCategory=1;
 		class DamageSystem
 		{
@@ -178,7 +178,7 @@ class CfgVehicles
 		rotationFlags=2;
 		heavyItem=1;
 		weight=3000;
-		itemBehaviour=2;		
+		itemBehaviour=2;
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -229,7 +229,7 @@ class CfgVehicles
 		scope = 2;
 		descriptionShort="A table to store your tools and craft items. Attachments: 1x Hammer, 1x Hatchet, 3x Saws, 1x Screwdriver, 1x Pliers, 1x Wrench";
 		attachments[]=
-		{		
+		{
 			"Hammer1",
 			"Hatchet1",
 			"Pliers1",
@@ -246,7 +246,7 @@ class CfgVehicles
 				name="Medium Tools";
 				description="3x Saws, 1x Hatchet, 1x Hammer";
 				attachmentSlots[]=
-				{			
+				{
 					"Hatchet1",
 					"Hammer1",
 					"Saw1",
@@ -254,13 +254,13 @@ class CfgVehicles
 					"Saw3"
 				};
 				icon="cat_common_cargo";
-			};			
+			};
 			class SmallTools
 			{
 				name="Small Tools";
 				description="1x Screwdrivers, 1x Pliers, 1x Wrench";
 				attachmentSlots[]=
-				{		
+				{
 					"Pliers1",
 					"Screwdriver1",
 					"Wrench1"
@@ -275,7 +275,7 @@ class CfgVehicles
 			allowOwnedCargoManipulation=1;
 		};
 	};
-	
+
 	class BRP_CraftingTable_Kit: BRP_Kit
 	{
 		scope = 2;
@@ -287,7 +287,7 @@ class CfgVehicles
 		descriptionShort="Table used for crafting";
 		model = "\BastionMod\BastionCrafting_Data\craftingtable\craftingtable.p3d";
 	};
-	
+
 	class BRP_Workbench1_Kit: BRP_Kit
 	{
 		scope = 2;
@@ -317,7 +317,7 @@ class CfgVehicles
 		scope = 0;
 		model = "\BastionMod\BastionCrafting_Data\toolsbench\toolsbench.p3d";
 		attachments[]=
-		{		
+		{
 			"Axe1",
 			"Hammer1",
 			"Hammer2",
@@ -346,7 +346,7 @@ class CfgVehicles
 				name="Top";
 				description="3x Hammers, 5x Hatchets, 3x Saws";
 				attachmentSlots[]=
-				{			
+				{
 					"Saw1",
 					"Saw2",
 					"Saw3",
@@ -372,25 +372,25 @@ class CfgVehicles
 					"Axe1"
 				};
 				icon="cat_common_cargo";
-			};			
+			};
 			class SmallTools
 			{
 				name="Small Tools";
 				description="2x Screwdrivers, 1x Pliers";
 				attachmentSlots[]=
-				{		
+				{
 					"Pliers1",
 					"Screwdriver1",
 					"Screwdriver2"
 				};
 				icon="cat_common_cargo";
-			};			
+			};
 			class Wires
 			{
 				name="Wires";
 				description="3x Metal Wire";
 				attachmentSlots[]=
-				{				
+				{
 					"Wire1",
 					"Wire2",
 					"Wire3"
@@ -409,7 +409,7 @@ class CfgVehicles
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_wood_co.paa"
 		};
 	};
-	
+
 	class BRP_Toolsbench_Blue_Kit: BRP_Kit
 	{
 		scope = 2;
@@ -452,9 +452,9 @@ class CfgVehicles
 			"BastionMod\BastionCrafting_Data\toolsbench\data\toolsbench_wood_co.paa"
 		};
 	};
-	
-	//==============================================Barrel Furniture================================================>	
-	
+
+	//==============================================Barrel Furniture================================================>
+
 	class BRP_BarrelChair_Avgas_Kit: BRP_Kit
 	{
 		scope = 2;
@@ -468,12 +468,12 @@ class CfgVehicles
 		descriptionShort = "A comfy seat crafted from an oil barrel.";
 		model = "BastionMod\BastionCrafting_Data\barrelfurniture\BRP_BarrelChair.p3d";
 		itemsCargoSize[] = {10,8};
-		hiddenSelections[] = 
+		hiddenSelections[] =
 		{
 			"OilDrumCushion",
 			"OilDrumSeat"
 		};
-		hiddenSelectionsTextures[] = 
+		hiddenSelectionsTextures[] =
 		{
 			"bastionmod\bastioncrafting_data\barrelfurniture\data\brp_barrelchaircushions_co.paa",
 			"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Avgas_co.paa"
@@ -488,7 +488,7 @@ class CfgVehicles
 	{
 		scope = 2;
 		color = "Green";
-		hiddenSelectionsTextures[] = 
+		hiddenSelectionsTextures[] =
 		{
 			"bastionmod\bastioncrafting_data\barrelfurniture\data\brp_barrelchaircushions_co.paa",
 			"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Green_co.paa"
@@ -503,7 +503,7 @@ class CfgVehicles
 	{
 		scope = 2;
 		color = "Blue";
-		hiddenSelectionsTextures[] = 
+		hiddenSelectionsTextures[] =
 		{
 			"bastionmod\bastioncrafting_data\barrelfurniture\data\brp_barrelchaircushions_co.paa",
 			"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Blue_co.paa"
@@ -518,7 +518,7 @@ class CfgVehicles
 	{
 		scope = 2;
 		color = "Red";
-		hiddenSelectionsTextures[] = 
+		hiddenSelectionsTextures[] =
 		{
 			"bastionmod\bastioncrafting_data\barrelfurniture\data\brp_barrelchaircushions_co.paa",
 			"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Red_co.paa"
@@ -533,7 +533,7 @@ class CfgVehicles
 	{
 		scope = 2;
 		color = "Yellow";
-		hiddenSelectionsTextures[] = 
+		hiddenSelectionsTextures[] =
 		{
 			"bastionmod\bastioncrafting_data\barrelfurniture\data\brp_barrelchaircushions_co.paa",
 			"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Yellow_co.paa"
@@ -548,7 +548,7 @@ class CfgVehicles
 	{
 		scope = 2;
 		color = "Danmak";
-		hiddenSelectionsTextures[] = 
+		hiddenSelectionsTextures[] =
 		{
 			"bastionmod\bastioncrafting_data\barrelfurniture\data\brp_barrelchaircushions_co.paa",
 			"BastionMod\BastionCrafting_Data\barrelfurniture\data\BRP_BarrelChair_Danmak_co.paa"
@@ -787,7 +787,7 @@ class CfgVehicles
 				};
 			};
 		};
-	};	
+	};
 
 	class BRP_Safe_Kit: BRP_Kit
 	{
@@ -800,8 +800,8 @@ class CfgVehicles
 		displayName = "Safe";
 		model = "\BastionMod\BastionCrafting_Data\safe\safe.p3d";
 		itemsCargoSize[] = {10,8};
-	};	
-	
+	};
+
 	class BRP_BoxingRing_Kit: BRP_Kit
 	{
 		scope = 2;
@@ -811,10 +811,10 @@ class CfgVehicles
     class BRP_BoxingRing: BRP_Item_HND
     {
         scope = 2;
-        model = "\BastionMod\BastionCrafting_Data\boxingring\boxing_ring.p3d";  
-    };	
-	//==============================================Furnace================================================>	
-	
+        model = "\BastionMod\BastionCrafting_Data\boxingring\boxing_ring.p3d";
+    };
+	//==============================================Furnace================================================>
+
 	class BRP_Furnace_Kit: BRP_Kit
 	{
 		scope = 2;
@@ -852,11 +852,11 @@ class CfgVehicles
 		openable=0;
 		allowOwnedCargoManipulation=1;
 		useEntityHierarchy = "true";
-		hiddenSelections[] = 
+		hiddenSelections[] =
 		{
 			"zbytek"
 		};
-		hiddenSelectionsTextures[] = 
+		hiddenSelectionsTextures[] =
 		{
 			"bastionmod\bastioncrafting_data\furnace\data\brp_furnace_co.paa"
 		};
@@ -1016,9 +1016,13 @@ class CfgVehicles
 		descriptionShort = "A radiation dosimeter is a device that measures dose uptake of external ionizing radiation. It is worn by the person being monitored when used as a personal dosimeter, and is a record of the radiation dose received.";
 		model = "BastionMod\BastionCrafting_Data\dosimeter\geiger.p3d";
 		rotationFlags = 2;
-		weight = 1000;
+		weight = 500;
 		absorbency = 0.0;
 		itemSize[] = {3,2};
+		attachments[]=
+		{
+			"BatteryD"
+		};
 		hiddenSelections[]=
 		{
 			"all"
@@ -1026,7 +1030,16 @@ class CfgVehicles
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionCrafting_Data\dosimeter\data\geiger_ca.paa"
-		};			
+		};
+		class EnergyManager
+		{
+			hasIcon=1;
+			autoSwitchOff=1;
+			energyUsagePerSecond=0.0049999999;
+			plugType=1;
+			attachmentAction=1;
+			updateInterval=30;
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -1034,7 +1047,7 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 60;
-					healthLevels[] = 
+					healthLevels[] =
 					{
 						{1.0,{"BastionMod\BastionCrafting_Data\dosimeter\data\geiger.rvmat"}},
 						{0.7,{"BastionMod\BastionCrafting_Data\dosimeter\data\geiger.rvmat"}},
@@ -1071,11 +1084,11 @@ class CfgVehicles
 		descriptionShort = "Parts of various weapons, some in not very good condition. Can be usefull anyway.";
 		model = "BastionMod\BastionCrafting_Data\weaponparts\weaponparts.p3d";
 		rotationFlags = 2;
-		isMeleeWeapon=0;		
+		isMeleeWeapon=0;
 		weight = 3000;
 		absorbency = 0.0;
-		itemBehaviour = 1;		
-		heavyItem = 1;		
+		itemBehaviour = 1;
+		heavyItem = 1;
 		itemSize[] = {4,2};
 		hiddenSelections[]=
 		{
@@ -1084,7 +1097,7 @@ class CfgVehicles
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionCrafting_Data\dosimeter\data\geiger_ca.paa"
-		};			
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -1092,7 +1105,7 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 60;
-					healthLevels[] = 
+					healthLevels[] =
 					{
 						{1.0,{"BastionMod\BastionCrafting_Data\weaponparts\data\weaponparts.rvmat"}},
 						{0.7,{"BastionMod\BastionCrafting_Data\weaponparts\data\weaponparts.rvmat"}},
@@ -1430,7 +1443,7 @@ class CfgNonAIVehicles
 		inventorySlot[] = { "Shovel1" };
 		model="\BastionMod\BastionCrafting_Data\proxies\tools\shovel1.p3d";
 	};
-	
+
 	class Proxyhammer1: ProxyAttachment
 	{
 		scope=2;

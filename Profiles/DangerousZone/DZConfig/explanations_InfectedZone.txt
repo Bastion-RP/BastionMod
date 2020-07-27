@@ -1,0 +1,97 @@
+{
+    "IsInfectedZoneActive": 1,							//Set to 0 to disable the InfectedZone
+    "InfectedCheck": 900000,							//Time in ms (20min) when the script will check if each infected zone got the right amount of creatures (MinCreature)
+    "InfectedAreaLocation": [
+        {
+            "InfectedZoneStatut": "InfectedZone1",		//Name of the Infected Zone, must be unique
+            "MinCreature": 15,							//Minimal Amount of creature, if the current number of creature is lower than this variable when the InfectedCheck is happening, it will remove every creature in this area and spawn them again
+            "X": 7890,									//X coordonate of the infected zone
+            "Y": 14697,									//Y coordonate of the infected zone (it's the Z in DayZ)
+            "Radius": 150,								//Radius means the range compare to the center where the creature can spawn knowing that they spawn randomly between the center and the radius
+            "CreatureList": [							
+                {
+                    "CreatureName": "Animal_CanisLupus_Grey", //Name of the creature that will spawn in the InfectedZone1
+                    "Max": 7								  //Number of creature that will spawn
+                },
+                {
+                    "CreatureName": "Animal_UrsusArctos",
+                    "Max": 1
+                },
+                {
+                    "CreatureName": "ZmbM_HermitSkinny_Green",
+                    "Max": 15
+                },
+                {
+                    "CreatureName": "ZmbM_FarmerFat_Brown",
+                    "Max": 1
+                },
+                {
+                    "CreatureName": "ZmbM_FarmerFat_Blue",
+                    "Max": 5
+                },
+                {
+                    "CreatureName": "ZmbM_HermitSkinny_Beige",
+                    "Max": 9
+                },
+                {
+                    "CreatureName": "ZmbM_HermitSkinny_Green",
+                    "Max": 6
+                },
+                {
+                    "CreatureName": "ZmbM_FarmerFat_Brown",
+                    "Max": 17
+                },
+                {
+                    "CreatureName": "ZmbM_FarmerFat_Blue",
+                    "Max": 5
+                },
+                {
+                    "CreatureName": "ZmbM_HermitSkinny_Beige",
+                    "Max": 9
+                },
+                {
+                    "CreatureName": "ZmbM_HermitSkinny_Green",
+                    "Max": 10
+                },
+                {
+                    "CreatureName": "ZmbM_FarmerFat_Brown",
+                    "Max": 6
+                },
+                {
+                    "CreatureName": "ZmbM_FarmerFat_Blue",
+                    "Max": 9
+                },
+                {
+                    "CreatureName": "ZmbM_HermitSkinny_Beige",
+                    "Max": 5
+                }
+            ]
+        },
+        {
+            "InfectedZoneStatut": "InfectedZone2",
+            "MinCreature": 7,
+            "X": 7500,
+            "Y": 7500,
+            "Radius": 20,
+            "CreatureList": [
+                {
+                    "CreatureName": "SurvivorM_Seth",
+                    "Max": 7
+                }
+            ]
+        },
+        {
+            "InfectedZoneStatut": "InfectedZone3",
+            "MinCreature": 7,
+            "X": 8000,
+            "Y": 10000,
+            "Radius": 20,
+            "CreatureList": [
+                {
+                    "CreatureName": "SurvivorM_Seth",
+                    "Max": 7
+                }
+            ]
+        }
+    ]
+}
