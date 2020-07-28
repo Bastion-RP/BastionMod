@@ -66,4 +66,4 @@ class CfgVehicles
 		scope = 2;
 		model = "\DZ\structures_bliss\walls\wall_barricade1_10.p3d";
 	};
-}
+};
