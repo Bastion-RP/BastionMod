@@ -33,12 +33,18 @@ class AntiRadPillsMdfr: ModifierBase
 	{
 		if( player.GetNotifiersManager() ) player.GetNotifiersManager().ActivateByType(eNotifiers.NTF_PILLS);
 		player.AntiRadPillsActivated = true;
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo("player:"+player.GetIdentity().GetName()+"Anti_Rad_Pills Activated");
+		#endif
 	}
 
 	override void OnDeactivate(PlayerBase player)
 	{
 		if( player.GetNotifiersManager() ) player.GetNotifiersManager().DeactivateByType(eNotifiers.NTF_PILLS);
 		player.AntiRadPillsActivated = false;
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo("player:"+player.GetIdentity().GetName()+"Anti_Rad_Pills Deactivated");
+		#endif
 	}
 
 	override bool DeactivateCondition(PlayerBase player)

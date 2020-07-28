@@ -16,6 +16,10 @@ class DZManager
 			m_ActiveDZCrateSystemSettings = DZCrateSystemAreaSettings.Load();
 
 			m_RadZoneLocations = new RadiationLocations(m_ActiveRadiationAreaSettings);
+
+			#ifdef DZDEBUG
+			GetDZLogger().LogInfo("DEBUG MODE ENABLED");
+			#endif
 		}
 		else
 		{

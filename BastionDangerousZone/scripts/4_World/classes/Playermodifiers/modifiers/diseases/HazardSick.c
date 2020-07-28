@@ -35,12 +35,18 @@ class HazardSickMdfr: ModifierBase
 		chanceCough = player.HazardChanceCough;
 		chanceShock = player.HazardChanceShock;
 		hazardshockvalue = player.HazardShockValue;
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo("player:"+player.GetIdentity().GetName()+"HazardSickness Activated");
+		#endif
 	}
 
 	override protected void OnDeactivate(PlayerBase player)
 	{
 		player.DecreaseDiseaseCount();
 		player.IsHazarded = false;
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo("player:"+player.GetIdentity().GetName()+"HazardSickness Deactivated");
+		#endif
 	}
 
 	override protected bool DeactivateCondition(PlayerBase player)
@@ -84,5 +90,9 @@ class HazardSickMdfr: ModifierBase
 			player.GiveShock(-100);
 			m_Shock = 0;
 		}
+
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo("player:"+player.GetIdentity().GetName()+"shockvalue:"+m_Shock.ToString());
+		#endif
 	}
 };

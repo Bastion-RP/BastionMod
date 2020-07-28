@@ -1,10 +1,10 @@
-modded class BRP_Gasmask extends ClothingBase
+modded class GP5GasMask extends ClothingBase
 {
 	static float 			m_WorkingTimePerPills=60;
 	protected bool 			m_CanStart;
 	protected bool 			m_IsFilter;
 
-	void BRP_Gasmask()
+	void GP5GasMask()
 	{
 		if ( m_WorkingTimePerPills == 0)
 		{
@@ -13,7 +13,7 @@ modded class BRP_Gasmask extends ClothingBase
 		}
 	}
 
-	void ~BRP_Gasmask()
+	void ~GP5GasMask()
 	{
 		PlayerBase player;
 		Class.CastTo(player, GetHierarchyRootPlayer());
@@ -124,7 +124,7 @@ modded class BRP_Gasmask extends ClothingBase
 			m_filter.AddQuantity(-60);
 			GetCompEM().AddEnergy(-1*GetCompEM().GetEnergy() + m_WorkingTimePerPills);
 			GetCompEM().SwitchOn();
-			//Print("CanStartGasMask: BRP_Gasmask :"+m_filter.GetQuantity().ToString());
+			//Print("CanStartGasMask: GP5GasMask :"+m_filter.GetQuantity().ToString());
 		}
 
 		//Print("m_WorkingTimePerPills"+m_WorkingTimePerPills.ToString());
@@ -151,6 +151,11 @@ modded class BRP_Gasmask extends ClothingBase
 
 			PlayerBase player;
 			Class.CastTo(player, GetHierarchyRootPlayer());
+
+			#ifdef DZDEBUG
+			if(!player)return;
+			GetDZLogger().LogInfo("GasMask_OnWork on"+"player:"+player.GetIdentity().GetName()+"current energy: "+GetCompEM().GetEnergy().ToString());
+			#endif
 
 			if(player && !player.IsAlive())
 			{
@@ -195,7 +200,7 @@ modded class BRP_Gasmask extends ClothingBase
 
 	void ConsumeFilter()
 	{
-		ItemBase m_gasmaskfilter = GetBRP_GasmaskFilter();
+		ItemBase m_gasmaskfilter = GetGP5GasMaskFilter();
 
 		if (m_gasmaskfilter)
 		{
@@ -205,9 +210,9 @@ modded class BRP_Gasmask extends ClothingBase
 		}
 	}
 
-	BRP_Gasmask_Filter GetBRP_GasmaskFilter()
+	GP5GasMask_Filter GetGP5GasMaskFilter()
 	{
-		return BRP_Gasmask_Filter.Cast(GetAttachmentByType(BRP_Gasmask_Filter));
+		return GP5GasMask_Filter.Cast(GetAttachmentByType(GP5GasMask_Filter));
 	}
 
 }

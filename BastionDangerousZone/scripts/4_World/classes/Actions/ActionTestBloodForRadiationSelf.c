@@ -36,8 +36,11 @@ class ActionTestForRadiationSelf: ActionContinuousBase
 	override void OnFinishProgressServer( ActionData action_data )
 	{
 		string message = "Total Radiation Exposure : " + action_data.m_Player.GetSingleAgentCount(DZAgents.RADSICK).ToString();
-		NotificationSystem.SendNotificationToPlayerIdentityExtended(action_data.m_Player.GetIdentity(), 3, "Radiation Zone", message, "BastionDangerousZone/images/radiation.paa");
+		NotificationSystem.SendNotificationToPlayerIdentityExtended(action_data.m_Player.GetIdentity(), 3, "Radiation Zone", message, "BastionMod/BastionDangerousZone/images/radiation.paa");
 
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo("player:"+action_data.m_Player.GetIdentity().GetName()+"action_dosimeter:"+message);
+		#endif
 		//action_data.m_MainItem.SetQuantity(action_data.m_MainItem.GetQuantity() - 20);
 	}
 };

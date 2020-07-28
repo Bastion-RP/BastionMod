@@ -16,7 +16,7 @@ class InsideDZ{
 modded class PlayerBase extends ManBase
 {
 	private ref array<string>m_SLOTS = {"Mask","Headgear","Body","Gloves","Legs","Feet"};
-	private ref array<string>m_Suits = {"BRP_Gasmask","NBCHoodBase","NBCJacketBase","NBCGloves_ColorBase","NBCPantsBase","NBCBootsBase"};
+	private ref array<string>m_Suits = {"GP5GasMask","NBCHoodBase","NBCJacketBase","NBCGloves_ColorBase","NBCPantsBase","NBCBootsBase"};
 	private ref array<int>m_Nbc_Health = {100,100,100,30,100,70};
 	private ref array<float>SuitsDamage;
 	private ref array<float>SuitsDamageHazard;
@@ -63,19 +63,25 @@ modded class PlayerBase extends ManBase
 		if(AntiRadPillsActivated == true)
 		{
 			m_AgentPool.SetAgentCount(DZAgents.RADSICK,150);
-			//GetDZLogger().LogInfo("RadPills" + GetSingleAgentCount(DZAgents.RADSICK).ToString());
+			#ifdef DZDEBUG
+			GetDZLogger().LogInfo(this.GetIdentity().GetName() + " with_anti_rad_pills "+"is taking radiation point" + GetSingleAgentCount(DZAgents.RADSICK).ToString());
+			#endif
 			return;
 		}
 		else
 		{
-			//GetDZLogger().LogInfo("NO RadPills" + GetSingleAgentCount(DZAgents.RADSICK).ToString());
-			GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_COUGH);
 			InsertAgent(DZAgents.RADSICK,NbSickGivenForRadiation);
+			#ifdef DZDEBUG
+			GetDZLogger().LogInfo(this.GetIdentity().GetName()+" no_pills "+"is taking radiation point" + GetSingleAgentCount(DZAgents.RADSICK).ToString());
+			#endif
 		}
 	}
 
 	void GiveHazardSickness()
 	{
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo(this.GetIdentity().GetName()+"is taking hazard point" + GetSingleAgentCount(DZAgents.RADSICK).ToString());
+		#endif
 		GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_COUGH);
 		InsertAgent(DZAgents.HAZARDSICK,NbSickGivenForHazard);
 	}
@@ -106,6 +112,9 @@ modded class PlayerBase extends ManBase
 					GasMaskHazardCheck();
 					return;
 				}
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(this.GetIdentity().GetName()+"has been attacked 5 times in a zone so recheck is applied");
+				#endif
 			}
 		}
 	}
@@ -115,9 +124,6 @@ modded class PlayerBase extends ManBase
 		for(int i=0;i<m_Nbc_Health.Count();i++)
 		{
 			SuitsDamage.Insert((m_Nbc_Health.Get(i)*damage)/100);
-			//Print("NBC: "+ m_Nbc_Health.Get(i).ToString());
-			//Print("damage: "+ damage.ToString());
-			//Print("DamageFinal: "+ SuitsDamage.Get(i).ToString());
 		}
 	}
 
@@ -126,9 +132,6 @@ modded class PlayerBase extends ManBase
 		for(int i=0;i<m_Nbc_Health.Count();i++)
 		{
 			SuitsDamageHazard.Insert((m_Nbc_Health.Get(i)*damage)/100);
-			//Print("NBC: "+ m_Nbc_Health.Get(i).ToString());
-			//Print("damage: "+ damage.ToString());
-			//Print("DamageFinal: "+ SuitsDamage.Get(i).ToString());
 		}
 	}
 
@@ -145,6 +148,9 @@ modded class PlayerBase extends ManBase
 				{
 					IsUnprotected=true;
 					GiveRadSickness();
+					#ifdef DZDEBUG
+					GetDZLogger().LogInfo(this.GetIdentity().GetName()+"is not fully protected for High level RadZone");
+					#endif
 					return;
 				}
 				else
@@ -154,6 +160,9 @@ modded class PlayerBase extends ManBase
 						if(i!=0)
 						{
 							SuitsPart.AddHealth( "", "", -SuitsDamage.Get(i));
+							#ifdef DZDEBUG
+							GetDZLogger().LogInfo(this.GetIdentity().GetName()+"is fully protected for High level RadZone, only damage applied on suits");
+							#endif
 							continue;
 						}
 
@@ -161,6 +170,9 @@ modded class PlayerBase extends ManBase
 						{
 							IsUnprotected=true;
 							GiveRadSickness();
+							#ifdef DZDEBUG
+							GetDZLogger().LogInfo(this.GetIdentity().GetName()+"'s GasMask doesn't have a filter for High level RadZone, only damage applied on suits");
+							#endif
 							return;
 						}
 					}
@@ -182,6 +194,9 @@ modded class PlayerBase extends ManBase
 				{
 					IsUnprotected=true;
 					GiveRadSickness();
+					#ifdef DZDEBUG
+					GetDZLogger().LogInfo(this.GetIdentity().GetName()+"is not fully protected for High level RadZone");
+					#endif
 					return;
 				}
 				else
@@ -192,6 +207,9 @@ modded class PlayerBase extends ManBase
 						{
 							IsUnprotected=true;
 							GiveRadSickness();
+							#ifdef DZDEBUG
+							GetDZLogger().LogInfo(this.GetIdentity().GetName()+"'s GasMask doesn't have a filter for High level RadZone, only damage applied on suits");
+							#endif
 							return;
 						}
 					}
@@ -222,6 +240,9 @@ modded class PlayerBase extends ManBase
 				{
 					IsUnprotected=true;
 					SetLowLevelEffetOnPlayer();
+					#ifdef DZDEBUG
+					GetDZLogger().LogInfo(this.GetIdentity().GetName()+"is not fully protected for Low level RadZone");
+					#endif
 					return;
 				}
 				else
@@ -231,6 +252,9 @@ modded class PlayerBase extends ManBase
 						if(i!=0)
 						{
 							SuitsPart.AddHealth( "", "", -SuitsDamage.Get(i));
+							#ifdef DZDEBUG
+							GetDZLogger().LogInfo(this.GetIdentity().GetName()+" is fully protected for Low level RadZone, only damage applied on suits");
+							#endif
 							continue;
 						}
 
@@ -238,6 +262,9 @@ modded class PlayerBase extends ManBase
 						{
 							IsUnprotected=true;
 							SetLowLevelEffetOnPlayer();
+							#ifdef DZDEBUG
+							GetDZLogger().LogInfo(this.GetIdentity().GetName()+" 's GasMask doesn't have a filter for Low level RadZone, only damage applied on suits");
+							#endif
 							return;
 						}
 					}
@@ -258,6 +285,9 @@ modded class PlayerBase extends ManBase
 				{
 					IsUnprotected=true;
 					SetLowLevelEffetOnPlayer();
+					#ifdef DZDEBUG
+					GetDZLogger().LogInfo(this.GetIdentity().GetName()+" is not fully protected for Low level RadZone");
+					#endif
 					return;
 				}
 				else
@@ -268,6 +298,9 @@ modded class PlayerBase extends ManBase
 						{
 							IsUnprotected=true;
 							SetLowLevelEffetOnPlayer();
+							#ifdef DZDEBUG
+							GetDZLogger().LogInfo(this.GetIdentity().GetName()+"'s GasMask doesn't have a filter for High level RadZone, only damage applied on suits");
+							#endif
 							return;
 						}
 					}
@@ -288,6 +321,9 @@ modded class PlayerBase extends ManBase
 			if (SuitsPart == NULL || SuitsPart.IsRuined() || !SuitsPart.IsKindOf(m_Suits.Get(0)))
 			{
 				GiveHazardSickness();
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(this.GetIdentity().GetName()+"'s item on the mask slot doesn't protected for HazardZone");
+				#endif
 				GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater(this.GasMaskHazardCheck, 10000 );
 				return;
 			}
@@ -298,6 +334,9 @@ modded class PlayerBase extends ManBase
 						if(!SuitsPart.GetCompEM().IsWorking())
 						{
 							GiveHazardSickness();
+							#ifdef DZDEBUG
+							GetDZLogger().LogInfo(this.GetIdentity().GetName()+"'s gasmask is not working (no filter?) for HazardZone");
+							#endif
 							GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater(this.GasMaskHazardCheck, 10000 );
 							return;
 						}
@@ -313,6 +352,9 @@ modded class PlayerBase extends ManBase
 			return;
 		}
 		else{
+			#ifdef DZDEBUG
+			GetDZLogger().LogInfo(this.GetIdentity().GetName()+"is checked again because he was not protected last check");
+			#endif
 			if(x == 1)
 			{
 				LowLevelRadiationCheckLite();
@@ -330,6 +372,9 @@ modded class PlayerBase extends ManBase
 			return;
 		}
 		else{
+			#ifdef DZDEBUG
+			GetDZLogger().LogInfo(this.GetIdentity().GetName()+"is checked again because he was not protected last check");
+			#endif
 				GasMaskHazardCheck();
 		}
 	}
@@ -352,6 +397,9 @@ modded class PlayerBase extends ManBase
 		{
 			GasMaskHazardCheck();
 		}
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo(this.GetIdentity().GetName()+" attached one parts of clothes from his body, need to check if the player is still protect");
+		#endif
 	}
 
 	override void EEItemDetached(EntityAI item, string slot_name)
@@ -372,5 +420,9 @@ modded class PlayerBase extends ManBase
 		{
 			GasMaskHazardCheck();
 		}
+
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo(this.GetIdentity().GetName()+" removed one parts of clothes from his body, need to check if the player is still protect");
+		#endif
 	}
 }

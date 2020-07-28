@@ -60,37 +60,41 @@ class DZHazardZone extends DZManager
 		{
 			if (player.IsInside.DZName==Status && player.IsInside.DZStatut) //Already in zone
 			{
-				//GetDZLogger().LogInfo("IF1:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
-				//GetDZLogger().LogInfo("player.IsUnprotected:" + player.IsUnprotected.ToString());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is inside :" + player.IsInside.DZStatut.ToString());
+				#endif
 				player.IsHazardProtected();
 				return;
 			}
 			else
 			{
-				//GetDZLogger().LogInfo("ELSE1:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
 				player.IsInside.DZName=Status;
 				player.IsInside.DZStatut=true;
 				player.IsInside.DZType=3;
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is entering :" + player.IsInside.DZStatut.ToString());
+				#endif
 				if(player.IsHazarded==true)return;
 				player.GasMaskHazardCheck();
 				if(GetHazardConfig().IsMsgActive==0)return;
-				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Hazard Zone", GetHazardConfig().MsgEnterZone, "BastionDangerousZone/images/HazardLogo.paa");
+				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Hazard Zone", GetHazardConfig().MsgEnterZone, "BastionMod/BastionDangerousZone/images/HazardLogo.paa");
 			}
 		}
 		else if ( distance_squared > Math.Pow(Zone_Radius, 2) )
 		{
 			if (player.IsInside.DZName==Status && player.IsInside.DZStatut)
 			{
-				//GetDZLogger().LogInfo("IF2:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
 				player.IsInside.DZStatut=false;
 				player.IsInside.DZName="";
 				player.IsInside.DZType=0;
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is leaving :" + player.IsInside.DZStatut.ToString());
+				#endif
 				if(GetHazardConfig().IsMsgActive==0)return;
-				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Hazard Zone", GetHazardConfig().MsgExitZone, "BastionDangerousZone/images/HazardLogo.paa");
+				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Hazard Zone", GetHazardConfig().MsgExitZone, "BastionMod/BastionDangerousZone/images/HazardLogo.paa");
 			}
 			else
 			{
-				//GetDZLogger().LogInfo("ELSE2:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
 				return;
 			}
 		}
@@ -104,36 +108,41 @@ class DZHazardZone extends DZManager
 		{
 			if (player.IsInside.DZName==Status && player.IsInside.DZStatut) //Already in zone
 			{
-				//GetDZLogger().LogInfo("IF1:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is inside :" + player.IsInside.DZStatut.ToString());
+				#endif
 				player.IsHazardProtected();
 				return;
 			}
 			else
 			{
-				//GetDZLogger().LogInfo("ELSE1:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is entering :" + player.IsInside.DZStatut.ToString());
+				#endif
 				player.IsInside.DZName=Status;
 				player.IsInside.DZStatut=true;
 				player.IsInside.DZType=3;
 				if(player.IsHazarded==true)return;
 				player.GasMaskHazardCheck();
 				if(GetHazardConfig().IsMsgActive==0)return;
-				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Hazard Zone", GetHazardConfig().MsgEnterZone, "BastionDangrousZone/images/HazardLogo.paa");
+				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Hazard Zone", GetHazardConfig().MsgEnterZone, "BastionMod/BastionDangrousZone/images/HazardLogo.paa");
 			}
 		}
 		else
 		{
 			if (player.IsInside.DZName==Status && player.IsInside.DZStatut)
 			{
-				//GetDZLogger().LogInfo("IF2:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is leaving :" + player.IsInside.DZStatut.ToString());
+				#endif
 				player.IsInside.DZStatut=false;
 				player.IsInside.DZName="";
 				player.IsInside.DZType=0;
 				if(GetHazardConfig().IsMsgActive==0)return;
-				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Hazard Zone", GetHazardConfig().MsgExitZone, "BastionDangerousZone/images/HazardLogo.paa");
+				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Hazard Zone", GetHazardConfig().MsgExitZone, "BastionMod/BastionDangerousZone/images/HazardLogo.paa");
 			}
 			else
 			{
-				//GetDZLogger().LogInfo("ELSE2:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
 				return;
 			}
 		}

@@ -6,6 +6,5 @@ modded class ActionConstructor
 
 	  actions.Insert(ActionTestForRadiationSelf);
 	  actions.Insert(ActionTestForRadiationTarget);
-
 	}
 };

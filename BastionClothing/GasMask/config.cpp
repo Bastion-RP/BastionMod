@@ -10,10 +10,9 @@ class CfgPatches
 };
 class CfgVehicles
 {
-	class Inventory_Base;
-	class Clothing_Base;
-	class Clothing: Clothing_Base{};
-	class BRP_Gasmask: Clothing
+	class GP5GasMask;
+	class GP5GasMask_Filter
+	class BRP_Gasmask: GP5GasMask
 	{
 		scope = 2;
 		displayName = "Civilian Gas Mask";
@@ -86,7 +85,7 @@ class CfgVehicles
 		soundVoiceType = "gasmask";
 		soundVoicePriority = 5;
 	};
-	class BRP_Gasmask_Filter: Inventory_Base
+	class BRP_Gasmask_Filter: GP5GasMask_Filter
 	{
 		scope = 2;
 		displayName = "Gas Mask Filter";
