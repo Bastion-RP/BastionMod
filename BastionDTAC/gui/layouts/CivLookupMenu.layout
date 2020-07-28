@@ -74,8 +74,8 @@ FrameWidgetClass rootFrame {
    style rover_sim_colorable
    {
     PanelWidgetClass pnlCivData {
-     clipchildren 0
-     ignorepointer 1
+     clipchildren 1
+     ignorepointer 0
      color 0 0 0 0.7843
      size 400 63
      hexactpos 1
@@ -163,9 +163,9 @@ FrameWidgetClass rootFrame {
       PanelWidgetClass pnlCivDataBorder {
        clipchildren 0
        ignorepointer 1
-       color 0.498 0.498 0.498 0.7843
-       position 0 0
-       size 1 1
+       color 0.7843 0.7843 0.7843 1
+       position -0.02 0
+       size 1.04 1
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -300,6 +300,433 @@ FrameWidgetClass rootFrame {
      "size to text h" 1
      "size to text v" 0
      "text valign" center
+    }
+   }
+  }
+  PanelWidgetClass pnlCivInfo {
+   ignorepointer 1
+   color 0 0 0 0.7843
+   position 590 0
+   size 600 332
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    PanelWidgetClass pnlCivInfoHeader {
+     ignorepointer 1
+     color 0 0 0 0.7843
+     size 600 80
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      GridSpacerWidgetClass gridInfoName {
+       clipchildren 0
+       ignorepointer 1
+       position 5 10
+       size 48 29
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       Padding 10
+       Margin 0
+       "Size To Content H" 1
+       Rows 1
+       {
+        TextWidgetClass txtInfoNameFirst {
+         ignorepointer 1
+         position 10 10
+         size 48 29
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Big-Boy"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        TextWidgetClass txtInfoNameLast {
+         ignorepointer 1
+         position 10 10
+         size 48 29
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Yeet"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass pnlAlias {
+         clipchildren 0
+         ignorepointer 1
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         {
+          TextWidgetClass txtInfoAlias {
+           visible 1
+           ignorepointer 1
+           size 48 14
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           text "aka Big Yeeter"
+           "size to text h" 1
+           "size to text v" 0
+           "text valign" center
+          }
+         }
+        }
+       }
+      }
+      TextWidgetClass txtInfoID {
+       ignorepointer 1
+       position 5 10
+       size 48 30
+       halign right_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "50153"
+       "size to text h" 1
+       "size to text v" 0
+       "text valign" center
+      }
+      TextWidgetClass txtInfoClass {
+       ignorepointer 1
+       position 5 10
+       size 48 30
+       halign right_ref
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "ISF-F"
+       "size to text h" 1
+       "size to text v" 0
+       "text valign" center
+      }
+      TextWidgetClass txtInfoZone {
+       ignorepointer 1
+       position 5 10
+       size 48 30
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "Zone 01"
+       "size to text h" 1
+       "size to text v" 0
+       "text valign" center
+      }
+      PanelWidgetClass pnlBorder {
+       ignorepointer 1
+       color 0.7843 0.7843 0.7843 1
+       position -0.01 0
+       size 1.02 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Outline
+      }
+     }
+    }
+    PanelWidgetClass pnlCivInfoDescription {
+     visible 1
+     ignorepointer 1
+     color 0.7843 0.7843 0.7843 1
+     position 0 85
+     size 600 100
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style blank
+     {
+      PanelWidgetClass descriptionHeader {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       size 1 0.53
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style rover_sim_colorable
+       {
+        TextWidgetClass descriptionHeaderTxt {
+         ignorepointer 1
+         position 5 10
+         size 48 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Description"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass descriptionHeaderOutline {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+      PanelWidgetClass descriptionFooter {
+       ignorepointer 1
+       size 1 0.51
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       {
+        TextWidgetClass txtInfoHeight {
+         ignorepointer 1
+         position 5 10
+         size 48 15
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Height: 7'11\""
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        TextWidgetClass txtInfoWeight {
+         ignorepointer 1
+         position 5 8
+         size 48 15
+         valign bottom_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Weight: 750"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        TextWidgetClass txtInfoEyes {
+         ignorepointer 1
+         position 5 10
+         size 48 15
+         halign right_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Eyes: Blue"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        TextWidgetClass txtInfoHair {
+         ignorepointer 1
+         position 5 8
+         size 48 15
+         halign right_ref
+         valign bottom_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Hair: Blonde"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass descriptionFooterOutline {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+     }
+    }
+    PanelWidgetClass pnlCivInfoInformation {
+     visible 1
+     ignorepointer 1
+     color 0.7843 0.7843 0.7843 1
+     position 0 190
+     size 600 142
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style blank
+     {
+      PanelWidgetClass infoHeader {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       size 1 54
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style rover_sim_colorable
+       {
+        TextWidgetClass infoHeaderTxt {
+         ignorepointer 1
+         position 5 10
+         size 48 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "General Information"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass infoHeaderOutline {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+      PanelWidgetClass infoFooter {
+       ignorepointer 1
+       size 1 92
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       {
+        TextWidgetClass txtInfoDOB {
+         ignorepointer 1
+         position 5 10
+         size 48 15
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "DOB: Aug-21-1988"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        TextWidgetClass txtInfoSex {
+         ignorepointer 1
+         position 5 10
+         size 48 15
+         halign right_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Sex: Male"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        TextWidgetClass txtInfoNationality {
+         ignorepointer 1
+         position 5 28
+         size 48 15
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Nationality: Serbian"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        TextWidgetClass txtInfoEthnicity {
+         ignorepointer 1
+         position 5 28
+         size 48 15
+         halign right_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Ethnicity: Slavic"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        TextWidgetClass txtInfoOccupation {
+         ignorepointer 1
+         position 5 47
+         size 48 15
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Occupation: NCC Internal Intelligence Advisor"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        TextWidgetClass txtInfoAffiliation {
+         ignorepointer 1
+         position 5 66
+         size 48 15
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Affiliation: Coalition Internal Intelligence"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass infoFooterOutline {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+     }
     }
    }
   }
