@@ -11,7 +11,7 @@ class CfgPatches
 class CfgVehicles
 {
 	class GP5GasMask;
-	class GP5GasMask_Filter
+	class GP5GasMask_Filter;
 	class BRP_Gasmask: GP5GasMask
 	{
 		scope = 2;
