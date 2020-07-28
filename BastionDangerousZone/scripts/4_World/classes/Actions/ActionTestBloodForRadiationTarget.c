@@ -34,6 +34,10 @@ class ActionTestForRadiationTarget: ActionContinuousBase
 	{
 		PlayerBase ntarget = PlayerBase.Cast( action_data.m_Target.GetObject() );
 		string message = "Total Radiation Exposure : " + ntarget.GetSingleAgentCount(DZAgents.RADSICK).ToString();
-		NotificationSystem.SendNotificationToPlayerIdentityExtended(ntarget.GetIdentity(), 3, "Radiation Zone", message, "BastionDangerousZone/images/radiation.paa");
+		NotificationSystem.SendNotificationToPlayerIdentityExtended(ntarget.GetIdentity(), 3, "Radiation Zone", message, "BastionMod/BastionDangerousZone/images/radiation.paa");
+
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo("playerTarget:"+ntarget.GetIdentity().GetName()+"action_dosimeter:"+message);
+		#endif
 	}
 };

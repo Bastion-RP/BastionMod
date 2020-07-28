@@ -52,8 +52,9 @@ class DZRadiationZone extends DZManager
 		{
 			if (player.IsInside.DZName==Status && player.IsInside.DZStatut) //Already in zone
 			{
-				//GetDZLogger().LogInfo("IF1:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
-				//GetDZLogger().LogInfo("player.IsUnprotected:" + player.IsUnprotected.ToString());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is inside :" + player.IsInside.DZStatut.ToString());
+				#endif
 				player.IsRadProtected(player.IsInside.DZType);
 				return;
 			}
@@ -63,10 +64,12 @@ class DZRadiationZone extends DZManager
 				player.IsInside.DZName=Status;
 				player.IsInside.DZStatut=true;
 				player.IsInside.DZType=2;
-				//GetGame().RPCSingleParam(player, DZRPCs.RPC_IS_INSIDE_RADIATIONZONE, new Param1<bool>( true ), true, player.GetIdentity());
 				player.HighLevelRadiationCheck();
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is entering :" + player.IsInside.DZStatut.ToString());
+				#endif
 				if(GetRadConfig().IsMsgActive==0)return;
-				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgEnterZone, "BastionDangerousZone/images/radiation.paa");
+				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgEnterZone, "BastionMod/BastionDangerousZone/images/radiation.paa");
 			}
 		}
 		else if ( distance_squared > Math.Pow(Zone_Radius, 2) )
@@ -77,9 +80,11 @@ class DZRadiationZone extends DZManager
 				player.IsInside.DZStatut=false;
 				player.IsInside.DZName="";
 				player.IsInside.DZType=0;
-				//GetGame().RPCSingleParam(player, DZRPCs.RPC_IS_INSIDE_RADIATIONZONE, new Param1<bool>( false ), true, player.GetIdentity());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is leaving :" + player.IsInside.DZStatut.ToString());
+				#endif
 				if(GetRadConfig().IsMsgActive==0)return;
-				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgExitZone, "BastionDangerousZone/images/radiation.paa");
+				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgExitZone, "BastionMod/BastionDangerousZone/images/radiation.paa");
 			}
 			else
 			{
@@ -103,9 +108,10 @@ class DZRadiationZone extends DZManager
 		{
 			if (player.IsInside.DZName==Status && player.IsInside.DZStatut) //Already in zone
 			{
-				//GetDZLogger().LogInfo("IF1:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is inside :" + player.IsInside.DZStatut.ToString());
+				#endif
 				player.IsRadProtected(player.IsInside.DZType);
-				SendMessageClient(player,"HighLevelRadiationZoneSquare");
 				return;
 			}
 			else
@@ -115,9 +121,11 @@ class DZRadiationZone extends DZManager
 				player.IsInside.DZStatut=true;
 				player.IsInside.DZType=2;
 				player.HighLevelRadiationCheck();
-				//GetGame().RPCSingleParam(player, DZRPCs.RPC_IS_INSIDE_RADIATIONZONE, new Param1<bool>( true ), true, player.GetIdentity());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is entering :" + player.IsInside.DZStatut.ToString());
+				#endif
 				if(GetRadConfig().IsMsgActive==0)return;
-				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgEnterZone, "BastionDangerousZone/images/radiation.paa");
+				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgEnterZone, "BastionMod/BastionDangerousZone/images/radiation.paa");
 			}
 		}
 		else
@@ -128,13 +136,14 @@ class DZRadiationZone extends DZManager
 				player.IsInside.DZStatut=false;
 				player.IsInside.DZName="";
 				player.IsInside.DZType=0;
-				//GetGame().RPCSingleParam(player, DZRPCs.RPC_IS_INSIDE_RADIATIONZONE, new Param1<bool>( false ), true, player.GetIdentity());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is leaving :" + player.IsInside.DZStatut.ToString());
+				#endif
 				if(GetRadConfig().IsMsgActive==0)return;
-				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgExitZone, "BastionDangerousZone/images/radiation.paa");
+				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgExitZone, "BastionMod/BastionDangerousZone/images/radiation.paa");
 			}
 			else
 			{
-				//GetDZLogger().LogInfo("ELSE2:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
 				return;
 			}
 		}
@@ -149,8 +158,9 @@ class DZRadiationZone extends DZManager
 		{
 			if (player.IsInside.DZName==Status && player.IsInside.DZStatut) //Already in zone
 			{
-				//GetDZLogger().LogInfo("IF1:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
-				//GetDZLogger().LogInfo("player.IsUnprotected:" + player.IsUnprotected.ToString());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is inside :" + player.IsInside.DZStatut.ToString());
+				#endif
 				player.LowLevelRadiationCheckLite();
 				return;
 			}
@@ -160,10 +170,12 @@ class DZRadiationZone extends DZManager
 				player.IsInside.DZName=Status;
 				player.IsInside.DZStatut=true;
 				player.IsInside.DZType=1;
-				//GetGame().RPCSingleParam(player, DZRPCs.RPC_IS_INSIDE_RADIATIONZONE, new Param1<bool>( true ), true, player.GetIdentity());
 				player.LowLevelRadiationCheck();
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is entering :" + player.IsInside.DZStatut.ToString());
+				#endif
 				if(GetRadConfig().IsMsgActive==0)return;
-				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgEnterZone, "BastionDangerousZone/images/radiation.paa");
+				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgEnterZone, "BastionMod/BastionDangerousZone/images/radiation.paa");
 			}
 		}
 		else if ( distance_squared > Math.Pow(Zone_Radius, 2) )
@@ -174,13 +186,14 @@ class DZRadiationZone extends DZManager
 				player.IsInside.DZStatut=false;
 				player.IsInside.DZName="";
 				player.IsInside.DZType=0;
-				//GetGame().RPCSingleParam(player, DZRPCs.RPC_IS_INSIDE_RADIATIONZONE, new Param1<bool>( false ), true, player.GetIdentity());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is leaving :" + player.IsInside.DZStatut.ToString());
+				#endif
 				if(GetRadConfig().IsMsgActive==0)return;
-				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgExitZone, "BastionDangerousZone/images/radiation.paa");
+				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgExitZone, "BastionMod/BastionDangerousZone/images/radiation.paa");
 			}
 			else
 			{
-				//GetDZLogger().LogInfo("ELSE2:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
 				return;
 			}
 		}
@@ -194,37 +207,40 @@ class DZRadiationZone extends DZManager
 		{
 			if (player.IsInside.DZName==Status && player.IsInside.DZStatut) //Already in zone
 			{
-				//GetDZLogger().LogInfo("IF1:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is inside :" + player.IsInside.DZStatut.ToString());
+				#endif
 				player.LowLevelRadiationCheckLite();
 				return;
 			}
 			else
 			{
-				//GetDZLogger().LogInfo("ELSE1:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
 				player.IsInside.DZName=Status;
 				player.IsInside.DZStatut=true;
 				player.IsInside.DZType=1;
-				//GetGame().RPCSingleParam(player, DZRPCs.RPC_IS_INSIDE_RADIATIONZONE, new Param1<bool>( true ), true, player.GetIdentity());
 				player.LowLevelRadiationCheck();
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is entering :" + player.IsInside.DZStatut.ToString());
+				#endif
 				if(GetRadConfig().IsMsgActive==0)return;
-				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgEnterZone, "BastionDangerousZone/images/radiation.paa");
+				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgEnterZone, "BastionMod/BastionDangerousZone/images/radiation.paa");
 			}
 		}
 		else
 		{
 			if (player.IsInside.DZName==Status && player.IsInside.DZStatut)
 			{
-				//GetDZLogger().LogInfo("IF2:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
 				player.IsInside.DZStatut=false;
 				player.IsInside.DZName="";
 				player.IsInside.DZType=0;
-				//GetGame().RPCSingleParam(player, DZRPCs.RPC_IS_INSIDE_RADIATIONZONE, new Param1<bool>( false ), true, player.GetIdentity());
+				#ifdef DZDEBUG
+				GetDZLogger().LogInfo(player.GetIdentity().GetName() + "is leaving :" + player.IsInside.DZStatut.ToString());
+				#endif
 				if(GetRadConfig().IsMsgActive==0)return;
-				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgExitZone, "BastionDangerousZone/images/radiation.paa");
+				NotificationSystem.SendNotificationToPlayerIdentityExtended(player.GetIdentity(), 5, "Radiation Zone", GetRadConfig().MsgExitZone, "BastionMod/BastionDangerousZone/images/radiation.paa");
 			}
 			else
 			{
-				//GetDZLogger().LogInfo("ELSE2:" + player.IsInside.DZName + player.IsInside.DZStatut.ToString());
 				return;
 			}
 		}

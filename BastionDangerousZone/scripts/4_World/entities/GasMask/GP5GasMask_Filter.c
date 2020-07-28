@@ -16,22 +16,3 @@ class GP5GasMask_Filter extends ItemBase
 		super.SetActions();
 	}
 }
-
-class BRP_Gasmask_Filter extends ItemBase
-{
-
-	void BRP_Gasmask_Filter()
-	{
-
-	}
-
-	override void OnEnergyConsumed()
-	{
-		super.OnEnergyConsumed();
-	}
-
-	override void SetActions()
-	{
-		super.SetActions();
-	}
-}

@@ -33,6 +33,9 @@ class RadPillsTreatmentMdfr: ModifierBase
 	{
 		player.m_AgentPool.SetAgentCount(DZAgents.RADSICK,0);
 		player.m_ModifiersManager.DeactivateModifier(DZModifiers.MDF_DZRADSICK);
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo("player:"+player.GetIdentity().GetName()+"Cured"+"Rad_Pills_Treatment_Activated");
+		#endif
 		if( player.GetNotifiersManager() )
 			player.GetNotifiersManager().ActivateByType(eNotifiers.NTF_PILLS);
 	}

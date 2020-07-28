@@ -5,6 +5,7 @@ class RadSickMdfr: ModifierBase
 	private ref array<string>m_BleedingSources = {"Head","Spine","LeftShoulder","LeftArm","RightShoulder","LeftLeg","RightLeg","LeftFoot","RightFoot"};
 	float chanceVomit;
 	float chanceBleeding;
+	string m_DZState;
 
 	override void Init()
 	{
@@ -33,12 +34,20 @@ class RadSickMdfr: ModifierBase
 		player.IsIrradied = true;
 		chanceVomit=player.RadChanceVomit;
 		chanceBleeding=player.RadChanceBleeding;
+
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo("player:"+player.GetIdentity().GetName()+"RadSickness Activated");
+		#endif
 	}
 
 	override protected void OnDeactivate(PlayerBase player)
 	{
 		player.DecreaseDiseaseCount();
 		player.IsIrradied = false;
+
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo("player:"+player.GetIdentity().GetName()+"RadSickness Deactivated");
+		#endif
 	}
 
 	override protected bool DeactivateCondition(PlayerBase player)
@@ -65,12 +74,14 @@ class RadSickMdfr: ModifierBase
 		if(player.GetSingleAgentCount(DZAgents.RADSICK) < 151 )
 		{
 			//SendMessageClient(player,"stade1");
+			m_DZState = "State 1";
 			SetLowLevelEffetOnPlayer(1, player);
 		}
 
 		if(player.GetSingleAgentCount(DZAgents.RADSICK) > 151 && player.GetSingleAgentCount(DZAgents.RADSICK) < 200)
 		{
 			 	//SendMessageClient(player,"stade2");
+				m_DZState = "State 2";
 				SetLowLevelEffetOnPlayer(player.RadHighMultiplier, player);
 				if(chanceVomit > Math.RandomFloatInclusive(0,1))
 				{
@@ -81,6 +92,7 @@ class RadSickMdfr: ModifierBase
 		if(player.GetSingleAgentCount(DZAgents.RADSICK) > 200 && player.GetSingleAgentCount(DZAgents.RADSICK) < 300)
 		{
 			//SendMessageClient(player,"stade3");
+			m_DZState = "State 3";
 			SetLowLevelEffetOnPlayer(player.RadHighMultiplier, player);
 			if(chanceBleeding > Math.RandomFloatInclusive(0,1))
 			{
@@ -91,6 +103,7 @@ class RadSickMdfr: ModifierBase
 		if(player.GetSingleAgentCount(DZAgents.RADSICK) > 400 && player.GetSingleAgentCount(DZAgents.RADSICK) < 500)
 		{
 			//SendMessageClient(player,"stade4");
+			m_DZState = "State 4";
 			SetLowLevelEffetOnPlayer(player.RadHighMultiplier, player);
 			player.GetSymptomManager().QueueUpSecondarySymptom(SymptomIDs.SYMPTOM_FEVERBLUR);
 		}
@@ -98,10 +111,13 @@ class RadSickMdfr: ModifierBase
 		if(player.GetSingleAgentCount(DZAgents.RADSICK) > 500)
 		{
 			//SendMessageClient(player,"stade5");
+			m_DZState = "State 5";
 			SetLowLevelEffetOnPlayer(player.RadHighMultiplier*2, player);
 				player.GetSymptomManager().QueueUpSecondarySymptom(SymptomIDs.SYMPTOM_FEVERBLUR);
 		}
-
+		#ifdef DZDEBUG
+		GetDZLogger().LogInfo("player:"+player.GetIdentity().GetName()+"Current Radiation level state"+m_DZState);
+		#endif
 	}
 
 	void SetLowLevelEffetOnPlayer(float RadMultiplier, PlayerBase player)

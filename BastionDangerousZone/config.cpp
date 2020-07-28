@@ -42,7 +42,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"BastionDangerousZone/scripts/3_Game"
+					"BastionMod/BastionDangerousZone/scripts/Common","BastionMod/BastionDangerousZone/scripts/3_Game"
 				};
 			};
 			class worldScriptModule
@@ -50,7 +50,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"BastionDangerousZone/scripts/4_World"
+					"BastionMod/BastionDangerousZone/scripts/Common","BastionMod/BastionDangerousZone/scripts/4_World"
 				};
 			};
 			class missionScriptModule
@@ -58,7 +58,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"BastionDangerousZone/scripts/5_Mission"
+					"BastionMod/BastionDangerousZone/scripts/Common","BastionMod/BastionDangerousZone/scripts/5_Mission"
 				};
 			};
 		};
@@ -67,113 +67,6 @@ class CfgMods
 class CfgVehicles
 {
 	class Inventory_Base;
-	class BloodTestForRadiationKit: Inventory_Base
-	{
-		scope=2;
-		displayName="Blood Test For Radiation Sickness";
-		descriptionShort="This kit allow you to know the quantity of radiation in your body";
-		model="\dz\gear\medical\BloodTest_Kit.p3d";
-		itemSize[]={1,1};
-		rotationFlags=17;
-		weight=130;
-		varQuantityInit=100;
-		varQuantityMin=0;
-		varQuantityMax=100;
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=15;
-					healthLevels[]=
-					{
-
-						{
-							1,
-
-							{
-								"DZ\gear\medical\data\BloodTest.rvmat"
-							}
-						},
-
-						{
-							0.69999999,
-
-							{
-								"DZ\gear\medical\data\BloodTest.rvmat"
-							}
-						},
-
-						{
-							0.5,
-
-							{
-								"DZ\gear\medical\data\BloodTest_damage.rvmat"
-							}
-						},
-
-						{
-							0.30000001,
-
-							{
-								"DZ\gear\medical\data\BloodTest_damage.rvmat"
-							}
-						},
-
-						{
-							0,
-
-							{
-								"DZ\gear\medical\data\BloodTest_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class BloodBag_start
-				{
-					soundSet="BloodBag_start_SoundSet";
-					id=201;
-				};
-				class BloodBag_spear
-				{
-					soundSet="BloodBag_spear_SoundSet";
-					id=202;
-				};
-				class BloodBag_loop
-				{
-					soundSet="BloodBag_loop_SoundSet";
-					id=203;
-				};
-				class BloodBag_loop2
-				{
-					soundSet="BloodBag_loop_SoundSet";
-					id=204;
-				};
-				class BloodBag_end
-				{
-					soundSet="BloodBag_end_SoundSet";
-					id=205;
-				};
-				class pickUpItem
-				{
-					soundSet="pickUpBloodBag_SoundSet";
-					id=797;
-				};
-				class drop
-				{
-					soundset="bloodbag_drop_SoundSet";
-					id=898;
-				};
-			};
-		};
-	};
 	class GP5GasMask_Filter: Inventory_Base
 	{
 		scope=2;
@@ -211,42 +104,42 @@ class CfgVehicles
 					hitpoints=100;
 					healthLevels[]=
 					{
-
+						
 						{
 							1,
-
+							
 							{
 								"DZ\characters\masks\data\GP5GasMask.rvmat"
 							}
 						},
-
+						
 						{
 							0.69999999,
-
+							
 							{
 								"DZ\characters\masks\data\GP5GasMask.rvmat"
 							}
 						},
-
+						
 						{
 							0.5,
-
+							
 							{
 								"DZ\characters\masks\data\GP5GasMask_damage.rvmat"
 							}
 						},
-
+						
 						{
 							0.30000001,
-
+							
 							{
 								"DZ\characters\masks\data\GP5GasMask_damage.rvmat"
 							}
 						},
-
+						
 						{
 							0,
-
+							
 							{
 								"DZ\characters\masks\data\GP5GasMask_destruct.rvmat"
 							}
@@ -353,42 +246,42 @@ class CfgVehicles
 					hitpoints=50;
 					healthLevels[]=
 					{
-
+						
 						{
 							1,
-
+							
 							{
 								"DZ\gear\medical\data\vitamin_bottle.rvmat"
 							}
 						},
-
+						
 						{
 							0.69999999,
-
+							
 							{
 								"DZ\gear\medical\data\vitamin_bottle.rvmat"
 							}
 						},
-
+						
 						{
 							0.5,
-
+							
 							{
 								"DZ\gear\medical\data\vitamin_bottle_damage.rvmat"
 							}
 						},
-
+						
 						{
 							0.30000001,
-
+							
 							{
 								"DZ\gear\medical\data\vitamin_bottle_damage.rvmat"
 							}
 						},
-
+						
 						{
 							0,
-
+							
 							{
 								"DZ\gear\medical\data\vitamin_bottle_destruct.rvmat"
 							}
@@ -508,9 +401,9 @@ class CfgSoundShaders
 	{
 		samples[]=
 		{
-
+			
 			{
-				"BastionDangerousZone\data\Sounds\Geiger_Counter_Sound",
+				"BastionMod\BastionDangerousZone\data\Sounds\Geiger_Counter_Sound",
 				1
 			}
 		};
@@ -521,9 +414,9 @@ class CfgSoundShaders
 	{
 		samples[]=
 		{
-
+			
 			{
-				"DangerousZone\data\Sounds\Geiger_Counter_Sound_Switch",
+				"BastionMod\DangerousZone\data\Sounds\Geiger_Counter_Sound_Switch",
 				1
 			}
 		};
