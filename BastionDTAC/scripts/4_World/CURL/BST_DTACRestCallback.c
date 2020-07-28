@@ -32,7 +32,7 @@ class BST_DTACGeneralRecordCallback : RestCallback {
     }
     
     override void OnSuccess(string data , int dataSize) {
-        Print("[DEBUG] BST_DTACGeneralRecordCallback | OnFileCreated | DTAC File created!!! file=" + data);
+        Print("[DEBUG] BST_DTACGeneralRecordCallback | OnSuccess | DTAC File created!!! file=" + data);
         _dtacGeneralRecordInvoker.Invoke(data);
     }
 }
@@ -49,7 +49,7 @@ class BST_DTACCriminalRecordCallBack : RestCallback {
     }
 
     override void OnSuccess(string data , int dataSize) {
-        Print("[DEBUG] BST_DTACCriminalRecordCallBack | OnFileCreated | DTAC File created!!! file=" + data);
+        Print("[DEBUG] BST_DTACCriminalRecordCallBack | OnSuccess | DTAC File created!!! file=" + data);
         _dtacCriminalRecordInvoker.Invoke(data);
     }
 }

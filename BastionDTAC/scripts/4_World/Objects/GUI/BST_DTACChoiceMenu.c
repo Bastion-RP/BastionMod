@@ -22,6 +22,9 @@ class BST_DTACChoiceMenu : UIScriptedMenu {
         if (groupMenu) {
             groupMenu.OnMouseButtonUp(w, x, y, button);
         }
+        if (lookupMenu) {
+            lookupMenu.OnMouseButtonUp(w, x, y, button);
+        }
         return true;
     }
 
@@ -29,12 +32,18 @@ class BST_DTACChoiceMenu : UIScriptedMenu {
         if (groupMenu) {
             groupMenu.OnMouseEnter(w, x, y);
         }
+        if (lookupMenu) {
+            lookupMenu.OnMouseEnter(w, x, y);
+        }
         return true;
     }
 
     override bool OnMouseLeave(Widget w, Widget enterW, int x, int y) {
         if (groupMenu) {
             groupMenu.OnMouseLeave(w, enterW, x, y);
+        }
+        if (lookupMenu) {
+            lookupMenu.OnMouseLeave(w, enterW, x, y);
         }
         return true;
     }
