@@ -44,12 +44,12 @@ class CfgVehicles
 	class garbage_pile7: HouseNoDestruct
 	{
 		scope = 2;
-		model = "\DZ\structures\residential\misc\garbage_pile7.p3d";
+		model = "\DZ\structures_bliss\residential\misc\garbage_pile7.p3d";
 	};
 	class garbage_pile8: HouseNoDestruct
 	{
 		scope = 2;
-		model = "\DZ\structures\residential\misc\garbage_pile8.p3d";
+		model = "\DZ\structures_bliss\residential\misc\garbage_pile8.p3d";
 	};
 	class misc_barricade: HouseNoDestruct
 	{
