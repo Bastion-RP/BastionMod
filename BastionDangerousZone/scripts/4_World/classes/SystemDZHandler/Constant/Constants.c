@@ -1,4 +1,4 @@
-const string DZ_CONFIG_ROOT_SERVER = "$profile:DangerousZone\\";
+const string DZ_CONFIG_ROOT_SERVER = "$profile:Bastion\\DangerousZone\\";
 const string DZ_LOGGER_DIR_SERVER = DZ_CONFIG_ROOT_SERVER + "DZLogs\\";
 const string DZ_LOGGER_PREFIX_SERVER = "DangerousZone_";
 const string DZ_CONFIG_DIR_SERVER = DZ_CONFIG_ROOT_SERVER + "DZConfig\\";
