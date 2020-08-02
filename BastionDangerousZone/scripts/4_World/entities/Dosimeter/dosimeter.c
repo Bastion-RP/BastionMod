@@ -249,4 +249,9 @@ class BRP_Dosimeter extends ItemBase
 		AddAction(ActionTestForRadiationSelf);
 		AddAction(ActionTestForRadiationTarget);
 	}
-}
+};
+
+class BRP_Dosimeter_Opal : BRP_Dosimeter {};
+class BRP_Dosimeter_Osa : BRP_Dosimeter_Opal {};
+class BRP_Dosimeter_Sova : BRP_Dosimeter_Opal {};
+class BRP_Dosimeter_Zov : BRP_Dosimeter_Opal {};
