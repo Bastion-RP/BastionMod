@@ -1028,7 +1028,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"BastionMod\BastionCrafting_Data\dosimeter\data\geiger_ca.paa"
+			"BastionMod\BastionCrafting_Data\weaponparts\data\weaponparts_co.paa"
 		};
 		class DamageSystem
 		{
