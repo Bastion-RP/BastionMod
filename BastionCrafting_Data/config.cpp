@@ -1009,11 +1009,11 @@ class CfgVehicles
 		itemSize[] = {2,2};
 		itemBehaviour = 1;
 	};
-	class BRP_Weaponparts: Inventory_Base
+	class BRP_FirearmPart: Inventory_Base
 	{
 		scope = 2;
 		displayName = "Weapon Parts";
-		descriptionShort = "Parts of various weapons, some in not very good condition. Can be usefull anyway.";
+		descriptionShort = "Parts of various weapons, some in not very good condition. Can be useful anyway.";
 		model = "BastionMod\BastionCrafting_Data\weaponparts\weaponparts.p3d";
 		rotationFlags = 2;
 		isMeleeWeapon=0;
