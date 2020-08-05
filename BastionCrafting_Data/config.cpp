@@ -1000,7 +1000,7 @@ class CfgVehicles
 	{
 		scope = 2;
 		displayName = "Plastic Scrap";
-		descriptionShort = "Pieces of melted plastic. Useful for crafting";
+		descriptionShort = "Pieces of melted plastic. Useful for crafting.";
 		model = "BastionMod\BastionCrafting_Data\plasticpieces\plastic.p3d";
 		isMeleeWeapon = 0;
 		rotationFlags=16;
@@ -1012,7 +1012,7 @@ class CfgVehicles
 	class BRP_FirearmPart: Inventory_Base
 	{
 		scope = 2;
-		displayName = "Weapon Parts";
+		displayName = "Firearm Parts";
 		descriptionShort = "Parts of various weapons, some in not very good condition. Can be useful anyway.";
 		model = "BastionMod\BastionCrafting_Data\weaponparts\weaponparts.p3d";
 		rotationFlags = 2;
