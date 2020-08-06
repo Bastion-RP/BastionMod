@@ -58,7 +58,7 @@ class BastionServerSettings
 
     void BastionServerSettings()
     {
-        BRP_VendingMachine_Base trader;
+        BRP_PackStation trader;
 
         GetRPCManager().AddRPC( "Bastion", "SetTraderCurrency", this, SingeplayerExecutionType.Both );
         GetRPCManager().AddRPC( "Bastion", "SetTraderPlayer", this, SingeplayerExecutionType.Both );
@@ -154,9 +154,9 @@ class BastionSettings
         return m_TraderSettings;
     }
 
-    BRP_VendingMachine_Base SpawnTrader( string type, vector position, vector orientation )
+    BRP_PackStation SpawnTrader( string type, vector position, vector orientation )
     {
-	    BRP_VendingMachine_Base trader = BRP_VendingMachine_Base.Cast( GetGame().CreateObject( type, position, false, false, true ) );
+	    BRP_PackStation trader = BRP_PackStation.Cast( GetGame().CreateObject( type, position, false, false, true ) );
 
 	    if ( trader )
 	    {

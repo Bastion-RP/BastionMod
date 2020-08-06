@@ -1,6 +1,6 @@
 class ActionTrade: ActionInteractBase
 {
-	private BRP_VendingMachine_Base m_TraderBase;
+	private BRP_PackStation m_TraderBase;
 	private Trader m_Trader;
 
 	void ActionTrade()

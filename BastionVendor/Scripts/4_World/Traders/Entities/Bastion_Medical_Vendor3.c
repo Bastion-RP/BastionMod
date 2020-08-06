@@ -1,3 +1,3 @@
-class BRP_MedicalVendor3: BRP_VendingMachine_Base 
+class BRP_MedicalVendor3: BRP_PackStation 
 {
 }

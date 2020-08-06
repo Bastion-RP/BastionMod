@@ -5,7 +5,7 @@ class TraderUI extends UIScriptedMenu
     protected int m_Quantity;
     protected bool m_Loading;
 
-    protected BRP_VendingMachine_Base m_Trader;
+    protected BRP_PackStation m_Trader;
     protected ref BastionVendorItemUI m_Item;
 
     protected autoptr map< string, ref BastionVendorItemUI > m_Grid;
@@ -338,7 +338,7 @@ class TraderUI extends UIScriptedMenu
         }
     }
 
-    void SetTraderEntity( BRP_VendingMachine_Base trader )
+    void SetTraderEntity( BRP_PackStation trader )
     {
         m_Trader = trader;
     }

@@ -11,7 +11,7 @@ class Trader
 
     } 
 
-    void ShowUI(BRP_VendingMachine_Base trader)
+    void ShowUI(BRP_PackStation trader)
     {
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
 
