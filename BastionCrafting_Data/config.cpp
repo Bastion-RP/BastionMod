@@ -939,10 +939,15 @@ class CfgVehicles
 		model = "BastionMod\BastionCrafting_Data\metalsheets\metalscrap_small1.p3d";
 		isMeleeWeapon = 0;
 		rotationFlags=16;
-		weight = 300;
+		weight = 250;
 		absorbency = 0;
-		itemSize[] = {3,3};
+		itemSize[] = {2,2};
 		itemBehaviour = 1;
+		varQuantityInit = 1.0;
+		varQuantityMin = 0.0;
+		varQuantityMax = 6.0;
+		varQuantityDestroyOnMin = 1;
+		varStackMax = 6.0;			
 	};
 	class BRP_MetalSheet_Small2: Inventory_Base
 	{
@@ -978,10 +983,15 @@ class CfgVehicles
 		model = "BastionMod\BastionCrafting_Data\woodscrap\woodscrap.p3d";
 		isMeleeWeapon = 0;
 		rotationFlags=16;
-		weight = 300;
+		weight = 500;
 		absorbency = 0;
 		itemSize[] = {2,3};
 		itemBehaviour = 1;
+		varQuantityInit = 1.0;
+		varQuantityMin = 0.0;
+		varQuantityMax = 2.0;
+		varQuantityDestroyOnMin = 1;
+		varStackMax = 2.0;			
 	};
 	class BRP_Woodscrap2: Inventory_Base
 	{
@@ -991,10 +1001,15 @@ class CfgVehicles
 		model = "BastionMod\BastionCrafting_Data\woodscrap\woodscrap2.p3d";
 		isMeleeWeapon = 0;
 		rotationFlags=16;
-		weight = 300;
+		weight = 500;
 		absorbency = 0;
 		itemSize[] = {2,3};
 		itemBehaviour = 1;
+		varQuantityInit = 1.0;
+		varQuantityMin = 0.0;
+		varQuantityMax = 2.0;
+		varQuantityDestroyOnMin = 1;
+		varStackMax = 2.0;			
 	};
 	class BRP_PlasticScrap: Inventory_Base
 	{
@@ -1004,10 +1019,15 @@ class CfgVehicles
 		model = "BastionMod\BastionCrafting_Data\plasticpieces\plastic.p3d";
 		isMeleeWeapon = 0;
 		rotationFlags=16;
-		weight = 350;
+		weight = 50;
 		absorbency = 0;
 		itemSize[] = {2,2};
 		itemBehaviour = 1;
+		varQuantityInit = 1.0;
+		varQuantityMin = 0.0;
+		varQuantityMax = 15.0;
+		varQuantityDestroyOnMin = 1;
+		varStackMax = 15.0;		
 	};
 	class BRP_FirearmPart: Inventory_Base
 	{
@@ -1017,11 +1037,16 @@ class CfgVehicles
 		model = "BastionMod\BastionCrafting_Data\weaponparts\weaponparts.p3d";
 		rotationFlags = 2;
 		isMeleeWeapon=0;
-		weight = 3000;
+		weight = 250;
 		absorbency = 0.0;
 		itemBehaviour = 1;
 		heavyItem = 1;
 		itemSize[] = {4,2};
+		varQuantityInit = 1.0;
+		varQuantityMin = 0.0;
+		varQuantityMax = 4.0;
+		varQuantityDestroyOnMin = 1;
+		varStackMax = 4.0;		
 		hiddenSelections[]=
 		{
 			"all"
