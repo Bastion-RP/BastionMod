@@ -11,7 +11,7 @@
 class CfgVehicles
 {
 	class HouseNoDestruct;
-	class BRP_VendingMachine_Base: HouseNoDestruct
+	class BRP_PackStation: HouseNoDestruct
 	{
 		scope = 0;
 		model = "\BastionMod\BastionVendor_Data\VendingMachine\vendingmachine.p3d";
@@ -32,7 +32,7 @@ class CfgVehicles
 		};
 	};
 
-	class BRP_AionVendor: BRP_VendingMachine_Base
+	class BRP_AionVendor: BRP_PackStation
 	{
 		scope = 1;
 		hiddenSelectionsTextures[] = 
@@ -46,7 +46,7 @@ class CfgVehicles
 			""
 		};
 	};
-	class BRP_MedicalVendor1: BRP_VendingMachine_Base
+	class BRP_MedicalVendor1: BRP_PackStation
 	{
 		scope = 1;		
 		hiddenSelectionsTextures[] = 
@@ -55,7 +55,7 @@ class CfgVehicles
 			"\BastionMod\BastionVendor_Data\VendingMachine\data\buttons_co.paa"
 		};
 	};
-	class BRP_MedicalVendor1_Bloody: BRP_VendingMachine_Base
+	class BRP_MedicalVendor1_Bloody: BRP_PackStation
 	{
 		scope = 1;
 		hiddenSelectionsTextures[] = 
@@ -64,7 +64,7 @@ class CfgVehicles
 			"\BastionMod\BastionVendor_Data\VendingMachine\data\buttons_blood_co.paa"
 		};
 	};
-	class BRP_MedicalVendor2: BRP_VendingMachine_Base
+	class BRP_MedicalVendor2: BRP_PackStation
 	{
 		scope = 1;
 		hiddenSelectionsTextures[] = 
@@ -73,7 +73,7 @@ class CfgVehicles
 			"\BastionMod\BastionVendor_Data\VendingMachine\data\buttons_co.paa"
 		};
 	};
-	class BRP_MedicalVendor2_Bloody: BRP_VendingMachine_Base
+	class BRP_MedicalVendor2_Bloody: BRP_PackStation
 	{
 		scope = 1;
 		hiddenSelectionsTextures[] = 
@@ -82,7 +82,7 @@ class CfgVehicles
 			"\BastionMod\BastionVendor_Data\VendingMachine\data\buttons_blood_co.paa"
 		};
 	};
-	class BRP_MedicalVendor3: BRP_VendingMachine_Base
+	class BRP_MedicalVendor3: BRP_PackStation
 	{
 		scope = 1;
 		hiddenSelectionsTextures[] = 
@@ -96,7 +96,7 @@ class CfgVehicles
 			""
 		};
 	};
-	class BRP_MedicalVendor4: BRP_VendingMachine_Base
+	class BRP_MedicalVendor4: BRP_PackStation
 	{
 		scope = 1;
 		hiddenSelectionsTextures[] = 
