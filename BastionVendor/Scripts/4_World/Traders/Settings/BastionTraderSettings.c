@@ -53,6 +53,7 @@ class TraderSettings
 		m_Traders = new array< ref TraderVendorSettings >;
 		m_Traders.Insert( new ref BRP_MedicalVendor1_BloodySettings() );
 		m_Traders.Insert( new ref BRP_MedicalVendor1Settings() );
+		m_Traders.Insert( new ref BRP_PackStationSettings() );
 
 		for ( int i = 0; i < m_Traders.Count(); i++ )
 		{	
