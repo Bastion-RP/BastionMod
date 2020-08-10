@@ -9,6 +9,14 @@ class BST_DTACClientRPCHandler : PluginBase {
 
     void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx) {
         switch (rpc_type) {
+            case BST_DTACRPC.CLIENT_RECEIVE_CONFIG:
+                {
+                    Param1<ref BST_DTACConfig> dataConfig;
+
+                    if (!ctx.Read(dataConfig)) { return; }
+                    GetDTACClientManager().SetConfig(dataConfig.param1);
+                    break;
+                }
             case BST_DTACRPC.CLIENT_RECEIVE_ACTIVE_GROUP:
                 {
                     Param2<ref BST_DTACGroup, array<ref BST_DTACGroup>> dataReceiveActiveGroup;

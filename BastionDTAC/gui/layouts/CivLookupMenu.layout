@@ -267,9 +267,11 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style DayZDefaultButtonNoBorder
+     "no focus" 1
      text "+ GENERAL RECORD"
      text_proportion 0.7
      font "gui/fonts/metron"
+     switch toggle
     }
     ButtonWidgetClass btnAddCriminalRecord {
      color 1 0.5843 0 1
@@ -281,6 +283,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style DayZDefaultButtonNoBorder
+     "no focus" 1
      text "+ CRIMINAL RECORD"
      text_proportion 0.7
      font "gui/fonts/metron"
@@ -304,6 +307,7 @@ FrameWidgetClass rootFrame {
    }
   }
   PanelWidgetClass pnlCivInfo {
+   visible 0
    ignorepointer 1
    color 0 0 0 0.7843
    position 590 0
@@ -730,13 +734,13 @@ FrameWidgetClass rootFrame {
     }
    }
   }
-  PanelWidgetClass pnlSelectedRecipe {
+  PanelWidgetClass pnlExpandedRecord {
    visible 0
-   clipchildren 0
+   clipchildren 1
    ignorepointer 1
    color 0 0 0 0.7843
-   position 580 0
-   size 600 600
+   position 590 0
+   size 600 395
    valign center_ref
    hexactpos 1
    vexactpos 1
@@ -744,182 +748,551 @@ FrameWidgetClass rootFrame {
    vexactsize 1
    style rover_sim_colorable
    {
-    TextWidgetClass headerCrafting {
-     ignorepointer 1
-     color 1 0.5843 0 1
-     position 0 -64
-     size 48 64
-     hexactpos 1
-     vexactpos 1
-     hexactsize 1
-     vexactsize 1
-     text "CRAFTING"
-     "size to text h" 1
-     "size to text v" 0
-     "text valign" center
-    }
-    ItemPreviewWidgetClass prvRecipeItem {
-     ignorepointer 1
-     position 0 10
-     size 300 200
-     halign center_ref
-     hexactpos 1
-     vexactpos 1
-     hexactsize 1
-     vexactsize 1
-    }
-    TextWidgetClass txtSelectedRecipeName {
-     ignorepointer 1
-     position 7 212
-     size 576 32
-     hexactpos 1
-     vexactpos 1
-     hexactsize 1
-     vexactsize 1
-     "size to text h" 1
-     "size to text v" 0
-     "text valign" center
-    }
-    TextWidgetClass txtSelectedRecipeDesc {
-     ignorepointer 1
-     position 7 246
-     size 576 16
-     hexactpos 1
-     vexactpos 1
-     hexactsize 1
-     vexactsize 1
-     "size to text h" 1
-     "size to text v" 0
-     "text valign" center
-    }
-    TextWidgetClass txtSelectedRecipeRequire {
-     ignorepointer 1
-     position 7 276
-     size 576 32
-     hexactpos 1
-     vexactpos 1
-     hexactsize 1
-     vexactsize 1
-     text "YOU'LL NEED"
-     "size to text h" 1
-     "size to text v" 0
-     "text valign" center
-    }
-    ScrollWidgetClass scrollerRecipeRequire {
+    PanelWidgetClass pnlExpRecCrime {
      visible 1
      ignorepointer 1
-     position 7 310
-     size 586 80
+     color 0.7843 0.7843 0.7843 1
+     size 600 80
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     "Scrollbar V" 1
+     style blank
      {
-      GridSpacerWidgetClass gridRecipeRequire {
-       ignorepointer 0
-       size 1 0.32
+      PanelWidgetClass expRecCrimeHeader {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       size 1 50
        hexactpos 1
        vexactpos 1
        hexactsize 0
-       vexactsize 0
-       Padding 0
-       Margin 0
-       "Size To Content V" 1
-       Columns 1
-       Rows 100
+       vexactsize 1
+       style rover_sim_colorable
+       {
+        TextWidgetClass expRecCrimeTxt {
+         ignorepointer 1
+         position 5 10
+         size 48 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Crime Committed"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass expRecCrimeOutline {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+      PanelWidgetClass expRecCrimeFooter {
+       ignorepointer 1
+       size 1 34
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       {
+        TextWidgetClass txtRecordCrime {
+         ignorepointer 1
+         position 5 10
+         size 48 15
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Aggravated Assault"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass expRecCrimeBorder {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
       }
      }
     }
-    TextWidgetClass txtSelectedRecipeToolRequire {
+    PanelWidgetClass pnlExpRecDesc {
+     visible 1
+     clipchildren 1
      ignorepointer 1
-     position 7 416
-     size 576 32
+     color 0.7843 0.7843 0.7843 1
+     position 0 85
+     size 600 140
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     text "CRAFTABLE USING"
-     "size to text h" 1
-     "size to text v" 0
-     "text valign" center
+     style blank
+     {
+      PanelWidgetClass expRecDescHeader {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       size 1 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style rover_sim_colorable
+       {
+        TextWidgetClass expRecDescTxt {
+         ignorepointer 1
+         position 5 10
+         size 48 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Description"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass expRecDescBorder {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+      PanelWidgetClass expRecDescFooter {
+       clipchildren 1
+       ignorepointer 1
+       size 1 91
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       {
+        ScrollWidgetClass expRecDescScroll {
+         ignorepointer 1
+         position 0 3
+         size 1 84
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         "Scrollbar V" 1
+         {
+          RichTextWidgetClass txtRecordDesc {
+           ignorepointer 0
+           position 5 0
+           size 585 24
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           text "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
+           font "gui/fonts/metron12"
+           "exact text" 1
+           "size to text h" 0
+           "size to text v" 1
+           wrap 1
+          }
+         }
+        }
+        PanelWidgetClass expRecDescOutline {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+     }
     }
-    GridSpacerWidgetClass gridRecipeToolRequire {
-     ignorepointer 0
-     position 7 450
-     size 586 16
-     hexactpos 1
-     vexactpos 1
-     hexactsize 1
-     vexactsize 1
-     Padding 0
-     Margin 0
-     Columns 1
-     Rows 1
-    }
-    TextWidgetClass txtSelectedRecipeTimeRequire {
+    PanelWidgetClass pnlExpRecPunishment {
+     visible 1
      ignorepointer 1
-     position 7 492
-     size 576 32
+     color 0.7843 0.7843 0.7843 1
+     position 0 230
+     size 600 80
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     text "TIME TO CRAFT"
-     "size to text h" 1
-     "size to text v" 0
-     "text valign" center
+     style blank
+     {
+      PanelWidgetClass expRecPunishmentHeader {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       size 1 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style rover_sim_colorable
+       {
+        TextWidgetClass expRecPunishmentTxt {
+         ignorepointer 1
+         position 5 10
+         size 48 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Punishment"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass expRecPunishmentOutline {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+      PanelWidgetClass expRecPunishmentFooter {
+       ignorepointer 1
+       size 1 34
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       {
+        TextWidgetClass txtRecordPunishment {
+         ignorepointer 1
+         position 5 10
+         size 48 15
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Aggravated Assault"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass expRecPunishmentBorder {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+     }
     }
-    TextWidgetClass txtSelectedRecipeTimetoCraft {
+    PanelWidgetClass pnlExpRecDate {
+     visible 1
      ignorepointer 1
-     position 7 526
-     size 576 16
+     color 0.7843 0.7843 0.7843 1
+     position 0 315
+     size 600 80
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     "size to text h" 1
-     "size to text v" 0
-     "text valign" center
+     style blank
+     {
+      PanelWidgetClass expRecDateHeader {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       size 1 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style rover_sim_colorable
+       {
+        TextWidgetClass expRecDateTxt {
+         ignorepointer 1
+         position 5 10
+         size 48 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Date Committed"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass expRecDateOutline {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+      PanelWidgetClass expRecDateFooter {
+       ignorepointer 1
+       size 1 34
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       {
+        TextWidgetClass txtRecordDate {
+         ignorepointer 1
+         position 5 10
+         size 48 15
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "8/5/2020"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass expRecDateBorder {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+     }
     }
-    ButtonWidgetClass btnCraft {
+   }
+  }
+  PanelWidgetClass pnlCreateCriminalRecord {
+   visible 0
+   clipchildren 1
+   ignorepointer 1
+   color 0 0 0 0.7843
+   position 590 0
+   size 600 395
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+  }
+  PanelWidgetClass pnlCreateGeneralRecord {
+   visible 1
+   clipchildren 1
+   ignorepointer 1
+   color 0 0 0 0.7843
+   position 590 0
+   size 600 235
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    PanelWidgetClass createGenRecHeader {
+     ignorepointer 1
+     color 0 0 0 0.7843
+     size 1 50
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style rover_sim_colorable
+     {
+      TextWidgetClass createGenRecHeaderTxt {
+       ignorepointer 1
+       position 5 10
+       size 48 30
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "Create General Record"
+       "size to text h" 1
+       "size to text v" 0
+       "text valign" center
+      }
+      PanelWidgetClass createGenRecHeaderOutline {
+       ignorepointer 1
+       color 0.7843 0.7843 0.7843 1
+       position -0.02 0
+       size 1.04 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Outline
+      }
+     }
+    }
+    PanelWidgetClass pnlGenRecDesc {
+     visible 1
+     ignorepointer 1
+     color 0.7843 0.7843 0.7843 1
+     position 0 55
+     size 600 140
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style blank
+     {
+      PanelWidgetClass genRecDescHeader {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       size 1 50
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style rover_sim_colorable
+       {
+        TextWidgetClass descriptionHeaderTxt0 {
+         ignorepointer 1
+         position 5 10
+         size 48 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "Description"
+         "size to text h" 1
+         "size to text v" 0
+         "text valign" center
+        }
+        PanelWidgetClass descriptionHeaderOutline0 {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+      PanelWidgetClass genRecDescFooter {
+       ignorepointer 1
+       size 1 90
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       {
+        ScrollWidgetClass scrollGeneralDesc {
+         ignorepointer 1
+         position 0 5
+         size 1 80
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         "Scrollbar V" 1
+         {
+          MultilineEditBoxWidgetClass edtGenRecDesc {
+           position 5 0
+           size 585 80
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           style DayZNormal
+           font "gui/fonts/metron14"
+           "size to text h" 1
+           "size to text v" 0
+           lines 1000
+           "limit visible" 1
+          }
+         }
+        }
+        PanelWidgetClass genRecDescFooterOutline {
+         ignorepointer 1
+         color 0.7843 0.7843 0.7843 1
+         position -0.02 0
+         size 1.04 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style Outline
+        }
+       }
+      }
+     }
+    }
+    ButtonWidgetClass btnGeneralCancel {
      color 1 0.5843 0 1
-     position 7 7
-     size 120 30
+     position 5 5
+     size 100 30
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     text "CANCEL"
+     text_proportion 0.7
+    }
+    ButtonWidgetClass btnGeneralCreate {
+     color 1 0.5843 0 1
+     position 5 5
+     size 100 30
      halign right_ref
      valign bottom_ref
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     style DayZDefaultButton
-     text_proportion 0.8
-     {
-      PanelWidgetClass pnlProgress {
-       visible 0
-       ignorepointer 1
-       color 1 0.5843 0 1
-       position 0 0
-       size 1 1
-       hexactpos 0
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       style rover_sim_colorable
-      }
-      TextWidgetClass txtCraft {
-       ignorepointer 1
-       position 0 0
-       size 1 1
-       hexactpos 0
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       text "CRAFT"
-       "text halign" center
-       "text valign" center
-      }
-     }
+     style DayZDefaultButtonNoBorder
+     text "CREATE"
+     text_proportion 0.7
     }
    }
   }

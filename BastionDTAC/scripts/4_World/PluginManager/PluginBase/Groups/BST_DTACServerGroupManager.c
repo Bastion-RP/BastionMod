@@ -10,8 +10,8 @@ class BST_DTACServerGroupManager : PluginBase {
         if (!FileExist(BST_DTACConst.dtacDir)) {
             MakeDirectory(BST_DTACConst.dtacDir);
         }
-        if (FileExist(BST_DTACConst.configDir)) {
-            JsonFileLoader<BST_DTACGroupConfig>.JsonLoadFile(BST_DTACConst.configDir, groupConfig);
+        if (FileExist(BST_DTACConst.groupConfigDir)) {
+            JsonFileLoader<BST_DTACGroupConfig>.JsonLoadFile(BST_DTACConst.groupConfigDir, groupConfig);
         } else {
             groupConfig = new BST_DTACGroupConfig();
         }

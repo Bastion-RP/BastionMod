@@ -1,34 +1,46 @@
 modded class PluginManager {
-	ref array<string> clanPluginList;
+	ref array<string> _bstDTACPluginList;
 
 	void PluginManager() {
-		clanPluginList = new array<string>();
+		_bstDTACPluginList = new array<string>();
 	}
 
 	override void Init() {
 		super.Init();
 
-		clanPluginList.Insert("BST_DTACClientRPCHandler");
-		clanPluginList.Insert("BST_DTACServerGroupManager");
-		clanPluginList.Insert("BST_DTACServerRPCHandler");
-		clanPluginList.Insert("BST_DTACClientGroupManager");
-		clanPluginList.Insert("BST_DTACGroupManager");
+		// For groups
+		_bstDTACPluginList.Insert("BST_DTACClientRPCHandler");
+		_bstDTACPluginList.Insert("BST_DTACServerGroupManager");
+		_bstDTACPluginList.Insert("BST_DTACServerRPCHandler");
+		_bstDTACPluginList.Insert("BST_DTACClientGroupManager");
+		_bstDTACPluginList.Insert("BST_DTACGroupManager");
+		
+		// For base DTAC
+		_bstDTACPluginList.Insert("BST_DTACServerManager");
+		_bstDTACPluginList.Insert("BST_DTACClientManager");
+		_bstDTACPluginList.Insert("BST_DTACManager");
 		//----------------------------------------------------------------------
 		// Register modules
 		//----------------------------------------------------------------------
 		//				Module Class Name 						Client	Server
 		//----------------------------------------------------------------------
+		// For groups
 		RegisterPlugin("BST_DTACGroupManager", true, true);
 		RegisterPlugin("BST_DTACClientRPCHandler", true, false);
 		RegisterPlugin("BST_DTACServerGroupManager", false, true);
 		RegisterPlugin("BST_DTACServerRPCHandler", false, true);
 		RegisterPlugin("BST_DTACClientGroupManager", true, false);
+
+		// For base DTAC
+		RegisterPlugin("BST_DTACServerManager", false, true);
+		RegisterPlugin("BST_DTACClientManager", true, false);
+		RegisterPlugin("BST_DTACManager", true, true);
 	}
 	//=================================
 	// RegisterPlugin Except this one fucking works
 	//=================================
 	protected void RegisterPlugin(string plugin_class_name, bool reg_on_client, bool reg_on_server, bool reg_on_release = true) {
-		if (clanPluginList.Find(plugin_class_name) != -1) {
+		if (_bstDTACPluginList.Find(plugin_class_name) != -1) {
 			if (!reg_on_client) {
 				if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
 			}

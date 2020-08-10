@@ -1,11 +1,15 @@
 modded class ItemBase {
     void OnInventoryExit(Man player) {
-        string itemTypeLowered = GetType();
-
         super.OnInventoryExit(player);
-        itemTypeLowered.ToLower();
+        
+        if (!GetDTACClientManager() || !GetDTACClientManager().GetConfig()) { return; }
+        string itemTypeLowered = GetType();
+        string requiredItemType = GetDTACClientManager().GetConfig().GetPhoneClassname();
 
-        if (itemTypeLowered == BST_DTACGroupManager.CONST_DTAC_CLASSNAME) {
+        itemTypeLowered.ToLower();
+        requiredItemType.ToLower();
+
+        if (itemTypeLowered == requiredItemType) {
             if (GetGame().IsServer() && GetGame().IsMultiplayer()) {
                 if (!GetDTACGroupManager().HasDTAC(player)) {
                     GetDTACServerGroupManager().RemoveUserFromGroup(PlayerBase.Cast(player));
@@ -19,17 +23,17 @@ modded class ItemBase {
     }
 
     void OnInventoryEnter(Man player) {
-        Print("Item entered inventory... " + GetType());
-
-        string itemTypeLowered = GetType();
-
         super.OnInventoryEnter(player);
+
+        if (!GetDTACClientManager() || !GetDTACClientManager().GetConfig()) { return; }
+        string itemTypeLowered = GetType();
+        string requiredItemType = GetDTACClientManager().GetConfig().GetPhoneClassname();
+
         itemTypeLowered.ToLower();
+        requiredItemType.ToLower();
         
         if (GetGame().GetPlayer() && GetGame().GetPlayer().IsAlive() && GetGame().GetPlayer() == player && (!GetGame().IsServer() || !GetGame().IsMultiplayer())) {
-            Print("Passed conditionals... " + BST_DTACGroupManager.CONST_DTAC_CLASSNAME);
-            
-            if (itemTypeLowered == BST_DTACGroupManager.CONST_DTAC_CLASSNAME) {
+            if (itemTypeLowered == requiredItemType) {
                 if (!GetDTACClientGroupManager().GetCompassHUD()) {
                     GetDTACClientGroupManager().InitCompassHUD();
                 }
