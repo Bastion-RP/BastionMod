@@ -1,5 +1,5 @@
 class BST_DTACConfig {
-    private const string DEFAULT_PHONE_CLASSNAME = "BRP_Phone";
+    private const string DEFAULT_PHONE_CLASSNAME = "BRP_DyerPhoneV2";
 
     private ref array<string> APIRequiredClasses;
     private string PhoneClassname;
