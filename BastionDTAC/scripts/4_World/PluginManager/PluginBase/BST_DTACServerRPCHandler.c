@@ -10,11 +10,39 @@ class BST_DTACServerRPCHandler : PluginBase {
     void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx) {
         if (!sender) { return; }
 
+        RestApi apiCore;
+        RestContext apiCTX;
+        RestCallback apiCallback;
         PlayerBase player;
         int groupId;
+        string playerClassFull, playerClass, apiRequest;
+        array<string> arrPlayerClass;
         Param params;
         
         switch (rpc_type) {
+            case BST_DTACRPC.SERVER_API_POST_GENERAL_RECORD:
+                {
+                    Param2<string, string> dataPOSTGeneral;
+
+                    if (!ctx.Read(dataPOSTGeneral)) { return; }
+                    player = PlayerBase.Cast(target);
+
+                    if (player && dataPOSTGeneral.param1.Length() > 0) {
+                        if (GetDTACManager().IsRequiredClass(GetDTACServerManager().GetConfig().GetRequiredAPIClasses(), player.GetMultiCharactersPlayerClass())) {
+                            apiCore = GetRestApi();
+
+                            if (!apiCore) {
+                                apiCore = CreateRestApi();
+                            }
+                            apiCTX = apiCore.GetRestContext("https://bastionrp.com/api/");
+                            apiCallback = new RestCallback();
+                            apiRequest = "generalrecords.php?password=" + GetDTACServerManager().GetConfig().GetGeneralPassword() + "&charId=" + dataPOSTGeneral.param2 + "&description=" + dataPOSTGeneral.param1 + "&creatorCharId=" + player.GetMultiCharactersPlayerId() + "&isSystem=1";
+
+                            apiCTX.POST(apiCallback, apiRequest, "");
+                        }
+                    }
+                    break;
+                }
             case BST_DTACRPC.SERVER_SEND_GROUP_ARRAY:
                 {
                     player = PlayerBase.Cast(target);

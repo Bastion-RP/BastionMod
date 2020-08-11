@@ -42,7 +42,7 @@ class BST_DTACGroupConfig {
     }
 
     void Save() {
-        JsonFileLoader<BST_DTACGroupConfig>.JsonSaveFile(BST_DTACConst.configDir, this);
+        JsonFileLoader<BST_DTACGroupConfig>.JsonSaveFile(BST_DTACConst.groupConfigDir, this);
     }
 
     array<ref BST_DTACGroupConfigObject> GetGroups() { return arrayConfigGroups; }

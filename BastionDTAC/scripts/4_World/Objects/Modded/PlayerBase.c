@@ -30,4 +30,12 @@ modded class PlayerBase {
             }
         }
     }
+
+    override void OnConnect() {
+        super.OnConnect();
+
+        Param params = new Param1<ref BST_DTACConfig>(GetDTACServerManager().GetConfig());
+
+        GetGame().RPCSingleParam(this, BST_DTACRPC.CLIENT_RECEIVE_CONFIG, params, true, GetIdentity());
+    }
 }

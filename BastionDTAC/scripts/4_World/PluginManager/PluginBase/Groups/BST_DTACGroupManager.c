@@ -1,5 +1,4 @@
 class BST_DTACGroupManager : PluginBase {
-    static const string CONST_DTAC_CLASSNAME = "nail";
     static ref ScriptInvoker dtacRemovalInvoker;
     static ref ScriptInvoker dtacStatInvoker;
 
@@ -27,10 +26,12 @@ class BST_DTACGroupManager : PluginBase {
         foreach (EntityAI entity : arrayInventory) {
             if (entity) {
                 string entityType = entity.GetType();
+                string requiredEntityType = GetDTACClientManager().GetConfig().GetPhoneClassname();
 
                 entityType.ToLower();
+                requiredEntityType.ToLower();
 
-                if (entityType == CONST_DTAC_CLASSNAME) {
+                if (entityType == requiredEntityType) {
                     return true;
                 }
             }
