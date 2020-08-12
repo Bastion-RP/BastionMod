@@ -23,7 +23,7 @@ class cfgWeapons
 		model = "BastionMod\BastionGuns\BERETTA92\Beretta92.p3d";
 		attachments[] = {"pistolMuzzle", "pistolFlashlight"};
 		magazines[] = {"BRP_Mag_BerettaM9_15rnd"};
-		itemSize[] = {4,2};
+		itemSize[] = {3,2};
 		class DamageSystem
 		{
 			class GlobalHealth
