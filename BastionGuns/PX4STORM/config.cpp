@@ -232,7 +232,7 @@ class cfgWeapons
 		descriptionShort = "PX4 Storm is a pistol chambered in 9x19mm rounds.";
 		model = "\BastionMod\BastionGuns\PX4STORM\px4.p3d";
 		attachments[] = {"pistolMuzzle","pistolFlashlight"};
-		itemSize[] = {4,2};
+		itemSize[] = {3,2};
 		class DamageSystem
 		{
 			class GlobalHealth
