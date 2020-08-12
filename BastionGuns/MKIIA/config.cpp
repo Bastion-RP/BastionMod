@@ -74,7 +74,7 @@ class cfgWeapons
 		descriptionShort = "The Welrod is a British bolt action, magazine fed, suppressed pistol devised during World War II by Major Hugh Reeves at the Inter-Services Research Bureau. Chambered in 9x19mm rounds.";
 		model = "BastionMod\BastionGuns\MKIIA\MKIIA.p3d";
 		attachments[] = {};
-		itemSize[] = {4,2};
+		itemSize[] = {3,2};
 		class DamageSystem
 		{
 			class GlobalHealth
