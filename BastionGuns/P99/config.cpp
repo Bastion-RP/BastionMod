@@ -26,7 +26,7 @@ class cfgWeapons
 		attachments[] = {};
 		PPDOFProperties[]={0,0,0,0,0,0};
 		magazines[] = {"BRP_Mag_P99_15rnd"};
-		itemSize[] = {4,2};
+		itemSize[] = {3,2};
 		class DamageSystem
 		{
 			class GlobalHealth
