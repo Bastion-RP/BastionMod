@@ -32,7 +32,7 @@ class cfgWeapons
 		weight = 1000;
 		model = "\BastionMod\BastionGuns\M1911\M1911.p3d";
 		magazines[] = {"BRP_Mag_M1911_7Rnd","Mag_1911_7Rnd"};
-		itemSize[] = {6,3};
+		itemSize[] = {3,2};
 		PPDOFProperties[] = {0,0,0,0,0,0};
 		dexterity = 3.0;
 		discreteDistance[] = {25,50,100};
