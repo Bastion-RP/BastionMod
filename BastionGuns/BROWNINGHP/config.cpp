@@ -35,7 +35,7 @@ class cfgWeapons
 		attachments[] = {};
 		magazines[] = {"BRP_Mag_BrowningHP_13rnd"};
 		chamberableFrom[] = {"Ammo_9x19"};
-		itemSize[] = {4,2};
+		itemSize[] = {3,2};
 		class DamageSystem
 		{
 			class GlobalHealth
