@@ -245,7 +245,7 @@ class cfgWeapons
 		descriptionShort = "The SIG Sauer P226 is a full-sized, service-type pistol made by SIG Sauer. It is chambered for the 9×19mm Parabellum, .40 S&W, .357 SIG, and .22 Long Rifle.";
 		model = "BastionMod\BastionGuns\P226\p226.p3d";
 		attachments[] = {"pistolMuzzle","pistolOptics","pistolFlashlight"};
-		itemSize[] = {4,2};
+		itemSize[] = {3,2};
 		class DamageSystem
 		{
 			class GlobalHealth
