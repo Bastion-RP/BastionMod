@@ -243,7 +243,7 @@ class cfgWeapons
 		descriptionShort = "CSP-9 is a pistol chambered in 9x19mm and takes a 17 round CSP9 Grach Mag.";
 		model = "BastionMod\BastionGuns\CSP9\CSP9.p3d";
 		attachments[] = {"pistolMuzzle","pistolFlashlight"};
-		itemSize[] = {4,2};
+		itemSize[] = {3,2};
 		class DamageSystem
 		{
 			class GlobalHealth
