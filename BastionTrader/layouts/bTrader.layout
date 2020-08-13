@@ -1,0 +1,415 @@
+PanelWidgetClass rootFrame {
+ size 0.95 0.85
+ halign center_ref
+ valign center_ref
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ style blank
+ {
+  PanelWidgetClass MainContentWrapper {
+   ignorepointer 1
+   color 0.2745 0.2745 0.2745 0.3922
+   position 0 0
+   size 0.62 0.65
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+   {
+    PanelWidgetClass HeaderTitle1 {
+     ignorepointer 1
+     position 0 0
+     size 1 35
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 1
+     {
+      TextWidgetClass TitleText1 {
+       ignorepointer 1
+       position 30 0
+       size 300 30
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "Products"
+       "exact text" 1
+       "text valign" center
+      }
+      PanelWidgetClass HeaderLine1 {
+       ignorepointer 1
+       position 15 0
+       size 280 2
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+      }
+     }
+    }
+    PanelWidgetClass HeaderWrapper {
+     ignorepointer 1
+     position 0 0.07
+     size 0.96 0.05
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      PanelWidgetClass CategoryWrapper {
+       ignorepointer 1
+       position 0 0
+       size 0.65 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       {
+        XComboBoxWidgetClass XComboBoxCategory {
+         position 0 0
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         items "Weapons;Ammo;Kit;Clothes"
+        }
+       }
+      }
+      PanelWidgetClass SearchBoxWrapper {
+       ignorepointer 1
+       position 0 0
+       size 0.33 1
+       halign right_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       {
+        EditBoxWidgetClass EditBoxSearch {
+         position 0 0
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style DefaultBorder
+         text "Search"
+         "limit visible" 0
+         "Use default text" 0
+         "exact text" 1
+        }
+       }
+      }
+     }
+    }
+    ScrollWidgetClass ScrollWidgetMainContent {
+     ignorepointer 1
+     position 0 0.12
+     size 0.96 0.86
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     "Scrollbar V" 1
+     {
+      WrapSpacerWidgetClass WrapMainContent {
+       ignorepointer 1
+       size 1 0.25
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       Padding 12
+       Margin 12
+       "Size To Content V" 1
+      }
+     }
+    }
+   }
+  }
+  PanelWidgetClass ItemWrapper {
+   ignorepointer 1
+   color 0.2745 0.2745 0.2745 0.3922
+   position 0 0
+   size 0.375 1
+   halign right_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+   {
+    PanelWidgetClass HeaderTitle0 {
+     ignorepointer 1
+     position 0 0
+     size 1 35
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 1
+     {
+      TextWidgetClass TitleText0 {
+       ignorepointer 1
+       position 30 0
+       size 425 30
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "Item"
+       "exact text" 1
+       "text valign" center
+      }
+      PanelWidgetClass HeaderLine0 {
+       ignorepointer 1
+       position 15 0
+       size 280 2
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+      }
+     }
+    }
+    PanelWidgetClass ContentWrapper1 {
+     ignorepointer 1
+     position 0 0.05
+     size 0.94 0.93
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ItemPreviewWidgetClass ItemPreview {
+       ignorepointer 1
+       position 0 0.01
+       size 0.7 0.35
+       halign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+      }
+      ScrollWidgetClass ProductScroll {
+       ignorepointer 1
+       position 0 0.37
+       size 0.87 0.5
+       halign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Colorable
+       "Scrollbar V" 1
+       {
+        MultilineTextWidgetClass ProductDescription {
+         ignorepointer 1
+         position 0 0
+         size 1.02 0.03
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         "exact text" 1
+         "size to text h" 0
+         "size to text v" 0
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+       }
+      }
+      ButtonWidgetClass TradeBtn {
+       position 0.06 0.03
+       size 0.33 0.068
+       halign right_ref
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style MenuDefault
+       text "Trade"
+      }
+      TextWidgetClass EditBoxCount {
+       position -0.23 0.04
+       size 0.11 0.05
+       halign center_ref
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Normal
+       text "1"
+       "exact text" 1
+       "text halign" center
+       "text valign" center
+      }
+      ButtonWidgetClass DecCountBtn {
+       position 0.09 0.035
+       size 0.1 0.06
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style MenuDefault
+       text "-"
+      }
+      ButtonWidgetClass IncCountBtn {
+       position 0.36 0.035
+       size 0.1 0.06
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style MenuDefault
+       text "+"
+      }
+      ProgressBarWidgetClass TraderProgress {
+       ignorepointer 1
+       position 0.06 0.015
+       size 0.33 0.01
+       halign right_ref
+       valign bottom_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Stamina
+       current 0
+      }
+     }
+    }
+   }
+  }
+  PanelWidgetClass IngredientsWrapper {
+   ignorepointer 1
+   color 0.2745 0.2745 0.2745 0.3922
+   size 0.62 0.34
+   valign bottom_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+   {
+    PanelWidgetClass HeaderTitle2 {
+     ignorepointer 1
+     position 0 0
+     size 1 35
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 1
+     {
+      TextWidgetClass TitleText2 {
+       ignorepointer 1
+       position 30 0
+       size 425 30
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "Requirements"
+       "exact text" 1
+       "text valign" center
+      }
+      PanelWidgetClass HeaderLine2 {
+       ignorepointer 1
+       position 15 0
+       size 280 2
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+      }
+     }
+    }
+    PanelWidgetClass ContentWrapper {
+     ignorepointer 1
+     position 0 0.12
+     size 0.96 0.82
+     halign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      ScrollWidgetClass ScrollRequirement {
+       ignorepointer 1
+       size 1 1
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       "Scrollbar V" 1
+       {
+        WrapSpacerWidgetClass WrapRequirements {
+         ignorepointer 1
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         Padding 12
+         Margin 12
+         "Size To Content V" 1
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  PanelWidgetClass Overlay {
+   visible 1
+   ignorepointer 1
+   color 0 0 0 0.9804
+   position 0 0
+   size 1 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   priority 5
+   style rover_sim_colorable
+   {
+    TextWidgetClass TextWidget0 {
+     ignorepointer 1
+     position 0 0
+     size 0.33 0.04
+     halign center_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     text "Waiting data from server"
+     "exact text" 1
+     "text halign" center
+     "text valign" center
+    }
+   }
+  }
+ }
+}

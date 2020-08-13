@@ -116,7 +116,7 @@ modded class BRP_PackStation
 	override void SetActions()
 	{
 		super.SetActions();
-		AddAction( ActionTrade );
+		//AddAction( ActionTrade );
 	}
 
 	override bool IsInventoryVisible()
