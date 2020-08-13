@@ -3,15 +3,16 @@ class RadiationAreaSettings
 	bool			IsRadiationZoneActive;
 	int 			RadCheck;
 	bool 			IsMsgActive;
-	string 			MsgEnterZone;
-	string 			MsgExitZone;
-	float 			RadChanceVomit;
-	float 			RadChanceBleeding;
-	float 			RadBloodLossDamage;
+	string 		MsgEnterZone;
+	string 		MsgExitZone;
+	float 		RadChanceVomit;
+	float 		RadChanceBleeding;
+	float 		RadBloodLossDamage;
 	float			RadHealthDamage;
-	float 			RadHighMultiplier;
-	int 			NbSickGivenForRadiation;
+	float 		RadHighMultiplier;
 	int 			SuitsDamage;
+	int      	CriticalProtection;
+	float			AmountGivenAfterCriticalProtection;
 	ref array<ref RadiationZoneLocation> RadiationAreaLocation;
 
 	void RadiationAreaSettings() {
@@ -19,20 +20,21 @@ class RadiationAreaSettings
 	}
 
 	void RadiationAreaDefaultSettings()	{
-		RadCheck = 45000;
+		RadCheck = 60000;
 		IsMsgActive=1;
 		IsRadiationZoneActive=1;
 		MsgEnterZone="YOU ARE IN A RADIATION AREA!";
 		MsgExitZone="YOU LEFT THE RADIATION AREA!";
-		RadiationAreaLocation.Insert(new ref RadiationZoneLocation(0,0,"RadZone1", 1500, 1500, 300, -1,-1,-1,-1));
-		RadiationAreaLocation.Insert(new ref RadiationZoneLocation(1,0,"Tisy", 1655, 14068, 600,-1,-1,-1,-1));
+		RadiationAreaLocation.Insert(new ref RadiationZoneLocation(34,0,"RadZone1", 1500, 1500, 300, -1,-1,-1,-1));
+		RadiationAreaLocation.Insert(new ref RadiationZoneLocation(12,0,"Tisy", 1655, 14068, 600,-1,-1,-1,-1));
 		RadChanceBleeding = 0.15;
 		RadChanceVomit = 0.2;
 		RadBloodLossDamage=100;
 		RadHealthDamage=2;
 		RadHighMultiplier = 2.5;
-		NbSickGivenForRadiation=34;
-		SuitsDamage=20;
+		SuitsDamage=5;
+		CriticalProtection=70;
+		AmountGivenAfterCriticalProtection = 0.2;
 		JsonFileLoader<RadiationAreaSettings>.JsonSaveFile(DZ_RAD_CONFIG, this);
 	}
 

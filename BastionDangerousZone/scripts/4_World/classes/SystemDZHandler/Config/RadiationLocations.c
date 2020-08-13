@@ -7,6 +7,7 @@ class RadiationLocations
   ref array<float> Y1;
   ref array<float> X2;
   ref array<float> Y2;
+  ref array<int> NbRadGiven;
   ref array<bool> IsSquareZone;
 
     void RadiationLocations(ref RadiationAreaSettings radAreaSettings)
@@ -19,6 +20,7 @@ class RadiationLocations
       X2 = new array<float>;
       Y2 = new array<float>;
       IsSquareZone = new array<bool>;
+      NbRadGiven =  new array<int>;
 
       TransferRadConfig(radAreaSettings);
     }
@@ -36,7 +38,7 @@ class RadiationLocations
         X2.Insert(radAreaSettings.RadiationAreaLocation.Get(i).X2);
         Y2.Insert(radAreaSettings.RadiationAreaLocation.Get(i).Y2);
         IsSquareZone.Insert(radAreaSettings.RadiationAreaLocation.Get(i).IsSquareZone);
+        NbRadGiven.Insert(radAreaSettings.RadiationAreaLocation.Get(i).NbSickGivenForRadiation);
       }
     }
-
 }

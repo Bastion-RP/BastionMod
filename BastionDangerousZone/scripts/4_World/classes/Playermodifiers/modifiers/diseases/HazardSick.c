@@ -11,8 +11,8 @@ class HazardSickMdfr: ModifierBase
 	{
 		m_TrackActivatedTime 	= false;
 		m_ID 					= DZModifiers.MDF_DZHAZARDSICK;
-		m_TickIntervalInactive 	= 20;
-		m_TickIntervalActive 	= 20;
+		m_TickIntervalInactive 	= 60;
+		m_TickIntervalActive 	= 60;
 	}
 
 	override protected bool ActivateCondition(PlayerBase player)
@@ -61,12 +61,6 @@ class HazardSickMdfr: ModifierBase
 		}
 	}
 
-	private void SendMessageClient(PlayerBase player, string message)
-	{
-		Param1<string> m_MesParam = new Param1<string>(message);
-		GetGame().RPCSingleParam(player, ERPCs.RPC_USER_ACTION_MESSAGE, m_MesParam, true, player.GetIdentity());
-	}
-
 	override protected void OnTick(PlayerBase player, float deltaT)
 	{
 		if( chanceCough > Math.RandomFloatInclusive(0,1))
@@ -82,7 +76,6 @@ class HazardSickMdfr: ModifierBase
 		if(chanceShock > Math.RandomFloatInclusive(0,1))
 		{
 			m_Shock += hazardshockvalue;
-			//SendMessageClient(player,m_Shock.ToString());
 		}
 
 		if(m_Shock > 100)

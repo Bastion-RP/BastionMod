@@ -75,7 +75,9 @@ modded class MissionServer extends MissionBase
 		player.RadBloodLossDamage = GetRadConfig().RadBloodLossDamage;
 		player.RadHealthDamage = GetRadConfig().RadHealthDamage;
 		player.RadHighMultiplier = GetRadConfig().RadHighMultiplier;
-		player.NbSickGivenForRadiation = GetRadConfig().NbSickGivenForRadiation;
+		player.RadHighMultiplier = GetRadConfig().RadHighMultiplier;
+		player.CriticalProtection = GetRadConfig().CriticalProtection;
+		player.AmountGivenAfterCriticalProtection = GetRadConfig().AmountGivenAfterCriticalProtection;
 		player.SetSuitsDamageForRad(GetRadConfig().SuitsDamage);
 		player.SetSuitsDamageForHazard(GetHazardConfig().GasMaskDamage);
 		player.NbSickGivenForHazard = GetHazardConfig().NbSickGivenForHazard;
@@ -94,9 +96,12 @@ modded class MissionServer extends MissionBase
 		GetGame().SelectPlayer(identity, m_player);
 
 		m_player.IsInside.DZStatut=false;
+		m_player.IsInside.DZName="";
+		m_player.IsInside.DZType=0;
 
 		return m_player;
-		//moduleDefaultCharacter.FileDelete(moduleDefaultCharacter.GetFileName());
+
+		//super.CreateCharacter(identity,pos,ctx,characterName);
 	}
 
 }

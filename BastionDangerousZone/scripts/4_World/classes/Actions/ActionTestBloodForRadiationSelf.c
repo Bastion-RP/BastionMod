@@ -30,7 +30,22 @@ class ActionTestForRadiationSelf: ActionContinuousBase
 
 	override string GetText()
 	{
-		return "#check_radiation";
+		return "Get Radiation Level";
+	}
+
+	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	{
+		if ( item )
+		{
+			BRP_Dosimeter dos = BRP_Dosimeter.Cast(item);
+
+			if ( dos  && dos.GetCompEM().IsWorking())
+			{
+					return true;
+			}
+			else return false;
+		}
+		return true;
 	}
 
 	override void OnFinishProgressServer( ActionData action_data )
