@@ -4,7 +4,12 @@ class BRP_Dosimeter extends ItemBase
 	PlayerBase					m_player;
 
 	static const string			START_SOUND 				= "dz_Geiger_SoundSet_Switch";
-	static const string			LOOP_SOUND 					= "dz_Geiger_SoundSet";
+	static const string			LOOP_SOUND_LOW					= "dz_Geiger_Low_SoundSet";
+	static const string			LOOP_SOUND_INT 					= "dz_Geiger_Intermediate_SoundSet";
+	static const string			LOOP_SOUND_HIGH 				= "dz_Geiger_High_SoundSet";
+	static const string			LOOP_SOUND_VERYLOW					= "dz_Geiger_VeryLow_SoundSet";
+	static const string			LOOP_SOUND_VERYINT 					= "dz_Geiger_VeryIntermediate_SoundSet";
+	static const string			LOOP_SOUND_VERYHIGH 				= "dz_Geiger_VeryHigh_SoundSet";
 	static const string			STOP_SOUND 					= "dz_Geiger_SoundSet_Switch";
 
 	protected EffectSound 		m_EngineLoop;
@@ -16,6 +21,7 @@ class BRP_Dosimeter extends ItemBase
 
 	bool						m_Working;
 	bool            m_CanWork = false;
+	int						  m_Level;
 	int             i=-1;
 
 	ref Timer 					m_SoundLoopStartTimer;
@@ -25,6 +31,12 @@ class BRP_Dosimeter extends ItemBase
 	{
 		RegisterNetSyncVariableBool("m_IsSoundSynchRemote");
 		RegisterNetSyncVariableBool("m_CanWork");
+		m_Level = 0;
+	}
+
+	void ~BRP_Dosimeter()
+	{
+		OnWorkStop();
 	}
 
 
@@ -35,12 +47,12 @@ class BRP_Dosimeter extends ItemBase
 
 	override void OnWorkStart()
 	{
-		//IsPlayerIrradiedNearby();
+
 		if ( GetGame().IsClient()  ||  !GetGame().IsMultiplayer() )
 		{
+			IsPlayerIrradiedNearby();
 			IsGeigerInRadZone();
 			StartSound();
-
 			m_Working = true;
 		}
 	}
@@ -51,30 +63,71 @@ class BRP_Dosimeter extends ItemBase
 		{
 			for(int i = 0 ; i<= -1 + GetRadConfigClient().X1.Count() ; i++)
 			{
-				//Print("Nb RadZone = " + GetRadConfigClient().X1.Count().ToString());
+				//Print("test value = " + GetRadConfigClient().Radius.Get(i).ToString());
+				int level_value = GetLevelValue(GetRadConfigClient().NbRadGiven.Get(i));
+				//Print("sick_value = " + GetRadConfigClient().NbRadGiven.Get(i));
+				//Print("level_value = " + GetLevelValue(GetRadConfigClient().NbRadGiven.Get(i)).ToString());
 				if( GetRadConfigClient().IsSquareZone.Get(i) == 1)
 				{
-					CheckSquareZone(GetRadConfigClient().X1.Get(i),GetRadConfigClient().Y1.Get(i),GetRadConfigClient().X2.Get(i),GetRadConfigClient().Y2.Get(i),i);
+					CheckSquareZone(GetRadConfigClient().X1.Get(i),GetRadConfigClient().Y1.Get(i),GetRadConfigClient().X2.Get(i),GetRadConfigClient().Y2.Get(i),i,level_value);
 				}
 				else
 				{
-					CheckRoundZone(GetRadConfigClient().X.Get(i),GetRadConfigClient().Y.Get(i),GetRadConfigClient().Radius.Get(i),i);
+					CheckRoundZone(GetRadConfigClient().X.Get(i),GetRadConfigClient().Y.Get(i),GetRadConfigClient().Radius.Get(i),i,level_value);
 				}
 			}
 		}
-}
+	}
 
+	int GetLevelValue(int nbradgiven)
+	{
+			if(nbradgiven == 0)return 0;
+			if(nbradgiven <= 15)return 1;
+			if(nbradgiven <= 30)return 2;
+			if(nbradgiven <= 60)return 3;
+			if(nbradgiven <= 75)return 4;
 
-	void CheckSquareZone(float m_X1, float m_Y1, float m_X2, float m_Y2, int zone)
+			return 0;
+	}
+
+	void CheckSquareZone(float m_X1, float m_Y1, float m_X2, float m_Y2, int zone, int level_value)
 	{
 		vector pos = this.GetPosition();
-		if ( (pos[0]>m_X1 && pos[0]<m_X2) && (pos[2]>m_Y1 && pos[2]<m_Y2) )
+		if ( (pos[0]>GetSquarePercentageCoordonate(0.167,m_X1,m_X2) && pos[0]<GetSquarePercentageCoordonate(0.167,m_X2,m_X1)) && (pos[2]>GetSquarePercentageCoordonate(0.167,m_Y1,m_Y2) && pos[2]<GetSquarePercentageCoordonate(0.167,m_Y2,m_Y1)) )
 		{
 			if(i==zone && m_CanWork == true)
 			{
+				m_Level = level_value + 2;
 				return;
 			}
 			else{
+				m_Level = level_value + 2;
+				i = zone;
+				m_CanWork = true;
+			}
+		}
+		else if ( (pos[0]>GetSquarePercentageCoordonate(0.33,m_X1,m_X2) && pos[0]<GetSquarePercentageCoordonate(0.33,m_X2,m_X1)) && (pos[2]>GetSquarePercentageCoordonate(0.33,m_Y1,m_Y2) && pos[2]<GetSquarePercentageCoordonate(0.33,m_Y2,m_Y1)) )
+		{
+			if(i==zone && m_CanWork == true)
+			{
+				m_Level = level_value + 1;
+				return;
+			}
+			else{
+				m_Level = level_value + 1;
+				i = zone;
+				m_CanWork = true;
+			}
+		}
+		else if ( (pos[0]>m_X1&& pos[0]<m_X2) && (pos[2]>m_Y1) && pos[2]<m_Y2 )
+		{
+			if(i==zone && m_CanWork == true)
+			{
+				m_Level = level_value;
+				return;
+			}
+			else{
+				m_Level = level_value;
 				i = zone;
 				m_CanWork = true;
 			}
@@ -84,6 +137,7 @@ class BRP_Dosimeter extends ItemBase
 			if(i==zone && m_CanWork == true)
 			{
 				i = -1;
+				m_Level = 0;
 				m_CanWork = false;
 			}
 			else
@@ -93,17 +147,58 @@ class BRP_Dosimeter extends ItemBase
 		}
 	}
 
-	void CheckRoundZone(float m_X, float m_Y, float Zone_Radius, int zone)
+	float GetSquarePercentageCoordonate(float percentage, float Coo1, float Coo2)
+	{
+		int temp = Coo1;
+		temp = temp + percentage*(Coo2-Coo1);
+		return temp;
+	}
+
+	void CheckRoundZone(float m_X, float m_Y, float Zone_Radius, int zone, int level_value)
 	{
 		vector pos = this.GetPosition();
 		float distance_squared = Math.Pow(m_X-pos[0], 2) + Math.Pow(m_Y-pos[2], 2);
-		if ( distance_squared <= Math.Pow(Zone_Radius, 2) )
+		if ( distance_squared <= Math.Pow(0.33*Zone_Radius, 2) )
 		{
-			if(i==zone && m_CanWork == true)
+			if(i==zone && m_CanWork == true )
 			{
+				m_Level = level_value + 2;
+				//Print("CENTER");
+				//Print("m_Level " + m_Level.ToString());
 				return;
 			}
 			else{
+				m_Level = level_value + 2;
+				i = zone;
+				m_CanWork = true;
+			}
+		}
+		else if ( distance_squared <= Math.Pow(0.66*Zone_Radius, 2) )
+		{
+			if(i==zone && m_CanWork == true )
+			{
+				m_Level = level_value + 1;
+				//Print("INTER");
+				//Print("m_Level " + m_Level.ToString());
+				return;
+			}
+			else{
+				m_Level = level_value + 1;
+				i = zone;
+				m_CanWork = true;
+			}
+		}
+		else if ( distance_squared <= Math.Pow(Zone_Radius, 2) )
+		{
+			if(i==zone && m_CanWork == true )
+			{
+				m_Level = level_value;
+				//Print("BORDER");
+				//Print("m_Level " + m_Level.ToString());
+				return;
+			}
+			else{
+				m_Level = level_value;
 				i = zone;
 				m_CanWork = true;
 			}
@@ -112,6 +207,7 @@ class BRP_Dosimeter extends ItemBase
 		{
 			if(i==zone && m_CanWork == true)
 			{
+				m_Level = 0;
 				i = -1;
 				m_CanWork = false;
 			}
@@ -125,7 +221,7 @@ class BRP_Dosimeter extends ItemBase
 	{
 		ref array<Object> proche_objects = new array<Object>;
 		PlayerBase FindPlayer;
-		GetGame().GetObjectsAtPosition3D(this.GetPosition(), 2.5, proche_objects, NULL);
+		GetGame().GetObjectsAtPosition3D(this.GetPosition(), 2, proche_objects, NULL);
 		FindPlayer = NULL;
 
 		//Print("NB_Obj: " + proche_objects.Count().ToString());
@@ -139,11 +235,10 @@ class BRP_Dosimeter extends ItemBase
 			if (proche_objects.Get(i).IsRock() || proche_objects.Get(i).IsTree()) continue;
 			if (proche_objects.Get(i).IsBuilding()) continue;
 			if (proche_objects.Get(i).IsWoodBase() ) continue;
-			if (proche_objects.Get(i).IsKindOf("SurvivorBase"))
+			if(proche_objects.Get(i).IsKindOf("ItemBase"))
 			{
-				FindPlayer=proche_objects.Get(i);
-				int RadSickCount = FindPlayer.GetSingleAgentCount(DZAgents.RADSICK);
-				if(RadSickCount > 100)
+				ItemBase item = proche_objects.Get(i);
+				if (item.GetRadAgentQuantity() > 0)
 				{
 					StartSound();
 				}
@@ -165,7 +260,7 @@ class BRP_Dosimeter extends ItemBase
 			StopSound();
 			m_Working = false;
 		}
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(this.IsPlayerIrradiedNearby);
+		//GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(this.IsPlayerIrradiedNearby);
 	}
 
 	void StartSound()
@@ -173,7 +268,7 @@ class BRP_Dosimeter extends ItemBase
 		PlaySoundSet( m_EngineStart, START_SOUND, 0, 0 );
 
 		if (!m_SoundLoopStartTimer) m_SoundLoopStartTimer = new Timer( CALL_CATEGORY_SYSTEM );
-		m_SoundLoopStartTimer.Run(0.1, this, "StartLoopSound", NULL, true);
+		m_SoundLoopStartTimer.Run(0.2, this, "StartLoopSound", NULL, true);
 	}
 
 	void StopSound()
@@ -223,22 +318,97 @@ class BRP_Dosimeter extends ItemBase
 		{
 			if(m_CanWork)
 			{
-					if (m_EngineLoop)
+					switch(m_Level)
 					{
-						if ( !m_EngineLoop.IsSoundPlaying()) PlaySoundSet( m_EngineLoop, LOOP_SOUND, 0, 0);
-					}
-					else {
-							PlaySoundSet( m_EngineLoop, LOOP_SOUND, 0, 0);
-					}
+						case 0: return;
+						break;
+
+						case 1:
+						{
+							if (m_EngineLoop)
+							{
+								//Print("VERYLOW");
+								if ( !m_EngineLoop.IsSoundPlaying()) PlaySoundSet( m_EngineLoop, LOOP_SOUND_VERYLOW, 0, 0);
+							}
+							else {
+									PlaySoundSet( m_EngineLoop, LOOP_SOUND_VERYLOW, 0, 0);
+							}
+						}break;
+
+						case 2:
+						{
+							if (m_EngineLoop)
+							{
+								//Print("LOW");
+								if ( !m_EngineLoop.IsSoundPlaying()) PlaySoundSet( m_EngineLoop, LOOP_SOUND_LOW, 0, 0);
+							}
+							else {
+									PlaySoundSet( m_EngineLoop, LOOP_SOUND_LOW, 0, 0);
+							}
+						}break;
+
+						case 3:
+						{
+							if (m_EngineLoop)
+							{
+								//Print("INTER");
+								if ( !m_EngineLoop.IsSoundPlaying()) PlaySoundSet( m_EngineLoop, LOOP_SOUND_INT, 0, 0);
+							}
+							else {
+									PlaySoundSet( m_EngineLoop, LOOP_SOUND_INT, 0, 0);
+							}
+						}break;
+
+						case 4:
+						{
+							if (m_EngineLoop)
+							{
+								//Print("VERYINTER");
+								if ( !m_EngineLoop.IsSoundPlaying()) PlaySoundSet( m_EngineLoop, LOOP_SOUND_VERYINT, 0, 0);
+							}
+							else {
+									PlaySoundSet( m_EngineLoop, LOOP_SOUND_INT, 0, 0);
+							}
+						}break;
+
+						case 5:
+						{
+							if (m_EngineLoop)
+							{
+								//Print("HIGH");
+								if ( !m_EngineLoop.IsSoundPlaying()) PlaySoundSet( m_EngineLoop, LOOP_SOUND_HIGH, 0, 0);
+							}
+							else {
+									PlaySoundSet( m_EngineLoop, LOOP_SOUND_HIGH, 0, 0);
+							}
+						}break;
+
+						case 6:
+						{
+							if (m_EngineLoop)
+							{
+								//Print("VERYHIGH");
+								if ( !m_EngineLoop.IsSoundPlaying()) PlaySoundSet( m_EngineLoop, LOOP_SOUND_VERYHIGH, 0, 0);
+							}
+							else {
+									PlaySoundSet( m_EngineLoop, LOOP_SOUND_HIGH, 0, 0);
+							}
+						}break;
+
+						default:return;
+						break;
+				}
 			}
-		}
-		else
+			else
 			{
-				if (m_EngineLoop){
+				if (m_EngineLoop)
+				{
 					if (m_EngineLoop.IsSoundPlaying())	m_EngineLoop.SoundStop();
 				}
 			}
+		}
 	}
+
 
 	override void SetActions()
 	{
@@ -248,6 +418,7 @@ class BRP_Dosimeter extends ItemBase
 		AddAction(ActionTurnOffWhileInHands);
 		AddAction(ActionTestForRadiationSelf);
 		AddAction(ActionTestForRadiationTarget);
+		AddAction(ActionGetRadClotheLevel);
 	}
 };
 

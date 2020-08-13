@@ -7,9 +7,10 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
+			"DZ_Data",
 			"DZ_Gear_Medical",
 			"DZ_Characters_Headgear",
-			"DZ_Data"
+			"DZ_vehicles_parts"
 		};
 	};
 };
@@ -26,7 +27,7 @@ class CfgMods
 		credits="TheDmitri";
 		author="TheDmitri";
 		authorID="0";
-		version="1.0";
+		version="1.1";
 		extra=0;
 		type="mod";
 		dependencies[]=
@@ -64,8 +65,26 @@ class CfgMods
 		};
 	};
 };
+class CfgSlots
+{
+	class Slot_ShowerTank
+	{
+		name="ShowerTank";
+		displayName="ShowerTank";
+		ghostIcon="";
+		show="false";
+	};
+};
 class CfgVehicles
 {
+	class Bottle_Base;
+	class CanisterGasoline: Bottle_Base
+	{
+		inventorySlot[]=
+		{
+			"ShowerTank"
+		};
+	};
 	class Inventory_Base;
 	class GP5GasMask_Filter: Inventory_Base
 	{
@@ -78,15 +97,15 @@ class CfgVehicles
 			"GasMaskFilter"
 		};
 		rotationFlags=2;
-		weight=200;
+		weight=5;
 		itemSize[]={2,2};
 		absorbency=0;
 		heatIsolation=0.60000002;
 		visibilityModifier=0.94999999;
 		quantityBar=1;
-		varQuantityInit=2700;
+		varQuantityInit=45;
 		varQuantityMin=0;
-		varQuantityMax=2700;
+		varQuantityMax=45;
 		hiddenSelections[]=
 		{
 			"camoGround"
@@ -175,10 +194,10 @@ class CfgVehicles
 		class EnergyManager
 		{
 			autoSwitchOff=0;
-			energyAtSpawn=15;
+			energyAtSpawn=10;
 			energyStorageMax=100;
 			energyUsagePerSecond=1;
-			updateInterval=59;
+			updateInterval=60;
 		};
 		headSelectionsToHide[]=
 		{
@@ -223,6 +242,167 @@ class CfgVehicles
 		};
 		soundVoiceType="gasmask";
 		soundVoicePriority=5;
+	};
+	class DecontaminationSpray: Inventory_Base
+	{
+		scope=2;
+		displayName="DecontaminationSpray";
+		descriptionShort="Use the spray on clothes or weapons to remove radiation";
+		model="\dz\gear\medical\DisinfectantSpray.p3d";
+		quantityBar=1;
+		weight=50;
+		stackedUnit="ml";
+		itemSize[]={1,3};
+		varLiquidTypeInit=32768;
+		varQuantityInit=500;
+		varQuantityMin=0;
+		varQuantityMax=500;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=50;
+					healthLevels[]=
+					{
+
+						{
+							1,
+
+							{
+								"DZ\gear\medical\data\Loot_DisinfectantSpray.rvmat"
+							}
+						},
+
+						{
+							0.69999999,
+
+							{
+								"DZ\gear\medical\data\Loot_DisinfectantSpray.rvmat"
+							}
+						},
+
+						{
+							0.5,
+
+							{
+								"DZ\gear\medical\data\Loot_DisinfectantSpray_damage.rvmat"
+							}
+						},
+
+						{
+							0.30000001,
+
+							{
+								"DZ\gear\medical\data\Loot_DisinfectantSpray_damage.rvmat"
+							}
+						},
+
+						{
+							0,
+
+							{
+								"DZ\gear\medical\data\Loot_DisinfectantSpray_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class WaterBottle_in_B
+				{
+					soundSet="WaterBottle_in_B_SoundSet";
+					id=202;
+				};
+				class WaterBottle_in_C
+				{
+					soundSet="WaterBottle_in_C_SoundSet";
+					id=203;
+				};
+				class WaterBottle_in_C1
+				{
+					soundSet="WaterBottle_in_C1_SoundSet";
+					id=204;
+				};
+				class WaterBottle_out_A
+				{
+					soundSet="WaterBottle_out_A_SoundSet";
+					id=205;
+				};
+				class WaterBottle_out_B
+				{
+					soundSet="WaterBottle_out_B_SoundSet";
+					id=206;
+				};
+				class disinfectant_loop
+				{
+					soundSet="disinfectant_loop_SoundSet";
+					id=212;
+				};
+				class disinfectant_loop2
+				{
+					soundSet="disinfectant_loop_SoundSet";
+					id=213;
+				};
+				class pickUpItem
+				{
+					soundSet="pickUpWatterBottle_SoundSet";
+					id=797;
+				};
+			};
+		};
+	};
+	class ShowerKit: Inventory_Base
+	{
+		scope=2;
+		displayName="shower kit";
+		descriptionShort="Shower Kit";
+		model="BastionMod\BastionDangerousZone\data\Box\ToxicBox.p3d";
+		itemSize[]={5,5};
+		carveNavmesh=1;
+		canBeDigged=0;
+		simulation="inventoryItem";
+		physLayer="item_small";
+		rotationFlags=2;
+		weight=5000;
+		itemBehaviour=2;
+	};
+	class DecontaminationShower: Inventory_Base
+	{
+		scope=2;
+		displayName="Decontamination shower";
+		descriptionShort="This Decontamination shower needs a gasoline tank full of water to work. Use it do decontaminate the clothe that you wear and reduce the radiation effect to the state 1";
+		model="BastionMod\BastionDangerousZone\data\Shower\ToxicShower.p3d";
+		attachments[]=
+		{
+			"ShowerTank"
+		};
+		bounding="BSphere";
+		overrideDrawArea="3.0";
+		forceFarBubble="true";
+		handheld="true";
+		carveNavmesh=1;
+		canBeDigged=0;
+		weight=40000;
+		itemSize[]={10,10};
+		itemBehaviour=2;
+		rotationFlags=2;
+		hologramMaterial="DecontaminationShower";
+		hologramMaterialPath="BastionMod\BastionDangerousZone\data\Box\data"
+		class EnergyManager
+		{
+			hasIcon=1;
+			autoSwitchOff=1;
+			energyAtSpawn=10;
+			energyStorageMax=100;
+			energyUsagePerSecond=1;
+			updateInterval=30;
+		};
 	};
 	class Edible_Base;
 	class PillsBottle: Edible_Base
@@ -319,6 +499,7 @@ class CfgVehicles
 	};
 	class dz_AntiRadPills: PillsBottle
 	{
+		scope=2;
 		displayName="Radiation blocking tablets";
 		descriptionShort="The tablets helps you to get rid received radiation dose and offers some minor radiation protection too.";
 		model="\dz\gear\medical\VitaminBottle.p3d";
@@ -332,6 +513,7 @@ class CfgVehicles
 	};
 	class dz_RadPillsTreament: PillsBottle
 	{
+		scope=2;
 		displayName="Radiation treatment tablets";
 		descriptionShort="The tablets helps you to recover after having being in contact with an high level of radiation.";
 		model="\dz\gear\medical\VitaminBottle.p3d";
@@ -345,6 +527,26 @@ class CfgVehicles
 	};
 	class HouseNoDestruct;
 	class GreenSpore: HouseNoDestruct
+	{
+		scope=2;
+		displayName="Spore";
+		forceFarBubble="true";
+		carveNavmesh=1;
+		rotationFlags=2;
+		itemSize[]={1,1};
+		weight=1000000;
+	};
+	class WeirdGreenSpore: HouseNoDestruct
+	{
+		scope=2;
+		displayName="Spore";
+		forceFarBubble="true";
+		carveNavmesh=1;
+		rotationFlags=2;
+		itemSize[]={1,1};
+		weight=1000000;
+	};
+	class WeirdGreenSpore2: HouseNoDestruct
 	{
 		scope=2;
 		displayName="Spore";
@@ -397,13 +599,78 @@ class CfgVehicles
 };
 class CfgSoundShaders
 {
-	class dz_Geiger_SoundShader
+	class dz_Geiger_Intermediate_SoundShader
 	{
 		samples[]=
 		{
 
 			{
-				"BastionMod\BastionDangerousZone\data\Sounds\Geiger_Counter_Sound",
+				"BastionMod\BastionDangerousZone\data\Sounds\Geiger_Counter_Sound_Intermediate",
+				1
+			}
+		};
+		range=15;
+		volume=1.2;
+	};
+	class dz_Geiger_Low_SoundShader
+	{
+		samples[]=
+		{
+
+			{
+				"BastionMod\BastionDangerousZone\data\Sounds\Geiger_Counter_Sound_Low",
+				1
+			}
+		};
+		range=15;
+		volume=1.2;
+	};
+	class dz_Geiger_High_SoundShader
+	{
+		samples[]=
+		{
+
+			{
+				"BastionMod\BastionDangerousZone\data\Sounds\Geiger_Counter_Sound_VeryHigh",
+				1
+			}
+		};
+		range=15;
+		volume=1.2;
+	};
+	class dz_Geiger_VeryIntermediate_SoundShader
+	{
+		samples[]=
+		{
+
+			{
+				"BastionMod\BastionDangerousZone\data\Sounds\Geiger_Counter_Sound_VeryIntermediate",
+				1
+			}
+		};
+		range=15;
+		volume=1.2;
+	};
+	class dz_Geiger_VeryLow_SoundShader
+	{
+		samples[]=
+		{
+
+			{
+				"BastionMod\BastionDangerousZone\data\Sounds\Geiger_Counter_Sound_VeryLow",
+				1
+			}
+		};
+		range=15;
+		volume=1.2;
+	};
+	class dz_Geiger_VeryHigh_SoundShader
+	{
+		samples[]=
+		{
+
+			{
+				"BastionMod\BastionDangerousZone\data\Sounds\Geiger_Counter_Sound_VeryHigh",
 				1
 			}
 		};
@@ -422,14 +689,74 @@ class CfgSoundShaders
 		range=5;
 		volume=0.5;
 	};
+	class dz_Shower_SoundShader
+	{
+		samples[]=
+		{
+			{
+				"BastionMod\BastionDangerousZone\data\Sounds\Shower",
+				1
+			}
+		};
+		range=15;
+		volume=1.2;
+	};
+};
+class CfgNonAIVehicles
+{
+	class ProxyAttachment;
+	class Proxyjerrycan: ProxyAttachment
+	{
+		scope=2;
+		inventorySlot[]=
+		{
+			"ShowerTank"
+		};
+		model="\DZ\vehicles\parts\jerrycan.p3d";
+	};
 };
 class CfgSoundSets
 {
-	class dz_Geiger_SoundSet
+	class dz_Geiger_Intermediate_SoundSet
 	{
 		soundShaders[]=
 		{
-			"dz_Geiger_SoundShader"
+			"dz_Geiger_Intermediate_SoundShader"
+		};
+	};
+	class dz_Geiger_Low_SoundSet
+	{
+		soundShaders[]=
+		{
+			"dz_Geiger_Low_SoundShader"
+		};
+	};
+	class dz_Geiger_High_SoundSet
+	{
+		soundShaders[]=
+		{
+			"dz_Geiger_High_SoundShader"
+		};
+	};
+	class dz_Geiger_VeryIntermediate_SoundSet
+	{
+		soundShaders[]=
+		{
+			"dz_Geiger_VeryIntermediate_SoundShader"
+		};
+	};
+	class dz_Geiger_VeryLow_SoundSet
+	{
+		soundShaders[]=
+		{
+			"dz_Geiger_VeryLow_SoundShader"
+		};
+	};
+	class dz_Geiger_VeryHigh_SoundSet
+	{
+		soundShaders[]=
+		{
+			"dz_Geiger_VeryHigh_SoundShader"
 		};
 	};
 	class dz_Geiger_SoundSet_Switch
@@ -437,6 +764,13 @@ class CfgSoundSets
 		soundShaders[]=
 		{
 			"dz_Geiger_SoundShader_Switch"
+		};
+	};
+	class dz_Shower_SoundSet
+	{
+		soundShaders[]=
+		{
+			"dz_Shower_SoundShader"
 		};
 	};
 };

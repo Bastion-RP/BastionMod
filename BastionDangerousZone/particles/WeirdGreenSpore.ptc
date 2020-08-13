@@ -1,0 +1,60 @@
+EffectDef {
+ MinFPS 30
+ Emitors {
+  EmitorDef explo_dust_01_up_slow {
+   ShapeType Box
+   ShapeSize 10 20 20
+   ConeAngle 0 0 1000
+   MaxNum 800
+   BirthRate 10
+   Offset 0 2 0
+   Angles 62 -86 50
+   LocalTransform 0
+   Material "{894D0DB225E7DED7}MyDayZ_SpawnSelect/Particles/materials/enviroment/blood_red_02.emat"
+   SizeMultiplier 30
+   SizeRND 10
+   RandomRotDir 0
+   RotMultiplier 0
+   StreakFullUV 0
+   VelAngle 0
+   RandomAngle 0
+   Sort 0
+   Velocity 1
+   VelocityRND 1
+   AirResistance 0
+   AirResistanceRND 0
+   GravityMultiply 0
+   GravityMultiplyRND 0
+   Wind 0
+   RandomFrame 1
+   LifeTime 40
+   LifeTimeRND 10
+   Color {
+    0 0.2532 0.4684 0.3671 1 0.0886 0.3924 0.2468
+   }
+   Alpha {
+    0 0 0.23586 0.55696 0.71131 0.63291 1 0.4557
+   }
+   RotationSpeed {
+    0 0.1962 1 0.58861
+   }
+   Size {
+    0 1 1 1
+   }
+   EffectTime 10
+   Repeat 1
+   ColorMast {
+    0 0.1266 0.3924 0.2468 1 0.2025 0.4494 0.3418
+   }
+   AlphaMast {
+    0 0.46835 1 0.56329
+   }
+   SizeMast {
+    0 0.56962 1 0.59494
+   }
+   BRateMast {
+    0 0.79747 1 0.89241
+   }
+  }
+ }
+}

@@ -70,6 +70,7 @@ modded class GP5GasMask extends ClothingBase
 		{
 			MutePlayer(player,false);
 			m_CanStart=false;
+			GetCompEM().SwitchOff();
 		}
 	}
 
@@ -110,7 +111,7 @@ modded class GP5GasMask extends ClothingBase
 	override void EEItemAttached ( EntityAI item, string slot_name )
 	{
 		super.EEItemAttached( item, slot_name );
-		Print(slot_name);
+		//Print(slot_name);
 		CanStartGasMask(item,slot_name);
 	}
 
@@ -119,9 +120,9 @@ modded class GP5GasMask extends ClothingBase
 		//Check if the server owner put the filter feature on, if not, the gasmask doesn't start
 
 		ItemBase m_filter = ItemBase.Cast(item);
-		if(m_filter.GetQuantity() >= 61 && m_CanStart)
+		if(m_filter.GetQuantity() >= 1 && m_CanStart)
 		{
-			m_filter.AddQuantity(-60);
+			m_filter.AddQuantity(-1);
 			GetCompEM().AddEnergy(-1*GetCompEM().GetEnergy() + m_WorkingTimePerPills);
 			GetCompEM().SwitchOn();
 			//Print("CanStartGasMask: GP5GasMask :"+m_filter.GetQuantity().ToString());
@@ -134,7 +135,6 @@ modded class GP5GasMask extends ClothingBase
 	{
 		if ( !GetCompEM().HasEnoughStoredEnergy() )
 			GetCompEM().SwitchOff();
-
 	}
 
 	override void OnWork ( float consumed_energy )
@@ -152,11 +152,6 @@ modded class GP5GasMask extends ClothingBase
 			PlayerBase player;
 			Class.CastTo(player, GetHierarchyRootPlayer());
 
-			#ifdef DZDEBUG
-			if(!player)return;
-			GetDZLogger().LogInfo("GasMask_OnWork on"+"player:"+player.GetIdentity().GetName()+"current energy: "+GetCompEM().GetEnergy().ToString());
-			#endif
-
 			if(player && !player.IsAlive())
 			{
 				//Print("OnWork : player is dead");
@@ -164,11 +159,10 @@ modded class GP5GasMask extends ClothingBase
 				return;
 			}
 
-			if(!m_CanStart)
-			{
-				//Print("OnWork : !m_CanStart");
-				GetCompEM().SwitchOff();
-			}
+			#ifdef DZDEBUG
+			if(!player)return;
+			GetDZLogger().LogInfo("GasMask_OnWork on"+"player:"+player.GetIdentity().GetName()+"current energy: "+GetCompEM().GetEnergy().ToString());
+			#endif
 		}
 	}
 
@@ -182,14 +176,10 @@ modded class GP5GasMask extends ClothingBase
 		//Print("OnWorkStop");
 		PlayerBase player;
 		Class.CastTo(player, GetHierarchyRootPlayer());
-		if( player && player.IsInside.DZStatut && player.IsInside.DZType == 1)
-		{
-			player.LowLevelRadiationCheckLite();
-		}
 
 		if( player && player.IsInside.DZStatut && player.IsInside.DZType == 2)
 		{
-			player.HighLevelRadiationCheckLite();
+			player.HighLevelRadiationCheck();
 		}
 
 		if( player && player.IsInside.DZStatut && player.IsInside.DZType == 3)
@@ -205,7 +195,7 @@ modded class GP5GasMask extends ClothingBase
 		if (m_gasmaskfilter)
 		{
 			//Print("ConsumeFilter : m_gasmaskfilter");
-			m_gasmaskfilter.AddQuantity(-60);
+			m_gasmaskfilter.AddQuantity(-1);
 			GetCompEM().AddEnergy(m_WorkingTimePerPills);
 		}
 	}

@@ -13,8 +13,8 @@ class FillFilter extends RecipeBase
 		m_MinDamageIngredient[0] = -1;//-1 = disable check
 		m_MaxDamageIngredient[0] = -1;//-1 = disable check
 
-		m_MinQuantityIngredient[0] = 60;//-1 = disable check
-		m_MaxQuantityIngredient[0] = 2640;//-1 = disable check
+		m_MinQuantityIngredient[0] = 1;//-1 = disable check
+		m_MaxQuantityIngredient[0] = 45;//-1 = disable check
 
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
 		m_MaxDamageIngredient[1] = -1;//-1 = disable check
@@ -63,6 +63,6 @@ class FillFilter extends RecipeBase
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
-		ingredients[0].SetQuantity(ingredients[0].GetQuantity()+60);
+		ingredients[0].SetQuantity(ingredients[0].GetQuantity()+1);
 	}
 };

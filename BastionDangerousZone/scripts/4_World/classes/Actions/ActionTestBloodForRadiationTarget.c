@@ -20,14 +20,28 @@ class ActionTestForRadiationTarget: ActionContinuousBase
 
 	override void CreateConditionComponents()
 	{
-
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
 	}
 
 	override string GetText()
 	{
-		return "#check_radiation_target";
+		return "Get Radiation Level Target";
+	}
+
+	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	{
+		if ( item )
+		{
+			BRP_Dosimeter dos = BRP_Dosimeter.Cast(item);
+
+			if ( dos  && dos.GetCompEM().IsWorking())
+			{
+					return true;
+			}
+			else return false;
+		}
+		return true;
 	}
 
 	override void OnFinishProgressServer( ActionData action_data )
@@ -35,6 +49,7 @@ class ActionTestForRadiationTarget: ActionContinuousBase
 		PlayerBase ntarget = PlayerBase.Cast( action_data.m_Target.GetObject() );
 		string message = "Total Radiation Exposure : " + ntarget.GetSingleAgentCount(DZAgents.RADSICK).ToString();
 		NotificationSystem.SendNotificationToPlayerIdentityExtended(ntarget.GetIdentity(), 3, "Radiation Zone", message, "BastionMod/BastionDangerousZone/images/radiation.paa");
+		NotificationSystem.SendNotificationToPlayerIdentityExtended(action_data.m_Player.GetIdentity(), 3, "Radiation Zone", message, "BastionMod/BastionDangerousZone/images/radiation.paa");
 
 		#ifdef DZDEBUG
 		GetDZLogger().LogInfo("playerTarget:"+ntarget.GetIdentity().GetName()+"action_dosimeter:"+message);

@@ -21,6 +21,43 @@ class GreenSpore extends House
 	}
 }
 
+class WeirdGreenSpore extends House
+{
+	Particle m_ParticleEfx;
+
+	void WeirdGreenSpore()
+	{
+		if (GetGame().IsClient() || !GetGame().IsMultiplayer()){
+			m_ParticleEfx = Particle.PlayOnObject(ParticleList.HAZARDZONE_WEIRDGREEN, this);
+		}
+	}
+
+	void ~WeirdGreenSpore()
+	{
+		if (m_ParticleEfx)
+			m_ParticleEfx.Stop();
+	}
+}
+
+class WeirdGreenSpore2 extends House
+{
+	Particle m_ParticleEfx;
+	Particle m_Mist;
+
+	void WeirdGreenSpore2()
+	{
+		if (GetGame().IsClient() || !GetGame().IsMultiplayer()){
+			m_ParticleEfx = Particle.PlayOnObject(ParticleList.HAZARDZONE_WEIRDGREEN2, this);
+		}
+	}
+
+	void ~WeirdGreenSpore2()
+	{
+		if (m_ParticleEfx)
+			m_ParticleEfx.Stop();
+	}
+}
+
 class PurpleSpore extends House
 {
 	Particle m_ParticleEfx;
