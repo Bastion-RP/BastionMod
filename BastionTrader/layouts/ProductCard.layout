@@ -1,0 +1,48 @@
+PanelWidgetClass ProductWrapper {
+ color 0 0 0 0.1961
+ size 115 120
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ style rover_sim_colorable
+ {
+  ItemPreviewWidgetClass ProductItemPreview {
+   ignorepointer 1
+   position 0 0.02
+   size 0.65 0.6
+   halign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+  }
+  MultilineTextWidgetClass ProductName {
+   ignorepointer 1
+   position 0 0.07
+   size 0.91 0.234
+   halign center_ref
+   valign bottom_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   text "Very long name of product"
+   "exact text" 1
+   "text halign" center
+   "text valign" center
+   wrap 1
+   "condense whitespace" 1
+   "strip newlines" 1
+  }
+  ButtonWidgetClass ProductBtn {
+   color 0 0 0 0.6078
+   size 1 1
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   userID 302
+  }
+ }
+}
