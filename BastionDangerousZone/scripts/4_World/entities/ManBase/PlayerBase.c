@@ -243,11 +243,8 @@ modded class PlayerBase extends ManBase
 				if (Clothes != NULL && !Clothes.IsRuined())
 				{
 					HandleRadAgentsOnClothesWhileInRadZone(ItemBase.Cast(Clothes));
-					#ifdef DZDEBUG
-					#endif
-					return;
+					continue;
 				}
-				else continue;
 		  }
     }
 	}
