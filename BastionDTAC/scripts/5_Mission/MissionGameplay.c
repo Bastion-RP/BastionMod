@@ -46,7 +46,7 @@ modded class MissionGameplay {
         if (input.LocalPress("DTACOpenChoiceMenu", false)) {
             dtacChoiceMenu = BST_DTACChoiceMenu.Cast(GetGame().GetUIManager().GetMenu());
 
-            if (dtacChoiceMenu) {
+            if (dtacChoiceMenu && !dtacChoiceMenu.IsShowingRecord()) {
                 dtacChoiceMenu.Close();
             } else {
                 GetUIManager().EnterScriptedMenu(BST_DTACMenu.CHOICE_MENU, null);
