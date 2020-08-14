@@ -22,6 +22,7 @@ enum BastionClasses {
 	ISF_A,
 	ISF_B,
 	ISF_C,
+	ISF_O,
 	ISF_D,
 	ISF_E,
 	OIM_A,
