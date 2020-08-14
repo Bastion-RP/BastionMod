@@ -46,13 +46,10 @@ class BST_DTACServerRPCHandler : PluginBase {
                 {
                     Param5<string, string, string, string, string> dataPOSTCriminal;
 
-                    Print("[DEBUG] SERVER_API_POST_CRIMINAL_RECORD | READING DATA ");
                     if (!ctx.Read(dataPOSTCriminal)) { return; }
-                    Print("[DEBUG] SERVER_API_POST_CRIMINAL_RECORD | DATA READ ");
                     player = PlayerBase.Cast(target);
 
                     if (!player) { return; }
-                    Print("[DEBUG] SERVER_API_POST_CRIMINAL_RECORD | PLAYER FOUND ");
                     string txtCrime, txtCrimeDescription, txtCrimePunishment, txtCrimeDate, txtTargetId;
 
                     txtCrime = dataPOSTCriminal.param1.Trim();
@@ -62,9 +59,7 @@ class BST_DTACServerRPCHandler : PluginBase {
                     txtTargetId = dataPOSTCriminal.param5;
 
                     if (txtCrime.Length() <= 0 || txtCrimeDescription.Length() <= 0 || txtCrimePunishment.Length() <= 0 || txtCrimeDate.Length() <= 0 || txtTargetId.Length() <= 0) { return; }
-                    Print("[DEBUG] SERVER_API_POST_CRIMINAL_RECORD | TEXT CORRECT ");
                     if (!GetDTACManager().IsRequiredClass(GetDTACServerManager().GetConfig().GetRequiredAPIClasses(), player.GetMultiCharactersPlayerClass())) { return; }
-                    Print("[DEBUG] SERVER_API_POST_CRIMINAL_RECORD | RANK CORRECT ");
                     apiCore = GetRestApi();
 
                     if (!apiCore) {
@@ -74,7 +69,6 @@ class BST_DTACServerRPCHandler : PluginBase {
                     apiCallback = new RestCallback();
                     apiPassword = GetDTACServerManager().GetConfig().GetCriminalPassword();
                     apiRequest = "criminalrecords.php?password=" + apiPassword + "&charId=" + txtTargetId + "&description=" + txtCrime + "&crimeCommited=" + txtCrimeDescription + "&punishment=" + txtCrimePunishment + "&dateCommited=" + txtCrimeDate + "&creatorCharId=" +  player.GetMultiCharactersPlayerId();
-                    Print("[DEBUG] SERVER_API_POST_CRIMINAL_RECORD | REQUEST BEING SENT=" + apiRequest);
 
                     apiCTX.POST(apiCallback, apiRequest, "");
                     break;

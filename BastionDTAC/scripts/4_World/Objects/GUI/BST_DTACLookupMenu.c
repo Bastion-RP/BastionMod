@@ -394,7 +394,6 @@ class BST_DTACLookupMenu {
 
                     SetRateLimited();
                     HideCreateRecordPanels();
-                    Print("[DEBUG] SENDING CRIMINAL CREATE RPC...");
                     GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_DTACRPC.SERVER_API_POST_CRIMINAL_RECORD, paramsPostCriminal, true);
                     break;
                 }
@@ -410,7 +409,6 @@ class BST_DTACLookupMenu {
 
                         SetRateLimited();
                         HideCreateRecordPanels();
-                        Print("[DEBUG] SENDING GENERAL CREATE RPC...");
                         GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_DTACRPC.SERVER_API_POST_GENERAL_RECORD, paramsPOSTGeneral, true);
                     }
                     break;
