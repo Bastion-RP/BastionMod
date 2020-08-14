@@ -32,7 +32,12 @@ class ActionPackShower: ActionContinuousBase
 	{
 		if ( target && target.GetObject().IsKindOf("DecontaminationShower"))
 		{
-			return true;
+      DecontaminationShower sh = DecontaminationShower.Cast(target.GetObject());
+      if(sh.FindAttachmentBySlotName("ShowerTank") == NULL)
+      {
+        return true;
+      }
+			return false;
 		}
 		return false;
 	}

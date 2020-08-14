@@ -1,4 +1,4 @@
-class DecontaminationSpray extends Inventory_Base
+class DecontaminationSpray extends ItemBase
 {
 	override void SetActions()
 	{

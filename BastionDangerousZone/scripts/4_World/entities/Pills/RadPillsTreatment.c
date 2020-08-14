@@ -1,4 +1,4 @@
-class dz_RadPillsTreament : Edible_Base
+class BRP_RadPillsTreament : Edible_Base
 {
 	override void OnConsume(float amount, PlayerBase consumer)
 	{

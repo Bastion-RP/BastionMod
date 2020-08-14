@@ -10,8 +10,6 @@ modded class ActionConstructor
 		actions.Insert(ActionTurnOnDecontaminationShower);
 		actions.Insert(ActionTurnOffDecontaminationShower);
 		actions.Insert(ActionGetRadClotheLevel);
-		actions.Insert(ActionUnpackShowerKit);
-		actions.Insert(ActionDeployShower);
 		actions.Insert(ActionPackShower);
 	}
 };

@@ -11,17 +11,17 @@ class DecontaminationShower extends ItemBase
   Particle m_Particle5Efx;
   Particle m_Particle6Efx;
 
-  vector m_ParticleLocal1Pos = Vector(-1.702,0.493,-0.01);
+  vector m_ParticleLocal1Pos = Vector(-1.702,0.493,-0.05);
 
-  vector m_ParticleLocal2Pos = Vector(-1.702,0.838,-0.01);
+  vector m_ParticleLocal2Pos = Vector(-1.702,0.838,-0.05);
 
-  vector m_ParticleLocal4Pos = Vector(-1.702,1.730,-0.01);
+  vector m_ParticleLocal4Pos = Vector(-1.702,1.730,-0.05);
 
-  vector m_ParticleLocal3Pos = Vector(-1.702,1.196,-0.01);
+  vector m_ParticleLocal3Pos = Vector(-1.702,1.196,-0.05);
 
-  vector m_ParticleLocal5Pos = Vector(-1.086,2.102,-0.01);
+  vector m_ParticleLocal5Pos = Vector(-1.086,2.102,-0.05);
 
-  vector m_ParticleLocal6Pos = Vector(-0.569,2.102,-0.01);
+  vector m_ParticleLocal6Pos = Vector(-0.569,2.102,-0.05);
 
   ref Timer 					m_SoundLoopStartTimerShower;
 
@@ -131,11 +131,36 @@ class DecontaminationShower extends ItemBase
 			if (proche_objects.Get(i).IsWoodBase() ) continue;
 			if(proche_objects.Get(i).IsKindOf("SurvivorBase"))
 			{
-				FindPlayer = proche_objects.Get(i);
+				FindPlayer = PlayerBase.Cast(proche_objects.Get(i));
 				CleanPlayer(FindPlayer);
 			}
 		}
   }
+
+  override bool CanPutIntoHands( EntityAI parent )
+	{
+		if( !super.CanPutIntoHands( parent ) )
+		{
+			return false;
+		}
+
+		return false;
+	}
+
+	override bool CanPutInCargo( EntityAI parent )
+	{
+		if( !super.CanPutInCargo( parent ) )
+		{
+			return false;
+		}
+
+		return false;
+	}
+
+	bool ConditionOutOfHands( EntityAI player )
+	{
+		return false;
+	}
 
   void CleanPlayer(PlayerBase player)
   {
@@ -153,11 +178,8 @@ class DecontaminationShower extends ItemBase
 				if (Clothes != NULL && !Clothes.IsRuined() && ItemBase.Cast(Clothes).GetRadAgentQuantity() > 0)
 				{
 					ItemBase.Cast(Clothes).InjectRadAgent(0);
-					#ifdef DZDEBUG
-					#endif
-					return;
+					continue;
 				}
-				else continue;
 		  }
     }
 	}
@@ -266,8 +288,6 @@ class DecontaminationShower extends ItemBase
   override void SetActions()
 	{
 		super.SetActions();
-    AddAction(ActionTogglePlaceObject);
-    AddAction(ActionDeployShower);
 		AddAction(ActionTurnOnDecontaminationShower);
 		AddAction(ActionTurnOffDecontaminationShower);
 	}

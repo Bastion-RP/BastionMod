@@ -33,6 +33,10 @@ class AntiRadPillsMdfr: ModifierBase
 	{
 		if( player.GetNotifiersManager() ) player.GetNotifiersManager().ActivateByType(eNotifiers.NTF_PILLS);
 		player.AntiRadPillsActivated = true;
+		if(player.GetSingleAgentCount(DZAgents.RADSICK) > 150)
+		{
+			player.SetRadPoint(150);
+		}
 		#ifdef DZDEBUG
 		GetDZLogger().LogInfo("player:"+player.GetIdentity().GetName()+"Anti_Rad_Pills Activated");
 		#endif
@@ -63,6 +67,6 @@ class AntiRadPillsMdfr: ModifierBase
 
 	override void OnTick(PlayerBase player, float deltaT)
 	{
-			player.AntiRadPillsActivated = true;
+			//player.AntiRadPillsActivated = true;
 	}
 };

@@ -8,7 +8,6 @@ class CfgPatches
 		requiredAddons[]=
 		{
 			"DZ_Data",
-			"DZ_Gear_Medical",
 			"DZ_Characters_Headgear",
 			"DZ_vehicles_parts"
 		};
@@ -369,7 +368,7 @@ class CfgVehicles
 		simulation="inventoryItem";
 		physLayer="item_small";
 		rotationFlags=2;
-		weight=5000;
+		weight=20000;
 		itemBehaviour=2;
 	};
 	class DecontaminationShower: Inventory_Base
@@ -405,11 +404,13 @@ class CfgVehicles
 		};
 	};
 	class Edible_Base;
-	class PillsBottle: Edible_Base
+	class BRP_AntiRadPills: Edible_Base
 	{
 		scope=2;
+		displayName="Radiation blocking tablets";
+		descriptionShort="The tablets helps you to get rid of high radiation dose and offers some minor radiation protection too.";
 		model="\dz\gear\medical\VitaminBottle.p3d";
-		varQuantityInit=5;
+		varQuantityInit=10;
 		varQuantityMin=0;
 		varQuantityMax=10;
 		varQuantityDestroyOnMin=1;
@@ -417,6 +418,16 @@ class CfgVehicles
 		weight=20;
 		stackedUnit="pills";
 		quantityBar=0;
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionDangerousZone\data\Treatment\BRP_TabletBottle_radiation_blockers.paa",
+			"BastionMod\BastionDangerousZone\data\Treatment\BRP_TabletBottle_radiation_blockers.paa",
+			"BastionMod\BastionDangerousZone\data\Treatment\BRP_TabletBottle_radiation_blockers.paa"
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -497,32 +508,113 @@ class CfgVehicles
 			};
 		};
 	};
-	class dz_AntiRadPills: PillsBottle
-	{
-		scope=2;
-		displayName="Radiation blocking tablets";
-		descriptionShort="The tablets helps you to get rid received radiation dose and offers some minor radiation protection too.";
-		model="\dz\gear\medical\VitaminBottle.p3d";
-		varQuantityInit=20;
-		varQuantityMin=0;
-		varQuantityMax=20;
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-	};
-	class dz_RadPillsTreament: PillsBottle
+	class BRP_RadPillsTreament: Edible_Base
 	{
 		scope=2;
 		displayName="Radiation treatment tablets";
 		descriptionShort="The tablets helps you to recover after having being in contact with an high level of radiation.";
-		model="\dz\gear\medical\VitaminBottle.p3d";
+		model="\dz\gear\medical\painkillers2.p3d";
 		varQuantityInit=5;
 		varQuantityMin=0;
 		varQuantityMax=5;
+		varQuantityDestroyOnMin=1;
+		itemSize[]={1,2};
+		weight=20;
+		stackedUnit="pills";
+		quantityBar=0;
 		hiddenSelections[]=
 		{
 			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionDangerousZone\data\Treatment\BRP_Tablets_anti_radiation.paa",
+			"BastionMod\BastionDangerousZone\data\Treatment\BRP_Tablets_anti_radiation.paa",
+			"BastionMod\BastionDangerousZone\data\Treatment\BRP_Tablets_anti_radiation.paa"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=30;
+					healthLevels[]=
+					{
+
+						{
+							1,
+
+							{
+								"DZ\gear\medical\data\painkiller2.rvmat"
+							}
+						},
+
+						{
+							0.69999999,
+
+							{
+								"DZ\gear\medical\data\painkiller2.rvmat"
+							}
+						},
+
+						{
+							0.5,
+
+							{
+								"DZ\gear\medical\data\painkiller2_damage.rvmat"
+							}
+						},
+
+						{
+							0.30000001,
+
+							{
+								"DZ\gear\medical\data\painkiller2_damage.rvmat"
+							}
+						},
+
+						{
+							0,
+
+							{
+								"DZ\gear\medical\data\painkiller2_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
+		class AnimEvents
+		{
+				class SoundWeapon
+				{
+					class Tablets_open
+					{
+						soundSet="Tablets_open_SoundSet";
+						id=201;
+					};
+					class Tablets_catch
+					{
+						soundSet="Tablets_catch_SoundSet";
+						id=202;
+					};
+					class Tablets_close
+					{
+						soundSet="Tablets_close_SoundSet";
+						id=203;
+					};
+					class pickup
+					{
+						soundSet="purificationtablets_pickup_SoundSet";
+						id=797;
+					};
+					class drop
+					{
+						soundset="purificationtablets_drop_SoundSet";
+						id=898;
+					};
+				};
 		};
 	};
 	class HouseNoDestruct;
