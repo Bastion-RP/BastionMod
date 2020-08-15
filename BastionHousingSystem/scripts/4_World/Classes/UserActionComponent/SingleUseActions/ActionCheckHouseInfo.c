@@ -49,7 +49,7 @@ class ActionShowDoorInfo : ActionInteractBase
 		if (GetGame().IsClient())
 		{
 			BuildingBase building;
-			if( Class.CastTo(building, target.GetObject()) )
+			if( Class.CastTo(building, target.GetObject()) && building.IsRentableHouse())
 			{
 				doorIndex = building.GetDoorIndex(target.GetComponentIndex());
 				string plId = player.GetMultiCharactersPlayerId().ToString();
