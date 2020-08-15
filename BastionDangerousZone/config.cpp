@@ -508,18 +508,6 @@ class CfgSoundShaders
 		range=15;
 		volume=1.2;
 	};
-	class dz_Geiger_SoundShader_Switch
-	{
-		samples[]=
-		{
-			{
-				"BastionMod\BastionDangerousZone\data\Sounds\Geiger_Counter_Sound_Switch",
-				1
-			}
-		};
-		range=5;
-		volume=0.5;
-	};
 	class dz_Shower_SoundShader
 	{
 		samples[]=
@@ -588,13 +576,6 @@ class CfgSoundSets
 		soundShaders[]=
 		{
 			"dz_Geiger_VeryHigh_SoundShader"
-		};
-	};
-	class dz_Geiger_SoundSet_Switch
-	{
-		soundShaders[]=
-		{
-			"dz_Geiger_SoundShader_Switch"
 		};
 	};
 	class dz_Shower_SoundSet
