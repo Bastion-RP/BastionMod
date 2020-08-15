@@ -12,6 +12,7 @@ class RadiationAreaSettings
 	float 		RadHighMultiplier;
 	int 			SuitsDamage;
 	int      	CriticalProtection;
+	float 		ClothesQuantityMultiplier;
 	float			AmountGivenAfterCriticalProtection;
 	ref array<ref RadiationZoneLocation> RadiationAreaLocation;
 
@@ -34,6 +35,7 @@ class RadiationAreaSettings
 		RadHighMultiplier = 2.5;
 		SuitsDamage=5;
 		CriticalProtection=70;
+		ClothesQuantityMultiplier=0.15;
 		AmountGivenAfterCriticalProtection = 0.2;
 		JsonFileLoader<RadiationAreaSettings>.JsonSaveFile(DZ_RAD_CONFIG, this);
 	}

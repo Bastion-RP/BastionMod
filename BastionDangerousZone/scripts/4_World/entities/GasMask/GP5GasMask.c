@@ -1,6 +1,6 @@
 modded class GP5GasMask extends ClothingBase
 {
-	static float 			m_WorkingTimePerPills=60;
+	static float 			  m_WorkingTimePerPills=60;
 	protected bool 			m_CanStart;
 	protected bool 			m_IsFilter;
 

@@ -8,7 +8,7 @@ PixelShaderID="Super";
 VertexShaderID="Super";
 class Stage1
 {
-	texture="Bastion\BastionDangerousZone\data\Shower\data\ToxicShower_nohq.paa";
+	texture="BastionMod\BastionDangerousZone\data\Shower\data\ToxicShower_nohq.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -56,7 +56,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="Bastion\BastionDangerousZone\data\Shower\data\Bastion\DangerousZone\data\ToxicShower_smdi.paa";
+	texture="BastionMod\BastionDangerousZone\data\Shower\data\ToxicShower_smdi.paa";
 	uvSource="tex";
 	class uvTransform
 	{
