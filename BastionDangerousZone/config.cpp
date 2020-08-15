@@ -393,7 +393,7 @@ class CfgVehicles
 		itemBehaviour=2;
 		rotationFlags=2;
 		hologramMaterial="DecontaminationShower";
-		hologramMaterialPath="BastionMod\BastionDangerousZone\data\Box\data"
+		hologramMaterialPath="BastionMod\BastionDangerousZone\data\Box\data";
 		class EnergyManager
 		{
 			hasIcon=1;
