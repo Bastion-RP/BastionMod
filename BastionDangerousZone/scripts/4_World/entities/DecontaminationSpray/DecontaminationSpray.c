@@ -1,4 +1,4 @@
-class DecontaminationSpray extends ItemBase
+class BRP_DecontaminationSpray extends ItemBase
 {
 	override void SetActions()
 	{

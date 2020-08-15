@@ -1,8 +1,8 @@
-modded class Wrench extends ItemBase
+/*modded class Wrench extends ItemBase
 {
   override void SetActions()
 	{
 		super.SetActions();
-		AddAction(ActionPackShower);
+		//AddAction(ActionPackShower);
 	}
-}
+}*/

@@ -1,4 +1,4 @@
-class DecontaminationShower extends ItemBase
+class BRP_DecontaminationShower extends BRP_Item
 {
   static const string			SHOWER_SOUND 				= "dz_Shower_SoundSet";
   ref array<string> m_SLOTS = {"Head","Shoulder","Melee","Headgear","Mask","Eyewear","Hands","LeftHand","Gloves","Armband","Vest","Body","Back","Hips","Legs","Feet"};
@@ -29,15 +29,20 @@ class DecontaminationShower extends ItemBase
 
   bool            m_CanWork = false;
 
-  void DecontaminationShower()
+  void BRP_DecontaminationShower()
   {
       SetAllowDamage(false);
   }
 
-  void ~DecontaminationShower()
+  void ~BRP_DecontaminationShower()
   {
 
   }
+
+  override string Get_KitName()
+	{
+		return "BRP_ShowerKit";
+	}
 
   override void OnWorkStart()
   {
@@ -288,8 +293,8 @@ class DecontaminationShower extends ItemBase
   override void SetActions()
 	{
 		super.SetActions();
-		AddAction(ActionTurnOnDecontaminationShower);
-		AddAction(ActionTurnOffDecontaminationShower);
+		AddAction(ActionTurnOnBRP_DecontaminationShower);
+		AddAction(ActionTurnOffBRP_DecontaminationShower);
 	}
 
 }

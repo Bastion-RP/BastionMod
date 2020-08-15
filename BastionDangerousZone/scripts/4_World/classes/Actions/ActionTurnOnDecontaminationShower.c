@@ -1,6 +1,6 @@
-class ActionTurnOnDecontaminationShower: ActionInteractBase
+class ActionTurnOnBRP_DecontaminationShower: ActionInteractBase
 {
-	void ActionTurnOnDecontaminationShower()
+	void ActionTurnOnBRP_DecontaminationShower()
 	{
 		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_OPENDOORFW;
 		m_StanceMask        = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
@@ -16,7 +16,7 @@ class ActionTurnOnDecontaminationShower: ActionInteractBase
 		Object targetObject = target.GetObject();
 		if ( targetObject )
 		{
-			DecontaminationShower shower = DecontaminationShower.Cast( targetObject );
+			BRP_DecontaminationShower shower = BRP_DecontaminationShower.Cast( targetObject );
 
 			if (shower.FindAttachmentBySlotName("ShowerTank") != NULL)
 			{
@@ -40,9 +40,9 @@ class ActionTurnOnDecontaminationShower: ActionInteractBase
 		if (targetObject)
 		{
 			EntityAI target_EAI = EntityAI.Cast( targetObject );
-			if(target_EAI.IsKindOf("DecontaminationShower"))
+			if(target_EAI.IsKindOf("BRP_DecontaminationShower"))
 			{
-				DecontaminationShower sh = DecontaminationShower.Cast(target_EAI);
+				BRP_DecontaminationShower sh = BRP_DecontaminationShower.Cast(target_EAI);
 				sh.CanStartShower();
 			}
 		}
