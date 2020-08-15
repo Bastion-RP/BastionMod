@@ -68,7 +68,6 @@ class ActionHackISFWeapon: ActionContinuousBase
 			else
 			{
 				wpn.SetHealth(0);
-				hackTool.HackFailed(wpn);
 			}
 		}
 	}
