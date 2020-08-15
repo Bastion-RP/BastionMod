@@ -65,7 +65,7 @@ modded class PlayerBase extends ManBase
 			//Geiger Counter
 			GetDayZPlayerType().AddItemInHandsProfileIK("BRP_Dosimeter",  "dz/anims/workspaces/player/player_main/props/player_main_1h_torch.asi", toolsOneHanded,	"dz/anims/anm/player/ik/gear/chemlight.anm");
 			//Shower Kit
-			GetDayZPlayerType().AddItemInHandsProfileIK("ShowerKit", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,			 		"dz/anims/anm/player/ik/heavy/wooden_crate.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("BRP_ShowerKit", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,			 		"dz/anims/anm/player/ik/heavy/wooden_crate.anm");
 		}
 	}
 

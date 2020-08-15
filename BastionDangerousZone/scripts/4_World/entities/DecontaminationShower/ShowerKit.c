@@ -1,33 +1,16 @@
-class ShowerKit extends ItemBase
+class BRP_ShowerKit extends BRP_Kit
 {
-  void ShowerKit()
+  void BRP_ShowerKit()
   {
 
   }
 
-  //! returns item behaviour of item (more in ItemBase)
-	/*override bool IsHeavyBehaviour()
+  override string Get_ItemName()
 	{
-		return true;
-	}*/
-
-	//! returns item behaviour of item (more in ItemBase)
-	/*override bool IsOneHandedBehaviour()
-	{
-		return false;
-	}*/
-
-	//! returns item behaviour of item (more in ItemBase)
-	override bool IsTwoHandedBehaviour()
-	{
-		return true;
+		return "BRP_DecontaminationShower";
 	}
 
-  //================================================================
-    // ADVANCED PLACEMENT
-    //================================================================
-
-    override void OnPlacementComplete( Man player )
+    /*override void OnPlacementComplete( Man player )
     {
         super.OnPlacementComplete( player );
 
@@ -38,7 +21,7 @@ class ShowerKit extends ItemBase
             vector position = player_base.GetLocalProjectionPosition();
             vector orientation = player_base.GetLocalProjectionOrientation();
 
-            DecontaminationShower Shower = DecontaminationShower.Cast(GetGame().CreateObject("DecontaminationShower", pb.GetLocalProjectionPosition(), false ));
+            BRP_DecontaminationShower Shower = BRP_DecontaminationShower.Cast(GetGame().CreateObject("BRP_DecontaminationShower", pb.GetLocalProjectionPosition(), false ));
             Shower.SetPosition( position);
             Shower.SetOrientation( orientation );
 
@@ -46,12 +29,12 @@ class ShowerKit extends ItemBase
         }
 
         SetIsDeploySound( true );
-    }
+    }*/
 
-  override void SetActions()
+  /*override void SetActions()
 	{
 		super.SetActions();
 		AddAction(ActionTogglePlaceObject);
 		AddAction(ActionDeployObject);
-	}
+	}*/
 }

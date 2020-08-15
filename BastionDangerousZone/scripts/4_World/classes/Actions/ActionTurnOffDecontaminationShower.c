@@ -1,6 +1,6 @@
-class ActionTurnOffDecontaminationShower: ActionInteractBase
+class ActionTurnOffBRP_DecontaminationShower: ActionInteractBase
 {
-	void ActionTurnOffDecontaminationShower()
+	void ActionTurnOffBRP_DecontaminationShower()
 	{
 		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_OPENDOORFW;
 		m_StanceMask        = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
@@ -16,7 +16,7 @@ class ActionTurnOffDecontaminationShower: ActionInteractBase
 		Object targetObject = target.GetObject();
 		if ( targetObject )
 		{
-			DecontaminationShower shower = DecontaminationShower.Cast(targetObject);
+			BRP_DecontaminationShower shower = BRP_DecontaminationShower.Cast(targetObject);
 
 			if ( shower  && shower.GetCompEM().IsWorking())
 			{
