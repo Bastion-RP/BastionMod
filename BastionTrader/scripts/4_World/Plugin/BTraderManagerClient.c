@@ -110,8 +110,6 @@ class BTraderManagerClient : PluginBase
 				}
 			}
 		}
-
-		//ShowMap(playerItems);
 	}
 
 	void ShowMap(map<string, float> arr)
