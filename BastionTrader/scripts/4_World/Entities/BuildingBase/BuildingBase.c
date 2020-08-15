@@ -6,11 +6,6 @@ modded class BuildingBase
 	{
 		traderId = -1;
 		RegisterNetSyncVariableInt("traderId");
-
-		if (GetGame().IsServer())
-		{
-			SetAllowDamage(false);
-		}
 	}
 
 	int GetTraderId()
@@ -45,6 +40,6 @@ modded class BuildingBase
 		SetPosition(pos);
 		SetOrientation(ori);
 
-		Print("Spawn trader id:"+GetTraderId()+" at "+pos);
+		SetAllowDamage(false);
 	}
 }

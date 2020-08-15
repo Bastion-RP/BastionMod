@@ -10,8 +10,6 @@ class BTraderManagerServer
 		{
 			delete this;
 		}
-		
-		Print("BTraderManagerServer");
 
 		AllTradersData = new map<int, ref TraderData>();
 
@@ -54,8 +52,6 @@ class BTraderManagerServer
 		}
 
 		CloseFindFile(traderDataFile);
-
-		Print("AllTradersData "+AllTradersData.Count());
 	}
 
 	void InsertTraderData(string filename)
@@ -79,8 +75,6 @@ class BTraderManagerServer
 			AllTradersData.Insert(traderId, traderData);
 			SpawnTrader(traderData);
 		}
-
-		Print("Data loaded id "+traderData.GetId());
 	}
 
 	void SpawnTrader(TraderData data)
@@ -92,7 +86,6 @@ class BTraderManagerServer
 
 		type = data.GetType();
 
-		Print("SpawnTrader::type "+type);
 		obj = GetGame().CreateObject(type, vector.Zero, false, false);
 
 		if (!obj) return;
