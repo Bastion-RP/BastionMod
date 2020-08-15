@@ -237,7 +237,7 @@ class BRP_Dosimeter extends ItemBase
 			if (proche_objects.Get(i).IsWoodBase() ) continue;
 			if(proche_objects.Get(i).IsKindOf("ItemBase"))
 			{
-				ItemBase item = proche_objects.Get(i);
+				ItemBase item = ItemBase.Cast(proche_objects.Get(i));
 				if (item.GetRadAgentQuantity() > 0)
 				{
 					StartSound();

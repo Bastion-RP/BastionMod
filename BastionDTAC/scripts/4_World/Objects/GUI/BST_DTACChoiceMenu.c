@@ -99,6 +99,13 @@ class BST_DTACChoiceMenu : UIScriptedMenu {
         return true;
     }
 
+    bool IsShowingRecord() {
+        if (lookupMenu) {
+            return true;
+        }
+        return false;
+    }
+
     void OnShow() {
         super.OnShow();
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);

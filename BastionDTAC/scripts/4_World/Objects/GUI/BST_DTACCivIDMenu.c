@@ -9,8 +9,6 @@ class BST_DTACCivIDMenu {
         txtID = TextWidget.Cast(wRoot.FindAnyWidget("txtId"));
         txtClass = TextWidget.Cast(wRoot.FindAnyWidget("txtClass"));
 
-        Print("[DEBUG] BST_DTACCivIDMenu | BST_DTACCivIDMenu | Civ Class Num=" + PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass());
-
         txtName.SetText("Name: " + PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerName());
         txtID.SetText("ID: " + PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerId());
 

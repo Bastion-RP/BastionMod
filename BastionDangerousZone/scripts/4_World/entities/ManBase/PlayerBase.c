@@ -40,6 +40,7 @@ modded class PlayerBase extends ManBase
 	int NbSickGivenForRadiation;
 	int NbSickGivenForHazard;
 	float GasMask_Protection
+	float ClothesQuantityMultiplier;
 
 
 	private int val = 0;
@@ -52,6 +53,20 @@ modded class PlayerBase extends ManBase
 		IsInside=new ref InsideDZ;
 		SuitsDamage = new ref array<float>;
 		SuitsDamageHazard = new ref array<float>;
+
+		if ( !GetGame().IsServer() || !GetGame().IsMultiplayer() )
+		{
+      DayzPlayerItemBehaviorCfg     toolsOneHanded = new DayzPlayerItemBehaviorCfg;
+      toolsOneHanded.SetToolsOneHanded();
+
+			DayzPlayerItemBehaviorCfg	heavyItemBehaviour 	= new DayzPlayerItemBehaviorCfg;
+			heavyItemBehaviour.SetHeavyItems();
+
+			//Geiger Counter
+			GetDayZPlayerType().AddItemInHandsProfileIK("BRP_Dosimeter",  "dz/anims/workspaces/player/player_main/props/player_main_1h_torch.asi", toolsOneHanded,	"dz/anims/anm/player/ik/gear/chemlight.anm");
+			//Shower Kit
+			GetDayZPlayerType().AddItemInHandsProfileIK("ShowerKit", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour,			 		"dz/anims/anm/player/ik/heavy/wooden_crate.anm");
+		}
 	}
 
 	//not used since rework
@@ -226,6 +241,28 @@ modded class PlayerBase extends ManBase
 					#endif
 					return;
 				}
+				else
+				{
+					if (SuitsPart != NULL && !SuitsPart.IsRuined())
+					{
+						if(i == 0 && !SuitsPart.GetCompEM().IsWorking())
+						{
+							IsUnprotected=true;
+							GiveRadSickness(NbSickGivenForRadiation);
+							#ifdef DZDEBUG
+							GetDZLogger().LogInfo(this.GetIdentity().GetName()+"'s GasMask doesn't have a filter for High level RadZone, only damage applied on suits");
+							#endif
+							return;
+						}
+
+						if(i == 0 && NbSickGivenForRadiation*(1-GetProtectionLevel(SuitsPart)) != 0)
+						{
+							IsUnprotected=true;
+							GiveRadSickness(NbSickGivenForRadiation*(1 - GasMask_Protection));
+							return;
+						}
+					}
+				}
 			}
 			IsUnprotected=false;
 		}
@@ -248,6 +285,7 @@ modded class PlayerBase extends ManBase
 		  }
     }
 	}
+
 	float GetProtectionLevel(EntityAI attch)
 	{
 		string subclass_path = "CfgVehicles " + attch.GetType() + " Protection ";
@@ -356,13 +394,13 @@ modded class PlayerBase extends ManBase
 	void HandleRadAgentsOnClothesWhileInRadZone(EntityAI item)
 	{
 		ItemBase item_IB = ItemBase.Cast(item);
-		if(NbSickGivenForRadiation*0.15 > item_IB.GetRadAgentQuantity())
+		if(NbSickGivenForRadiation*ClothesQuantityMultiplier > item_IB.GetRadAgentQuantity())
 		{
-			item_IB.InjectRadAgent(NbSickGivenForRadiation*0.1);
+			item_IB.InjectRadAgent(NbSickGivenForRadiation*ClothesQuantityMultiplier);
 		}
 		else
 		{
-			GiveRadSickness(NbSickGivenForRadiation*0.1);
+			GiveRadSickness(NbSickGivenForRadiation*ClothesQuantityMultiplier);
 		}
 	}
 

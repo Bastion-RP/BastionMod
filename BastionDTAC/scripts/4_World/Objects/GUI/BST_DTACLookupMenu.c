@@ -6,8 +6,10 @@ class BST_DTACLookupMenu {
 
     protected ref JsonSerializer _jsSerializer;
     protected ref Widget _root, _parent, _pnlInput, _pnlCiv, _pnlCivData, _pnlCivExpandedData, _pnlExpandedRecord;
-    protected ref Widget _pnlCreateGeneralRecord;
+    protected ref Widget _pnlCreateGeneralRecord, _pnlCreateCriminalRecord;
     protected ref EditBoxWidget _edtInputId;
+    protected ref EditBoxWidget _edtCriminalCrime, _edtCriminalPunishment, _edtCriminalDate;
+    protected ref MultilineEditBoxWidget _edtCriminalDescription;
     protected ref MultilineEditBoxWidget _edtGeneralRecordDesc;
     protected ref TextWidget _txtPnlNameFirst, _txtPnlNameLast, _txtPnlDOB, _txtPnlClass;
     protected ref TextWidget _txtInfoNameFirst, _txtInfoNameLast, _txtInfoId, _txtInfoClass, _txtInfoZone, _txtInfoAlias;
@@ -16,6 +18,7 @@ class BST_DTACLookupMenu {
     protected ref TextWidget _txtRecordCrime, _txtRecordDesc, _txtRecordPunishment, _txtRecordDate;
     protected ref ButtonWidget _btnLookupId, _btnAddGeneralRecord, _btnAddCriminalRecord, _btnShowGeneralRecords, _btnShowCriminalRecords;
     protected ref ButtonWidget _btnGeneralCancel, _btnGeneralCreate;
+    protected ref ButtonWidget _btnCriminalCancel, _btnCriminalCreate;
     protected ref ScrollWidget _scrollerGeneralRecords, _scrollerCriminalRecords;
     protected ref GridSpacerWidget _gridGeneralRecords, _gridCriminalRecords;
     private ref BST_GUIRecords _generalRecords;
@@ -36,6 +39,7 @@ class BST_DTACLookupMenu {
         _pnlCivExpandedData = _root.FindAnyWidget("pnlCivInfo");
         _pnlExpandedRecord = _root.FindAnyWidget("pnlExpandedRecord");
         _pnlCreateGeneralRecord = _root.FindAnyWidget("pnlCreateGeneralRecord");
+        _pnlCreateCriminalRecord = _root.FindAnyWidget("pnlCreateCriminalRecord");
         _edtInputId = EditBoxWidget.Cast(_root.FindAnyWidget("edtInputID"));
         _txtPnlNameFirst = TextWidget.Cast(_root.FindAnyWidget("txtPnlNameFirst"));
         _txtPnlNameLast = TextWidget.Cast(_root.FindAnyWidget("txtPnlNameLast"));
@@ -74,6 +78,15 @@ class BST_DTACLookupMenu {
         _btnGeneralCancel = ButtonWidget.Cast(_root.FindAnyWidget("btnGeneralCancel"));
         // Text Widgets for create general record panel
 
+        // Text Widgets for create criminal create record panel
+        _edtCriminalCrime = EditBoxWidget.Cast(_root.FindAnyWidget("edtCrimRecCrime"));
+        _edtCriminalDescription = MultilineEditBoxWidget.Cast(_root.FindAnyWidget("edtCrimRecDesc"));
+        _edtCriminalPunishment = EditBoxWidget.Cast(_root.FindAnyWidget("edtCrimeRecPunishment"));
+        _edtCriminalDate = EditBoxWidget.Cast(_root.FindAnyWidget("edtCrimRecDate"));
+        _btnCriminalCreate = ButtonWidget.Cast(_root.FindAnyWidget("btnCriminalCreate"));
+        _btnCriminalCancel = ButtonWidget.Cast(_root.FindAnyWidget("btnCriminalCancel"));
+        // Text Widgets for create criminal create record panel
+
         _btnLookupId = ButtonWidget.Cast(_root.FindAnyWidget("btnLookup"));
         _btnAddGeneralRecord = ButtonWidget.Cast(_root.FindAnyWidget("btnAddGeneralRecord"));
         _btnAddCriminalRecord = ButtonWidget.Cast(_root.FindAnyWidget("btnAddCriminalRecord"));
@@ -84,17 +97,6 @@ class BST_DTACLookupMenu {
         _gridGeneralRecords = GridSpacerWidget.Cast(_root.FindAnyWidget("gridGeneralRecords"));
         _gridCriminalRecords = GridSpacerWidget.Cast(_root.FindAnyWidget("gridCriminalRecords"));
 
-        if (!GetDTACManager().IsRequiredClass(GetDTACClientManager().GetConfig().GetRequiredAPIClasses(), PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass())) {
-            _pnlInput.Show(false);
-            _pnlCiv.Show(false);
-            _pnlCivExpandedData.Show(false);
-            _pnlExpandedRecord.Show(false);
-            _pnlCreateGeneralRecord.Show(false);
-            return;
-        }
-        _generalRecords = new BST_GUIRecords(_gridGeneralRecords);
-        _criminalRecords = new BST_GUIRecords(_gridCriminalRecords);
-
         _scrollerGeneralRecords.Show(true);
         _scrollerCriminalRecords.Show(false);
         _btnShowGeneralRecords.SetState(true);
@@ -104,9 +106,20 @@ class BST_DTACLookupMenu {
         _pnlCivExpandedData.Show(false);
         _pnlExpandedRecord.Show(false);
         _pnlCreateGeneralRecord.Show(false);
+        _pnlCreateCriminalRecord.Show(false);
         // Hide zone text since it's not exposed atm
         _txtInfoZone.Show(false);
         //
+
+        if (!GetDTACManager().IsRequiredClass(GetDTACClientManager().GetConfig().GetRequiredAPIClasses(), PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass())) {
+            _pnlInput.Show(false);
+            _scrollerGeneralRecords.Show(false);
+            _btnShowGeneralRecords.SetState(false);
+            return;
+        }
+        _generalRecords = new BST_GUIRecords(_gridGeneralRecords);
+        _criminalRecords = new BST_GUIRecords(_gridCriminalRecords);
+
         BST_DTACCivGeneralDataCallback._civGeneralDataInvoker.Insert(FillGeneralData);
         BST_DTACGeneralRecordCallback._dtacGeneralRecordInvoker.Insert(BuildGeneralRecords);
         BST_DTACCriminalRecordCallBack._dtacCriminalRecordInvoker.Insert(BuildCriminalRecords);
@@ -259,6 +272,7 @@ class BST_DTACLookupMenu {
 
     void HideCreateRecordPanels() {
         _pnlCreateGeneralRecord.Show(false);
+        _pnlCreateCriminalRecord.Show(false);
         _btnAddCriminalRecord.SetState(false);
         _btnAddGeneralRecord.SetState(false);
     }
@@ -344,6 +358,45 @@ class BST_DTACLookupMenu {
                     _btnAddGeneralRecord.SetState(true);
                     break;
                 }
+            case _btnAddCriminalRecord:
+                {
+                    if (!_pnlCreateCriminalRecord.IsVisible()) {
+                        int hr, min, sec, yr, mnth, day;
+
+                        GetHourMinuteSecondUTC(hr, min, sec);
+                        GetYearMonthDayUTC(yr, mnth, day);
+
+                        string formattedDate = "" + mnth + "/" + day + "/" + yr + " " + hr + ":" + min;
+
+                        HideAllPanels();
+                        _edtCriminalCrime.SetText("");
+                        _edtCriminalDescription.SetText("");
+                        _edtCriminalPunishment.SetText("");
+                        _edtCriminalDate.SetText(formattedDate);
+                        _pnlCreateCriminalRecord.Show(true);
+                    }
+                    _btnAddCriminalRecord.SetState(true);
+                    break;
+                }
+            case _btnCriminalCreate:
+                {
+                    string txtCrime, txtCrimeDescription, txtCrimePunishment, txtCrimeDate;
+
+                    _edtCriminalDescription.GetText(txtCrimeDescription);
+
+                    txtCrime = _edtCriminalCrime.GetText().Trim();
+                    txtCrimeDescription = txtCrimeDescription.Trim();
+                    txtCrimePunishment = _edtCriminalPunishment.GetText().Trim();
+                    txtCrimeDate = _edtCriminalDate.GetText().Trim();
+
+                    if (IsRateLimited() || txtCrime.Length() <= 0 || txtCrimeDescription.Length() <= 0 || txtCrimePunishment.Length() <= 0 || txtCrimeDate.Length() <= 0) { return; }
+                    Param paramsPostCriminal = new Param5<string, string, string, string, string>(txtCrime, txtCrimeDescription, txtCrimePunishment, txtCrimeDate, _civGeneralData.GetId());
+
+                    SetRateLimited();
+                    HideCreateRecordPanels();
+                    GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_DTACRPC.SERVER_API_POST_CRIMINAL_RECORD, paramsPostCriminal, true);
+                    break;
+                }
             case _btnGeneralCreate:
                 {
                     // Maybe I want to add a string limit...
@@ -351,16 +404,18 @@ class BST_DTACLookupMenu {
 
                     _edtGeneralRecordDesc.GetText(edtBoxText);
 
-                    Print("[DEBUG] text=" + edtBoxText);
-
                     if (!IsRateLimited() && edtBoxText.Length() > 0) {
                         Param paramsPOSTGeneral = new Param2<string, string>(edtBoxText.Trim(), _civGeneralData.GetId());
 
                         SetRateLimited();
                         HideCreateRecordPanels();
-                        Print("[DEBUG] SENDING RPC...");
                         GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_DTACRPC.SERVER_API_POST_GENERAL_RECORD, paramsPOSTGeneral, true);
                     }
+                    break;
+                }
+            case _btnCriminalCancel:
+                {
+                    HideCreateRecordPanels();
                     break;
                 }
             case _btnGeneralCancel:

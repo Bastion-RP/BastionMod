@@ -10,7 +10,7 @@ EffectDef {
    Offset 0 2 0
    Angles 62 -86 50
    LocalTransform 0
-   Material "{894D0DB225E7DED7}MyDayZ_SpawnSelect/Particles/materials/enviroment/blood_red_02.emat"
+   Material "{E5E389220151D838}graphics/Particles/materials/enviroment/blood_red_02.emat"
    SizeMultiplier 30
    SizeRND 10
    RandomRotDir 0

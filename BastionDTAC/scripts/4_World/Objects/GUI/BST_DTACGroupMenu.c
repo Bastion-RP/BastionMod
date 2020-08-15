@@ -107,7 +107,6 @@ class BST_DTACGroupMenu {
     }
 
     void OnShow() {
-        Print("[DEBUG] BST_DTACGroupMenu | OnShow | Sending RPC");
         if (!GetDTACClientGroupManager().IsUpdateRateLimited()) {
             GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_DTACRPC.SERVER_SEND_GROUP_ARRAY, null, true);
             GetDTACClientGroupManager().SetUpdateRateLimited();

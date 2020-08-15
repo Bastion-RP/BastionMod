@@ -15,7 +15,7 @@ class BST_DTACServerRPCHandler : PluginBase {
         RestCallback apiCallback;
         PlayerBase player;
         int groupId;
-        string playerClassFull, playerClass, apiRequest;
+        string playerClassFull, playerClass, apiRequest, apiPassword;
         array<string> arrPlayerClass;
         Param params;
         
@@ -27,20 +27,50 @@ class BST_DTACServerRPCHandler : PluginBase {
                     if (!ctx.Read(dataPOSTGeneral)) { return; }
                     player = PlayerBase.Cast(target);
 
-                    if (player && dataPOSTGeneral.param1.Length() > 0) {
-                        if (GetDTACManager().IsRequiredClass(GetDTACServerManager().GetConfig().GetRequiredAPIClasses(), player.GetMultiCharactersPlayerClass())) {
-                            apiCore = GetRestApi();
+                    if (!player || dataPOSTGeneral.param1.Length() <= 0) { return; }
+                    if (!GetDTACManager().IsRequiredClass(GetDTACServerManager().GetConfig().GetRequiredAPIClasses(), player.GetMultiCharactersPlayerClass())) { return; }
+                    apiCore = GetRestApi();
 
-                            if (!apiCore) {
-                                apiCore = CreateRestApi();
-                            }
-                            apiCTX = apiCore.GetRestContext("https://bastionrp.com/api/");
-                            apiCallback = new RestCallback();
-                            apiRequest = "generalrecords.php?password=" + GetDTACServerManager().GetConfig().GetGeneralPassword() + "&charId=" + dataPOSTGeneral.param2 + "&description=" + dataPOSTGeneral.param1 + "&creatorCharId=" + player.GetMultiCharactersPlayerId() + "&isSystem=1";
-
-                            apiCTX.POST(apiCallback, apiRequest, "");
-                        }
+                    if (!apiCore) {
+                        apiCore = CreateRestApi();
                     }
+                    apiCTX = apiCore.GetRestContext("https://bastionrp.com/api/");
+                    apiCallback = new RestCallback();
+                    apiPassword = GetDTACServerManager().GetConfig().GetGeneralPassword();
+                    apiRequest = "generalrecords.php?password=" + apiPassword + "&charId=" + dataPOSTGeneral.param2 + "&description=" + dataPOSTGeneral.param1 + "&creatorCharId=" + player.GetMultiCharactersPlayerId() + "&isSystem=1";
+
+                    apiCTX.POST(apiCallback, apiRequest, "");
+                    break;
+                }
+            case BST_DTACRPC.SERVER_API_POST_CRIMINAL_RECORD:
+                {
+                    Param5<string, string, string, string, string> dataPOSTCriminal;
+
+                    if (!ctx.Read(dataPOSTCriminal)) { return; }
+                    player = PlayerBase.Cast(target);
+
+                    if (!player) { return; }
+                    string txtCrime, txtCrimeDescription, txtCrimePunishment, txtCrimeDate, txtTargetId;
+
+                    txtCrime = dataPOSTCriminal.param1.Trim();
+                    txtCrimeDescription = dataPOSTCriminal.param2.Trim();
+                    txtCrimePunishment = dataPOSTCriminal.param3.Trim();
+                    txtCrimeDate = dataPOSTCriminal.param4.Trim();
+                    txtTargetId = dataPOSTCriminal.param5;
+
+                    if (txtCrime.Length() <= 0 || txtCrimeDescription.Length() <= 0 || txtCrimePunishment.Length() <= 0 || txtCrimeDate.Length() <= 0 || txtTargetId.Length() <= 0) { return; }
+                    if (!GetDTACManager().IsRequiredClass(GetDTACServerManager().GetConfig().GetRequiredAPIClasses(), player.GetMultiCharactersPlayerClass())) { return; }
+                    apiCore = GetRestApi();
+
+                    if (!apiCore) {
+                        apiCore = CreateRestApi();
+                    }
+                    apiCTX = apiCore.GetRestContext("https://bastionrp.com/api/");
+                    apiCallback = new RestCallback();
+                    apiPassword = GetDTACServerManager().GetConfig().GetCriminalPassword();
+                    apiRequest = "criminalrecords.php?password=" + apiPassword + "&charId=" + txtTargetId + "&description=" + txtCrime + "&crimeCommited=" + txtCrimeDescription + "&punishment=" + txtCrimePunishment + "&dateCommited=" + txtCrimeDate + "&creatorCharId=" +  player.GetMultiCharactersPlayerId();
+
+                    apiCTX.POST(apiCallback, apiRequest, "");
                     break;
                 }
             case BST_DTACRPC.SERVER_SEND_GROUP_ARRAY:
