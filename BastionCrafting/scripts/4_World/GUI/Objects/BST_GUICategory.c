@@ -1,6 +1,6 @@
 class BST_GUICategory : BST_GUIObject {
     protected ref GridSpacerWidget _root;
-    protected ref TextWidget _txtName, _txtCaret;
+    protected ref TextWidget _txtName, _txtCaret, _txtWrap;
     protected ref BST_RecipeGridSpacer _activeGrid;
     protected ref array<ref BST_RecipeGridSpacer> _arrGrids;
     protected bool _isCollapsed;
@@ -62,15 +62,16 @@ class BST_GUICategory : BST_GUIObject {
         CheckCurrentGridSpacer();
 
         BST_GUIRecipe newRecipe = new BST_GUIRecipe(_activeGrid.GetGrid(), recipe, type);
-        
         _activeGrid.AddChild(newRecipe);
 
         if (isSearching) {
             ShowChildren();
         }
-        return (newRecipe);
+
+        return newRecipe;
     }
     
+    Widget GetWrapper() { return _txtWrap; }
     BST_RecipeGridSpacer GetActiveGrid() { return _activeGrid; }
     TextWidget GetCaret() { return _txtCaret; }
     bool IsCollapsed() { return _isCollapsed; }

@@ -1,4 +1,5 @@
 GridSpacerWidgetClass rootFrame {
+ position 0 0
  size 1 1
  hexactpos 1
  vexactpos 1
@@ -11,43 +12,37 @@ GridSpacerWidgetClass rootFrame {
  Rows 100
  {
   FrameWidgetClass rootCategory {
+   position 0 0
    size 1 32
-   hexactpos 1
-   vexactpos 1
+   hexactpos 0
+   vexactpos 0
    hexactsize 0
    vexactsize 1
    {
     TextWidgetClass txtName {
      ignorepointer 1
-     position 0.08 0
-     size 0.84 1
+     position 0 0
+     size 0.92 1
      hexactpos 0
      vexactpos 0
      hexactsize 0
      vexactsize 0
+     style Bold
      "text valign" center
     }
     TextWidgetClass txtCaret {
      ignorepointer 0
+     position 0 0
      size 0.08 1
      halign right_ref
-     hexactpos 1
-     vexactpos 1
-     hexactsize 0
-     vexactsize 0
-     text "^"
-     "text halign" center
-     "text valign" center
-    }
-    TextWidgetClass txtWrap {
-     position 0 0
-     size 1 1
      hexactpos 0
      vexactpos 0
      hexactsize 0
      vexactsize 0
-     priority 1
      style Normal
+     text "^"
+     "text halign" center
+     "text valign" center
     }
    }
   }
