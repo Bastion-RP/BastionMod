@@ -474,5 +474,74 @@ FrameWidgetClass rootFrame {
     }
    }
   }
+  PanelWidgetClass pnlWarning {
+   visible 1
+   clipchildren 0
+   ignorepointer 0
+   color 0 0 0 1
+   position 490 158
+   size 300 290
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    TextWidgetClass txtWarningHeader {
+     clipchildren 0
+     ignorepointer 1
+     position 5 5
+     size 32 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "ERROR"
+     "size to text h" 1
+     "text valign" center
+     {
+      PanelWidgetClass txtWarningHeaderOutline {
+       ignorepointer 1
+       size 290 2
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+      }
+     }
+    }
+    MultilineTextWidgetClass txtWarningMessage {
+     ignorepointer 1
+     position 5 42
+     size 290 290
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "What's the deal with this thing? Does it not like having text set to it or something?"
+     font "gui/fonts/metron28"
+     "exact text" 1
+     "size to text h" 1
+     "size to text v" 1
+     wrap 1
+     "condense whitespace" 1
+    }
+    ButtonWidgetClass btnWarningConfirm {
+     color 1 0.5843 0 1
+     position 0 193
+     size 170 30
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     text "OKAY"
+     font "gui/fonts/metron22"
+    }
+   }
+  }
  }
 }

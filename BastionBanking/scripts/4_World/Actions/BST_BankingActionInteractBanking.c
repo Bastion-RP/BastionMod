@@ -15,7 +15,7 @@ class BST_BankingActionInteractBanking : ActionInteractBase {
     }
 
     override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item) {
-        if (target.GetObject() && IsInReach(player, target, UAMaxDistances.DEFAULT) && BRP_PackStation.Cast(target.GetObject())) { return true; }
+        //if (target.GetObject() && IsInReach(player, target, UAMaxDistances.DEFAULT) && BRP_PackStation.Cast(target.GetObject())) { return true; }
         return false;
     }
 
