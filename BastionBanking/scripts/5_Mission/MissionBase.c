@@ -18,7 +18,7 @@ modded class MissionGameplay {
         return menu;
     }
 
-    override void OnKeyPress(int key) {
+    /* override void OnKeyPress(int key) {
         super.OnKeyPress(key);
         m_Hud.KeyPress(key);
 
@@ -32,5 +32,5 @@ modded class MissionGameplay {
             }
             return;
         }
-    }
+    } */
 }
