@@ -23,6 +23,11 @@ class DeadlyWaterMdfr : ModifierBase
 			return false;
 		}
 
+		if (BastionCCTV.m_CCTVUsers.Contains(player.GetIdentity().GetId()))
+		{
+			return false;
+		}
+		
 		vector water_info = HumanCommandSwim.WaterLevelCheck( player, player.GetPosition() );
 		if (GetPlayer().IsInWater() && (water_info[1] > WATER_DEPTH))
 		{
