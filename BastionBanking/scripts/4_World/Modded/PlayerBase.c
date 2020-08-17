@@ -8,7 +8,7 @@ modded class PlayerBase {
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
         int payInterval = GetBSTBankingConfigHandler().GetConfig().GetPassivePayInterval();
 
-        GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.BSTBankingPayPassiveIncome, payInterval * 1000, true);
+        GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.BSTBankingPayPassiveIncome, payInterval * 60 * 1000, true);
     }
 
     void BSTBankingStopIncomeLoop() {
