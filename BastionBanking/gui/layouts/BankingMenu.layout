@@ -1,0 +1,478 @@
+FrameWidgetClass rootFrame {
+ position 0 0
+ size 1 1
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ {
+  PanelWidgetClass pnlMain {
+   visible 1
+   clipchildren 0
+   ignorepointer 0
+   color 0 0 0 0.7843
+   position 140 158
+   size 300 290
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    TextWidgetClass txtMainName {
+     clipchildren 0
+     ignorepointer 1
+     position 5 5
+     size 32 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "William Fraites"
+     "size to text h" 1
+     "text valign" center
+     {
+      PanelWidgetClass pnlNameUnderline {
+       ignorepointer 1
+       size 290 2
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+      }
+     }
+    }
+    TextWidgetClass txtMainCredits {
+     ignorepointer 1
+     color 1 0.5843 0 1
+     position 5 42
+     size 48 48
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "0000"
+     font "gui/fonts/metron58"
+     "size to text h" 1
+     "text valign" center
+    }
+    TextWidgetClass txtMainCreditsFooter {
+     clipchildren 0
+     ignorepointer 1
+     position 5 90
+     size 48 28
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "CREDITS"
+     font "gui/fonts/metron28"
+     "size to text h" 1
+     "text valign" center
+    }
+    GridSpacerWidgetClass gridOverflow {
+     ignorepointer 1
+     position 5 128
+     size 48 22
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     Padding 5
+     Margin 0
+     "Size To Content H" 1
+     Columns 2
+     Rows 1
+     {
+      TextWidgetClass txtMainOverflow {
+       ignorepointer 1
+       position 5 128
+       size 48 22
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "000000000 IN"
+       font "gui/fonts/metron22"
+       "size to text h" 1
+       "text valign" center
+      }
+      TextWidgetClass txtMainOverflowFooter {
+       ignorepointer 1
+       color 1 0 0 1
+       position 5 150
+       size 48 16
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "OVERFLOW"
+       font "gui/fonts/metron22"
+       "size to text h" 1
+       "text valign" center
+      }
+     }
+    }
+    TextWidgetClass headerBanking {
+     ignorepointer 1
+     color 1 0.5843 0 1
+     position 0 -58
+     size 48 58
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "BANKING"
+     font "gui/fonts/metronbook58"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    ButtonWidgetClass btnDeposit {
+     color 1 0.5843 0 1
+     position 5 170
+     size 170 30
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     "no focus" 1
+     text "DEPOSIT"
+     text_proportion 0.7
+     font "gui/fonts/metron22"
+     switch toggle
+    }
+    ButtonWidgetClass btnWithdraw {
+     color 1 0.5843 0 1
+     position 5 210
+     size 170 30
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     "no focus" 1
+     text "WITHDRAW"
+     font "gui/fonts/metron22"
+     switch toggle
+    }
+    ButtonWidgetClass btnTransfer {
+     color 1 0.5843 0 1
+     position 5 250
+     size 170 30
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     "no focus" 1
+     text "TRANSFER"
+     font "gui/fonts/metron22"
+     switch toggle
+    }
+   }
+  }
+  PanelWidgetClass pnlDeposit {
+   visible 0
+   clipchildren 0
+   ignorepointer 0
+   color 0 0 0 0.7843
+   position 490 158
+   size 300 290
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    TextWidgetClass txtDepositHeader {
+     clipchildren 0
+     ignorepointer 1
+     position 5 5
+     size 32 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "DEPOSIT"
+     "size to text h" 1
+     "text valign" center
+     {
+      PanelWidgetClass pnlDepositHeaderUnderline {
+       ignorepointer 1
+       size 290 2
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+      }
+     }
+    }
+    EditBoxWidgetClass edtDeposit {
+     clipchildren 0
+     position 0 47
+     size 250 58
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style ServerBrowser
+     text "500000"
+     "limit visible" 1
+     "exact text" 1
+     font "gui/fonts/metron58"
+     {
+      PanelWidgetClass pnlDepositUnderline {
+       ignorepointer 1
+       size 150 2
+       halign center_ref
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+      }
+     }
+    }
+    TextWidgetClass txtDepositCredits {
+     ignorepointer 1
+     position 0 115
+     size 48 28
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "CREDITS"
+     font "gui/fonts/metron28"
+     "size to text h" 1
+     "text valign" center
+    }
+    ButtonWidgetClass btnDepositConfirm {
+     color 1 0.5843 0 1
+     position 0 193
+     size 170 30
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     text "CONFIRM"
+     font "gui/fonts/metron22"
+    }
+   }
+  }
+  PanelWidgetClass pnlWithdraw {
+   visible 0
+   clipchildren 0
+   ignorepointer 0
+   color 0 0 0 0.7843
+   position 490 158
+   size 300 290
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    TextWidgetClass txtWithdrawHeader {
+     clipchildren 0
+     ignorepointer 1
+     position 5 5
+     size 32 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "WITHDRAW"
+     "size to text h" 1
+     "text valign" center
+     {
+      PanelWidgetClass pnlWithdrawHeaderOutline {
+       ignorepointer 1
+       size 290 2
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+      }
+     }
+    }
+    EditBoxWidgetClass edtWithdraw {
+     clipchildren 0
+     position 0 47
+     size 250 58
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style ServerBrowser
+     text "500000"
+     "limit visible" 1
+     "exact text" 1
+     font "gui/fonts/metron58"
+     {
+      PanelWidgetClass pnlWithdrawUnderline {
+       ignorepointer 1
+       size 150 2
+       halign center_ref
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+      }
+     }
+    }
+    TextWidgetClass txtWithdrawCredits {
+     ignorepointer 1
+     position 0 115
+     size 48 28
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "CREDITS"
+     font "gui/fonts/metron28"
+     "size to text h" 1
+     "text valign" center
+    }
+    ButtonWidgetClass btnWithdrawConfirm {
+     color 1 0.5843 0 1
+     position 0 193
+     size 170 30
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     text "CONFIRM"
+     font "gui/fonts/metron22"
+    }
+   }
+  }
+  PanelWidgetClass pnlTransfer {
+   visible 0
+   clipchildren 0
+   ignorepointer 0
+   color 0 0 0 0.7843
+   position 490 158
+   size 300 290
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    TextWidgetClass txtTransferHeader {
+     clipchildren 0
+     ignorepointer 1
+     position 5 5
+     size 32 32
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "TRANSFER"
+     "size to text h" 1
+     "text valign" center
+     {
+      PanelWidgetClass pnlTransferHeaderOutline {
+       ignorepointer 1
+       size 290 2
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+      }
+     }
+    }
+    EditBoxWidgetClass edtTransfer {
+     clipchildren 0
+     position 0 47
+     size 250 58
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style ServerBrowser
+     text "500000"
+     "limit visible" 1
+     "exact text" 1
+     font "gui/fonts/metron58"
+     {
+      PanelWidgetClass pnlTransferUnderline {
+       ignorepointer 1
+       size 150 2
+       halign center_ref
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style rover_sim_colorable
+      }
+     }
+    }
+    TextWidgetClass txtTransferCredits {
+     ignorepointer 1
+     position 0 115
+     size 48 28
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "CREDITS"
+     font "gui/fonts/metron28"
+     "size to text h" 1
+     "text valign" center
+    }
+    TextWidgetClass txtTransferDisclaimer {
+     ignorepointer 1
+     position 0 160
+     size 48 16
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "A 100% TRANSFER FEE WILL BE ASSESSED"
+     font "gui/fonts/metron16"
+     "size to text h" 1
+     "text valign" center
+    }
+    ButtonWidgetClass btnTransferConfirm {
+     color 1 0.5843 0 1
+     position 0 193
+     size 170 30
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     text "CONFIRM"
+     font "gui/fonts/metron22"
+    }
+   }
+  }
+ }
+}

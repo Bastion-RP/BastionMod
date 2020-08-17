@@ -1,13 +1,13 @@
-class ActionInteractBanking : ActionInteractBase {
-    void ActionInteractBanking() {
+class BST_BankingActionInteractBanking : ActionInteractBase {
+    void BST_BankingActionInteractBanking() {
         m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_OPENDOORFW;
         m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
         m_HUDCursorIcon = CursorIcons.OpenDoors;
     }
 
     override void CreateConditionComponents() {
-        m_ConditionItem = new CCINone;
-        m_ConditionTarget = new CCTNone;
+        m_ConditionItem = new CCINone();
+        m_ConditionTarget = new CCTNone();
     }
 
     override string GetText() {
@@ -21,6 +21,6 @@ class ActionInteractBanking : ActionInteractBase {
 
     override void OnStartClient(ActionData action_data) {
         if (GetGame().GetUIManager().GetMenu()) { return; }
-        GetGame().GetUIManager().EnterScriptedMenu(BSTBankMenu.BankingMenu, null);
+        GetGame().GetUIManager().EnterScriptedMenu(BST_BankMenu.MAIN_MENU_ID, null);
     }
 }

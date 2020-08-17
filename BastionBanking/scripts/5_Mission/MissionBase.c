@@ -5,9 +5,9 @@ modded class MissionGameplay {
 
         if (!menu) {
             switch (id) {
-                case BSTBankMenu.BankingMenu:
+                case BST_BankMenu.MAIN_MENU_ID:
                     {
-                        menu = new BastionBankingMenu();
+                        menu = new BST_BankingMenu();
                         break;
                     }
             }
@@ -18,32 +18,19 @@ modded class MissionGameplay {
         return menu;
     }
 
-    override void OnKeyPress(int key) {
+    /* override void OnKeyPress(int key) {
         super.OnKeyPress(key);
         m_Hud.KeyPress(key);
 
-        if (key == KeyCode.KC_ESCAPE) {
-            CloseBankingMenu();
+        if (key == KeyCode.KC_L) {
+            BST_BankingMenu menu = BST_BankingMenu.Cast(GetUIManager().GetMenu());
+
+            if (menu) {
+                menu.Close();
+            } else {
+                GetUIManager().EnterScriptedMenu(BST_BankMenu.MAIN_MENU_ID, null);
+            }
             return;
-        } else if (key == KeyCode.KC_RETURN || key == KeyCode.KC_NUMPADENTER) {
-            HandleBankingEnter();
-            return;
         }
-    }
-
-    private void CloseBankingMenu() {
-        BastionBankingMenu menu = BastionBankingMenu.Cast(GetUIManager().GetMenu());
-
-        if (menu) {
-            GetUIManager().HideScriptedMenu(menu);
-        }
-    }
-
-    private void HandleBankingEnter() {
-        BastionBankingMenu menu = BastionBankingMenu.Cast(GetUIManager().GetMenu());
-
-        if (menu) {
-            menu.HandleEnterKey();
-        }
-    }
+    } */
 }
