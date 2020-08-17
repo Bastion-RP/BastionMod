@@ -1,25 +1,23 @@
-class BastionBankingConfig {
+class BST_BankingConfig {
     // Constants
     static const string DEFAULT_JOB_POSITION = "Unemployed";
     static const string DEFAULT_CURRENCY_CLASSNAME = "nail";
     static const string DEFAULT_ATM_CLASSNAME = "seachest";
     static const int DEFAULT_JOB_INCOME = 0;
-    static const int DEFAULT_LOGIN_TIMEOUT = 60;
     static const int DEFAULT_PAY_INTERVAL = 60;
     static const int DEFAULT_FUNDS_CAP = 1000;
     static const float DEFAULT_TRANSFER_FEE = 0.25;
 
     private ref map<string, int> PerJobPassiveIncome;
     private string DefaultJobPosition;
-    private int DefaultJobIncome, LoginTimeout, PassivePayInterval, BankFundsCap;
+    private int DefaultJobIncome, PassivePayInterval, BankFundsCap;
     private float OverflowTransferFee;
     private string CurrencyClassName, ATMClassName;
 
-    void BastionBankingConfig() {
+    void BST_BankingConfig() {
         this.PerJobPassiveIncome = new map<string, int>();
         this.DefaultJobPosition = DEFAULT_JOB_POSITION;
         this.DefaultJobIncome = DEFAULT_JOB_INCOME;
-        this.LoginTimeout = DEFAULT_LOGIN_TIMEOUT;
         this.PassivePayInterval = DEFAULT_PAY_INTERVAL;
         this.BankFundsCap = DEFAULT_FUNDS_CAP;
         this.OverflowTransferFee = DEFAULT_TRANSFER_FEE;
@@ -37,9 +35,6 @@ class BastionBankingConfig {
         }
         if (PerJobPassiveIncome.Count() <= 0) {
             PerJobPassiveIncome.Insert(DefaultJobPosition, DefaultJobIncome);
-        }
-        if (LoginTimeout < 1) {
-            LoginTimeout = DEFAULT_LOGIN_TIMEOUT;
         }
         if (PassivePayInterval < 1) {
             PassivePayInterval = DEFAULT_PAY_INTERVAL;
@@ -82,10 +77,6 @@ class BastionBankingConfig {
 
         loweredName.ToLower();
         return loweredName;
-    }
-    
-    int GetLoginTimeout() {
-        return LoginTimeout;
     }
 
     int GetPassivePayInterval() {
