@@ -5,7 +5,7 @@ class InfectedZoneLocation
   float X, Y, Radius;
   ref array<ref Creature> CreatureList;
 
-    void InfectedZoneLocation(int mincreature, string infectedzonestatut, float x, float y, float radius)
+    void InfectedZoneLocation(string infectedzonestatut, int mincreature, float x, float y, float radius)
 	  {
       InfectedZoneStatut = infectedzonestatut;
       MinCreature = mincreature;

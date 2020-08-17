@@ -26,8 +26,8 @@ class RadiationAreaSettings
 		IsRadiationZoneActive=1;
 		MsgEnterZone="YOU ARE IN A RADIATION AREA!";
 		MsgExitZone="YOU LEFT THE RADIATION AREA!";
-		RadiationAreaLocation.Insert(new ref RadiationZoneLocation(34,0,"RadZone1", 1500, 1500, 300, -1,-1,-1,-1));
-		RadiationAreaLocation.Insert(new ref RadiationZoneLocation(12,0,"Tisy", 1655, 14068, 600,-1,-1,-1,-1));
+		RadiationAreaLocation.Insert(new ref RadiationZoneLocation("RadZone1", 	34, 1500, 1500,  300, -1, -1, -1, -1, 0));
+		RadiationAreaLocation.Insert(new ref RadiationZoneLocation("Tisy", 		12, 1655, 14068, 600, -1, -1, -1, -1, 0));
 		RadChanceBleeding = 0.15;
 		RadChanceVomit = 0.2;
 		RadBloodLossDamage=100;
