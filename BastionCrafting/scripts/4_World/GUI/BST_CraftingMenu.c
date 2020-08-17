@@ -379,7 +379,7 @@ class BST_CraftingMenu : UIScriptedMenu {
                         GetGame().ObjectDelete(entityRecipeProduct);
                     }
                     activeRecipe = recipe;
-                    entityRecipeProduct = GetGame().CreateObject(activeRecipe.GetRecipe().GetProduct(), "0 0 0", true);
+                    entityRecipeProduct = GetGame().CreateObject(activeRecipe.GetRecipe().GetProducts()[0].GetClassname(), "0 0 0", true);
 
                     if (entityRecipeProduct) {
                         prvRecipeProduct.SetItem(entityRecipeProduct);
