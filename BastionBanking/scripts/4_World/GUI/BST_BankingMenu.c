@@ -1,25 +1,3 @@
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-// These RPC's need to be rate-limited so clients cannot spam actions and crash the server
-
 class BST_BankingMenu : UIScriptedMenu {
 	private static const int KEYCODE_MIN_NUM = 48;
 	private static const int KEYCODE_MAX_NUM = 57;
@@ -30,6 +8,7 @@ class BST_BankingMenu : UIScriptedMenu {
     protected ref ButtonWidget _btnDepositConfirm, _btnWithdrawConfirm, _btnTransferConfirm;
     protected ref EditBoxWidget _edtDeposit, _edtWithdraw, _edtTransfer;
     protected ref BST_BankAccount _bankAccount;
+    private bool _isRateLimited;
 
     override Widget Init() {
         _root = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionBanking\\gui\\layouts\\BankingMenu.layout");
@@ -101,9 +80,10 @@ class BST_BankingMenu : UIScriptedMenu {
                 {
                     amount = _edtDeposit.GetText().ToInt();
 
-                    if (amount > 0) {
+                    if (amount > 0 && !IsRateLimited()) {
                         params = new Param1<int>(amount);
 
+                        SetRateLimited();
                         GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_BankRPC.SERVER_DEPOSIT_FUNDS, params, true);
                     }
                     break;
@@ -112,9 +92,10 @@ class BST_BankingMenu : UIScriptedMenu {
                 {
                     amount = _edtWithdraw.GetText().ToInt();
 
-                    if (amount > 0) {
+                    if (amount > 0 && !IsRateLimited()) {
                         params = new Param1<int>(amount);
 
+                        SetRateLimited();
                         GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_BankRPC.SERVER_WITHDRAW_FUNDS, params, true);
                     }
                     break;
@@ -123,9 +104,10 @@ class BST_BankingMenu : UIScriptedMenu {
                 {
                     amount = _edtTransfer.GetText().ToInt();
 
-                    if (amount > 0) {
+                    if (amount > 0 && !IsRateLimited()) {
                         params = new Param1<int>(amount);
 
+                        SetRateLimited();
                         GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_BankRPC.SERVER_TRANSFER_FUNDS, params, true);
                     }
                     break;
@@ -152,7 +134,9 @@ class BST_BankingMenu : UIScriptedMenu {
         super.OnShow();
         
         // this will grab account information. If the account does not exist, it will create a new one.
-        GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_BankRPC.SERVER_GRAB_ACCOUNT, null, true);
+        if (!IsRateLimited()) {
+            GetGame().RPCSingleParam(GetGame().GetPlayer(), BST_BankRPC.SERVER_GRAB_ACCOUNT, null, true);
+        }
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
         GetGame().GetUIManager().ShowCursor(true);
         GetGame().GetMission().GetHud().Show(false);
@@ -189,5 +173,19 @@ class BST_BankingMenu : UIScriptedMenu {
 
         _txtMainFunds.SetText("" + account.GetFunds());
         _txtMainOverflow.SetText("" + account.GetOverflowFunds() + " IN");
+    }
+
+    void SetRateLimited() {
+        if (_isRateLimited) { return; }
+        _isRateLimited = true;
+        GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.RemoveRateLimit, 2000, false);
+    }
+
+    void RemoveRateLimit() {
+        _isRateLimited = false;
+    }
+
+    bool IsRateLimited() {
+        return _isRateLimited;
     }
 }

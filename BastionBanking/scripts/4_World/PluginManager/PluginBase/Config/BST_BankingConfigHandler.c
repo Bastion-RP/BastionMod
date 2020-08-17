@@ -5,10 +5,11 @@ class BST_BankingConfigHandler : PluginBase {
     void BST_BankingConfigHandler() {
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
         if (!FileExist(BST_BankingConst.configDir)) {
+            _config = new BST_BankingConfig();
         } else {
             JsonFileLoader<BST_BankingConfig>.JsonLoadFile(BST_BankingConst.configDir, _config);
-            _config.Validate();
         }
+        _config.Validate();
         JsonFileLoader<BST_BankingConfig>.JsonSaveFile(BST_BankingConst.configDir, _config);
         
         if (!FileExist(BST_BankingConst.atmLocationsDir)) {

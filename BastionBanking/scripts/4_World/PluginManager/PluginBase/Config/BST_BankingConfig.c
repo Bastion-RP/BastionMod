@@ -1,68 +1,60 @@
 class BST_BankingConfig {
     // Constants
-    static const string DEFAULT_JOB_POSITION = "Unemployed";
     static const string DEFAULT_CURRENCY_CLASSNAME = "nail";
     static const string DEFAULT_ATM_CLASSNAME = "seachest";
-    static const int DEFAULT_JOB_INCOME = 0;
+    static const int DEFAULT_CLASS_INCOME = 0;
     static const int DEFAULT_PAY_INTERVAL = 60;
     static const int DEFAULT_FUNDS_CAP = 1000;
     static const float DEFAULT_TRANSFER_FEE = 0.25;
 
-    private ref map<string, int> PerJobPassiveIncome;
-    private string DefaultJobPosition;
-    private int DefaultJobIncome, PassivePayInterval, BankFundsCap;
+    private ref array<ref BST_BankingConfigClassIncome> PerClassIncome;
+    private int PassivePayIntervalInMinutes, BankFundsCap;
     private float OverflowTransferFee;
     private string CurrencyClassName, ATMClassName;
 
     void BST_BankingConfig() {
-        this.PerJobPassiveIncome = new map<string, int>();
-        this.DefaultJobPosition = DEFAULT_JOB_POSITION;
-        this.DefaultJobIncome = DEFAULT_JOB_INCOME;
-        this.PassivePayInterval = DEFAULT_PAY_INTERVAL;
-        this.BankFundsCap = DEFAULT_FUNDS_CAP;
-        this.OverflowTransferFee = DEFAULT_TRANSFER_FEE;
-        this.CurrencyClassName = DEFAULT_CURRENCY_CLASSNAME;
-        this.ATMClassName = DEFAULT_ATM_CLASSNAME;
-        this.PerJobPassiveIncome.Insert(DefaultJobPosition, DefaultJobIncome);
+        PerClassIncome = new array<ref BST_BankingConfigClassIncome>();
+        PassivePayIntervalInMinutes = DEFAULT_PAY_INTERVAL;
+        BankFundsCap = DEFAULT_FUNDS_CAP;
+        OverflowTransferFee = DEFAULT_TRANSFER_FEE;
+        CurrencyClassName = DEFAULT_CURRENCY_CLASSNAME;
+        ATMClassName = DEFAULT_ATM_CLASSNAME;
     }
 
     void Validate() {
-        if (DefaultJobPosition == string.Empty) {
-            DefaultJobPosition = DEFAULT_JOB_POSITION;
+        if (PerClassIncome.Count() <= 0) {
+            PerClassIncome.Insert(new BST_BankingConfigClassIncome());
         }
-        if (DefaultJobIncome < 0) {
-            DefaultJobIncome = DEFAULT_JOB_INCOME;
-        }
-        if (PerJobPassiveIncome.Count() <= 0) {
-            PerJobPassiveIncome.Insert(DefaultJobPosition, DefaultJobIncome);
-        }
-        if (PassivePayInterval < 1) {
-            PassivePayInterval = DEFAULT_PAY_INTERVAL;
+        if (PassivePayIntervalInMinutes < 1) {
+            PassivePayIntervalInMinutes = DEFAULT_PAY_INTERVAL;
         }
         if (BankFundsCap < 1) {
             BankFundsCap = DEFAULT_FUNDS_CAP;
         }
-        if (OverflowTransferFee < 0.01) {
+        if (OverflowTransferFee < 0.0) {
             OverflowTransferFee = DEFAULT_TRANSFER_FEE;
         }
-        if (CurrencyClassName == string.Empty) {
+        if (CurrencyClassName == "") {
             CurrencyClassName = DEFAULT_CURRENCY_CLASSNAME;
         }
-        if (ATMClassName == string.Empty) {
+        if (ATMClassName == "") {
             ATMClassName = DEFAULT_ATM_CLASSNAME;
         }
     }
-    // Jobs have yet to be implemented so I'm not sure how this will be done
-    
-    int GetWageByJobPosition(string position) {
-        if (PerJobPassiveIncome.Contains(position)) {
-            return PerJobPassiveIncome.Get(position);
+
+    int GetPayByClass(int classInt) {
+        string classToString = typename.EnumToString(BastionClasses, classInt);
+        classToString.ToLower();
+        
+        if (classToString.IndexOf("_") != -1) {
+            classToString.Replace("_", "-");
+        }
+        foreach (BST_BankingConfigClassIncome classIncome : PerClassIncome) {
+            if (classIncome && classIncome.GetLoweredClassName() == classToString) {
+                return classIncome.GetPayRate();
+            }
         }
         return 0;
-    }
-
-    string GetDefaultJobPosition() {
-        return DefaultJobPosition;
     }
 
     string GetCurrencyClassName() {
@@ -80,7 +72,7 @@ class BST_BankingConfig {
     }
 
     int GetPassivePayInterval() {
-        return PassivePayInterval;
+        return PassivePayIntervalInMinutes;
     }
 
     int GetBankFundsCap() {
