@@ -7,7 +7,7 @@ class BST_GUIParentCategory : BST_GUICategory {
         _root = GridSpacerWidget.Cast(GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionCrafting\\gui\\layout\\CategoryWidget.layout", parent));
         _txtName = TextWidget.Cast(_root.FindAnyWidget("txtName"));
         _txtCaret = TextWidget.Cast(_root.FindAnyWidget("txtCaret"));
-
+        _txtWrap = TextWidget.Cast(_root.FindAnyWidget("txtWrap"));
         if (category) {
             _txtName.SetText(category.GetName());
         } else {

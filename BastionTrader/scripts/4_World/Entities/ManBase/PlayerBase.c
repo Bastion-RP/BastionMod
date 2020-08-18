@@ -8,11 +8,6 @@ modded class PlayerBase
 	{
 		traderId = -1;
 		RegisterNetSyncVariableInt("traderId");
-
-		// if (GetGame().IsServer())
-		// {
-		// 	SetAllowDamage(false);
-		// }
 	}
 
 	int GetTraderId()
@@ -48,10 +43,9 @@ modded class PlayerBase
 		SetTraderId(id);
 		SetPosition(pos);
 		SetOrientation(ori);
+		SetAllowDamage(false);
 
 		DressTrader(clothes);
-
-		Print("Spawn trader id:"+GetTraderId()+" at "+pos);
 	}
 
 	void DressTrader(array<string> clothes)
@@ -110,7 +104,6 @@ modded class PlayerBase
 
 		if (!ctx.Read(data)) return;
 
-		Print("PlayerBase::ApplyTraderData::data.param1 "+data.param1);
 		GetBTraderManager().ApplyTraderData(data.param1);
 	}
 
@@ -142,11 +135,6 @@ modded class PlayerBase
 		if (tradersData.Find(Id, traderData))
 		{
 			this.RPCSingleParam(BTRPC.SEND_TRADER_DATA, new Param1<ref TraderData>(traderData), true, this.GetIdentity());
-			Print("PlayerBase::SendTraderData::traderData "+traderData.GetId());
-		}
-		else
-		{
-			Print("PlayerBase::SendTraderData::traderData not find");
 		}
 	}
 

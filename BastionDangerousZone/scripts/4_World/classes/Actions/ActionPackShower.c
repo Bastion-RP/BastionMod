@@ -30,9 +30,14 @@ class ActionPackShower: ActionContinuousBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		if ( target && target.GetObject().IsKindOf("DecontaminationShower"))
+		if ( target && target.GetObject().IsKindOf("BRP_DecontaminationShower"))
 		{
-			return true;
+      BRP_DecontaminationShower sh = BRP_DecontaminationShower.Cast(target.GetObject());
+      if(sh.FindAttachmentBySlotName("ShowerTank") == NULL)
+      {
+        return true;
+      }
+			return false;
 		}
 		return false;
 	}
@@ -48,7 +53,7 @@ class ActionPackShower: ActionContinuousBase
       m_sh.Delete();
 
       vector pos = action_data.m_Player.GetPosition() + Vector(1,0,1);
-      ItemBase sh = ItemBase.Cast( GetGame().CreateObjectEx("ShowerKit", pos, ECE_PLACE_ON_SURFACE) );
+      ItemBase sh = ItemBase.Cast( GetGame().CreateObjectEx("BRP_ShowerKit", pos, ECE_PLACE_ON_SURFACE) );
 		}
   }
 };

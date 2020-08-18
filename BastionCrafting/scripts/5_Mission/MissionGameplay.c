@@ -36,7 +36,7 @@ modded class MissionGameplay {
         if (input.LocalPress("BST_OpenCraftingMenu", false)) {
             craftingMenu = BST_CraftingMenu.Cast(GetGame().GetUIManager().GetMenu());
 
-            if (craftingMenu) {
+            if (craftingMenu && !craftingMenu.IsSearching()) {
                 craftingMenu.Close();
             } else {
                 GetUIManager().EnterScriptedMenu(BST_CraftingConst.CONST_CRAFTING_MENU_ID, null);

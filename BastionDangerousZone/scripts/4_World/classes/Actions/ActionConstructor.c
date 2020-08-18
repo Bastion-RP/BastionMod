@@ -7,11 +7,9 @@ modded class ActionConstructor
 	  actions.Insert(ActionTestForRadiationSelf);
 	  actions.Insert(ActionTestForRadiationTarget);
 		actions.Insert(ActionDecontaminationObject);
-		actions.Insert(ActionTurnOnDecontaminationShower);
-		actions.Insert(ActionTurnOffDecontaminationShower);
+		actions.Insert(ActionTurnOnBRP_DecontaminationShower);
+		actions.Insert(ActionTurnOffBRP_DecontaminationShower);
 		actions.Insert(ActionGetRadClotheLevel);
-		actions.Insert(ActionUnpackShowerKit);
-		actions.Insert(ActionDeployShower);
-		actions.Insert(ActionPackShower);
+		//actions.Insert(ActionPackShower);
 	}
 };

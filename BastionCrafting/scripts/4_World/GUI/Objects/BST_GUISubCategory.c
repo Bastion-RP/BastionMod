@@ -10,15 +10,19 @@ class BST_GUISubCategory : BST_GUICategory {
         _root = GridSpacerWidget.Cast(GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionCrafting\\gui\\layout\\SubCategoryWidget.layout", parent));
         _txtName = TextWidget.Cast(_root.FindAnyWidget("txtName"));
         _txtCaret = TextWidget.Cast(_root.FindAnyWidget("txtCaret"));
+        _txtWrap = TextWidget.Cast(_root.FindAnyWidget("txtWrap"));
 
         _txtName.SetText(_subCategory.GetName());
         _txtCaret.SetText("v");
     }
 
+    //TODO causes an error that recipes in subcategories to not be clickable
     override BST_GUIRecipe AddRecipeWidget(BST_CraftingLoadedRecipe recipe, int type, bool isSearching) {
+        BST_GUIRecipe newWidget = super.AddRecipeWidget(recipe, type, isSearching);
+
         if (isSearching) {
             _guiParentCategory.ShowChildren();
         }
-        return super.AddRecipeWidget(recipe, type, isSearching);
+        return newWidget;
     }
 }

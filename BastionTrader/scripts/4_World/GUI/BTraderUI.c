@@ -501,7 +501,6 @@ class BTraderUI extends UIScriptedMenu
 		{
 			resultName = ResultsHolder.GetElement(i).GetResult().GetType();
 			name = GetBTraderManager().GetObjectNameByType( resultName );
-			Print(name);
 			name.ToLower();
 			w = ResultsHolder.GetKey(i);
 			if (name.Contains(pattern) || name == pattern)

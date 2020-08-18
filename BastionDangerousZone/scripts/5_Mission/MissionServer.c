@@ -77,6 +77,7 @@ modded class MissionServer extends MissionBase
 		player.RadHighMultiplier = GetRadConfig().RadHighMultiplier;
 		player.RadHighMultiplier = GetRadConfig().RadHighMultiplier;
 		player.CriticalProtection = GetRadConfig().CriticalProtection;
+		player.ClothesQuantityMultiplier = GetRadConfig().ClothesQuantityMultiplier;
 		player.AmountGivenAfterCriticalProtection = GetRadConfig().AmountGivenAfterCriticalProtection;
 		player.SetSuitsDamageForRad(GetRadConfig().SuitsDamage);
 		player.SetSuitsDamageForHazard(GetHazardConfig().GasMaskDamage);

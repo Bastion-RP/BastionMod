@@ -8,7 +8,6 @@ class CfgPatches
 		requiredAddons[]=
 		{
 			"DZ_Data",
-			"DZ_Gear_Medical",
 			"DZ_Characters_Headgear",
 			"DZ_vehicles_parts"
 		};
@@ -243,10 +242,10 @@ class CfgVehicles
 		soundVoiceType="gasmask";
 		soundVoicePriority=5;
 	};
-	class DecontaminationSpray: Inventory_Base
+	class BRP_DecontaminationSpray: Inventory_Base
 	{
 		scope=2;
-		displayName="DecontaminationSpray";
+		displayName="BRP_DecontaminationSpray";
 		descriptionShort="Use the spray on clothes or weapons to remove radiation";
 		model="\dz\gear\medical\DisinfectantSpray.p3d";
 		quantityBar=1;
@@ -355,174 +354,6 @@ class CfgVehicles
 					id=797;
 				};
 			};
-		};
-	};
-	class ShowerKit: Inventory_Base
-	{
-		scope=2;
-		displayName="shower kit";
-		descriptionShort="Shower Kit";
-		model="BastionMod\BastionDangerousZone\data\Box\ToxicBox.p3d";
-		itemSize[]={5,5};
-		carveNavmesh=1;
-		canBeDigged=0;
-		simulation="inventoryItem";
-		physLayer="item_small";
-		rotationFlags=2;
-		weight=5000;
-		itemBehaviour=2;
-	};
-	class DecontaminationShower: Inventory_Base
-	{
-		scope=2;
-		displayName="Decontamination shower";
-		descriptionShort="This Decontamination shower needs a gasoline tank full of water to work. Use it do decontaminate the clothe that you wear and reduce the radiation effect to the state 1";
-		model="BastionMod\BastionDangerousZone\data\Shower\ToxicShower.p3d";
-		attachments[]=
-		{
-			"ShowerTank"
-		};
-		bounding="BSphere";
-		overrideDrawArea="3.0";
-		forceFarBubble="true";
-		handheld="true";
-		carveNavmesh=1;
-		canBeDigged=0;
-		weight=40000;
-		itemSize[]={10,10};
-		itemBehaviour=2;
-		rotationFlags=2;
-		hologramMaterial="DecontaminationShower";
-		hologramMaterialPath="BastionMod\BastionDangerousZone\data\Box\data";
-		class EnergyManager
-		{
-			hasIcon=1;
-			autoSwitchOff=1;
-			energyAtSpawn=10;
-			energyStorageMax=100;
-			energyUsagePerSecond=1;
-			updateInterval=30;
-		};
-	};
-	class Edible_Base;
-	class PillsBottle: Edible_Base
-	{
-		scope=2;
-		model="\dz\gear\medical\VitaminBottle.p3d";
-		varQuantityInit=5;
-		varQuantityMin=0;
-		varQuantityMax=10;
-		varQuantityDestroyOnMin=1;
-		itemSize[]={1,2};
-		weight=20;
-		stackedUnit="pills";
-		quantityBar=0;
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=50;
-					healthLevels[]=
-					{
-
-						{
-							1,
-
-							{
-								"DZ\gear\medical\data\vitamin_bottle.rvmat"
-							}
-						},
-
-						{
-							0.69999999,
-
-							{
-								"DZ\gear\medical\data\vitamin_bottle.rvmat"
-							}
-						},
-
-						{
-							0.5,
-
-							{
-								"DZ\gear\medical\data\vitamin_bottle_damage.rvmat"
-							}
-						},
-
-						{
-							0.30000001,
-
-							{
-								"DZ\gear\medical\data\vitamin_bottle_damage.rvmat"
-							}
-						},
-
-						{
-							0,
-
-							{
-								"DZ\gear\medical\data\vitamin_bottle_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class VitaminBottle_open
-				{
-					soundSet="VitaminBottle_open_SoundSet";
-					id=201;
-				};
-				class VitaminBottle_shake
-				{
-					soundSet="VitaminBottle_shake_SoundSet";
-					id=202;
-				};
-				class VitaminBottle_close
-				{
-					soundSet="VitaminBottle_close_SoundSet";
-					id=203;
-				};
-				class pickUpItem
-				{
-					soundSet="vitaminbottle_pickup_SoundSet";
-					id=797;
-				};
-			};
-		};
-	};
-	class dz_AntiRadPills: PillsBottle
-	{
-		scope=2;
-		displayName="Radiation blocking tablets";
-		descriptionShort="The tablets helps you to get rid received radiation dose and offers some minor radiation protection too.";
-		model="\dz\gear\medical\VitaminBottle.p3d";
-		varQuantityInit=20;
-		varQuantityMin=0;
-		varQuantityMax=20;
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-	};
-	class dz_RadPillsTreament: PillsBottle
-	{
-		scope=2;
-		displayName="Radiation treatment tablets";
-		descriptionShort="The tablets helps you to recover after having being in contact with an high level of radiation.";
-		model="\dz\gear\medical\VitaminBottle.p3d";
-		varQuantityInit=5;
-		varQuantityMin=0;
-		varQuantityMax=5;
-		hiddenSelections[]=
-		{
-			"zbytek"
 		};
 	};
 	class HouseNoDestruct;
@@ -677,18 +508,6 @@ class CfgSoundShaders
 		range=15;
 		volume=1.2;
 	};
-	class dz_Geiger_SoundShader_Switch
-	{
-		samples[]=
-		{
-			{
-				"BastionMod\BastionDangerousZone\data\Sounds\Geiger_Counter_Sound_Switch",
-				1
-			}
-		};
-		range=5;
-		volume=0.5;
-	};
 	class dz_Shower_SoundShader
 	{
 		samples[]=
@@ -757,13 +576,6 @@ class CfgSoundSets
 		soundShaders[]=
 		{
 			"dz_Geiger_VeryHigh_SoundShader"
-		};
-	};
-	class dz_Geiger_SoundSet_Switch
-	{
-		soundShaders[]=
-		{
-			"dz_Geiger_SoundShader_Switch"
 		};
 	};
 	class dz_Shower_SoundSet

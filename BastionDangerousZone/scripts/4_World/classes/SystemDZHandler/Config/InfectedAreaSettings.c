@@ -11,20 +11,20 @@ class InfectedAreaSettings
 	void InfectedAreaDefaultSettings()	{
 		InfectedCheck = 900000;
 		IsInfectedZoneActive=1;
-		InfectedAreaLocation.Insert(new ref InfectedZoneLocation(15,"InfectedZone1", 7890, 14697, 150));
+		InfectedAreaLocation.Insert(new ref InfectedZoneLocation("InfectedZone1", 15, 7890, 14697, 150));
 		InfectedAreaLocation.Get(0).AddCreatureToList("Animal_CanisLupus_Grey",7);
 		InfectedAreaLocation.Get(0).AddCreatureToList("Animal_UrsusArctos",1);
 		InfectedAreaLocation.Get(0).AddCreatureToList("ZmbM_HermitSkinny_Green",15);
 		InfectedAreaLocation.Get(0).AddCreatureToList("ZmbM_FarmerFat_Brown",1);
 		InfectedAreaLocation.Get(0).AddCreatureToList("ZmbM_FarmerFat_Blue",5);
 		InfectedAreaLocation.Get(0).AddCreatureToList("ZmbM_HermitSkinny_Beige",9);
-		InfectedAreaLocation.Insert(new ref InfectedZoneLocation(30,"InfectedZone2", 7500, 7500, 250));
+		InfectedAreaLocation.Insert(new ref InfectedZoneLocation("InfectedZone2", 30, 7500, 7500, 250));
 		InfectedAreaLocation.Get(1).AddCreatureToList("Animal_CanisLupus_Grey",7);
 		InfectedAreaLocation.Get(0).AddCreatureToList("ZmbM_HermitSkinny_Green",6);
 		InfectedAreaLocation.Get(0).AddCreatureToList("ZmbM_FarmerFat_Brown",17);
 		InfectedAreaLocation.Get(0).AddCreatureToList("ZmbM_FarmerFat_Blue",5);
 		InfectedAreaLocation.Get(0).AddCreatureToList("ZmbM_HermitSkinny_Beige",9);
-		InfectedAreaLocation.Insert(new ref InfectedZoneLocation(50,"InfectedZone3", 8000, 10000, 300));
+		InfectedAreaLocation.Insert(new ref InfectedZoneLocation("InfectedZone3", 50, 8000, 10000, 300));
 		InfectedAreaLocation.Get(2).AddCreatureToList("Animal_CanisLupus_Grey",7);
 		InfectedAreaLocation.Get(0).AddCreatureToList("ZmbM_HermitSkinny_Green",10);
 		InfectedAreaLocation.Get(0).AddCreatureToList("ZmbM_FarmerFat_Brown",6);

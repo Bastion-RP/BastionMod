@@ -66,6 +66,7 @@ class BastionCCTV
 
 			GetGame().SelectPlayer( sender, target );
             dBodyEnableGravity( PlayerBase.Cast( target ), true );
+            PlayerBase.Cast( target ).SetAllowDamage(true);
 		    GetRPCManager().SendRPC( "BastionCCTV", "LeaveCCTV", new Param, true, sender, target );
 		} else if ( type == CallType.Client ) {
 			m_camera.SetActive( false );
@@ -109,6 +110,7 @@ class BastionCCTV
             
             dBodyEnableGravity(player, false);
 
+            player.SetAllowDamage(false);
             player.SetPosition( position );
         }
     }

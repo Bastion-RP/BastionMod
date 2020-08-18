@@ -90,7 +90,7 @@ class BST_CraftingMenu : UIScriptedMenu {
 
             BST_GUIParentCategory newParent = new BST_GUIParentCategory(activeGrid.GetGrid(), parentCategory);
 
-            _mapGUIObjects.Insert(newParent.GetCaret(), newParent);
+            _mapGUIObjects.Insert(newParent.GetWrapper()/*.GetCaret()*/, newParent);
             mapParentCategories.Insert(parentCategory.GetId(), newParent);
             activeGrid.AddChild(newParent);
         }
@@ -98,7 +98,7 @@ class BST_CraftingMenu : UIScriptedMenu {
 
         BST_GUIParentCategory uncategorizedParent = new BST_GUIParentCategory (activeGrid.GetGrid(), null);
 
-        _mapGUIObjects.Insert(uncategorizedParent.GetCaret(), uncategorizedParent);
+        _mapGUIObjects.Insert(uncategorizedParent.GetWrapper()/*GetCaret()*/, uncategorizedParent);
         activeGrid.AddChild(uncategorizedParent);
 
         foreach (BST_CraftingSubCategory subCategory : arrSubCategories) {
@@ -107,7 +107,7 @@ class BST_CraftingMenu : UIScriptedMenu {
                 BST_GUIParentCategory parent = mapParentCategories.Get(subCategory.GetParentId());
                 BST_GUISubCategory newSub = parent.AddSubCategory(subCategory);
                 
-                _mapGUIObjects.Insert(newSub.GetCaret(), newSub);
+                _mapGUIObjects.Insert(newSub.GetWrapper()/*GetCaret()*/, newSub);
                 mapSubCategories.Insert(subCategory.GetId(), newSub);
             }
         }
@@ -122,6 +122,7 @@ class BST_CraftingMenu : UIScriptedMenu {
                 searchString.ToLower();
 
                 if (recipe.GetLoweredName().IndexOf(searchString) == -1) { continue; }
+                
                 isSearching = true;
             }
             BST_GUIRecipe newRecipe;
@@ -356,10 +357,14 @@ class BST_CraftingMenu : UIScriptedMenu {
         return true;
     }
 
+    bool IsSearching() {
+        return GetFocus() == edtSearch;
+    }
+
     override bool OnMouseButtonUp(Widget w, int x, int y, int button) {
         if (_mapGUIObjects.Contains(w)) {
             BST_GUIObject guiObject = _mapGUIObjects.Get(w);
-
+            
             if (BST_GUICategory.Cast(guiObject)) {
                 BST_GUICategory category = BST_GUICategory.Cast(guiObject);
                 
@@ -379,7 +384,7 @@ class BST_CraftingMenu : UIScriptedMenu {
                         GetGame().ObjectDelete(entityRecipeProduct);
                     }
                     activeRecipe = recipe;
-                    entityRecipeProduct = GetGame().CreateObject(activeRecipe.GetRecipe().GetProduct(), "0 0 0", true);
+                    entityRecipeProduct = GetGame().CreateObject(activeRecipe.GetRecipe().GetProducts()[0].GetClassname(), "0 0 0", true);
 
                     if (entityRecipeProduct) {
                         prvRecipeProduct.SetItem(entityRecipeProduct);
