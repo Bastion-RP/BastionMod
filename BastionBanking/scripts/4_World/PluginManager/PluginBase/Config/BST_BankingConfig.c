@@ -8,14 +8,16 @@ class BST_BankingConfig {
     static const float DEFAULT_TRANSFER_FEE = 0.25;
 
     private ref array<ref BST_BankingConfigClassIncome> PerClassIncome;
-    private int PassivePayIntervalInMinutes, BankFundsCap;
+    private ref array<ref BST_BankingConfigClassFundsCap> PerClassFundsCap;
+    private int PassivePayIntervalInMinutes, DefaultBankFundsCap;
     private float OverflowTransferFee;
     private string CurrencyClassName, ATMClassName;
 
     void BST_BankingConfig() {
         PerClassIncome = new array<ref BST_BankingConfigClassIncome>();
+        PerClassFundsCap = new array<ref BST_BankingConfigClassFundsCap>();
         PassivePayIntervalInMinutes = DEFAULT_PAY_INTERVAL;
-        BankFundsCap = DEFAULT_FUNDS_CAP;
+        DefaultBankFundsCap = DEFAULT_FUNDS_CAP;
         OverflowTransferFee = DEFAULT_TRANSFER_FEE;
         CurrencyClassName = DEFAULT_CURRENCY_CLASSNAME;
         ATMClassName = DEFAULT_ATM_CLASSNAME;
@@ -25,11 +27,14 @@ class BST_BankingConfig {
         if (PerClassIncome.Count() <= 0) {
             PerClassIncome.Insert(new BST_BankingConfigClassIncome());
         }
+        if (PerClassFundsCap.Count() <= 0) {
+            PerClassFundsCap.Insert(new BST_BankingConfigClassFundsCap());
+        }
         if (PassivePayIntervalInMinutes < 1) {
             PassivePayIntervalInMinutes = DEFAULT_PAY_INTERVAL;
         }
-        if (BankFundsCap < 1) {
-            BankFundsCap = DEFAULT_FUNDS_CAP;
+        if (DefaultBankFundsCap < 1) {
+            DefaultBankFundsCap = DEFAULT_FUNDS_CAP;
         }
         if (OverflowTransferFee < 0.0) {
             OverflowTransferFee = DEFAULT_TRANSFER_FEE;
@@ -42,19 +47,36 @@ class BST_BankingConfig {
         }
     }
 
-    int GetPayByClass(int classInt) {
+    string GetClassStringByInt(int classInt) {
         string classToString = typename.EnumToString(BastionClasses, classInt);
         classToString.ToLower();
         
         if (classToString.IndexOf("_") != -1) {
             classToString.Replace("_", "-");
         }
+        return classToString;
+    }
+
+    int GetPayByClass(int classInt) {
+        string classToString = GetClassStringByInt(classInt);
+        
         foreach (BST_BankingConfigClassIncome classIncome : PerClassIncome) {
             if (classIncome && classIncome.GetLoweredClassName() == classToString) {
                 return classIncome.GetPayRate();
             }
         }
         return 0;
+    }
+
+    int GetFundsCapByClass(int classInt) {
+        string classToString = GetClassStringByInt(classInt);
+        
+        foreach (BST_BankingConfigClassFundsCap fundsCap : PerClassFundsCap) {
+            if (fundsCap && fundsCap.GetLoweredClassName() == classToString) {
+                return fundsCap.GetFundsCap();
+            }
+        }
+        return DefaultBankFundsCap;
     }
 
     string GetCurrencyClassName() {
@@ -76,7 +98,7 @@ class BST_BankingConfig {
     }
 
     int GetBankFundsCap() {
-        return BankFundsCap;
+        return DefaultBankFundsCap;
     }
 
     float GetOverflowTransferFee() {

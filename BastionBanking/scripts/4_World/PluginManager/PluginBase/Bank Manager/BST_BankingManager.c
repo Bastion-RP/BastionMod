@@ -20,8 +20,6 @@ class BST_BankingManager : PluginBase {
     }
 
     bool CanDeposit(PlayerBase player, int amount, out ref array<ItemBase> outItems) {
-        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return false; }
-
         ref array<ItemBase> arrayItems = GetMoneyInInventory(player);
 
         if (arrayItems.Count() > 0) {

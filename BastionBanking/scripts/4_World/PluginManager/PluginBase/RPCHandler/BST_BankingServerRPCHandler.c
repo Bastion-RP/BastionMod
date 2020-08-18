@@ -52,7 +52,7 @@ class BST_BankingServerRPCHandler : PluginBase {
                     characterId = "" + player.GetMultiCharactersPlayerId();
 
                     if (GetBSTBankingManager().CanDeposit(player, amount, outItems)) {
-                        bankAccount = GetBSTBankingAccountManager().Deposit(playerId, characterId, amount);
+                        bankAccount = GetBSTBankingAccountManager().Deposit(playerId, characterId, player.GetMultiCharactersPlayerClass(), amount);
 
                         SendClientBankAccount(bankAccount, player);
                         GetBSTBankingManager().RemoveCurrency(outItems, amount);
@@ -98,7 +98,7 @@ class BST_BankingServerRPCHandler : PluginBase {
                     characterId = "" + player.GetMultiCharactersPlayerId();
                     accountDir = BST_BankingConst.playerDir + "\\" + playerId + "\\" + characterId + ".json";
                     bankAccount = GetBSTBankingAccountManager().FindAccount(playerId, characterId);
-                    bankFundsCap = GetBSTBankingConfigHandler().GetConfig().GetBankFundsCap();
+                    bankFundsCap = GetBSTBankingConfigHandler().GetConfig().GetFundsCapByClass(player.GetMultiCharactersPlayerClass());
 
                     if (bankAccount) {
                         bankFunds = bankAccount.GetFunds();

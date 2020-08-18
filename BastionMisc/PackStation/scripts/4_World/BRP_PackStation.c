@@ -1,0 +1,1 @@
+class BRP_PackStation : BuildingBase {}

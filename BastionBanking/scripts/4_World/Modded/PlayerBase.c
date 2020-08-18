@@ -21,7 +21,7 @@ modded class PlayerBase {
         int payRate = GetBSTBankingConfigHandler().GetConfig().GetPayByClass(multicharactersPlayerClass);
 
         if (payRate > 0) {
-            GetBSTBankingAccountManager().Deposit(GetIdentity().GetPlainId(), multicharactersPlayerId.ToString(), payRate);
+            GetBSTBankingAccountManager().Deposit(GetIdentity().GetPlainId(), multicharactersPlayerId.ToString(), multicharactersPlayerClass, payRate);
         }
     }
 

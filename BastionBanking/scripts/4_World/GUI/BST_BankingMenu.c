@@ -149,7 +149,7 @@ class BST_BankingMenu : UIScriptedMenu {
                             _pnlWarning.Show(true);
                             _txtWarningMessage.SetText(STRING_WARNING_RATE_LIMITED);
                         } else {
-                            int bankFundsCap = GetBSTBankingConfigHandler().GetConfig().GetBankFundsCap();
+                            int bankFundsCap = GetBSTBankingConfigHandler().GetConfig().GetFundsCapByClass(PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass());
                             float transferBeforeFloor = amount * (1 - GetBSTBankingConfigHandler().GetConfig().GetOverflowTransferFee());
                             int transferAmount = Math.Floor(transferBeforeFloor);
 
@@ -158,7 +158,7 @@ class BST_BankingMenu : UIScriptedMenu {
                                 _txtWarningMessage.SetText(STRING_TRANSFER_NOT_ENOUGH_FUNDS);
                             } else if ((_bankAccount.GetFunds() + transferAmount) > bankFundsCap) {
                                 _pnlWarning.Show(true);
-                                _txtWarningMessage.SetText(STRING_TRANSFER_FUNDS_CAPPED + " : " + FloatTo2Decimal(_bankAccount.GetFunds() + transferBeforeFloor));
+                                _txtWarningMessage.SetText(STRING_TRANSFER_FUNDS_CAPPED + " : " + FloatTo2Decimal(transferBeforeFloor) + " Cap : " + bankFundsCap);
                             } else if (transferAmount <= 0) {
                                 _pnlWarning.Show(true);
                                 _txtWarningMessage.SetText(STRING_TRANSFER_FUNDS_LOW + " : " + FloatTo2Decimal(transferBeforeFloor));
