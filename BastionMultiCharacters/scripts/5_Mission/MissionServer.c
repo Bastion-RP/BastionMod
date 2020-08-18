@@ -100,19 +100,13 @@ modded class MissionServer {
 					newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, characterType, spawnPos, 0, "NONE"));
 					
 					if (webCharData.GetCitizenClass().ToInt() >= BastionClasses.ISF_F && webCharData.GetCitizenClass().ToInt() <= BastionClasses.ISF_E) {
-						array<string> arrISFGear = GetMultiCharactersServerManager().GetISFSpawnGear();
-
-						foreach (string str : arrISFGear) {
-							if (str != "" && str.ToType()) {
-								newPlayer.GetInventory().CreateInInventory(str);
-							}
-						}
+						StartingISFSetup(newPlayer);
 					} else {
 						newPlayer.GetInventory().CreateInInventory(topsArray.GetRandomElement());
 						newPlayer.GetInventory().CreateInInventory(pantsArray.GetRandomElement());
 						newPlayer.GetInventory().CreateInInventory(shoesArray.GetRandomElement());
+						StartingEquipSetup(newPlayer, false);
 					}
-					StartingEquipSetup(newPlayer, false);
 				}
 				newPlayer.SetMultiCharacterStats(characterId, webCharData.GetFirstName() + " " + webCharData.GetLastName(), webCharData.GetCitizenClass().ToInt());
 				newPlayer.SaveInventory();
@@ -130,6 +124,8 @@ modded class MissionServer {
 			}
 		}
 	}
+
+	void StartingISFSetup(PlayerBase player) {}
 
 	void InitializeClient(PlayerIdentity identity) {
 		Print(MCConst.debugPrefix + "MissionServer | InitializeClient | Initializing client! id=" + identity.GetPlainId());
