@@ -122,6 +122,7 @@ class BST_CraftingMenu : UIScriptedMenu {
                 searchString.ToLower();
 
                 if (recipe.GetLoweredName().IndexOf(searchString) == -1) { continue; }
+                
                 isSearching = true;
             }
             BST_GUIRecipe newRecipe;
@@ -354,6 +355,10 @@ class BST_CraftingMenu : UIScriptedMenu {
             }
         }
         return true;
+    }
+
+    bool IsSearching() {
+        return GetFocus() == edtSearch;
     }
 
     override bool OnMouseButtonUp(Widget w, int x, int y, int button) {

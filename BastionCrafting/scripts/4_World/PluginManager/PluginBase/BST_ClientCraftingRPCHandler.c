@@ -27,7 +27,6 @@ class BST_ClientCraftingRPCHandler : PluginBase {
                     GetBSTCraftingManager().SetConfig(dataConfig.param1);
                     GetBSTCraftingManager().SetBenchConfig(dataConfig.param2);
                     GetBSTCraftingManager().SetCategoryConfig(dataConfig.param3);
-                    Print(dataConfig.param3);
                     break;
                 }
         }

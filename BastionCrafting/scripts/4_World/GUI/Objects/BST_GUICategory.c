@@ -67,7 +67,6 @@ class BST_GUICategory : BST_GUIObject {
         if (isSearching) {
             ShowChildren();
         }
-
         return newRecipe;
     }
     

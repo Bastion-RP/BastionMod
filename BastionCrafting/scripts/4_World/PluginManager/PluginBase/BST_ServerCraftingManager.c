@@ -243,7 +243,6 @@ class BST_ServerCraftingManager : PluginBase {
         array<ref BST_CraftingProduct> arrProducts = recipe.GetProducts();
 
         foreach (BST_CraftingProduct product : arrProducts) {
-            Print("[DEBUG] Spawning products");
             EntityAI entityCrafted;
             string productClassname, maxCountPath, ammoMaxCountPath, itemMaxCountPath;
             int itemMaxCount, loopIterations, amountCreated;
@@ -254,20 +253,15 @@ class BST_ServerCraftingManager : PluginBase {
             amountCreated = 0;
 
             if (GetGame().ConfigIsExisting(ammoMaxCountPath)) {
-                Print("[DEBUG] Product is ammo");
                 itemMaxCount = GetGame().ConfigGetInt(ammoMaxCountPath);
             } else if (GetGame().ConfigIsExisting(itemMaxCountPath)) {
-                Print("[DEBUG] Product is item");
                 itemMaxCount = GetGame().ConfigGetInt(itemMaxCountPath);
             } else {
-                Print("[DEBUG] Product is not stackable");
                 itemMaxCount = 1;
             }
             loopIterations = Math.Ceil(product.GetRequiredAmount() / itemMaxCount);
-            Print("[DEBUG] Looping " + loopIterations + " | amount=" + product.GetRequiredAmount() + " | max=" + itemMaxCount);
 
             for (i = 0; i < loopIterations; i++) {
-                Print("[DEBUG] Creating entity " + i);
                 entityCrafted = player.GetHumanInventory().CreateInInventory(productClassname);
 
                 if (!entityCrafted) {
@@ -276,11 +270,10 @@ class BST_ServerCraftingManager : PluginBase {
                     entityCrafted.PlaceOnSurface();
                 }
                 if ((loopIterations - 1) != i) {
-                    Print("[DEBUG] Setting quant to max");
-                    SetItemQuantity(entityCrafted, itemMaxCount);
                     amountCreated += itemMaxCount;
+                    
+                    SetItemQuantity(entityCrafted, itemMaxCount);
                 } else {
-                    Print("[DEBUG] Setting quant to " + (product.GetRequiredAmount() - amountCreated));
                     SetItemQuantity(entityCrafted, (product.GetRequiredAmount() - amountCreated));
                 }
             }

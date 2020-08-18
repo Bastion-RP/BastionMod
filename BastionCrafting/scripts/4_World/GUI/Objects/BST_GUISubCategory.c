@@ -17,10 +17,12 @@ class BST_GUISubCategory : BST_GUICategory {
     }
 
     //TODO causes an error that recipes in subcategories to not be clickable
-    // override BST_GUIRecipe AddRecipeWidget(BST_CraftingLoadedRecipe recipe, int type, bool isSearching) {
-    //     if (isSearching) {
-    //         _guiParentCategory.ShowChildren();
-    //     }
-    //     return super.AddRecipeWidget(recipe, type, isSearching);
-    // }
+    override BST_GUIRecipe AddRecipeWidget(BST_CraftingLoadedRecipe recipe, int type, bool isSearching) {
+        BST_GUIRecipe newWidget = super.AddRecipeWidget(recipe, type, isSearching);
+
+        if (isSearching) {
+            _guiParentCategory.ShowChildren();
+        }
+        return newWidget;
+    }
 }
