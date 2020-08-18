@@ -2,6 +2,7 @@ class MultiCharactersServerManager : PluginBase {
     protected ref JsonSerializer jsSerializer;
     protected ref array<string> spawnPoints;
     protected ref array<string> isfSpawnPoints;
+    protected ref array<string> isfSpawnGear;
     protected string clientMemberId;
 
     void MultiCharactersServerManager() {
@@ -13,6 +14,9 @@ class MultiCharactersServerManager : PluginBase {
     }
 
     void CheckDirectories() {
+        if (!FileExist(MCConst.modDir)) {
+            MakeDirectory(MCConst.modDir);
+        }
 		if (!FileExist(MCConst.loadoutDir)) {
 			MakeDirectory(MCConst.loadoutDir);
 		}
@@ -27,6 +31,12 @@ class MultiCharactersServerManager : PluginBase {
 			JsonFileLoader<array<string>>.JsonSaveFile(MCConst.isfSpawnPointDir, isfSpawnPoints);
 		} else {
 			JsonFileLoader<array<string>>.JsonLoadFile(MCConst.isfSpawnPointDir, isfSpawnPoints);
+        }
+		if (!FileExist(MCConst.isfSpawnGearDir)) {
+            isfSpawnGear = { "Put item classnames in here", "And others in here", "This will be changed later btw, needs recode" };
+			JsonFileLoader<array<string>>.JsonSaveFile(MCConst.isfSpawnGearDir, isfSpawnGear);
+		} else {
+			JsonFileLoader<array<string>>.JsonLoadFile(MCConst.isfSpawnGearDir, isfSpawnGear);
         }
     }
 
@@ -77,6 +87,8 @@ class MultiCharactersServerManager : PluginBase {
         }
 		GetGame().GameScript.Release();
     }
+
+    array<string> GetISFSpawnGear() { return isfSpawnGear; }
 
     vector GetRandomSpawnpoint() {
         return spawnPoints.GetRandomElement().ToVector();
