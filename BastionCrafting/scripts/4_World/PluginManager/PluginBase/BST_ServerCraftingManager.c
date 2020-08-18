@@ -101,9 +101,9 @@ class BST_ServerCraftingManager : PluginBase {
                     if (foundRecipe) {
                         foundRecipe.SetFileName(foundFileName);
 
-                        //if (foundRecipe.Validate()) {
+                        if (foundRecipe.Validate()) {
                             arrayCraftingRecipes.Insert(foundRecipe);
-                        //}
+                        }
                         JsonFileLoader<BST_CraftingRecipe>.JsonSaveFile(BST_CraftingConst.recipeDir + foundFileName, foundRecipe);
                     }
                 }
@@ -200,9 +200,9 @@ class BST_ServerCraftingManager : PluginBase {
     private void CreateExampleRecipe() {
         array<ref BST_CraftingIngredient> arrayIngredients = new array<ref BST_CraftingIngredient>();
         
-        arrayIngredients.Insert(new BST_CraftingIngredient("nail", 50, true));
-        arrayIngredients.Insert(new BST_CraftingIngredient("shovel", 1, true));
-        arrayIngredients.Insert(new BST_CraftingIngredient("ducttape", 1, false));
+        arrayIngredients.Insert(new BST_CraftingIngredient("nail", 50));
+        arrayIngredients.Insert(new BST_CraftingIngredient("shovel", 1));
+        arrayIngredients.Insert(new BST_CraftingIngredient("ducttape", 1));
 
         BST_CraftingRecipe newRecipe = new BST_CraftingRecipe(arrayIngredients);
 
@@ -211,13 +211,14 @@ class BST_ServerCraftingManager : PluginBase {
 
     void Craft(PlayerBase player, BST_CraftingRecipe recipe, ref array<EntityAI> arrayFoundItems) {
         array<ref BST_CraftingIngredient> arrayIngredients = recipe.GetIngredients();
+        int i;
 
         foreach (BST_CraftingIngredient ingredient : arrayIngredients) {
             if (!ingredient) { continue; }
             int amountRemaining = ingredient.GetRequiredAmount();
             int removedAmount = 0;
 
-            for (int i = (arrayFoundItems.Count() - 1); i >= 0; i--) {
+            for (i = (arrayFoundItems.Count() - 1); i >= 0; i--) {
                 EntityAI item = arrayFoundItems[i];
 
                 if (item) {
@@ -239,12 +240,43 @@ class BST_ServerCraftingManager : PluginBase {
                 }
             }
         }
-        EntityAI entityCrafted = player.GetHumanInventory().CreateInInventory(recipe.GetProduct());
+        array<ref BST_CraftingProduct> arrProducts = recipe.GetProducts();
 
-        if (!entityCrafted) {
-            entityCrafted = GetGame().CreateObject(recipe.GetProduct(), player.GetPosition());
+        foreach (BST_CraftingProduct product : arrProducts) {
+            EntityAI entityCrafted;
+            string productClassname, maxCountPath, ammoMaxCountPath, itemMaxCountPath;
+            int itemMaxCount, loopIterations, amountCreated;
 
-            entityCrafted.PlaceOnSurface();
+            productClassname = product.GetClassname();
+            ammoMaxCountPath = CFG_MAGAZINESPATH + " " + productClassname + " count";
+            itemMaxCountPath = CFG_VEHICLESPATH + " " + productClassname + " varQuantityMax";
+            amountCreated = 0;
+
+            if (GetGame().ConfigIsExisting(ammoMaxCountPath)) {
+                itemMaxCount = GetGame().ConfigGetInt(ammoMaxCountPath);
+            } else if (GetGame().ConfigIsExisting(itemMaxCountPath)) {
+                itemMaxCount = GetGame().ConfigGetInt(itemMaxCountPath);
+            } else {
+                itemMaxCount = 1;
+            }
+            loopIterations = Math.Ceil(product.GetRequiredAmount() / itemMaxCount);
+
+            for (i = 0; i < loopIterations; i++) {
+                entityCrafted = player.GetHumanInventory().CreateInInventory(productClassname);
+
+                if (!entityCrafted) {
+                    entityCrafted = GetGame().CreateObject(productClassname, player.GetPosition());
+
+                    entityCrafted.PlaceOnSurface();
+                }
+                if ((loopIterations - 1) != i) {
+                    amountCreated += itemMaxCount;
+                    
+                    SetItemQuantity(entityCrafted, itemMaxCount);
+                } else {
+                    SetItemQuantity(entityCrafted, (product.GetRequiredAmount() - amountCreated));
+                }
+            }
         }
         delete arrayFoundItems;
     }

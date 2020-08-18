@@ -122,6 +122,7 @@ class BST_CraftingMenu : UIScriptedMenu {
                 searchString.ToLower();
 
                 if (recipe.GetLoweredName().IndexOf(searchString) == -1) { continue; }
+                
                 isSearching = true;
             }
             BST_GUIRecipe newRecipe;
@@ -356,6 +357,10 @@ class BST_CraftingMenu : UIScriptedMenu {
         return true;
     }
 
+    bool IsSearching() {
+        return GetFocus() == edtSearch;
+    }
+
     override bool OnMouseButtonUp(Widget w, int x, int y, int button) {
         if (_mapGUIObjects.Contains(w)) {
             BST_GUIObject guiObject = _mapGUIObjects.Get(w);
@@ -379,7 +384,7 @@ class BST_CraftingMenu : UIScriptedMenu {
                         GetGame().ObjectDelete(entityRecipeProduct);
                     }
                     activeRecipe = recipe;
-                    entityRecipeProduct = GetGame().CreateObject(activeRecipe.GetRecipe().GetProduct(), "0 0 0", true);
+                    entityRecipeProduct = GetGame().CreateObject(activeRecipe.GetRecipe().GetProducts()[0].GetClassname(), "0 0 0", true);
 
                     if (entityRecipeProduct) {
                         prvRecipeProduct.SetItem(entityRecipeProduct);
