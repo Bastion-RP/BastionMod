@@ -1,0 +1,94 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: characters_belts\data\leather_quiver_beige_destruct.rvmat
+//Produced from mikero's Dos Tools Dll version 7.69
+//https://mikero.bytex.digital/Downloads
+//'now' is Tue Aug 11 22:03:23 2020 : 'file' last modified on Wed Jan 22 21:09:43 2020
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+ambient[] = {0.9882353,0.7529412,0.54509807,1};
+diffuse[] = {0.9882353,0.7529412,0.54509807,1};
+forcedDiffuse[] = {0,0,0,0};
+emmisive[] = {0,0,0,1};
+specular[] = {0.5,0.5,0.5,1};
+specularPower = 70;
+PixelShaderID = "Super";
+VertexShaderID = "Super";
+class Stage1
+{
+	texture = "BastionMod\BastionClothing\Belts\LeatherWeaponBelt\data\leatherbelt_nohq.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage2
+{
+	texture = "#(argb,8,8,3)color(0.5,0.5,0.5,1,DT)";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage3
+{
+	texture = "dz\characters\vests\data\vests_destruct_mc.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {-0.6293204,-0.7771459,0};
+		up[] = {0.7771459,-0.6293204,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage4
+{
+	texture = "BastionMod\BastionClothing\Belts\LeatherWeaponBelt\data\leatherbelt_as.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage5
+{
+	texture = "BastionMod\BastionClothing\Belts\LeatherWeaponBelt\data\leatherbelt_smdi.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage6
+{
+	texture = "#(ai,64,64,1)fresnel(1,0.7)";
+	uvSource = "none";
+};
+class Stage7
+{
+	texture = "dz\data\data\env_land_co.paa";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
