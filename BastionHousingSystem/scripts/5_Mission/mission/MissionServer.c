@@ -8,7 +8,7 @@ modded class MissionServer
 		super.OnInit();
 		if ( GetGame().IsServer() )
 		{
-			saveDelay = 2; // minutes
+			saveDelay = 15; // minutes
 			maxHoursNonPayment = g_HSL.m_GenHosData.MaxHoursNonPayment * -60;
 			GetGame().GameScript.Call( this, "UpdateRentalTime", NULL );
 		}
