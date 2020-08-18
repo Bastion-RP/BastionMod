@@ -18,18 +18,19 @@ modded class MissionGameplay {
         return menu;
     }
 
-    /* override void OnKeyPress(int key) {
+   /*  override void OnKeyPress(int key) {
         super.OnKeyPress(key);
         m_Hud.KeyPress(key);
 
-        if (key == KeyCode.KC_L) {
+        if (key == KeyCode.KC_ESCAPE) {
             BST_BankingMenu menu = BST_BankingMenu.Cast(GetUIManager().GetMenu());
 
             if (menu) {
                 menu.Close();
-            } else {
-                GetUIManager().EnterScriptedMenu(BST_BankMenu.MAIN_MENU_ID, null);
             }
+            return;
+        } else if (key == KeyCode.KC_L) {
+            GetUIManager().EnterScriptedMenu(BST_BankMenu.MAIN_MENU_ID, null);
             return;
         }
     } */

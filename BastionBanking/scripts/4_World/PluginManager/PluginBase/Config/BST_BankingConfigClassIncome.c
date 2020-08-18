@@ -1,23 +1,9 @@
-class BST_BankingConfigClassIncome {
-    private string _className;
-    private int _payRate;
+class BST_BankingConfigClassIncome : BST_BankingConfigClass {
+    private int PayRate;
 
-    void BST_BankingConfigClassMap() {
-        _className = "A";
-        _payRate = 0;
+    void BST_BankingConfigClassIncome() {
+        PayRate = 0;
     }
 
-    void Lower() {
-        _className.ToLower();
-    }
-
-    string GetLoweredClassName() {
-        string loweredString = _className;
-
-        loweredString.ToLower();
-        return loweredString;
-    }
-
-    string GetClassName() { return _className; }
-    int GetPayRate() { return _payRate; }
+    int GetPayRate() { return PayRate; }
 }

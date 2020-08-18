@@ -39,7 +39,7 @@ class BST_BankingAccountManager : PluginBase {
         return account;
     }
 
-    BST_BankAccount Deposit(string playerId, string characterId, int amount) {
+    BST_BankAccount Deposit(string playerId, string characterId, int characterClass, int amount) {
         if (playerId.Length() <= 0 || characterId.Length() <= 0) { return null; }
         BST_BankAccount account;
         string accountDir;
@@ -50,7 +50,7 @@ class BST_BankingAccountManager : PluginBase {
 
         if (account) {
             funds = account.GetFunds();
-            fundsCap = GetBSTBankingConfigHandler().GetConfig().GetBankFundsCap();
+            fundsCap = GetBSTBankingConfigHandler().GetConfig().GetFundsCapByClass(characterClass);
 
             if ((funds + amount) > fundsCap) {
                 difference = fundsCap - funds;
