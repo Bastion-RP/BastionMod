@@ -187,7 +187,7 @@ modded class PlayerBase extends ManBase
 					#ifdef DZDEBUG
 					GetDZLogger().LogInfo(this.GetIdentity().GetName()+"is not fully protected for High level RadZone");
 					#endif
-					return;
+					//return;
 				}
 				else
 				{
@@ -212,7 +212,7 @@ modded class PlayerBase extends ManBase
 							return;
 						}
 
-						if(i == 0 && NbSickGivenForRadiation*(1-GetProtectionLevel(SuitsPart)) != 0)
+						if(i == 0 && ((NbSickGivenForRadiation * (1 - GetProtectionLevel(SuitsPart))) != 0))
 						{
 							GiveRadSickness(NbSickGivenForRadiation*(1 - GasMask_Protection));
 						}
