@@ -32,12 +32,6 @@ class MultiCharactersServerManager : PluginBase {
 		} else {
 			JsonFileLoader<array<string>>.JsonLoadFile(MCConst.isfSpawnPointDir, isfSpawnPoints);
         }
-		if (!FileExist(MCConst.isfSpawnGearDir)) {
-            isfSpawnGear = { "Put item classnames in here", "And others in here", "This will be changed later btw, needs recode" };
-			JsonFileLoader<array<string>>.JsonSaveFile(MCConst.isfSpawnGearDir, isfSpawnGear);
-		} else {
-			JsonFileLoader<array<string>>.JsonLoadFile(MCConst.isfSpawnGearDir, isfSpawnGear);
-        }
     }
 
     void GetPlayerLoadouts(PlayerIdentity sender) {
