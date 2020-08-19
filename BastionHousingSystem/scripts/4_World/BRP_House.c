@@ -168,12 +168,12 @@ modded class BuildingBase
 		{
 			this.RPCSingleParam(HRPC.SEND_HOUSE_DATA, new Param1<ref HouseData>(hd), true, sender);
 		}
-		else
-		{
-			hd = new HouseData();
-			hd.BuildingPos = "0";
-			this.RPCSingleParam(HRPC.SEND_HOUSE_DATA, new Param1<ref HouseData>(hd), true, sender);
-		}
+		// else
+		// {
+		// 	hd = new HouseData();
+		// 	hd.BuildingPos = "0";
+		// 	this.RPCSingleParam(HRPC.SEND_HOUSE_DATA, new Param1<ref HouseData>(hd), true, sender);
+		// }
 	}
 
 	void handleApplyHouseData(ParamsReadContext  ctx)

@@ -2,7 +2,7 @@ class ActionTestForRadiationSelfCB : ActionContinuousBaseCB
 {
 	override void CreateActionComponent()
 	{
-		m_ActionData.m_ActionComponent = new CAContinuousTime(UATimeSpent.TEST_BLOOD);
+		m_ActionData.m_ActionComponent = new CAContinuousTime(1);
 	}
 };
 
@@ -11,10 +11,9 @@ class ActionTestForRadiationSelf: ActionContinuousBase
 	void ActionTestForRadiationSelf()
 	{
 		m_CallbackClass = ActionTestForRadiationSelfCB;
-		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_CRAFTING;
-		m_FullBody = true;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_SPRAYPLANT;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH;
-		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
+		m_FullBody = true;
 	}
 
 	override void CreateConditionComponents()
