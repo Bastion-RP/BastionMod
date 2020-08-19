@@ -187,7 +187,7 @@ modded class PlayerBase extends ManBase
 					#ifdef DZDEBUG
 					GetDZLogger().LogInfo(this.GetIdentity().GetName()+"is not fully protected for High level RadZone");
 					#endif
-					//return;
+					return;
 				}
 				else
 				{
