@@ -1,6 +1,6 @@
-class BRP_BenelliM2 : AutoShotGunScript
+class BRP_CS12G : AutoShotGunScript
 {
-	void BRP_BenelliM2 ()
+	void BRP_CS12G ()
 	{
 	}
 	

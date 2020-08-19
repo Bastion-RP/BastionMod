@@ -240,7 +240,7 @@ class cfgWeapons
 	{
 		scope = 2;
 		displayName = "CSP-9";
-		descriptionShort = "CSP-9 is a pistol chambered in 9x19mm and takes a 17 round CSP9 Grach Mag.";
+		descriptionShort = "Russian-made, NCC co-opted 9x19mm handgun.";
 		model = "BastionMod\BastionGuns\CSP9\CSP9.p3d";
 		attachments[] = {"pistolMuzzle","pistolFlashlight"};
 		itemSize[] = {3,2};
