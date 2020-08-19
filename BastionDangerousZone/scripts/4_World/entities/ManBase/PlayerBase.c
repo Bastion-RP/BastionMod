@@ -212,9 +212,12 @@ modded class PlayerBase extends ManBase
 							return;
 						}
 
-						if(i == 0 && ((NbSickGivenForRadiation * (1 - GetProtectionLevel(SuitsPart))) != 0))
+						if(i == 0)
 						{
+							if ((NbSickGivenForRadiation * (1 - GetProtectionLevel(SuitsPart))) != 0)
 							GiveRadSickness(NbSickGivenForRadiation*(1 - GasMask_Protection));
+							else
+							return;
 						}
 					}
 				}
