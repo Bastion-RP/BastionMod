@@ -44,8 +44,8 @@ class MultiCharactersSurvivorSelector {
     }
 
     void InitStatPanels() {
-        array<ref SavePlayer> arrayLoadouts = GetMultiCharactersClientManager().GetLoadouts();
-        foreach (SavePlayer savePlayer : arrayLoadouts) {
+        array<ref BST_MCSavePlayer> arrayLoadouts = GetMultiCharactersClientManager().GetLoadouts();
+        foreach (BST_MCSavePlayer savePlayer : arrayLoadouts) {
             if (savePlayer) {
                 MultiCharactersPlayerStatPanel newStatPanel = new MultiCharactersPlayerStatPanel(gridRoot, savePlayer);
                 arrayStatPanels.Insert(newStatPanel);
@@ -54,7 +54,7 @@ class MultiCharactersSurvivorSelector {
     }
 
     void OnClick(Widget w) {
-        if (ButtonWidget.Cast(w) == btnSpawn) {
+        if (ButtonWidget.Cast(w) == btnSpawn && selectedSurvivor.CanChoose()) {
             Hide();
             GetDayZGame().SetSelectedSurvivorId(selectedSurvivor.GetSavePlayer().GetCharacterId());
             GetDayZGame().SetSelectedSurvivorName(selectedSurvivor.GetSavePlayer().GetName());
@@ -87,7 +87,7 @@ class MultiCharactersSurvivorSelector {
                         survivorPreview.SetPlayer(statsPanel.GetPlayer());
                         survivorPreview.Show(true);
                         statsPanel.Select();
-                    } else {
+                    } else if (statsPanel.CanChoose()){
                         GetDayZGame().SetSelectedSurvivorId(statsPanel.GetSavePlayer().GetCharacterId());
                         GetDayZGame().SetSelectedSurvivorName(statsPanel.GetSavePlayer().GetName());
                         Hide();

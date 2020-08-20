@@ -1,18 +1,18 @@
 class MultiCharactersPlayerStatPanel {
     private ref Widget wRoot, wParent, pnlStats, pnlBorder;
     private ref TextWidget txtRespawn, txtName, txtHealth, txtBlood, txtEnergy, txtWater;
-    private ref SavePlayer savePlayer;
+    private ref BST_MCSavePlayer savePlayer;
     private DayZPlayer dayzPlayer
     private vector characterPos;
-    private bool isSelected;
+    private bool isSelected, _canChoose;
 
     // Consts
-	private const int maxHealth = 100;  // not used
-	private const int maxBlood = 5000;  // not used
-	private const int maxEnergy = 20000;
-	private const int maxWater = 5000;
+    private const int maxHealth = 100; // not used
+    private const int maxBlood = 5000; // not used
+    private const int maxEnergy = 20000;
+    private const int maxWater = 5000;
 
-    void MultiCharactersPlayerStatPanel(Widget wParent, SavePlayer savePlayer) {
+    void MultiCharactersPlayerStatPanel(Widget wParent, BST_MCSavePlayer savePlayer) {
         vector cameraPos, characterPos;
         this.wParent = wParent;
         this.savePlayer = savePlayer;
@@ -39,7 +39,6 @@ class MultiCharactersPlayerStatPanel {
     }
 
     void ~MultiCharactersPlayerStatPanel() {
-        Print(MCConst.debugPrefix + "Deleting survivor stat panel");
         if (wRoot) {
             wRoot.Unlink();
         }
@@ -52,12 +51,27 @@ class MultiCharactersPlayerStatPanel {
     void Init() {
         pnlStats.Show(false);
         txtRespawn.Show(false);
+        _canChoose = true;
+        
         if (!savePlayer.IsDead()) {
             InitStats();
             CreateSurvivorInventory();
             pnlStats.Show(true);
         } else {
+            int currentTimestamp = GetBSTLibTimestamp().GetCurrentTimestamp();
+            int timestampDifference = currentTimestamp - savePlayer.GetDeathTimestamp();
+            int respawnTimer = GetBSTMCManager().GetConfig().GetRespawnTimer();
+
             txtRespawn.Show(true);
+
+            if (timestampDifference <= respawnTimer) {
+                if (timestampDifference == respawnTimer) {
+                    txtRespawn.SetText("RESPAWN IN 1");
+                } else {
+                    txtRespawn.SetText("RESPAWN IN " + (respawnTimer - timestampDifference));
+                }
+                _canChoose = false;
+            }
         }
     }
 
@@ -73,58 +87,51 @@ class MultiCharactersPlayerStatPanel {
         pnlBorder.SetColor(MCColors.COLOR_WHITE);
     }
 
-	void OnMouseEnter() {
+    void OnMouseEnter() {
         if (!isSelected) {
             pnlBorder.SetColor(MCColors.COLOR_LIGHT_GRAY);
         }
-	}
+    }
 
-	void OnMouseLeave() {
+    void OnMouseLeave() {
         if (!isSelected) {
             pnlBorder.SetColor(MCColors.COLOR_WHITE);
         }
-	}
+    }
 
     private void InitStats() {
 
         // Use config value for max HP and max blood
-		int percentHealth = (savePlayer.GetHealth() * 100) / GetGame().ConfigGetFloat("CfgVehicles SurvivorBase DamageSystem GlobalHealth Health hitpoints");
-		int percentBlood = (savePlayer.GetBlood() * 100) / GetGame().ConfigGetFloat("CfgVehicles SurvivorBase DamageSystem GlobalHealth Blood hitpoints");
+        int percentHealth = (savePlayer.GetHealth() * 100) / GetGame().ConfigGetFloat("CfgVehicles SurvivorBase DamageSystem GlobalHealth Health hitpoints");
+        int percentBlood = (savePlayer.GetBlood() * 100) / GetGame().ConfigGetFloat("CfgVehicles SurvivorBase DamageSystem GlobalHealth Blood hitpoints");
 
-		int percentEnergy = (savePlayer.GetEnergy() * 100) / maxEnergy;
-		int percentWater = (savePlayer.GetWater() * 100) / maxWater;
-        
-		txtHealth.SetText(percentHealth.ToString() + "%");
-		txtBlood.SetText(percentBlood.ToString() + "%");
-		txtEnergy.SetText(percentEnergy.ToString() + "%");
-		txtWater.SetText(percentWater.ToString() + "%");
+        int percentEnergy = (savePlayer.GetEnergy() * 100) / maxEnergy;
+        int percentWater = (savePlayer.GetWater() * 100) / maxWater;
+
+        txtHealth.SetText(percentHealth.ToString() + "%");
+        txtBlood.SetText(percentBlood.ToString() + "%");
+        txtEnergy.SetText(percentEnergy.ToString() + "%");
+        txtWater.SetText(percentWater.ToString() + "%");
     }
 
     private void CreateSurvivorInventory() {
-		array<ref SaveObject> arrayInventory = savePlayer.GetInventory();
+        array<ref BST_MCSaveObject> arrayInventory = savePlayer.GetInventory();
 
-        foreach (SaveObject saveObject : arrayInventory) {
+        foreach (BST_MCSaveObject saveObject : arrayInventory) {
             EntityAI newItem;
 
             if (saveObject.IsInHands()) {
                 Print(MCConst.debugPrefix + "Save object is in hands!!!");
                 newItem = dayzPlayer.GetHumanInventory().CreateInHands(saveObject.GetType());
             } else {
-			    newItem = dayzPlayer.GetInventory().CreateInInventory(saveObject.GetType());
+                newItem = dayzPlayer.GetInventory().CreateInInventory(saveObject.GetType());
             }
             Print(MCConst.debugPrefix + "Item created=" + newItem);
         }
     }
 
-    Widget GetWidget() {
-        return wRoot;
-    }
-
-    SavePlayer GetSavePlayer() {
-        return savePlayer;
-    }
-
-    DayZPlayer GetPlayer() {
-        return dayzPlayer;
-    }
+    Widget GetWidget() { return wRoot; }
+    BST_MCSavePlayer GetSavePlayer() { return savePlayer; }
+    DayZPlayer GetPlayer() { return dayzPlayer; }
+    bool CanChoose() { return _canChoose; }
 }

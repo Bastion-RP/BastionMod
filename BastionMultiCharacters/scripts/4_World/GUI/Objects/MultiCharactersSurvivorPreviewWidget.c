@@ -15,14 +15,13 @@ class MultiCharactersSurvivorPreviewWidget {
         //dayzPlayer = GetGame().CreateObject(survivorType, characterPos, true);
         dayzPlayer = DayZPlayer.Cast(GetGame().CreateObject(survivorType, vector.Zero, true));
 
-        Print(MCConst.debugPrefix + " | inactive pos=" + characterPos);
+        //Print(MCConst.debugPrefix + " | inactive pos=" + characterPos);
         //dayzPlayer.SetPosition(characterPos);
         wSurvivorPreview.SetPlayer(dayzPlayer);
         pnlBG.Show(false);
     }
 
     void ~MultiCharactersSurvivorPreviewWidget() {
-        Print(MCConst.debugPrefix + "Deleting survivor preview widget");
         if (wRoot) {
             wRoot.Unlink();
         }
