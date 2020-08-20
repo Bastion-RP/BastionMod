@@ -353,11 +353,11 @@ class cfgAmmo
 		deflecting=45;
 		visibleFire=5;
 		audibleFire=9;
-		typicalSpeed=850;
+		typicalSpeed=25;
 		airFriction=-0.00119;
 		supersonicCrackNear[]={};
 		supersonicCrackFar[]={};
-		initSpeed=830;
+		initSpeed=25;
 		weight=0.0149;
 		
 		class DamageApplied {
