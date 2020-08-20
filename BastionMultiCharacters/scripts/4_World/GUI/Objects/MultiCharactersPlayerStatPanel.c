@@ -62,6 +62,8 @@ class MultiCharactersPlayerStatPanel {
             int timestampDifference = currentTimestamp - savePlayer.GetDeathTimestamp();
             int respawnTimer = GetBSTMCManager().GetConfig().GetRespawnTimer();
 
+            Print("[DEBUG] timer=" + respawnTimer);
+
             txtRespawn.Show(true);
 
             if (timestampDifference <= respawnTimer) {

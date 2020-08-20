@@ -209,13 +209,6 @@ modded class PlayerBase {
 		super.EEKilled(killer);
 	}
 
-	override void OnConnect() {
-		Param params = new Param1<BST_MCConfig>(GetBSTMCManager().GetConfig());
-
-		super.OnConnect();
-		GetGame().RPCSingleParam(this, MultiCharRPC.CLIENT_RECEIVE_CONFIG, params, true, GetIdentity());
-	}
-
 	// Function identical to OnConnect, just no other mod relies on it. So I can initialize a client without worrying about mods calling OnConnect to data that doesn't exist.
 	void MultiCharInit() {
 		Print(MCConst.debugPrefix + "PlayerBase | MultiCharInit | Player connected:" + this.ToString());

@@ -15,7 +15,7 @@ class MultiCharactersServerManager : PluginBase {
     }
 
     void CheckDirectories() {
-        BST_MCConfig config;
+        ref BST_MCConfig config;
 
         if (!FileExist(MCConst.modDir)) {
             MakeDirectory(MCConst.modDir);
@@ -85,7 +85,9 @@ class MultiCharactersServerManager : PluginBase {
                 }
             }
             auto params = new Param1<array<ref BST_MCSavePlayer>>(savePlayerArray);
+		    Param configParams = new Param1<ref BST_MCConfig>(GetBSTMCManager().GetConfig());
 
+            GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_RECEIVE_CONFIG, configParams, true, sender);
             GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_GRAB_LOADOUTS, params, true, sender);
         } else {
             GetGame().DisconnectPlayer(sender);

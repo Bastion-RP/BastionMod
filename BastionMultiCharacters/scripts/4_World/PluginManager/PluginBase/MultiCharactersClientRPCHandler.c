@@ -17,7 +17,7 @@ class MultiCharactersClientRPCHandler : PluginBase {
         switch (rpc_type) {
             case MultiCharRPC.CLIENT_RECEIVE_CONFIG:
                 {
-                    Param1<BST_MCConfig> dataReceiveConfig;
+                    Param1<ref BST_MCConfig> dataReceiveConfig;
 
                     Print("[DEBUG] CLIENT_RECEIVE_CONFIG | Reading data");
                     if (!ctx.Read(dataReceiveConfig)) { return; }
