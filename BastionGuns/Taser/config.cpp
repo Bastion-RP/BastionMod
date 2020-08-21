@@ -168,6 +168,7 @@ class cfgAmmo
 	class Bullet_Taser: Bullet_Base
 	{
 		scope=2;
+		timeToLive = 0.3;		
 		casing = "FxCartridge_22";
 		round = "FxRound_22";
 		spawnPileType="Ammo_Taser";
@@ -177,11 +178,11 @@ class cfgAmmo
 		tracerScale=1;
 		caliber=0.1;
 		deflecting=30;
-		typicalSpeed=330;
-		airFriction=-0.07;
+		typicalSpeed=200;
+		airFriction=-0.1;
 		supersonicCrackNear[]={};
 		supersonicCrackFar[]={};
-		initSpeed=390;
+		initSpeed=500;
 		weight=0.1;
 		class DamageApplied 
 		{
