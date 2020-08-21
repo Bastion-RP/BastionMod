@@ -46,6 +46,9 @@ class PersonalQuestManager
 			case QRPC.REQUEST_SPAWN_ITEM:
 				handleSpawnItems(ctx);
 			break;
+			case QRPC.REQUEST_TELEPORT_PLAYER:
+				handleTeleportPlayer(ctx);
+			break;
         }
 	}
 
@@ -111,6 +114,14 @@ class PersonalQuestManager
         Param2<ref array<ref Shipment>, int> rpb;
         if (!ctx.Read(rpb)) return;
         GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(handleDeliveryShipmentDelay, 50, false, rpb.param1, rpb.param2);
+	}
+
+	void handleTeleportPlayer(ParamsReadContext ctx)
+	{
+		Param1<string> data;
+		if (!ctx.Read(data)) return;
+		vector pos = data.param1.ToVector();
+		m_Player.SetPosition(pos);
 	}
 
 	void SearchAllItems()

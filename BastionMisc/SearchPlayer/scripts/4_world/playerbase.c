@@ -40,4 +40,22 @@ modded class PlayerBase
 		}
 		return super.CanManipulateInventory();
 	}
+
+	override bool CanReleaseAttachment (EntityAI attachment)
+	{
+		if( HasHandsUp() )
+		{
+			return false;
+		}
+		return super.CanReleaseAttachment(attachment);
+	}
+	
+	override bool CanReleaseCargo (EntityAI cargo)
+	{
+		if( HasHandsUp() )
+		{
+			return false;
+		}
+		return super.CanReleaseCargo(cargo);
+	}
 };

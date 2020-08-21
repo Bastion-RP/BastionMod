@@ -65,10 +65,10 @@ class QuestHud extends UIScriptedMenu
 		new DialogMainContainer(m_DialogMessagesContainer, text);
 	}
 
-	void AddChoice(string text, int move, int apply, int finish = 0)
+	void AddChoice(string text, int move, int apply, int finish = 0, string teleportTo = "")
 	{
 		if (!g_QM.CanTakeQuest(apply)) return;
-		new ChoiceContainer(m_DialogChoicesContainer, text, move, apply, finish);
+		new ChoiceContainer(m_DialogChoicesContainer, text, move, apply, finish, teleportTo);
 	}
 
 	void UpdateDialogContent(QuestDialog qd)
@@ -77,7 +77,7 @@ class QuestHud extends UIScriptedMenu
 		for (int i = 0; i < qd.Choices.Count(); i++)
 		{
 			Choice ch = qd.Choices.Get(i);
-			AddChoice(ch.ChoiceMsg, ch.MoveToDialog, ch.ApplyQuest);
+			AddChoice(ch.ChoiceMsg, ch.MoveToDialog, ch.ApplyQuest, 0, ch.TeleportTo);
 		}
 		AddChoice("(Close the dialog)", -123, 0);
 	}
@@ -99,10 +99,12 @@ class QuestHud extends UIScriptedMenu
 		EditBoxWidget applBox = EditBoxWidget.Cast(choiceWid.FindAnyWidget("ApplyIDStg"));
 		EditBoxWidget textBox = EditBoxWidget.Cast(choiceWid.FindAnyWidget("ChoiceText"));
 		EditBoxWidget finishBox = EditBoxWidget.Cast(choiceWid.FindAnyWidget("FinishStg"));
+		EditBoxWidget teleportBox = EditBoxWidget.Cast(choiceWid.FindAnyWidget("TeleportTo"));
 		string moveIDs = moveBox.GetText();
 		int applIDs = applBox.GetText().ToInt();
 		int finishIDs = finishBox.GetText().ToInt();
 		string textBoxs = textBox.GetText();
+		string teleportPos = textBox.GetText();
 		if (moveIDs == "-123") g_QM.CloseMenu();
 		if (moveIDs)
 		{
@@ -139,6 +141,11 @@ class QuestHud extends UIScriptedMenu
 			{
 				g_QM.TakeQuest(qt);
 			}
+		}
+		if (teleportPos)
+		{
+			m_Player.RPCSingleParam(QRPC.REQUEST_TELEPORT_PLAYER, new Param1<string>(teleportPos), true, null);
+			Close();
 		}
 	}
 
@@ -195,13 +202,13 @@ class QuestHud extends UIScriptedMenu
 						{
 							if (qt.CanDoneAnyway)
 							{
-								AddChoice(qfd.ChoiceMsg, qfd.MoveToDialog, 0, qfd.ForQuest);
+								AddChoice(qfd.ChoiceMsg, qfd.MoveToDialog, 0, qfd.ForQuest, qfd.TeleportTo);
 							}
 							else
 							{
 								if (PlayerHasQuest(qt.QuestID))
 								{
-									AddChoice(qfd.ChoiceMsg, qfd.MoveToDialog, 0, qfd.ForQuest);
+									AddChoice(qfd.ChoiceMsg, qfd.MoveToDialog, 0, qfd.ForQuest, qfd.TeleportTo);
 								}
 							}
 						}
