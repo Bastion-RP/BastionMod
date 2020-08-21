@@ -22,6 +22,8 @@ modded class JMAnimRegister
 		pType.AddItemInHandsProfileIK("BRP_Mag_M9A3_17rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior,	"dz/anims/anm/player/ik/attachments/magazines/magazine_fnp45.anm");
 		pType.AddItemInHandsProfileIK("BRP_Mag_G18_17rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior, "dz/anims/anm/player/ik/attachments/magazines/magazine_glock19_15rnd.anm");
 		pType.AddItemInHandsProfileIK("BRP_Mag_PB_8Rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior, "dz/anims/anm/player/ik/attachments/magazines/magazine_ij70.anm");
+		pType.AddItemInHandsProfileIK("Ammo_Taser", "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior, "dz/anims/anm/player/ik/ammunition/22_LooseRounds.anm");
+
 	}
 	
  	override void OnRegisterPistol( DayZPlayerType pType, DayzPlayerItemBehaviorCfg pBehavior )
@@ -31,6 +33,7 @@ modded class JMAnimRegister
 		pType.AddItemInHandsProfileIK("BRP_M9A3_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_fnp45.asi", pBehavior, "dz/anims/anm/player/ik/weapons/fnp45.anm", "dz/anims/anm/player/reloads/FNP45/w_fnp45_states.anm");
 		pType.AddItemInHandsProfileIK("BRP_G18_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_glock.asi", pBehavior, "dz/anims/anm/player/ik/weapons/Glock19.anm", "dz/anims/anm/player/reloads/Glock/w_Glock19_states.anm");
 		pType.AddItemInHandsProfileIK("BRP_PB_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_ij70.asi", pBehavior, "dz/anims/anm/player/ik/weapons/ij70.anm", "dz/anims/anm/player/reloads/IJ70/w_IJ70_states.anm");
+		pType.AddItemInHandsProfileIK("BRP_Taser_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_cz75.asi", pBehavior, "dz/anims/anm/player/ik/weapons/CZ75.anm", "dz/anims/anm/player/reloads/CZ75/w_CZ75_states.anm");
 
 	}   	
 };
