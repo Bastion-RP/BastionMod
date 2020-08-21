@@ -76,7 +76,9 @@ modded class MissionServer {
 				BST_MCSavePlayer savePlayer;
 				Param params;
 				string saveDir;
+				bool validPlayer;
 
+				validPlayer = false;
 				params = new Param3<int, string, int>(characterId, webCharData.GetFirstName() + " " + webCharData.GetLastName(), webCharData.GetCitizenClass().ToInt());
 				saveDir = MCConst.loadoutDir + "\\" + identity.GetPlainId() + "\\" + characterId + MCConst.fileType;
 
@@ -91,11 +93,15 @@ modded class MissionServer {
             				GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, identity);
 							return;
 						}
-						newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, savePlayer.GetType(), savePlayer.GetPos(), 0, "NONE"));
+						if (!savePlayer.IsDead()) {
+							newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, savePlayer.GetType(), savePlayer.GetPos(), 0, "NONE"));
+							validPlayer = true;
 
-						LoadPlayer(newPlayer, savePlayer);
+							LoadPlayer(newPlayer, savePlayer);
+						}
 					}
-				} else {
+				}
+				if (!validPlayer) {
 					vector spawnPos;
 
 					if (webCharData.GetCitizenClass().ToInt() >= BastionClasses.ISF_F && webCharData.GetCitizenClass().ToInt() <= BastionClasses.ISF_E) {
