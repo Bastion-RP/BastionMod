@@ -25,12 +25,14 @@ class QueFinDiag
 	int							ForQuest;	// questID
 	int							MoveToDialog; // move to QuestDialog ID
 	string                      ChoiceMsg;	// text
+	string						TeleportTo;
 }
 class Choice
 {
     string                      ChoiceMsg;	// text
     int                         MoveToDialog;	//move to QuestDialog ID
     int                         ApplyQuest;		// questID accept the job
+	string						TeleportTo;
 }
 class Quest
 {
