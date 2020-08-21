@@ -36,7 +36,7 @@ modded class PlayerBase
 	{
 		if( HasHandsUp() )
 		{
-			return true;
+			return false;
 		}
 		return super.CanManipulateInventory();
 	}
