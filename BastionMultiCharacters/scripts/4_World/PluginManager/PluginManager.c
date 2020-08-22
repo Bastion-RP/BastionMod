@@ -11,12 +11,16 @@ modded class PluginManager {
 		mcPluginList.Insert("MultiCharactersClientManager");
 		mcPluginList.Insert("MultiCharactersServerManager");
 		mcPluginList.Insert("MultiCharactersServerRPCHandler");
+		mcPluginList.Insert("BST_LibTimestamp");
+		mcPluginList.Insert("BST_MCManager");
 		mcPluginList.Insert("MultiCharactersClientRPCHandler");
 		//----------------------------------------------------------------------
 		// Register modules
 		//----------------------------------------------------------------------
 		//				Module Class Name 						Client	Server
 		//----------------------------------------------------------------------
+		RegisterPlugin("BST_LibTimestamp", true, true);
+		RegisterPlugin("BST_MCManager", true, true);
 		RegisterPlugin("MultiCharactersServerManager", true, true);
 		RegisterPlugin("MultiCharactersClientManager", true, false);
 		RegisterPlugin("MultiCharactersServerRPCHandler", false, true);

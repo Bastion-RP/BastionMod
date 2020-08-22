@@ -26,7 +26,6 @@ class MultiCharactersSurvivorCreator {
     }
 
     void ~MultiCharactersSurvivorCreator() {
-        Print(MCConst.debugPrefix + "Deleting survivor creator widget");
         if (wRoot) {
             wRoot.Unlink();
         }

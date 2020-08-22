@@ -74,7 +74,7 @@ class MultiCharactersMenu : UIScriptedMenu {
 
             wSurvivorSelector.OnMouseButtonUp(w);
 
-            if (statPanel && statPanel.GetSavePlayer().IsDead()) {
+            if (statPanel && statPanel.GetSavePlayer().IsDead() && statPanel.CanChoose()) {
                 wSurvivorCreator.Show();
             }
         }
