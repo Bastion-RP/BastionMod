@@ -25,9 +25,16 @@ class BST_DTACGroupManager : PluginBase {
 
         foreach (EntityAI entity : arrayInventory) {
             if (entity) {
-                string entityType = entity.GetType();
-                string requiredEntityType = GetDTACClientManager().GetConfig().GetPhoneClassname();
+                string entityType;
+                string requiredEntityType;
 
+                entityType = entity.GetType();
+
+                if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) {
+                    requiredEntityType = GetDTACClientManager().GetConfig().GetPhoneClassname();
+                } else {
+                    requiredEntityType = GetDTACServerManager().GetConfig().GetPhoneClassname();
+                }
                 entityType.ToLower();
                 requiredEntityType.ToLower();
 
