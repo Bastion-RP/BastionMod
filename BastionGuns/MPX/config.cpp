@@ -142,7 +142,7 @@ class cfgWeapons
 	{
 		scope = 2;
 		displayName = "CSSMG-9";
-		descriptionShort = "CSSMG-9 is a gas-operated submachine gun, primarily chambered in 9x19mm Parabellum cartridge and takes 30 round mags. It is a gas-operated firearm featuring a closed, rotating bolt. ";
+		descriptionShort = "NCC standard issue submachine gun of German design. Chambered in 9x19mm.";
 		model = "BastionMod\BastionGuns\MPX\MPX.p3d";
 		attachments[] = {"weaponWrap","weaponOptics","suppressorImpro","pistolMuzzle"};
 		itemSize[] = {6,3};
@@ -154,7 +154,7 @@ class cfgMagazines
 	class BRP_Mag_CSSMG9_30Rnd: Magazine_Base
 	{
 		scope = 2;
-		displayName = "30rd CSSMG-9 Mag";
+		displayName = "30 round CSSMG-9 Mag";
 		descriptionShort = "Detachable box magazine for CSSMG-9 submachine gun. Holds up to 30 rounds of 9x19mm.";
 		model = "BastionMod\BastionGuns\MPX\MPX_mag.p3d";
 		weight = 150;

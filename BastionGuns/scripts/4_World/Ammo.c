@@ -1,0 +1,1 @@
+class Ammo_Taser: Ammunition_Base {};

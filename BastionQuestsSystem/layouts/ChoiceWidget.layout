@@ -55,5 +55,14 @@ MultilineTextWidgetClass ChoiceWidget {
    hexactsize 1
    vexactsize 1
   }
+  EditBoxWidgetClass TeleportTo {
+   visible 0
+   position 10 10
+   size 48 48
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
  }
 }

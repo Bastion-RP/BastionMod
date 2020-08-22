@@ -39,6 +39,11 @@ class BRP_Kit: ItemBase
 		return true;
 	}	
 	
+	override bool CanPutInCargo( EntityAI parent )
+    {
+        return false;
+    }
+	
 	override string GetPlaceSoundset()
 	{
 		return "putDown_FenceKit_SoundSet";

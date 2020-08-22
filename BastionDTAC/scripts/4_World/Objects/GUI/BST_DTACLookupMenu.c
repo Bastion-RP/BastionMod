@@ -366,7 +366,7 @@ class BST_DTACLookupMenu {
                         GetHourMinuteSecondUTC(hr, min, sec);
                         GetYearMonthDayUTC(yr, mnth, day);
 
-                        string formattedDate = "" + mnth + "/" + day + "/" + yr + " " + hr + ":" + min;
+                        string formattedDate = "" + mnth + "/" + day + "/" + (yr + 20) + " " + hr + ":" + min;
 
                         HideAllPanels();
                         _edtCriminalCrime.SetText("");

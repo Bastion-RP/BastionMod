@@ -221,7 +221,7 @@ class CfgVehicles
 		};
 		class Protection
 		{
-			biological=1;
+			biological=.25;
 		};
 		class AnimEvents
 		{

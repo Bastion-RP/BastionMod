@@ -1,6 +1,6 @@
 class CfgPatches
 {
-	class BRP_Gasmask
+	class BRP_GasMask
 	{
 		units[] = {};
 		weapons[] = {};
@@ -12,7 +12,7 @@ class CfgVehicles
 {
 	class GP5GasMask;
 	class GP5GasMask_Filter;
-	class BRP_Gasmask: GP5GasMask
+	class BRP_GasMask: GP5GasMask
 	{
 		scope = 2;
 		displayName = "Civilian Gas Mask";
@@ -64,7 +64,7 @@ class CfgVehicles
 		};
 		class Protection
 		{
-			biological = 1;
+			biological = .75;
 		};
 		class AnimEvents
 		{
@@ -85,7 +85,7 @@ class CfgVehicles
 		soundVoiceType = "gasmask";
 		soundVoicePriority = 5;
 	};
-	class BRP_Gasmask_Filter: GP5GasMask_Filter
+	class BRP_GasMask_Filter: GP5GasMask_Filter
 	{
 		scope = 2;
 		displayName = "Gas Mask Filter";
