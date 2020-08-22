@@ -36,10 +36,8 @@ modded class PlayerBase {
 				localItem = loc.GetParent().GetInventory().CreateEntityInCargoEx(type, loc.GetIdx(), loc.GetRow(), loc.GetCol(), loc.GetFlip());
 			}
 			if (localItem) {
-				Print(MCConst.debugPrefix + "Found item, casting as mag!");
 				localMag = Magazine.Cast(localItem);
 				if (localMag) {
-					Print(MCConst.debugPrefix + "Found mag, setting ammo count!");
 					localMag.ServerSetAmmoCount(count);
 				}
 			}

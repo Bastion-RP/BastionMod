@@ -31,18 +31,15 @@ modded class DayZGame {
 
 	void StoreLoginData() {
 		// Make this a script invoked method
-		Print(MCConst.debugPrefix + "DayZGame | StoreLoginData | Invoking spawn!");
 		multicharactersSpawnInvoker.Invoke();
 	}
 
 	override void CancelLoginTimeCountdown() {
-		Print(MCConst.debugPrefix + "Cancelling login countdown!");
 		super.CancelLoginTimeCountdown();
 		ContinueSpawn();
 	}
 
 	void ShowCountDown() {
-		Print(MCConst.debugPrefix + "Showing login timer!");
 		if (m_LoginTime <= 0) {
 			m_LoginTime = 5;
 		}
@@ -69,11 +66,10 @@ modded class DayZGame {
 	}
 
 	void ContinueSpawn(bool init = false) {
-		Print(MCConst.debugPrefix + "Continuing spawn! Initialize client? " + init);
 		array<ref Param> params = new array<ref Param>();
 		Param characterId = new Param1<int>(multicharactersSelectedCharacterId);
 		Param characterType = new Param1<string>(multicharactersSelectedSurvivorType);
-		Param isInitializing = new Param1<bool>(init);
+		Param isInitializing = new Param1<bool>(false);
 
 		params.Insert(characterId);
 		params.Insert(characterType);

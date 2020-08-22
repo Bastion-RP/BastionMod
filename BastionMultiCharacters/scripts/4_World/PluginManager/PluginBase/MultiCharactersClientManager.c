@@ -44,15 +44,15 @@ class MultiCharactersClientManager : PluginBase {
 		if (!menuInit) {
 			menuInit = new MultiCharactersInitMenu();
 		}
-		menuInit.Initializing();
+		//menuInit.Initializing();
 
-		if (!isInitialized) {
+		/* if (!isInitialized) {
 			menuInit.Loading();
 			GetDayZGame().ContinueSpawn(true);
-		} else {
+		} else { */
 			menuInit.DataWaiting();
 			GetGame().RPCSingleParam(null, MultiCharRPC.SERVER_GRAB_LOADOUTS, null, true);
-		}
+		//}
 	}
 
 	void ShowSelectMenu() {

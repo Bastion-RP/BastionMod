@@ -19,9 +19,7 @@ class MultiCharactersClientRPCHandler : PluginBase {
                 {
                     Param1<ref BST_MCConfig> dataReceiveConfig;
 
-                    Print("[DEBUG] CLIENT_RECEIVE_CONFIG | Reading data");
                     if (!ctx.Read(dataReceiveConfig)) { return; }
-                    Print("[DEBUG] CLIENT_RECEIVE_CONFIG | Data read=" + dataReceiveConfig.param1.GetRespawnTimer());
 
                     GetBSTMCManager().SetConfig(dataReceiveConfig.param1);
                     break;
