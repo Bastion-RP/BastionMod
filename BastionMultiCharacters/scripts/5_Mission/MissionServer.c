@@ -73,22 +73,35 @@ modded class MissionServer {
 			if (webCharData && webSteamData && webSteamData.Contains(MCCurlConst.memberId) && webCharData.GetMemberId().ToInt() != 0 && webCharData.GetMemberId().ToInt() == webSteamData.Get(MCCurlConst.memberId).ToInt()) {
 				Print(MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Data received and validated!");
 				PlayerBase newPlayer;
-				SavePlayer savePlayer;
+				BST_MCSavePlayer savePlayer;
 				Param params;
 				string saveDir;
+				bool validPlayer;
 
+				validPlayer = false;
 				params = new Param3<int, string, int>(characterId, webCharData.GetFirstName() + " " + webCharData.GetLastName(), webCharData.GetCitizenClass().ToInt());
 				saveDir = MCConst.loadoutDir + "\\" + identity.GetPlainId() + "\\" + characterId + MCConst.fileType;
 
 				if (FileExist(saveDir)) {
-					JsonFileLoader<SavePlayer>.JsonLoadFile(saveDir, savePlayer);
+					JsonFileLoader<BST_MCSavePlayer>.JsonLoadFile(saveDir, savePlayer);
 
 					if (savePlayer) {
-						newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, savePlayer.GetType(), savePlayer.GetPos(), 0, "NONE"));
+						int currentTimestamp = GetBSTLibTimestamp().GetCurrentTimestamp();
 
-						LoadPlayer(newPlayer, savePlayer);
+						if (currentTimestamp - savePlayer.GetDeathTimestamp() <= GetBSTMCManager().GetConfig().GetRespawnTimer()) {
+							// Kick player. Somehow they chose a character they shouldn't have.
+            				GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, identity);
+							return;
+						}
+						if (!savePlayer.IsDead()) {
+							newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, savePlayer.GetType(), savePlayer.GetPos(), 0, "NONE"));
+							validPlayer = true;
+
+							LoadPlayer(newPlayer, savePlayer);
+						}
 					}
-				} else {
+				}
+				if (!validPlayer) {
 					vector spawnPos;
 
 					if (webCharData.GetCitizenClass().ToInt() >= BastionClasses.ISF_F && webCharData.GetCitizenClass().ToInt() <= BastionClasses.ISF_E) {
@@ -149,12 +162,12 @@ modded class MissionServer {
 		Print(MCConst.debugPrefix + "MissionServer | FinishSpawningClient | Finished spawning id=" + identity.GetPlainId());
 	}
 
-	void BuildInventory(PlayerBase newPlayer, SavePlayer savePlayer) {
-		ref array<ref SaveObject> arrayInventory = savePlayer.GetInventory();
+	void BuildInventory(PlayerBase newPlayer, BST_MCSavePlayer savePlayer) {
+		ref array<ref BST_MCSaveObject> arrayInventory = savePlayer.GetInventory();
 
-		foreach (SaveObject saveObject : arrayInventory) {
+		foreach (BST_MCSaveObject saveObject : arrayInventory) {
 			if (saveObject) {
-				array<ref SaveObject> arrayChildren = saveObject.GetChildren();
+				array<ref BST_MCSaveObject> arrayChildren = saveObject.GetChildren();
 				EntityAI parent;
 
 				if (saveObject.IsInHands()) {
@@ -166,7 +179,7 @@ modded class MissionServer {
 				parent.SetHealth("", "Health", saveObject.GetHealth());
 				SetItemQuantity(parent, saveObject.GetQuantity());
 
-				foreach (SaveObject childObject : arrayChildren) {
+				foreach (BST_MCSaveObject childObject : arrayChildren) {
 					CreateObjectChildren(newPlayer, parent, childObject);
 				}
 			}
@@ -174,8 +187,8 @@ modded class MissionServer {
 		newPlayer.SpawnMissingMags();
 	}
 
-	void CreateObjectChildren(PlayerBase player, EntityAI parent, SaveObject objectToCreate) {
-		array<ref SaveObject> children = objectToCreate.GetChildren();
+	void CreateObjectChildren(PlayerBase player, EntityAI parent, BST_MCSaveObject objectToCreate) {
+		array<ref BST_MCSaveObject> children = objectToCreate.GetChildren();
 		Weapon_Base localWeapon;
 		Magazine localAmmo;
 		ItemBase localItem;
@@ -201,7 +214,7 @@ modded class MissionServer {
 
 		if (slot != -1) {
 			if (Class.CastTo(localAmmo, localParent)) {
-				MagObject mag = new MagObject(localAmmo.GetType(), quant);
+				BST_MCMagObject mag = new BST_MCMagObject(localAmmo.GetType(), quant);
 				player.InsertMag(mag);
 				localParent.Delete();
 				return;
@@ -209,7 +222,7 @@ modded class MissionServer {
 		} else {
 			SetItemQuantity(localParent, quant, slot);
 		}
-		foreach (SaveObject saveObject : children) {
+		foreach (BST_MCSaveObject saveObject : children) {
 			CreateObjectChildren(player, localParent, saveObject);
 		}
 	}
@@ -225,7 +238,7 @@ modded class MissionServer {
 		}
 	}
 
-	void LoadPlayer(PlayerBase player, SavePlayer savePlayer) {
+	void LoadPlayer(PlayerBase player, BST_MCSavePlayer savePlayer) {
 		vector position, direction, orientation;
 		float health, blood, shock, water, energy, playerWater, playerEnergy;
 		position = savePlayer.GetPos();

@@ -8,7 +8,6 @@ class MultiCharactersMenu : UIScriptedMenu {
     protected int characterId;
 
     void ~MultiCharactersMenu() {
-        Print("!!!!!!!!!!---DELETING BastionMultiCharacters MENU---!!!!!!!!!!!!!");
         if (wSurvivorCreator) {
             delete wSurvivorCreator;
         }
@@ -18,7 +17,6 @@ class MultiCharactersMenu : UIScriptedMenu {
     }
 
     override Widget Init() {
-        Print("CREATING SELECT MENU");
         InitScene();
         
         wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionMultiCharacters\\gui\\layouts\\CharacterMenu.layout");
@@ -74,7 +72,7 @@ class MultiCharactersMenu : UIScriptedMenu {
 
             wSurvivorSelector.OnMouseButtonUp(w);
 
-            if (statPanel && statPanel.GetSavePlayer().IsDead()) {
+            if (statPanel && statPanel.GetSavePlayer().IsDead() && statPanel.CanChoose()) {
                 wSurvivorCreator.Show();
             }
         }

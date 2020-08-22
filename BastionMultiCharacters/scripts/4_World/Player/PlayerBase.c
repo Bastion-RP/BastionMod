@@ -1,11 +1,11 @@
 modded class PlayerBase {
 	private ref FileSerializer m_FileSerializer;
-	private ref array<ref MagObject> m_MagsToReload;
+	private ref array<ref BST_MCMagObject> m_MagsToReload;
 	private int multicharactersPlayerId, multicharactersPlayerClass;
 	private string multicharactersPlayerName;
 
 	void PlayerBase() {
-		m_MagsToReload = new array<ref MagObject>();
+		m_MagsToReload = new array<ref BST_MCMagObject>();
 		m_FileSerializer = new FileSerializer();
 		multicharactersPlayerId = -1;
 		multicharactersPlayerClass = -1;
@@ -16,13 +16,13 @@ modded class PlayerBase {
 		SaveInventory();
 	}
 
-	void InsertMag(ref MagObject mag) {
+	void InsertMag(ref BST_MCMagObject mag) {
 		m_MagsToReload.Insert(mag);
 	}
 
 	void SpawnMissingMags() {
 		if (!m_MagsToReload) {
-			m_MagsToReload = new array<ref MagObject>();
+			m_MagsToReload = new array<ref BST_MCMagObject>();
 		}
 		int magCount = m_MagsToReload.Count();
 		for(int i = 0; i < magCount; i++) {
@@ -36,10 +36,8 @@ modded class PlayerBase {
 				localItem = loc.GetParent().GetInventory().CreateEntityInCargoEx(type, loc.GetIdx(), loc.GetRow(), loc.GetCol(), loc.GetFlip());
 			}
 			if (localItem) {
-				Print(MCConst.debugPrefix + "Found item, casting as mag!");
 				localMag = Magazine.Cast(localItem);
 				if (localMag) {
-					Print(MCConst.debugPrefix + "Found mag, setting ammo count!");
 					localMag.ServerSetAmmoCount(count);
 				}
 			}
@@ -55,11 +53,11 @@ modded class PlayerBase {
 		if (!GetGame().IsServer() || !GetGame().IsMultiplayer() || !GetIdentity() || !IsAlive()) { return; }
 		Print(MCConst.debugPrefix + "Saving player inventory! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
 
-		SavePlayer m_SavePlayer = new SavePlayer();
+		BST_MCSavePlayer m_SavePlayer = new BST_MCSavePlayer();
 		array<EntityAI> m_EnumeratedInventory = new array<EntityAI>();
-		array<ref SaveObject> m_SaveObjects = new array<ref SaveObject>();
-		array<ref SaveObject> m_RootChildren = new array<ref SaveObject>();
-		array<ref SaveObject> m_ChildChildren = new array<ref SaveObject>();
+		array<ref BST_MCSaveObject> m_SaveObjects = new array<ref BST_MCSaveObject>();
+		array<ref BST_MCSaveObject> m_RootChildren = new array<ref BST_MCSaveObject>();
+		array<ref BST_MCSaveObject> m_ChildChildren = new array<ref BST_MCSaveObject>();
 		EntityAI m_Root;
 		EntityAI m_ChildRoot;
 
@@ -76,11 +74,11 @@ modded class PlayerBase {
 			InventoryLocation il = new InventoryLocation();
 			PlayerBase localPlayer;
 			Magazine localAmmo;
-			SaveObject tempObject;
+			BST_MCSaveObject tempObject;
 
 			// Grab the InventoryLocation of the current object to grab the slot/index to spawn in the object later
 			localEntity.GetInventory().GetCurrentInventoryLocation(il);
-			tempObject = new SaveObject();
+			tempObject = new BST_MCSaveObject();
 
 			// No root object, set one.
 			if (!m_Root)
@@ -98,7 +96,7 @@ modded class PlayerBase {
 				} else {
 					// Set the children on the object. This object then becomes a child itself
 					tempObject.SetChildren(m_ChildChildren);
-					m_ChildChildren = new array<ref SaveObject>();
+					m_ChildChildren = new array<ref BST_MCSaveObject>();
 					m_ChildChildren.Insert(tempObject);
 					m_ChildRoot = localParent;
 				}
@@ -112,12 +110,12 @@ modded class PlayerBase {
 					if (m_ChildRoot && m_ChildChildren.Count() > 0) {
 						tempObject.SetChildren(m_ChildChildren);
 						m_ChildRoot = null;
-						m_ChildChildren = new array<ref SaveObject>();
+						m_ChildChildren = new array<ref BST_MCSaveObject>();
 					}
 				} else {
 					// This is the root
 					tempObject.SetChildren(m_RootChildren);
-					m_RootChildren = new array<ref SaveObject>();
+					m_RootChildren = new array<ref BST_MCSaveObject>();
 
 					// Parent is player, don't grab player as parent
 					if (Class.CastTo(localPlayer, localParent)) {
@@ -168,7 +166,7 @@ modded class PlayerBase {
 			MakeDirectory(playerDir);
 
 		// Use this for viewing it in plain-text for debugging. This function sucks for anything else. Use file serializer instead.
-		JsonFileLoader<ref SavePlayer>.JsonSaveFile(playerDir + "\\" + multicharactersPlayerId + MCConst.fileType, m_SavePlayer);
+		JsonFileLoader<BST_MCSavePlayer>.JsonSaveFile(playerDir + "\\" + multicharactersPlayerId + MCConst.fileType, m_SavePlayer);
 
 		delete m_SavePlayer;
 		delete m_EnumeratedInventory;
@@ -177,15 +175,36 @@ modded class PlayerBase {
 		delete m_ChildChildren;
 	}
 
-	override void EEKilled(Object killer) { 
-		super.EEKilled(killer);
+	override void EEKilled(Object killer) {
+		Print(MCConst.debugPrefix + GetIdentity().GetName() + " died, killing player at index=" + multicharactersPlayerId);
 
-		Print(MCConst.debugPrefix + this.GetIdentity().GetName() + " died, killing player at index=" + multicharactersPlayerId);
+		if (GetIdentity() && multicharactersPlayerId != -1) {
+			BST_MCSavePlayer savePlayer;
+			string playerDir;
 
-		if (GetIdentity()) {
-			string playerDir = MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId();
-			DeleteFile(playerDir + "\\" + multicharactersPlayerId + MCConst.fileType);
+
+			playerDir = MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId() + "\\" + multicharactersPlayerId + MCConst.fileType;
+			Print(MCConst.debugPrefix + "EEKilled |  playerDir = " + playerDir);
+
+			if (FileExist(playerDir)) {
+				Print(MCConst.debugPrefix + "EEKilled |  File exists, loading");
+				JsonFileLoader<BST_MCSavePlayer>.JsonLoadFile(playerDir, savePlayer);
+			}
+			if (!savePlayer) {
+				Print(MCConst.debugPrefix + "EEKilled |  Save player doesn't exist, creating new one!!!");
+				savePlayer = new BST_MCSavePlayer();
+
+				savePlayer.SetCharacterName(multicharactersPlayerName);
+				savePlayer.SetCharacterId(multicharactersPlayerId);
+				savePlayer.SetType(GetType());
+			}
+			Print(MCConst.debugPrefix + "EEKilled | Clearing character inventory and setting death timestamp!!!");
+			savePlayer.ClearInventory();
+			savePlayer.SetDead(true);
+			savePlayer.SetDeathTimestamp(GetBSTLibTimestamp().GetCurrentTimestamp());
+			JsonFileLoader<BST_MCSavePlayer>.JsonSaveFile(playerDir, savePlayer);
 		}
+		super.EEKilled(killer);
 	}
 
 	// Function identical to OnConnect, just no other mod relies on it. So I can initialize a client without worrying about mods calling OnConnect to data that doesn't exist.
