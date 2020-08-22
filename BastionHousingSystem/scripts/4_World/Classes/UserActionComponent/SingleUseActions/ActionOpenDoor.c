@@ -17,7 +17,9 @@ modded class ActionOpenDoors
 				{return false;}
 				if (!brpbuilding.m_HouseData.LeaseTime)
 				{return true;}
-				if (brpbuilding.m_HouseData && brpbuilding.m_HouseData.MainOwner && (brpbuilding.m_HouseData.MainOwner.MilticharacterID == player.GetMultiCharactersPlayerId().ToString()) && g_HM.IsDoorAllow(doorIdx, brpbuilding)) 
+				if (!brpbuilding.m_HouseData.MainOwner.MilticharacterID)
+				{return true;}
+				if (brpbuilding.m_HouseData.MainOwner.MilticharacterID == player.GetMultiCharactersPlayerId().ToString() && g_HM.IsDoorAllow(doorIdx, brpbuilding))
 				{return true;}
 				return g_HM.IsDoorOwner(player, brpbuilding, doorIdx);
 			}
