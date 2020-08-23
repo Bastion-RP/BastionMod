@@ -58,12 +58,13 @@ class BST_BankingManager : PluginBase {
         }
     }
 
-    void AddCurrency(PlayerBase player, int amount) {
-        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
+    int AddCurrency(PlayerBase player, int amount) {
+        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return 0; }
 
         ref array<ItemBase> arrayItems = GetMoneyInInventory(player);
         int itemMaxQuant = GetGame().ConfigGetInt(CFG_VEHICLESPATH + " " + GetBSTBankingConfigHandler().GetConfig().GetCurrencyClassName() + " varQuantityMax");
         int withdrawAmount = amount;
+        int amountWithdrawn = 0;
 
         if (arrayItems.Count() > 0) {
             foreach (ItemBase item : arrayItems) {
@@ -71,11 +72,15 @@ class BST_BankingManager : PluginBase {
 
                 if (gap > 0) {
                     if (gap <= withdrawAmount) {
-                        item.SetQuantity(itemMaxQuant);
                         withdrawAmount -= gap;
+                        amountWithdrawn += gap;
+                        
+                        item.SetQuantity(itemMaxQuant);
                     } else {
-                        item.AddQuantity(withdrawAmount);
                         withdrawAmount = 0;
+                        amountWithdrawn += withdrawAmount;
+
+                        item.AddQuantity(withdrawAmount);
                     }
                 }
                 if (withdrawAmount == 0) {
@@ -93,8 +98,12 @@ class BST_BankingManager : PluginBase {
                     ItemBase newItem = ItemBase.Cast(il.GetParent().GetInventory().CreateEntityInCargoEx(GetBSTBankingConfigHandler().GetConfig().GetCurrencyClassName(), il.GetIdx(), il.GetRow(), il.GetCol(), il.GetFlip()));
 
                     if (withdrawAmount < itemMaxQuant) {
+                        amountWithdrawn += withdrawAmount;
+
                         newItem.SetQuantity(withdrawAmount);
                     } else {
+                        amountWithdrawn += itemMaxQuant;
+
                         newItem.SetQuantity(itemMaxQuant);
                     }
                     withdrawAmount -= itemMaxQuant;
@@ -104,6 +113,7 @@ class BST_BankingManager : PluginBase {
                 }
             }
         }
+        return amountWithdrawn;
     }
 }
 

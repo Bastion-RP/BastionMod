@@ -77,8 +77,7 @@ class BST_BankingServerRPCHandler : PluginBase {
                         bankFunds = bankAccount.GetFunds();
 
                         if (bankFunds >= amount) {
-                            bankAccount.Withdraw(amount);
-                            GetBSTBankingManager().AddCurrency(player, amount);
+                            bankAccount.Withdraw(GetBSTBankingManager().AddCurrency(player, amount));
                             SendClientBankAccount(bankAccount, player);
                             JsonFileLoader<BST_BankAccount>.JsonSaveFile(accountDir, bankAccount);
                         }
