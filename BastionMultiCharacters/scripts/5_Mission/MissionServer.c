@@ -258,6 +258,45 @@ modded class MissionServer {
 		player.SetPosition(savePlayer.GetPos());
 		player.SetDirection(savePlayer.GetDirection());
 		player.SetOrientation(savePlayer.GetOrientation());
+		player.BSTMCSetLifespan(savePlayer.GetLifespanState(), savePlayer.GetLifespanLastShaved(), savePlayer.GetLifespanBloodyHandsVisible(), savePlayer.GetLifespanBloodTypeVisible(), savePlayer.GetLifespanBloodType());
+		player.GetBleedingManagerServer().BSTMCLoadBleedingSource(savePlayer.GetBleeding());
+		BSTMCLoadModifiers(player, savePlayer.GetModifiers());
+		BSTMCLoadAgents(player, savePlayer.GetAgents());
+		BSTMCLoadSymptoms(player, savePlayer.GetSymptoms());
 		BuildInventory(player, savePlayer);
+	}
+
+	private void BSTMCLoadModifiers(PlayerBase player, array<ref BST_MCSaveModifier> arrModifiers) {
+		ref ModifiersManager manager = player.m_ModifiersManager;
+
+		foreach (BST_MCSaveModifier saveModifier : arrModifiers) {
+			if (!saveModifier) { continue; }
+			ModifierBase modifier = manager.GetModifier(saveModifier.GetId());
+
+			if (modifier) {
+				if (modifier.IsTrackAttachedTime()) {
+					modifier.SetAttachedTime(saveModifier.GetTime());
+				}
+				manager.ActivateModifier(saveModifier.GetId(), EActivationType.TRIGGER_EVENT_ON_CONNECT);
+			}
+		}
+	}
+
+	private void BSTMCLoadAgents(PlayerBase player, array<ref BST_MCSaveAgent> arrAgents) {
+		foreach (BST_MCSaveAgent saveAgent : arrAgents) {
+			if (!saveAgent) { return; }
+			player.m_AgentPool.SetAgentCount(saveAgent.GetKey(), saveAgent.GetValue());
+		}
+	}
+
+	private void BSTMCLoadSymptoms(PlayerBase player, array<int> arrSymptoms) {
+		if (!player.GetSymptomManager()) { return; }
+		foreach (int id : arrSymptoms) {
+			if (player.GetSymptomManager().IsSymptomPrimary(id)) {
+				player.GetSymptomManager().QueueUpPrimarySymptom(id);
+			} else {
+				player.GetSymptomManager().QueueUpSecondarySymptom(id);
+			}
+		}
 	}
 }

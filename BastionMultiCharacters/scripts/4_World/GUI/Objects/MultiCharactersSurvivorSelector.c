@@ -44,8 +44,8 @@ class MultiCharactersSurvivorSelector {
     }
 
     void InitStatPanels() {
-        array<ref BST_MCSavePlayer> arrayLoadouts = GetMultiCharactersClientManager().GetLoadouts();
-        foreach (BST_MCSavePlayer savePlayer : arrayLoadouts) {
+        array<ref BST_MCSavePlayerBasic> arrayLoadouts = GetMultiCharactersClientManager().GetLoadouts();
+        foreach (BST_MCSavePlayerBasic savePlayer : arrayLoadouts) {
             if (savePlayer) {
                 MultiCharactersPlayerStatPanel newStatPanel = new MultiCharactersPlayerStatPanel(gridRoot, savePlayer);
                 arrayStatPanels.Insert(newStatPanel);
