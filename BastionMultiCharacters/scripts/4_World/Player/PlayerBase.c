@@ -12,6 +12,7 @@ modded class PlayerBase {
 	}
 
 	override void OnStoreSave(ParamsWriteContext ctx) {
+		Print("[DEBUG] GetBleedingBits=" + GetBleedingBits());
 		if (multicharactersPlayerId == -1) { return; }
 		SaveInventory();
 	}
@@ -158,6 +159,11 @@ modded class PlayerBase {
 		m_SavePlayer.WriteModifiers(m_ModifiersManager.m_ModifierList);
 		// Save agents
 		m_SavePlayer.WriteAgents(m_AgentPool.m_VirusPool);
+		// Save symptoms
+		m_SavePlayer.WriteSymptoms(m_SymptomManager.m_SymptomQueuePrimary, m_SymptomManager.m_SymptomQueueSecondary);
+		// Save bleeding
+		Print("[DEBUG] GetBleedingBits=" + GetBleedingBits());
+		m_SavePlayer.WriteBleeding(GetBleedingManagerServer(), GetBleedingBits());
 
 		m_SavePlayer.SetType(GetType());
 		m_SavePlayer.SetInventory(m_SaveObjects);

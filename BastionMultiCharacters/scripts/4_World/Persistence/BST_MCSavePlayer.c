@@ -1,6 +1,8 @@
 class BST_MCSavePlayer : BST_MCSavePlayerBasic {
     private ref array<ref BST_MCSaveModifier> _arrModifiers;
 	private ref array<ref BST_MCSaveAgent> _arrAgents;
+	private ref array<int> _arrSymptoms;
+	private ref BST_MCSaveBleeding _bleeding;
 	private string _position, _direction, _orientation;
 
 	// For saving lifespan
@@ -10,9 +12,47 @@ class BST_MCSavePlayer : BST_MCSavePlayerBasic {
 	void BST_MCSavePlayer() {
 		_arrModifiers = new array<ref BST_MCSaveModifier>();
 		_arrAgents = new array<ref BST_MCSaveAgent>();
+		_arrSymptoms = new array<int>();
+	}
+
+	void WriteBleeding(BleedingSourcesManagerServer bleedingManager, int bits) {
+		int bitOffset;
+
+		_bleeding = new BST_MCSaveBleeding(bits);
+		bitOffset = 0;
+
+		for (int i = 0; i < BIT_INT_SIZE; i++) {
+			int bit = 1 << bitOffset;
+
+			if ((bit & bits) != 0) {
+				_bleeding.Insert(bleedingManager.GetBleedingSourceActiveTime(bit));
+			}
+			bitOffset++;
+		}
+	}
+
+	void WriteSymptoms(array<ref SymptomBase> arrSymptomQueuePrimary, array<ref SymptomBase> arrSymptomQueueSecondary) {
+		_arrSymptoms = new array<int>();
+
+		Print("[DEBUG] WriteSymptoms | arrSymptomQueuePrimary=" + arrSymptomQueuePrimary.Count() + " | arrSymptomQueueSecondary=" + arrSymptomQueueSecondary.Count());
+
+		foreach (SymptomBase symptomPrimary : arrSymptomQueuePrimary) {
+			if (!symptomPrimary) { continue; }
+			if (symptomPrimary.IsPersistent()) {
+				_arrSymptoms.Insert(symptomPrimary.GetType());
+			}
+		}
+		foreach (SymptomBase symptomSecondary : arrSymptomQueueSecondary) {
+			if (!symptomSecondary) { continue; }
+			if (symptomSecondary.IsPersistent()) {
+				_arrSymptoms.Insert(symptomSecondary.GetType());
+			}
+		}
 	}
 
     void WriteModifiers(map<int, ref ModifierBase> mapModifiers) {
+		Print("[DEBUG] WriteModifiers | mapModifiers=" + mapModifiers.Count());
+
         for (int i = 0; i < mapModifiers.Count(); i++) {
             ModifierBase mdfr = mapModifiers.GetElement(i);
 
@@ -30,6 +70,8 @@ class BST_MCSavePlayer : BST_MCSavePlayerBasic {
     }
 
 	void WriteAgents(map<int, float> mapAgents) {
+		Print("[DEBUG] WriteModifiers | WriteAgents=" + mapAgents.Count());
+
 		for (int i = 0; i < mapAgents.Count(); i++) {
 			_arrAgents.Insert(new BST_MCSaveAgent(mapAgents.GetKey(i), mapAgents.GetElement(i)));
 		}
@@ -51,6 +93,8 @@ class BST_MCSavePlayer : BST_MCSavePlayerBasic {
 
 	array<ref BST_MCSaveModifier> GetModifiers() { return _arrModifiers; }
 	array<ref BST_MCSaveAgent> GetAgents() { return _arrAgents; }
+	array<int> GetSymptoms() { return _arrSymptoms; }
+	BST_MCSaveBleeding GetBleeding() { return _bleeding; }
 	vector GetPos() { return _position.ToVector(); }
 	vector GetDirection() { return _direction.ToVector(); }
 	vector GetOrientation() { return _orientation.ToVector(); }
