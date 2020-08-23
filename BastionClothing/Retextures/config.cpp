@@ -53,7 +53,6 @@ class cfgVehicles
 							{
 								"DZ\characters\headgear\data\BaseballCapII.rvmat"
 							}
-							}
 						},
 
 						{
@@ -151,19 +150,6 @@ class cfgVehicles
 		soundVoicePriority = 10;
 	};
 
-//---Tactical Helmet
-	class BRP_ISF_DART_Helmet: Mich2001Helmet
-	{
-		scope = 2;
-		displayName = "ISF Helmet";
-		descriptionShort = "";
-		hiddenSelectionsTextures[] = 
-		{
-			"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa",
-			"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa",
-			"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa"
-		};
-	};
 //---Military Berets
 	class BRP_ISF_OfficerBeret: MilitaryBeret_ColorBase
 	{
@@ -202,6 +188,20 @@ class cfgVehicles
 		};
 	};
 	
+//---Tactical Helmet
+	class BRP_ISF_DART_Helmet: Mich2001Helmet
+	{
+		scope = 2;
+		displayName = "ISF Helmet";
+		descriptionShort = "";
+		hiddenSelectionsTextures[] = 
+		{
+			"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa",
+			"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa",
+			"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa"
+		};
+	};
+
 //---Police Vest
 	class BRP_ISF_PoliceVest: PoliceVest
 	{
