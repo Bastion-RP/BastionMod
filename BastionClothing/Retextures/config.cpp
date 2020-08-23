@@ -19,165 +19,8 @@ class cfgVehicles
 	class MilitaryBeret_ColorBase;
 	class BaseballCap_ColorBase;
 	class PoliceVest;
-	class BRP_BurlapSackCoverMask: BalaclavaMask_ColorBase
-	{
-		scope = 2;
-		displayName = "Burlap Mask";
-		descriptionShort = "Improvised Mask made from cutting rough holes into an old burlap sack.";
-		model = "\dz\characters\headgear\Head_sack_g.p3d";
-		inventorySlot[] = { "Headgear" };
-		simulation = "clothing";
-		vehicleClass = "Clothing";
-		itemInfo[] = {"Clothing","Headgear"};
-		rotationFlags = 1;
-		weight = 510;
-		itemSize[] = {2,2};
-		absorbency = 1;
-		heatIsolation = 0.7;
-		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\head_sack_co.paa","BastionMod\BastionClothing\Retextures\data\head_sack_co.paa","BastionMod\BastionClothing\Retextures\data\head_sack_co.paa"};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1,{"DZ\characters\headgear\data\Head_Sack.rvmat"}},{0.7,{"DZ\characters\headgear\data\Head_Sack.rvmat"}},{0.5,{"DZ\characters\headgear\data\Head_Sack_damage.rvmat"}},{0.3,{"DZ\characters\headgear\data\Head_Sack_damage.rvmat"}},{0,{"DZ\characters\headgear\data\Head_Sack_destruct.rvmat"}}};
-				};
-			};
-		};
-		class ClothingTypes
-		{
-			male = "\DZ\characters\headgear\Head_sack.p3d";
-			female = "\DZ\characters\headgear\Head_sack.p3d";
-		};
-		class Protection
-		{
-			biological = 0.25;
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem
-				{
-					soundSet = "Shirt_pickup_SoundSet";
-					id = 797;
-				};
-				class drop
-				{
-					soundset = "Shirt_drop_SoundSet";
-					id = 898;
-				};
-			};
-		};
-		soundVoiceType = "none";
-		soundVoicePriority = 10;
-	};
-	class BRP_ISF_Tacshirt: TacticalShirt_ColorBase
-	{
-		displayName = "ISF Tactical Shirt";
-		descriptionShort = "";
-		scope = 2;
-		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\ncc_tacshirt.paa","BastionMod\BastionClothing\Retextures\data\ncc_tacshirt.paa","BastionMod\BastionClothing\Retextures\data\ncc_tacshirt.paa"};
-	};
-	class BRP_ISF_DART_Tacshirt: TacticalShirt_ColorBase
-	{
-		displayName = "ISF Tactical Shirt";
-		descriptionShort = "";
-		scope = 2;
-		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\isff_tacshirt.paa","BastionMod\BastionClothing\Retextures\data\isff_tacshirt.paa","BastionMod\BastionClothing\Retextures\data\isff_tacshirt.paa"};
-	};
-	class BRP_ISF_Pants: BDUPants
-	{
-		scope = 2;
-		displayName = "ISF Pants";
-		descriptionShort = "";
-		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\ncc_pants.paa","BastionMod\BastionClothing\Retextures\data\ncc_pants.paa","BastionMod\BastionClothing\Retextures\data\ncc_pants.paa"};
-	};
-	class BRP_ISF_DART_Pants: BDUPants
-	{
-		scope = 2;
-		displayName = "ISF Pants";
-		descriptionShort = "";
-		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\isff_pants.paa","BastionMod\BastionClothing\Retextures\data\isff_pants.paa","BastionMod\BastionClothing\Retextures\data\isff_pants.paa"};
-	};
-	class BRP_ISF_DART_Helmet: Mich2001Helmet
-	{
-		scope = 2;
-		displayName = "ISF Helmet";
-		descriptionShort = "";
-		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa","BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa","BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa"};
-	};
-	class BRP_TTsKOJacket_Civilian: TTsKOJacket_ColorBase
-	{
-		scope=2;
-		displayName = "NCC Citizen's Jacket";
-        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in navy blue.";
-		visibilityModifier=0.5;
-		itemSize[]={3,3};
-		itemsCargoSize[]={5,4};
-		hiddenSelectionsTextures[]=
-		{
-			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa",
-			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa",
-			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa"
-		};
-	};
-	class BRP_TTsKOJacket_Civilian_Brown: TTsKOJacket_ColorBase
-	{
-		scope=2;
-		displayName = "NCC Citizen's Jacket";
-        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in brown.";
-		visibilityModifier=0.5;
-		itemSize[]={3,3};
-		itemsCargoSize[]={5,4};
-		hiddenSelectionsTextures[]=
-		{
-			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_brown_co.paa",
-			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_brown_co.paa",
-			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_brown_co.paa"
-		};
-	};
-	
-	class BRP_ISF_OfficerBeret: MilitaryBeret_ColorBase
-	{
-		scope=2;
-		displayName = "NCC Military Beret";
-        descriptionShort = "Military beret for high-ranking NCC officials.";
-		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
-		class ClothingTypes
-		{
-			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
-			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa",
-			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa",
-			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa"
-		};
-	};
-	class BRP_ISF_Blue_OfficerBeret: MilitaryBeret_ColorBase
-	{
-		scope=2;
-		displayName = "NCC Military Beret";
-        descriptionShort = "Military beret for high-ranking NCC officials.";
-		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
-		class ClothingTypes
-		{
-			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
-			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_blue_co.paa",
-			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_blue_co.paa",
-			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_blue_co.paa"
-		};
-	};
-
+	class Hoodie_ColorBase;
+//---Baseball Cap
 	class BRP_ISF_BaseballCap: BaseballCap_ColorBase
 	{
 		scope=2;
@@ -249,6 +92,79 @@ class cfgVehicles
 		};
 	};
 
+//---Burlap Sack Cover
+	class BRP_BurlapSackCoverMask: BalaclavaMask_ColorBase
+	{
+		scope = 2;
+		displayName = "Burlap Mask";
+		descriptionShort = "Improvised Mask made from cutting rough holes into an old burlap sack.";
+		model = "\dz\characters\headgear\Head_sack_g.p3d";
+		inventorySlot[] = { "Headgear" };
+		simulation = "clothing";
+		vehicleClass = "Clothing";
+		itemInfo[] = {"Clothing","Headgear"};
+		rotationFlags = 1;
+		weight = 510;
+		itemSize[] = {2,2};
+		absorbency = 1;
+		heatIsolation = 0.7;
+		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\head_sack_co.paa","BastionMod\BastionClothing\Retextures\data\head_sack_co.paa","BastionMod\BastionClothing\Retextures\data\head_sack_co.paa"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1,{"DZ\characters\headgear\data\Head_Sack.rvmat"}},{0.7,{"DZ\characters\headgear\data\Head_Sack.rvmat"}},{0.5,{"DZ\characters\headgear\data\Head_Sack_damage.rvmat"}},{0.3,{"DZ\characters\headgear\data\Head_Sack_damage.rvmat"}},{0,{"DZ\characters\headgear\data\Head_Sack_destruct.rvmat"}}};
+				};
+			};
+		};
+		class ClothingTypes
+		{
+			male = "\DZ\characters\headgear\Head_sack.p3d";
+			female = "\DZ\characters\headgear\Head_sack.p3d";
+		};
+		class Protection
+		{
+			biological = 0.25;
+		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class pickUpItem
+				{
+					soundSet = "Shirt_pickup_SoundSet";
+					id = 797;
+				};
+				class drop
+				{
+					soundset = "Shirt_drop_SoundSet";
+					id = 898;
+				};
+			};
+		};
+		soundVoiceType = "none";
+		soundVoicePriority = 10;
+	};
+
+//---Tactical Helmet
+	class BRP_ISF_DART_Helmet: Mich2001Helmet
+	{
+		scope = 2;
+		displayName = "ISF Helmet";
+		descriptionShort = "";
+		hiddenSelectionsTextures[] = 
+		{
+			"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa",
+			"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa",
+			"BastionMod\BastionClothing\Retextures\data\tacticalhelm_dart.paa"
+		};
+	};
+
+//---Police Vest
 	class BRP_ISF_PoliceVest: PoliceVest
 	{
 		scope=2;
@@ -372,5 +288,110 @@ class cfgVehicles
                 };
 			};
 		};
+	};
+
+//---Hoodie
+	class BRP_Hoodie_black: Hoodie_ColorBase
+	{
+		displayName="Hoodie - Black";
+		descriptionShort="";
+		scope=2;
+		visibilityModifier = 0.6;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\BRP_Hoodie_black_m.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_Hoodie_black_m.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_Hoodie_black_f.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_Hoodie_black_f.paa"
+		};
+	};
+
+//---Tactical Shirt
+	class BRP_ISF_Tacshirt: TacticalShirt_ColorBase
+	{
+		displayName = "ISF Tactical Shirt";
+		descriptionShort = "";
+		scope = 2;
+		hiddenSelectionsTextures[] = 
+		{
+			"BastionMod\BastionClothing\Retextures\data\ncc_tacshirt.paa",
+			"BastionMod\BastionClothing\Retextures\data\ncc_tacshirt.paa",
+			"BastionMod\BastionClothing\Retextures\data\ncc_tacshirt.paa"
+		};
+	};
+	class BRP_ISF_DART_Tacshirt: TacticalShirt_ColorBase
+	{
+		displayName = "ISF Tactical Shirt";
+		descriptionShort = "";
+		scope = 2;
+		hiddenSelectionsTextures[] = 
+		{
+			"BastionMod\BastionClothing\Retextures\data\isff_tacshirt.paa",
+			"BastionMod\BastionClothing\Retextures\data\isff_tacshirt.paa",
+			"BastionMod\BastionClothing\Retextures\data\isff_tacshirt.paa"
+		};
+	};
+
+//---TTSKO Jacket
+	class BRP_TTsKOJacket_Civilian: TTsKOJacket_ColorBase
+	{
+		scope=2;
+		displayName = "NCC Citizen's Jacket";
+        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in navy blue.";
+		visibilityModifier=0.5;
+		itemSize[]={3,3};
+		itemsCargoSize[]={5,4};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa"
+		};
+	};
+	class BRP_TTsKOJacket_Civilian_White: TTsKOJacket_ColorBase
+	{
+		scope=2;
+		displayName = "NCC Citizen's Jacket";
+        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in navy blue.";
+		visibilityModifier=0.5;
+		itemSize[]={3,3};
+		itemsCargoSize[]={5,4};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_white_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_white_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_white_co.paa"
+		};
+	};
+	class BRP_TTsKOJacket_Civilian_Brown: TTsKOJacket_ColorBase
+	{
+		scope=2;
+		displayName = "NCC Citizen's Jacket";
+        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in brown.";
+		visibilityModifier=0.5;
+		itemSize[]={3,3};
+		itemsCargoSize[]={5,4};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_brown_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_brown_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_brown_co.paa"
+		};
+	};
+
+//---BDU Pants
+	class BRP_ISF_Pants: BDUPants
+	{
+		scope = 2;
+		displayName = "ISF Pants";
+		descriptionShort = "";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\ncc_pants.paa","BastionMod\BastionClothing\Retextures\data\ncc_pants.paa","BastionMod\BastionClothing\Retextures\data\ncc_pants.paa"};
+	};
+	class BRP_ISF_DART_Pants: BDUPants
+	{
+		scope = 2;
+		displayName = "ISF Pants";
+		descriptionShort = "";
+		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\isff_pants.paa","BastionMod\BastionClothing\Retextures\data\isff_pants.paa","BastionMod\BastionClothing\Retextures\data\isff_pants.paa"};
 	};
 };
