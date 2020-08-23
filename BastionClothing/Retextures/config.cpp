@@ -20,6 +20,19 @@ class cfgVehicles
 	class BaseballCap_ColorBase;
 	class PoliceVest;
 	class Hoodie_ColorBase;
+//---Head
+    class Inventory_base;
+    class BRP_Head_admin: Inventory_Base
+    {
+        displayName="Head - Admin";
+        scope=2;
+        itemSize[]={2,2};
+        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD. | Model and config from Invisible Clothing Mod";
+        model="TH\data\invisible.p3d";
+        inventorySlot="Head";
+        simulation="head";
+    };
+
 //---Baseball Cap
 	class BRP_ISF_BaseballCap: BaseballCap_ColorBase
 	{
@@ -344,6 +357,22 @@ class cfgVehicles
 		};
 	};
 
+//---NBC Jacket
+    class NBCJacketBase;
+    class BRP_Jacket_admin: NBCJacketBase
+    {
+        displayName="Jacket - Admin";
+        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD. | Re-textured by Sid Adams";
+        scope=2;
+        visibilityModifier = 0.6;
+        itemSize[]={2,2};
+        itemsCargoSize[] = {10,50};
+        hiddenSelectionsTextures[]=
+        {
+//---There is nothing for a reason
+        };
+    };
+
 //---Tactical Shirt
 	class BRP_ISF_Tacshirt: TacticalShirt_ColorBase
 	{
@@ -417,6 +446,21 @@ class cfgVehicles
 		};
 	};
 
+//---NBC Gloves
+    class NBCGloves_ColorBase;
+    class BRP_Gloves_admin: NBCGloves_ColorBase
+    {
+        displayName="Gloves - Admin";
+        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD. | Re-textured by Sid Adams";
+        scope=2;
+        visibilityModifier = 0.6;
+        itemSize[]={2,2};
+        hiddenSelectionsTextures[]=
+        {
+//---There is nothing here for a reason
+        };
+    };
+
 //---BDU Pants
 	class BRP_ISF_Pants: BDUPants
 	{
@@ -432,4 +476,35 @@ class cfgVehicles
 		descriptionShort = "";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\isff_pants.paa","BastionMod\BastionClothing\Retextures\data\isff_pants.paa","BastionMod\BastionClothing\Retextures\data\isff_pants.paa"};
 	};
+
+//---NBC Pants
+    class NBCPantsBase;
+    class BRP_Pants_admin: NBCPantsBase
+    {
+        displayName="Pants - Admin";
+        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD. | Re-textured by Sid Adams";
+        scope=2;
+        visibilityModifier = 0.6;
+        itemSize[]={2,2};
+        itemsCargoSize[] = {0,0};
+        hiddenSelectionsTextures[] = 
+        {
+//---There is nothing here for a reason
+        };
+    };
+
+//---NBC Boots
+	class NBCBootsBase;
+    class BRP_Boots_admin: NBCBootsBase
+    {
+        displayName="Boots - Admin";
+        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD. | Re-textured by Sid Adams";
+        scope=2;
+        visibilityModifier = 0.6;
+        itemSize[]={2,2};
+        hiddenSelectionsTextures[]=
+        {
+//---There is nothing for a reason
+        };
+    };
 };
