@@ -28,7 +28,7 @@ class cfgVehicles
         scope=2;
         itemSize[]={2,2};
         descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD. | Model and config from Invisible Clothing Mod";
-        model="TH\data\invisible.p3d";
+        model="BastionMod\BastionClothing\Retextures\data\invisible.p3d";
         inventorySlot="Head";
         simulation="head";
     };
