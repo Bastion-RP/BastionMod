@@ -48,6 +48,11 @@ class BST_MCSaveObject {
 		_arrChildren = arrChildren;
 	}
 
+	void ClearChildren() {
+		delete _arrChildren;
+		_arrChildren = new array<ref BST_MCSaveObject>();
+	}
+
 	ref array<ref BST_MCSaveObject> GetChildren() { return _arrChildren; }
 	string GetType() { return _type; }
 	float GetHealth() { return _health; }

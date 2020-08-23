@@ -12,8 +12,6 @@ class MultiCharactersClientRPCHandler : PluginBase {
     void ClientRPCHandler(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx) {
         if (GetGame().IsServer() && GetGame().IsMultiplayer()) { return; }
 
-        array<ref BST_MCSavePlayer> savePlayerArray;
-
         switch (rpc_type) {
             case MultiCharRPC.CLIENT_RECEIVE_CONFIG:
                 {
@@ -26,7 +24,7 @@ class MultiCharactersClientRPCHandler : PluginBase {
                 }
             case MultiCharRPC.CLIENT_GRAB_LOADOUTS:
                 {
-                    Param1<array<ref BST_MCSavePlayer>> dataGrabLoadouts;
+                    Param1<array<ref BST_MCSavePlayerBasic>> dataGrabLoadouts;
 
                     if (!ctx.Read(dataGrabLoadouts)) { return; }
                     GetMultiCharactersClientManager().SetLoadouts(dataGrabLoadouts.param1);

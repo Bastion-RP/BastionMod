@@ -148,18 +148,19 @@ modded class PlayerBase {
 		}
 
 		// Set needed values for the player
-		m_SavePlayer.SetCharacterName(multicharactersPlayerName);
-		m_SavePlayer.SetCharacterId(multicharactersPlayerId);
+		m_SavePlayer.SetAPIData(multicharactersPlayerName, multicharactersPlayerId, multicharactersPlayerClass);
+		m_SavePlayer.SetLocation(GetPosition(), GetDirection(), GetOrientation());
+		m_SavePlayer.SetLifeStats(GetHealth("", "Health"), GetHealth("", "Blood"), GetHealth("GlobalHealth", "Shock"), GetStatWater().Get(), GetStatEnergy().Get());
+
+		// Save lifespan
+		m_SavePlayer.SetLifespan(m_LifeSpanState, m_LastShavedSeconds, m_HasBloodyHandsVisible, m_HasBloodTypeVisible, m_BloodType);
+		// Save modifiers
+		m_SavePlayer.WriteModifiers(m_ModifiersManager.m_ModifierList);
+		// Save agents
+		m_SavePlayer.WriteAgents(m_AgentPool.m_VirusPool);
+
 		m_SavePlayer.SetType(GetType());
-		m_SavePlayer.SetPos(GetPosition());
-		m_SavePlayer.SetDirection(GetDirection());
-		m_SavePlayer.SetOrientation(GetOrientation());
 		m_SavePlayer.SetInventory(m_SaveObjects);
-		m_SavePlayer.SetHealth(GetHealth("", "Health"));
-		m_SavePlayer.SetBlood(GetHealth("", "Blood"));
-		m_SavePlayer.SetShock(GetHealth("GlobalHealth", "Shock"));
-		m_SavePlayer.SetWater(GetStatWater().Get());
-		m_SavePlayer.SetEnergy(GetStatEnergy().Get());
 
 		string playerDir = MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId();
 		if (!FileExist(playerDir))
@@ -194,8 +195,7 @@ modded class PlayerBase {
 				Print(MCConst.debugPrefix + "EEKilled |  Save player doesn't exist, creating new one!!!");
 				savePlayer = new BST_MCSavePlayer();
 
-				savePlayer.SetCharacterName(multicharactersPlayerName);
-				savePlayer.SetCharacterId(multicharactersPlayerId);
+				savePlayer.SetAPIData(multicharactersPlayerName, multicharactersPlayerId, multicharactersPlayerClass);
 				savePlayer.SetType(GetType());
 			}
 			Print(MCConst.debugPrefix + "EEKilled | Clearing character inventory and setting death timestamp!!!");
@@ -205,6 +205,14 @@ modded class PlayerBase {
 			JsonFileLoader<BST_MCSavePlayer>.JsonSaveFile(playerDir, savePlayer);
 		}
 		super.EEKilled(killer);
+	}
+	
+	void BSTMCSetLifespan(int state, int lastShaved, bool bloodHands, bool bloodVisible, int bloodType) {
+		m_LifeSpanState = state;
+		m_LastShavedSeconds = lastShaved;
+		m_HasBloodyHandsVisible = bloodHands;
+		m_HasBloodTypeVisible = bloodVisible;
+		m_BloodType = bloodType;
 	}
 
 	// Function identical to OnConnect, just no other mod relies on it. So I can initialize a client without worrying about mods calling OnConnect to data that doesn't exist.

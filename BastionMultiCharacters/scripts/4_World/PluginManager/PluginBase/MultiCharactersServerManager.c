@@ -63,28 +63,27 @@ class MultiCharactersServerManager : PluginBase {
         mcCurl = new MultiCharactersCURL();
         ctx = curlCore.GetRestContext("https://bastionrp.com/api/");
         if (jsSerializer.ReadFromString(steamData, ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_STEAM_ID + sender.GetPlainId()), error) && steamData.Contains(MCCurlConst.memberId) && jsSerializer.ReadFromString(arrayCharacterData, ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_MEMBER_ID + steamData.Get(MCCurlConst.memberId)), error) && arrayCharacterData.Count() > 0) {
-            auto savePlayerArray = new array<ref BST_MCSavePlayer>();
+            auto savePlayerArray = new array<ref BST_MCSavePlayerBasic>();
 
             foreach (MultiCharactersCharacterId characterData : arrayCharacterData) {
                 if (characterData.IsActive()) {
-                    BST_MCSavePlayer savePlayer;
+                    BST_MCSavePlayerBasic savePlayer;
                     string savePlayerDir = MCConst.loadoutDir + "\\" + sender.GetPlainId() + "\\" + characterData.GetCharacterId() + MCConst.fileType;
                     Print(MCConst.debugPrefix + "SAVE DATA DIR | " + savePlayerDir);
                     characterData.PrintData();
 
                     if (FileExist(savePlayerDir)) {
-                        JsonFileLoader<BST_MCSavePlayer>.JsonLoadFile(savePlayerDir, savePlayer);
+                        JsonFileLoader<BST_MCSavePlayerBasic>.JsonLoadFile(savePlayerDir, savePlayer);
+                        savePlayer.PurgeInventoryItems();
                     } else {
-                        savePlayer = new BST_MCSavePlayer();
+                        savePlayer = new BST_MCSavePlayerBasic();
                         savePlayer.SetDead(true);
-                        savePlayer.SetCharacterClass(characterData.GetCitizenClass().ToInt());
-                        savePlayer.SetCharacterId(characterData.GetCharacterId().ToInt());
-                        savePlayer.SetName(characterData.GetFirstName() + " " + characterData.GetLastName());
+                        savePlayer.SetAPIData(characterData.GetFirstName() + " " + characterData.GetLastName(), characterData.GetCharacterId().ToInt(), characterData.GetCitizenClass().ToInt());
                     }
                     savePlayerArray.Insert(savePlayer);
                 }
             }
-            auto params = new Param1<array<ref BST_MCSavePlayer>>(savePlayerArray);
+            auto params = new Param1<array<ref BST_MCSavePlayerBasic>>(savePlayerArray);
 		    Param configParams = new Param1<ref BST_MCConfig>(GetBSTMCManager().GetConfig());
 
             GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_RECEIVE_CONFIG, configParams, true, sender);

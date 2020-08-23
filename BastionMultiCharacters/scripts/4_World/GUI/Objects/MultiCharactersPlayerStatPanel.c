@@ -1,7 +1,7 @@
 class MultiCharactersPlayerStatPanel {
     private ref Widget wRoot, wParent, pnlStats, pnlBorder;
     private ref TextWidget txtRespawn, txtName, txtHealth, txtBlood, txtEnergy, txtWater;
-    private ref BST_MCSavePlayer savePlayer;
+    private ref BST_MCSavePlayerBasic savePlayer;
     private DayZPlayer dayzPlayer
     private vector characterPos;
     private bool isSelected, _canChoose;
@@ -12,7 +12,7 @@ class MultiCharactersPlayerStatPanel {
     private const int maxEnergy = 20000;
     private const int maxWater = 5000;
 
-    void MultiCharactersPlayerStatPanel(Widget wParent, BST_MCSavePlayer savePlayer) {
+    void MultiCharactersPlayerStatPanel(Widget wParent, BST_MCSavePlayerBasic savePlayer) {
         vector cameraPos, characterPos;
         this.wParent = wParent;
         this.savePlayer = savePlayer;
@@ -133,7 +133,7 @@ class MultiCharactersPlayerStatPanel {
     }
 
     Widget GetWidget() { return wRoot; }
-    BST_MCSavePlayer GetSavePlayer() { return savePlayer; }
+    BST_MCSavePlayerBasic GetSavePlayer() { return savePlayer; }
     DayZPlayer GetPlayer() { return dayzPlayer; }
     bool CanChoose() { return _canChoose; }
 }
