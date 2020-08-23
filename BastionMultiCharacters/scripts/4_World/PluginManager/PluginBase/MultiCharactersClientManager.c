@@ -1,5 +1,5 @@
 class MultiCharactersClientManager : PluginBase {
-	private ref array<ref SavePlayer> arrayLoadouts;
+	private ref array<ref BST_MCSavePlayerBasic> arrayLoadouts;
 	private ref MultiCharactersInitMenu menuInit;
 	private ref MultiCharactersMenu menuSelect;
 	private int selectedSurvivorId;
@@ -11,7 +11,7 @@ class MultiCharactersClientManager : PluginBase {
 	void MultiCharactersClientManager() {
 		GetDayZGame().multicharactersSpawnInvoker.Insert(InitClient);
 		isInitialized = false;
-		arrayLoadouts = new array<ref SavePlayer>();
+		arrayLoadouts = new array<ref BST_MCSavePlayerBasic>();
 		BST_testInvoker = new ScriptInvoker();
 	}
 
@@ -26,17 +26,17 @@ class MultiCharactersClientManager : PluginBase {
 			delete arrayLoadouts;
 		}
 		isInitialized = false;
-		arrayLoadouts = new array<ref SavePlayer>();
+		arrayLoadouts = new array<ref BST_MCSavePlayerBasic>();
     }
 
-	ref array<ref SavePlayer> GetLoadouts() {
+	ref array<ref BST_MCSavePlayerBasic> GetLoadouts() {
 		return arrayLoadouts;
 	}
 
-	void SetLoadouts(ref array<ref SavePlayer> arrayLoadouts) {
+	void SetLoadouts(ref array<ref BST_MCSavePlayerBasic> arrayLoadouts) {
 		delete this.arrayLoadouts;
 
-		this.arrayLoadouts = new array<ref SavePlayer>();
+		this.arrayLoadouts = new array<ref BST_MCSavePlayerBasic>();
 		this.arrayLoadouts = arrayLoadouts;
 	}
 
@@ -44,15 +44,15 @@ class MultiCharactersClientManager : PluginBase {
 		if (!menuInit) {
 			menuInit = new MultiCharactersInitMenu();
 		}
-		menuInit.Initializing();
+		//menuInit.Initializing();
 
-		if (!isInitialized) {
+		/* if (!isInitialized) {
 			menuInit.Loading();
 			GetDayZGame().ContinueSpawn(true);
-		} else {
+		} else { */
 			menuInit.DataWaiting();
 			GetGame().RPCSingleParam(null, MultiCharRPC.SERVER_GRAB_LOADOUTS, null, true);
-		}
+		//}
 	}
 
 	void ShowSelectMenu() {

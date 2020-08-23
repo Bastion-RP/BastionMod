@@ -168,12 +168,12 @@ modded class BuildingBase
 		{
 			this.RPCSingleParam(HRPC.SEND_HOUSE_DATA, new Param1<ref HouseData>(hd), true, sender);
 		}
-		else
-		{
-			hd = new HouseData();
-			hd.BuildingPos = "0";
-			this.RPCSingleParam(HRPC.SEND_HOUSE_DATA, new Param1<ref HouseData>(hd), true, sender);
-		}
+		// else
+		// {
+		// 	hd = new HouseData();
+		// 	hd.BuildingPos = "0";
+		// 	this.RPCSingleParam(HRPC.SEND_HOUSE_DATA, new Param1<ref HouseData>(hd), true, sender);
+		// }
 	}
 
 	void handleApplyHouseData(ParamsReadContext  ctx)
@@ -512,13 +512,13 @@ modded class BuildingBase
 	bool PayMoney(PlayerIdentity target, int amount)
 	{
 		PlayerBase player = GetPlayerByIdentity(target);
-		ref array<ItemBase> arrayItems;
+		ref array<ItemBase> outItems;
 		int outAmount;
 		if (player) 
 		{
-			if (GetBankManager().CanDeposit(player, amount, arrayItems, outAmount)) 
+			if (GetBSTBankingManager().CanDeposit(player, amount, outItems)) 
 			{
-				GetBankManager().RemoveCurrency(arrayItems, amount);
+				GetBSTBankingManager().RemoveCurrency(outItems, amount);
 				return true;
 			} 
 			else 

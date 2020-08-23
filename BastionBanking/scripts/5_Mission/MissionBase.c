@@ -17,6 +17,20 @@ modded class MissionGameplay {
         }
         return menu;
     }
+    
+    override void OnUpdate(float timeslice) {
+        super.OnUpdate(timeslice);
+
+        Input input = GetGame().GetInput();
+
+        if (input.LocalPress("UAUIBack", false)) {
+            BST_BankingMenu menu = BST_BankingMenu.Cast(GetGame().GetUIManager().GetMenu());
+
+            if (menu) {
+                menu.Close();
+            }
+        }
+    }
 
    /*  override void OnKeyPress(int key) {
         super.OnKeyPress(key);

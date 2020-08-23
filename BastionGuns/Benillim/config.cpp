@@ -1,9 +1,9 @@
 ﻿class CfgPatches
 {
-	class BRP_BenelliM2
+	class BRP_CS12G
 	{
 		units[] = {};
-		weapons[] = {"BRP_BenelliM2"};
+		weapons[] = {"BRP_CS12G"};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data","DZ_Weapons_Firearms","DZ_Weapons_Ammunition","DZ_Weapons_Magazines"};
 		magazines[] = {};
@@ -15,15 +15,15 @@ class Mode_Single;
 class cfgWeapons
 {
 	class Mp133Shotgun;
-	class BRP_BenelliM2: Mp133Shotgun
+	class BRP_CS12G: Mp133Shotgun
 	{
 		scope = 2;
-		displayName = "Benelli M2";
-		descriptionShort = "The Benelli M2 is a semi-automatic shotgun manufactured by Benelli Armi SpA. It is an updated version of the Benelli M1. Like its predecessor, it is available in several versions for civilian, law enforcement and military use. It features the proprietary Benelli inertia system of operation.";
-		weight = 3300;
+		displayName = "CS-12G";
+		descriptionShort = "Italian engineered, NCC reproduced semi-automatic shotgun.";
+		weight = 2500;
 		model = "\BastionMod\BastionGuns\Benillim\Ben4.p3d";
 		magazines[] = {};
-		itemSize[] = {9,3};
+		itemSize[] = {8,3};
 		PPDOFProperties[] = {1,0.6,200000,0.3,3,0.1};
 		dexterity = 2.7;
 		repairableWithKits[] = {5,1};

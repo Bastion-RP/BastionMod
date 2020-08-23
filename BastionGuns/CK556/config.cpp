@@ -255,8 +255,8 @@ class cfgWeapons
 	class BRP_CSR556: CSR556_Base
 	{
 		scope = 2;
-		displayName = "CSR-556 GROT";
-		descriptionShort = "Originally a design licensed from Poland, this rifle was intended as a replacement service rifle for the Ukrainian military. With the lack of manufacturing infrastructure after the disaster, the NCC took over the factories in central Ukraine, and began to manufacture it en-masse under its new designation, the CSR-556, as a standard issue 5.56x45 infantry carbine.";
+		displayName = "CSR-556";
+		descriptionShort = "Polish designed, NCC reproduced assault rifle. Chambered in 5.56mm.";
 		model = "BastionMod\BastionGuns\CK556\ck556.p3d";
 		attachments[] = {"weaponFlashlight","weaponBipod","weaponOptics","weaponWrap","suppressorImpro","HighcalibreSup","weaponMuzzleM4"};
 		itemSize[] = {8,3};
