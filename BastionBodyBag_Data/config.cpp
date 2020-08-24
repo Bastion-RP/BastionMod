@@ -12,11 +12,18 @@ class CfgVehicles
 {
 	class Inventory_Base;
 	class HouseNoDestruct;
-	class BRP_Compactor: HouseNoDestruct
+	class BRP_Compactor: Inventory_Base
 	{
-		scope = 1;
+		scope = 2;
 		displayName = "Compactor";
 		model = "\BastionMod\BastionBodyBag_Data\biocompactor\biocompactor.p3d";
+		physLayer = "item_large";
+		class Cargo
+		{
+			itemsCargoSize[] = {9,1};
+			openable = 0;
+			allowOwnedCargoManipulation = 1;
+		};
 	};
 
 	class BRP_BodyBag_Base: Inventory_Base
