@@ -1,4 +1,4 @@
-class BRP_Compactor : BuildingSuper 
+class BRP_Compactor : ItemBase 
 {
     override void SetActions() {
         super.SetActions();
