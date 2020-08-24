@@ -419,7 +419,7 @@ class cfgVehicles
 	{
 		scope=2;
 		displayName = "NCC Citizen's Jacket";
-        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in navy blue.";
+        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in white.";
 		visibilityModifier=0.5;
 		itemSize[]={3,3};
 		itemsCargoSize[]={5,4};
