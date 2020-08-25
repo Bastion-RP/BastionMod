@@ -64,7 +64,7 @@ class CfgVehicles
 		};
 		class Protection
 		{
-			biological = .75;
+			biological = 0.75;
 		};
 		class AnimEvents
 		{
