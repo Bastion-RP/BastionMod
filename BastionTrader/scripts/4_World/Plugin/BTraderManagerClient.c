@@ -56,6 +56,23 @@ class BTraderManagerClient : PluginBase
 		}
 	}
 
+	bool CanTrade(ref TraderData data)
+	{
+		if (!data) return false;
+
+		array<int> allowClasses = data.GetAllowClasses();
+		int playerClass = PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass();
+
+		if (allowClasses.Count() == 0) return true;
+
+		if (allowClasses && playerClass && (allowClasses.Find(playerClass) >= 0))
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 	void ScanPlayerInventory()
 	{
 		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());

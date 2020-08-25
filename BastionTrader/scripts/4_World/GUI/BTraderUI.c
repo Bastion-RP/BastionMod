@@ -127,8 +127,14 @@ class BTraderUI extends UIScriptedMenu
 
 		if (!traderData) return;
 
+		if (GetBTraderManager().CanTrade(traderData) == false)
+		{
+			Close();
+			g_HM.ShowBastionNotification("You can't trade");
+		}
+
 		HideOverlay();
-		
+
 		int count;
 		string category;
 		BTraderArticleData good;
