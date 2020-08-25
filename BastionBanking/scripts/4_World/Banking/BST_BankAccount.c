@@ -1,5 +1,5 @@
 class BST_BankAccount {
-    private int funds, overflow;
+    private int funds, overflow, _timeSincePaid;
 
     void BST_BankAccount() {
         funds = 0;
@@ -22,11 +22,15 @@ class BST_BankAccount {
         overflow -= amount;
     }
 
-    int GetFunds() {
-        return funds;
+    void ClearTimeSincePay() {
+        _timeSincePaid = 0;
     }
 
-    int GetOverflowFunds() {
-        return overflow;
+    void IncrementTimeSincePay() {
+        _timeSincePaid++;
     }
+
+    int GetFunds() { return funds; }
+    int GetOverflowFunds() { return overflow; }
+    int GetTimeSinceLastPay() { return _timeSincePaid; }
 }
