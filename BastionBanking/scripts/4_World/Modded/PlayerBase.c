@@ -1,28 +1,43 @@
 modded class PlayerBase {
     void ~PlayerBase() {
         // Remove income loop
-        BSTBankingStopIncomeLoop();
+        if (GetGame().IsServer() && GetGame().IsMultiplayer()) {
+            BSTBankingStopIncomeLoop();
+        }
     }
 
     void BSTBankingStartIncomeLoop() {
-        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
-        int payInterval = GetBSTBankingConfigHandler().GetConfig().GetPassivePayInterval();
-
-        GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.BSTBankingPayPassiveIncome, payInterval * 60 * 1000, true);
+        string debugTxt = "[BANKING DEBUG] Starting UBI on player=" + multicharactersPlayerName + " | id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass;
+        if (!GetIdentity()) {
+            Print(debugTxt);
+        } else {
+            Print(debugTxt + " | pid=" + GetIdentity().GetPlainId());
+        }
+        GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.BSTBankingPayPassiveIncome, 60 * 1000, true); // Loop every minute
     }
 
     void BSTBankingStopIncomeLoop() {
-        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
+        string debugTxt = "[BANKING DEBUG] Stopping UBI on player=" + multicharactersPlayerName + " | id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass;
+        if (!GetIdentity()) {
+            Print(debugTxt);
+        } else {
+            Print(debugTxt + " | pid=" + GetIdentity().GetPlainId());
+        }
         GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(this.BSTBankingPayPassiveIncome);
     }
 
     void BSTBankingPayPassiveIncome() {
-        if (!GetGame().IsServer() || !GetGame().IsMultiplayer() || !GetIdentity()) { return; }
-        int payRate = GetBSTBankingConfigHandler().GetConfig().GetPayByClass(multicharactersPlayerClass);
-
-        if (payRate > 0) {
-            GetBSTBankingAccountManager().Deposit(GetIdentity().GetPlainId(), multicharactersPlayerId.ToString(), multicharactersPlayerClass, payRate);
+        string debugSuffix = multicharactersPlayerName + " | id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass;
+        if (!GetIdentity() || !IsAlive()) {
+            if (!IsAlive()) {
+                Print("[BANKING DEBUG] Error with payment! Player is dead! player=" + debugSuffix + " | pid=" + GetIdentity().GetPlainId());
+            } else {
+                Print("[BANKING DEBUG] Error with payment! Something went wrong! player=" + debugSuffix);
+            }
+            BSTBankingStopIncomeLoop();
+            return;
         }
+        GetBSTBankingAccountManager().PayUBI(this);
     }
 
     override void OnConnect() {
@@ -46,6 +61,8 @@ modded class PlayerBase {
         super.EEKilled(killer);
 
         // Stop income loop
-        BSTBankingStopIncomeLoop();
+        if (GetGame().IsServer() && GetGame().IsMultiplayer()) {
+            BSTBankingStopIncomeLoop();
+        }
     }
 }

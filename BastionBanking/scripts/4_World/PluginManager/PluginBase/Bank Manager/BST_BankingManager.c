@@ -7,8 +7,10 @@ class BST_BankingManager : PluginBase {
 
         foreach (EntityAI entity : enumeratedInventory) {
             ItemBase item = ItemBase.Cast(entity);
+
             if (item) {
                 string typeName = item.GetType();
+                
                 typeName.ToLower();
 
                 if (typeName == GetBSTBankingConfigHandler().GetConfig().GetCurrencyClassName()) {
@@ -26,7 +28,7 @@ class BST_BankingManager : PluginBase {
             int itemCount = 0;
 
             foreach (ItemBase item : arrayItems) {
-                itemCount += item.GetQuantity();
+                itemCount += QuantityConversions.GetItemQuantity(item);
             }
             // This is for depositing all funds in inventory
             /* if (amount == -1) {
@@ -42,19 +44,32 @@ class BST_BankingManager : PluginBase {
     }
 
     void RemoveCurrency(ref array<ItemBase> arrayItems, int amount) {
-        foreach (ItemBase i : arrayItems) {
-            int quant = i.GetQuantity();
+        foreach (ItemBase item : arrayItems) {
+            if (!item) { continue; }
+            int itemQuant = QuantityConversions.GetItemQuantity(item);
 
-            if (quant <= amount) {
-                GetGame().ObjectDelete(i);
-                amount -= quant;
+            if (itemQuant <= amount) {
+                amount -= itemQuant;
+
+                GetGame().ObjectDelete(item);
             } else {
-                i.AddQuantity(-amount);
+                SetItemQuantity(item, itemQuant - amount);
+
                 amount = 0;
             }
             if (amount <= 0) {
                 break;
             }
+        }
+    }
+
+    void SetItemQuantity(ItemBase item, int amount) {
+        Magazine magazine = Magazine.Cast(item);
+
+        if (magazine) {
+            magazine.ServerSetAmmoCount(amount);
+        } else {
+            item.SetQuantity(amount);
         }
     }
 
@@ -74,13 +89,13 @@ class BST_BankingManager : PluginBase {
                     if (gap <= withdrawAmount) {
                         withdrawAmount -= gap;
                         amountWithdrawn += gap;
-                        
-                        item.SetQuantity(itemMaxQuant);
+
+                        SetItemQuantity(item, itemMaxQuant);
                     } else {
                         withdrawAmount = 0;
                         amountWithdrawn += withdrawAmount;
 
-                        item.AddQuantity(withdrawAmount);
+                        SetItemQuantity(item, withdrawAmount);
                     }
                 }
                 if (withdrawAmount == 0) {
@@ -95,16 +110,18 @@ class BST_BankingManager : PluginBase {
                 InventoryLocation il = new InventoryLocation();
 
                 if (player.GetInventory().FindFirstFreeLocationForNewEntity(GetBSTBankingConfigHandler().GetConfig().GetCurrencyClassName(), FindInventoryLocationType.ANY, il)) {
-                    ItemBase newItem = ItemBase.Cast(il.GetParent().GetInventory().CreateEntityInCargoEx(GetBSTBankingConfigHandler().GetConfig().GetCurrencyClassName(), il.GetIdx(), il.GetRow(), il.GetCol(), il.GetFlip()));
-
+                    ItemBase newItem = ItemBase.Cast(player.GetInventory().CreateInInventory(GetBSTBankingConfigHandler().GetConfig().GetCurrencyClassName()));
+                    //ItemBase newItem = ItemBase.Cast(il.GetParent().GetInventory().CreateEntityInCargoEx(GetBSTBankingConfigHandler().GetConfig().GetCurrencyClassName(), il.GetIdx(), il.GetRow(), il.GetCol(), il.GetFlip()));
+                    
+                    if (!newItem) { continue; } // This will make sure the count is never added to begin with.
                     if (withdrawAmount < itemMaxQuant) {
                         amountWithdrawn += withdrawAmount;
 
-                        newItem.SetQuantity(withdrawAmount);
+                        SetItemQuantity(newItem, withdrawAmount);
                     } else {
                         amountWithdrawn += itemMaxQuant;
 
-                        newItem.SetQuantity(itemMaxQuant);
+                        SetItemQuantity(newItem, withdrawAmount);
                     }
                     withdrawAmount -= itemMaxQuant;
                 }

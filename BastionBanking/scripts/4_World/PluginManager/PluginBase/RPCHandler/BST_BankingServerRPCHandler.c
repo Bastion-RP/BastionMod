@@ -34,7 +34,7 @@ class BST_BankingServerRPCHandler : PluginBase {
                     characterId = "" + player.GetMultiCharactersPlayerId();
 
                     if (characterId.Length() <= 0) { return; }
-                    bankAccount = GetBSTBankingAccountManager().FindAccount(playerId, characterId);
+                    bankAccount = GetBSTBankingAccountManager().FindAccount(playerId, characterId, accountDir);
                     
                     SendClientBankAccount(bankAccount, player);
                     break;
@@ -70,8 +70,7 @@ class BST_BankingServerRPCHandler : PluginBase {
                     if (!player || !player.GetIdentity() || amount <= 0) { return; }
                     playerId = player.GetIdentity().GetPlainId();
                     characterId = "" + player.GetMultiCharactersPlayerId();
-                    accountDir = BST_BankingConst.playerDir + "\\" + playerId + "\\" + characterId + ".json";
-                    bankAccount = GetBSTBankingAccountManager().FindAccount(playerId, characterId);
+                    bankAccount = GetBSTBankingAccountManager().FindAccount(playerId, characterId, accountDir);
 
                     if (bankAccount) {
                         bankFunds = bankAccount.GetFunds();
@@ -95,8 +94,7 @@ class BST_BankingServerRPCHandler : PluginBase {
                     if (!player || !player.GetIdentity() || amount <= 0) { return; }
                     playerId = player.GetIdentity().GetPlainId();
                     characterId = "" + player.GetMultiCharactersPlayerId();
-                    accountDir = BST_BankingConst.playerDir + "\\" + playerId + "\\" + characterId + ".json";
-                    bankAccount = GetBSTBankingAccountManager().FindAccount(playerId, characterId);
+                    bankAccount = GetBSTBankingAccountManager().FindAccount(playerId, characterId, accountDir);
                     bankFundsCap = GetBSTBankingConfigHandler().GetConfig().GetFundsCapByClass(player.GetMultiCharactersPlayerClass());
 
                     if (bankAccount) {
