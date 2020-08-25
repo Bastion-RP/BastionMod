@@ -88,3 +88,4 @@ class Land_Workshop3:   				BuildingBase { override bool IsRentableHouse() {retu
 class Land_Workshop4:   				BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Workshop5:   				BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Workshop_FuelStation:   		BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_CementWorks_ExpeditionA:     BuildingBase { override bool IsRentableHouse() {return true;} };
