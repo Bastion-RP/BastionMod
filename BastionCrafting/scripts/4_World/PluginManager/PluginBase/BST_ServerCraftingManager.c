@@ -1,9 +1,3 @@
-// How to handle categories for crafting.... fun fun
-// Probably just make them configurable and then set them in the recipe file itself and this can handle the rest.
-// Or no? Idk maybe do a map or some bullshit, load the config check the categories then load the recipes and place them
-// into a map with their respective category? Would make building the UI easy. That would only need to be done on the client
-// server doesn't have to give a shit about categories
-
 class BST_ServerCraftingManager : PluginBase {
     private static const string CONST_FURNACE_CONFIG_DIR = BST_CraftingConst.rootDir + "FurnaceConfig.json";
     private static const string CONST_CRAFTING_CONFIG_DIR = BST_CraftingConst.rootDir + "Config.json";
@@ -210,14 +204,13 @@ class BST_ServerCraftingManager : PluginBase {
     }
 
     void Craft(PlayerBase player, BST_CraftingRecipe recipe, ref array<EntityAI> arrayFoundItems) {
+        // These loops need to be readdressed and set to be O(n) instead of their current O(n^2) time complexity
+        
         array<ref BST_CraftingIngredient> arrayIngredients = recipe.GetIngredients();
         int i;
 
         foreach (BST_CraftingIngredient ingredient : arrayIngredients) {
             if (!ingredient) { continue; }
-            int amountRemaining = ingredient.GetRequiredAmount();
-            int removedAmount = 0;
-
             for (i = (arrayFoundItems.Count() - 1); i >= 0; i--) {
                 EntityAI item = arrayFoundItems[i];
 
@@ -229,12 +222,17 @@ class BST_ServerCraftingManager : PluginBase {
                         arrayFoundItems.Remove(i);
 
                         if (!ingredient.IsConsumable()) { continue; }
+                        string minDestroyPath = CFG_VEHICLESPATH + " " + loweredTypeName + " varQuantityDestroyOnMin";
                         int itemQuantity = QuantityConversions.GetItemQuantity(item);
-
-                        if (itemQuantity > ingredient.GetRequiredAmount()) {
-                            SetItemQuantity(item, itemQuantity - ingredient.GetRequiredAmount());
-                        } else {
+                        
+                        if (GetGame().ConfigIsExisting(minDestroyPath) && GetGame().ConfigGetInt(minDestroyPath) == 0 && ingredient.GetRequiredAmount() == -1) {
                             GetGame().ObjectDelete(item);
+                        } else {
+                            if (itemQuantity > ingredient.GetRequiredAmount()) {
+                                SetItemQuantity(item, itemQuantity - ingredient.GetRequiredAmount());
+                            } else {
+                                GetGame().ObjectDelete(item);
+                            }
                         }
                     }
                 }
