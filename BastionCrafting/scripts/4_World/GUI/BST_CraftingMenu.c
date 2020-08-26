@@ -265,7 +265,19 @@ class BST_CraftingMenu : UIScriptedMenu {
                 tempObject = GetGame().CreateObject(ingredientClassname, vector.Zero, true);
 
                 if (tempObject) {
-                    newGridIngredient = new BST_RecipeRequireGrid(gridRecipeIngredients, "(" + ingredient.GetRequiredAmount() + ") " + tempObject.GetDisplayName(), hasRequiredAmount);
+                    string minDestroyPath = CFG_VEHICLESPATH + " " + ingredientClassname + " varQuantityDestroyOnMin";
+
+                    if (GetGame().ConfigIsExisting(minDestroyPath) && GetGame().ConfigGetInt(minDestroyPath) == 0) {
+                        int itemMaxQuant = QuantityConversions.GetItemQuantity(tempObject);
+
+                        if (ingredient.GetRequiredAmount() == -1) {
+                            newGridIngredient = new BST_RecipeRequireGrid(gridRecipeIngredients, "(1) " + tempObject.GetDisplayName(), hasRequiredAmount);
+                        } else {
+                            newGridIngredient = new BST_RecipeRequireGrid(gridRecipeIngredients, "(" + ingredient.GetRequiredAmount() + "/" + itemMaxQuant + ") " + tempObject.GetDisplayName(), hasRequiredAmount);
+                        }
+                    } else {
+                        newGridIngredient = new BST_RecipeRequireGrid(gridRecipeIngredients, "(" + ingredient.GetRequiredAmount() + ") " + tempObject.GetDisplayName(), hasRequiredAmount);
+                    }
                     GetGame().ObjectDelete(tempObject);
                 } else {
                     newGridIngredient = new BST_RecipeRequireGrid(gridRecipeIngredients, "(" + ingredient.GetRequiredAmount() + ") " + ingredient.GetClassname() + " (BAD CLASSNAME, NOTIFY AN ADMIN!!!)", false);
