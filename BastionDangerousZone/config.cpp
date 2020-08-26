@@ -170,22 +170,7 @@ class CfgVehicles
 	class Clothing;
 	class GP5GasMask: Clothing
 	{
-		scope=2;
-		displayName="$STR_CfgVehicles_GP5GasMask0";
 		descriptionShort="A GasMask green to protect from radiation and Dangerous gas. Attach a filter to make it work. It provide 45 min of use.";
-		model="\DZ\characters\masks\GP5GasMask_g.p3d";
-		itemInfo[]=
-		{
-			"Clothing",
-			"Mask"
-		};
-		rotationFlags=1;
-		weight=1090;
-		itemSize[]={3,3};
-		absorbency=0;
-		heatIsolation=0.60000002;
-		visibilityModifier=0.94999999;
-		noHelmet=0;
 		attachments[]=
 		{
 			"GasMaskFilter"
@@ -198,30 +183,9 @@ class CfgVehicles
 			energyUsagePerSecond=1;
 			updateInterval=60;
 		};
-		headSelectionsToHide[]=
-		{
-			"Clipping_GP5GasMask"
-		};
-		hiddenSelections[]=
-		{
-			"camoGround",
-			"camoMale",
-			"camoFemale"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\characters\masks\data\GP5GasMask_white_co.paa",
-			"\dz\characters\masks\data\GP5GasMask_white_co.paa",
-			"\dz\characters\masks\data\GP5GasMask_white_co.paa"
-		};
-		class ClothingTypes
-		{
-			male="\DZ\characters\masks\GP5GasMask_m.p3d";
-			female="\DZ\characters\masks\GP5GasMask_f.p3d";
-		};
 		class Protection
 		{
-			biological=.25;
+			biological=0.25;
 		};
 		class AnimEvents
 		{
