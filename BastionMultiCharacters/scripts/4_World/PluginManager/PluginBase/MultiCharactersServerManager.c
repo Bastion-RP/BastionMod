@@ -54,7 +54,7 @@ class MultiCharactersServerManager : PluginBase {
         RestApi curlCore;
         MultiCharactersCURL mcCurl;
         RestContext ctx;
-        array<MultiCharactersCharacterId> arrayCharacterData;
+        array<MultiCharactersCharacterId> arrCharacterData;
         map<string, string> steamData;
         string data, error;
         bool dataFound;
@@ -62,37 +62,73 @@ class MultiCharactersServerManager : PluginBase {
         curlCore = CreateRestApi();
         mcCurl = new MultiCharactersCURL();
         ctx = curlCore.GetRestContext("https://bastionrp.com/api/");
-        if (jsSerializer.ReadFromString(steamData, ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_STEAM_ID + sender.GetPlainId()), error) && steamData.Contains(MCCurlConst.memberId) && jsSerializer.ReadFromString(arrayCharacterData, ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_MEMBER_ID + steamData.Get(MCCurlConst.memberId)), error) && arrayCharacterData.Count() > 0) {
-            auto savePlayerArray = new array<ref BST_MCSavePlayerBasic>();
 
-            foreach (MultiCharactersCharacterId characterData : arrayCharacterData) {
-                if (characterData.IsActive()) {
-                    BST_MCSavePlayerBasic savePlayer;
-                    string savePlayerDir = MCConst.loadoutDir + "\\" + sender.GetPlainId() + "\\" + characterData.GetCharacterId() + MCConst.fileType;
-                    Print(MCConst.debugPrefix + "SAVE DATA DIR | " + savePlayerDir);
-                    characterData.PrintData();
+        if (jsSerializer.ReadFromString(steamData, ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_STEAM_ID + sender.GetPlainId()), error)) {
+            if (steamData.Contains(MCCurlConst.whitelist)) {
+                string whitelistBoolean = steamData.Get(MCCurlConst.whitelist);
 
-                    if (FileExist(savePlayerDir)) {
-                        JsonFileLoader<BST_MCSavePlayerBasic>.JsonLoadFile(savePlayerDir, savePlayer);
-                        savePlayer.PurgeInventoryItems();
+                whitelistBoolean.ToLower();
+
+                if (whitelistBoolean == "true") {
+                    if (steamData.Contains(MCCurlConst.memberId)) {
+                        string memberId = steamData.Get(MCCurlConst.memberId);
+
+                        if (jsSerializer.ReadFromString(arrCharacterData, ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_MEMBER_ID + memberId), error)) {
+                            if (arrCharacterData.Count() > 0) {
+                                array<ref BST_MCSavePlayerBasic> arrSavePlayers = new array<ref BST_MCSavePlayerBasic>();
+                                
+                                foreach (MultiCharactersCharacterId characterData : arrCharacterData) {
+                                    if (!characterData || !characterData.IsActive()) { continue; }
+                                    BST_MCSavePlayerBasic savePlayer;
+                                    string savePlayerDir;
+
+                                    savePlayerDir = MCConst.loadoutDir + "\\" + sender.GetPlainId() + "\\" + characterData.GetCharacterId() + MCConst.fileType;
+
+                                    if (FileExist(savePlayerDir)) {
+                                        JsonFileLoader<BST_MCSavePlayerBasic>.JsonLoadFile(savePlayerDir, savePlayer);
+                                        savePlayer.PurgeInventoryItems();
+                                    } else {
+                                        savePlayer = new BST_MCSavePlayerBasic();
+                                        
+                                        savePlayer.SetDead(true);
+                                        savePlayer.SetAPIData(characterData.GetFirstName() + " " + characterData.GetLastName(), characterData.GetCharacterId().ToInt(), characterData.GetCitizenClass().ToInt());
+                                    }
+                                    arrSavePlayers.Insert(savePlayer);
+                                }
+                                if (arrSavePlayers.Count() > 0) {
+                                    Param params = new Param1<array<ref BST_MCSavePlayerBasic>>(arrSavePlayers);
+                                    Param configParams = new Param1<ref BST_MCConfig>(GetBSTMCManager().GetConfig());
+
+                                    GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_RECEIVE_CONFIG, configParams, true, sender);
+                                    GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_GRAB_LOADOUTS, params, true, sender);
+                                } else {
+                                    KickPlayer(sender, BST_MCKickReasons.NO_ACTIVE_CHARACTERS);
+                                }
+                            } else {
+                                KickPlayer(sender, BST_MCKickReasons.NO_CHARACTERS);
+                            }
+                        } else {
+                            KickPlayer(sender, BST_MCKickReasons.ERROR_NO_CHARACTER);
+                        }
                     } else {
-                        savePlayer = new BST_MCSavePlayerBasic();
-                        savePlayer.SetDead(true);
-                        savePlayer.SetAPIData(characterData.GetFirstName() + " " + characterData.GetLastName(), characterData.GetCharacterId().ToInt(), characterData.GetCitizenClass().ToInt());
+                        KickPlayer(sender, BST_MCKickReasons.ERORR_NO_MEMBER_ID);
                     }
-                    savePlayerArray.Insert(savePlayer);
+                } else {
+                    KickPlayer(sender, BST_MCKickReasons.NO_WHITELIST);
                 }
             }
-            auto params = new Param1<array<ref BST_MCSavePlayerBasic>>(savePlayerArray);
-		    Param configParams = new Param1<ref BST_MCConfig>(GetBSTMCManager().GetConfig());
-
-            GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_RECEIVE_CONFIG, configParams, true, sender);
-            GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_GRAB_LOADOUTS, params, true, sender);
         } else {
-            GetGame().DisconnectPlayer(sender);
-            GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, null, true, sender);
+            KickPlayer(sender, BST_MCKickReasons.ERROR_STEAM_ID);
         }
         GetGame().GameScript.Release();
+    }
+
+    private void KickPlayer(PlayerIdentity sender, int reason) {
+        Param params = new Param1<int>(reason);
+
+        GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, params, true, sender);
+        GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().DisconnectPlayer, 1000, false, sender);
+        //GetGame().DisconnectPlayer(sender);
     }
 
     array<string> GetISFSpawnGear() { return isfSpawnGear; }

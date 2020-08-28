@@ -34,7 +34,52 @@ class MultiCharactersClientRPCHandler : PluginBase {
                 }
             case MultiCharRPC.CLIENT_DISCONNECT:
                 {
-                    GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().DisconnectSessionForce, 100, false);
+                    Param1<int> dataDisconnect;
+
+                    if (ctx.Read(dataDisconnect)) {
+                        string notificationText, notificationTitle;
+
+                        switch (dataDisconnect.param1) {
+                            case BST_MCKickReasons.ERROR_STEAM_ID:
+                                {
+                                    notificationTitle = "Error: SteamID";
+                                    notificationText = "No profile with your SteamID could be found!";
+                                    break;
+                                }
+                            case BST_MCKickReasons.ERORR_NO_MEMBER_ID:
+                                {
+                                    notificationTitle = "Error: Member ID";
+                                    notificationText = "Member ID not found! Notify an admin immediately!";
+                                    break;
+                                }
+                            case BST_MCKickReasons.ERROR_NO_CHARACTER:
+                                {
+                                    notificationTitle = "Error: No Character";
+                                    notificationText = "There was an issue looking for your characters!";
+                                    break;
+                                }
+                            case BST_MCKickReasons.NO_WHITELIST:
+                                {
+                                    notificationTitle = "Not Whitelisted";
+                                    notificationText = "You are not whitelisted! Apply for whitelist at BastionRP.com!";
+                                    break;
+                                }
+                            case BST_MCKickReasons.NO_CHARACTERS:
+                                {
+                                    notificationTitle = "No Character";
+                                    notificationText = "You do not have any characters! You must have a character to play!";
+                                    break;
+                                }
+                            case BST_MCKickReasons.NO_ACTIVE_CHARACTERS:
+                                {
+                                    notificationTitle = "No Active Character";
+                                    notificationText = "You do not have any active characters!";
+                                    break;
+                                }
+                        }
+                        NotificationSystem.AddNotificationExtended(10, notificationTitle, notificationText);
+                    }
+		            //GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Call(GetGame().DisconnectSessionForce);
                     break;
                 }
             case MultiCharRPC.CLIENT_SPAWN_MAG:
