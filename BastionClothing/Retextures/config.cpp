@@ -19,6 +19,10 @@ class cfgVehicles
 	class MilitaryBeret_ColorBase;
 	class BaseballCap_ColorBase;
 	class PoliceVest;
+	class SmershVest;
+	class SmershBag;
+	class AssaultBag_ColorBase;
+	class TortillaBag;
 	class Hoodie_ColorBase;
 //---Head
     class Inventory_base;
@@ -341,6 +345,54 @@ class cfgVehicles
 		};
 	};
 
+//---Smersh Rig
+	class BRP_SmershRig_isf: SmershVest
+	{
+		displayName="Smersh Rig - ISF";
+		descriptionShort="";
+		model = "\DZ\characters\vests\smersh_g.p3d";
+		inventorySlot = "Hips";
+		scope=2;
+		visibilityModifier = 0.6;
+		hiddenSelections[] = 
+		{
+			"camoGround",
+            "camoMale",
+            "camoFemale"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_co.paa"
+		};
+		class ClothingTypes
+        {
+            male="\DZ\characters\vests\smersh_m.p3d";
+            female="\DZ\characters\vests\smersh_f.p3d";
+        };
+	};
+//---Smersh Bag
+	class BRP_SmershBag_isf: SmershBag
+	{
+		displayName="Smersh Bag - ISF";
+		descriptionShort="";
+		scope=2;
+		visibilityModifier = 0.6;
+		hiddenSelections[] = 
+		{
+			"camoGround",
+            "camoMale",
+            "camoFemale"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_co.paa"
+        };
+	};
+
 //---Hoodie
 	class BRP_Hoodie_black: Hoodie_ColorBase
 	{
@@ -362,7 +414,7 @@ class cfgVehicles
     class BRP_Jacket_admin: NBCJacketBase
     {
         displayName="Jacket - Admin";
-        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD. | Re-textured by Sid Adams";
+        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD.";
         scope=2;
         visibilityModifier = 0.6;
         itemSize[]={2,2};
@@ -446,12 +498,48 @@ class cfgVehicles
 		};
 	};
 
+//---Assault Backpack
+	class BRP_AssaultBackpack_isf: AssaultBag_ColorBase
+	{
+		displayName="Assault Backpack - ISF";
+		descriptionShort="";
+		scope=2;
+		visibilityModifier = 0.6;
+		hiddenSelectionsTextures[] = 
+		{
+			"BastionMod\BastionClothing\Retextures\data\BRP_AssaultBackpack_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_AssaultBackpack_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_AssaultBackpack_isf_co.paa"
+		};
+	};
+
+//---Combat Backpack
+	class BRP_CombatBackpack_isf: TortillaBag
+	{
+		displayName="Combat Backpack - ISF";
+		descriptionShort="";
+		scope=2;
+		visibilityModifier = 0.6;
+		hiddenSelections[] = 
+		{
+			"camoGround",
+			"camoMale",
+			"camoFemale"
+		};
+		hiddenSelectionsTextures[] = 
+		{
+			"BastionMod\BastionClothing\Retextures\data\BRP_CombatBackpack_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_CombatBackpack_isf_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_CombatBackpack_isf_co.paa"
+		};
+	};
+
 //---NBC Gloves
     class NBCGloves_ColorBase;
     class BRP_Gloves_admin: NBCGloves_ColorBase
     {
         displayName="Gloves - Admin";
-        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD. | Re-textured by Sid Adams";
+        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD.";
         scope=2;
         visibilityModifier = 0.6;
         itemSize[]={2,2};
@@ -482,7 +570,7 @@ class cfgVehicles
     class BRP_Pants_admin: NBCPantsBase
     {
         displayName="Pants - Admin";
-        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD. | Re-textured by Sid Adams";
+        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD.";
         scope=2;
         visibilityModifier = 0.6;
         itemSize[]={2,2};
@@ -498,7 +586,7 @@ class cfgVehicles
     class BRP_Boots_admin: NBCBootsBase
     {
         displayName="Boots - Admin";
-        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD. | Re-textured by Sid Adams";
+        descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD.";
         scope=2;
         visibilityModifier = 0.6;
         itemSize[]={2,2};
