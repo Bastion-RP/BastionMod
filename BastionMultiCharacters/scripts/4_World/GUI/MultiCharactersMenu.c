@@ -4,6 +4,7 @@ class MultiCharactersMenu : UIScriptedMenu {
 
     protected ref Widget wRoot;
     protected ref Widget wSurvivorSelectRoot;
+    protected ref ButtonWidget _btnDisconnect;
     protected Camera playerCamera;
     protected int characterId;
 
@@ -22,6 +23,7 @@ class MultiCharactersMenu : UIScriptedMenu {
         wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionMultiCharacters\\gui\\layouts\\CharacterMenu.layout");
         wSurvivorCreator = new MultiCharactersSurvivorCreator(wRoot);
         wSurvivorSelector = new MultiCharactersSurvivorSelector(wRoot);
+        _btnDisconnect = ButtonWidget.Cast(wRoot.FindAnyWidget("btnDisconnect"));
 
         return wRoot;
     }
@@ -52,10 +54,14 @@ class MultiCharactersMenu : UIScriptedMenu {
     }
 
     override bool OnClick(Widget w, int x, int y, int button) {
-        if (wSurvivorCreator.IsVisible()) {
-            wSurvivorCreator.OnClick(w);
-        } else if (wSurvivorSelector.IsVisible()) {
-            wSurvivorSelector.OnClick(w);
+        if (w == _btnDisconnect) {
+		    GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Call(GetGame().DisconnectSessionForce);
+        } else {
+            if (wSurvivorCreator.IsVisible()) {
+                wSurvivorCreator.OnClick(w);
+            } else if (wSurvivorSelector.IsVisible()) {
+                wSurvivorSelector.OnClick(w);
+            }
         }
         return true;
     }

@@ -21,7 +21,7 @@ modded class PluginManager {
 		//----------------------------------------------------------------------
 		RegisterPlugin("BST_LibTimestamp", true, true);
 		RegisterPlugin("BST_MCManager", true, true);
-		RegisterPlugin("MultiCharactersServerManager", true, true);
+		RegisterPlugin("MultiCharactersServerManager", false, true);
 		RegisterPlugin("MultiCharactersClientManager", true, false);
 		RegisterPlugin("MultiCharactersServerRPCHandler", false, true);
 		RegisterPlugin("MultiCharactersClientRPCHandler", true, false);
