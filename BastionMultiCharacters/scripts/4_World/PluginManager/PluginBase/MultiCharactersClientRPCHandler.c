@@ -76,6 +76,12 @@ class MultiCharactersClientRPCHandler : PluginBase {
                                     notificationText = "You do not have any active characters!";
                                     break;
                                 }
+                            case BST_MCKickReasons.WRONG_NICKNAME:
+                                {
+                                    notificationTitle = "Wrong Nicname";
+                                    notificationText = "Names on the forum and in the game must match!";
+                                    break;
+                                }
                         }
                         NotificationSystem.AddNotificationExtended(10, notificationTitle, notificationText);
                     }
