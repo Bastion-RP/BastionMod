@@ -139,7 +139,10 @@ class MultiCharactersServerManager : PluginBase {
     }
 
     bool NamesMatch(string forumName, string gameName) {
-		return forumName.ToLower() == gameName.ToLower();
+        forumName.ToLower();
+        gameName.ToLower();
+
+		return forumName == gameName;
 	}
 
     array<string> GetISFSpawnGear() { return isfSpawnGear; }
