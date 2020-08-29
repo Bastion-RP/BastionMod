@@ -8,12 +8,12 @@ modded class PluginManager {
 	override void Init() {
 		super.Init();
 
-		mcPluginList.Insert("MultiCharactersClientManager");
-		mcPluginList.Insert("MultiCharactersServerManager");
-		mcPluginList.Insert("MultiCharactersServerRPCHandler");
+		mcPluginList.Insert("BST_MCClientManager");
+		mcPluginList.Insert("BST_MCServerManager");
+		mcPluginList.Insert("BST_MCServerRPCHandler");
 		mcPluginList.Insert("BST_LibTimestamp");
 		mcPluginList.Insert("BST_MCManager");
-		mcPluginList.Insert("MultiCharactersClientRPCHandler");
+		mcPluginList.Insert("BST_MCClientRPCHandler");
 		//----------------------------------------------------------------------
 		// Register modules
 		//----------------------------------------------------------------------
@@ -21,10 +21,10 @@ modded class PluginManager {
 		//----------------------------------------------------------------------
 		RegisterPlugin("BST_LibTimestamp", true, true);
 		RegisterPlugin("BST_MCManager", true, true);
-		RegisterPlugin("MultiCharactersServerManager", false, true);
-		RegisterPlugin("MultiCharactersClientManager", true, false);
-		RegisterPlugin("MultiCharactersServerRPCHandler", false, true);
-		RegisterPlugin("MultiCharactersClientRPCHandler", true, false);
+		RegisterPlugin("BST_MCServerManager", false, true);
+		RegisterPlugin("BST_MCClientManager", true, false);
+		RegisterPlugin("BST_MCServerRPCHandler", false, true);
+		RegisterPlugin("BST_MCClientRPCHandler", true, false);
 	}
 	
 	//=================================

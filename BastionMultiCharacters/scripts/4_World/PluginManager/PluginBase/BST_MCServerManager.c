@@ -1,4 +1,4 @@
-class MultiCharactersServerManager : PluginBase {
+class BST_MCServerManager : PluginBase {
     protected ref JsonSerializer jsSerializer;
     protected ref array<string> spawnPoints;
     protected ref array<string> isfSpawnPoints;
@@ -6,7 +6,7 @@ class MultiCharactersServerManager : PluginBase {
     protected ref BST_MCConfig _config;
     protected string clientMemberId;
 
-    void MultiCharactersServerManager() {
+    void BST_MCServerManager() {
         jsSerializer = new JsonSerializer();
         spawnPoints = new array<string>();
         isfSpawnPoints = new array<string>();
@@ -33,13 +33,13 @@ class MultiCharactersServerManager : PluginBase {
         GetBSTMCManager().SetConfig(config);
 
         if (!FileExist(MCConst.spawnPointDir)) {
-            spawnPoints = MultiCharactersDefaultSpawns();
+            spawnPoints = BST_MCDefaultSpawns();
             JsonFileLoader<array<string>>.JsonSaveFile(MCConst.spawnPointDir, spawnPoints);
         } else {
             JsonFileLoader<array<string>>.JsonLoadFile(MCConst.spawnPointDir, spawnPoints);
         }
         if (!FileExist(MCConst.isfSpawnPointDir)) {
-            isfSpawnPoints = MultiCharactersDefaultISFSpawns();
+            isfSpawnPoints = BST_MCDefaultSpawns();
             JsonFileLoader<array<string>>.JsonSaveFile(MCConst.isfSpawnPointDir, isfSpawnPoints);
         } else {
             JsonFileLoader<array<string>>.JsonLoadFile(MCConst.isfSpawnPointDir, isfSpawnPoints);
@@ -99,8 +99,8 @@ class MultiCharactersServerManager : PluginBase {
                                     Param params = new Param1<array<ref BST_MCSavePlayerBasic>>(arrSavePlayers);
                                     Param configParams = new Param1<ref BST_MCConfig>(GetBSTMCManager().GetConfig());
 
-                                    GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_RECEIVE_CONFIG, configParams, true, sender);
-                                    GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_GRAB_LOADOUTS, params, true, sender);
+                                    GetGame().RPCSingleParam(null, BST_MCRPC.CLIENT_RECEIVE_CONFIG, configParams, true, sender);
+                                    GetGame().RPCSingleParam(null, BST_MCRPC.CLIENT_GRAB_LOADOUTS, params, true, sender);
                                 } else {
                                     KickPlayer(sender, BST_MCKickReasons.NO_ACTIVE_CHARACTERS);
                                 }
@@ -126,7 +126,7 @@ class MultiCharactersServerManager : PluginBase {
     private void KickPlayer(PlayerIdentity sender, int reason) {
         Param params = new Param1<int>(reason);
 
-        GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_DISCONNECT, params, true, sender);
+        GetGame().RPCSingleParam(null, BST_MCRPC.CLIENT_DISCONNECT, params, true, sender);
         GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().DisconnectPlayer, 1000, false, sender);
         //GetGame().DisconnectPlayer(sender);
     }
@@ -136,6 +136,6 @@ class MultiCharactersServerManager : PluginBase {
     vector GetRandomISFSpawnpoint() { return isfSpawnPoints.GetRandomElement().ToVector(); }
 }
 
-MultiCharactersServerManager GetMultiCharactersServerManager() {
-    return MultiCharactersServerManager.Cast(GetPlugin(MultiCharactersServerManager));
+BST_MCServerManager GetBSTMCServerManager() {
+    return BST_MCServerManager.Cast(GetPlugin(BST_MCServerManager));
 }

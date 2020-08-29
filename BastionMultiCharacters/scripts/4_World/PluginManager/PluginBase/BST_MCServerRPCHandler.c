@@ -1,9 +1,9 @@
-class MultiCharactersServerRPCHandler : PluginBase {
-    void MultiCharactersServerRPCHandler() {
+class BST_MCServerRPCHandler : PluginBase {
+    void BST_MCServerRPCHandler() {
         GetDayZGame().Event_OnRPC.Insert(ServerRPCHandler);
     }
 
-    void ~MultiCharactersServerRPCHandler() {
+    void ~BST_MCServerRPCHandler() {
         GetDayZGame().Event_OnRPC.Remove(ServerRPCHandler);
     }
 
@@ -11,10 +11,10 @@ class MultiCharactersServerRPCHandler : PluginBase {
         if (!sender) { return; }
         
         switch (rpc_type) {
-            case MultiCharRPC.SERVER_GRAB_LOADOUTS:
+            case BST_MCRPC.SERVER_GRAB_LOADOUTS:
                 {
                     Print(MCConst.debugPrefix + "ServerRPCHandler | SERVER_GRAB_LOADOUTS | Grabbing loadouts!");
-                    GetMultiCharactersServerManager().ThreadGetPlayerLoadout(sender);
+                    GetBSTMCServerManager().ThreadGetPlayerLoadout(sender);
                     break;
                 }
         }
