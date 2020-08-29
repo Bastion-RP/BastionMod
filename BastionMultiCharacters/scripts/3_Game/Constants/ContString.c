@@ -12,4 +12,5 @@ class MCConst {
 class MCCurlConst {
     static const string memberId = "member_id";
     static const string whitelist = "whitelisted";
+    static const string name = "name";
 }

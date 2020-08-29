@@ -70,48 +70,55 @@ class MultiCharactersServerManager : PluginBase {
                 whitelistBoolean.ToLower();
 
                 if (whitelistBoolean == "true") {
-                    if (steamData.Contains(MCCurlConst.memberId)) {
-                        string memberId = steamData.Get(MCCurlConst.memberId);
+                    string forumName = steamData.Get(MCCurlConst.name);
+                    string gameName = sender.GetName();
+                    if (NamesMatch(forumName, gameName)) {
+                        if (steamData.Contains(MCCurlConst.memberId)) {
+                            string memberId = steamData.Get(MCCurlConst.memberId);
 
-                        if (jsSerializer.ReadFromString(arrCharacterData, ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_MEMBER_ID + memberId), error)) {
-                            if (arrCharacterData.Count() > 0) {
-                                array<ref BST_MCSavePlayerBasic> arrSavePlayers = new array<ref BST_MCSavePlayerBasic>();
-                                
-                                foreach (MultiCharactersCharacterId characterData : arrCharacterData) {
-                                    if (!characterData || !characterData.IsActive()) { continue; }
-                                    BST_MCSavePlayerBasic savePlayer;
-                                    string savePlayerDir;
+                            if (jsSerializer.ReadFromString(arrCharacterData, ctx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_MEMBER_ID + memberId), error)) {
+                                if (arrCharacterData.Count() > 0) {
+                                    array<ref BST_MCSavePlayerBasic> arrSavePlayers = new array<ref BST_MCSavePlayerBasic>();
+                                    
+                                    foreach (MultiCharactersCharacterId characterData : arrCharacterData) {
+                                        if (!characterData || !characterData.IsActive()) { continue; }
+                                        BST_MCSavePlayerBasic savePlayer;
+                                        string savePlayerDir;
 
-                                    savePlayerDir = MCConst.loadoutDir + "\\" + sender.GetPlainId() + "\\" + characterData.GetCharacterId() + MCConst.fileType;
+                                        savePlayerDir = MCConst.loadoutDir + "\\" + sender.GetPlainId() + "\\" + characterData.GetCharacterId() + MCConst.fileType;
 
-                                    if (FileExist(savePlayerDir)) {
-                                        JsonFileLoader<BST_MCSavePlayerBasic>.JsonLoadFile(savePlayerDir, savePlayer);
-                                        savePlayer.PurgeInventoryItems();
-                                    } else {
-                                        savePlayer = new BST_MCSavePlayerBasic();
-                                        
-                                        savePlayer.SetDead(true);
-                                        savePlayer.SetAPIData(characterData.GetFirstName() + " " + characterData.GetLastName(), characterData.GetCharacterId().ToInt(), characterData.GetCitizenClass().ToInt());
+                                        if (FileExist(savePlayerDir)) {
+                                            JsonFileLoader<BST_MCSavePlayerBasic>.JsonLoadFile(savePlayerDir, savePlayer);
+                                            savePlayer.PurgeInventoryItems();
+                                        } 
+                                        else {
+                                            savePlayer = new BST_MCSavePlayerBasic();
+                                            
+                                            savePlayer.SetDead(true);
+                                            savePlayer.SetAPIData(characterData.GetFirstName() + " " + characterData.GetLastName(), characterData.GetCharacterId().ToInt(), characterData.GetCitizenClass().ToInt());
+                                        }
+                                        arrSavePlayers.Insert(savePlayer);
                                     }
-                                    arrSavePlayers.Insert(savePlayer);
-                                }
-                                if (arrSavePlayers.Count() > 0) {
-                                    Param params = new Param1<array<ref BST_MCSavePlayerBasic>>(arrSavePlayers);
-                                    Param configParams = new Param1<ref BST_MCConfig>(GetBSTMCManager().GetConfig());
+                                    if (arrSavePlayers.Count() > 0) {
+                                        Param params = new Param1<array<ref BST_MCSavePlayerBasic>>(arrSavePlayers);
+                                        Param configParams = new Param1<ref BST_MCConfig>(GetBSTMCManager().GetConfig());
 
-                                    GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_RECEIVE_CONFIG, configParams, true, sender);
-                                    GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_GRAB_LOADOUTS, params, true, sender);
+                                        GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_RECEIVE_CONFIG, configParams, true, sender);
+                                        GetGame().RPCSingleParam(null, MultiCharRPC.CLIENT_GRAB_LOADOUTS, params, true, sender);
+                                    } else {
+                                        KickPlayer(sender, BST_MCKickReasons.NO_ACTIVE_CHARACTERS);
+                                    }
                                 } else {
-                                    KickPlayer(sender, BST_MCKickReasons.NO_ACTIVE_CHARACTERS);
+                                    KickPlayer(sender, BST_MCKickReasons.NO_CHARACTERS);
                                 }
                             } else {
-                                KickPlayer(sender, BST_MCKickReasons.NO_CHARACTERS);
+                                KickPlayer(sender, BST_MCKickReasons.ERROR_NO_CHARACTER);
                             }
                         } else {
-                            KickPlayer(sender, BST_MCKickReasons.ERROR_NO_CHARACTER);
+                            KickPlayer(sender, BST_MCKickReasons.ERORR_NO_MEMBER_ID);
                         }
                     } else {
-                        KickPlayer(sender, BST_MCKickReasons.ERORR_NO_MEMBER_ID);
+                        KickPlayer(sender, BST_MCKickReasons.WRONG_NICKNAME);
                     }
                 } else {
                     KickPlayer(sender, BST_MCKickReasons.NO_WHITELIST);
@@ -130,6 +137,10 @@ class MultiCharactersServerManager : PluginBase {
         GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().DisconnectPlayer, 1000, false, sender);
         //GetGame().DisconnectPlayer(sender);
     }
+
+    bool NamesMatch(string forumName, string gameName) {
+		return forumName.ToLower() == gameName.ToLower();
+	}
 
     array<string> GetISFSpawnGear() { return isfSpawnGear; }
     vector GetRandomSpawnpoint() { return spawnPoints.GetRandomElement().ToVector(); }
