@@ -1,3 +1,13 @@
+// This is temporary
+static string BST_ConstGetDebugPrefix() {
+        int day, month, year, hour, minute, second;
+
+        GetHourMinuteSecondUTC(hour, minute, second);
+        GetYearMonthDayUTC(year, month, day);
+        
+        return "[" + month + "/" + day + "/" + year + "][" + hour + ":" + minute + ":" + second + "][BANK DEBUG]";
+}
+
 class BST_BankingAccountManager : PluginBase {
     void BST_BankingAccountManager() {
         CheckDirectories();
@@ -70,32 +80,33 @@ class BST_BankingAccountManager : PluginBase {
     }
 
     void PayUBI(PlayerBase player) {
+        string debugPrefix = BST_ConstGetDebugPrefix();
         string debugSuffix = player.GetMultiCharactersPlayerName() + " | id=" + player.GetMultiCharactersPlayerId() + " | class=" + player.GetMultiCharactersPlayerClass();
 
-        Print("[BANKING DEBUG] Checking UBI on player=" + debugSuffix + " | pid=" + player.GetIdentity().GetPlainId());
+        Print(debugPrefix + " Checking UBI on player=" + debugSuffix + " | pid=" + player.GetIdentity().GetPlainId());
         BST_BankAccount account;
         string accountDir;
 
         account = FindAccount(player.GetIdentity().GetPlainId(), "" + player.GetMultiCharactersPlayerId(), accountDir);
-        Print("[BANKING DEBUG] Searching for account=" + account);
+        Print(debugPrefix + " Searching for account=" + account);
 
         if (account) {
-            Print("[BANKING DEBUG] Checking time since last pay=" + account.GetTimeSinceLastPay());
+            Print(debugPrefix + " Checking time since last pay=" + account.GetTimeSinceLastPay());
 
             if (account.GetTimeSinceLastPay() > GetBSTBankingConfigHandler().GetConfig().GetPassivePayInterval()) {
-                Print("[BANKING DEBUG] Passed time conditional");
+                Print(debugPrefix + " Passed time conditional");
                 int payRate = GetBSTBankingConfigHandler().GetConfig().GetPayByClass(player.GetMultiCharactersPlayerClass());
-                Print("[BANKING DEBUG] Grabbed pay rate=" + payRate);
+                Print(debugPrefix + " Grabbed pay rate=" + payRate);
 
                 if (payRate > 0) {
-                    Print("[BANKING DEBUG] Paying client!!! funds=" + account.GetFunds() + " | overflow=" + account.GetOverflowFunds());
+                    Print(debugPrefix + " Paying client!!! funds=" + account.GetFunds() + " | overflow=" + account.GetOverflowFunds());
                     DepositFundsToAccount(account, player.GetMultiCharactersPlayerClass(), payRate);
-                    Print("[BANKING DEBUG] Paid client!!! funds=" + account.GetFunds() + " | overflow=" + account.GetOverflowFunds());
+                    Print(debugPrefix + " Paid client!!! funds=" + account.GetFunds() + " | overflow=" + account.GetOverflowFunds());
                     account.ClearTimeSincePay();
                 }
             } else {
-                Print("[BANKING DEBUG] Incrementing time since last pay!");
-                account.IncrementTimeSincePay()
+                Print(debugPrefix + " Incrementing time since last pay!");
+                account.IncrementTimeSincePay();
             }
             JsonFileLoader<BST_BankAccount>.JsonSaveFile(accountDir, account);
         }
