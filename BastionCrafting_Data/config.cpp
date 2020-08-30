@@ -831,6 +831,115 @@ class CfgVehicles
         scope = 2;
         model = "\BastionMod\BastionCrafting_Data\boxingring\boxing_ring.p3d";
     };
+
+	//=================================================Fences===================================================>
+
+	class BRP_Fence01_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Fence01 Kit";
+	};
+	class BRP_Fence01: BRP_Item
+	{
+		scope = 2;
+		displayName = "Fence";
+		descriptionShort = "A hand crafted fence.";
+		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence01.p3d";
+		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
+		reversed=1;
+	};
+	class BRP_Fence02_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Fence02 Kit";
+	};
+	class BRP_Fence02: BRP_Item
+	{
+		scope = 2;
+		displayName = "Fence";
+		descriptionShort = "A hand crafted fence.";
+		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence02.p3d";
+		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
+		reversed=1;
+	};
+	class BRP_Fence03_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Fence03 Kit";
+	};
+	class BRP_Fence03: BRP_Item
+	{
+		scope = 2;
+		displayName = "Fence";
+		descriptionShort = "A hand crafted fence.";
+		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence03.p3d";
+		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
+		reversed=1;
+	};
+	class BRP_Fence04_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Fence04 Kit";
+	};
+	class BRP_Fence04: BRP_Item
+	{
+		scope = 2;
+		displayName = "Fence";
+		descriptionShort = "A hand crafted fence.";
+		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence04.p3d";
+		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
+		reversed=1;
+	};
+	class BRP_Fence05_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Fence05 Kit";
+	};
+	class BRP_Fence05: BRP_Item
+	{
+		scope = 2;
+		displayName = "Fence";
+		descriptionShort = "A hand crafted fence.";
+		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence05.p3d";
+		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
+		reversed=1;
+	};
+	class BRP_Fence06_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Fence06 Kit";
+	};
+	class BRP_Fence06: BRP_Item
+	{
+		scope = 2;
+		displayName = "Fence";
+		descriptionShort = "A hand crafted fence.";
+		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence06.p3d";
+		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
+		reversed=1;
+	};
+	class BRP_Fence07_Kit: BRP_Kit
+	{
+		scope = 2;
+		displayName = "Fence07 Kit";
+	};
+	class BRP_Fence07: BRP_Item
+	{
+		scope = 2;
+		displayName = "Fence";
+		descriptionShort = "A hand crafted fence.";
+		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence07.p3d";
+		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
+		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
+		reversed=1;
+	};
+
 	//==============================================Furnace================================================>
 
 	class BRP_Furnace_Kit: BRP_Kit

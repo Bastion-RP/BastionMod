@@ -1,49 +1,17 @@
 class BRP_Fences_Base : BRP_Item
 {
-	override bool IsInvEmpty()
-	{   
-		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
-		if ( IsPlayerInside( player, "zbytek" ) )
-		{
-			return true;
-		}
-		return false;
-	}
-
-	bool IsPlayerInside( PlayerBase player, string selection )
+	bool HasInsideDistance( string selection, PlayerBase player )
 	{
-		vector player_pos = player.GetPosition();
-		vector fence_pos = GetPosition();
-		vector ref_dir = GetDirection();
-		ref_dir[1] = 0;
-		ref_dir.Normalize();
-		 
-		vector x[2];
-		vector b1,b2;
-		GetCollisionBox(x);
-		b1 = x[0];
-		b2 = x[1];
-
-		vector dir_to_fence = fence_pos - player_pos;
-		dir_to_fence[1] = 0;
-		float len = dir_to_fence.Length();
-
-		dir_to_fence.Normalize();
-		
-		vector ref_dir_angle = ref_dir.VectorToAngles();
-		vector dir_to_fence_angle = dir_to_fence.VectorToAngles();
-		vector test_angles = dir_to_fence_angle - ref_dir_angle;
-		
-		vector test_position = test_angles.AnglesToVector() * len;
-		
-		if(test_position[0] < b1[0] || test_position[0] > b2[0] || test_position[2] < 0.2 || test_position[2] > 2.2 )
+		if ( MemoryPointExists( selection ) )
 		{
-			return false;
+			vector selection_pos = ModelToWorld( GetMemoryPointPos( selection ) );
+			float distance = vector.Distance( selection_pos, player.GetPosition() );
+			if ( distance >= 1 )
+			{
+				return false;
+			}
 		}
-		else
-		{
-			return true;
-		}
+		return true;
 	}
 };
 
