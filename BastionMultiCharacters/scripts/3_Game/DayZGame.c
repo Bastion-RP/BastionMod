@@ -40,16 +40,4 @@ modded class DayZGame {
 	override void StoreLoginData() {
 		BST_MCInitInvoker.Invoke();
 	}
-
-	/* void ContinueSpawn(bool init = false) {
-		array<ref Param> params = new array<ref Param>();
-		Param characterId = new Param1<int>(multicharactersSelectedCharacterId);
-		Param characterType = new Param1<string>(multicharactersSelectedSurvivorType);
-		Param isInitializing = new Param1<bool>(false);
-
-		params.Insert(characterId);
-		params.Insert(characterType);
-		params.Insert(isInitializing);
-		StoreLoginData(params);
-	} */
 }

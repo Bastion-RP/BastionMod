@@ -17,7 +17,7 @@ modded class PlayerBase {
 	}
 
 	void BSTMCSaveInventory() {
-		Print(MCConst.debugPrefix + "Saving player inventory! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + BST_APICharID);
+		Print(BST_MCConst.debugPrefix + "Saving player inventory! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + BST_APICharID);
 
 		BST_MCSavePlayer m_SavePlayer = new BST_MCSavePlayer();
 		array<EntityAI> m_EnumeratedInventory = new array<EntityAI>();
@@ -132,12 +132,12 @@ modded class PlayerBase {
 		m_SavePlayer.SetType(GetType());
 		m_SavePlayer.SetInventory(m_SaveObjects);
 
-		string playerDir = MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId();
+		string playerDir = BST_MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId();
 		if (!FileExist(playerDir))
 			MakeDirectory(playerDir);
 
 		// Use this for viewing it in plain-text for debugging. This function sucks for anything else. Use file serializer instead.
-		JsonFileLoader<BST_MCSavePlayer>.JsonSaveFile(playerDir + "\\" + BST_APICharID + MCConst.fileType, m_SavePlayer);
+		JsonFileLoader<BST_MCSavePlayer>.JsonSaveFile(playerDir + "\\" + BST_APICharID + ".json", m_SavePlayer);
 
 		delete m_SavePlayer;
 		delete m_EnumeratedInventory;
@@ -147,13 +147,13 @@ modded class PlayerBase {
 	}
 
 	override void EEKilled(Object killer) {
-		Print(MCConst.debugPrefix + GetIdentity().GetName() + " died, killing player at index=" + BST_APICharID);
+		Print(BST_MCConst.debugPrefix + GetIdentity().GetName() + " died, killing player at index=" + BST_APICharID);
 
 		if (GetIdentity() && BST_APICharID != -1) {
 			BST_MCSavePlayer savePlayer;
 			string playerDir;
 
-			playerDir = MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId() + "\\" + BST_APICharID + MCConst.fileType;
+			playerDir = BST_MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId() + "\\" + BST_APICharID + ".json";
 
 			if (FileExist(playerDir)) {
 				JsonFileLoader<BST_MCSavePlayer>.JsonLoadFile(playerDir, savePlayer);
@@ -182,7 +182,7 @@ modded class PlayerBase {
 
 	// Function identical to OnConnect, just no other mod relies on it. So I can initialize a client without worrying about mods calling OnConnect to data that doesn't exist.
 	void BSTMCOnConnect() {
-		Print(MCConst.debugPrefix + "PlayerBase | BSTMCOnConnect | Player connected:" + this.ToString());
+		Print(BST_MCConst.debugPrefix + "PlayerBase | BSTMCOnConnect | Player connected:" + this.ToString());
 
 		// analytics
 		GetGame().GetAnalyticsServer().OnPlayerConnect( this );

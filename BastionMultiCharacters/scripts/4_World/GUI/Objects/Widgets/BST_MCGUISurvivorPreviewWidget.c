@@ -19,7 +19,7 @@ class BST_MCGUISurvivorPreviewWidget {
         //cameraPos = GetBSTMCClientManager().GetSelectMenu().GetCameraPosition()
         //characterPos = ("" + cameraPos[0] + " " + (cameraPos[1] + 3) + " " + cameraPos[2]).ToVector();
         //dayzPlayer = GetGame().CreateObject(survivorType, characterPos, true);
-        //Print(MCConst.debugPrefix + " | inactive pos=" + characterPos);
+        //Print(BST_MCConst.debugPrefix + " | inactive pos=" + characterPos);
         //dayzPlayer.SetPosition(characterPos);
     }
 

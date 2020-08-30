@@ -73,7 +73,26 @@ class BST_MCClientManager : PluginBase {
 	}
 
 	void ContinueSpawn() {
+		array<ref Param> arrParams;
+		Param paramCharId, paramSurvivorType, paramInit;
+		int charId;
+		string survivorType;
 
+		if (_menuSpawn.GetSurvivorSelector().GetSelectedPanel()) {
+			charId = _menuSpawn.GetSurvivorSelector().GetSelectedPanel().GetSavePlayer().GetCharacterId();
+		}
+		if (_menuSpawn.GetSurvivorCreator().GetSelectedWidget()) {
+			survivorType = _menuSpawn.GetSurvivorCreator().GetSelectedWidget().GetPlayer().GetType();
+		}
+		arrParams = new array<ref Param>();
+		paramCharId = new Param1<int>(charId);
+		paramSurvivorType = new Param1<string>(survivorType);
+		paramInit = new Param1<bool>(false);
+
+		arrParams.Insert(paramCharId);
+		arrParams.Insert(paramSurvivorType);
+		arrParams.Insert(paramInit);
+		GetDayZGame().StoreLoginData(arrParams);
 	}
 
 	array<ref BST_MCSavePlayerBasic> GetLoadouts() { return _arrCharacters; }

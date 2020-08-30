@@ -1,3 +1,18 @@
+class BST_MCConst {
+    static const string modDir = "$profile:\\Bastion\\MultiCharacters";
+    static const string configDir = modDir + "\\Config.json";
+    static const string loadoutDir = modDir + "\\Characters";
+    static const string spawnPointDir = modDir + "\\SpawnPoints.json";
+    static const string isfSpawnPointDir = modDir + "\\ISFSpawnPoints.json";
+    static const string debugPrefix = "[MC DEBUG] ";
+}
+
+class BST_APIConst {
+    static const string memberId = "member_id";
+    static const string whitelist = "whitelisted";
+    static const string name = "name";
+}
+
 static array<string> BST_MCDefaultSpawns() {
 	return {"760 0 1880", "570 0 1700", "1760 0 2080", "2120 0 2380", "1850 0 3400", "2220 0 3470", "3480 0 2120",
         "3760 0 2500", "5270 0 2400", "4800 0 2450", "4350 0 2390", "4300 0 2560", "4776 0 2750", "5980 0 3250",

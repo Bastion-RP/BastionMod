@@ -1,17 +1,14 @@
 class BST_MCClientRPCHandler : PluginBase {
     void BST_MCClientRPCHandler() {
-        if (GetGame().IsServer() && GetGame().IsMultiplayer()) { return; }
-
-        GetDayZGame().Event_OnRPC.Insert(ClientRPCHandler);
+        Print("[DEBUG] Creating client RPC Handler!");
+        GetDayZGame().Event_OnRPC.Insert(OnRPC);
     }
 
     void ~BST_MCClientRPCHandler() {
-        GetDayZGame().Event_OnRPC.Remove(ClientRPCHandler);
+        GetDayZGame().Event_OnRPC.Remove(OnRPC);
     }
 
-    void ClientRPCHandler(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx) {
-        if (GetGame().IsServer() && GetGame().IsMultiplayer()) { return; }
-
+    void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx) {
         switch (rpc_type) {
             case BST_MCRPC.CLIENT_RELOAD_MAG:
                 {
@@ -35,11 +32,13 @@ class BST_MCClientRPCHandler : PluginBase {
                     GetBSTMCManager().SetConfig(dataReceiveConfig.param1);
                     break;
                 }
-            case BST_MCRPC.CLIENT_GRAB_LOADOUTS:
+            case BST_MCRPC.CLIENT_RECEIVE_CHARACTERS:
                 {
+                    Print("[DEBUG] RECEIVED LOADOUTS");
                     Param1<array<ref BST_MCSavePlayerBasic>> dataGrabLoadouts;
 
                     if (!ctx.Read(dataGrabLoadouts)) { return; }
+                    Print("[DEBUG] RECEIVED LOADOUTS");
                     GetBSTMCClientManager().SetCharacters(dataGrabLoadouts.param1);
                     GetBSTMCClientManager().HideInitMenu();
                     GetBSTMCClientManager().ShowSelectMenu();
@@ -87,6 +86,12 @@ class BST_MCClientRPCHandler : PluginBase {
                                 {
                                     notificationTitle = "No Active Character";
                                     notificationText = "You do not have any active characters!";
+                                    break;
+                                }
+                            case BST_MCKickReasons.WRONG_NICKNAME:
+                                {
+                                    notificationTitle = "Wrong In-Game-Name";
+                                    notificationText = "Your DayZ In-Game-Name and your BastionRP Forum Name must match!";
                                     break;
                                 }
                         }

@@ -1,19 +1,19 @@
 modded class PluginManager {
-	ref array<string> mcPluginList;
+	ref array<string> _arrBSTMCPluginList;
 
 	void PluginManager() {
-		mcPluginList = new array<string>();
+		_arrBSTMCPluginList = new array<string>();
 	}
 
 	override void Init() {
 		super.Init();
 
-		mcPluginList.Insert("BST_MCClientManager");
-		mcPluginList.Insert("BST_MCServerManager");
-		mcPluginList.Insert("BST_MCServerRPCHandler");
-		mcPluginList.Insert("BST_LibTimestamp");
-		mcPluginList.Insert("BST_MCManager");
-		mcPluginList.Insert("BST_MCClientRPCHandler");
+		_arrBSTMCPluginList.Insert("BST_MCClientManager");
+		_arrBSTMCPluginList.Insert("BST_MCServerManager");
+		_arrBSTMCPluginList.Insert("BST_MCServerRPCHandler");
+		_arrBSTMCPluginList.Insert("BST_LibTimestamp");
+		_arrBSTMCPluginList.Insert("BST_MCManager");
+		_arrBSTMCPluginList.Insert("BST_MCClientRPCHandler");
 		//----------------------------------------------------------------------
 		// Register modules
 		//----------------------------------------------------------------------
@@ -31,7 +31,7 @@ modded class PluginManager {
 	// RegisterPlugin Except this one fucking works
 	//=================================
 	protected void RegisterPlugin(string plugin_class_name, bool reg_on_client, bool reg_on_server, bool reg_on_release = true) {
-		if (mcPluginList.Find(plugin_class_name) != -1) {
+		if (_arrBSTMCPluginList.Find(plugin_class_name) != -1) {
 			if (!reg_on_client) {
 				if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
 			}

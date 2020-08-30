@@ -37,7 +37,7 @@ modded class MissionServer {
 							if (dataIsInitializing.param1) {
 								InitializeClient(identity);
 							} else {
-								Print(MCConst.debugPrefix + "MissionServer | OnEvent | ClientNewEventTypeID | Creating new thread to spawn player!");
+								Print(BST_MCConst.debugPrefix + "MissionServer | OnEvent | ClientNewEventTypeID | Creating new thread to spawn player!");
 								ThreadOnClientNewEvent(identity, dataCharacterId.param1, dataCharacterType.param1);
 							}
 						}
@@ -53,25 +53,25 @@ modded class MissionServer {
 	}
 	
 	void ThreadOnClientNewEvent(PlayerIdentity identity, int characterId, string characterType) {
-		Print(MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | New thread created to spawn player");
+		Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | New thread created to spawn player");
 
 		if (characterId != 0) {
-			Print(MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Loading client! id=" + identity.GetPlainId() + " | char id=" + characterId + " | char type=" + characterType);
+			Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Loading client! id=" + identity.GetPlainId() + " | char id=" + characterId + " | char type=" + characterType);
 			RestApi curlCore;
-			MultiCharactersCURL mcCurl;
+			BST_MCAPICallback mcCurl;
 			RestContext curlCtx;
-			MultiCharactersCharacterId webCharData;
+			BST_APICharacterId webCharData;
 			map<string, string> webSteamData;
 			string error, data;
 
 			curlCore = CreateRestApi();
-			mcCurl = new MultiCharactersCURL();
+			mcCurl = new BST_MCAPICallback();
 			curlCtx = curlCore.GetRestContext("https://bastionrp.com/api/");
-			jsSerializer.ReadFromString(webCharData, curlCtx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_CHARACTER_ID + characterId), error);
-			jsSerializer.ReadFromString(webSteamData, curlCtx.GET_now(MultiCharactersCURLEndpoints.ENDPOINT_BY_STEAM_ID + identity.GetPlainId()), error);
+			jsSerializer.ReadFromString(webCharData, curlCtx.GET_now(BST_MCAPIEndpoints.CHARACTER_ID + characterId), error);
+			jsSerializer.ReadFromString(webSteamData, curlCtx.GET_now(BST_MCAPIEndpoints.STEAM_ID + identity.GetPlainId()), error);
 
-			if (webCharData && webSteamData && webSteamData.Contains(MCCurlConst.memberId) && webCharData.GetMemberId().ToInt() != 0 && webCharData.GetMemberId().ToInt() == webSteamData.Get(MCCurlConst.memberId).ToInt()) {
-				Print(MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Data received and validated!");
+			if (webCharData && webSteamData && webSteamData.Contains(BST_APIConst.memberId) && webCharData.GetMemberId().ToInt() != 0 && webCharData.GetMemberId().ToInt() == webSteamData.Get(BST_APIConst.memberId).ToInt()) {
+				Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Data received and validated!");
 				PlayerBase newPlayer;
 				BST_MCSavePlayer savePlayer;
 				Param params;
@@ -80,7 +80,7 @@ modded class MissionServer {
 
 				validPlayer = false;
 				params = new Param3<int, string, int>(characterId, webCharData.GetFirstName() + " " + webCharData.GetLastName(), webCharData.GetCitizenClass().ToInt());
-				saveDir = MCConst.loadoutDir + "\\" + identity.GetPlainId() + "\\" + characterId + MCConst.fileType;
+				saveDir = BST_MCConst.loadoutDir + "\\" + identity.GetPlainId() + "\\" + characterId + ".json";
 				
 
 				if (FileExist(saveDir)) {
@@ -129,11 +129,11 @@ modded class MissionServer {
 				newPlayer.BSTMCSetCharData(characterId, webCharData.GetFirstName() + " " + webCharData.GetLastName(), webCharData.GetCitizenClass().ToInt());
 				newPlayer.BSTMCSaveInventory();
 
-				Print(MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Sending API data to client");
+				Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Sending API data to client");
         		GetGame().RPCSingleParam(newPlayer, BST_MCRPC.CLIENT_RECEIVE_PLAYER_API_DATA, params, true, newPlayer.GetIdentity());
-				Print(MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | API Data Sent");
+				Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | API Data Sent");
 			} else {
-				Print(MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Could not validate client! id=" + identity.GetPlainId());
+				Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Could not validate client! id=" + identity.GetPlainId());
 				GetGame().DisconnectPlayer(identity);
 				GetGame().RPCSingleParam(null, BST_MCRPC.CLIENT_DISCONNECT, null, true, identity);
 			}
@@ -143,7 +143,7 @@ modded class MissionServer {
 	void StartingISFSetup(PlayerBase player) {}
 
 	void InitializeClient(PlayerIdentity identity) {
-		Print(MCConst.debugPrefix + "MissionServer | InitializeClient | Initializing client! id=" + identity.GetPlainId());
+		Print(BST_MCConst.debugPrefix + "MissionServer | InitializeClient | Initializing client! id=" + identity.GetPlainId());
 		PlayerBase player = PlayerBase.Cast(GetGame().CreatePlayer(identity, GetGame().CreateRandomPlayer(), "0 0 0", 0, "NONE"));
 
 		GetGame().SelectPlayer(identity, player);
@@ -153,15 +153,15 @@ modded class MissionServer {
 		FinishSpawningClient(identity, player);
 		player.SetHealth("", "Health", 0);
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().ObjectDelete, 5000, false, player);
-		Print(MCConst.debugPrefix + "MissionServer | InitializeClient | Client Initialized! id=" + identity.GetPlainId());
+		Print(BST_MCConst.debugPrefix + "MissionServer | InitializeClient | Client Initialized! id=" + identity.GetPlainId());
 	}
 
 	void FinishSpawningClient(PlayerIdentity identity, PlayerBase player) {
-		Print(MCConst.debugPrefix + "MissionServer | FinishSpawningClient | Finishing spawning client! id=" + identity.GetPlainId());
+		Print(BST_MCConst.debugPrefix + "MissionServer | FinishSpawningClient | Finishing spawning client! id=" + identity.GetPlainId());
 		SyncEvents.SendPlayerList();
 		ControlPersonalLight(player);
 		SyncGlobalLighting(player);
-		Print(MCConst.debugPrefix + "MissionServer | FinishSpawningClient | Finished spawning id=" + identity.GetPlainId());
+		Print(BST_MCConst.debugPrefix + "MissionServer | FinishSpawningClient | Finished spawning id=" + identity.GetPlainId());
 	}
 
 	void BuildInventory(PlayerBase newPlayer, BST_MCSavePlayer savePlayer) {

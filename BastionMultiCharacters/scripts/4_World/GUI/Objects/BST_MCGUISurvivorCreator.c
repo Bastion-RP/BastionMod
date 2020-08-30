@@ -133,5 +133,6 @@ class BST_MCGUISurvivorCreator {
 
     Widget GetBackButton() { return _btnBack; }
     ButtonWidget GetSpawnButton() { return _btnSpawn; }
+    BST_MCGUISurvivorPreviewWidget GetSelectedWidget() { return _selectedWidget; }
     bool IsVisible() { return _root.IsVisible(); }
 }
