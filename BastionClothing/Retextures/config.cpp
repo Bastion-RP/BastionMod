@@ -497,6 +497,36 @@ class cfgVehicles
 			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_brown_co.paa"
 		};
 	};
+	class BRP_TTsKOJacket_Civilian_Olive: TTsKOJacket_ColorBase
+	{
+		scope=2;
+		displayName = "NCC Citizen's Jacket";
+        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in olive.";
+		visibilityModifier=0.5;
+		itemSize[]={3,3};
+		itemsCargoSize[]={5,4};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_olive_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_olive_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_olive_co.paa"
+		};
+	};
+	class BRP_TTsKOJacket_Civilian_Red: TTsKOJacket_ColorBase
+	{
+		scope=2;
+		displayName = "NCC Citizen's Jacket";
+        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in red.";
+		visibilityModifier=0.5;
+		itemSize[]={3,3};
+		itemsCargoSize[]={5,4};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_red_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_red_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_red_co.paa"
+		};
+	};
 
 //---Assault Backpack
 	class BRP_AssaultBackpack_isf: AssaultBag_ColorBase
