@@ -28,7 +28,7 @@ class cfgWeapons
 		chamberSize = 1;
 		chamberedRound = "";
 		chamberableFrom[] = {"Ammo_308Win","Ammo_308WinTracer"};
-		magazines[] = {"BRP_Mag_SCARH_30rnd"};
+		magazines[] = {"BRP_Mag_SCARH_20rnd"};
 		magazineSwitchTime = 0.2;
 		ejectType = 1;
 		recoilModifier[] = {1.1,1.1,1.1};
@@ -174,15 +174,15 @@ class cfgWeapons
 class cfgMagazines
 {
 	class Magazine_Base;
-	class BRP_Mag_SCARH_30rnd: Magazine_Base
+	class BRP_Mag_SCARH_20rnd: Magazine_Base
 	{
 		scope = 2;
-		displayName = "30rd SCAR-H Mag";
-		descriptionShort = "Detachable box magazine for the FN SCAR-H. Holds up to 30 rounds of 7.62x51mm.";
+		displayName = "20rd SCAR-H Mag";
+		descriptionShort = "Detachable box magazine for the FN SCAR-H. Holds up to 20 rounds of 7.62x51mm.";
 		model = "BastionMod\BastionGuns\SCAR_H\scar_h_mag.p3d";
 		weight = 400;
 		itemSize[] = {1,3};
-		count = 30;
+		count = 20;
 		ammo = "Bullet_308Win";
 		ammoItems[] = {"Ammo_308Win","Ammo_308WinTracer"};
 		tracersEvery = 0;

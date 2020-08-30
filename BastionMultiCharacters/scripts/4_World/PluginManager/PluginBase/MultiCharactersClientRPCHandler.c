@@ -76,6 +76,12 @@ class MultiCharactersClientRPCHandler : PluginBase {
                                     notificationText = "You do not have any active characters!";
                                     break;
                                 }
+                            case BST_MCKickReasons.WRONG_NICKNAME:
+                                {
+                                    notificationTitle = "Wrong In-Game-Name";
+                                    notificationText = "Your DayZ In-Game-Name and your BastionRP Forum Name must match!";
+                                    break;
+                                }
                         }
                         NotificationSystem.AddNotificationExtended(10, notificationTitle, notificationText);
                     }
