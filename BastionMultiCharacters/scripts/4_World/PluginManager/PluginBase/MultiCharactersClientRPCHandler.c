@@ -78,8 +78,8 @@ class MultiCharactersClientRPCHandler : PluginBase {
                                 }
                             case BST_MCKickReasons.WRONG_NICKNAME:
                                 {
-                                    notificationTitle = "Wrong Nicname";
-                                    notificationText = "Names on the forum and in the game must match!";
+                                    notificationTitle = "Wrong In-Game-Name";
+                                    notificationText = "Your DayZ In-Game-Name and your BastionRP Forum Name must match!";
                                     break;
                                 }
                         }
