@@ -43,13 +43,13 @@ class ActionBRPDismantleItem: ActionContinuousBase
 			ItemBase myItem = ItemBase.Cast( targetObject );
 			if(myItem){
 				if(!myItem.IsInvEmpty()) return false;				
-				if (myItem.IsInherited(BRP_Item) || myItem.IsInherited(BRP_Openable_Base)  || myItem.IsInherited(BRP_Furnace_Fireplace))								
+				if ((myItem.IsInherited(BRP_Item) || myItem.IsInherited(BRP_Openable_Base)  || myItem.IsInherited(BRP_Furnace_Fireplace)) && myItem.!IsKindOf("BRP_CraftingTable_Static") && myItem.!IsKindOf("BRP_Workbench1_Static") && myItem.!IsKindOf("BRP_Workbench2_Static"))								
 					return true;
 			}
 
 			BRP_BoxingRing ring = BRP_BoxingRing.Cast( targetObject );
 			if(ring)
-				return true;
+				return true;		
 
 		}
 		return false;
