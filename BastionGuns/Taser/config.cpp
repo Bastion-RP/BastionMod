@@ -172,18 +172,18 @@ class cfgAmmo
 		casing = "FxCartridge_22";
 		round = "FxRound_22";
 		spawnPileType="Ammo_Taser";
-		hit=3;
+		hit=4.5;
 		indirectHit=0;
 		indirectHitRange=0;
-		tracerScale=1;
-		caliber=0.1;
+		tracerScale=0.6;
+		caliber=0.7;
 		deflecting=30;
 		typicalSpeed=200;
 		airFriction=-0.1;
 		supersonicCrackNear[]={};
 		supersonicCrackFar[]={};
 		initSpeed=500;
-		weight=0.1;
+		weight=0.0025;
 		class DamageApplied 
 		{
 			type = "Projectile";
