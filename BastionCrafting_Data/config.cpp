@@ -289,6 +289,7 @@ class CfgVehicles
 	};
 	class BRP_CraftingTable_Static: BRP_CraftingBenchBase
 	{
+		scope = 1;
 		displayName="Crafting Table";
 		descriptionShort="Table used for crafting";
 		model = "\BastionMod\BastionCrafting_Data\craftingtable\craftingtable.p3d";
@@ -307,6 +308,7 @@ class CfgVehicles
 	};
 	class BRP_Workbench1_Static: BRP_CraftingBenchBase
 	{
+		scope = 1;
 		displayName="Workbench";
 		descriptionShort="Table used for crafting";
 		model = "\BastionMod\BastionCrafting_Data\workbench\workbench1.p3d";
@@ -324,6 +326,7 @@ class CfgVehicles
 	};
 	class BRP_Workbench2_Static: BRP_CraftingBenchBase
 	{
+		scope = 1;
 		displayName="Workbench";
 		descriptionShort="Table used for crafting";
 		model = "\BastionMod\BastionCrafting_Data\workbench\workbench2.p3d";
