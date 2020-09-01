@@ -27,7 +27,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"HardCoreBackPack/scripts/3_Game"
+					"BastionMod/BastionMisc/HardCoreBackPack/scripts/3_Game"
 				};
 			};
 			class worldScriptModule
@@ -35,7 +35,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"HardCoreBackPack/scripts/4_World"
+					"BastionMod/BastionMisc/HardCoreBackPack/scripts/4_World"
 				};
 			};
 			class missionScriptModule
@@ -43,7 +43,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"HardCoreBackPack/scripts/5_Mission"
+					"BastionMod/BastionMisc/HardCoreBackPack/scripts/5_Mission"
 				};
 			};
 		};
