@@ -112,10 +112,8 @@ class BST_DTACChoiceMenu : UIScriptedMenu {
         GetGame().GetUIManager().ShowCursor(true);
         GetGame().GetMission().GetHud().Show(false);
 
-        if (GetDTACGroupManager().HasDTAC(GetGame().GetPlayer())) {
-            if (GetDTACManager().IsRequiredClass(GetDTACClientManager().GetConfig().GetRequiredAPIClasses(), PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass())) {
-                btnLookup.Show(true);
-            }
+        if (GetDTACGroupManager().HasDTAC(GetGame().GetPlayer()) && GetDTACManager().IsRequiredClass(GetDTACClientManager().GetConfig().GetRequiredAPIClasses(), PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass())) {
+            btnLookup.Show(true);
             btnGroup.Show(true);
         } else {
             btnLookup.Show(false);
