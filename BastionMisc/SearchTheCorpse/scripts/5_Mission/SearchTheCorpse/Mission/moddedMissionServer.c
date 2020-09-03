@@ -22,7 +22,6 @@ modded class MissionServer
 				Class.CastTo(player, readyParams.param2);
 				if(player)
 				{
-					Print("ClientReadyEventTypeID add config");
 					STCConfigBase stcConfigBase = new STCConfigBase();
 					Param1<ref STCConfig> crpClr = new Param1<ref STCConfig>>(stcConfigBase.GetConfig());
 					GetGame().RPCSingleParam(player, STC_rpc_type.RPC_SetClientSTCConfig, crpClr, true, player.GetIdentity());
@@ -42,7 +41,6 @@ modded class MissionServer
 		dea_updateTime += timeslice;
 		if (dea_updateTime >= dea_updateTimeMax)
 		{
-			Print("OnUpdate " + dea_updateTime + dea_updateTimeMax);
 			dea_updateTime = 0;
 			STCConfigBase stcConfigBase = new STCConfigBase();
 			for (int j = 0; j < m_Players.Count(); j++)
