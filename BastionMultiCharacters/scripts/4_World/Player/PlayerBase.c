@@ -3,16 +3,17 @@ modded class PlayerBase {
 	private ref array<ref BST_MCMagObject> m_MagsToReload;
 	private int multicharactersPlayerId, multicharactersPlayerClass;
 	private string multicharactersPlayerName;
+	private bool bstMCCanSavePlayer;
 
 	void PlayerBase() {
 		m_MagsToReload = new array<ref BST_MCMagObject>();
 		m_FileSerializer = new FileSerializer();
+		bstMCCanSavePlayer = true;
 		multicharactersPlayerId = -1;
 		multicharactersPlayerClass = -1;
 	}
 
 	override void OnStoreSave(ParamsWriteContext ctx) {
-		Print("[DEBUG] GetBleedingBits=" + GetBleedingBits());
 		if (multicharactersPlayerId == -1) { return; }
 		SaveInventory();
 	}
@@ -51,7 +52,7 @@ modded class PlayerBase {
 	}
 
 	void SaveInventory() {
-		if (!GetGame().IsServer() || !GetGame().IsMultiplayer() || !GetIdentity() || !IsAlive()) { return; }
+		if (!GetGame().IsServer() || !GetGame().IsMultiplayer() || !GetIdentity() || !IsAlive() || !bstMCCanSavePlayer) { return; }
 		Print(MCConst.debugPrefix + "Saving player inventory! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
 
 		BST_MCSavePlayer m_SavePlayer = new BST_MCSavePlayer();
@@ -144,8 +145,11 @@ modded class PlayerBase {
 
 			if (Class.CastTo(localAmmo, localEntity)) {
 				tempObject.SetQuantity(localAmmo.GetAmmoCount());
-			} else
+			} else if (localItem && localItem.GetCompEM()) {
+				tempObject.SetQuantity(localItem.GetCompEM().GetEnergy());
+			} else {
 				tempObject.SetQuantity(localItem.GetQuantity());
+			}
 		}
 
 		// Set needed values for the player
@@ -181,36 +185,58 @@ modded class PlayerBase {
 		delete m_RootChildren;
 		delete m_ChildChildren;
 	}
+	
+	override void OnDisconnect() {
+		if (IsRestrained() || IsUnconscious()) {
+			if (GetIdentity()) {
+				Print(MCConst.debugPrefix + "OnDisconnect | Player logged out while restrained or unconcious!!! " + GetIdentity().GetName() + " | playerIndex=" + multicharactersPlayerId);
+			} else {
+				Print(MCConst.debugPrefix + "OnDisconnect | Player logged out while restrained or unconcious!!! | playerIndex=" + multicharactersPlayerId);
+			}
+			BSTMCKillPlayer();
+
+			bstMCCanSavePlayer = false;
+		}
+		super.OnDisconnect();
+	}
 
 	override void EEKilled(Object killer) {
-		Print(MCConst.debugPrefix + GetIdentity().GetName() + " died, killing player at index=" + multicharactersPlayerId);
+		if (GetIdentity()) {
+			Print(MCConst.debugPrefix + GetIdentity().GetName() + " died, killing player at index=" + multicharactersPlayerId);
+		} else {
+			Print(MCConst.debugPrefix + "Player died, killing player at index=" + multicharactersPlayerId);
+		}
+		BSTMCKillPlayer();
+		super.EEKilled(killer);
+	}
 
-		if (GetIdentity() && multicharactersPlayerId != -1) {
+	void BSTMCKillPlayer() {
+		Print(MCConst.debugPrefix + "BSTMCKillPlayer | kill function called");
+		if (GetIdentity() && multicharactersPlayerId != -1 && bstMCCanSavePlayer) {
 			BST_MCSavePlayer savePlayer;
 			string playerDir;
 
 
 			playerDir = MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId() + "\\" + multicharactersPlayerId + MCConst.fileType;
-			Print(MCConst.debugPrefix + "EEKilled |  playerDir = " + playerDir);
+			Print(MCConst.debugPrefix + "BSTMCKillPlayer | playerDir = " + playerDir);
 
 			if (FileExist(playerDir)) {
-				Print(MCConst.debugPrefix + "EEKilled |  File exists, loading");
+				Print(MCConst.debugPrefix + "BSTMCKillPlayer | File exists, loading");
 				JsonFileLoader<BST_MCSavePlayer>.JsonLoadFile(playerDir, savePlayer);
 			}
 			if (!savePlayer) {
-				Print(MCConst.debugPrefix + "EEKilled |  Save player doesn't exist, creating new one!!!");
+				Print(MCConst.debugPrefix + "BSTMCKillPlayer | Save player doesn't exist, creating new one!!!");
 				savePlayer = new BST_MCSavePlayer();
 
 				savePlayer.SetAPIData(multicharactersPlayerName, multicharactersPlayerId, multicharactersPlayerClass);
 				savePlayer.SetType(GetType());
 			}
-			Print(MCConst.debugPrefix + "EEKilled | Clearing character inventory and setting death timestamp!!!");
+			Print(MCConst.debugPrefix + "BSTMCKillPlayer | Clearing character inventory and setting death timestamp!!!");
 			savePlayer.ClearInventory();
 			savePlayer.SetDead(true);
 			savePlayer.SetDeathTimestamp(GetBSTLibTimestamp().GetCurrentTimestamp());
 			JsonFileLoader<BST_MCSavePlayer>.JsonSaveFile(playerDir, savePlayer);
 		}
-		super.EEKilled(killer);
 	}
 	
 	void BSTMCSetLifespan(int state, int lastShaved, bool bloodHands, bool bloodVisible, int bloodType) {
