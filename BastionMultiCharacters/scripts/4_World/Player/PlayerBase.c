@@ -144,8 +144,11 @@ modded class PlayerBase {
 
 			if (Class.CastTo(localAmmo, localEntity)) {
 				tempObject.SetQuantity(localAmmo.GetAmmoCount());
-			} else
+			} else if (localItem && localItem.GetCompEM()) {
+				tempObject.SetQuantity(localItem.GetCompEM().GetEnergy());
+			} else {
 				tempObject.SetQuantity(localItem.GetQuantity());
+			}
 		}
 
 		// Set needed values for the player
