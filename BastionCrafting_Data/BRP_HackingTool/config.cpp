@@ -96,4 +96,10 @@ class CfgVehicles
 		};
 		
 	};
+
+	class BRP_HackingTool_Spec : BRP_HackingTool
+	{
+		scope=2;
+		displayName="Advanced Hacking Tool";
+	}
 };
