@@ -31,7 +31,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"SearchTheCorpse\scripts\3_Game"
+					"BastionMod\BastionMisc\SearchTheCorpse\scripts\3_Game"
 				};
 			};
 			class worldScriptModule
@@ -39,7 +39,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"SearchTheCorpse\scripts\4_World"
+					"BastionMod\BastionMisc\SearchTheCorpse\scripts\4_World"
 				};
 			};
 			class missionScriptModule
@@ -47,7 +47,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"SearchTheCorpse\scripts\5_Mission"
+					"BastionMod\BastionMisc\SearchTheCorpse\scripts\5_Mission"
 				};
 			};
 		};
