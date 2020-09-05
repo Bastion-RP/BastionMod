@@ -101,5 +101,5 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="Advanced Hacking Tool";
-	}
+	};
 };
