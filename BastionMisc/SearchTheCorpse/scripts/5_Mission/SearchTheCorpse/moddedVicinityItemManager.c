@@ -17,7 +17,7 @@ modded class VicinityItemManager
 				if ( entity_ai.IsMan() )
 				{
 					PlayerBase analizePlayer = PlayerBase.Cast(entity_ai);
-					if(!analizePlayer.IsAlive())
+					if(!analizePlayer.IsAlive() || analizePlayer.IsUnconscious() )
 					{
 						if(analizePlayer.GetDeAIsSearching(PlayerBase.Cast(GetGame().GetPlayer()).GetID()) )
 							ret = false;
@@ -58,7 +58,7 @@ modded class VicinityItemManager
 				if ( entity_ai.IsMan() )
 				{
 					PlayerBase analizePlayer = PlayerBase.Cast(entity_ai);
-					if(!analizePlayer.IsAlive())
+					if(!analizePlayer.IsAlive() || analizePlayer.IsUnconscious())
 					{
 						if(analizePlayer.GetDeAIsSearching(PlayerBase.Cast(GetGame().GetPlayer()).GetID()) )
 							ret = false;
@@ -89,7 +89,7 @@ modded class VicinityItemManager
 				if ( entity_ai.IsMan() )
 				{
 					PlayerBase analizePlayer = PlayerBase.Cast(entity_ai);
-					if(!analizePlayer.IsAlive())
+					if( !analizePlayer.IsAlive() || analizePlayer.IsUnconscious() )
 					{
 						if(analizePlayer.GetDeAIsSearching(PlayerBase.Cast(GetGame().GetPlayer()).GetID()) )
 							ret = false;
