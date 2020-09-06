@@ -130,7 +130,7 @@ class ActionSearchTheCorpse : ActionContinuousBase
         {
             PlayerBase targetPlayer = PlayerBase.Cast(target.GetObject());
 
-            if (!targetEntity.IsAlive() && !targetPlayer.GetDeAIsSearching(player.GetID()))
+            if ( (!targetEntity.IsAlive() || targetEntity.IsUnconscious())  && !targetPlayer.GetDeAIsSearching(player.GetID()))
             {
                 return true;
             }
