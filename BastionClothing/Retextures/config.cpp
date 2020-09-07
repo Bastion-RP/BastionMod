@@ -23,6 +23,7 @@ class cfgVehicles
 	class SmershBag;
 	class AssaultBag_ColorBase;
 	class TortillaBag;
+	class PrisonUniformPants;
 	class Hoodie_ColorBase;
 //---Head
     class Inventory_base;
@@ -416,7 +417,6 @@ class cfgVehicles
         displayName="Jacket - Admin";
         descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD.";
         scope=2;
-        visibilityModifier = 0.6;
         itemSize[]={2,2};
         itemsCargoSize[] = {10,50};
         hiddenSelectionsTextures[]=
@@ -571,7 +571,6 @@ class cfgVehicles
         displayName="Gloves - Admin";
         descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD.";
         scope=2;
-        visibilityModifier = 0.6;
         itemSize[]={2,2};
         hiddenSelectionsTextures[]=
         {
@@ -602,7 +601,6 @@ class cfgVehicles
         displayName="Pants - Admin";
         descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD.";
         scope=2;
-        visibilityModifier = 0.6;
         itemSize[]={2,2};
         itemsCargoSize[] = {0,0};
         hiddenSelectionsTextures[] = 
@@ -611,6 +609,21 @@ class cfgVehicles
         };
     };
 
+//---Prison Pants
+	class BRP_PrisonPants_NCC: PrisonUniformPants
+	{
+		scope=2;
+		displayName = "NCC Prison Pants";
+        descriptionShort = "Factory produced clothing for prisoners being held by NCC. This version is colored in navy blue.";
+		visibilityModifier=0.5;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\BRP_PrisonPants_ncc.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_PrisonPants_ncc.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_PrisonPants_ncc.paa"
+		};
+	};
+
 //---NBC Boots
 	class NBCBootsBase;
     class BRP_Boots_admin: NBCBootsBase
@@ -618,7 +631,6 @@ class cfgVehicles
         displayName="Boots - Admin";
         descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD.";
         scope=2;
-        visibilityModifier = 0.6;
         itemSize[]={2,2};
         hiddenSelectionsTextures[]=
         {
