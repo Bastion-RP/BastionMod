@@ -15,7 +15,5 @@ modded class PlayerBase {
 
         // apply override
         GetDayZGame().BRP_VPPMapFixes_SetIs3dMarkerAllowed(!(t_PlayerClass < BastionClasses.ISF_F || t_PlayerClass > BastionClasses.ISF_E));
-        BRP_VPPMapFixes_Say("done");
-        BRP_VPPMapFixes_Say("status: " + GetDayZGame().CanUse3DMarkers());
     };
 };

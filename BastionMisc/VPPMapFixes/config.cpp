@@ -35,17 +35,17 @@ class CfgMods
 			class gameScriptModule
             {
                 value = "";
-                files[] = {"BastionMod/BastionMisc/VPPMapFixes/3_Game"};
+                files[] = {"BastionMod/BastionMisc/VPPMapFixes/scripts/3_Game"};
             };
 			class worldScriptModule
             {
                 value = "";
-                files[] = {"BastionMod/BastionMisc/VPPMapFixes/4_World"};
+                files[] = {"BastionMod/BastionMisc/VPPMapFixes/scripts/4_World"};
             };
 			class missionScriptModule
             {
                 value = "";
-                files[] = {"BastionMod/BastionMisc/VPPMapFixes/5_Mission"};
+                files[] = {"BastionMod/BastionMisc/VPPMapFixes/scripts/5_Mission"};
             };
         };
     };
