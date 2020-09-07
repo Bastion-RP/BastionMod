@@ -812,14 +812,6 @@ modded class DayZPlayerImplementAiming {
     float BRP_GunPlay_m_ModCamY = 0;
     float BRP_GunPlay_m_TimeNextCamOffset = 0;
 
-
-
-    // just here in case the modifier needed
-    override void ApplyBreathingPattern(out float x_axis, out float y_axis, float pAmplitude, out float pTotalTime, float weight) {
-        super.ApplyBreathingPattern(x_axis,y_axis,pAmplitude,pTotalTime,weight);
-    };
-
-    
     float BRP_GunPlay_m_TimeNextGunSupportCheck = 0;
     int BRP_GunPlay_m_GunSupportStrength = 0;
 

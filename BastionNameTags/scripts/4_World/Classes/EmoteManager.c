@@ -70,26 +70,26 @@ modded class EmoteManager {
 
 
         // hi wave short range greeting
-        if(BRP_NameTags_f_ID == ID_EMOTE_GREETING) {
+        if(BRP_NameTags_f_ID ==  EmoteConstants.ID_EMOTE_GREETING) {
             BRP_NameTags_t_IsAGreeting = true;
             BRP_NameTags_o_ReCheckDelay = 1000;
         };
 
         // Hands far waving
-        if(BRP_NameTags_f_ID == ID_EMOTE_SOS) {
+        if(BRP_NameTags_f_ID == EmoteConstants.ID_EMOTE_SOS) {
             BRP_NameTags_t_IsAGreeting = true;
             BRP_NameTags_o_ReCheckDelay = 5000;
         };
         // Love sign (small one)
-        if (BRP_NameTags_f_ID == ID_EMOTE_HEART) {
+        if (BRP_NameTags_f_ID == EmoteConstants.ID_EMOTE_HEART) {
             BRP_NameTags_t_IsAGreeting = true;
             BRP_NameTags_o_ReCheckDelay = 500;
         };
-        if (BRP_NameTags_f_ID == ID_EMOTE_TAUNT) {
+        if (BRP_NameTags_f_ID == EmoteConstants.ID_EMOTE_TAUNT) {
             BRP_NameTags_t_IsAGreeting = true;
             BRP_NameTags_o_ReCheckDelay = 500;
         };
-        if (BRP_NameTags_f_ID == ID_EMOTE_TAUNTELBOW) {
+        if (BRP_NameTags_f_ID == EmoteConstants.ID_EMOTE_TAUNTELBOW) {
             BRP_NameTags_t_IsAGreeting = true;
             BRP_NameTags_o_ReCheckDelay = 1500;
         };
@@ -126,23 +126,23 @@ modded class EmoteManager {
         float BRP_NameTags_o_PlayersRange = 15;
         int BRP_NameTags_o_Tier = 5;
 
-        if (BRP_NameTags_t_ID == ID_EMOTE_SOS) {
+        if (BRP_NameTags_t_ID == EmoteConstants.ID_EMOTE_SOS) {
             BRP_NameTags_o_PlayersRange = 700;
             BRP_NameTags_o_Tier = 2;
         };
-        if (BRP_NameTags_t_ID == ID_EMOTE_HEART) {
+        if (BRP_NameTags_t_ID == EmoteConstants.ID_EMOTE_HEART) {
             BRP_NameTags_o_PlayersRange = 1.5;    // TODO back to 3
             BRP_NameTags_o_Tier = 3;
         };
-        if (BRP_NameTags_t_ID == ID_EMOTE_TAUNT) {
+        if (BRP_NameTags_t_ID == EmoteConstants.ID_EMOTE_TAUNT) {
             BRP_NameTags_o_PlayersRange = 70;   // from 55   // TODO back to 25
             BRP_NameTags_o_Tier = 7;
         };
-        if (BRP_NameTags_t_ID == ID_EMOTE_TAUNTELBOW) {
+        if (BRP_NameTags_t_ID == EmoteConstants.ID_EMOTE_TAUNTELBOW) {
             BRP_NameTags_o_PlayersRange = 50;   // TODO back to 9
             BRP_NameTags_o_Tier = 6;
         };
-        if (BRP_NameTags_t_ID == ID_EMOTE_SURRENDER) {
+        if (BRP_NameTags_t_ID == EmoteConstants.ID_EMOTE_SURRENDER) {
             BRP_NameTags_o_PlayersRange = 25;
             BRP_NameTags_o_Tier = 5;
         };
@@ -181,7 +181,7 @@ modded class EmoteManager {
 
                 
                 // code to only run when doing normal hi greeting
-                if (BRP_NameTags_t_ID == ID_EMOTE_GREETING) {
+                if (BRP_NameTags_t_ID == EmoteConstants.ID_EMOTE_GREETING) {
 
                     // reset the tier (might change per character)
                     BRP_NameTags_o_Tier = 5;
@@ -193,7 +193,7 @@ modded class EmoteManager {
                 };
 
                 // heart sign must be playing the same one, or it won't work
-                if (BRP_NameTags_t_ID == ID_EMOTE_HEART) {
+                if (BRP_NameTags_t_ID == EmoteConstants.ID_EMOTE_HEART) {
                     //BRP_NameTags_NameTags_Say("ID: " + BRP_NameTags_t_ID + " same: " + BRP_NameTags_NameTags_IsPlayingSameEmote(PlayerBase.Cast(i_target), BRP_NameTags_t_ID));
 
                     // if the other player is not doing the same emote, skip this loop
@@ -203,14 +203,14 @@ modded class EmoteManager {
                 }; 
 
                 // Elbow flip off is more personal, distance decreased behind the player
-                if (BRP_NameTags_f_ID == ID_EMOTE_TAUNT) {
+                if (BRP_NameTags_f_ID == EmoteConstants.ID_EMOTE_TAUNT) {
 
                     // the player will remove the other player from itself as well
                     GetRPCManager().SendRPC("BRP_NameTags", "AddPlayerRPC", new Param2<int,string>(BRP_NameTags_o_Tier,""), true, f_Player.GetIdentity(), i_target);
                 }; 
 
                 // Elbow flip off is more personal, distance decreased behind the player
-                if (BRP_NameTags_f_ID == ID_EMOTE_TAUNTELBOW) {
+                if (BRP_NameTags_f_ID == EmoteConstants.ID_EMOTE_TAUNTELBOW) {
 
                     // convert dir to target
                     vector BRP_NameTags_t_DirToTarget = vector.Direction(i_target.GetPosition(), f_Player.GetPosition());
@@ -302,4 +302,3 @@ modded class EmoteManager {
     };
 
 }
-	 
