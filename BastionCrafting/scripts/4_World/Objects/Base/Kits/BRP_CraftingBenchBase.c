@@ -23,6 +23,13 @@ class BRP_CraftingTable : BRP_CraftingBenchBase
 	}
 };
 class BRP_CraftingTable_Static : BRP_CraftingBenchBase {};
+class BRP_CraftingTableStatic_Kit : BRP_Kit 
+{
+    override string Get_ItemName()
+	{
+		return "BRP_CraftingTable_Static";
+	}
+};
 class BRP_Workbench1_Kit : BRP_Kit 
 {
     override string Get_ItemName()
@@ -38,6 +45,13 @@ class BRP_Workbench1 : BRP_CraftingBenchBase
 	}
 };
 class BRP_Workbench1_Static : BRP_CraftingBenchBase {};
+class BRP_Workbench1Static_Kit : BRP_Kit 
+{
+    override string Get_ItemName()
+	{
+		return "BRP_Workbench1_Static";
+	}
+};
 class BRP_Workbench2_Kit : BRP_Kit 
 {
     override string Get_ItemName()
@@ -53,6 +67,13 @@ class BRP_Workbench2 : BRP_CraftingBenchBase
 	}
 };
 class BRP_Workbench2_Static : BRP_CraftingBenchBase {};
+class BRP_Workbench2Static_Kit : BRP_Kit 
+{
+    override string Get_ItemName()
+	{
+		return "BRP_Workbench2_Static";
+	}
+};
 
 //Toolsbench
 class BRP_Toolsbench_Base : BRP_CraftingBenchBase {};

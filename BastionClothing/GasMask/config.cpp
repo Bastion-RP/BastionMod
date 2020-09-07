@@ -98,9 +98,9 @@ class CfgVehicles
 		absorbency = 0;
 		heatIsolation = 0.6;
 		quantityBar=1;
-		varQuantityInit=2700;
+		varQuantityInit=60;
 		varQuantityMin=0;
-		varQuantityMax=2700;
+		varQuantityMax=60;
 		visibilityModifier = 0.95;
 		hiddenSelections[] = {"camoGround"};
 		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\GasMask\data\gasmask_co.paa"};

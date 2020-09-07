@@ -233,7 +233,9 @@ modded class MissionServer {
 
 		if (localAmmo) {
 			localAmmo.ServerSetAmmoCount(quant);
-		} else if (localItem) {
+		} else if (localItem && localItem.GetCompEM()) {
+			localItem.GetCompEM().SetEnergy(quant);
+		} else {
 			localItem.SetQuantity(quant);
 		}
 	}

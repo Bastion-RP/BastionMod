@@ -287,12 +287,6 @@ class CfgVehicles
 		descriptionShort="Table used for crafting";
 		model = "\BastionMod\BastionCrafting_Data\craftingtable\craftingtable.p3d";
 	};
-	class BRP_CraftingTable_Static: BRP_CraftingBenchBase
-	{
-		displayName="Crafting Table";
-		descriptionShort="Table used for crafting";
-		model = "\BastionMod\BastionCrafting_Data\craftingtable\craftingtable.p3d";
-	};	
 
 	class BRP_Workbench1_Kit: BRP_Kit
 	{
@@ -305,12 +299,6 @@ class CfgVehicles
 		descriptionShort="Table used for crafting";
 		model = "\BastionMod\BastionCrafting_Data\workbench\workbench1.p3d";
 	};
-	class BRP_Workbench1_Static: BRP_CraftingBenchBase
-	{
-		displayName="Workbench";
-		descriptionShort="Table used for crafting";
-		model = "\BastionMod\BastionCrafting_Data\workbench\workbench1.p3d";
-	};	
 	class BRP_Workbench2_Kit: BRP_Kit
 	{
 		scope = 2;
@@ -322,12 +310,6 @@ class CfgVehicles
 		descriptionShort="Table used for crafting";
 		model = "\BastionMod\BastionCrafting_Data\workbench\workbench2.p3d";
 	};
-	class BRP_Workbench2_Static: BRP_CraftingBenchBase
-	{
-		displayName="Workbench";
-		descriptionShort="Table used for crafting";
-		model = "\BastionMod\BastionCrafting_Data\workbench\workbench2.p3d";
-	};	
 	class BRP_Toolsbench_Base: BRP_CraftingBenchBase
 	{
 		displayName="Toolbench";
@@ -831,475 +813,6 @@ class CfgVehicles
         scope = 2;
         model = "\BastionMod\BastionCrafting_Data\boxingring\boxing_ring.p3d";
     };
-
-	//=================================================Fences===================================================>
-
-	class BRP_Fence01_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence01 Kit";
-	};
-	class BRP_Fence01: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence01.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence02_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence02 Kit";
-	};
-	class BRP_Fence02: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence02.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence03_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence03 Kit";
-	};
-	class BRP_Fence03: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence03.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence04_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence04 Kit";
-	};
-	class BRP_Fence04: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence04.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence05_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence05 Kit";
-	};
-	class BRP_Fence05: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence05.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence06_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence06 Kit";
-	};
-	class BRP_Fence06: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence06.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence07_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence07 Kit";
-	};
-	class BRP_Fence07: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence07.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence11_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence11 Kit";
-	};
-	class BRP_Fence11: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence11.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence12_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence12 Kit";
-	};
-	class BRP_Fence12: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence12.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence13_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence13 Kit";
-	};
-	class BRP_Fence13: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence13.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence14_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence14 Kit";
-	};
-	class BRP_Fence14: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence14.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence15_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence15 Kit";
-	};
-	class BRP_Fence15: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence15.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence16_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence16 Kit";
-	};
-	class BRP_Fence16: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence16.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence17_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence17 Kit";
-	};
-	class BRP_Fence17: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence17.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence18_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence18 Kit";
-	};
-	class BRP_Fence18: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence18.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence19_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence19 Kit";
-	};
-	class BRP_Fence19: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence19.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence20_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence20 Kit";
-	};
-	class BRP_Fence20: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence20.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence21_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence21 Kit";
-	};
-	class BRP_Fence21: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence21.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence22_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence22 Kit";
-	};
-	class BRP_Fence22: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence22.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence23_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence23 Kit";
-	};
-	class BRP_Fence23: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence23.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence24_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence24 Kit";
-	};
-	class BRP_Fence24: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence24.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence25_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence25 Kit";
-	};
-	class BRP_Fence25: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence25.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence26_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence26 Kit";
-	};
-	class BRP_Fence26: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence26.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence27_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence27 Kit";
-	};
-	class BRP_Fence27: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence27.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence28_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence28 Kit";
-	};
-	class BRP_Fence28: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence28.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence29_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence29 Kit";
-	};
-	class BRP_Fence29: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence29.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence30_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence30 Kit";
-	};
-	class BRP_Fence30: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence30.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence31_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence31 Kit";
-	};
-	class BRP_Fence31: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence31.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence32_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence32 Kit";
-	};
-	class BRP_Fence32: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence32.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence33_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence33 Kit";
-	};
-	class BRP_Fence33: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence33.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-	class BRP_Fence34_Kit: BRP_Kit
-	{
-		scope = 2;
-		displayName = "Fence34 Kit";
-	};
-	class BRP_Fence34: BRP_Item
-	{
-		scope = 2;
-		displayName = "Fence";
-		descriptionShort = "A hand crafted fence.";
-		model = "BastionMod\BastionCrafting_Data\fences\BRP_Fence34.p3d";
-		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
-		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
-		reversed=1;
-	};
-
 	//==============================================Furnace================================================>
 
 	class BRP_Furnace_Kit: BRP_Kit
@@ -1430,6 +943,7 @@ class CfgVehicles
 		absorbency = 0;
 		itemSize[] = {2,2};
 		itemBehaviour = 1;
+		canBeSplit = 1;		
 		varQuantityInit = 1.0;
 		varQuantityMin = 0.0;
 		varQuantityMax = 6.0;
@@ -1474,6 +988,7 @@ class CfgVehicles
 		absorbency = 0;
 		itemSize[] = {2,3};
 		itemBehaviour = 1;
+		canBeSplit = 1;				
 		varQuantityInit = 1.0;
 		varQuantityMin = 0.0;
 		varQuantityMax = 2.0;
@@ -1492,6 +1007,7 @@ class CfgVehicles
 		absorbency = 0;
 		itemSize[] = {2,3};
 		itemBehaviour = 1;
+		canBeSplit = 1;				
 		varQuantityInit = 1.0;
 		varQuantityMin = 0.0;
 		varQuantityMax = 2.0;
@@ -1510,6 +1026,7 @@ class CfgVehicles
 		absorbency = 0;
 		itemSize[] = {2,2};
 		itemBehaviour = 1;
+		canBeSplit = 1;				
 		varQuantityInit = 1.0;
 		varQuantityMin = 0.0;
 		varQuantityMax = 15.0;
@@ -1529,6 +1046,7 @@ class CfgVehicles
 		itemBehaviour = 1;
 		heavyItem = 1;
 		itemSize[] = {4,2};
+		canBeSplit = 1;				
 		varQuantityInit = 1.0;
 		varQuantityMin = 0.0;
 		varQuantityMax = 4.0;
