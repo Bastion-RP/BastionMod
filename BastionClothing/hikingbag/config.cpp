@@ -436,11 +436,7 @@ class CfgSlots
 {
 	class Slot_flashlight
 	{
-		name[]=
-		{
-			"flashlight",
-			"MassFlashlight"
-		};
+		name="flashlight";
 		displayName="flashlight";
 		ghostIcon="flashlight";
 	};
