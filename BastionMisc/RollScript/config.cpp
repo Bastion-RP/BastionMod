@@ -5,7 +5,7 @@ class CfgPatches
 		units[]={};
 		weapons[]={};
 		requiredVersion=0.1;
-		requiredAddons[]={};
+		requiredAddons[]={"DZ_Data", "BastionMultiCharacters"};
 	};
 };
 
@@ -25,6 +25,7 @@ class CfgMods
 		version="1.0";
 		extra=0;
 		type="mod";
+		inputs="BastionMod/BastionMisc/RollScript/inputs/modded_Inputs.xml";
         dependencies[] = {"World", "Mission"};
         
         class defs
