@@ -30,9 +30,29 @@ class Wetsuit_Base: Clothing
 
 class Invisible_Pants: Clothing
 {
+	bool IsWetsuitOn(EntityAI parent)
+	{
+		Wetsuit_Base wetsuit;
+		Class.CastTo(wetsuit, parent.FindAttachmentBySlotName("Body"));
+		if (wetsuit) return true;
+		return false;
+	}
+
+	override bool CanPutAsAttachment(EntityAI parent)
+	{
+		return super.CanPutAsAttachment(parent) && IsWetsuitOn(parent);
+	}
+
 	override bool CanDetachAttachment(EntityAI parent)
 	{
 		return false;
+	}
+
+	override void OnWasAttached(EntityAI parent, int slot_id)
+	{
+		super.OnWasAttached(parent, slot_id);
+
+		if (!IsWetsuitOn(parent)) Delete();
 	}
 
 	override void OnWasDetached(EntityAI parent, int slot_id)
