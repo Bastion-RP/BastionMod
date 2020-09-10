@@ -12,6 +12,9 @@
 //
 //
 // Copyright 2020 GlutenFreeVapes All Rights Reserved.
+//
+// Edited by RoomService 9/9/2020
+// Commented out if(BRP_NameTags_f_ID ==  EmoteConstants.ID_EMOTE_GREETING) to stop use for metagaming
 modded class EmoteManager {
 
     //
@@ -70,10 +73,11 @@ modded class EmoteManager {
 
 
         // hi wave short range greeting
-        if(BRP_NameTags_f_ID ==  EmoteConstants.ID_EMOTE_GREETING) {
+        // Disable for now due to metagaming
+        /* if(BRP_NameTags_f_ID ==  EmoteConstants.ID_EMOTE_GREETING) {
             BRP_NameTags_t_IsAGreeting = true;
             BRP_NameTags_o_ReCheckDelay = 1000;
-        };
+        }; */
 
         // Hands far waving
         if(BRP_NameTags_f_ID == EmoteConstants.ID_EMOTE_SOS) {
