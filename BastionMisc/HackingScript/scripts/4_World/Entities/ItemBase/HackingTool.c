@@ -11,7 +11,7 @@ class HackHouseToolBase : ItemBook
 
         SetChanceHacking(0.5); //default 50%;
         SetTimeHacking(20); // 20 secs
-        SetCanBeDestroyed(true);
+        SetCanDestroyed(true);
     }
 
     float GetChanceHacking()
@@ -99,6 +99,7 @@ class BRP_HackingTool : HackHouseToolBase
     {
         SetChanceHacking(0.5);
         SetTimeHacking(30);
+        SetCanDestroyed(true);
     }
 }
 
@@ -109,7 +110,7 @@ class BRP_HackingTool_Spec : HackHouseToolBase
         array<int> allowClasses = {5, 6, 7, 8, 9, 10, 11};
         SetChanceHacking(1);
         SetTimeHacking(5);
-        SetCanBeDestroyed(false);
+        SetCanDestroyed(false);
         SetAllowClasses(allowClasses);
     }
 }
