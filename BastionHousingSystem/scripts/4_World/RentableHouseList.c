@@ -91,3 +91,5 @@ class Land_Workshop_FuelStation:   		BuildingBase { override bool IsRentableHous
 class Land_CementWorks_ExpeditionA:     BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_CementWorks_MillC:           BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Factory_Lathes:              BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Mil_Barracks2:               BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Mil_Barracks_Round:          BuildingBase { override bool IsRentableHouse() {return true;} };
