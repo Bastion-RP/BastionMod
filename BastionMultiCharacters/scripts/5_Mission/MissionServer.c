@@ -219,9 +219,9 @@ modded class MissionServer {
 				localParent.Delete();
 				return;
 			}
-		} else {
-			SetItemQuantity(localParent, quant, slot);
 		}
+		SetItemQuantity(localParent, quant, slot);
+		
 		foreach (BST_MCSaveObject saveObject : children) {
 			CreateObjectChildren(player, localParent, saveObject);
 		}
