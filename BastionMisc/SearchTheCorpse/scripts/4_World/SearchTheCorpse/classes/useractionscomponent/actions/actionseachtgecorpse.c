@@ -109,7 +109,7 @@ class ActionSearchTheCorpse : ActionContinuousBase
     override void CreateConditionComponents()  
     {   
         m_ConditionItem = new CCINone;
-		m_ConditionTarget = new DeA_CCTMan(UAMaxDistances.DEFAULT,false);
+		m_ConditionTarget = new DeA_CCTMan(2.5,false);
     }
 
 	override typename GetInputType()
@@ -167,7 +167,7 @@ class ActionSearchTheCorpseZombie : ActionContinuousBase
     override void CreateConditionComponents()  
     {   
         m_ConditionItem = new CCINone;
-		m_ConditionTarget = new DeA_CCTZombie(UAMaxDistances.DEFAULT);
+		m_ConditionTarget = new DeA_CCTZombie(2.5);
     }
 
 	override typename GetInputType()
@@ -254,7 +254,12 @@ class DeA_CCTMan : CCTBase
 			return false;
 		
 		Object targetObject = target.GetObject();
-		if ( !player || !targetObject || targetObject == player || !targetObject.IsMan() || ( m_MustBeAlive && targetObject.IsDamageDestroyed() ) )
+		if ( !player || !targetObject || targetObject == player || !targetObject.IsMan() )
+			return false;
+		
+		PlayerBase targetPlayer = PlayerBase.Cast(targetObject);
+		
+		if(targetPlayer.IsAlive() && !targetPlayer.IsUnconscious() )
 			return false;
 		
 		return ( vector.DistanceSq(targetObject.GetPosition(), player.GetPosition()) <= m_MaximalActionDistanceSq );
