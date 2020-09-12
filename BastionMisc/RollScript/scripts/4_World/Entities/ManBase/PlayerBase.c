@@ -80,7 +80,7 @@ modded class PlayerBase
 		{
 			if (player && player != this && player.IsAlive() && IsPlayerNear(player))
 			{
-				player.RPCSingleParam(ROLL_RPC_SEND, new Param1<string>(text), true, player.GetIdentity());
+				player.RPCSingleParam(ROLL_RPC_APPLY, new Param1<string>(text), true, player.GetIdentity());
 			}
 		}
 	}
