@@ -18,14 +18,14 @@ modded class PlayerBase
 		{
 			if (rpc_type == ROLL_RPC_APPLY)
 			{
-				if (!ctx.Read(ctx)) return;
+				if (!ctx.Read(data)) return;
 				BSTShowNotification(data.param1);
 			}
 		} else if (GetGame().IsServer())
 		{
 			if (rpc_type == ROLL_RPC_SEND)
 			{
-				if (!ctx.Read(ctx)) return;
+				if (!ctx.Read(data)) return;
 				SendToNearestPlayers(data.param1);
 			}
 		}
