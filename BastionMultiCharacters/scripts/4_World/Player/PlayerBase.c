@@ -36,7 +36,10 @@ modded class PlayerBase {
 			
 			if (GetInventory().FindFirstFreeLocationForNewEntity(type, FindInventoryLocationType.CARGO, loc)) {
 				localItem = loc.GetParent().GetInventory().CreateEntityInCargoEx(type, loc.GetIdx(), loc.GetRow(), loc.GetCol(), loc.GetFlip());
+			} else {
+				localItem = GetGame().CreateObjectEx(type, GetPosition(), ECE_PLACE_ON_SURFACE);
 			}
+			
 			if (localItem) {
 				localMag = Magazine.Cast(localItem);
 				if (localMag) {
