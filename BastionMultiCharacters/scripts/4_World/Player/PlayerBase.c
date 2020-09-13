@@ -76,6 +76,7 @@ modded class PlayerBase {
 			InventoryLocation il = new InventoryLocation();
 			PlayerBase localPlayer;
 			Magazine localAmmo;
+			Weapon_Base localWeapon;
 			BST_MCSaveObject tempObject;
 
 			// Grab the InventoryLocation of the current object to grab the slot/index to spawn in the object later
@@ -145,6 +146,12 @@ modded class PlayerBase {
 
 			if (Class.CastTo(localAmmo, localEntity)) {
 				tempObject.SetQuantity(localAmmo.GetAmmoCount());
+			} else if (Class.CastTo(localWeapon, localEntity)) {
+				ref BST_MCSaveObject pile = new BST_MCSaveObject();
+				int muzzle = localWeapon.GetCurrentMuzzle();
+				pile.SetType(localWeapon.GetChamberAmmoTypeName(muzzle));
+				pile.SetQuantity(localWeapon.GetTotalCartridgeCount(muzzle));
+				if (pile.GetQuantity() > 0) tempObject.AddChild(pile);
 			} else if (localItem && localItem.GetCompEM()) {
 				tempObject.SetQuantity(localItem.GetCompEM().GetEnergy());
 			} else {
