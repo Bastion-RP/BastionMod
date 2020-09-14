@@ -27,7 +27,8 @@ class DZCrateSystem
 		{
 			GetDZLogger().LogInfo("LootSpawner - Started !");
 			CheckDeadWolfStatus();
-			CheckCrateListStatus();
+			//CheckCrateListStatus();
+			m_LootList.Clear(); // clear loot list, unlooted crates should be cleaned up by CE due to lifetime
 			for( int i=0;i<GetCrateSystemConfig().AreaLocation.Count();i++)
 			{
 				GetDZLogger().LogInfo("NumberOfCratePerTime: " + GetCrateSystemConfig().AreaLocation.Get(i).DZNbCrate.ToString());
@@ -48,6 +49,7 @@ class DZCrateSystem
 		int k,temp;
 		if(v[1]==0)v[1]=GetGame().SurfaceY(v[0], v[2]);
 		m_Loot = EntityAI.Cast(GetGame().CreateObject( container_name, v, false, true, true));
+		m_Loot.SetLifetime(GetCrateSystemConfig().TimerLoot); // set lifetime of crate to refresh time from config
 		m_Loot.SetOrientation(o);
 		m_LootList.Insert(m_Loot);
 		GetDZLogger().LogInfo("[LOOTSYSTEM]: CrateSystem2Spawned:"+" CrateName: "+ name + "- Position: X:"+v[0].ToString()+" Y:"+v[1].ToString()+" Z:"+v[2].ToString());
@@ -133,6 +135,7 @@ class DZCrateSystem
 
 	}
 
+	/* JAD: method not needed since "crates" are bags and can be picked up - cleanup is done by CE */
 	void CheckCrateListStatus()
 	{
 		GetDZLogger().LogInfo("[LOOTSYSTEM]: [CrateCleaner] !");
