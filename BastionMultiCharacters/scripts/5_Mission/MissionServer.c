@@ -209,16 +209,18 @@ modded class MissionServer {
 		} else {
 			localParent = parent.GetInventory().CreateAttachmentEx(type, slot);
 		}
-		if (!localParent) { return; }
+
+		// this is awful
+		if (!localParent && parent.IsWeapon()) {
+			localParent = GetGame().CreateObjectEx(type, parent.GetPosition(), ECE_PLACE_ON_SURFACE);
+		}
+		if (!localParent) return;
 		localParent.SetHealth("", "Health", objectToCreate.GetHealth());
 
-		if (slot != -1) {
-			if (Class.CastTo(localAmmo, localParent)) {
-				BST_MCMagObject mag = new BST_MCMagObject(localAmmo.GetType(), quant);
-				player.InsertMag(mag);
-				localParent.Delete();
-				return;
-			}
+		if ((slot != -1 || parent.IsWeapon()) && Class.CastTo(localAmmo, localParent)) {
+			player.InsertMag(new BST_MCMagObject(localAmmo.GetType(), quant));
+			localParent.Delete();
+			return;
 		}
 		SetItemQuantity(localParent, quant, slot);
 		

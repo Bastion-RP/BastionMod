@@ -1,7 +1,7 @@
 class BST_MCSaveObject {
 	private ref array<ref BST_MCSaveObject> _arrChildren;
 	private string _type;
-	private float _health;
+	private float _health = 100;
 	private int _quant, _slot, _idx, _row, _col;
 	private bool _flip, _inHands;
 
@@ -46,6 +46,10 @@ class BST_MCSaveObject {
 
 	void SetChildren(ref array<ref BST_MCSaveObject> arrChildren) {
 		_arrChildren = arrChildren;
+	}
+
+	void AddChild(ref BST_MCSaveObject child) {
+		_arrChildren.Insert(child);
 	}
 
 	void ClearChildren() {
