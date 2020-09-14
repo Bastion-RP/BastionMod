@@ -1,0 +1,1 @@
+class BRP_jaakari_Colorbase extends Clothing {};

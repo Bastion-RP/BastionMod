@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{68333B9CEF1A88A0}TH_Bastion/gui/fonts/ddin34.edds"
+ Author "desktop-3up08te"
+ ChangeDate -396105431
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "ddin34.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

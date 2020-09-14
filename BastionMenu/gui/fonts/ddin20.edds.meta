@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{B8CF975DD70731C9}TH_Bastion/gui/fonts/ddin20.edds"
+ Author "desktop-3up08te"
+ ChangeDate -429659863
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "ddin20.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

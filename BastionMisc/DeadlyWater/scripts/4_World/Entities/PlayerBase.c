@@ -107,4 +107,12 @@ modded class PlayerBase
 		}
 		super.CheckDeath();
 	}
+
+	bool HasWetsuit()
+	{
+		Wetsuit_Base suit;
+		if (Class.CastTo(suit, GetItemOnSlot("Body")))
+			return true;
+		return false;
+	}
 }

@@ -19,20 +19,20 @@ class DeadlyWaterMdfr : ModifierBase
 	override bool ActivateCondition(PlayerBase player)
 	{
 		if (IsActive())
-		{
 			return false;
-		}
 
 		if (BastionCCTV.m_CCTVUsers.Contains(player.GetIdentity().GetId()))
-		{
 			return false;
-		}
+
+		if (player.HasWetsuit())
+			return false;
 		
 		vector water_info = HumanCommandSwim.WaterLevelCheck( player, player.GetPosition() );
 		if (GetPlayer().IsInWater() && (water_info[1] > WATER_DEPTH))
 		{
 			return true;
 		}
+		
 		return false;
 	}
 
