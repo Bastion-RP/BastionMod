@@ -19,12 +19,12 @@ class cfgVehicles
 	class MilitaryBeret_ColorBase;
 	class BaseballCap_ColorBase;
 	class PoliceVest;
-	class SmershVest;
 	class SmershBag;
 	class AssaultBag_ColorBase;
 	class TortillaBag;
 	class PrisonUniformPants;
 	class Hoodie_ColorBase;
+	class SmershVest;
 //---Head
     class Inventory_base;
     class BRP_Head_admin: Inventory_Base
