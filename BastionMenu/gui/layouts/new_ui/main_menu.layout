@@ -89,7 +89,7 @@ FrameWidgetClass main_menu_root {
            hexactsize 0
            vexactsize 0
            text "#main_menu_play"
-           font "gui/fonts/sdf_MetronLight42"
+           font "BastionMod/BastionMenu/gui/fonts/ddin42"
            "text halign" center
            "text valign" center
           }
@@ -167,7 +167,7 @@ FrameWidgetClass main_menu_root {
            hexactsize 0
            vexactsize 0
            text "#menu_introductionVideo"
-           font "gui/fonts/sdf_MetronLight30"
+           font "BastionMod/BastionMenu/gui/fonts/ddin30"
            "text halign" center
            "text valign" center
           }
@@ -217,7 +217,7 @@ FrameWidgetClass main_menu_root {
            hexactsize 0
            vexactsize 0
            text "#menu_tutorials"
-           font "gui/fonts/sdf_MetronLight30"
+           font "BastionMod/BastionMenu/gui/fonts/ddin30"
            "text halign" center
            "text valign" center
           }
@@ -453,7 +453,7 @@ FrameWidgetClass main_menu_root {
          vexactsize 1
          style Normal
          text "#main_menu_statistics"
-         font "gui/fonts/sdf_MetronLight42"
+         font "BastionMod/BastionMenu/gui/fonts/ddin42"
          "exact text" 1
          "exact text size" 22
          "text halign" center

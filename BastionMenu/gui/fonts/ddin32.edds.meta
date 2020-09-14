@@ -1,7 +1,7 @@
 MetaFileClass {
  Name "{D5E3691B900194BE}TH_Bastion/gui/fonts/ddin32.edds"
  Author "desktop-3up08te"
- ChangeDate -429659863
+ ChangeDate 319088942
  Configurations {
   TGAResourceClass PC {
    SourceFile "ddin32.tga"

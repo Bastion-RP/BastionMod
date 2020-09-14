@@ -1,7 +1,7 @@
 MetaFileClass {
  Name "{509A8ACC050A44F5}TH_Bastion/gui/fonts/ddinbold28.edds"
  Author "desktop-3up08te"
- ChangeDate -224138967
+ ChangeDate 1191504174
  Configurations {
   TGAResourceClass PC {
    SourceFile "ddinbold28.tga"
