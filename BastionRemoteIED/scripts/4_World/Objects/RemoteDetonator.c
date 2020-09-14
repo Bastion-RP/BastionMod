@@ -174,7 +174,7 @@ class BRP_RemoteDetonator : ItemBase
 					{
 						if ( bombToDetonate.IsDisarmed() ) continue;
 
-						bombToDetonate.Explode(DT_EXPLOSION);
+						bombToDetonate.Explode(DT_EXPLOSION, "IED_Ammo");
 						GetGame().ObjectDelete( bombToDetonate );
 					}
 				}
