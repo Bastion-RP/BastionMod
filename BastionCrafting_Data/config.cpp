@@ -1311,7 +1311,19 @@ class CfgVehicles
 		hiddenSelections[] = {"FenceTexture01","FenceTexture02"};
 		hiddenSelectionsTextures[] = {"BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture01_ca.paa","BastionMod\BastionCrafting_Data\fences\data\BRP_FenceTexture02_ca.paa"};
 		reversed=1;
-	};	
+	};
+
+	class BRP_SewingMachine: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Sewing Machine";
+		descriptionShort = "A sewing machine.";
+		model = "BastionMod\BastionCrafting_Data\sewingmachine\BRP_SewingMachine.p3d";
+		weight = 500;
+		itemSize[] = {4,2};
+		itemBehaviour = 2;
+	};
+
 	//==============================================Furnace================================================>
 
 	class BRP_Furnace_Kit: BRP_Kit
