@@ -175,16 +175,16 @@ class cfgVehicles
 		displayName = "NCC Military Beret";
         descriptionShort = "Military beret for high-ranking NCC officials.";
 		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
-		class ClothingTypes
-		{
-			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
-			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
-		};
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa",
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa",
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa"
+		};
+		class ClothingTypes
+		{
+			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
+			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
 		};
 	};
 	class BRP_ISF_Blue_OfficerBeret: MilitaryBeret_ColorBase
@@ -193,16 +193,52 @@ class cfgVehicles
 		displayName = "NCC Military Beret";
         descriptionShort = "Military beret for high-ranking NCC officials.";
 		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
-		class ClothingTypes
-		{
-			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
-			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
-		};
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_blue_co.paa",
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_blue_co.paa",
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_blue_co.paa"
+		};
+		class ClothingTypes
+		{
+			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
+			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
+		};
+	};
+	class BRP_ISF_Black_OfficerBeret: MilitaryBeret_ColorBase
+	{
+		scope=2;
+		displayName = "NCC Military Beret";
+        descriptionShort = "Military beret for high-ranking NCC officials.";
+		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_black_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_black_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_black_co.paa"
+		};
+		class ClothingTypes
+		{
+			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
+			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
+		};
+	};
+	class BRP_ISF_Purple_OfficerBeret: MilitaryBeret_ColorBase
+	{
+		scope=2;
+		displayName = "NCC Military Beret";
+        descriptionShort = "Military beret for high-ranking NCC officials.";
+		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_purple_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_purple_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_purple_co.paa"
+		};
+		class ClothingTypes
+		{
+			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
+			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
 		};
 	};
 	
