@@ -35,7 +35,7 @@ class cfgWeapons
 		class SemiAuto: Mode_SemiAuto
 		{
 			soundSetShot[] = {"Shockpistol_Shot_SoundSet","Shockpistol_Tail_SoundSet","Shockpistol_InteriorTail_SoundSet"};
-			reloadTime = 0.125;
+			reloadTime = 0.3;
 			recoil = "recoil_cz75";
 			recoilProne = "recoil_cz75_prone";
 			dispersion = 0.006;
@@ -46,7 +46,7 @@ class cfgWeapons
 			class OnOverheating
 			{
 				shotsToStartOverheating = 1;
-				maxOverheatingValue = 7;
+				maxOverheatingValue = 3;
 				overheatingDecayInterval = 1;
 				class OpenChamberSmoke
 				{
