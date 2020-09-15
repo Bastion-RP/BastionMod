@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{EE1AC3FE0865F153}BastionLoading/gui/data/loading_1.edds"
+ Author "desktop-3up08te"
+ ChangeDate 1887217967
+ Configurations {
+  PNGResourceClass PC {
+   SourceFile "loading_1.png"
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+  PNGResourceClass LINUX : PC {
+  }
+ }
+}

@@ -1,0 +1,88 @@
+FrameWidgetClass LoadingFrame {
+ position 0 0
+ size 1 1
+ halign center_ref
+ valign center_ref
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ priority 1000
+ {
+  PanelWidgetClass PanelWidget {
+   clipchildren 0
+   position 0 0
+   size 1 1
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+   {
+    ImageWidgetClass ImageBackground {
+     visible 1
+     position 0 0
+     size 0.16 0.09
+     halign center_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     fixaspect outside
+     image0 ""
+     imageTexture "{0DBE2630AF5047FD}gui/textures/loading_screens/loading_screen_3_co.edds"
+     mode blend
+     "src alpha" 0
+     stretch 1
+     Mask "{F2CEA7E35B785FB7}gui/textures/loading_screens/loading_screen_3_mask.edds"
+     "Transition width" 1
+     Progress 0
+    }
+   }
+  }
+  PanelWidgetClass BottomPanel {
+   visible 1
+   ignorepointer 1
+   color 0 0 0 0.5882
+   size 1 0.05
+   halign center_ref
+   valign bottom_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style rover_sim_colorable
+   {
+    TextWidgetClass RandomMessages {
+     ignorepointer 1
+     size 1 1
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     text "Random Messages Here"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
+     "text offset" 50 0
+     "text valign" center
+    }
+   }
+  }
+  ProgressBarWidgetClass LoadingBar {
+   ignorepointer 1
+   position 0 0.047
+   size 1 3
+   halign center_ref
+   valign bottom_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 1
+   style DayZLoading
+   current 45
+  }
+ }
+}
