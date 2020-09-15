@@ -25,13 +25,14 @@ modded class MainMenu extends UIScriptedMenu
 	protected Widget				m_NewsSec2;
 	protected Widget				m_PrevCharacter;
 	protected Widget				m_NextCharacter;
-	protected Widget 				m_Forums;
 	
 	protected Widget				m_LastPlayedTooltip;
 	protected Widget				m_LastPlayedTooltipLabel;
 	protected TextWidget 			m_LastPlayedTooltipName;
 	protected TextWidget			m_LastPlayedTooltipIP;
 	protected TextWidget			m_LastPlayedTooltipPort;
+
+	protected Widget 				m_Forums;
 	
 	protected ref WidgetFadeTimer	m_LastPlayedTooltipTimer;
 	protected ref Widget			m_LastFocusedButton;
@@ -46,8 +47,8 @@ modded class MainMenu extends UIScriptedMenu
 		layoutRoot = GetGame().GetWorkspace().CreateWidgets( "BastionMod/BastionMenu/gui/layouts/new_ui/main_menu.layout" );
 		
 		m_Play						= layoutRoot.FindAnyWidget( "PlayButton" );
-		m_ChooseServer				= layoutRoot.FindAnyWidget( "choose_server" );
-		m_CustomizeCharacter		= layoutRoot.FindAnyWidget( "customize_character" );
+		m_ChooseServer				= layoutRoot.FindAnyWidget( "ServerButton" );
+		m_CustomizeCharacter		= layoutRoot.FindAnyWidget( "CharacterButton" );
 		m_PlayVideo					= layoutRoot.FindAnyWidget( "play_video" );
 		m_Tutorials					= layoutRoot.FindAnyWidget( "tutorials" );
 		m_TutorialButton			= layoutRoot.FindAnyWidget( "tutorial_button" );
@@ -57,7 +58,7 @@ modded class MainMenu extends UIScriptedMenu
 		m_PrevCharacter				= layoutRoot.FindAnyWidget( "prev_character" );
 		m_NextCharacter				= layoutRoot.FindAnyWidget( "next_character" );
 
-		m_Forums 					= layoutRoot.FindAnyWidget( "ForumsButton" );
+		m_Forums					= layoutRoot.FindAnyWidget( "ForumsButton" );
 
 		m_Version					= TextWidget.Cast( layoutRoot.FindAnyWidget( "version" ) );
 		m_ModdedWarning				= TextWidget.Cast( layoutRoot.FindAnyWidget( "ModdedWarning" ) );
@@ -180,7 +181,8 @@ modded class MainMenu extends UIScriptedMenu
 		{
 			if( w == m_Play )
 			{
-				g_Game.ConnectFromServerBrowser( "51.81.48.230", 2302, "" );
+				m_LastFocusedButton = m_Play;
+				g_Game.ConnectFromServerBrowser( "51.81.48.230", 2302, "" ); // place YOUR IP and Port here
 				return true;
 			}
 			else if ( w == m_ChooseServer )
@@ -313,7 +315,7 @@ modded class MainMenu extends UIScriptedMenu
 	{
 		if( w )
 		{
-			if( w == m_Play || w == m_ChooseServer || w == m_CustomizeCharacter || w == m_TutorialButton || w == m_MessageButton || w == m_SettingsButton );
+			if( w == m_Play || w == m_ChooseServer || w == m_CustomizeCharacter || w == m_TutorialButton || w == m_MessageButton || w == m_SettingsButton || w == m_Forums );
 			{
 				return true;
 			}
@@ -600,7 +602,7 @@ modded class MainMenu extends UIScriptedMenu
 	}
 		
 	//Coloring functions (Until WidgetStyles are useful)
-	void ColorHighlight( Widget w )
+	override void ColorHighlight( Widget w )
 	{
 		if( !w )
 			return;
@@ -608,12 +610,12 @@ modded class MainMenu extends UIScriptedMenu
 		//SetFocus( w );
 		
 		int color_pnl = ARGB(255, 0, 0, 0);
-		int color_lbl = ARGB(255, 255, 0, 0);
-		int color_img = ARGB(255, 200, 0, 0);
+		int color_lbl = ARGB(255, 255, 168, 0);
+		int color_img = ARGB(255, 255, 168, 0);
 		
 		#ifdef PLATFORM_CONSOLE
-			color_pnl = ARGB(255, 200, 0, 0);
-			color_lbl = ARGB(255, 255, 255, 255);
+			color_pnl = ARGB(255, 255, 168, 0);
+			color_lbl = ARGB(255, 255, 168, 0);
 		#endif
 		
 		ButtonSetColor(w, color_pnl);
@@ -635,7 +637,7 @@ modded class MainMenu extends UIScriptedMenu
 		ImagenSetColor(w, color_img);
 	}
 	
-	void ButtonSetText( Widget w, string text )
+	override void ButtonSetText( Widget w, string text )
 	{
 		if( !w )
 			return;

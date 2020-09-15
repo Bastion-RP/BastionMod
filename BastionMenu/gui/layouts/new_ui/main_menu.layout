@@ -143,7 +143,7 @@ FrameWidgetClass main_menu_root {
        "next up" "play"
        "next down" "tutorials"
        text_proportion 0.55
-       font "BastionMod/BastionMenu/gui/fonts/ddin30"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
        switch normal
        {
         PanelWidgetClass play_video_panel {
@@ -167,7 +167,7 @@ FrameWidgetClass main_menu_root {
            hexactsize 0
            vexactsize 0
            text "#menu_introductionVideo"
-           font "BastionMod/BastionMenu/gui/fonts/ddin30"
+           font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
            "text halign" center
            "text valign" center
           }
@@ -193,7 +193,7 @@ FrameWidgetClass main_menu_root {
        "next up" "play_video"
        "next down" "customize_character"
        text_proportion 0.55
-       font "BastionMod/BastionMenu/gui/fonts/ddin30"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
        switch normal
        {
         PanelWidgetClass tutorials_panel {
@@ -217,7 +217,7 @@ FrameWidgetClass main_menu_root {
            hexactsize 0
            vexactsize 0
            text "#menu_tutorials"
-           font "BastionMod/BastionMenu/gui/fonts/ddin30"
+           font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
            "text halign" center
            "text valign" center
           }
@@ -251,7 +251,7 @@ FrameWidgetClass main_menu_root {
          priority 1
          style Empty
          "no focus" 0
-         font "BastionMod/BastionMenu/gui/fonts/ddin30"
+         font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
          {
           ImageWidgetClass prev_character_image {
            inheritalpha 0
@@ -283,7 +283,7 @@ FrameWidgetClass main_menu_root {
          priority 1
          style Empty
          "no focus" 0
-         font "BastionMod/BastionMenu/gui/fonts/ddin30"
+         font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
          {
           ImageWidgetClass next_character_image {
            ignorepointer 1
@@ -341,7 +341,7 @@ FrameWidgetClass main_menu_root {
            hexactsize 0
            vexactsize 1
            text "#layout_main_menu_customize_char"
-           font "BastionMod/BastionMenu/gui/fonts/ddin30"
+           font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
            "text halign" center
            "text valign" center
           }
@@ -387,7 +387,7 @@ FrameWidgetClass main_menu_root {
            hexactsize 0
            vexactsize 1
            text "#main_menu_change_server"
-           font "BastionMod/BastionMenu/gui/fonts/ddin30"
+           font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
            "text halign" center
            "text valign" center
           }
@@ -704,7 +704,7 @@ FrameWidgetClass main_menu_root {
      vexactsize 0
      priority 3
      text "#STR_main_menu_root_character_name_xbox_background_character_name_xbox0"
-     font "BastionMod/BastionMenu/gui/fonts/ddin30"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
      "exact text" 0
      text_proportion 0.55
      "text halign" center
@@ -739,7 +739,7 @@ FrameWidgetClass main_menu_root {
      "no focus" 1
      "next up" "play"
      "next down" "customize_character"
-     font "BastionMod/BastionMenu/gui/fonts/ddin30"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
      switch normal
      {
       ImageWidgetClass tutorial_button_image {
@@ -773,7 +773,7 @@ FrameWidgetClass main_menu_root {
      "no focus" 1
      "next up" "play"
      "next down" "customize_character"
-     font "BastionMod/BastionMenu/gui/fonts/ddin30"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
      switch normal
      {
       ImageWidgetClass message_button_image {
@@ -808,7 +808,7 @@ FrameWidgetClass main_menu_root {
      "next right" "exit_button"
      "next up" "play"
      "next down" "customize_character"
-     font "BastionMod/BastionMenu/gui/fonts/ddin30"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
      switch normal
      {
       ImageWidgetClass settings_button_image {
@@ -842,7 +842,7 @@ FrameWidgetClass main_menu_root {
      "next right" "play"
      "next up" "play"
      "next down" "customize_character"
-     font "BastionMod/BastionMenu/gui/fonts/ddin30"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
      switch normal
      {
       ImageWidgetClass exit_button_image {
@@ -873,7 +873,7 @@ FrameWidgetClass main_menu_root {
    vexactsize 1
    priority 2
    image0 "BastionMod/BastionMenu/gui/data/bastionlogo.edds"
-   imageTexture "{13F069C5F39FB1EA}TH_Bastion/gui/data/bastionlogo.edds"
+   imageTexture "{13F069C5F39FB1EA}BastionMenu/gui/data/bastionlogo.edds"
    mode blend
    "src alpha" 1
    stretch 1
@@ -890,7 +890,7 @@ FrameWidgetClass main_menu_root {
    fixaspect outside
    priority 5
    text "#str_modded_version_warning0"
-   font "BastionMod/BastionMenu/gui/fonts/ddin30"
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
    "exact text" 1
    "exact text size" 20
    "size to text h" 1
@@ -956,7 +956,7 @@ FrameWidgetClass main_menu_root {
        hexactsize 0
        vexactsize 0
        text "#layout_main_menu_last_server"
-       font "BastionMod/BastionMenu/gui/fonts/ddin30"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
        "text offset" 10 0
        "exact text" 0
        "exact text size" 16
@@ -986,7 +986,7 @@ FrameWidgetClass main_menu_root {
        vexactpos 1
        hexactsize 0
        vexactsize 0
-       font "BastionMod/BastionMenu/gui/fonts/ddin30"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
        "text offset" 10 0
        "exact text" 0
        "exact text size" 22
@@ -1017,7 +1017,7 @@ FrameWidgetClass main_menu_root {
        vexactpos 1
        hexactsize 0
        vexactsize 0
-       font "BastionMod/BastionMenu/gui/fonts/ddin30"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
        "text offset" 10 0
        "exact text" 0
        "exact text size" 22
@@ -1049,7 +1049,7 @@ FrameWidgetClass main_menu_root {
        hexactsize 0
        vexactsize 0
        text "#players_name"
-       font "BastionMod/BastionMenu/gui/fonts/ddin30"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
        "text offset" 10 0
        "exact text" 0
        "exact text size" 22
@@ -1090,7 +1090,7 @@ FrameWidgetClass main_menu_root {
      vexactsize 0
      priority 2
      text "#main_menu_version"
-     font "BastionMod/BastionMenu/gui/fonts/ddin30"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
      "exact text" 0
      "text valign" center
     }
@@ -1106,31 +1106,11 @@ FrameWidgetClass main_menu_root {
      vexactsize 0
      priority 2
      text "#copyright_disclamer"
-     font "BastionMod/BastionMenu/gui/fonts/ddin30"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
      "exact text" 0
      "text valign" center
     }
    }
-  }
-  ImageWidgetClass vignette {
-   visible 1
-   ignorepointer 1
-   color 0 0 0 0.7843
-   size 1 1
-   halign center_ref
-   valign center_ref
-   hexactpos 1
-   vexactpos 1
-   hexactsize 0
-   vexactsize 0
-   priority 1
-   imageTexture "{E6B3EF816E067499}Gui/textures/inventory_bgvignette.edds"
-   mode blend
-   "src alpha" 1
-   "no wrap" 1
-   stretch 1
-   filter 0
-   nocache 1
   }
   WrapSpacerWidgetClass ModsSimple {
    visible 0
@@ -1152,73 +1132,9 @@ FrameWidgetClass main_menu_root {
    content_halign right
    content_valign bottom
   }
-  GridSpacerWidgetClass GridSpacerButtons {
-   ignorepointer 1
-   position 0.05 0.1
-   size 450 200
-   valign bottom_ref
-   hexactpos 0
-   vexactpos 0
-   hexactsize 1
-   vexactsize 1
-   Padding 0
-   Margin 0
-   Columns 1
-   Rows 4
-   {
-    ButtonWidgetClass PlayButton {
-     position 10 10
-     size 48 48
-     hexactpos 1
-     vexactpos 1
-     hexactsize 1
-     vexactsize 1
-     style Empty
-     text "Play"
-     text_halign left
-     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
-    }
-    ButtonWidgetClass ForumsButton {
-     position 10 10
-     size 48 48
-     hexactpos 1
-     vexactpos 1
-     hexactsize 1
-     vexactsize 1
-     style Empty
-     text "Forums"
-     text_halign left
-     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
-    }
-    ButtonWidgetClass SettingsButton {
-     position 10 10
-     size 48 48
-     hexactpos 1
-     vexactpos 1
-     hexactsize 1
-     vexactsize 1
-     style Empty
-     text "Settings"
-     text_halign left
-     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
-    }
-    ButtonWidgetClass ExitButton {
-     position 10 10
-     size 48 48
-     hexactpos 1
-     vexactpos 1
-     hexactsize 1
-     vexactsize 1
-     style Empty
-     text "Exit"
-     text_halign left
-     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
-    }
-   }
-  }
   GridSpacerWidgetClass GridSpacerNames {
    ignorepointer 1
-   position 0.05 0.15
+   position 0.05 0.1
    size 333 48
    valign center_ref
    hexactpos 0
@@ -1260,25 +1176,147 @@ FrameWidgetClass main_menu_root {
      "text offset" 5 0
      "text valign" center
     }
-    TextWidgetClass {
-     visible 0
-     disabled 1
-     clipchildren 1
-     inheritalpha 1
-     ignorepointer 1
-     position 0 0
+   }
+  }
+  GridSpacerWidgetClass GridButtons {
+   visible 1
+   ignorepointer 0
+   position 0.05 0.1
+   size 400 250
+   valign bottom_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   Padding 0
+   Margin 0
+   Columns 1
+   Rows 5
+   {
+    ButtonWidgetClass PlayButton {
+     position 10 10
      size 48 48
-     valign center_ref
-     hexactpos 0
-     vexactpos 0
+     hexactpos 1
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Light
-     font "gui/fonts/metronlight22"
-     "exact text" 0
-     "size to text h" 0
-     "size to text v" 0
-     "text valign" center
+     style Empty
+     {
+      TextWidgetClass PlayButton_label {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Play"
+       font "BastionMod\BastionMenu\gui\fonts\ddinbold26"
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass ServerButton {
+     position 10 10
+     size 48 48
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Empty
+     {
+      TextWidgetClass ServerButton_label {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Servers"
+       font "BastionMod\BastionMenu\gui\fonts\ddinbold26"
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass ForumsButton {
+     position 10 10
+     size 48 48
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Empty
+     {
+      TextWidgetClass ForumsButton_label {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Forums"
+       font "BastionMod\BastionMenu\gui\fonts\ddinbold26"
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass SettingsButton {
+     position 10 10
+     size 48 48
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Empty
+     {
+      TextWidgetClass SettingsButton_label {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Settings"
+       font "BastionMod\BastionMenu\gui\fonts\ddinbold26"
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass ExitButton {
+     position 10 10
+     size 48 48
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Empty
+     {
+      TextWidgetClass ExitButton_label {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Exit"
+       font "BastionMod\BastionMenu\gui\fonts\ddinbold26"
+       "text valign" center
+      }
+     }
     }
    }
   }
