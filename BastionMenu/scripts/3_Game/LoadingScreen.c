@@ -4,8 +4,8 @@ modded class LoadingScreen
 
 	ref TStringArray loadingscreens = 
 	{	
-		"BastionMod/BastionLoading/gui/data/loading_1.edds",
-		"BastionMod/BastionLoading/gui/data/loading_1.edds"		
+		"BastionMod/BastionMenu/gui/data/loading_1.edds",
+		"BastionMod/BastionMenu/gui/data/loading_1.edds"		
 	};	
 
 	void Show()
@@ -57,7 +57,7 @@ modded class LoadingScreen
 		
 		m_DayZGame = game;
 		
-		m_WidgetRoot = game.GetLoadingWorkspace().CreateWidgets("BastionMod/BastionLoading/gui/layouts/loading.layout");
+		m_WidgetRoot = game.GetLoadingWorkspace().CreateWidgets("BastionMod/BastionMenu/gui/layouts/loading.layout");
 
 		Class.CastTo(m_ImageLogoMid, m_WidgetRoot.FindAnyWidget("ImageLogoMid"));
 		Class.CastTo(m_ImageLogoCorner, m_WidgetRoot.FindAnyWidget("ImageLogoCorner"));

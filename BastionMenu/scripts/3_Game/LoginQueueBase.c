@@ -23,15 +23,15 @@ modded class LoginQueueBase extends UIScriptedMenu
 
 	ref TStringArray loadingscreens = 
 	{	
-		"BastionMod/BastionLoading/gui/data/loading_1.edds",
-		"BastionMod/BastionLoading/gui/data/loading_1.edds"			
+		"BastionMod/BastionMenu/gui/data/loading_1.edds",
+		"BastionMod/BastionMenu/gui/data/loading_1.edds"			
 	};	
 
 	ImageWidget imageWidgetBackground;
 	
 	override Widget Init()
 	{	
-		layoutRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionLoading/gui/layouts/queue_position.layout");
+		layoutRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionMenu/gui/layouts/queue_position.layout");
 		
 		m_txtPosition = TextWidget.Cast( layoutRoot.FindAnyWidget("txtPosition") );
 		m_txtNote = TextWidget.Cast( layoutRoot.FindAnyWidget("txtNote") );

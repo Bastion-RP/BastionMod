@@ -22,15 +22,15 @@ modded class LoginTimeBase extends UIScriptedMenu
 
 	ref TStringArray loadingscreens = 
 	{	
-		"BastionMod/BastionLoading/gui/data/loading_1.edds",
-		"BastionMod/BastionLoading/gui/data/loading_1.edds"		
+		"BastionMod/BastionMenu/gui/data/loading_1.edds",
+		"BastionMod/BastionMenu/gui/data/loading_1.edds"		
 	};	
 
 	ImageWidget imageWidgetBackground;
 	
 	override Widget Init()
 	{	
-		layoutRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionLoading/gui/layouts/login_time.layout");
+		layoutRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionMenu/gui/layouts/login_time.layout");
 		
 		m_txtDescription = TextWidget.Cast( layoutRoot.FindAnyWidget("txtDescription") );
 		m_txtLabel = TextWidget.Cast( layoutRoot.FindAnyWidget("txtLabel") );
