@@ -61,9 +61,9 @@ class Base_WoodStorage_Kit extends ItemBase
 			vector position = player_base.GetLocalProjectionPosition();
 			vector orientation = player_base.GetLocalProjectionOrientation();
 				
-			Base_WoodStorage_Kit1 = GetGame().CreateObject("Base_WoodStorage", pb.GetLocalProjectionPosition(), false );
-			Base_WoodStorage_Kit1.SetPosition( position + "0 1.0 0");
-			Base_WoodStorage_Kit1.SetOrientation( orientation );
+			//Base_WoodStorage_Kit1 = GetGame().CreateObject("Base_WoodStorage", pb.GetLocalProjectionPosition(), false );
+			//Base_WoodStorage_Kit1.SetPosition( position + "0 1.0 0");
+			//Base_WoodStorage_Kit1.SetOrientation( orientation );
 		}	
 		
 		SetIsDeploySound( true );

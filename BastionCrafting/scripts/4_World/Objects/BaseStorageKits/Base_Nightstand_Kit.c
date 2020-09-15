@@ -61,9 +61,9 @@ class Base_Nightstand_Kit extends ItemBase
 			vector position = player_base.GetLocalProjectionPosition();
 			vector orientation = player_base.GetLocalProjectionOrientation();
 				
-			Base_Nightstand_Kit1 = GetGame().CreateObject("Base_Nightstand", pb.GetLocalProjectionPosition(), false );
-			Base_Nightstand_Kit1.SetPosition( position );
-			Base_Nightstand_Kit1.SetOrientation( orientation );
+			//Base_Nightstand_Kit1 = GetGame().CreateObject("Base_Nightstand", pb.GetLocalProjectionPosition(), false );
+			//Base_Nightstand_Kit1.SetPosition( position );
+			//Base_Nightstand_Kit1.SetOrientation( orientation );
 		}	
 		
 		SetIsDeploySound( true );

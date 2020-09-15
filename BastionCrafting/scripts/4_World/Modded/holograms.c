@@ -65,7 +65,6 @@ modded class Hologram
             SetIsColliding(false);
             return;
         }
-		return;
 		super.EvaluateCollision();
 	}
 
