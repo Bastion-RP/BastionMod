@@ -29,6 +29,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "William Fraites"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "size to text h" 1
      "text valign" center
      {
@@ -54,7 +55,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "0000"
-     font "gui/fonts/metron58"
+     font "BastionMod/BastionMenu/gui/fonts/ddin58"
      "size to text h" 1
      "text valign" center
     }
@@ -68,7 +69,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "CREDITS"
-     font "gui/fonts/metron28"
+     font "BastionMod/BastionMenu/gui/fonts/ddin28"
      "size to text h" 1
      "text valign" center
     }
@@ -95,7 +96,7 @@ FrameWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        text "000000000 IN"
-       font "gui/fonts/metron22"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "size to text h" 1
        "text valign" center
       }
@@ -109,7 +110,7 @@ FrameWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        text "OVERFLOW"
-       font "gui/fonts/metron22"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "size to text h" 1
        "text valign" center
       }
@@ -125,7 +126,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "BANKING"
-     font "gui/fonts/metronbook58"
+     font "BastionMod/BastionMenu/gui/fonts/ddin58"
      "size to text h" 1
      "size to text v" 0
      "text valign" center
@@ -142,7 +143,7 @@ FrameWidgetClass rootFrame {
      "no focus" 1
      text "DEPOSIT"
      text_proportion 0.7
-     font "gui/fonts/metron22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      switch toggle
     }
     ButtonWidgetClass btnWithdraw {
@@ -156,7 +157,7 @@ FrameWidgetClass rootFrame {
      style DayZDefaultButtonNoBorder
      "no focus" 1
      text "WITHDRAW"
-     font "gui/fonts/metron22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      switch toggle
     }
     ButtonWidgetClass btnTransfer {
@@ -170,7 +171,7 @@ FrameWidgetClass rootFrame {
      style DayZDefaultButtonNoBorder
      "no focus" 1
      text "TRANSFER"
-     font "gui/fonts/metron22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      switch toggle
     }
    }
@@ -226,7 +227,7 @@ FrameWidgetClass rootFrame {
      text "500000"
      "limit visible" 1
      "exact text" 1
-     font "gui/fonts/metron58"
+     font "BastionMod/BastionMenu/gui/fonts/ddin58"
      {
       PanelWidgetClass pnlDepositUnderline {
        ignorepointer 1
@@ -251,7 +252,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "CREDITS"
-     font "gui/fonts/metron28"
+     font "BastionMod/BastionMenu/gui/fonts/ddin28"
      "size to text h" 1
      "text valign" center
     }
@@ -266,7 +267,7 @@ FrameWidgetClass rootFrame {
      vexactsize 1
      style DayZDefaultButtonNoBorder
      text "CONFIRM"
-     font "gui/fonts/metron22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }
@@ -321,7 +322,7 @@ FrameWidgetClass rootFrame {
      text "500000"
      "limit visible" 1
      "exact text" 1
-     font "gui/fonts/metron58"
+     font "BastionMod/BastionMenu/gui/fonts/ddin58"
      {
       PanelWidgetClass pnlWithdrawUnderline {
        ignorepointer 1
@@ -346,7 +347,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "CREDITS"
-     font "gui/fonts/metron28"
+     font "BastionMod/BastionMenu/gui/fonts/ddin28"
      "size to text h" 1
      "text valign" center
     }
@@ -361,7 +362,7 @@ FrameWidgetClass rootFrame {
      vexactsize 1
      style DayZDefaultButtonNoBorder
      text "CONFIRM"
-     font "gui/fonts/metron22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }
@@ -416,7 +417,7 @@ FrameWidgetClass rootFrame {
      text "500000"
      "limit visible" 1
      "exact text" 1
-     font "gui/fonts/metron58"
+     font "BastionMod/BastionMenu/gui/fonts/ddin58"
      {
       PanelWidgetClass pnlTransferUnderline {
        ignorepointer 1
@@ -441,7 +442,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "CREDITS"
-     font "gui/fonts/metron28"
+     font "BastionMod/BastionMenu/gui/fonts/ddin28"
      "size to text h" 1
      "text valign" center
     }
@@ -455,7 +456,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "A 100% TRANSFER FEE WILL BE ASSESSED"
-     font "gui/fonts/metron16"
+     font "BastionMod/BastionMenu/gui/fonts/ddin16"
      "size to text h" 1
      "text valign" center
     }
@@ -470,7 +471,7 @@ FrameWidgetClass rootFrame {
      vexactsize 1
      style DayZDefaultButtonNoBorder
      text "CONFIRM"
-     font "gui/fonts/metron22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }
@@ -497,6 +498,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "ERROR"
+	 font "BastionMod/BastionMenu/gui/fonts/ddin32"
      "size to text h" 1
      "text valign" center
      {
@@ -521,7 +523,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "What's the deal with this thing? Does it not like having text set to it or something?"
-     font "gui/fonts/metron28"
+     font "BastionMod/BastionMenu/gui/fonts/ddin28"
      "exact text" 1
      "size to text h" 1
      "size to text v" 1
@@ -539,7 +541,7 @@ FrameWidgetClass rootFrame {
      vexactsize 1
      style DayZDefaultButtonNoBorder
      text "OKAY"
-     font "gui/fonts/metron22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }
