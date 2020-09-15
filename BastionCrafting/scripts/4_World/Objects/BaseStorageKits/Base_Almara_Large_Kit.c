@@ -62,9 +62,9 @@ class Base_Almara_Large_Kit extends ItemBase
 			vector position = player_base.GetLocalProjectionPosition();
 			vector orientation = player_base.GetLocalProjectionOrientation();
 				
-			Base_Almara_Large_Kit1 = GetGame().CreateObject("Base_Almara_Large", pb.GetLocalProjectionPosition(), false );
-			Base_Almara_Large_Kit1.SetPosition( position );
-			Base_Almara_Large_Kit1.SetOrientation( orientation );
+			//Base_Almara_Large_Kit1 = GetGame().CreateObject("Base_Almara_Large", pb.GetLocalProjectionPosition(), false );
+			//Base_Almara_Large_Kit1.SetPosition( position );
+			//Base_Almara_Large_Kit1.SetOrientation( orientation );
 		}	
 		
 		SetIsDeploySound( true );

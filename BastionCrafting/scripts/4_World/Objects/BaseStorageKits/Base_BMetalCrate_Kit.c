@@ -62,9 +62,9 @@ class Base_BMetalCrate_Kit extends ItemBase
 			vector position = player_base.GetLocalProjectionPosition();
 			vector orientation = player_base.GetLocalProjectionOrientation();
 				
-			Base_BMetalCrate_Kit1 = GetGame().CreateObject("Base_BMetalCrate", pb.GetLocalProjectionPosition(), false );
-			Base_BMetalCrate_Kit1.SetPosition( position );
-			Base_BMetalCrate_Kit1.SetOrientation( orientation );
+			//Base_BMetalCrate_Kit1 = GetGame().CreateObject("Base_BMetalCrate", pb.GetLocalProjectionPosition(), false );
+			//Base_BMetalCrate_Kit1.SetPosition( position );
+			//Base_BMetalCrate_Kit1.SetOrientation( orientation );
 		}	
 		
 		SetIsDeploySound( true );

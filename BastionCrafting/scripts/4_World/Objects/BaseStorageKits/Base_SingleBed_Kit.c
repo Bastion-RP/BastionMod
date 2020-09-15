@@ -61,9 +61,9 @@ class Base_SingleBed_Kit extends ItemBase
 			vector position = player_base.GetLocalProjectionPosition();
 			vector orientation = player_base.GetLocalProjectionOrientation();
 				
-			Base_SingleBed_Kit1 = GetGame().CreateObject("Base_SingleBed", pb.GetLocalProjectionPosition(), false );
-			Base_SingleBed_Kit1.SetPosition( position );
-			Base_SingleBed_Kit1.SetOrientation( orientation );
+			//Base_SingleBed_Kit1 = GetGame().CreateObject("Base_SingleBed", pb.GetLocalProjectionPosition(), false );
+			//Base_SingleBed_Kit1.SetPosition( position );
+			//Base_SingleBed_Kit1.SetOrientation( orientation );
 		}	
 		
 		SetIsDeploySound( true );

@@ -61,9 +61,9 @@ class Base_BeigeCouch_Kit extends ItemBase
 			vector position = player_base.GetLocalProjectionPosition();
 			vector orientation = player_base.GetLocalProjectionOrientation();
 				
-			Base_BeigeCouch_Kit1 = GetGame().CreateObject("Base_BeigeCouch", pb.GetLocalProjectionPosition(), false );
-			Base_BeigeCouch_Kit1.SetPosition( position );
-			Base_BeigeCouch_Kit1.SetOrientation( orientation );
+			//Base_BeigeCouch_Kit1 = GetGame().CreateObject("Base_BeigeCouch", pb.GetLocalProjectionPosition(), false );
+			//Base_BeigeCouch_Kit1.SetPosition( position );
+			//Base_BeigeCouch_Kit1.SetOrientation( orientation );
 		}	
 		
 		SetIsDeploySound( true );
