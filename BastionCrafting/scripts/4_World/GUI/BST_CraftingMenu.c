@@ -321,7 +321,7 @@ class BST_CraftingMenu : UIScriptedMenu {
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
         GetGame().GetUIManager().ShowCursor(true);
         GetGame().GetMission().GetHud().Show(false);
-        PPEffects.SetBlurMenu(1);
+        PPEffects.SetBlurInventory(0.8);
         BuildMenu();
         SetFocus(null);
     }
@@ -331,7 +331,7 @@ class BST_CraftingMenu : UIScriptedMenu {
         GetGame().GetUIManager().ShowCursor(false);
         GetGame().GetMission().PlayerControlEnable(true);
         GetGame().GetMission().GetHud().Show(true);
-        PPEffects.SetBlurMenu(0);
+        PPEffects.SetBlurInventory(0);
         Cleanup();
     }
 

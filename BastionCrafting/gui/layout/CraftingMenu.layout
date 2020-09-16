@@ -183,15 +183,17 @@ FrameWidgetClass rootFrame {
      {
       GridSpacerWidgetClass gridRecipeRequire {
        ignorepointer 0
-       size 1 1
+       size 1 0.32
        hexactpos 1
        vexactpos 1
        hexactsize 0
        vexactsize 0
        Padding 0
        Margin 0
+       "Size To Content V" 1
        Columns 1
        Rows 100
+       font "BastionMod/BastionMenu/gui/fonts/ddin16"
       }
      }
     }
