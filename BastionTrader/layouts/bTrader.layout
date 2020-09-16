@@ -7,6 +7,7 @@ PanelWidgetClass rootFrame {
  hexactsize 0
  vexactsize 0
  style blank
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   PanelWidgetClass MainContentWrapper {
    ignorepointer 1
@@ -18,6 +19,7 @@ PanelWidgetClass rootFrame {
    hexactsize 0
    vexactsize 0
    style rover_sim_colorable
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     PanelWidgetClass HeaderTitle1 {
      ignorepointer 1
@@ -27,6 +29,7 @@ PanelWidgetClass rootFrame {
      vexactpos 0
      hexactsize 0
      vexactsize 1
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       TextWidgetClass TitleText1 {
        ignorepointer 1
@@ -40,6 +43,7 @@ PanelWidgetClass rootFrame {
        text "Products"
        "exact text" 1
        "text valign" center
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       PanelWidgetClass HeaderLine1 {
        ignorepointer 1
@@ -51,6 +55,7 @@ PanelWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        style rover_sim_colorable
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -63,6 +68,7 @@ PanelWidgetClass rootFrame {
      vexactpos 0
      hexactsize 0
      vexactsize 0
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass CategoryWrapper {
        ignorepointer 1
@@ -72,6 +78,7 @@ PanelWidgetClass rootFrame {
        vexactpos 0
        hexactsize 0
        vexactsize 0
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         XComboBoxWidgetClass XComboBoxCategory {
          position 0 0
@@ -81,6 +88,7 @@ PanelWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          items "Weapons;Ammo;Kit;Clothes"
+		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -93,6 +101,7 @@ PanelWidgetClass rootFrame {
        vexactpos 0
        hexactsize 0
        vexactsize 0
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         EditBoxWidgetClass EditBoxSearch {
          position 0 0
@@ -106,6 +115,7 @@ PanelWidgetClass rootFrame {
          "limit visible" 0
          "Use default text" 0
          "exact text" 1
+		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -121,6 +131,7 @@ PanelWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      "Scrollbar V" 1
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       WrapSpacerWidgetClass WrapMainContent {
        ignorepointer 1
@@ -132,6 +143,7 @@ PanelWidgetClass rootFrame {
        Padding 12
        Margin 12
        "Size To Content V" 1
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -148,6 +160,7 @@ PanelWidgetClass rootFrame {
    hexactsize 0
    vexactsize 0
    style rover_sim_colorable
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     PanelWidgetClass HeaderTitle0 {
      ignorepointer 1
@@ -157,6 +170,7 @@ PanelWidgetClass rootFrame {
      vexactpos 0
      hexactsize 0
      vexactsize 1
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       TextWidgetClass TitleText0 {
        ignorepointer 1
@@ -170,6 +184,7 @@ PanelWidgetClass rootFrame {
        text "Item"
        "exact text" 1
        "text valign" center
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       PanelWidgetClass HeaderLine0 {
        ignorepointer 1
@@ -181,6 +196,7 @@ PanelWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        style rover_sim_colorable
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -193,6 +209,7 @@ PanelWidgetClass rootFrame {
      vexactpos 0
      hexactsize 0
      vexactsize 0
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       ItemPreviewWidgetClass ItemPreview {
        ignorepointer 1
@@ -203,6 +220,7 @@ PanelWidgetClass rootFrame {
        vexactpos 0
        hexactsize 0
        vexactsize 0
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       ScrollWidgetClass ProductScroll {
        ignorepointer 1
@@ -215,6 +233,7 @@ PanelWidgetClass rootFrame {
        vexactsize 0
        style Colorable
        "Scrollbar V" 1
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         MultilineTextWidgetClass ProductDescription {
          ignorepointer 1
@@ -230,6 +249,7 @@ PanelWidgetClass rootFrame {
          wrap 1
          "condense whitespace" 1
          "strip newlines" 1
+		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -244,6 +264,7 @@ PanelWidgetClass rootFrame {
        vexactsize 0
        style MenuDefault
        text "Trade"
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       TextWidgetClass EditBoxCount {
        position -0.23 0.04
@@ -259,6 +280,7 @@ PanelWidgetClass rootFrame {
        "exact text" 1
        "text halign" center
        "text valign" center
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       ButtonWidgetClass DecCountBtn {
        position 0.09 0.035
@@ -270,6 +292,7 @@ PanelWidgetClass rootFrame {
        vexactsize 0
        style MenuDefault
        text "-"
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       ButtonWidgetClass IncCountBtn {
        position 0.36 0.035
@@ -281,6 +304,7 @@ PanelWidgetClass rootFrame {
        vexactsize 0
        style MenuDefault
        text "+"
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       ProgressBarWidgetClass TraderProgress {
        ignorepointer 1
@@ -294,6 +318,7 @@ PanelWidgetClass rootFrame {
        vexactsize 0
        style Stamina
        current 0
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -309,6 +334,7 @@ PanelWidgetClass rootFrame {
    hexactsize 0
    vexactsize 0
    style rover_sim_colorable
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     PanelWidgetClass HeaderTitle2 {
      ignorepointer 1
@@ -318,6 +344,7 @@ PanelWidgetClass rootFrame {
      vexactpos 0
      hexactsize 0
      vexactsize 1
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       TextWidgetClass TitleText2 {
        ignorepointer 1
@@ -331,6 +358,7 @@ PanelWidgetClass rootFrame {
        text "Requirements"
        "exact text" 1
        "text valign" center
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       PanelWidgetClass HeaderLine2 {
        ignorepointer 1
@@ -342,6 +370,7 @@ PanelWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        style rover_sim_colorable
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -354,6 +383,7 @@ PanelWidgetClass rootFrame {
      vexactpos 0
      hexactsize 0
      vexactsize 0
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       ScrollWidgetClass ScrollRequirement {
        ignorepointer 1
@@ -363,6 +393,7 @@ PanelWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        "Scrollbar V" 1
+	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         WrapSpacerWidgetClass WrapRequirements {
          ignorepointer 1
@@ -374,6 +405,7 @@ PanelWidgetClass rootFrame {
          Padding 12
          Margin 12
          "Size To Content V" 1
+		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -393,6 +425,7 @@ PanelWidgetClass rootFrame {
    vexactsize 0
    priority 5
    style rover_sim_colorable
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     TextWidgetClass TextWidget0 {
      ignorepointer 1
@@ -408,6 +441,7 @@ PanelWidgetClass rootFrame {
      "exact text" 1
      "text halign" center
      "text valign" center
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }

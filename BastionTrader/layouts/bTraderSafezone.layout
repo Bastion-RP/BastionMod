@@ -7,6 +7,7 @@ PanelWidgetClass rootFrame {
  hexactsize 1
  vexactsize 1
  style rover_sim_colorable
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   ProgressBarWidgetClass safePg {
    ignorepointer 1
@@ -18,6 +19,7 @@ PanelWidgetClass rootFrame {
    vexactsize 1
    style Loading
    current 100
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   TextWidgetClass TextWidget0 {
    ignorepointer 1
@@ -29,6 +31,7 @@ PanelWidgetClass rootFrame {
    vexactsize 1
    text "Notification"
    "exact text" 0
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   PanelWidgetClass PanelWidget0 {
    ignorepointer 1
@@ -39,6 +42,7 @@ PanelWidgetClass rootFrame {
    hexactsize 1
    vexactsize 1
    style rover_sim_colorable
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   MultilineTextWidgetClass TextSafe {
    ignorepointer 1
@@ -56,6 +60,7 @@ PanelWidgetClass rootFrame {
    "text valign" center
    wrap 1
    "condense whitespace" 1
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
  }
 }
