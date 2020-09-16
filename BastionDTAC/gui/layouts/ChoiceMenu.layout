@@ -6,57 +6,55 @@ FrameWidgetClass rootFrame {
  vexactpos 0
  hexactsize 0
  vexactsize 0
- font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   FrameWidgetClass frameList {
    ignorepointer 1
    position 20 0
-   size 100 100
+   size 125 100
    valign center_ref
    hexactpos 1
    vexactpos 1
    hexactsize 1
    vexactsize 1
-   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     ButtonWidgetClass btnLookup {
      color 1 0.5922 0 1
      position 0 0
-     size 100 30
+     size 125 30
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     style DayZDefaultButton
+     style DayZDefaultButtonNoBorder
      text "Lookup ID"
      text_proportion 0.6
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     ButtonWidgetClass btnGroup {
      color 1 0.5922 0 1
      position 0 35
-     size 100 30
+     size 125 30
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     style DayZDefaultButton
+     style DayZDefaultButtonNoBorder
      text "Groups"
      text_proportion 0.6
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     ButtonWidgetClass btnShowID {
      color 1 0.5922 0 1
      position 0 70
-     size 100 30
+     size 125 30
      hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     style DayZDefaultButton
+     style DayZDefaultButtonNoBorder
      text "Show ID"
      text_proportion 0.6
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }

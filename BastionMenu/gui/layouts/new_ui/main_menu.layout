@@ -873,7 +873,7 @@ FrameWidgetClass main_menu_root {
    vexactsize 1
    priority 2
    image0 "BastionMod/BastionMenu/gui/data/bastionlogo.edds"
-   imageTexture "{13F069C5F39FB1EA}BastionMenu/gui/data/bastionlogo.edds"
+   imageTexture "{13F069C5F39FB1EA}BastionMod/BastionMenu/gui/data/bastionlogo.edds"
    mode blend
    "src alpha" 1
    stretch 1
@@ -1132,52 +1132,6 @@ FrameWidgetClass main_menu_root {
    content_halign right
    content_valign bottom
   }
-  GridSpacerWidgetClass GridSpacerNames {
-   ignorepointer 1
-   position 0.05 0.1
-   size 333 48
-   valign center_ref
-   hexactpos 0
-   vexactpos 0
-   hexactsize 1
-   vexactsize 1
-   Padding 0
-   Margin 0
-   content_valign center
-   Columns 2
-   Rows 1
-   {
-    TextWidgetClass Welcomeback {
-     ignorepointer 1
-     position 0 0
-     size 48 48
-     valign center_ref
-     hexactpos 0
-     vexactpos 0
-     hexactsize 1
-     vexactsize 1
-     style None
-     text "Welcome Back,"
-     font "BastionMod/BastionMenu/gui/fonts/ddin26"
-     "size to text h" 1
-     "size to text v" 1
-     "text valign" center
-    }
-    TextWidgetClass character_name_text {
-     ignorepointer 1
-     position 0 0
-     size 48 48
-     hexactpos 0
-     vexactpos 0
-     hexactsize 1
-     vexactsize 1
-     style Light
-     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
-     "text offset" 5 0
-     "text valign" center
-    }
-   }
-  }
   GridSpacerWidgetClass GridButtons {
    visible 1
    ignorepointer 0
@@ -1317,6 +1271,49 @@ FrameWidgetClass main_menu_root {
        "text valign" center
       }
      }
+    }
+   }
+  }
+  GridSpacerWidgetClass GridSpacerWidget {
+   ignorepointer 1
+   position 0.05 0.1
+   size 600 48
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   Padding 5
+   Margin 5
+   "Size To Content V" 1
+   content_valign center
+   Rows 1
+   {
+    TextWidgetClass WelcomeBack {
+     ignorepointer 1
+     position 0 0
+     size 48 48
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     text "Welcome Back,"
+     font "BastionMod\BastionMenu\gui\fonts\ddin26"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    TextWidgetClass character_name_text {
+     ignorepointer 1
+     position 0 0
+     size 48 48
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     "text valign" center
+	 font "BastionMod\BastionMenu\gui\fonts\ddinbold26"
     }
    }
   }

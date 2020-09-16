@@ -126,7 +126,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "BANKING"
-     font "BastionMod/BastionMenu/gui/fonts/ddin58"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold50"
      "size to text h" 1
      "size to text v" 0
      "text valign" center
@@ -498,7 +498,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "ERROR"
-	 font "BastionMod/BastionMenu/gui/fonts/ddin32"
+     font "BastionMod/BastionMenu/gui/fonts/ddin28"
      "size to text h" 1
      "text valign" center
      {
@@ -523,7 +523,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "What's the deal with this thing? Does it not like having text set to it or something?"
-     font "BastionMod/BastionMenu/gui/fonts/ddin28"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "exact text" 1
      "size to text h" 1
      "size to text v" 1
