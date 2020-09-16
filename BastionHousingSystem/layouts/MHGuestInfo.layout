@@ -5,6 +5,7 @@ FrameWidgetClass rootFrame {
  hexactsize 0
  vexactsize 0
  userID -1
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   ButtonWidgetClass ButtonWidget0 {
    color 1 0.502 0.0314 1
@@ -16,6 +17,7 @@ FrameWidgetClass rootFrame {
    hexactsize 0
    vexactsize 0
    userID 67
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   TextWidgetClass MHGuestInfoName {
    ignorepointer 1
@@ -29,6 +31,7 @@ FrameWidgetClass rootFrame {
    "exact text" 1
    "text halign" center
    "text valign" center
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   TextWidgetClass NewSugg {
    visible 0
@@ -47,6 +50,7 @@ FrameWidgetClass rootFrame {
    "exact text" 1
    "text halign" center
    "text valign" center
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
  }
 }

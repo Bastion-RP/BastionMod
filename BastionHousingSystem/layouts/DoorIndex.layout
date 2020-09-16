@@ -7,4 +7,5 @@ CheckBoxWidgetClass rootFrame {
  hexactsize 0
  vexactsize 0
  "text color" 1 0.502 0.0314 1
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
 }

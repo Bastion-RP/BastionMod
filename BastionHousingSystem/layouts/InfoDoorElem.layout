@@ -9,4 +9,5 @@ TextWidgetClass rootFrame {
  "exact text" 1
  "text halign" center
  "text valign" center
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
 }

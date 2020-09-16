@@ -8,6 +8,7 @@ PanelWidgetClass rootFrame {
  hexactsize 1
  vexactsize 1
  style rover_sim_colorable
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   ProgressBarWidgetClass PB {
    ignorepointer 1
@@ -22,6 +23,7 @@ PanelWidgetClass rootFrame {
    "no focus" 1
    current 100
    vertical 0
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   MultilineTextWidgetClass MTW {
    ignorepointer 1
@@ -38,6 +40,7 @@ PanelWidgetClass rootFrame {
    "text valign" center
    wrap 1
    "condense whitespace" 1
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
  }
 }
