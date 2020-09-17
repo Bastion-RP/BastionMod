@@ -21,7 +21,7 @@ class DeadlyWaterMdfr : ModifierBase
 		if (IsActive())
 			return false;
 
-		if (BastionCCTV.m_CCTVUsers.Contains(player.GetIdentity().GetId()))
+		if (!player || !player.GetIdentity() || BastionCCTV.m_CCTVUsers.Contains(player.GetIdentity().GetId()))
 			return false;
 
 		if (player.HasWetsuit())
