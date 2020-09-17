@@ -8,7 +8,7 @@ class BST_DTACChoiceMenu : UIScriptedMenu {
     void ~BST_DTACChoiceMenu() {
         DeleteMenus();
     }
-    
+
     override Widget Init() {
         wRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\ChoiceMenu.layout");
         btnGroup = ButtonWidget.Cast(wRoot.FindAnyWidget("btnGroup"));
@@ -18,7 +18,7 @@ class BST_DTACChoiceMenu : UIScriptedMenu {
         return wRoot;
     }
 
-    override bool OnMouseButtonUp(Widget w, int x, int y, int button) {
+    /* override bool OnMouseButtonUp(Widget w, int x, int y, int button) {
         if (groupMenu) {
             groupMenu.OnMouseButtonUp(w, x, y, button);
         }
@@ -53,7 +53,7 @@ class BST_DTACChoiceMenu : UIScriptedMenu {
             if (lookupMenu.OnKeyPress(w, x, y, key)) { return true; }
         }
         return super.OnKeyPress(w, x, y, key);
-    }
+    } */
 
     override bool OnClick(Widget w, int x, int y, int button) {
         switch (w) {
@@ -92,9 +92,6 @@ class BST_DTACChoiceMenu : UIScriptedMenu {
                     civIDMenu = new BST_DTACCivIDMenu(wRoot);
                     break;
                 }
-        }
-        if (lookupMenu) {
-            lookupMenu.OnClick(w, x, y, button);
         }
         return true;
     }

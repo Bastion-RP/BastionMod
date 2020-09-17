@@ -6,7 +6,6 @@ FrameWidgetClass rootFrame {
  vexactpos 1
  hexactsize 0
  vexactsize 0
- font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   PanelWidgetClass pnlInput {
    visible 1
@@ -20,7 +19,6 @@ FrameWidgetClass rootFrame {
    hexactsize 1
    vexactsize 1
    style rover_sim_colorable
-   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     TextWidgetClass txtInputHeader {
      ignorepointer 1
@@ -44,7 +42,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style ServerBrowser
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     ButtonWidgetClass btnLookup {
      color 1 0.5922 0 1
@@ -59,7 +57,7 @@ FrameWidgetClass rootFrame {
      text "LOOKUP"
      text_offset 0 0
      text_proportion 0.5
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }
@@ -68,15 +66,13 @@ FrameWidgetClass rootFrame {
    clipchildren 0
    ignorepointer 0
    color 0 0 0 0.7843
-   position 140 0
+   position 50 110
    size 400 0.8
-   valign center_ref
    hexactpos 1
    vexactpos 1
    hexactsize 1
    vexactsize 0
    style rover_sim_colorable
-   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     PanelWidgetClass pnlCivData {
      clipchildren 1
@@ -88,7 +84,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style rover_sim_colorable
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       GridSpacerWidgetClass gridName {
        ignorepointer 1
@@ -103,7 +98,6 @@ FrameWidgetClass rootFrame {
        "Size To Content H" 1
        Columns 2
        Rows 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass txtPnlNameFirst {
          ignorepointer 1
@@ -142,7 +136,6 @@ FrameWidgetClass rootFrame {
        "Size To Content H" 1
        Columns 2
        Rows 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass txtPnlDOB {
          ignorepointer 1
@@ -179,7 +172,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        style Outline
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -224,7 +216,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      "Scrollbar V" 1
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       GridSpacerWidgetClass gridGeneralRecords {
        ignorepointer 0
@@ -238,7 +229,6 @@ FrameWidgetClass rootFrame {
        "Size To Content V" 1
        Columns 1
        Rows 100
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -253,7 +243,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      "Scrollbar V" 1
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       GridSpacerWidgetClass gridCriminalRecords {
        ignorepointer 0
@@ -267,7 +256,6 @@ FrameWidgetClass rootFrame {
        "Size To Content V" 1
        Columns 1
        Rows 100
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -323,15 +311,13 @@ FrameWidgetClass rootFrame {
    visible 0
    ignorepointer 1
    color 0 0 0 0.7843
-   position 590 0
+   position 500 110
    size 600 332
-   valign center_ref
    hexactpos 1
    vexactpos 1
    hexactsize 1
    vexactsize 1
    style rover_sim_colorable
-   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     PanelWidgetClass pnlCivInfoHeader {
      ignorepointer 1
@@ -342,7 +328,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style rover_sim_colorable
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       GridSpacerWidgetClass gridInfoName {
        clipchildren 0
@@ -357,7 +342,6 @@ FrameWidgetClass rootFrame {
        Margin 0
        "Size To Content H" 1
        Rows 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass txtInfoNameFirst {
          ignorepointer 1
@@ -368,10 +352,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Big-Boy"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         TextWidgetClass txtInfoNameLast {
          ignorepointer 1
@@ -382,10 +366,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Yeet"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass pnlAlias {
          clipchildren 0
@@ -395,7 +379,6 @@ FrameWidgetClass rootFrame {
          vexactpos 1
          hexactsize 1
          vexactsize 1
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
          {
           TextWidgetClass txtInfoAlias {
            visible 1
@@ -407,10 +390,10 @@ FrameWidgetClass rootFrame {
            hexactsize 1
            vexactsize 1
            text "aka Big Yeeter"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "size to text h" 1
            "size to text v" 0
            "text valign" center
-		   font "BastionMod/BastionMenu/gui/fonts/ddin22"
           }
          }
         }
@@ -426,10 +409,10 @@ FrameWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        text "50153"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "size to text h" 1
        "size to text v" 0
        "text valign" center
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       TextWidgetClass txtInfoClass {
        ignorepointer 1
@@ -442,10 +425,10 @@ FrameWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        text "ISF-F"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "size to text h" 1
        "size to text v" 0
        "text valign" center
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       TextWidgetClass txtInfoZone {
        ignorepointer 1
@@ -457,10 +440,10 @@ FrameWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        text "Zone 01"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "size to text h" 1
        "size to text v" 0
        "text valign" center
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       PanelWidgetClass pnlBorder {
        ignorepointer 1
@@ -472,7 +455,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        style Outline
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -487,7 +469,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style blank
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass descriptionHeader {
        ignorepointer 1
@@ -498,7 +479,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        style rover_sim_colorable
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass descriptionHeaderTxt {
          ignorepointer 1
@@ -509,10 +489,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Description"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass descriptionHeaderOutline {
          ignorepointer 1
@@ -524,7 +504,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -536,7 +515,6 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 0
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass txtInfoHeight {
          ignorepointer 1
@@ -547,10 +525,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Height: 7'11\""
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         TextWidgetClass txtInfoWeight {
          ignorepointer 1
@@ -562,10 +540,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Weight: 750"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         TextWidgetClass txtInfoEyes {
          ignorepointer 1
@@ -577,10 +555,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Eyes: Blue"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         TextWidgetClass txtInfoHair {
          ignorepointer 1
@@ -593,10 +571,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Hair: Blonde"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass descriptionFooterOutline {
          ignorepointer 1
@@ -608,7 +586,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -625,7 +602,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style blank
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass infoHeader {
        ignorepointer 1
@@ -636,7 +612,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        style rover_sim_colorable
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass infoHeaderTxt {
          ignorepointer 1
@@ -647,10 +622,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "General Information"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass infoHeaderOutline {
          ignorepointer 1
@@ -662,7 +637,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -674,7 +648,6 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass txtInfoDOB {
          ignorepointer 1
@@ -685,10 +658,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "DOB: Aug-21-1988"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         TextWidgetClass txtInfoSex {
          ignorepointer 1
@@ -700,10 +673,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Sex: Male"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         TextWidgetClass txtInfoNationality {
          ignorepointer 1
@@ -714,10 +687,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Nationality: Serbian"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         TextWidgetClass txtInfoEthnicity {
          ignorepointer 1
@@ -729,10 +702,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Ethnicity: Slavic"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         TextWidgetClass txtInfoOccupation {
          ignorepointer 1
@@ -743,10 +716,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Occupation: NCC Internal Intelligence Advisor"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         TextWidgetClass txtInfoAffiliation {
          ignorepointer 1
@@ -757,10 +730,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Affiliation: Coalition Internal Intelligence"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass infoFooterOutline {
          ignorepointer 1
@@ -772,7 +745,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -785,15 +757,13 @@ FrameWidgetClass rootFrame {
    clipchildren 1
    ignorepointer 1
    color 0 0 0 0.7843
-   position 590 0
+   position 500 110
    size 600 395
-   valign center_ref
    hexactpos 1
    vexactpos 1
    hexactsize 1
    vexactsize 1
    style rover_sim_colorable
-   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     PanelWidgetClass pnlExpRecCrime {
      visible 1
@@ -805,7 +775,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style blank
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass expRecCrimeHeader {
        ignorepointer 1
@@ -816,7 +785,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        style rover_sim_colorable
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass expRecCrimeTxt {
          ignorepointer 1
@@ -827,10 +795,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Crime Committed"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass expRecCrimeOutline {
          ignorepointer 1
@@ -842,7 +810,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -854,7 +821,6 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass txtRecordCrime {
          ignorepointer 1
@@ -865,7 +831,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Aggravated Assault"
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
@@ -880,7 +846,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -898,7 +863,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style blank
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass expRecDescHeader {
        ignorepointer 1
@@ -909,7 +873,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        style rover_sim_colorable
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass expRecDescTxt {
          ignorepointer 1
@@ -920,10 +883,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Description"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass expRecDescBorder {
          ignorepointer 1
@@ -935,7 +898,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -948,7 +910,6 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         ScrollWidgetClass expRecDescScroll {
          ignorepointer 1
@@ -959,7 +920,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 1
          "Scrollbar V" 1
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
          {
           RichTextWidgetClass txtRecordDesc {
            ignorepointer 0
@@ -970,12 +930,11 @@ FrameWidgetClass rootFrame {
            hexactsize 1
            vexactsize 1
            text "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
-           font "gui/fonts/metron12"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "size to text h" 0
            "size to text v" 1
            wrap 1
-		   font "BastionMod/BastionMenu/gui/fonts/ddin22"
           }
          }
         }
@@ -989,7 +948,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1006,7 +964,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style blank
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass expRecPunishmentHeader {
        ignorepointer 1
@@ -1017,7 +974,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        style rover_sim_colorable
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass expRecPunishmentTxt {
          ignorepointer 1
@@ -1028,10 +984,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Punishment"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass expRecPunishmentOutline {
          ignorepointer 1
@@ -1043,7 +999,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1055,7 +1010,6 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass txtRecordPunishment {
          ignorepointer 1
@@ -1066,7 +1020,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Aggravated Assault"
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
@@ -1081,7 +1035,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1098,7 +1051,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style blank
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass expRecDateHeader {
        ignorepointer 1
@@ -1109,7 +1061,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        style rover_sim_colorable
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass expRecDateTxt {
          ignorepointer 1
@@ -1120,10 +1071,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Date Committed"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass expRecDateOutline {
          ignorepointer 1
@@ -1135,7 +1086,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1147,7 +1097,6 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass txtRecordDate {
          ignorepointer 1
@@ -1158,10 +1107,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "8/5/2020"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass expRecDateBorder {
          ignorepointer 1
@@ -1173,7 +1122,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1186,15 +1134,13 @@ FrameWidgetClass rootFrame {
    clipchildren 1
    ignorepointer 1
    color 0 0 0 0.7843
-   position 590 0
+   position 500 110
    size 600 235
-   valign center_ref
    hexactpos 1
    vexactpos 1
    hexactsize 1
    vexactsize 1
    style rover_sim_colorable
-   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     PanelWidgetClass createGenRecHeader {
      ignorepointer 1
@@ -1205,7 +1151,6 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 1
      style rover_sim_colorable
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       TextWidgetClass createGenRecHeaderTxt {
        ignorepointer 1
@@ -1216,10 +1161,10 @@ FrameWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        text "Create General Record"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "size to text h" 1
        "size to text v" 0
        "text valign" center
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       PanelWidgetClass createGenRecHeaderOutline {
        ignorepointer 1
@@ -1231,7 +1176,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        style Outline
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -1246,7 +1190,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style blank
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass genRecDescHeader {
        ignorepointer 1
@@ -1257,7 +1200,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        style rover_sim_colorable
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass descriptionHeaderTxt0 {
          ignorepointer 1
@@ -1268,10 +1210,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Description"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass descriptionHeaderOutline0 {
          ignorepointer 1
@@ -1283,7 +1225,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1295,7 +1236,6 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         ScrollWidgetClass scrollGeneralDesc {
          ignorepointer 1
@@ -1306,7 +1246,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 1
          "Scrollbar V" 1
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
          {
           MultilineEditBoxWidgetClass edtGenRecDesc {
            position 5 0
@@ -1334,7 +1273,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1351,8 +1289,8 @@ FrameWidgetClass rootFrame {
      vexactsize 1
      style DayZDefaultButtonNoBorder
      text "CANCEL"
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      text_proportion 0.7
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     ButtonWidgetClass btnGeneralCreate {
      color 1 0.5843 0 1
@@ -1367,7 +1305,7 @@ FrameWidgetClass rootFrame {
      style DayZDefaultButtonNoBorder
      text "CREATE"
      text_proportion 0.7
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }
@@ -1376,15 +1314,13 @@ FrameWidgetClass rootFrame {
    clipchildren 1
    ignorepointer 1
    color 0 0 0 0.7843
-   position 590 0
+   position 500 110
    size 600 520
-   valign center_ref
    hexactpos 1
    vexactpos 1
    hexactsize 1
    vexactsize 1
    style rover_sim_colorable
-   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     PanelWidgetClass createCrimRecHeader {
      ignorepointer 1
@@ -1395,7 +1331,6 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 1
      style rover_sim_colorable
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       TextWidgetClass createCrimRecHeaderTxt {
        ignorepointer 1
@@ -1406,10 +1341,10 @@ FrameWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        text "Create Criminal Record"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "size to text h" 1
        "size to text v" 0
        "text valign" center
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       PanelWidgetClass createCrimRecHeaderOutline {
        ignorepointer 1
@@ -1421,7 +1356,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        style Outline
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -1436,7 +1370,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style blank
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass crimRecCrimeHeader {
        ignorepointer 1
@@ -1447,7 +1380,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        style rover_sim_colorable
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass crimeHeaderTxt {
          ignorepointer 1
@@ -1458,10 +1390,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Crime Committed"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass crimeHeaderOutline {
          ignorepointer 1
@@ -1473,7 +1405,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1485,7 +1416,6 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         EditBoxWidgetClass edtCrimRecCrime {
          position 5 10
@@ -1510,7 +1440,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1527,7 +1456,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style blank
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass crimRecDescHeader {
        ignorepointer 1
@@ -1538,7 +1466,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        style rover_sim_colorable
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass crimRecDescHeaderTxt {
          ignorepointer 1
@@ -1549,10 +1476,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Description"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass crimRecDescHeaderOutline {
          ignorepointer 1
@@ -1564,7 +1491,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1576,7 +1502,6 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         ScrollWidgetClass scrollCriminalDesc {
          ignorepointer 1
@@ -1587,7 +1512,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 1
          "Scrollbar V" 1
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
          {
           MultilineEditBoxWidgetClass edtCrimRecDesc {
            position 5 0
@@ -1597,12 +1521,11 @@ FrameWidgetClass rootFrame {
            hexactsize 1
            vexactsize 1
            style DayZNormal
-           font "BastionMod/BastionMenu/gui/fonts/ddin14"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "size to text h" 1
            "size to text v" 0
            lines 1000
            "limit visible" 1
-		   font "BastionMod/BastionMenu/gui/fonts/ddin22"
           }
          }
         }
@@ -1616,7 +1539,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1633,7 +1555,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style blank
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass pnlCrimRecPunishmentHeader {
        ignorepointer 1
@@ -1644,7 +1565,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        style rover_sim_colorable
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass punishmentHeaderTxt {
          ignorepointer 1
@@ -1655,10 +1575,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Punishment"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass punishmentHeaderOutline {
          ignorepointer 1
@@ -1670,7 +1590,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1682,7 +1601,6 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         EditBoxWidgetClass edtCrimeRecPunishment {
          position 5 10
@@ -1706,7 +1624,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1723,7 +1640,6 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      style blank
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass pnlCrimRecDateHeader {
        ignorepointer 1
@@ -1734,7 +1650,6 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        style rover_sim_colorable
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         TextWidgetClass crimDateHeaderTxt {
          ignorepointer 1
@@ -1745,10 +1660,10 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "Date Committed"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "size to text h" 1
          "size to text v" 0
          "text valign" center
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         PanelWidgetClass crimDateHeaderOutline {
          ignorepointer 1
@@ -1760,7 +1675,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1772,7 +1686,6 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-	   font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         EditBoxWidgetClass edtCrimRecDate {
          position 5 10
@@ -1796,7 +1709,6 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Outline
-		 font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -1814,7 +1726,7 @@ FrameWidgetClass rootFrame {
      style DayZDefaultButtonNoBorder
      text "CANCEL"
      text_proportion 0.7
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     ButtonWidgetClass btnCriminalCreate {
      color 1 0.5843 0 1
@@ -1829,7 +1741,7 @@ FrameWidgetClass rootFrame {
      style DayZDefaultButtonNoBorder
      text "CREATE"
      text_proportion 0.7
-	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }

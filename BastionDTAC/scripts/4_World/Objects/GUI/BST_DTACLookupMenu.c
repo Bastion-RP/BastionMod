@@ -1,4 +1,4 @@
-class BST_DTACLookupMenu {
+class BST_DTACLookupMenu : ScriptedWidgetEventHandler {
 	private static const int KEYCODE_MIN_NUM = 48;
 	private static const int KEYCODE_MAX_NUM = 57;
     const static float CONST_FLOAT_ALPHA_200 = 0.7843;
@@ -97,6 +97,7 @@ class BST_DTACLookupMenu {
         _gridGeneralRecords = GridSpacerWidget.Cast(_root.FindAnyWidget("gridGeneralRecords"));
         _gridCriminalRecords = GridSpacerWidget.Cast(_root.FindAnyWidget("gridCriminalRecords"));
 
+        _parent.SetHandler(this);
         _scrollerGeneralRecords.Show(true);
         _scrollerCriminalRecords.Show(false);
         _btnShowGeneralRecords.SetState(true);
@@ -227,7 +228,7 @@ class BST_DTACLookupMenu {
         }
     }
 
-	bool OnKeyPress(Widget w, int x, int y, int key) {
+	override bool OnKeyPress(Widget w, int x, int y, int key) {
         if (w == _edtInputId) {
             string boxText = _edtInputId.GetText();
 
@@ -239,7 +240,7 @@ class BST_DTACLookupMenu {
         return false;
     }
 
-    void OnMouseEnter(Widget w, int x, int y) {
+    override bool OnMouseEnter(Widget w, int x, int y) {
         if (w == _pnlCivData) {
             w.SetAlpha(CONST_FLOAT_ALPHA_100);
         } else if (_mapGUIObjects.Contains(w)) {
@@ -247,9 +248,10 @@ class BST_DTACLookupMenu {
 
             guiRecord.MouseEnter();
         }
+        return true;
     }
 
-    void OnMouseLeave(Widget w, Widget enterW, int x, int y) {
+    override bool OnMouseLeave(Widget w, Widget enterW, int x, int y) {
         if (w == _pnlCivData) {
             w.SetAlpha(CONST_FLOAT_ALPHA_200);
         } else if (_mapGUIObjects.Contains(w)) {
@@ -257,6 +259,7 @@ class BST_DTACLookupMenu {
 
             guiRecord.MouseLeave();
         }
+        return true;
     }
     
     void HideAllPanels() {
@@ -282,7 +285,7 @@ class BST_DTACLookupMenu {
         _activeCriminalRecord = null;
     }
 
-    void OnMouseButtonUp(Widget w, int x, int y, int button) {
+    override bool OnMouseButtonUp(Widget w, int x, int y, int button) {
         if (w == _pnlCivData) {
             HideRecordPanels();
 
@@ -320,9 +323,10 @@ class BST_DTACLookupMenu {
                 }
             }
         }
+        return true;
     }
 
-    void OnClick(Widget w, int x, int y, int button) {
+    override bool OnClick(Widget w, int x, int y, int button) {
         switch (w) {
             case _btnLookupId:
                 {
@@ -389,7 +393,7 @@ class BST_DTACLookupMenu {
                     txtCrimePunishment = _edtCriminalPunishment.GetText().Trim();
                     txtCrimeDate = _edtCriminalDate.GetText().Trim();
 
-                    if (IsRateLimited() || txtCrime.Length() <= 0 || txtCrimeDescription.Length() <= 0 || txtCrimePunishment.Length() <= 0 || txtCrimeDate.Length() <= 0) { return; }
+                    if (IsRateLimited() || txtCrime.Length() <= 0 || txtCrimeDescription.Length() <= 0 || txtCrimePunishment.Length() <= 0 || txtCrimeDate.Length() <= 0) { break; }
                     Param paramsPostCriminal = new Param5<string, string, string, string, string>(txtCrime, txtCrimeDescription, txtCrimePunishment, txtCrimeDate, _civGeneralData.GetId());
 
                     SetRateLimited();
@@ -424,6 +428,7 @@ class BST_DTACLookupMenu {
                     break;
                 }
         }
+        return true;
     }
 
 	void SetRateLimited() {
