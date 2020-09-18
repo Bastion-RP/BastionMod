@@ -83,7 +83,7 @@ modded class LoadingScreen
 		
 		
 		m_ModdedWarning.Show(false);
-		m_ImageLogoMid.Show(true);
+		m_ImageLogoMid.Show(false);
 		m_ImageLogoCorner.Show(false);
 		m_ImageWidgetBackground.Show( true );		
 		m_Counter = 0;
