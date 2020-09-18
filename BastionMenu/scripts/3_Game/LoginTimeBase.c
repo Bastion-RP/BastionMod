@@ -30,7 +30,7 @@ modded class LoginTimeBase extends UIScriptedMenu
 	
 	override Widget Init()
 	{	
-		layoutRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionMenu/gui/layouts/login_time.layout");
+		layoutRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionMenu/gui/layouts/dialog_login_time.layout");
 		
 		m_txtDescription = TextWidget.Cast( layoutRoot.FindAnyWidget("txtDescription") );
 		m_txtLabel = TextWidget.Cast( layoutRoot.FindAnyWidget("txtLabel") );
@@ -45,22 +45,6 @@ modded class LoginTimeBase extends UIScriptedMenu
 		return layoutRoot;
 	}
 
-	override void OnShow()	
-	{
-		GetGame().GetUIManager().ShowUICursor(true);
-		GetGame().GetUIManager().ShowCursor(true);
-		GetGame().GetMission().GetHud().Show( false );
-		PPEffects.SetBlurMenu(1);
-	}
-
-	override void OnHide()	
-	{
-		GetGame().GetUIManager().ShowCursor(false);
-		GetGame().GetUIManager().ShowUICursor(false);
-		GetGame().GetMission().GetHud().Show( true );
-		PPEffects.SetBlurMenu(0);
-	}
-	
 	override void Update(float timeslice)
 	{
 		if ( GetGame().GetInput().LocalPress("UAUIBack", false) )
@@ -127,5 +111,22 @@ modded class LoginTimeBase extends UIScriptedMenu
 		g_Game.GetCallQueue(CALL_CATEGORY_SYSTEM).Call(GetGame().DisconnectSessionForce);
 		
 		Close();
+	}
+};
+
+//! LoginTime when using -connect since mission is not created yet 
+modded class LoginTimeStatic extends LoginTimeBase
+{
+	void LoginTimeStatic()
+	{
+		Init();
+		//! hide leave button and show note text
+		m_btnLeave.Show(false);
+		
+		m_IsStatic = true;
+	}
+	
+	void ~LoginTimeStatic()
+	{
 	}
 };
