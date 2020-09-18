@@ -7,7 +7,7 @@ FrameWidgetClass FrameWidget {
  priority 995
  {
   ImageWidgetClass vignette {
-   visible 1
+   visible 0
    ignorepointer 1
    color 0 0 0 0.7843
    position 0 0
