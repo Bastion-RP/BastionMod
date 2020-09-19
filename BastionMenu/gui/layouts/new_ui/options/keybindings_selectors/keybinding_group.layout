@@ -1,4 +1,5 @@
 WrapSpacerWidgetClass group_root {
+ visible 1
  clipchildren 0
  inheritalpha 0
  ignorepointer 0
@@ -14,6 +15,7 @@ WrapSpacerWidgetClass group_root {
  content_valign bottom
  {
   PanelWidgetClass group_header {
+   visible 0
    clipchildren 0
    inheritalpha 0
    ignorepointer 1

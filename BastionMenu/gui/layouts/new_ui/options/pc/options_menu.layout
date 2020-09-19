@@ -10,6 +10,7 @@ FrameWidgetClass settings_menu_root {
  {
   TextWidgetClass SettingsTextWidget {
    ignorepointer 1
+   color 1 0.6588 0 1
    position 0.05 80
    size 0.3 50
    halign right_ref
@@ -20,7 +21,7 @@ FrameWidgetClass settings_menu_root {
    priority 1
    style Normal
    text "#STR_settings_menu_root_SettingsTextWidget0"
-   font "BastionMod/BastionMenu/gui/fonts/ddin30"
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold50"
    "text color" 0.8157 0.1255 0.7843 1
    "exact text" 0
    "text halign" right
