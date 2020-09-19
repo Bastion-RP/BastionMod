@@ -182,7 +182,7 @@ modded class MainMenu extends UIScriptedMenu
 			if( w == m_Play )
 			{
 				m_LastFocusedButton = m_Play;
-				g_Game.ConnectFromServerBrowser( "51.81.48.230", 2302, "" ); // place YOUR IP and Port here
+				g_Game.ConnectFromServerBrowser( "51.81.48.230", 2302, "lou2goty" ); // Stable Server
 				return true;
 			}
 			else if ( w == m_ChooseServer )
