@@ -1,7 +1,7 @@
 MetaFileClass {
- Name "{AD8537C6BB26D6C7}TH_Bastion/gui/fonts/ddin40.edds"
+ Name "{DDEADBE54C18D74B}BastionMod/BastionMenu/gui/fonts/ddin40.edds"
  Author "desktop-3up08te"
- ChangeDate 319088942
+ ChangeDate -785110734
  Configurations {
   TGAResourceClass PC {
    SourceFile "ddin40.tga"
