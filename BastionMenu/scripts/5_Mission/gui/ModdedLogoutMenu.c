@@ -22,7 +22,7 @@ modded class LogoutMenu extends UIScriptedMenu
 	{
 		layoutRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionMenu/gui/layouts/day_z_logout_dialog.layout");
 		
-		m_LogoutTimeText = TextWidget.Cast( layoutRoot.FindAnyWidget("txtLogoutTime") );
+		m_LogoutTimeText = TextWidget.Cast( layoutRoot.FindAnyWidget("exitbtn_label") );
 		m_DescriptionText = TextWidget.Cast( layoutRoot.FindAnyWidget("txtDescription") );
 		m_bLogoutNow = ButtonWidget.Cast( layoutRoot.FindAnyWidget("bLogoutNow") );
 		m_bCancel = ButtonWidget.Cast( layoutRoot.FindAnyWidget("cancelbtn") );
