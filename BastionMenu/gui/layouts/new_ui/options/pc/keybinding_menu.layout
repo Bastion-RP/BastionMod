@@ -153,6 +153,7 @@ FrameWidgetClass keybindings_root {
   }
   TextWidgetClass KeybindingsTextWidget {
    ignorepointer 1
+   color 1 0.6588 0 1
    position 0.05 80
    size 0.3 50
    halign right_ref
@@ -163,7 +164,7 @@ FrameWidgetClass keybindings_root {
    priority 1
    style Normal
    text "#layout_pc_keybinding_desc"
-   font "BastionMod/BastionMenu/gui/fonts/ddin30"
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold50"
    "text color" 0.8157 0.1255 0.7843 1
    "exact text" 0
    "text halign" right
@@ -220,7 +221,7 @@ FrameWidgetClass keybindings_root {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-       style DayZDefaultButtonBottom
+       style EmptyHighlight
        "no focus" 0
        "next up" "back"
        "next down" "reset"
@@ -279,7 +280,7 @@ FrameWidgetClass keybindings_root {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-       style DayZDefaultButtonBottom
+       style EmptyHighlight
        "no focus" 0
        "next up" "reset"
        "next down" "apply"
@@ -300,7 +301,7 @@ FrameWidgetClass keybindings_root {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-       style DayZDefaultButtonBottom
+       style EmptyHighlight
        "no focus" 0
        "next left" ""
        "next right" ""

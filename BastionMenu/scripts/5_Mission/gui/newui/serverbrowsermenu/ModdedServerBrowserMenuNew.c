@@ -142,12 +142,12 @@ modded class ServerBrowserMenuNew extends UIScriptedMenu
 			}
 			if( w == m_Server_1 )
 			{
-				g_Game.ConnectFromServerBrowser( "51.81.48.230", 2302, "" ); //Stable Server
+				g_Game.ConnectFromServerBrowser( "51.81.48.230", 2302, "lou2goty" ); //Stable Server
 				return true;
 			}
 			else if ( w == m_Server_2 )
 			{
-				g_Game.ConnectFromServerBrowser( "38.65.5.145", 2302, "noelcoco" ); //Experimental Server
+				g_Game.ConnectFromServerBrowser( "38.65.5.145", 2302, "" ); //Experimental Server
 				return true;
 			}
 		}
