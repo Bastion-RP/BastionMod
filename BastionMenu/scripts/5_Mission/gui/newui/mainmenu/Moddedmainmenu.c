@@ -126,8 +126,7 @@ modded class MainMenu extends UIScriptedMenu
 	
 	override void Play()
 	{
-		//g_Game.ConnectFromServerBrowser("51.81.48.230", 2302, "lou2goty");
-		g_Game.ConnectFromServerBrowser("5.80.209.49", 2302, "lou2goty");
+		g_Game.ConnectFromServerBrowser("51.81.48.230", 2302, "lou2goty");
 	}
 		
 	//Coloring functions (Until WidgetStyles are useful)
