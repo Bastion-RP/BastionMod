@@ -2,8 +2,7 @@ class CfgPatches
 {
 	class BRP_Blunt
 	{
-		units[]=
-		{};		
+		units[]={"BRP_Blunt"};		
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
