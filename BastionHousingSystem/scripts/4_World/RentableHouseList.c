@@ -94,7 +94,7 @@ class Land_Factory_Lathes:              BuildingBase { override bool IsRentableH
 class Land_Mil_Barracks2:               BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Mil_Barracks_Round:          BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_HouseBlock_3F_Corner2:       BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_HouseBlock_3F_Corner1:       BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_City_PoliceStation:          BuildingBase { override bool IsRentableHouse() {return true;} };
-class Land_Factory_Lathes:              BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_CementWorks_Hall1:           BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Office_Municipal2:           BuildingBase { override bool IsRentableHouse() {return true;} };
