@@ -14,6 +14,10 @@ modded class PluginAdminLog extends PluginBase
 		{
 			m_Source = ied.m_Player;
 		}
+		else
+		{
+			m_Source = NULL;
+		}
 
 		if (m_Source && m_Source.GetIdentity())
 		{
@@ -22,6 +26,7 @@ modded class PluginAdminLog extends PluginBase
 
 			if (ammo && m_HitMessage) LogPrint(m_PlayerPrefix + " hit by " + m_PlayerPrefix2 + " with " + ammo + m_HitMessage);
 			else if (is_kill) LogPrint(m_PlayerPrefix + " killed by " + m_PlayerPrefix2 + " with " + source);
+			else return false;
 
 			return true;
 		}
