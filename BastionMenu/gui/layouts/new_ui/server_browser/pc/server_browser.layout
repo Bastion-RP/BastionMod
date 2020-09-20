@@ -99,7 +99,7 @@ FrameWidgetClass rootFrame {
      vexactpos 0
      hexactsize 1
      vexactsize 1
-     text "STABLE"
+     text "#stable"
      font "BastionMod/BastionMenu/gui/fonts/ddinbold50"
      "text halign" center
      "text valign" center
@@ -114,7 +114,7 @@ FrameWidgetClass rootFrame {
      vexactpos 0
      hexactsize 1
      vexactsize 1
-     text "EXPERIMENTAL"
+     text "#experimental"
      font "BastionMod/BastionMenu/gui/fonts/ddinbold50"
      "text halign" center
      "text valign" center
