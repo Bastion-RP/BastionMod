@@ -42,7 +42,7 @@ class cfgAmmo
 	class IED_Ammo: DefaultAmmo
 	{
 		indirectHit=1;
-		indirectHitRange=10;
+		indirectHitRange=7;
 		explosive=1;
 		typicalSpeed=3;
 		initSpeed=3;
