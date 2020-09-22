@@ -1,11 +1,11 @@
-class BST_DTACLookupMenu : ScriptedWidgetEventHandler {
+class BST_DTACLookupMenu : BST_ScriptedWidget {
 	private static const int KEYCODE_MIN_NUM = 48;
 	private static const int KEYCODE_MAX_NUM = 57;
     const static float CONST_FLOAT_ALPHA_200 = 0.7843;
     const static float CONST_FLOAT_ALPHA_100 = 0.3921;
 
     protected ref JsonSerializer _jsSerializer;
-    protected ref Widget _root, _parent, _pnlInput, _pnlCiv, _pnlCivData, _pnlCivExpandedData, _pnlExpandedRecord;
+    protected ref Widget _pnlInput, _pnlCiv, _pnlCivData, _pnlCivExpandedData, _pnlExpandedRecord;
     protected ref Widget _pnlCreateGeneralRecord, _pnlCreateCriminalRecord;
     protected ref EditBoxWidget _edtInputId;
     protected ref EditBoxWidget _edtCriminalCrime, _edtCriminalPunishment, _edtCriminalDate;
@@ -28,10 +28,40 @@ class BST_DTACLookupMenu : ScriptedWidgetEventHandler {
     private ref map<Widget, BST_GUIRecord> _mapGUIObjects;
     private bool _isRateLimited;
 
-    void BST_DTACLookupMenu(Widget parent) {
-        _parent = parent;
+    void BST_DTACLookupMenu() {
         _jsSerializer = new JsonSerializer();
+        _btnText = "dtac records";
+
+        BST_DTACCivGeneralDataCallback._civGeneralDataInvoker.Insert(FillGeneralData);
+        BST_DTACGeneralRecordCallback._dtacGeneralRecordInvoker.Insert(BuildGeneralRecords);
+        BST_DTACCriminalRecordCallBack._dtacCriminalRecordInvoker.Insert(BuildCriminalRecords);
+    }
+
+    void Init() {
+        if (_generalRecords) {
+            delete _generalRecords;
+        }
+        if (_criminalRecords) {
+            delete _criminalRecords;
+        }
+        _generalRecords = new BST_GUIRecords(_gridGeneralRecords);
+        _criminalRecords = new BST_GUIRecords(_gridCriminalRecords);
         _mapGUIObjects = new map<Widget, BST_GUIRecord>();
+
+        _scrollerGeneralRecords.Show(true);
+        _scrollerCriminalRecords.Show(false);
+        _btnShowGeneralRecords.SetState(true);
+        _btnShowCriminalRecords.SetState(false);
+        _pnlInput.Show(true);
+        _pnlCiv.Show(false);
+        _pnlCivExpandedData.Show(false);
+        _pnlExpandedRecord.Show(false);
+        _pnlCreateGeneralRecord.Show(false);
+        _pnlCreateCriminalRecord.Show(false);
+    }
+
+    void Init(Widget parent) {
+        _parent = parent;
         _root = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\CivLookupMenu.layout", _parent);
         _pnlInput = _root.FindAnyWidget("pnlInput");
         _pnlCiv = _root.FindAnyWidget("pnlCiv");
@@ -97,42 +127,11 @@ class BST_DTACLookupMenu : ScriptedWidgetEventHandler {
         _gridGeneralRecords = GridSpacerWidget.Cast(_root.FindAnyWidget("gridGeneralRecords"));
         _gridCriminalRecords = GridSpacerWidget.Cast(_root.FindAnyWidget("gridCriminalRecords"));
 
-        _parent.SetHandler(this);
-        _scrollerGeneralRecords.Show(true);
-        _scrollerCriminalRecords.Show(false);
-        _btnShowGeneralRecords.SetState(true);
-        _btnShowCriminalRecords.SetState(false);
-        _pnlInput.Show(true);
-        _pnlCiv.Show(false);
-        _pnlCivExpandedData.Show(false);
-        _pnlExpandedRecord.Show(false);
-        _pnlCreateGeneralRecord.Show(false);
-        _pnlCreateCriminalRecord.Show(false);
+        Init();
+        _root.SetHandler(this);
         // Hide zone text since it's not exposed atm
         _txtInfoZone.Show(false);
         //
-
-        if (!GetDTACManager().IsRequiredClass(GetDTACClientManager().GetConfig().GetRequiredAPIClasses(), PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass())) {
-            _pnlInput.Show(false);
-            _scrollerGeneralRecords.Show(false);
-            _btnShowGeneralRecords.SetState(false);
-            return;
-        }
-        _generalRecords = new BST_GUIRecords(_gridGeneralRecords);
-        _criminalRecords = new BST_GUIRecords(_gridCriminalRecords);
-
-        BST_DTACCivGeneralDataCallback._civGeneralDataInvoker.Insert(FillGeneralData);
-        BST_DTACGeneralRecordCallback._dtacGeneralRecordInvoker.Insert(BuildGeneralRecords);
-        BST_DTACCriminalRecordCallBack._dtacCriminalRecordInvoker.Insert(BuildCriminalRecords);
-    }
-
-    void ~BST_DTACLookupMenu() {
-        if (_root) {
-            _root.Unlink();
-        }
-        BST_DTACCivGeneralDataCallback._civGeneralDataInvoker.Remove(FillGeneralData);
-        BST_DTACGeneralRecordCallback._dtacGeneralRecordInvoker.Remove(BuildGeneralRecords);
-        BST_DTACCriminalRecordCallBack._dtacCriminalRecordInvoker.Remove(BuildCriminalRecords);
     }
 
     void FillGeneralData(string data) {
@@ -209,7 +208,8 @@ class BST_DTACLookupMenu : ScriptedWidgetEventHandler {
         BST_GUIRecord newRecord;
         
         if (data.Length() <= 0) {
-            newRecord = _generalRecords.AddRecord(null, 0);
+            Print("[DEBUG] No data found!");
+            newRecord = _criminalRecords.AddRecord(null, 0);
             return;
         }
         array<ref BST_DTAC_CURL_CriminalRecord> arrRecords;
@@ -220,12 +220,19 @@ class BST_DTACLookupMenu : ScriptedWidgetEventHandler {
                 BST_DTAC_CURL_CriminalRecord record = arrRecords[i];
 
                 if (!record) { continue; }
+                Print("[DEBUG] Printing record data " + record.NewToString());
                 newRecord = _criminalRecords.AddRecord(record, i % 2);
 
                 _mapGUIObjects.Insert(newRecord.GetRoot(), newRecord);
             }
             _scrollerCriminalRecords.VScrollToPos01(0);
         }
+    }
+
+    override void OnShow() {
+        super.OnShow();
+
+        Init();
     }
 
 	override bool OnKeyPress(Widget w, int x, int y, int key) {
@@ -260,29 +267,6 @@ class BST_DTACLookupMenu : ScriptedWidgetEventHandler {
             guiRecord.MouseLeave();
         }
         return true;
-    }
-    
-    void HideAllPanels() {
-        HideExpandedRecord();
-        HideCreateRecordPanels();
-        _pnlCivExpandedData.Show(false);
-    }
-
-    void HideRecordPanels() {
-        HideExpandedRecord();
-        HideCreateRecordPanels();
-    }
-
-    void HideCreateRecordPanels() {
-        _pnlCreateGeneralRecord.Show(false);
-        _pnlCreateCriminalRecord.Show(false);
-        _btnAddCriminalRecord.SetState(false);
-        _btnAddGeneralRecord.SetState(false);
-    }
-
-    void HideExpandedRecord() {
-        _pnlExpandedRecord.Show(false);
-        _activeCriminalRecord = null;
     }
 
     override bool OnMouseButtonUp(Widget w, int x, int y, int button) {
@@ -430,13 +414,36 @@ class BST_DTACLookupMenu : ScriptedWidgetEventHandler {
         }
         return true;
     }
+    
+    void HideAllPanels() {
+        HideExpandedRecord();
+        HideCreateRecordPanels();
+        _pnlCivExpandedData.Show(false);
+    }
+
+    void HideRecordPanels() {
+        HideExpandedRecord();
+        HideCreateRecordPanels();
+    }
+
+    void HideCreateRecordPanels() {
+        _pnlCreateGeneralRecord.Show(false);
+        _pnlCreateCriminalRecord.Show(false);
+        _btnAddCriminalRecord.SetState(false);
+        _btnAddGeneralRecord.SetState(false);
+    }
+
+    void HideExpandedRecord() {
+        _pnlExpandedRecord.Show(false);
+        _activeCriminalRecord = null;
+    }
 
 	void SetRateLimited() {
 		if (_isRateLimited) { return; }
 		_isRateLimited = true;
 
-		GetGame().GetCallQueue(CALL_CATEGORY_GUI).RemoveByName(this, "RemoveRateLimit");
-		GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLaterByName(this, "RemoveRateLimit", 1000, true);
+		GetGame().GetCallQueue(CALL_CATEGORY_GUI).Remove(this.RemoveRateLimit);
+		GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(this.RemoveRateLimit, 1000);
 	}
 
 	void RemoveRateLimit() {
@@ -463,5 +470,21 @@ class BST_DTACLookupMenu : ScriptedWidgetEventHandler {
         ctx.GET(criminalRecords, "criminalrecords.php?criminalCharacterId=" + civId);
     }
 
+    bool IsTyping() {
+        if (EditBoxWidget.Cast(GetFocus()) || MultilineEditBoxWidget.Cast(GetFocus())) {
+            return true;
+        }
+        return false;
+    }
+
 	bool IsRateLimited() { return _isRateLimited; }
+
+    void ~BST_DTACLookupMenu() {
+        if (_root) {
+            _root.Unlink();
+        }
+        BST_DTACCivGeneralDataCallback._civGeneralDataInvoker.Remove(FillGeneralData);
+        BST_DTACGeneralRecordCallback._dtacGeneralRecordInvoker.Remove(BuildGeneralRecords);
+        BST_DTACCriminalRecordCallBack._dtacCriminalRecordInvoker.Remove(BuildCriminalRecords);
+    }
 }

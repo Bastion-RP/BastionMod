@@ -9,47 +9,13 @@ modded class MissionGameplay {
         GetDTACClientGroupManager().DeleteCompassHUD();
     }
 
-    override UIScriptedMenu CreateScriptedMenu(int id) {
-        UIScriptedMenu menu = null;
-        menu = super.CreateScriptedMenu(id);
+    override void BST_CentralInsertMenus(BST_GUICentralMenu menu) {
+        super.BST_CentralInsertMenus(menu);
 
-        if (!menu) {
-            switch (id) {
-                case BST_DTACMenu.CHOICE_MENU:
-                    {
-                        menu = new BST_DTACChoiceMenu();
-                        break;
-                    }
-            }
-            if (menu) {
-                menu.SetID(id);
-            }
-        }
-        return menu;
-    }
-    
-    override void OnUpdate(float timeslice) {
-        super.OnUpdate(timeslice);
-
-        Input input;
-        BST_DTACChoiceMenu dtacChoiceMenu;
-
-        input = GetGame().GetInput();
-        
-        if (input.LocalPress("UAUIBack", false)) {
-            dtacChoiceMenu = BST_DTACChoiceMenu.Cast(GetGame().GetUIManager().GetMenu());
-
-            if (dtacChoiceMenu) {
-                dtacChoiceMenu.Close();
-            }
-        }
-        if (input.LocalPress("DTACOpenChoiceMenu", false)) {
-            dtacChoiceMenu = BST_DTACChoiceMenu.Cast(GetGame().GetUIManager().GetMenu());
-
-            if (dtacChoiceMenu && !dtacChoiceMenu.IsShowingRecord()) {
-                dtacChoiceMenu.Close();
-            } else {
-                GetUIManager().EnterScriptedMenu(BST_DTACMenu.CHOICE_MENU, null);
+        if (GetDTACManager() && GetDTACClientManager() && GetGame().GetPlayer()) {
+            if (GetDTACGroupManager().HasDTAC(GetGame().GetPlayer()) && GetDTACManager().IsRequiredClass(GetDTACClientManager().GetConfig().GetRequiredAPIClasses(), PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass())) {
+                menu.InsertMenu("BST_DTACGroupMenu");
+                menu.InsertMenu("BST_DTACLookupMenu");
             }
         }
     }

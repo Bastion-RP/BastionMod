@@ -10,6 +10,8 @@ modded class MissionGameplay {
                 case CONST_CENTRAL_MENU_ID:
                     {
                         menu = new BST_GUICentralMenu();
+
+                        BST_CentralInsertMenus(menu);
                         break;
                     }
             }
@@ -19,6 +21,10 @@ modded class MissionGameplay {
         }
         return menu;
     }
+
+    // Override this and call menu.InsertMenu("classname"); for each menu you want to create a button for
+
+    void BST_CentralInsertMenus(BST_GUICentralMenu menu) { }
     
     override void OnUpdate(float timeslice) {
         super.OnUpdate(timeslice);
@@ -31,14 +37,14 @@ modded class MissionGameplay {
         if (input.LocalPress("UAUIBack", false)) {
             bst_CentralMenu = BST_GUICentralMenu.Cast(GetGame().GetUIManager().GetMenu());
 
-            if (bst_CentralMenu) {
+            if (bst_CentralMenu && !bst_CentralMenu.IsTyping()) {
                 bst_CentralMenu.Close();
             }
         }
         if (input.LocalPress("BST_OpenCentralMenu", false)) {
             bst_CentralMenu = BST_GUICentralMenu.Cast(GetGame().GetUIManager().GetMenu());
 
-            if (bst_CentralMenu) {
+            if (bst_CentralMenu && !bst_CentralMenu.IsTyping()) {
                 bst_CentralMenu.Close();
             } else {
                 GetUIManager().EnterScriptedMenu(CONST_CENTRAL_MENU_ID, null);

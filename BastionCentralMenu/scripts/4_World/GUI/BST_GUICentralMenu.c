@@ -5,11 +5,13 @@
     and have its menu show when clicking on the button
 
     How To Use: 
-        Create a new class that inherits ScriptedWidgetEventHandler
-            (If you have never used ScriptedWidgetEventHandler before, here is an example constructor)
+        Create a new class that inherits BST_ScriptedWidget
+            (If you have never used ScriptedWidgetEventHandler before, here is an example)
+            Note:   Do not use constructor to instansiate _root, the widget will not be created correctly.
+                    There is an Init() function for this purpose
 
-            class BST_DTACGroupMenu : ScriptedWidgetEventHandler {
-                void BST_DTACGroupMenu(Widget parent) {
+            class BST_DTACGroupMenu : BST_ScriptedWidget {
+                override void Init(Widget parent) {
                     _parent = parent;
                     _root = GetGame().GetWorkspace().CreateWidgets("layout path", _parent);
 
@@ -17,85 +19,35 @@
                                                     act as an independent UI
                 }
             }
+
+        Note: YOU MUST use the variable _root for the root of the widget or it will not function properly.
         
         Make sure you use SetHandler(this) on the root OF THAT CLASS
         Once that's done, you can code that class as you would a normal UI
         
-        Override BuildButtons() (which is called on OnShow) and use AddButton(className) to create new buttons
-        BE SURE TO CALL SUPER
+        There is nothing in this class that should be nor has to be modified to get the buttons to function
 
-        Override 
+        In MissionGameplay.c, override BST_CentralInsertMenus (CALL SUPER!!!!) and call menu.InsertMenu("classname")
+        for each button you wish to add!! And logic you want to check before adding the button can be done there as well
  */
 
 class BST_GUICentralMenu : UIScriptedMenu {
-    private ref Widget _subMenuRoot; // This is the widget to use as a parent for new menus!!!
-
-    /*!
-        Used to add new buttons to UI. This should only be called inside of 'BuildButtons'
-
-        param 'className': class name of ScriptedWidgetEventHandler class.
-        return: ButtonWidget
-     */
-
-    ButtonWidget AddButton(string className) {
-        ButtonWidget newButton = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionCentralMenu\\gui\\layout\\ButtonWidget.layout", _rootGrid);
-        
-        newButton.SetUserData(className);
-        _arrButtons.Insert(newButton);
-        return newButton;
-    }
-
-    // Example modification of function to create new UI on button click
-
-    override bool OnClick(Widget w, int x, int y, int button) {
-        /*
-            Example of how to create UI based on button clicked
-            Pretend there's a variable:
-            private ref BST_DTACLookupMenu lookupMenu;
-            
-            string className;
-
-            w.GetUserData(className);
-
-            switch (className) {
-                case "BST_DTACLookupMenu":
-                    {
-                        if (lookupMenu) {
-                            delete lookupMenu;
-                        } else {
-                            lookupMenu = new BST_DTACLookupMenu();
-                        }
-                        break;
-                    }
-            }
-        */
-        return super.OnClick(w, x, y, button); // ALWAYS CALL SUPER
-    }
-
-    /*
-        Function called before FixSize() 
-        Override to add button to script
-    */
-
-    void BuildButtons() {
-        /*
-            Example of how to add a button
-
-            ButtonWidget newButton = AddButton("BST_DTACLookupMenu");
-            
-            newButton.SetText("DTAC GROUPS");
-        */
-    }
-
     // ====================== Do not modify anything below ======================
     private static const int CONST_UI_PADDING = 25;
     private static const int CONST_UI_GRID_PADDING = 10;
 
-    private ref Widget _pnlRoot;
-    private ref GridSpacerWidget _rootGrid;
-    private ref TextWidget _txtName;
-    private ref TextWidget _txtID;
-    private ref array<ref ButtonWidget> _arrButtons;
+    protected ref Widget _pnlRoot, _subMenuRoot; //  <-- This is the widget to use as a parent for new menus!!!
+    protected ref GridSpacerWidget _rootGrid;
+    protected ref TextWidget _txtName;
+    protected ref TextWidget _txtID;
+    protected ref array<string> _arrScriptedWidgets;
+    protected ref map<ref ButtonWidget, ref BST_CentralGUIButtonWidget> _mapButtonWidgets;
+    protected BST_CentralGUIButtonWidget _selectedWidget;
+
+    void BST_GUICentralMenu() {
+        _arrScriptedWidgets = new array<string>();
+        _mapButtonWidgets = new map<ref ButtonWidget, ref BST_CentralGUIButtonWidget>();
+    }
 
     override Widget Init() {
         layoutRoot = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionCentralMenu\\gui\\layout\\CentralMenu.layout");
@@ -104,15 +56,71 @@ class BST_GUICentralMenu : UIScriptedMenu {
         _txtName = TextWidget.Cast(layoutRoot.FindAnyWidget("txtName"));
         _txtID = TextWidget.Cast(layoutRoot.FindAnyWidget("txtID"));
         _rootGrid = GridSpacerWidget.Cast(layoutRoot.FindAnyWidget("gridButtons"));
-        _arrButtons = new array<ref ButtonWidget>();
 
         return layoutRoot;
+    }
+
+    void InsertMenu(string className) {
+        _arrScriptedWidgets.Insert(className);
+    }
+
+    void BuildButtons() {
+        string btnText = "";
+
+        foreach (string str : _arrScriptedWidgets) {
+            AddButton(str);
+        }
+    }
+
+    void AddButton(string className) {
+        if (!className.ToType()) {
+            Print("[ERROR][BSTCentralMenu] '" + className + "' is not a valid type!");
+            return;
+        }
+        BST_ScriptedWidget scriptedWidget;
+        BST_CentralGUIButtonWidget newButton;
+
+        scriptedWidget = BST_ScriptedWidget.Cast(className.ToType().Spawn());
+
+        if (scriptedWidget) {
+            newButton = new BST_CentralGUIButtonWidget(_rootGrid, scriptedWidget);
+
+            scriptedWidget.Init(_subMenuRoot);
+            scriptedWidget.OnHide();
+            _mapButtonWidgets.Insert(newButton.GetRoot(), newButton);
+        }
+    }
+
+    // Grab scripted menu from button and open/close it
+
+    override bool OnClick(Widget w, int x, int y, int button) {
+        ButtonWidget buttonW = ButtonWidget.Cast(w);
+
+        if (buttonW && _mapButtonWidgets.Contains(buttonW)) {
+            BST_CentralGUIButtonWidget buttonWidget = _mapButtonWidgets.Get(buttonW);
+
+            if (buttonWidget) {
+                if (buttonWidget != _selectedWidget) {
+                    if (_selectedWidget) {
+                        _selectedWidget.Deselect();
+                    }
+                    _selectedWidget = buttonWidget;
+
+                    _selectedWidget.Select();
+                } else {
+                    _selectedWidget = null;
+
+                    buttonWidget.Deselect();
+                }
+            }
+        }
+        return super.OnClick(w, x, y, button);
     }
     
     // Dynamically fixes the size of the UI based on how many buttons were created
 
     void FixSize() {
-        if (_arrButtons.Count() <= 0) { return; }
+        if (_mapButtonWidgets.Count() <= 0) { return; }
         float totalSize = 0;
         float x = 0.0;
         float y = 0.0;
@@ -121,7 +129,9 @@ class BST_GUICentralMenu : UIScriptedMenu {
 
         _rootGrid.GetPos(x, y);
 
-        foreach (ButtonWidget button : _arrButtons) {
+        for (int i = 0; i < _mapButtonWidgets.Count(); i++) {
+            ButtonWidget button = _mapButtonWidgets.GetKey(i);
+
             if (!button) { continue; }
             w = 0;
             h = 0;
@@ -132,7 +142,7 @@ class BST_GUICentralMenu : UIScriptedMenu {
                 totalSize += h;
             }
         }
-        totalSize += (CONST_UI_GRID_PADDING * (_arrButtons.Count() - 1));
+        totalSize += (CONST_UI_GRID_PADDING * (_mapButtonWidgets.Count() - 1));
         totalSize = totalSize + y + CONST_UI_PADDING;
 
         _pnlRoot.GetSize(w, h);
@@ -157,12 +167,26 @@ class BST_GUICentralMenu : UIScriptedMenu {
         GetGame().GetMission().GetHud().Show(true);
     }
 
+    bool IsTyping() {
+        if (_selectedWidget && _selectedWidget.GetWidget()) {
+            return _selectedWidget.GetWidget().IsTyping();
+        }
+        return false;
+    }
+
     void ~BST_GUICentralMenu() {
-        if (_arrButtons) {
-            foreach (ButtonWidget button : _arrButtons) {
-                if (!button) { continue; }
+        for (int i = 0; i < _mapButtonWidgets.Count(); i++) {
+            ButtonWidget button = _mapButtonWidgets.GetKey(i);
+            BST_CentralGUIButtonWidget buttonWidget = _mapButtonWidgets.GetElement(i);
+
+            if (button) {
                 button.Unlink();
+            }
+            if (buttonWidget) {
+                delete buttonWidget;
             }
         }
     }
+
+    BST_CentralGUIButtonWidget GetVisibleWidget() { return _selectedWidget; }
 }
