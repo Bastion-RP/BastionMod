@@ -53,7 +53,7 @@ modded class PlayerBase
         {
             g_QM.OnRPC(sender, rpc_type, ctx);
         }
-		else if (GetGame().IsServer())
+		else if (GetGame().IsServer() && m_PersonQuestManag)
 		{
 			m_PersonQuestManag.OnRPC(sender, rpc_type, ctx);
 		}

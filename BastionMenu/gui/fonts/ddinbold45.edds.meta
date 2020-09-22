@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{A43B2DE56F46AA0B}BastionMod/BastionMenu/gui/fonts/ddinbold45.edds"
+ Author "desktop-3up08te"
+ ChangeDate -1019467470
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "ddinbold45.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}
