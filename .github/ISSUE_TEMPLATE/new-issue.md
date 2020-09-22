@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-Major radiation and toxic zone overhaul.
+Description of overarching project/issue/task/etc.
 
 **Definition of Done**:
 
