@@ -60,7 +60,7 @@ class cfgAmmo
 			bleedThreshold=0.40000001;
 			class Health
 			{
-				damage=60;
+				damage=40;
 			};
 			class Blood
 			{
