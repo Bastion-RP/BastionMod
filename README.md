@@ -18,3 +18,6 @@ Assets (weapons, clothing, functionality, and other items) &amp; Functionality f
 
 ## Contributing
 ## License
+
+[Test link to central menu documentation](https://github.com/Bastion-RP/BastionMod/blob/staging/centralmenu.md)
+
