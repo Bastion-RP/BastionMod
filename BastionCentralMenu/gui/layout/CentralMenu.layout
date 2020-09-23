@@ -1,0 +1,92 @@
+FrameWidgetClass rootFrame {
+ ignorepointer 1
+ position 0 0
+ size 1 1
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ {
+  PanelWidgetClass pnlRootMenu {
+   clipchildren 0
+   ignorepointer 1
+   color 0 0 0 0.7843
+   position 50 110
+   size 250 112
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    TextWidgetClass txtHeader {
+     ignorepointer 1
+     color 1 0.5843 0 1
+     position 0 -64
+     size 48 64
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "MENU"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold50"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    TextWidgetClass txtName {
+     ignorepointer 1
+     position 25 25
+     size 48 22
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "William Fraites"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold20"
+     "exact text" 0
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    TextWidgetClass txtID {
+     ignorepointer 1
+     position 25 47
+     size 48 15
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "ID #: 50314 \ Class: A"
+     font "BastionMod/BastionMenu/gui/fonts/ddin14"
+     "size to text h" 1
+     "size to text v" 0
+     "text valign" center
+    }
+    GridSpacerWidgetClass gridButtons {
+     ignorepointer 1
+     position 25 87
+     size 200 48
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     Padding 10
+     Margin 0
+     "Size To Content V" 1
+     Columns 1
+     Rows 100
+    }
+   }
+  }
+  FrameWidgetClass menuFrame {
+   ignorepointer 1
+   position 300 0
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+  }
+ }
+}

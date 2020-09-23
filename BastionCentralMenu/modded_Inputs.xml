@@ -5,7 +5,7 @@
 	<inputs>
 
 		<actions>
-			<input name="BST_OpenCraftingMenu" loc="Open Crafting Menu" />
+			<input name="BST_OpenCentralMenu" loc="Open Central Menu" />
 		</actions>
 
 	</inputs>
@@ -13,8 +13,8 @@
 	<!-- preset -->
 	<preset>
 		
-		<input name="BST_OpenCraftingMenu">
-			<btn name="kL" />
+		<input name="BST_OpenCentralMenu">
+			<btn name="kP" />
 		</input>
 		
 	</preset>
