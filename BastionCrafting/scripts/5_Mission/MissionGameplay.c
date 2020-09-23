@@ -18,28 +18,25 @@ modded class MissionGameplay {
         return menu;
     }
     
+    override void BST_CentralInsertMenus(BST_GUICentralMenu menu) {
+        super.BST_CentralInsertMenus(menu);
+
+        menu.InsertMenu("BST_CraftingMenuWidget");
+    }
+    
     override void OnUpdate(float timeslice) {
         super.OnUpdate(timeslice);
 
         Input input;
-        BST_CraftingMenu craftingMenu;
+        BST_CraftingMenu bstCraftingMenu;
 
         input = GetGame().GetInput();
         
         if (input.LocalPress("UAUIBack", false)) {
-            craftingMenu = BST_CraftingMenu.Cast(GetGame().GetUIManager().GetMenu());
+            bstCraftingMenu = BST_CraftingMenu.Cast(GetGame().GetUIManager().GetMenu());
 
-            if (craftingMenu) {
-                craftingMenu.Close();
-            }
-        }
-        if (input.LocalPress("BST_OpenCraftingMenu", false)) {
-            craftingMenu = BST_CraftingMenu.Cast(GetGame().GetUIManager().GetMenu());
-
-            if (craftingMenu && !craftingMenu.IsSearching()) {
-                craftingMenu.Close();
-            } else {
-                GetUIManager().EnterScriptedMenu(BST_CraftingConst.CONST_CRAFTING_MENU_ID, null);
+            if (bstCraftingMenu && !bstCraftingMenu.IsTyping()) {
+                bstCraftingMenu.Close();
             }
         }
     }
