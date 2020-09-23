@@ -331,7 +331,7 @@ modded class KeybindingsMenu extends UIScriptedMenu
 	void OnShow()
 	{
 		super.OnShow();
-		PPEffects.SetBlurInventory(1);
+		PPEffects.SetBlurInventory(0.3);
 	}
 
 	void OnHide()
