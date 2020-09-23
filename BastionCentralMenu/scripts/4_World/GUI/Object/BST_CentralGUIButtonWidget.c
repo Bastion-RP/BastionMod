@@ -12,6 +12,7 @@ class BST_CentralGUIButtonWidget {
     }
 
     void Select() {
+        _root.SetState(true);
         _scriptedWidget.OnShow();
     }
     

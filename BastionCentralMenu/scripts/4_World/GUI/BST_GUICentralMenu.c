@@ -29,6 +29,8 @@
 
         In MissionGameplay.c, override BST_CentralInsertMenus (CALL SUPER!!!!) and call menu.InsertMenu("classname")
         for each button you wish to add!! And logic you want to check before adding the button can be done there as well
+
+        See MissionGameplay.c for more information
  */
 
 class BST_GUICentralMenu : UIScriptedMenu {
@@ -41,12 +43,14 @@ class BST_GUICentralMenu : UIScriptedMenu {
     protected ref TextWidget _txtName;
     protected ref TextWidget _txtID;
     protected ref array<string> _arrScriptedWidgets;
-    protected ref map<ref ButtonWidget, ref BST_CentralGUIButtonWidget> _mapButtonWidgets;
+    protected ref array<ref BST_CentralGUIButtonWidget> _arrButtonWidgets;
+    protected ref map<ButtonWidget, BST_CentralGUIButtonWidget> _mapButtonWidgets;
     protected BST_CentralGUIButtonWidget _selectedWidget;
 
     void BST_GUICentralMenu() {
         _arrScriptedWidgets = new array<string>();
-        _mapButtonWidgets = new map<ref ButtonWidget, ref BST_CentralGUIButtonWidget>();
+        _arrButtonWidgets = new array<ref BST_CentralGUIButtonWidget>();
+        _mapButtonWidgets = new map<ButtonWidget, BST_CentralGUIButtonWidget>();
     }
 
     override Widget Init() {
@@ -87,7 +91,21 @@ class BST_GUICentralMenu : UIScriptedMenu {
 
             scriptedWidget.Init(_subMenuRoot);
             scriptedWidget.OnHide();
+            _arrButtonWidgets.Insert(newButton);
             _mapButtonWidgets.Insert(newButton.GetRoot(), newButton);
+        }
+    }
+
+    // Open a menu by using its typename. This will allow keybinds to open the menu
+    
+    void OpenMenuByType(typename type) {
+        foreach (BST_CentralGUIButtonWidget widget : _arrButtonWidgets) {
+            if (widget && widget.GetWidget() && widget.GetWidget().Type() == type) {
+                _selectedWidget = widget;
+
+                widget.Select();
+                break;
+            }
         }
     }
 

@@ -4,7 +4,7 @@ modded class ItemBase
 
     void CreateFurnaceHandler() 
     {
-        bst_FurnaceHandler = new BST_FurnaceHandler(this);
+        bst_FurnaceHandler = new BST_FurnaceHandler(BRP_Furnace_Fireplace.Cast(this));
     }
 
     override void SetActions() 

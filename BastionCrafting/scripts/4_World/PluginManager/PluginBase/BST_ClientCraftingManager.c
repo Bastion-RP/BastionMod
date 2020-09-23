@@ -11,7 +11,7 @@ class BST_ClientCraftingManager : PluginBase {
             entityClassname.ToLower();
 
             if (mapRequiredCount.Contains(entityClassname)) {
-                int entityCount = QuantityConversions.GetItemQuantity(entity);
+                int entityCount = QuantityConversions.GetItemQuantity(InventoryItem.Cast(entity));
 
                 if (entityCount == 0) entityCount = 1;
                 mapRequiredCount.Set(entityClassname, mapRequiredCount.Get(entityClassname) - entityCount);

@@ -50,7 +50,7 @@ class BST_CraftingMenuWidget : BST_ScriptedWidget {
         _edtSearch = EditBoxWidget.Cast(_root.FindAnyWidget("edtSearch"));
         _prvRecipeProduct = ItemPreviewWidget.Cast(_root.FindAnyWidget("prvRecipeItem"));
         _rootRecipe = _root.FindAnyWidget("pnlSelectedRecipe");
-        _scrollRecipes = _root.FindAnyWidget("scrollerRecipes");
+        _scrollRecipes = ScrollWidget.Cast(_root.FindAnyWidget("scrollerRecipes"));
         _txtRecipeTitle = TextWidget.Cast(_root.FindAnyWidget("txtSelectedRecipeName"));
         _txtRecipeDesc = TextWidget.Cast(_root.FindAnyWidget("txtSelectedRecipeDesc"));
         _txtRecipeCraftTime = TextWidget.Cast(_root.FindAnyWidget("txtSelectedRecipeTimetoCraft"));
@@ -159,13 +159,13 @@ class BST_CraftingMenuWidget : BST_ScriptedWidget {
                         _hasIngredients = false;
                     }
                 }
-                tempObject = GetGame().CreateObject(ingredientClassname, vector.Zero, true);
+                tempObject = EntityAI.Cast(GetGame().CreateObject(ingredientClassname, vector.Zero, true));
 
                 if (tempObject) {
                     string minDestroyPath = CFG_VEHICLESPATH + " " + ingredientClassname + " varQuantityDestroyOnMin";
 
                     if (GetGame().ConfigIsExisting(minDestroyPath) && GetGame().ConfigGetInt(minDestroyPath) == 0) {
-                        int itemMaxQuant = QuantityConversions.GetItemQuantity(tempObject);
+                        int itemMaxQuant = QuantityConversions.GetItemQuantity(InventoryItem.Cast(tempObject));
 
                         if (ingredient.GetRequiredAmount() == -1) {
                             newGridIngredient = new BST_RecipeRequireGrid(_gridIngredients, "(1) " + tempObject.GetDisplayName(), hasRequiredAmount);
@@ -266,7 +266,7 @@ class BST_CraftingMenuWidget : BST_ScriptedWidget {
         BuildRecipeWindow();
     }
 
-    void SetBench(EntityAI _benchBase) {
+    void SetBench(BRP_CraftingBenchBase _benchBase) {
         this._benchBase = _benchBase;
     }
 
@@ -384,7 +384,7 @@ class BST_CraftingMenuWidget : BST_ScriptedWidget {
                         GetGame().ObjectDelete(_entProduct);
                     }
                     _activeRecipe = recipe;
-                    _entProduct = GetGame().CreateObject(_activeRecipe.GetRecipe().GetProducts()[0].GetClassname(), "0 0 0", true);
+                    _entProduct = EntityAI.Cast(GetGame().CreateObject(_activeRecipe.GetRecipe().GetProducts()[0].GetClassname(), "0 0 0", true));
 
                     if (_entProduct) {
                         _prvRecipeProduct.SetItem(_entProduct);

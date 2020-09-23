@@ -29,6 +29,7 @@ modded class MissionGameplay {
 
         Input input;
         BST_CraftingMenu bstCraftingMenu;
+        BST_GUICentralMenu bstCentralMenu;
 
         input = GetGame().GetInput();
         
@@ -37,6 +38,15 @@ modded class MissionGameplay {
 
             if (bstCraftingMenu && !bstCraftingMenu.IsTyping()) {
                 bstCraftingMenu.Close();
+            }
+        }
+        if (input.LocalPress("BST_OpenCraftingMenu", false)) {
+            bstCentralMenu = BST_GUICentralMenu.Cast(GetGame().GetUIManager().GetMenu());
+
+            if (!bstCentralMenu) {
+                bstCentralMenu = BST_GUICentralMenu.Cast(GetUIManager().EnterScriptedMenu(CONST_CENTRAL_MENU_ID, null));
+
+                bstCentralMenu.OpenMenuByType(BST_CraftingMenuWidget);
             }
         }
     }
