@@ -141,7 +141,7 @@ class BST_FurnaceHandler {
         InventoryLocation il = new InventoryLocation();
 
         if (parent.GetInventory().FindFirstFreeLocationForNewEntity(itemType, FindInventoryLocationType.ANY, il)) {
-            ItemBase item = il.GetParent().GetInventory().CreateEntityInCargoEx(itemType, il.GetIdx(), il.GetRow(), il.GetCol(), il.GetFlip());
+            ItemBase item = ItemBase.Cast(il.GetParent().GetInventory().CreateEntityInCargoEx(itemType, il.GetIdx(), il.GetRow(), il.GetCol(), il.GetFlip()));
 
             if (item) {
                 Magazine magItem = Magazine.Cast(item);
