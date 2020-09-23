@@ -14,7 +14,7 @@
 	<preset>
 		
 		<input name="BST_OpenCraftingMenu">
-			<btn name="kL" />
+			<btn name="kP" />
 		</input>
 		
 	</preset>

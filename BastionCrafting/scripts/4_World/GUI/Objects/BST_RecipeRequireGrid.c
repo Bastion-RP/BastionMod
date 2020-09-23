@@ -16,10 +16,10 @@ class BST_RecipeRequireGrid {
         imgHasItem.LoadImageFile(1, "set:BST_Crafting_StatusImageSet image:greencheckmark");
 
         if (hasItem) {
-            txtItemDisplayName.SetColor(BST_CraftingMenuWidget.CONST_COLOR_GREEN);
+            txtItemDisplayName.SetColor(BST_CraftingMenu.CONST_COLOR_GREEN);
             imgHasItem.SetImage(1);
         } else {
-            txtItemDisplayName.SetColor(BST_CraftingMenuWidget.CONST_COLOR_RED);
+            txtItemDisplayName.SetColor(BST_CraftingMenu.CONST_COLOR_RED);
             imgHasItem.SetImage(0);
         }
     }

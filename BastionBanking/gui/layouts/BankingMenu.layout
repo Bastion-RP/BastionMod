@@ -11,7 +11,7 @@ FrameWidgetClass rootFrame {
    clipchildren 0
    ignorepointer 0
    color 0 0 0 0.7843
-   position 50 110
+   position 140 158
    size 300 290
    hexactpos 1
    vexactpos 1
@@ -181,7 +181,7 @@ FrameWidgetClass rootFrame {
    clipchildren 0
    ignorepointer 0
    color 0 0 0 0.7843
-   position 400 110
+   position 490 158
    size 300 290
    hexactpos 1
    vexactpos 1
@@ -276,7 +276,7 @@ FrameWidgetClass rootFrame {
    clipchildren 0
    ignorepointer 0
    color 0 0 0 0.7843
-   position 400 110
+   position 490 158
    size 300 290
    hexactpos 1
    vexactpos 1
@@ -371,7 +371,7 @@ FrameWidgetClass rootFrame {
    clipchildren 0
    ignorepointer 0
    color 0 0 0 0.7843
-   position 400 110
+   position 490 158
    size 300 290
    hexactpos 1
    vexactpos 1
@@ -480,7 +480,7 @@ FrameWidgetClass rootFrame {
    clipchildren 0
    ignorepointer 0
    color 0 0 0 1
-   position 400 110
+   position 490 158
    size 300 290
    hexactpos 1
    vexactpos 1
