@@ -65,7 +65,7 @@ FrameWidgetClass FrameWidget {
        vexactpos 0
        hexactsize 0
        vexactsize 0
-       text "Exit"
+       text "#exit"
        font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
        "text valign" center
       }
@@ -94,7 +94,7 @@ FrameWidgetClass FrameWidget {
        vexactpos 0
        hexactsize 0
        vexactsize 0
-       text "Respawn"
+       text "#respawn"
        font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
        "text valign" center
       }
@@ -123,7 +123,7 @@ FrameWidgetClass FrameWidget {
        vexactpos 0
        hexactsize 0
        vexactsize 0
-       text "Settings"
+       text "#settings"
        font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
        "text valign" center
       }
@@ -152,7 +152,7 @@ FrameWidgetClass FrameWidget {
        vexactpos 0
        hexactsize 0
        vexactsize 0
-       text "Forums"
+       text "#forums"
        font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
        "text valign" center
       }
@@ -181,7 +181,7 @@ FrameWidgetClass FrameWidget {
        vexactpos 0
        hexactsize 0
        vexactsize 0
-       text "Continue"
+       text "#continue"
        font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
        "text valign" center
       }
