@@ -27,7 +27,7 @@
         
         There is nothing in this class that should be nor has to be modified to get the buttons to function
 
-        In MissionGameplay.c, override BST_CentralInsertMenus (CALL SUPER!!!!) and call menu.InsertMenu("classname")
+        In MissionGameplay.c, override BST_CentralInsertMenus (CALL SUPER!!!!) and call menu.InsertMenu(classname)
         for each button you wish to add!! And logic you want to check before adding the button can be done there as well
 
         See MissionGameplay.c for more information
@@ -42,13 +42,13 @@ class BST_GUICentralMenu : UIScriptedMenu {
     protected ref GridSpacerWidget _rootGrid;
     protected ref TextWidget _txtName;
     protected ref TextWidget _txtID;
-    protected ref array<string> _arrScriptedWidgets;
+    protected ref array<typename> _arrScriptedWidgets;
     protected ref array<ref BST_CentralGUIButtonWidget> _arrButtonWidgets;
     protected ref map<ButtonWidget, BST_CentralGUIButtonWidget> _mapButtonWidgets;
     protected BST_CentralGUIButtonWidget _selectedWidget;
 
     void BST_GUICentralMenu() {
-        _arrScriptedWidgets = new array<string>();
+        _arrScriptedWidgets = new array<typename>();
         _arrButtonWidgets = new array<ref BST_CentralGUIButtonWidget>();
         _mapButtonWidgets = new map<ButtonWidget, BST_CentralGUIButtonWidget>();
     }
@@ -64,27 +64,30 @@ class BST_GUICentralMenu : UIScriptedMenu {
         return layoutRoot;
     }
 
-    void InsertMenu(string className) {
-        _arrScriptedWidgets.Insert(className);
+    void SetPlayerData() {
+        PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+        string classText = typename.EnumToString(BastionClasses, player.GetMultiCharactersPlayerClass());
+
+        classText.Replace("_","-");
+        _txtName.SetText(player.GetMultiCharactersPlayerName());
+        _txtID.SetText("ID: " + player.GetMultiCharactersPlayerId() + " \ Class: " + classText);
+    }
+
+    void InsertMenu(typename type) {
+        _arrScriptedWidgets.Insert(type);
     }
 
     void BuildButtons() {
-        string btnText = "";
-
-        foreach (string str : _arrScriptedWidgets) {
-            AddButton(str);
+        foreach (typename type : _arrScriptedWidgets) {
+            AddButton(type);
         }
     }
 
-    void AddButton(string className) {
-        if (!className.ToType()) {
-            Print("[ERROR][BSTCentralMenu] '" + className + "' is not a valid type!");
-            return;
-        }
+    void AddButton(typename type) {
         BST_ScriptedWidget scriptedWidget;
         BST_CentralGUIButtonWidget newButton;
 
-        scriptedWidget = BST_ScriptedWidget.Cast(className.ToType().Spawn());
+        scriptedWidget = BST_ScriptedWidget.Cast(type.Spawn());
 
         if (scriptedWidget) {
             newButton = new BST_CentralGUIButtonWidget(_rootGrid, scriptedWidget);
@@ -172,7 +175,9 @@ class BST_GUICentralMenu : UIScriptedMenu {
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
         GetGame().GetUIManager().ShowCursor(true);
         GetGame().GetMission().GetHud().Show(false);
+        PPEffects.SetBlurInventory(0.3);
 
+        SetPlayerData();
         BuildButtons();
         FixSize();
     }
@@ -183,6 +188,7 @@ class BST_GUICentralMenu : UIScriptedMenu {
         GetGame().GetUIManager().ShowCursor(false);
         GetGame().GetMission().PlayerControlEnable(true);
         GetGame().GetMission().GetHud().Show(true);
+        PPEffects.SetBlurInventory(0);
     }
 
     bool IsTyping() {
