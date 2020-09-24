@@ -21,7 +21,7 @@ modded class MissionGameplay {
     override void BST_CentralInsertMenus(BST_GUICentralMenu menu) {
         super.BST_CentralInsertMenus(menu);
 
-        menu.InsertMenu("BST_CraftingMenuWidget");
+        menu.InsertMenu(BST_CraftingMenuWidget);
     }
     
     override void OnUpdate(float timeslice) {

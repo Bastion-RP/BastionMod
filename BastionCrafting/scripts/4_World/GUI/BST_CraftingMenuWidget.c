@@ -432,8 +432,6 @@ class BST_CraftingMenuWidget : BST_ScriptedWidget {
         _arrRecipes = GetBSTCraftingManager().GetCraftingRecipes();
         _player = PlayerBase.Cast(GetGame().GetPlayer());
 
-        PPEffects.SetBlurInventory(0.3);
-
         super.OnShow();
         BuildMenu();
         SetFocus(null);
@@ -441,9 +439,6 @@ class BST_CraftingMenuWidget : BST_ScriptedWidget {
 
     override void OnHide() {
         super.OnHide();
-
-        PPEffects.SetBlurInventory(0);
-
         Cleanup();
     }
 
