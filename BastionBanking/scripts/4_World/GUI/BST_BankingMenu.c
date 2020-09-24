@@ -208,6 +208,8 @@ class BST_BankingMenu : UIScriptedMenu {
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
         GetGame().GetUIManager().ShowCursor(true);
         GetGame().GetMission().GetHud().Show(false);
+
+        PPEffects.SetBlurInventory(0.3);
     }
 
     override void OnHide() {
@@ -216,6 +218,8 @@ class BST_BankingMenu : UIScriptedMenu {
         GetGame().GetUIManager().ShowCursor(false);
         GetGame().GetMission().PlayerControlEnable(true);
         GetGame().GetMission().GetHud().Show(true);
+
+        PPEffects.SetBlurInventory(0);
     }
 
     string FloatTo2Decimal(float num) {

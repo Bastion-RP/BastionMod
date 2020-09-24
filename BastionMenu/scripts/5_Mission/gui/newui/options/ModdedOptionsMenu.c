@@ -141,7 +141,7 @@ modded class OptionsMenu extends UIScriptedMenu
 	void OnShow()
 	{
 		super.OnShow();
-		PPEffects.SetBlurInventory(0.8);
+		PPEffects.SetBlurInventory(0.3);
 	}
 
 	void OnHide()

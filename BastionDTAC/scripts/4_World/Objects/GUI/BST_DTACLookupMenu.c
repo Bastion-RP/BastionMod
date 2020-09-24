@@ -232,7 +232,15 @@ class BST_DTACLookupMenu : BST_ScriptedWidget {
     override void OnShow() {
         super.OnShow();
 
+        PPEffects.SetBlurInventory(0.3);
+
         Init();
+    }
+
+    override void OnHide()
+    {
+        super.OnHide();
+        PPEffects.SetBlurInventory(0);
     }
 
 	override bool OnKeyPress(Widget w, int x, int y, int key) {

@@ -1931,5 +1931,17 @@ class HousingHud extends UIScriptedMenu
 			}
 		}
 	}
+
+    void OnShow()
+    {
+        super.OnShow();
+        PPEffects.SetBlurInventory(0.3);
+    }
+
+    void OnHide()
+    {
+        super.OnHide();
+        PPEffects.SetBlurInventory(0);
+    }
 }
 
