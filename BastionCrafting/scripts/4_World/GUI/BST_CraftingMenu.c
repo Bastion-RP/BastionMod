@@ -12,8 +12,6 @@ class BST_CraftingMenu : UIScriptedMenu {
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
         GetGame().GetUIManager().ShowCursor(true);
         GetGame().GetMission().GetHud().Show(false);
-
-        PPEffects.SetBlurInventory(0.3);
     }
 
     void OnHide() {
@@ -22,8 +20,6 @@ class BST_CraftingMenu : UIScriptedMenu {
         GetGame().GetUIManager().ShowCursor(false);
         GetGame().GetMission().PlayerControlEnable(true);
         GetGame().GetMission().GetHud().Show(true);
-
-        PPEffects.SetBlurInventory(0);
     }
 
     void SetBench(BRP_CraftingBenchBase benchBase) {
