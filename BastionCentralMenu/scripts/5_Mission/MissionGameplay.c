@@ -22,7 +22,7 @@ modded class MissionGameplay {
         return menu;
     }
 
-    // Override this and call menu.InsertMenu("classname"); for each menu you want to create a button for
+    // Override this and call menu.InsertMenu(classname); for each menu you want to create a button for
     /*
         Support for per-menu hotkeys is also available.
         If you want a menu to be opened with the central menu through a keybind, you can use OpenMenuByType(typename)
