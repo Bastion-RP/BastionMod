@@ -72,7 +72,6 @@ FrameWidgetClass FrameWidget {
      }
     }
     ButtonWidgetClass restartbtn {
-     visible 0
      ignorepointer 0
      position 0 0
      size 1 38

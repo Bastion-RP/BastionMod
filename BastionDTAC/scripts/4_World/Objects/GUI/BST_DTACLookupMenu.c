@@ -208,6 +208,7 @@ class BST_DTACLookupMenu : BST_ScriptedWidget {
         BST_GUIRecord newRecord;
         
         if (data.Length() <= 0) {
+            Print("[DEBUG] No data found!");
             newRecord = _criminalRecords.AddRecord(null, 0);
             return;
         }
@@ -219,6 +220,7 @@ class BST_DTACLookupMenu : BST_ScriptedWidget {
                 BST_DTAC_CURL_CriminalRecord record = arrRecords[i];
 
                 if (!record) { continue; }
+                Print("[DEBUG] Printing record data " + record.NewToString());
                 newRecord = _criminalRecords.AddRecord(record, i % 2);
 
                 _mapGUIObjects.Insert(newRecord.GetRoot(), newRecord);
@@ -230,7 +232,15 @@ class BST_DTACLookupMenu : BST_ScriptedWidget {
     override void OnShow() {
         super.OnShow();
 
+        PPEffects.SetBlurInventory(0.3);
+
         Init();
+    }
+
+    override void OnHide()
+    {
+        super.OnHide();
+        PPEffects.SetBlurInventory(0);
     }
 
 	override bool OnKeyPress(Widget w, int x, int y, int key) {

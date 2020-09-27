@@ -14,8 +14,8 @@ modded class MissionGameplay {
 
         if (GetDTACManager() && GetDTACClientManager() && GetGame().GetPlayer()) {
             if (GetDTACGroupManager().HasDTAC(GetGame().GetPlayer()) && GetDTACManager().IsRequiredClass(GetDTACClientManager().GetConfig().GetRequiredAPIClasses(), PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass())) {
-                menu.InsertMenu(BST_DTACGroupMenu);
-                menu.InsertMenu(BST_DTACLookupMenu);
+                menu.InsertMenu("BST_DTACGroupMenu");
+                menu.InsertMenu("BST_DTACLookupMenu");
             }
         }
     }
