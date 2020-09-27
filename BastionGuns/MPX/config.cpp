@@ -19,6 +19,9 @@ class cfgWeapons
 	class BRP_CSSMG9_Base: Rifle_Base
 	{
 		scope = 0;
+		model = "BastionMod\BastionGuns\MPX\MPX.p3d";
+		attachments[] = {"weaponWrap","weaponOptics","suppressorImpro","pistolMuzzle"};
+		itemSize[] = {6,3};		
 		weight = 2700;
 		absorbency = 0.0;
 		repairableWithKits[] = {5,1};
@@ -29,10 +32,9 @@ class cfgWeapons
 		chamberedRound = "";
 		chamberableFrom[] = {"Ammo_9x19"};
 		magazines[] = {"BRP_Mag_CSSMG9_30Rnd"};
-		magazineSwitchTime = 0.5;
 		ejectType = 1;
-		recoilModifier[] = {0.7,0.7,0.7};
-		swayModifier[] = {1.2,1.2,1};
+		recoilModifier[] = {0.55,0.55,0.55};
+		swayModifier[] = {1.1,1.1,0.9};
 		reloadAction = "ReloadM4";
 		modes[] = {"FullAuto","SemiAuto"};
 		class SemiAuto: Mode_SemiAuto
@@ -49,7 +51,7 @@ class cfgWeapons
 		{
 			soundSetShot[] = {"Red9_Shot_SoundSet","Red9_Tail_SoundSet","Red9_InteriorTail_SoundSet"};
 			soundSetShotExt[] = {{"Red9_silencerHomeMade_SoundSet","Red9_silencerHomeMadeTail_SoundSet","Red9_silencerInteriorHomeMadeTail_SoundSet"}};
-			reloadTime = 0.065;
+			reloadTime = 0.06;
 			recoil = "recoil_mp5";
 			recoilProne = "recoil_mp5_prone";
 			dispersion = 0.0025;
@@ -143,10 +145,17 @@ class cfgWeapons
 		scope = 2;
 		displayName = "CSSMG-9";
 		descriptionShort = "NCC standard issue submachine gun of German design. Chambered in 9x19mm.";
-		model = "BastionMod\BastionGuns\MPX\MPX.p3d";
-		attachments[] = {"weaponWrap","weaponOptics","suppressorImpro","pistolMuzzle"};
-		itemSize[] = {6,3};
 	};
+	class BRP_CSSMG45: BRP_CSSMG9_Base
+	{
+		scope = 2;
+		displayName = "CSSMG-45";
+		descriptionShort = "NCC standard issue submachine gun of German design. Chambered in .45 ACP.";
+		chamberableFrom[] = {"Ammo_45ACP"};
+		magazines[] = {"BRP_Mag_CSSMG45_30Rnd"};
+		recoilModifier[] = {0.6,0.6,0.6};
+		swayModifier[] = {1.1,1.1,0.9};		
+	};	
 };
 class cfgMagazines
 {
@@ -248,4 +257,101 @@ class cfgMagazines
 			};
 		};
 	};
+	class BRP_Mag_CSSMG45_30Rnd: Magazine_Base
+	{
+		scope = 2;
+		displayName = "25 round CSSMG-45 Mag";
+		descriptionShort = "Detachable box magazine for CSSMG-45 submachine gun. Holds up to 30 rounds of .45 ACP.";
+		model = "BastionMod\BastionGuns\MPX\MPX_mag.p3d";
+		weight = 150;
+		itemSize[] = {1,3};
+		count = 25;
+		ammo = "Bullet_45ACP";
+		ammoItems[] = {"Ammo_45ACP"};
+		tracersEvery = 0;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = 
+					{
+						{1.0,{"BastionMod\BastionGuns\MPX\data\mpx.rvmat"}},
+						{0.7,{"BastionMod\BastionGuns\MPX\data\mpx.rvmat"}},
+						{0.5,{"BastionMod\BastionGuns\MPX\data\mpx_damage.rvmat"}},
+						{0.3,{"BastionMod\BastionGuns\MPX\data\mpx_damage.rvmat"}},
+						{0.0,{"BastionMod\BastionGuns\MPX\data\mpx_destruct.rvmat"}}
+					};
+				};
+			};
+		};	
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class MagRifle_fill_in
+				{
+					soundSet = "MagRifle_fill_in_SoundSet";
+					id = 1;
+				};
+				class MagRifle_fill_loop
+				{
+					soundSet = "MagRifle_fill_loop_SoundSet";
+					id = 2;
+				};
+				class MagRifle_fill_out
+				{
+					soundSet = "MagRifle_fill_out_SoundSet";
+					id = 3;
+				};
+				class MagRifle_empty_in
+				{
+					soundSet = "MagRifle_empty_in_SoundSet";
+					id = 4;
+				};
+				class MagRifle_empty_loop
+				{
+					soundSet = "MagRifle_empty_loop_SoundSet";
+					id = 5;
+				};
+				class MagRifle_empty_out
+				{
+					soundSet = "MagRifle_empty_out_SoundSet";
+					id = 6;
+				};
+				class MagPistol_fill_in
+				{
+					soundSet = "MagPistol_fill_in_SoundSet";
+					id = 7;
+				};
+				class MagPistol_fill_loop
+				{
+					soundSet = "MagPistol_fill_loop_SoundSet";
+					id = 8;
+				};
+				class MagPistol_fill_out
+				{
+					soundSet = "MagPistol_fill_out_SoundSet";
+					id = 9;
+				};
+				class MagPistol_empty_in
+				{
+					soundSet = "MagPistol_empty_in_SoundSet";
+					id = 10;
+				};
+				class MagPistol_empty_loop
+				{
+					soundSet = "MagPistol_empty_loop_SoundSet";
+					id = 11;
+				};
+				class MagPistol_empty_out
+				{
+					soundSet = "MagPistol_empty_out_SoundSet";
+					id = 12;
+				};
+			};
+		};
+	};	
 };

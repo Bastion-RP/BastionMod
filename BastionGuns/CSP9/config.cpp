@@ -1,21 +1,12 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionGuns\CSP9\config.bin
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 20:43:15 2020 : 'file' last modified on Tue Apr 28 20:43:15 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
-class CfgPatches
+﻿class CfgPatches
 {
 	class BastionRP_Pistols_CSP9
 	{
 		units[] = {};
-		weapons[] = {"BRP__CSP9"};
+		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = {"DZ_Data","DZ_Pistols"};
-		magazines[] = {"BRP_Mag_CSP9_17Rnd"};
+		requiredAddons[] = {"DZ_Pistols_CZ75"};
+		magazines[] = {};
 	};
 };
 class Mode_Safe;
@@ -29,6 +20,9 @@ class cfgWeapons
 	class CSP9_Base: CZ75
 	{
 		scope = 0;
+		model = "BastionMod\BastionGuns\CSP9\CSP9.p3d";
+		attachments[] = {"pistolMuzzle","pistolFlashlight"};
+		itemSize[] = {3,2};		
 		weight = 950;
 		absorbency = 0;
 		repairableWithKits[] = {5,1};
@@ -47,203 +41,12 @@ class cfgWeapons
 		{
 			soundSetShot[] = {"FNX45_Shot_SoundSet","FNX45_Tail_SoundSet","FNX45_InteriorTail_SoundSet"};
 			soundSetShotExt[] = {{"FNX45_silencerPro_SoundSet","FNX45_silencerTail_SoundSet","FNX45_silencerInteriorTail_SoundSet"}};
-			begin1[] = {"dz\sounds\weapons\firearms\FNX45\FNX45_single_1",1,1,600};
-			begin2[] = {"dz\sounds\weapons\firearms\FNX45\FNX45_single_2",1,1,600};
-			soundBegin[] = {"begin1",0.33333,"begin2",0.33333,"begin2",0.33333};
 			reloadTime = 0.125;
 			recoil = "recoil_fnx";
 			recoilProne = "recoil_fnx_prone";
 			dispersion = 0.006;
 			magazineSlot = "magazine";
-			beginSilenced_Pro[] = {"",1,1,60};
-			beginSilenced_HomeMade[] = {"",1,1,100};
-			soundBeginExt[] = {{"beginSilenced_Pro",1},{"beginSilenced_HomeMade",1}};
 		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class walkErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_walkErc_L_SoundSet";
-					id = 1;
-				};
-				class walkErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_walkErc_R_SoundSet";
-					id = 2;
-				};
-				class runErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
-					id = 3;
-				};
-				class runErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_R_SoundSet";
-					id = 4;
-				};
-				class sprintErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_sprintErc_SoundSet";
-					id = 5;
-				};
-				class sprintErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_sprintErc_SoundSet";
-					id = 6;
-				};
-				class walkCro_L
-				{
-					soundSet = "Weapon_Movement_Pistol_walkCro_SoundSet";
-					id = 21;
-				};
-				class walkCro_R
-				{
-					soundSet = "Weapon_Movement_Pistol_walkCro_SoundSet";
-					id = 22;
-				};
-				class runCro_L
-				{
-					soundSet = "Weapon_Movement_Pistol_runCro_SoundSet";
-					id = 23;
-				};
-				class runCro_R
-				{
-					soundSet = "Weapon_Movement_Pistol_runCro_SoundSet";
-					id = 24;
-				};
-				class walkProne_L
-				{
-					soundSet = "Weapon_Movement_Pistol_walkCro_SoundSet";
-					id = 31;
-				};
-				class walkProne_R
-				{
-					soundSet = "Weapon_Movement_Pistol_walkCro_SoundSet";
-					id = 32;
-				};
-				class runProne_L
-				{
-					soundSet = "Weapon_Movement_Pistol_runCro_SoundSet";
-					id = 33;
-				};
-				class runProne_R
-				{
-					soundSet = "Weapon_Movement_Pistol_runCro_SoundSet";
-					id = 34;
-				};
-				class jumpErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
-					id = 35;
-				};
-				class jumpErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
-					id = 36;
-				};
-				class landFootErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_landFootErc_SoundSet";
-					id = 37;
-				};
-				class landFootErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_landFootErc_SoundSet";
-					id = 38;
-				};
-				class walkRasErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_walkRasErc_SoundSet";
-					id = 51;
-				};
-				class walkRasErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_walkRasErc_SoundSet";
-					id = 52;
-				};
-				class runRasErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_runRasErc_SoundSet";
-					id = 53;
-				};
-				class runRasErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_runRasErc_SoundSet";
-					id = 54;
-				};
-				class HandStep_L
-				{
-					soundSet = "Weapon_Movement_Pistol_walkErc_L_SoundSet";
-					id = 61;
-				};
-				class HandStep_R
-				{
-					soundSet = "Weapon_Movement_Pistol_walkErc_L_SoundSet";
-					id = 62;
-				};
-				class HandStep_Hard_L
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
-					id = 63;
-				};
-				class HandStep_Hard_R
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
-					id = 64;
-				};
-				class landFeetErc
-				{
-					soundSet = "Weapon_Movement_Pistol_landFeetErc_SoundSet";
-					id = 100;
-				};
-				class Weapon_Movement_Pistol_Walk
-				{
-					soundSet = "Weapon_Movement_Pistol_walkErc_L_SoundSet";
-					id = 101;
-				};
-				class Weapon_Movement_Pistol_Run
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
-					id = 102;
-				};
-				class Weapon_Movement_Pistol_Sprint
-				{
-					soundSet = "Weapon_Movement_Pistol_sprintErc_SoundSet";
-					id = 103;
-				};
-				class Weapon_Movement_Pistol_Land
-				{
-					soundSet = "Weapon_Movement_Pistol_landFeetErc_SoundSet";
-					id = 104;
-				};
-				class pickup
-				{
-					soundSet = "pickUpPistol_SoundSet";
-					id = 797;
-				};
-				class drop
-				{
-					soundset = "pistol_drop_SoundSet";
-					id = 898;
-				};
-				class bodyfall_pistol
-				{
-					soundSet = "pickUpPistol_SoundSet";
-					id = 13400;
-				};
-			};
-		};
-	};
-	class BRP_CSP9: CSP9_Base
-	{
-		scope = 2;
-		displayName = "CSP-9";
-		descriptionShort = "Russian-made, NCC co-opted 9x19mm handgun.";
-		model = "BastionMod\BastionGuns\CSP9\CSP9.p3d";
-		attachments[] = {"pistolMuzzle","pistolFlashlight"};
-		itemSize[] = {3,2};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -251,190 +54,17 @@ class cfgWeapons
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},
-					{0.7,{"DZ\weapons\pistols\fnx45\data\herstal45.rvmat"}},
-					{0.5,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},
-					{0.3,{"DZ\weapons\pistols\fnx45\data\herstal45_damage.rvmat"}},
-					{0.0,{"DZ\weapons\pistols\fnx45\data\herstal45_destruct.rvmat"}}};
+					healthLevels[] = 
+					{
+						{1.0,{"BastionMod\BastionGuns\CSP9\data\csp9.rvmat"}},
+						{0.7,{"BastionMod\BastionGuns\CSP9\data\csp9.rvmat"}},
+						{0.5,{"BastionMod\BastionGuns\CSP9\data\csp9_damage.rvmat"}},
+						{0.3,{"BastionMod\BastionGuns\CSP9\data\csp9_damage.rvmat"}},
+						{0.0,{"BastionMod\BastionGuns\CSP9\data\csp9_destruct.rvmat"}}
+					};
 				};
 			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class walkErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_walkErc_L_SoundSet";
-					id = 1;
-				};
-				class walkErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_walkErc_R_SoundSet";
-					id = 2;
-				};
-				class runErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
-					id = 3;
-				};
-				class runErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_R_SoundSet";
-					id = 4;
-				};
-				class sprintErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_sprintErc_SoundSet";
-					id = 5;
-				};
-				class sprintErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_sprintErc_SoundSet";
-					id = 6;
-				};
-				class walkCro_L
-				{
-					soundSet = "Weapon_Movement_Pistol_walkCro_SoundSet";
-					id = 21;
-				};
-				class walkCro_R
-				{
-					soundSet = "Weapon_Movement_Pistol_walkCro_SoundSet";
-					id = 22;
-				};
-				class runCro_L
-				{
-					soundSet = "Weapon_Movement_Pistol_runCro_SoundSet";
-					id = 23;
-				};
-				class runCro_R
-				{
-					soundSet = "Weapon_Movement_Pistol_runCro_SoundSet";
-					id = 24;
-				};
-				class walkProne_L
-				{
-					soundSet = "Weapon_Movement_Pistol_walkCro_SoundSet";
-					id = 31;
-				};
-				class walkProne_R
-				{
-					soundSet = "Weapon_Movement_Pistol_walkCro_SoundSet";
-					id = 32;
-				};
-				class runProne_L
-				{
-					soundSet = "Weapon_Movement_Pistol_runCro_SoundSet";
-					id = 33;
-				};
-				class runProne_R
-				{
-					soundSet = "Weapon_Movement_Pistol_runCro_SoundSet";
-					id = 34;
-				};
-				class jumpErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
-					id = 35;
-				};
-				class jumpErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
-					id = 36;
-				};
-				class landFootErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_landFootErc_SoundSet";
-					id = 37;
-				};
-				class landFootErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_landFootErc_SoundSet";
-					id = 38;
-				};
-				class walkRasErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_walkRasErc_SoundSet";
-					id = 51;
-				};
-				class walkRasErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_walkRasErc_SoundSet";
-					id = 52;
-				};
-				class runRasErc_L
-				{
-					soundSet = "Weapon_Movement_Pistol_runRasErc_SoundSet";
-					id = 53;
-				};
-				class runRasErc_R
-				{
-					soundSet = "Weapon_Movement_Pistol_runRasErc_SoundSet";
-					id = 54;
-				};
-				class HandStep_L
-				{
-					soundSet = "Weapon_Movement_Pistol_walkErc_L_SoundSet";
-					id = 61;
-				};
-				class HandStep_R
-				{
-					soundSet = "Weapon_Movement_Pistol_walkErc_L_SoundSet";
-					id = 62;
-				};
-				class HandStep_Hard_L
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
-					id = 63;
-				};
-				class HandStep_Hard_R
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
-					id = 64;
-				};
-				class landFeetErc
-				{
-					soundSet = "Weapon_Movement_Pistol_landFeetErc_SoundSet";
-					id = 100;
-				};
-				class Weapon_Movement_Pistol_Walk
-				{
-					soundSet = "Weapon_Movement_Pistol_walkErc_L_SoundSet";
-					id = 101;
-				};
-				class Weapon_Movement_Pistol_Run
-				{
-					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
-					id = 102;
-				};
-				class Weapon_Movement_Pistol_Sprint
-				{
-					soundSet = "Weapon_Movement_Pistol_sprintErc_SoundSet";
-					id = 103;
-				};
-				class Weapon_Movement_Pistol_Land
-				{
-					soundSet = "Weapon_Movement_Pistol_landFeetErc_SoundSet";
-					id = 104;
-				};
-				class pickup
-				{
-					soundSet = "pickUpPistol_SoundSet";
-					id = 797;
-				};
-				class drop
-				{
-					soundset = "pistol_drop_SoundSet";
-					id = 898;
-				};
-				class bodyfall_pistol
-				{
-					soundSet = "pickUpPistol_SoundSet";
-					id = 13400;
-				};
-			};
-		};
+		};		
 		class Particles
 		{
 			class OnFire
@@ -470,8 +100,23 @@ class cfgWeapons
 					overridePoint = "Nabojnicestart";
 				};
 			};
-		};
+		};		
 	};
+	class BRP_CSP9: CSP9_Base
+	{
+		scope = 2;
+		displayName = "CSP-9";
+		descriptionShort = "Russian-made, NCC co-opted 9x19mm handgun.";
+	};
+	class BRP_CSP45: CSP9_Base
+	{
+		scope = 2;
+		displayName = "CSP-45";
+		descriptionShort = "Russian-made, NCC co-opted .45 ACP handgun.";
+		magazines[] = {"BRP_Mag_CSP45_15Rnd"};
+		chamberableFrom[] = {"Ammo_45ACP"};
+		recoilModifier[] = {1.05,1.05,1.05};		
+	};	
 };
 class CfgMagazines
 {
@@ -490,14 +135,18 @@ class CfgMagazines
 		isMeleeWeapon = 0;
 		tracersEvery = 1;
 	};
-};
-class CfgNonAIVehicles
-{
-	class ProxyAttachment;
-	class ProxyMagazine_CSP9mag: ProxyAttachment
+	class BRP_Mag_CSP45_15Rnd: Magazine_Base
 	{
 		scope = 2;
-		inventorySlot = "pistol";
+		displayName = "15 round CSP9 Grach Mag";
+		descriptionShort = "CSP9 Grach Mag is a 15 round mag for the CSP9 pistol, loaded in .45 ACP rounds.";
 		model = "BastionMod\BastionGuns\CSP9\CSP9mag.p3d";
-	};
+		weight = 230;
+		itemSize[] = {1,2};
+		count = 15;
+		ammo = "Bullet_45ACP";
+		ammoItems[] = {"Ammo_45ACP"};
+		isMeleeWeapon = 0;
+		tracersEvery = 1;
+	};	
 };
