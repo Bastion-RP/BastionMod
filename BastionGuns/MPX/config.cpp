@@ -260,12 +260,12 @@ class cfgMagazines
 	class BRP_Mag_CSSMG45_30Rnd: Magazine_Base
 	{
 		scope = 2;
-		displayName = "25 round CSSMG-45 Mag";
+		displayName = "30 round CSSMG-45 Mag";
 		descriptionShort = "Detachable box magazine for CSSMG-45 submachine gun. Holds up to 30 rounds of .45 ACP.";
 		model = "BastionMod\BastionGuns\MPX\MPX_mag.p3d";
 		weight = 150;
 		itemSize[] = {1,3};
-		count = 25;
+		count = 30;
 		ammo = "Bullet_45ACP";
 		ammoItems[] = {"Ammo_45ACP"};
 		tracersEvery = 0;
