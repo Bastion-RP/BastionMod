@@ -71,4 +71,27 @@ class CfgAmmo
 			};
 		};
 	};
+	class Bullet_Base;
+	class Bullet_556x45: Bullet_Base
+	{
+		class DamageApplied
+		{
+			type = "Projectile";
+			dispersion = 0.0;
+			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
+			class Health
+			{
+				damage = 55;
+			};
+			class Blood
+			{
+				damage = 100;
+			};
+			class Shock
+			{
+				damage = 75;
+			};
+		};
+	};	
 };
