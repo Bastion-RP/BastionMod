@@ -113,7 +113,7 @@ class cfgWeapons
 		scope = 2;
 		displayName = "CSP-45";
 		descriptionShort = "Russian-made, NCC co-opted .45 ACP handgun.";
-		magazines[] = {"BRP_Mag_CSP45_15Rnd"};
+		magazines[] = {"BRP_Mag_CSP45_17Rnd"};
 		chamberableFrom[] = {"Ammo_45ACP"};
 		recoilModifier[] = {1.05,1.05,1.05};		
 	};	
@@ -219,15 +219,15 @@ class CfgMagazines
 			};
 		};
 	};
-	class BRP_Mag_CSP45_15Rnd: Magazine_Base
+	class BRP_Mag_CSP45_17Rnd: Magazine_Base
 	{
 		scope = 2;
-		displayName = "15 round CSP9 Grach Mag";
-		descriptionShort = "CSP9 Grach Mag is a 15 round mag for the CSP9 pistol, loaded in .45 ACP rounds.";
+		displayName = "17 round CSP45 Grach Mag";
+		descriptionShort = "CSP45 Grach Mag is a 17 round mag for the CSP9 pistol, loaded in .45 ACP rounds.";
 		model = "BastionMod\BastionGuns\CSP9\CSP9mag.p3d";
 		weight = 230;
 		itemSize[] = {1,2};
-		count = 15;
+		count = 17;
 		ammo = "Bullet_45ACP";
 		ammoItems[] = {"Ammo_45ACP"};
 		isMeleeWeapon = 0;
