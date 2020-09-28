@@ -9,3 +9,5 @@ class BRP_Mag_M9A3_17rnd: MagazineStorage {};
 class BRP_Mag_G18_17rnd: MagazineStorage {};
 class BRP_Mag_PB_8Rnd: MagazineStorage {};
 class BRP_Taser_Cartridge: MagazineStorage {};
+class BRP_Mag_CSSMG45_30Rnd: MagazineStorage {};
+class BRP_Mag_CSP45_15Rnd: MagazineStorage {};
