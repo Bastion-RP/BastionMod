@@ -1,0 +1,116 @@
+FrameWidgetClass rootFrame {
+ ignorepointer 1
+ position 0 0
+ size 1 1
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ {
+  ScrollWidgetClass scroller {
+   ignorepointer 1
+   position 0.2 0
+   size 0.4 0.5
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style blank
+   "Scrollbar V" 1
+   {
+    GridSpacerWidgetClass spacer {
+     ignorepointer 0
+     position 0 0
+     size 1 1
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     Padding 5
+     Margin 5
+     "Size To Content V" 1
+     Columns 5
+     Rows 4
+    }
+   }
+  }
+  PlayerPreviewWidgetClass playerPreview {
+   ignorepointer 1
+   position 0.45 0.35
+   size 0.55 1.5
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+  }
+  ButtonWidgetClass btnCreateSpawn {
+   color 0 0 0 0.6667
+   position -0.107 0.1824
+   size 0.12 0.06
+   halign center_ref
+   valign bottom_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   style DayZDefaultButtonNoBorder
+   "no focus" 1
+   text "SPAWN"
+   text_proportion 0.6
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+   switch normal
+  }
+  GridSpacerWidgetClass gridDirectory {
+   ignorepointer 1
+   position 0.2 -0.275
+   size 0.01862 0.02749
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   Padding 10
+   "Size To Content H" 1
+   Columns 2
+   Rows 1
+   {
+    TextWidgetClass previousMenu {
+     ignorepointer 0
+     color 0.9882 1 0.0863 1
+     position 0.68831 -0.26992
+     size 0.129 0.028
+     halign right_ref
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     style Bold
+     text "Survivor Selection"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
+     "text color" 0.9882 1 0.0902 1
+     "size to text h" 1
+     "text valign" center
+    }
+    TextWidgetClass txtText {
+     ignorepointer 1
+     color 0.9882 1 0.0902 1
+     position 0.3154 -0.2699
+     size 247.395 30.5348
+     valign center_ref
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     style Bold
+     text "> Create Survivor"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
+     "size to text h" 1
+     "text valign" center
+    }
+   }
+  }
+ }
+}
