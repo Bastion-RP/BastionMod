@@ -1,23 +1,12 @@
 class Base_BeigeCouch_Kit extends ItemBase
 {	
 	ref protected EffectSound 						m_DeployLoopSound;
-	protected Object								Base_BeigeCouch_Kit1;
 	
 	void Base_BeigeCouch_Kit()
 	{
 		RegisterNetSyncVariableBool("m_IsSoundSynchRemote");
 	}	
-	
-	override void EEInit()
-	{
-		super.EEInit();
-	}
-	
-	override void OnItemLocationChanged( EntityAI old_owner, EntityAI new_owner ) 
-	{
-		super.OnItemLocationChanged( old_owner, new_owner );
-	}	
-	
+		
 	override void OnVariablesSynchronized()
 	{
 		super.OnVariablesSynchronized();
@@ -51,21 +40,17 @@ class Base_BeigeCouch_Kit extends ItemBase
 	//================================================================			
 		
 	override void OnPlacementComplete( Man player )
-	{
-		super.OnPlacementComplete( player );
-		
-		PlayerBase pb = PlayerBase.Cast( player );
+	{		
 		if ( GetGame().IsServer() )
 		{
 			PlayerBase player_base = PlayerBase.Cast( player );
 			vector position = player_base.GetLocalProjectionPosition();
 			vector orientation = player_base.GetLocalProjectionOrientation();
 				
-			//Base_BeigeCouch_Kit1 = GetGame().CreateObject("Base_BeigeCouch", pb.GetLocalProjectionPosition(), false );
-			//Base_BeigeCouch_Kit1.SetPosition( position );
-			//Base_BeigeCouch_Kit1.SetOrientation( orientation );
-		}	
-		
+			EntityAI item = EntityAI.Cast(GetGame().CreateObjectEx("Base_BeigeCouch", position, ECE_PLACE_ON_SURFACE ));
+			item.SetPosition(position);
+			item.SetOrientation(orientation);
+		}
 		SetIsDeploySound( true );
 		SetLifetime(3888000);
 	}
