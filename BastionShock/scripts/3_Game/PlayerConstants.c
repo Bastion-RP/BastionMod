@@ -6,13 +6,13 @@ modded class PlayerConstants {
 
 	
 	///--- HP display image levels
-	static const float SL_HEALTH_CRITICAL = 40;
-	static const float SL_HEALTH_LOW = 80;
-	static const float SL_HEALTH_NORMAL = 120;
-	static const float SL_HEALTH_HIGH = 160;	
+	static const float SL_HEALTH_CRITICAL = 30;
+	static const float SL_HEALTH_LOW = 70;
+	static const float SL_HEALTH_NORMAL = 100;
+	static const float SL_HEALTH_HIGH = 150;
 
 
 	// health regen, can be increased to make player regen faster
-	static const float HEALTH_REGEN_MIN						= 0.005;	//health regen rate at BLOOD_THRESHOLD_FATAL blood level
-	static const float HEALTH_REGEN_MAX						= 0.31;		//health regen rate at MAXIMUM blood level
+	static const float HEALTH_REGEN_MIN						= 0.003;	//health regen rate at BLOOD_THRESHOLD_FATAL blood level
+	static const float HEALTH_REGEN_MAX						= 0.1;		//health regen rate at MAXIMUM blood level
 }
