@@ -12,6 +12,6 @@ modded class PluginAdminLog extends PluginBase
 		string character_name = player.GetMultiCharactersPlayerName();
 		if (!character_name || character_name == "") character_name = "Unknown";
 
-		return "Player " + m_PlayerName + " (playing as \"" + character_name + "(" + character_id + ")\") (id=" + m_Pid + " pos=<" +  m_PosArray[0] + ", " + m_PosArray[1] + ", " + m_PosArray[2] + ">)";
+		return "Player " + m_PlayerName + " (playing as \"" + character_name + "(" + character_id + ")\") (pos=<" +  m_PosArray[0] + ", " + m_PosArray[1] + ", " + m_PosArray[2] + ">)";
 	}
 }
