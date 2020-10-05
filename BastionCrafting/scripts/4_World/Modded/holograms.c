@@ -21,6 +21,11 @@ modded class Hologram
 			return entity_for_placing;
 		}
 		
+		if (entity_for_placing.IsKindOf("Base_Almara_Kit") || entity_for_placing.IsKindOf("Base_Almara_Large_Kit") || entity_for_placing.IsKindOf("Base_GMetalCrate_Kit") || entity_for_placing.IsKindOf("Base_BMetalCrate_Kit") || entity_for_placing.IsKindOf("Base_Cot_Kit") || entity_for_placing.IsKindOf("Base_Nightstand_Kit") || entity_for_placing.IsKindOf("Base_Chernarus_Flag_Kit") || entity_for_placing.IsKindOf("Base_CornerSofa_Kit") || entity_for_placing.IsKindOf("Base_LeatherSofa_Kit") || entity_for_placing.IsKindOf("Base_WoodStorage_Kit") || entity_for_placing.IsKindOf("Base_SingleBed_Kit")  || entity_for_placing.IsKindOf("Base_CoffeeTable_Kit"))
+		{
+			return entity_for_placing;
+		}
+		
 		//From Base Storage
         ItemBase item_in_hands = ItemBase.Cast( m_Player.GetHumanInventory().GetEntityInHands() );
 		if ( item_in_hands && item_in_hands.CanMakeGardenplot() )
