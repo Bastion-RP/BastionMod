@@ -52,19 +52,16 @@ class Base_CornerSofa_Kit extends ItemBase
 		
 	override void OnPlacementComplete( Man player )
 	{
-		super.OnPlacementComplete( player );
-		
-		PlayerBase pb = PlayerBase.Cast( player );
 		if ( GetGame().IsServer() )
 		{
 			PlayerBase player_base = PlayerBase.Cast( player );
 			vector position = player_base.GetLocalProjectionPosition();
 			vector orientation = player_base.GetLocalProjectionOrientation();
 				
-			//Base_CornerSofa_Kit1 = GetGame().CreateObject("Base_CornerSofa", pb.GetLocalProjectionPosition(), false );
-			//Base_CornerSofa_Kit1.SetPosition( position + "0 0.22 0");
-			//Base_CornerSofa_Kit1.SetOrientation( orientation );
-		}	
+			EntityAI item = EntityAI.Cast(GetGame().CreateObjectEx("Base_CornerSofa", position, ECE_PLACE_ON_SURFACE ));
+			item.SetPosition(position);
+			item.SetOrientation(orientation);
+		}
 		
 		SetIsDeploySound( true );
 		SetLifetime(3888000);

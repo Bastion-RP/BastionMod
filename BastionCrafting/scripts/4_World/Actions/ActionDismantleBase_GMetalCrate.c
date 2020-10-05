@@ -11,7 +11,7 @@ class ActionDismantleBase_GMetalCrate: ActionContinuousBase
 	void ActionDismantleBase_GMetalCrate()
 	{
 		m_CallbackClass = ActionDismantleBase_GMetalCrateCB;
-		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_DISASSEMBLE;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
 		m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH;
 		
