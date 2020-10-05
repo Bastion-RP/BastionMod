@@ -11,7 +11,7 @@ class ActionDismantleBase_WoodStorage: ActionContinuousBase
 	void ActionDismantleBase_WoodStorage()
 	{
 		m_CallbackClass = ActionDismantleBase_WoodStorageCB;
-		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_DISASSEMBLE;
 		m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT;
 		
@@ -63,7 +63,7 @@ class ActionDismantleBase_WoodStorage: ActionContinuousBase
 			base_woodstorage.Base_Destroy();
 			
 			//add damage to tool
-			action_data.m_MainItem.DecreaseHealth( 5, false );
+			action_data.m_MainItem.DecreaseHealth( UADamageApplied.DISMANTLE, false );
 			
 			//return materials
 			vector pos = action_data.m_Player.GetPosition();
