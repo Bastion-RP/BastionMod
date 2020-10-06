@@ -1,23 +1,62 @@
 modded class PlayerBase {
 	private ref FileSerializer m_FileSerializer;
 	private ref array<ref BST_MCMagObject> m_MagsToReload;
-	private int BST_APICharID, BST_APICharClass;
-	private string BST_APICharName;
+	private int multicharactersPlayerId, multicharactersPlayerClass;
+	private string multicharactersPlayerName;
+	private bool bstMCCanSavePlayer;
 
 	void PlayerBase() {
 		m_MagsToReload = new array<ref BST_MCMagObject>();
 		m_FileSerializer = new FileSerializer();
-		BST_APICharID = -1;
-		BST_APICharClass = -1;
+		bstMCCanSavePlayer = true;
+		multicharactersPlayerId = -1;
+		multicharactersPlayerClass = -1;
 	}
 
 	override void OnStoreSave(ParamsWriteContext ctx) {
-		if (BST_APICharID == -1 || !GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
-		BSTMCSaveInventory();
+		if (multicharactersPlayerId == -1) { return; }
+		SaveInventory();
 	}
 
-	void BSTMCSaveInventory() {
-		Print(BST_MCConst.debugPrefix + "Saving player inventory! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + BST_APICharID);
+	void InsertMag(ref BST_MCMagObject mag) {
+		m_MagsToReload.Insert(mag);
+	}
+
+	void SpawnMissingMags() {
+		if (!m_MagsToReload) {
+			m_MagsToReload = new array<ref BST_MCMagObject>();
+		}
+		int magCount = m_MagsToReload.Count();
+		for(int i = 0; i < magCount; i++) {
+			InventoryLocation loc = new InventoryLocation();
+			string type = m_MagsToReload[i].GetType();
+			float count = m_MagsToReload[i].GetCount();
+			EntityAI localItem;
+			Magazine localMag;
+			
+			if (GetInventory().FindFirstFreeLocationForNewEntity(type, FindInventoryLocationType.CARGO, loc)) {
+				localItem = loc.GetParent().GetInventory().CreateEntityInCargoEx(type, loc.GetIdx(), loc.GetRow(), loc.GetCol(), loc.GetFlip());
+			} else {
+				localItem = GetGame().CreateObjectEx(type, GetPosition(), ECE_PLACE_ON_SURFACE);
+			}
+			
+			if (localItem) {
+				localMag = Magazine.Cast(localItem);
+				if (localMag) {
+					localMag.ServerSetAmmoCount(count);
+				}
+			}
+		}
+		/* if (magCount > 0) {
+			Param1<int> param = new Param1<int>(magCount);
+			g_Game.RPCSingleParam(this, MultiCharRPC.CLIENT_SPAWN_MAG, param, true, GetIdentity());
+		} */
+		delete m_MagsToReload;
+	}
+
+	void SaveInventory() {
+		if (!GetGame().IsServer() || !GetGame().IsMultiplayer() || !GetIdentity() || !IsAlive() || !bstMCCanSavePlayer) { return; }
+		Print(MCConst.debugPrefix + "Saving player inventory! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + multicharactersPlayerId);
 
 		BST_MCSavePlayer m_SavePlayer = new BST_MCSavePlayer();
 		array<EntityAI> m_EnumeratedInventory = new array<EntityAI>();
@@ -40,6 +79,7 @@ modded class PlayerBase {
 			InventoryLocation il = new InventoryLocation();
 			PlayerBase localPlayer;
 			Magazine localAmmo;
+			Weapon_Base localWeapon;
 			BST_MCSaveObject tempObject;
 
 			// Grab the InventoryLocation of the current object to grab the slot/index to spawn in the object later
@@ -109,12 +149,21 @@ modded class PlayerBase {
 
 			if (Class.CastTo(localAmmo, localEntity)) {
 				tempObject.SetQuantity(localAmmo.GetAmmoCount());
-			} else
+			} else if (Class.CastTo(localWeapon, localEntity)) {
+				ref BST_MCSaveObject pile = new BST_MCSaveObject();
+				int muzzle = localWeapon.GetCurrentMuzzle();
+				pile.SetType(localWeapon.GetChamberAmmoTypeName(muzzle));
+				pile.SetQuantity(localWeapon.GetTotalCartridgeCount(muzzle));
+				if (pile.GetQuantity() > 0) tempObject.AddChild(pile);
+			} else if (localItem && localItem.GetCompEM()) {
+				tempObject.SetQuantity(localItem.GetCompEM().GetEnergy());
+			} else {
 				tempObject.SetQuantity(localItem.GetQuantity());
+			}
 		}
 
 		// Set needed values for the player
-		m_SavePlayer.SetAPIData(BST_APICharName, BST_APICharID, BST_APICharClass);
+		m_SavePlayer.SetAPIData(multicharactersPlayerName, multicharactersPlayerId, multicharactersPlayerClass);
 		m_SavePlayer.SetLocation(GetPosition(), GetDirection(), GetOrientation());
 		m_SavePlayer.SetLifeStats(GetHealth("", "Health"), GetHealth("", "Blood"), GetHealth("GlobalHealth", "Shock"), GetStatWater().Get(), GetStatEnergy().Get());
 
@@ -127,17 +176,18 @@ modded class PlayerBase {
 		// Save symptoms
 		m_SavePlayer.WriteSymptoms(m_SymptomManager.m_SymptomQueuePrimary, m_SymptomManager.m_SymptomQueueSecondary);
 		// Save bleeding
+		Print("[DEBUG] GetBleedingBits=" + GetBleedingBits());
 		m_SavePlayer.WriteBleeding(GetBleedingManagerServer(), GetBleedingBits());
 
 		m_SavePlayer.SetType(GetType());
 		m_SavePlayer.SetInventory(m_SaveObjects);
 
-		string playerDir = BST_MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId();
+		string playerDir = MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId();
 		if (!FileExist(playerDir))
 			MakeDirectory(playerDir);
 
 		// Use this for viewing it in plain-text for debugging. This function sucks for anything else. Use file serializer instead.
-		JsonFileLoader<BST_MCSavePlayer>.JsonSaveFile(playerDir + "\\" + BST_APICharID + ".json", m_SavePlayer);
+		JsonFileLoader<BST_MCSavePlayer>.JsonSaveFile(playerDir + "\\" + multicharactersPlayerId + MCConst.fileType, m_SavePlayer);
 
 		delete m_SavePlayer;
 		delete m_EnumeratedInventory;
@@ -145,31 +195,58 @@ modded class PlayerBase {
 		delete m_RootChildren;
 		delete m_ChildChildren;
 	}
+	
+	override void OnDisconnect() {
+		if (IsRestrained() || IsUnconscious()) {
+			if (GetIdentity()) {
+				Print(MCConst.debugPrefix + "OnDisconnect | Player logged out while restrained or unconcious!!! " + GetIdentity().GetName() + " | playerIndex=" + multicharactersPlayerId);
+			} else {
+				Print(MCConst.debugPrefix + "OnDisconnect | Player logged out while restrained or unconcious!!! | playerIndex=" + multicharactersPlayerId);
+			}
+			BSTMCKillPlayer();
+
+			bstMCCanSavePlayer = false;
+		}
+		super.OnDisconnect();
+	}
 
 	override void EEKilled(Object killer) {
-		Print(BST_MCConst.debugPrefix + GetIdentity().GetName() + " died, killing player at index=" + BST_APICharID);
+		if (GetIdentity()) {
+			Print(MCConst.debugPrefix + GetIdentity().GetName() + " died, killing player at index=" + multicharactersPlayerId);
+		} else {
+			Print(MCConst.debugPrefix + "Player died, killing player at index=" + multicharactersPlayerId);
+		}
+		BSTMCKillPlayer();
+		super.EEKilled(killer);
+	}
 
-		if (GetIdentity() && BST_APICharID != -1) {
+	void BSTMCKillPlayer() {
+		Print(MCConst.debugPrefix + "BSTMCKillPlayer | kill function called");
+		if (GetIdentity() && multicharactersPlayerId != -1 && bstMCCanSavePlayer) {
 			BST_MCSavePlayer savePlayer;
 			string playerDir;
 
-			playerDir = BST_MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId() + "\\" + BST_APICharID + ".json";
+
+			playerDir = MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId() + "\\" + multicharactersPlayerId + MCConst.fileType;
+			Print(MCConst.debugPrefix + "BSTMCKillPlayer | playerDir = " + playerDir);
 
 			if (FileExist(playerDir)) {
+				Print(MCConst.debugPrefix + "BSTMCKillPlayer | File exists, loading");
 				JsonFileLoader<BST_MCSavePlayer>.JsonLoadFile(playerDir, savePlayer);
 			}
 			if (!savePlayer) {
+				Print(MCConst.debugPrefix + "BSTMCKillPlayer | Save player doesn't exist, creating new one!!!");
 				savePlayer = new BST_MCSavePlayer();
 
-				savePlayer.SetAPIData(BST_APICharName, BST_APICharID, BST_APICharClass);
+				savePlayer.SetAPIData(multicharactersPlayerName, multicharactersPlayerId, multicharactersPlayerClass);
 				savePlayer.SetType(GetType());
 			}
+			Print(MCConst.debugPrefix + "BSTMCKillPlayer | Clearing character inventory and setting death timestamp!!!");
 			savePlayer.ClearInventory();
 			savePlayer.SetDead(true);
 			savePlayer.SetDeathTimestamp(GetBSTLibTimestamp().GetCurrentTimestamp());
 			JsonFileLoader<BST_MCSavePlayer>.JsonSaveFile(playerDir, savePlayer);
 		}
-		super.EEKilled(killer);
 	}
 	
 	void BSTMCSetLifespan(int state, int lastShaved, bool bloodHands, bool bloodVisible, int bloodType) {
@@ -181,8 +258,8 @@ modded class PlayerBase {
 	}
 
 	// Function identical to OnConnect, just no other mod relies on it. So I can initialize a client without worrying about mods calling OnConnect to data that doesn't exist.
-	void BSTMCOnConnect() {
-		Print(BST_MCConst.debugPrefix + "PlayerBase | BSTMCOnConnect | Player connected:" + this.ToString());
+	void MultiCharInit() {
+		Print(MCConst.debugPrefix + "PlayerBase | MultiCharInit | Player connected:" + this.ToString());
 
 		// analytics
 		GetGame().GetAnalyticsServer().OnPlayerConnect( this );
@@ -195,13 +272,13 @@ modded class PlayerBase {
 		ResetConstructionActionData();
 	}
 
-	void BSTMCSetCharData(int CharID, string charName, int charClass) {
-		BST_APICharID = CharID;
-		BST_APICharClass = charClass;
-		BST_APICharName = charName;
+	void SetMultiCharacterStats(int multicharactersPlayerId, string multicharactersPlayerName, int multicharactersPlayerClass) {
+		this.multicharactersPlayerId = multicharactersPlayerId;
+		this.multicharactersPlayerClass = multicharactersPlayerClass;
+		this.multicharactersPlayerName = multicharactersPlayerName;
 	}
 
-	string GetMultiCharactersPlayerName() { return BST_APICharName; }
-	int GetMultiCharactersPlayerId() { return BST_APICharID; }
-	int GetMultiCharactersPlayerClass() { return BST_APICharClass; }
+	string GetMultiCharactersPlayerName() { return multicharactersPlayerName; }
+	int GetMultiCharactersPlayerId() { return multicharactersPlayerId; }
+	int GetMultiCharactersPlayerClass() { return multicharactersPlayerClass; }
 }

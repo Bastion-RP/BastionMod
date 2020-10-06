@@ -7,6 +7,7 @@ FrameWidgetClass root {
  vexactpos 0
  hexactsize 0
  vexactsize 0
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   PanelWidgetClass blackPanel {
    ignorepointer 1
@@ -19,6 +20,7 @@ FrameWidgetClass root {
    vexactsize 0
    style editor_selection
    "no focus" 1
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     RichTextWidgetClass waitText {
      ignorepointer 1
@@ -33,6 +35,7 @@ FrameWidgetClass root {
      text "Initializing..."
      "text halign" center
      "text valign" center
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }

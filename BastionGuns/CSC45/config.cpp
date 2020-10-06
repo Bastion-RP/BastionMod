@@ -24,6 +24,7 @@ class cfgWeapons
 		ironsightsExcludingOptics[] = {"M4_CarryHandleOptic","BUISOptic","M68Optic","M4_T3NRDSOptic","ReflexOptic","ACOGOptic","BRP_CSR556"};
 		weight = 1990;
 		absorbency = 0;
+		barrelArmor = 2.5;		
 		repairableWithKits[] = {5,1};
 		repairCosts[] = {30,25};
 		PPDOFProperties[] = {1,0.5,50,150,4,10};

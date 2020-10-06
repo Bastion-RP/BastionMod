@@ -7,7 +7,7 @@ modded class PlayerBase {
     }
 
     void BSTBankingStartIncomeLoop() {
-        string debugTxt = "[BANKING DEBUG] Starting UBI on player=" + multicharactersPlayerName + " | id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass;
+        string debugTxt = BST_ConstGetDebugPrefix() + " Starting UBI on player=" + multicharactersPlayerName + " | id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass;
         if (!GetIdentity()) {
             Print(debugTxt);
         } else {
@@ -17,7 +17,7 @@ modded class PlayerBase {
     }
 
     void BSTBankingStopIncomeLoop() {
-        string debugTxt = "[BANKING DEBUG] Stopping UBI on player=" + multicharactersPlayerName + " | id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass;
+        string debugTxt = BST_ConstGetDebugPrefix() + " Stopping UBI on player=" + multicharactersPlayerName + " | id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass;
         if (!GetIdentity()) {
             Print(debugTxt);
         } else {
@@ -30,9 +30,9 @@ modded class PlayerBase {
         string debugSuffix = multicharactersPlayerName + " | id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass;
         if (!GetIdentity() || !IsAlive()) {
             if (!IsAlive()) {
-                Print("[BANKING DEBUG] Error with payment! Player is dead! player=" + debugSuffix + " | pid=" + GetIdentity().GetPlainId());
+                Print(BST_ConstGetDebugPrefix() + " Error with payment! Player is dead! player=" + debugSuffix + " | pid=" + GetIdentity().GetPlainId());
             } else {
-                Print("[BANKING DEBUG] Error with payment! Something went wrong! player=" + debugSuffix);
+                Print(BST_ConstGetDebugPrefix() + " Error with payment! Something went wrong! player=" + debugSuffix);
             }
             BSTBankingStopIncomeLoop();
             return;

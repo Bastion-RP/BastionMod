@@ -5,6 +5,7 @@ PanelWidgetClass rootFrame {
  hexactsize 0
  vexactsize 1
  userID -1
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   ButtonWidgetClass ButtonWidget0 {
    color 1 0.502 0.0314 1
@@ -15,6 +16,7 @@ PanelWidgetClass rootFrame {
    vexactsize 0
    userID 757
    style MenuDefault
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   TextWidgetClass RequesterName {
    ignorepointer 1
@@ -29,6 +31,7 @@ PanelWidgetClass rootFrame {
    "text offset" 10 0
    "exact text" 1
    "text valign" center
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
  }
 }

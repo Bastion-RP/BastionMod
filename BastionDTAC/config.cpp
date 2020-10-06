@@ -5,7 +5,8 @@ class CfgPatches
 		requiredAddons[] = {
             "DZ_Data",
 			"VanillaPlusPlus",
-			"BastionMultiCharacters"
+			"BastionMultiCharacters",
+			"BastionCentralMenu"
         };
 	};
 };

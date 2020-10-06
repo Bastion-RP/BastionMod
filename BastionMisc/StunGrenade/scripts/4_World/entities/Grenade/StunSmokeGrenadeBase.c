@@ -170,44 +170,43 @@ class StunSmoke extends Grenade_Base
 
 		Param1<ESmokeGrenadeState> par = new Param1<ESmokeGrenadeState>(ESmokeGrenadeState.LOOP);
 		m_TimerSmokeLoop.Run(5.0, this, "SetSmokeGrenadeState", par);
-		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater(this.CheckPlayerNearby, 20000 );
+		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater(this.CheckPlayerNearby, 2000 );
 	}
 	
 	void CheckPlayerNearby()
 	{
 		ref array<Object> proche_objects = new array<Object>;
-		PlayerBase FindPlayer;
+		PlayerBase findPlayer;
 		GetGame().GetObjectsAtPosition3D(this.GetPosition(), 8, proche_objects, NULL);
-		FindPlayer = NULL;
+		findPlayer = NULL;
 			
 		//Print("NB_Obj: " + proche_objects.Count().ToString());
 			
 		for (int i = 0; i < proche_objects.Count(); ++i) 
 		{
-			Print(i.ToString());
-			string tempObjId = proche_objects.Get(i).ToString();
+			Object objectNearest = proche_objects.Get(i);
+			string tempObjId = objectNearest.ToString();
+			
 			tempObjId.ToLower();
+			
 			if (tempObjId.Contains("static")) continue;
-			if (proche_objects.Get(i).IsWell() || proche_objects.Get(i).IsBush()) continue;
-			if (proche_objects.Get(i).IsRock() || proche_objects.Get(i).IsTree()) continue;
-			if (proche_objects.Get(i).IsBuilding()) continue;
-			if (proche_objects.Get(i).IsWoodBase() ) continue;
-			if (proche_objects.Get(i).IsKindOf("SurvivorBase"))
+			
+			if (objectNearest.IsWell() || objectNearest.IsBush()) continue;
+			if (objectNearest.IsRock() || objectNearest.IsTree()) continue;
+			if (objectNearest.IsBuilding()) continue;
+			if (objectNearest.IsWoodBase() ) continue;
+			if (objectNearest.IsKindOf("SurvivorBase"))
 			{
-				FindPlayer=proche_objects.Get(i);
-				SGTimerCheck=FindPlayer.SGTimerCheck*1000;
-				if(!FindPlayer.IsUnconscious())
+				findPlayer = PlayerBase.Cast(objectNearest);
+				if(!findPlayer.IsUnconscious())
 				{
-					FindPlayer.CheckProtectionAgainstStun();
+					findPlayer.CheckProtectionAgainstStun();
 				}
 			}
 		}
-		if(SGTimerCheck!=0){
-		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater(this.CheckPlayerNearby,SGTimerCheck );
-		}
-		else{
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater(this.CheckPlayerNearby,15000 );
-		}
+		
+		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater(this.CheckPlayerNearby, 1000 );
+		
 	}
 	
 	// When the smoke stops
@@ -288,3 +287,12 @@ class StunSmoke extends Grenade_Base
 	void ~StunSmoke(){
 	}
 }
+
+modded class JMAnimRegister
+{
+	override void OnRegisterOneHanded( DayZPlayerType pType, DayzPlayerItemBehaviorCfg pBehavior )
+    {
+		super.OnRegisterOneHanded( pType, pBehavior )			
+ 		pType.AddItemInHandsProfileIK("BRP_Kolokol2", "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior, "dz/anims/anm/player/ik/explosives/smokegrenade.anm");
+    }	
+};

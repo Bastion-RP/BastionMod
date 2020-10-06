@@ -7,6 +7,7 @@ FrameWidgetClass rootFrame {
  vexactpos 1
  hexactsize 1
  vexactsize 1
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   PanelWidgetClass pnlBG {
    ignorepointer 1
@@ -18,6 +19,7 @@ FrameWidgetClass rootFrame {
    hexactsize 0
    vexactsize 0
    style rover_sim_colorable
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   TextWidgetClass txtHeader {
    ignorepointer 1
@@ -30,6 +32,7 @@ FrameWidgetClass rootFrame {
    text "Civ Identification"
    "size to text h" 1
    "text valign" center
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   TextWidgetClass txtName {
    ignorepointer 1
@@ -42,6 +45,7 @@ FrameWidgetClass rootFrame {
    text "Name: "
    "size to text h" 1
    "text valign" center
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   TextWidgetClass txtId {
    ignorepointer 1
@@ -54,6 +58,7 @@ FrameWidgetClass rootFrame {
    text "ID:"
    "size to text h" 1
    "text valign" center
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   TextWidgetClass txtClass {
    ignorepointer 1
@@ -66,6 +71,7 @@ FrameWidgetClass rootFrame {
    text "Class:"
    "size to text h" 1
    "text valign" center
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
  }
 }

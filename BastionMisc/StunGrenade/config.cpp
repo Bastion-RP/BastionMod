@@ -137,7 +137,7 @@ class CfgVehicles
 		};
 		class EnergyManager
 		{
-			energyAtSpawn=150;
+			energyAtSpawn=60;
 			energyUsagePerSecond=1;
 			wetnessExposure=0.1;
 		};

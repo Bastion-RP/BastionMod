@@ -6,6 +6,7 @@ FrameWidgetClass rootFrame {
  vexactpos 1
  hexactsize 1
  vexactsize 1
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   ImageWidgetClass imgMarker {
    ignorepointer 1
@@ -20,6 +21,7 @@ FrameWidgetClass rootFrame {
    "src alpha" 1
    stretch 1
    "flip v" 1
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   ImageWidgetClass imgCompass {
    ignorepointer 1
@@ -35,6 +37,7 @@ FrameWidgetClass rootFrame {
    mode blend
    "src alpha" 1
    stretch 1
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
  }
 }

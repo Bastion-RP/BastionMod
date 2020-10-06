@@ -6,5 +6,6 @@ modded class PluginRecipesManager
 		super.RegisterRecipies();		
 		UnregisterRecipe("CraftFenceKit");
 		UnregisterRecipe("CraftWatchtowerKit");
+		UnregisterRecipe("CraftTerritoryFlagKit");
 	}			
 };

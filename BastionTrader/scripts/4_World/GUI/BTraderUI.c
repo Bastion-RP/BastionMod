@@ -111,12 +111,14 @@ class BTraderUI extends UIScriptedMenu
 	override void OnShow()
 	{
 		super.OnShow();
-		PPEffects.SetBlurInventory(0.8);
+		GetGame().GetMission().GetHud().Show(false);
+		PPEffects.SetBlurInventory(0.3);
 	}
 
 	override void OnHide()
 	{
 		super.OnHide();
+		GetGame().GetMission().GetHud().Show(true);
 		PPEffects.SetBlurInventory(0);
 	}
 

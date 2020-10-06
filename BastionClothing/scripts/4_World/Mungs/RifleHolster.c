@@ -1,0 +1,1 @@
+class BRP_rifleholster_colorbase extends Clothing {};

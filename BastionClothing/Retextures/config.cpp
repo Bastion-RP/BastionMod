@@ -19,11 +19,12 @@ class cfgVehicles
 	class MilitaryBeret_ColorBase;
 	class BaseballCap_ColorBase;
 	class PoliceVest;
-	class SmershVest;
 	class SmershBag;
 	class AssaultBag_ColorBase;
 	class TortillaBag;
+	class PrisonUniformPants;
 	class Hoodie_ColorBase;
+	class SmershVest;
 //---Head
     class Inventory_base;
     class BRP_Head_admin: Inventory_Base
@@ -174,16 +175,16 @@ class cfgVehicles
 		displayName = "NCC Military Beret";
         descriptionShort = "Military beret for high-ranking NCC officials.";
 		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
-		class ClothingTypes
-		{
-			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
-			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
-		};
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa",
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa",
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa"
+		};
+		class ClothingTypes
+		{
+			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
+			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
 		};
 	};
 	class BRP_ISF_Blue_OfficerBeret: MilitaryBeret_ColorBase
@@ -192,16 +193,52 @@ class cfgVehicles
 		displayName = "NCC Military Beret";
         descriptionShort = "Military beret for high-ranking NCC officials.";
 		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
-		class ClothingTypes
-		{
-			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
-			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
-		};
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_blue_co.paa",
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_blue_co.paa",
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_blue_co.paa"
+		};
+		class ClothingTypes
+		{
+			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
+			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
+		};
+	};
+	class BRP_ISF_Black_OfficerBeret: MilitaryBeret_ColorBase
+	{
+		scope=2;
+		displayName = "NCC Military Beret";
+        descriptionShort = "Military beret for high-ranking NCC officials.";
+		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_black_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_black_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_black_co.paa"
+		};
+		class ClothingTypes
+		{
+			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
+			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
+		};
+	};
+	class BRP_ISF_Purple_OfficerBeret: MilitaryBeret_ColorBase
+	{
+		scope=2;
+		displayName = "NCC Military Beret";
+        descriptionShort = "Military beret for high-ranking NCC officials.";
+		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_purple_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_purple_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_purple_co.paa"
+		};
+		class ClothingTypes
+		{
+			male="\DZ\characters\headgear\MilitaryBeret_m.p3d";
+			female="\DZ\characters\headgear\MilitaryBeret_f.p3d";
 		};
 	};
 	
@@ -416,7 +453,6 @@ class cfgVehicles
         displayName="Jacket - Admin";
         descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD.";
         scope=2;
-        visibilityModifier = 0.6;
         itemSize[]={2,2};
         itemsCargoSize[] = {10,50};
         hiddenSelectionsTextures[]=
@@ -497,6 +533,36 @@ class cfgVehicles
 			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_brown_co.paa"
 		};
 	};
+	class BRP_TTsKOJacket_Civilian_Olive: TTsKOJacket_ColorBase
+	{
+		scope=2;
+		displayName = "NCC Citizen's Jacket";
+        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in olive.";
+		visibilityModifier=0.5;
+		itemSize[]={3,3};
+		itemsCargoSize[]={5,4};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_olive_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_olive_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_olive_co.paa"
+		};
+	};
+	class BRP_TTsKOJacket_Civilian_Red: TTsKOJacket_ColorBase
+	{
+		scope=2;
+		displayName = "NCC Citizen's Jacket";
+        descriptionShort = "Mass-produced, one size fits most, all-purpose clothing for citizens of the NCC. This version is colored in red.";
+		visibilityModifier=0.5;
+		itemSize[]={3,3};
+		itemsCargoSize[]={5,4};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_red_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_red_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_red_co.paa"
+		};
+	};
 
 //---Assault Backpack
 	class BRP_AssaultBackpack_isf: AssaultBag_ColorBase
@@ -541,7 +607,6 @@ class cfgVehicles
         displayName="Gloves - Admin";
         descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD.";
         scope=2;
-        visibilityModifier = 0.6;
         itemSize[]={2,2};
         hiddenSelectionsTextures[]=
         {
@@ -572,7 +637,6 @@ class cfgVehicles
         displayName="Pants - Admin";
         descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD.";
         scope=2;
-        visibilityModifier = 0.6;
         itemSize[]={2,2};
         itemsCargoSize[] = {0,0};
         hiddenSelectionsTextures[] = 
@@ -581,6 +645,21 @@ class cfgVehicles
         };
     };
 
+//---Prison Pants
+	class BRP_PrisonPants_NCC: PrisonUniformPants
+	{
+		scope=2;
+		displayName = "NCC Prison Pants";
+        descriptionShort = "Factory produced clothing for prisoners being held by NCC. This version is colored in navy blue.";
+		visibilityModifier=0.5;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\BRP_PrisonPants_ncc.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_PrisonPants_ncc.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_PrisonPants_ncc.paa"
+		};
+	};
+
 //---NBC Boots
 	class NBCBootsBase;
     class BRP_Boots_admin: NBCBootsBase
@@ -588,7 +667,6 @@ class cfgVehicles
         displayName="Boots - Admin";
         descriptionShort="Admin Clothing; if you're not an admin be prepared to get whipped... HARD.";
         scope=2;
-        visibilityModifier = 0.6;
         itemSize[]={2,2};
         hiddenSelectionsTextures[]=
         {

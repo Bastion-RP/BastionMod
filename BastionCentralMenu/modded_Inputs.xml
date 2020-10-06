@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<modded_inputs>
+
+	<!-- declarations -->
+	<inputs>
+
+		<actions>
+			<input name="BST_OpenCentralMenu" loc="Open Central Menu" />
+		</actions>
+
+	</inputs>
+
+	<!-- preset -->
+	<preset>
+		
+		<input name="BST_OpenCentralMenu">
+			<btn name="kP" />
+		</input>
+		
+	</preset>
+
+</modded_inputs>

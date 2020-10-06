@@ -40,8 +40,8 @@ class BST_GUICategory : BST_GUIObject {
             }
         }
         _txtCaret.SetText("^");
-        _txtCaret.SetColor(BST_CraftingMenu.CONST_COLOR_BST_ORANGE);
-        _txtName.SetColor(BST_CraftingMenu.CONST_COLOR_BST_ORANGE);
+        _txtCaret.SetColor(BST_CraftingMenuWidget.CONST_COLOR_BST_ORANGE);
+        _txtName.SetColor(BST_CraftingMenuWidget.CONST_COLOR_BST_ORANGE);
         _isCollapsed = false;
     }
 
@@ -53,8 +53,8 @@ class BST_GUICategory : BST_GUIObject {
             }
         }
         _txtCaret.SetText("v");
-        _txtCaret.SetColor(BST_CraftingMenu.CONST_COLOR_WHITE);
-        _txtName.SetColor(BST_CraftingMenu.CONST_COLOR_WHITE);
+        _txtCaret.SetColor(BST_CraftingMenuWidget.CONST_COLOR_WHITE);
+        _txtName.SetColor(BST_CraftingMenuWidget.CONST_COLOR_WHITE);
         _isCollapsed = true;
     }
 

@@ -78,33 +78,33 @@ class BST_BankingManager : PluginBase {
 
         ref array<ItemBase> arrayItems = GetMoneyInInventory(player);
         int itemMaxQuant = GetGame().ConfigGetInt(CFG_VEHICLESPATH + " " + GetBSTBankingConfigHandler().GetConfig().GetCurrencyClassName() + " varQuantityMax");
-        int withdrawAmount = amount;
         int amountWithdrawn = 0;
 
         if (arrayItems.Count() > 0) {
             foreach (ItemBase item : arrayItems) {
-                int gap = itemMaxQuant - item.GetQuantity();
+                int itemQuant = item.GetQuantity();
+                int gap = itemMaxQuant - itemQuant;
 
                 if (gap > 0) {
-                    if (gap <= withdrawAmount) {
-                        withdrawAmount -= gap;
+                    if (gap <= amount) {
+                        amount -= gap;
                         amountWithdrawn += gap;
 
                         SetItemQuantity(item, itemMaxQuant);
                     } else {
-                        withdrawAmount = 0;
-                        amountWithdrawn += withdrawAmount;
+                        SetItemQuantity(item, itemQuant + amount);
 
-                        SetItemQuantity(item, withdrawAmount);
+                        amountWithdrawn += amount;
+                        amount = 0;
                     }
                 }
-                if (withdrawAmount == 0) {
+                if (amount == 0) {
                     break;
                 }
             }
         }
-        if (withdrawAmount > 0) {
-            int iterationAmount = Math.Ceil(withdrawAmount / itemMaxQuant);
+        if (amount > 0) {
+            int iterationAmount = Math.Ceil(amount / itemMaxQuant);
 
             for (int i = 0; i < iterationAmount; i++) {
                 InventoryLocation il = new InventoryLocation();
@@ -114,18 +114,18 @@ class BST_BankingManager : PluginBase {
                     //ItemBase newItem = ItemBase.Cast(il.GetParent().GetInventory().CreateEntityInCargoEx(GetBSTBankingConfigHandler().GetConfig().GetCurrencyClassName(), il.GetIdx(), il.GetRow(), il.GetCol(), il.GetFlip()));
                     
                     if (!newItem) { continue; } // This will make sure the count is never added to begin with.
-                    if (withdrawAmount < itemMaxQuant) {
-                        amountWithdrawn += withdrawAmount;
+                    if (amount < itemMaxQuant) {
+                        amountWithdrawn += amount;
 
-                        SetItemQuantity(newItem, withdrawAmount);
+                        SetItemQuantity(newItem, amount);
                     } else {
                         amountWithdrawn += itemMaxQuant;
 
-                        SetItemQuantity(newItem, withdrawAmount);
+                        SetItemQuantity(newItem, amount);
                     }
-                    withdrawAmount -= itemMaxQuant;
+                    amount -= itemMaxQuant;
                 }
-                if (withdrawAmount <= 0) {
+                if (amount <= 0) {
                     break;
                 }
             }

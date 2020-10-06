@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{D504D4C24225EFF7}BastionMod/BastionMenu/gui/fonts/ddin39.edds"
+ Author "desktop-3up08te"
+ ChangeDate -785110734
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "ddin39.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

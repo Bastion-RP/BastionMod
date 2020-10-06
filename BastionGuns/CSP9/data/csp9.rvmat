@@ -1,135 +1,78 @@
-﻿////////////////////////////////////////////////////////////////////
-//DeRap: P:\BastionMod\BastionGuns\CSP9\data\csp9.rvmat
-//Produced from mikero's Dos Tools Dll version 7.60
-//https://mikero.bytex.digital/Downloads
-//'now' is Tue Apr 28 20:43:23 2020 : 'file' last modified on Tue Apr 28 20:43:23 2020
-////////////////////////////////////////////////////////////////////
-
-#define _ARMA_
-
 ambient[] = {1,1,1,1};
 diffuse[] = {1,1,1,1};
 forcedDiffuse[] = {0,0,0,0};
-emmisive[] = {0,3,0,2};
-specular[] = {0.23700006,0.24200006,0.24699995,0.24200076};
-specularPower = 80;
+emmisive[] = {0,0,0,1};
+specular[] = {0.4,0.4,0.4,1};
+specularPower = 120;
 PixelShaderID = "Super";
 VertexShaderID = "Super";
-class TexGen0
-{
-	uvSource = "tex";
-	class uvTransform
-	{
-		aside[] = {1,0,0};
-		up[] = {0,1,0};
-		dir[] = {0,0,1};
-		pos[] = {0,0,0};
-	};
-};
-class TexGen1
-{
-	uvSource = "tex";
-	class uvTransform
-	{
-		aside[] = {1,0,0};
-		up[] = {0,1,0};
-		dir[] = {0,0,1};
-		pos[] = {0,0,0};
-	};
-};
-class TexGen2
-{
-	uvSource = "tex";
-	class uvTransform
-	{
-		aside[] = {1,0,0};
-		up[] = {0,1,0};
-		dir[] = {0,0,1};
-		pos[] = {0,0,0};
-	};
-};
-class TexGen3
-{
-	uvSource = "tex";
-	class uvTransform
-	{
-		aside[] = {1,0,0};
-		up[] = {0,1,0};
-		dir[] = {0,0,1};
-		pos[] = {0,0,0};
-	};
-};
-class TexGen4
-{
-	uvSource = "tex";
-	class uvTransform
-	{
-		aside[] = {1,0,0};
-		up[] = {0,1,0};
-		dir[] = {0,0,1};
-		pos[] = {0,0,0};
-	};
-};
-class TexGen5
-{
-	uvSource = "tex";
-	class uvTransform
-	{
-		aside[] = {1,0,0};
-		up[] = {0,1,0};
-		dir[] = {0,0,1};
-		pos[] = {0,0,0};
-	};
-};
-class TexGen6
-{
-	uvSource = "tex";
-	class uvTransform
-	{
-		aside[] = {1,0,0};
-		up[] = {0,1,0};
-		dir[] = {0,0,1};
-		pos[] = {0,0,0};
-	};
-};
-class TexGen7
-{
-	uvSource = "tex";
-	class uvTransform
-	{
-		aside[] = {1,0,0};
-		up[] = {0,1,0};
-		dir[] = {0,0,1};
-		pos[] = {0,0,0};
-	};
-};
-class Stage0
-{
-	texture = "BastionMod\BastionGuns\CSP9\data\dayz_co.paa";
-	texGen = "0";
-};
 class Stage1
 {
 	texture = "BastionMod\BastionGuns\CSP9\data\dayz_nohq.paa";
-	texGen = "1";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage2
+{
+	texture = "#(argb,8,8,3)color(0.5,0.5,0.5,0.5,DT)";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage3
+{
+	texture = "#(argb,8,8,3)color(0,0,0,0,MC)";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
+};
+class Stage4
+{
+	texture = "#(argb,8,8,3)color(1,1,1,1,AS)";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
 };
 class Stage5
 {
 	texture = "BastionMod\BastionGuns\CSP9\data\dayz_smdi.paa";
-	texGen = "5";
+	uvSource = "tex";
+	class uvTransform
+	{
+		aside[] = {1,0,0};
+		up[] = {0,1,0};
+		dir[] = {0,0,0};
+		pos[] = {0,0,0};
+	};
 };
 class Stage6
 {
-	texture = "#(ai,64,64,1)fresnel(1.37,1.23)";
-	texGen = "6";
+	texture = "#(ai,32,128,1)fresnel(0.7,0.8)";
+	uvSource = "none";
 };
 class Stage7
 {
 	texture = "dz\data\data\env_land_co.paa";
-	texGen = "7";
-};
-class Stage8
-{
-	texture = "BastionMod\BastionGuns\CSP9\data\dayz_e_co.paa";
-	texGen = "0";
+	uvSource = "none";
 };

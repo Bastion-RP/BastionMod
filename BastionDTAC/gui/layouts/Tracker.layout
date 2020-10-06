@@ -5,6 +5,7 @@ FrameWidgetClass rootFrame {
  vexactpos 1
  hexactsize 1
  vexactsize 1
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   ImageWidgetClass imgChevron {
    inheritalpha 1
@@ -19,6 +20,7 @@ FrameWidgetClass rootFrame {
    mode blend
    "src alpha" 1
    stretch 1
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   TextWidgetClass txtPlayerName {
    inheritalpha 1
@@ -32,6 +34,7 @@ FrameWidgetClass rootFrame {
    hexactsize 1
    vexactsize 1
    "size to text h" 1
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
  }
 }
