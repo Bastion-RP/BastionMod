@@ -1,89 +1,151 @@
 FrameWidgetClass rootFrame {
- ignorepointer 1
  position 0 0
- size 1 1
- hexactpos 0
- vexactpos 0
- hexactsize 0
- vexactsize 0
+ size 350 286
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
  {
-  TextWidgetClass txtSelect {
+  TextWidgetClass name {
    ignorepointer 1
-   position 0.01 0.15356
-   size 0.20853 0.04926
-   hexactpos 0
-   vexactpos 0
-   hexactsize 0
-   vexactsize 0
-   style Bold
-   text "Select Character"
-   "exact text" 0
-   {
-    PanelWidgetClass pnlLine {
-     ignorepointer 1
-     position 0.0152 0.74301
-     size 0.7827 0.05
-     hexactpos 0
-     vexactpos 0
-     hexactsize 0
-     vexactsize 0
-     style rover_sim_colorable
-    }
-   }
-  }
-  FrameWidgetClass charFrame {
-   visible 1
-   ignorepointer 1
-   position 0.15 0
-   size 0.35 0.9
-   halign center_ref
-   valign center_ref
-   hexactpos 0
-   vexactpos 0
-   hexactsize 0
-   vexactsize 0
-   {
-    PlayerPreviewWidgetClass plyPreview {
-     visible 1
-     ignorepointer 1
-     position 0 0
-     size 1.002 0.9
-     hexactpos 0
-     vexactpos 0
-     hexactsize 0
-     vexactsize 0
-    }
-    ButtonWidgetClass btnSpawn {
-     color 0 0 0 0.6667
-     size 0.25 0.06
-     halign center_ref
-     valign bottom_ref
-     hexactpos 0
-     vexactpos 0
-     hexactsize 0
-     vexactsize 0
-     style DayZDefaultButton
-     "no focus" 1
-     text "SPAWN"
-     text_proportion 0.6
-     switch normal
-    }
-   }
-  }
-  GridSpacerWidgetClass gridPnlSurvivor {
-   ignorepointer 1
-   position 0.012 0.22
-   size 363.513 431.21902
+   position 0.05 0.05
+   size 300 40
    hexactpos 0
    vexactpos 0
    hexactsize 1
    vexactsize 1
-   Padding 15
+   text "Salvatore Moore"
+   font "BastionMod/BastionMenu/gui/fonts/ddin35"
+  }
+  ButtonWidgetClass ButtonPlay {
+   color 1 0.6588 0 1
+   position 0.05 0.05
+   size 250 50
+   valign bottom_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   style DayZDefaultButtonNoBorder
+   text "PLAY"
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold25"
+   "text color" 0 0 0 1
+  }
+  GridSpacerWidgetClass gridid {
+   ignorepointer 1
+   position 0.05 0.25
+   size 300 22
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   Padding 0
    Margin 0
    "Size To Content H" 1
-   "Size To Content V" 1
-   Columns 1
-   Rows 100
+   Columns 2
+   Rows 1
+   {
+    TextWidgetClass id {
+     ignorepointer 1
+     position 0.05 0.25
+     size 104 22
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     text "Citizen ID:"
+     font "BastionMod/BastionMenu/gui/fonts/ddin20"
+     "size to text h" 0
+     "size to text v" 0
+    }
+    TextWidgetClass idtext {
+     ignorepointer 1
+     position 0.05 0.25
+     size 150 22
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     text "50301"
+     font "BastionMod/BastionMenu/gui/fonts/ddin20"
+    }
+   }
+  }
+  GridSpacerWidgetClass griclass {
+   ignorepointer 1
+   position 0.05 0.35
+   size 300 22
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   Padding 0
+   Margin 0
+   "Size To Content H" 1
+   Columns 2
+   Rows 1
+   {
+    TextWidgetClass classe {
+     ignorepointer 1
+     position 0.05 0.35
+     size 134 22
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     text "Citizen Class:"
+     font "BastionMod/BastionMenu/gui/fonts/ddin20"
+    }
+    TextWidgetClass classetxt {
+     ignorepointer 1
+     position 0.05 0.35
+     size 300 22
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     text " ISF-F"
+     font "BastionMod/BastionMenu/gui/fonts/ddin20"
+    }
+   }
+  }
+  GridSpacerWidgetClass gridstatus {
+   ignorepointer 1
+   position 0.05 0.45
+   size 300 22
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   Padding 0
+   Margin 0
+   "Size To Content H" 1
+   Columns 2
+   Rows 1
+   {
+    TextWidgetClass status {
+     ignorepointer 1
+     position 0.05 0.45
+     size 75 22
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     text "Status:"
+     font "BastionMod/BastionMenu/gui/fonts/ddin20"
+    }
+    TextWidgetClass statustxt {
+     ignorepointer 1
+     position 0.05 0.45
+     size 300 22
+     hexactpos 0
+     vexactpos 0
+     hexactsize 1
+     vexactsize 1
+     text "Alive and Well"
+     font "BastionMod/BastionMenu/gui/fonts/ddin20"
+    }
+   }
   }
  }
 }
