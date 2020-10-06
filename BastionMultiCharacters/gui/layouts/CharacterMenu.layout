@@ -36,7 +36,7 @@ FrameWidgetClass rootFrame {
   ButtonWidgetClass btnDisconnect {
    color 1 0.5843 0 1
    position 25 25
-   size 175 30
+   size 150 30
    valign bottom_ref
    hexactpos 1
    vexactpos 1
@@ -46,7 +46,7 @@ FrameWidgetClass rootFrame {
    "no focus" 1
    text "DISCONNECT"
    text_proportion 0.7
-   font "BastionMod/BastionMenu/gui/fonts/ddin22"
+   font "gui/fonts/metron22"
   }
  }
 }
