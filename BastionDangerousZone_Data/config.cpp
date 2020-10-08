@@ -1,3 +1,4 @@
+#include "detectors\sounds\CfgSounds.hpp"
 class CfgPatches
 {
 	class BastionDangerousZone_Data
@@ -64,11 +65,18 @@ class CfgVehicles
 		{
 			"BastionMod\BastionDangerousZone_Data\dosimeter\data\geiger_ca.paa"
 		};
+		batteryTexturePaths[]=
+		{
+			"BastionMod\BastionDangerousZone_Data\detectors\battery\battery1bars.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\battery\battery2bars.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\battery\battery3bars.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\battery\battery4bars.paa"
+		};
 		class EnergyManager
 		{
 			hasIcon=1;
 			autoSwitchOff=1;
-			energyUsagePerSecond=0.0049999999;
+			energyUsagePerSecond=0.01;
 			plugType=1;
 			attachmentAction=1;
 			updateInterval=30;
@@ -120,13 +128,38 @@ class CfgVehicles
 		hiddenSelections[]=
 		{
 			"base",
-			"screen"
+			"screen",
+			"dig0",
+			"dig1",
+			"dig2",
+			"cmpDig0",
+			"cmpDig1",
+			"cmpDig2",
+			"battery",
+			"time0",
+			"time1",
+			"time2",
+			"time3"
 		};
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionDangerousZone_Data\detectors\data\detectors_co.paa",
 			"BastionMod\BastionDangerousZone_Data\detectors\data\detectors_screen_co.paa"
 		};
+		digitTexturePaths[]=
+		{
+			"BastionMod\BastionDangerousZone_Data\detectors\tier2\0.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier2\1.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier2\2.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier2\3.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier2\4.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier2\5.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier2\6.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier2\7.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier2\8.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier2\9.paa"
+		};
+		workScreenPath = "BastionMod\BastionDangerousZone_Data\detectors\tier2\screen_t2_co.paa";
 		class DamageSystem
 		{
 			class GlobalHealth

@@ -8,8 +8,7 @@ class RadiationManager : PluginBase
 
 		if( !GetGame().IsMultiplayer() || GetGame().IsClient() )
 		{					
-			Print("RadiationManager client");
-			GrabDataFromServer();
+
 		}
 		else //Server
 		{
@@ -48,17 +47,6 @@ class RadiationManager : PluginBase
 			JsonFileLoader<array<ref ItemProtectionRad>>.JsonLoadFile( path, defaultData );
 
 			rconfig.SetSuits(defaultData);
-
-			ShowMap(rconfig.GetSuitsLevels());
-		}
-	}
-
-	void ShowMap(map<string, ref ItemProtectionRad> arr)
-	{
-		Print("ShowMap ItemProtectionRad");
-		for (int i = 0; i < arr.Count(); i++)
-		{
-			Print(string.Format("idx:%1, elem:%2", arr.GetKey(i), arr.GetElement(i)));
 		}
 	}
 
@@ -76,34 +64,47 @@ class RadiationManager : PluginBase
 			JsonFileLoader<array<ref RadiationAreaData>>.JsonLoadFile( path, defaultData );
 
 			rconfig.SetZones(defaultData);
-		}
 
-		ShowMapArea(rconfig.GetZones());
+			DebugCheck();
+		}
 	}
 
-	void ShowMapArea(map<string, ref RadiationAreaData> arr)
+	void DebugCheck()
 	{
-		Print("ShowMap radzones");
-		for (int i = 0; i < arr.Count(); i++)
+		if (GetConfig().IsDebugEnabled())
+			DebugSpawn();
+	}
+
+	void DebugSpawn()
+	{
+		array<ref RadiationAreaData> zones = rconfig.GetZones();
+		vector centre, newPos;
+		Object obj;
+		int radius;
+		float x,y,z;
+		int count;
+		foreach (RadiationAreaData zone : zones)
 		{
-			Print(string.Format("idx:%1, elem:%2", arr.GetKey(i), arr.GetElement(i)));
+			centre = zone.GetPos().ToVector();
+			radius = zone.GetRadius();
+			centre[1] = GetGame().SurfaceY(centre[0],centre[2]);
+			count = 2.5 * radius;
+
+			for (int i = 0; i < count; i++)
+			{
+				x = centre[0] + (radius * Math.Sin(i));
+				y = centre[2] + (radius * Math.Cos(i));
+				newPos = Vector(x,0,y);
+				newPos[1] = GetGame().SurfaceY(x, y);
+				obj = GetGame().CreateObject("Barrel_Red", newPos, false, false, false);
+				obj.SetPosition(newPos + "0 10 0");
+			}
 		}
 	}
 
-	void GrabDataFromServer()
+	void InitRadiationHandler()
 	{
-		if (NeedGrabData())
-		{
-			Print("GrabData client");
-			GetGame().RPCSingleParam(null, RadRPCs.REQUEST_DATA, null, true, null);
-		}
-	}
-
-	bool NeedGrabData()
-	{
-		if ((GetConfig().GetZones().Count() == 0) || (GetConfig().GetSuitsLevels().Count() == 0))
-			return true;
-		return false;
+		PlayerBase.Cast(GetGame().GetPlayer()).GetRadiationHandler().Init();
 	}
 
 	RadiationConfig GetConfig()
@@ -114,8 +115,8 @@ class RadiationManager : PluginBase
 	void SetConfig(RadiationConfig conf)
 	{
 		rconfig = conf;
+		rconfig.PushSuitsClient();
 	}
-
 }
 RadiationManager GetRadiationManager()
 {

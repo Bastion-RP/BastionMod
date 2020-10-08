@@ -1,12 +1,14 @@
 class ItemProtectionRad
 {
 	private string Type;
-	private ref array<int> Protect;
+	private ref array<float> Protect;
 	private float CriticalThreshold;
+	private float RadiationThreshold;
 
 	string GetType() { return Type; }
-	array<int> GetProtectLevels() { return Protect; }
+	array<float> GetProtectLevels() { return Protect; }
 	float GetCritical() { return CriticalThreshold; }
+	float GetRadiation() { return RadiationThreshold; }
 }
 
 /*

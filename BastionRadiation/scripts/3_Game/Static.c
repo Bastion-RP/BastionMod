@@ -7,7 +7,7 @@ class RadiationMisc
 		if (overflow <= 0)
 			return 0;
 
-		koef = overflow * RadConst.DECREASE_SUIT_DAMAGE_RATE;
+		koef = overflow * RadConst.DECREASE_SUIT_DAMAGE_RATE / 100;
 		return koef;
 	}
 }

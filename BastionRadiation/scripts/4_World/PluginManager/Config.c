@@ -1,30 +1,36 @@
 class RadiationConfig
 {
-	private ref map <string, ref ItemProtectionRad> SuitProtectLevels;
-	private ref map <string, ref RadiationAreaData> RadiationZones;
+	private bool DebugEnable;
+	private ref map <string, ref ItemProtectionRad> SuitProtectLevelsMap;
+	private ref array<ref RadiationAreaData> RadiationZones;
+	private ref array<ref ItemProtectionRad> SuitProtectLevels;
 
 	void RadiationConfig()
 	{
-		SuitProtectLevels = new map <string, ref ItemProtectionRad>();
-		RadiationZones = new map <string, ref RadiationAreaData>();
+		SuitProtectLevelsMap = new map <string, ref ItemProtectionRad>();
+		SuitProtectLevels = new array<ref ItemProtectionRad>();
+		RadiationZones = new array<ref RadiationAreaData>();
 	}
 
 	void SetSuits(array<ref ItemProtectionRad> defaultData)
 	{
-		foreach (ref ItemProtectionRad item : defaultData)
-		{
-			SuitProtectLevels.Insert(item.GetType(), item);
-		}
+		SuitProtectLevels = defaultData;
 	}
 
 	void SetZones(array<ref RadiationAreaData> defaultData)
 	{
-		foreach (ref RadiationAreaData item : defaultData)
+		RadiationZones = defaultData;
+	}
+
+	void PushSuitsClient()
+	{
+		foreach (ref ItemProtectionRad item : SuitProtectLevels)
 		{
-			RadiationZones.Insert(item.GetPos(), item);
+			SuitProtectLevelsMap.Insert(item.GetType(), item);
 		}
 	}
 
-	map <string, ref ItemProtectionRad> GetSuitsLevels() { return SuitProtectLevels; }
-	map <string, ref RadiationAreaData> GetZones() { return RadiationZones; }
+	bool IsDebugEnabled() { return DebugEnable; }
+	map <string, ref ItemProtectionRad> GetSuitsLevels() { return SuitProtectLevelsMap; }
+	array<ref RadiationAreaData> GetZones() { return RadiationZones; }
 }

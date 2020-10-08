@@ -2,7 +2,7 @@ class RadiationRPCClient : PluginBase
 {
     void RadiationRPCClient() 
 	{
-        if (GetGame().IsServer() && GetGame().IsMultiplayer()) 
+        if (GetGame().IsServer() && GetGame().IsMultiplayer())
 		{ return; }
 
         GetDayZGame().Event_OnRPC.Insert(OnRPC);
@@ -32,5 +32,6 @@ class RadiationRPCClient : PluginBase
 			return;
 
 		GetRadiationManager().SetConfig(data.param1);
+		GetRadiationManager().InitRadiationHandler();
 	}
 }
