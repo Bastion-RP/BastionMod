@@ -13,6 +13,6 @@ modded class PlayerConstants {
 
 
 	// health regen, can be increased to make player regen faster
-	static const float HEALTH_REGEN_MIN						= 0.0005;	//health regen rate at BLOOD_THRESHOLD_FATAL blood level
-	static const float HEALTH_REGEN_MAX						= 0.005;		//health regen rate at MAXIMUM blood level
+	static const float HEALTH_REGEN_MIN						= 0.005;	//health regen rate at BLOOD_THRESHOLD_FATAL blood level
+	static const float HEALTH_REGEN_MAX						= 0.02;		//health regen rate at MAXIMUM blood level
 }
