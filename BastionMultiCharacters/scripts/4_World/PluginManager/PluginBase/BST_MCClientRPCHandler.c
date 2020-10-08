@@ -1,19 +1,29 @@
-class MultiCharactersClientRPCHandler : PluginBase {
-    void MultiCharactersClientRPCHandler() {
-        if (GetGame().IsServer() && GetGame().IsMultiplayer()) { return; }
-
-        GetDayZGame().Event_OnRPC.Insert(ClientRPCHandler);
+class BST_MCClientRPCHandler : PluginBase {
+    void BST_MCClientRPCHandler() {
+        Print("[DEBUG] Creating client RPC Handler!");
+        GetDayZGame().Event_OnRPC.Insert(OnRPC);
     }
 
-    void ~MultiCharactersClientRPCHandler() {
-        GetDayZGame().Event_OnRPC.Remove(ClientRPCHandler);
+    void ~BST_MCClientRPCHandler() {
+        GetDayZGame().Event_OnRPC.Remove(OnRPC);
     }
 
-    void ClientRPCHandler(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx) {
-        if (GetGame().IsServer() && GetGame().IsMultiplayer()) { return; }
-
+    void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx) {
         switch (rpc_type) {
-            case MultiCharRPC.CLIENT_RECEIVE_CONFIG:
+            case BST_MCRPC.CLIENT_RELOAD_MAG:
+                {
+                    Param1<Magazine> dataReloadMag;
+                    Print("[DEBUG] Received reload mag RPC");
+                    if (!ctx.Read(dataReloadMag)) { return; }
+                    Print("[DEBUG] Data read");
+
+                    Magazine magToReload = dataReloadMag.param1;
+
+                    PlayerBase.Cast(GetGame().GetPlayer()).LocalDropEntity(magToReload);
+                    PlayerBase.Cast(GetGame().GetPlayer()).GetWeaponManager().AttachMagazine(magToReload);
+                    break;
+                }
+            case BST_MCRPC.CLIENT_RECEIVE_CONFIG:
                 {
                     Param1<ref BST_MCConfig> dataReceiveConfig;
 
@@ -22,17 +32,19 @@ class MultiCharactersClientRPCHandler : PluginBase {
                     GetBSTMCManager().SetConfig(dataReceiveConfig.param1);
                     break;
                 }
-            case MultiCharRPC.CLIENT_GRAB_LOADOUTS:
+            case BST_MCRPC.CLIENT_RECEIVE_CHARACTERS:
                 {
+                    Print("[DEBUG] RECEIVED LOADOUTS");
                     Param1<array<ref BST_MCSavePlayerBasic>> dataGrabLoadouts;
 
                     if (!ctx.Read(dataGrabLoadouts)) { return; }
-                    GetMultiCharactersClientManager().SetLoadouts(dataGrabLoadouts.param1);
-                    GetMultiCharactersClientManager().HideInitMenu();
-                    GetMultiCharactersClientManager().ShowSelectMenu();
+                    Print("[DEBUG] RECEIVED LOADOUTS");
+                    GetBSTMCClientManager().SetCharacters(dataGrabLoadouts.param1);
+                    GetBSTMCClientManager().HideInitMenu();
+                    GetBSTMCClientManager().ShowSelectMenu();
                     break;
                 }
-            case MultiCharRPC.CLIENT_DISCONNECT:
+            case BST_MCRPC.CLIENT_DISCONNECT:
                 {
                     Param1<int> dataDisconnect;
 
@@ -88,7 +100,7 @@ class MultiCharactersClientRPCHandler : PluginBase {
 		            //GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Call(GetGame().DisconnectSessionForce);
                     break;
                 }
-            case MultiCharRPC.CLIENT_SPAWN_MAG:
+            case BST_MCRPC.CLIENT_SPAWN_MAG:
                 {
                     Param1<int> magCount;
                     if (!ctx.Read(magCount)) { return; }
@@ -98,7 +110,7 @@ class MultiCharactersClientRPCHandler : PluginBase {
                     NotificationSystem.AddNotificationExtended(10, "Mags Moved!", "" + magsRemoved + " mag(s) were removed from your weapon(s)\n and placed into your inventory!");
                     break;
                 }
-            case MultiCharRPC.CLIENT_RECEIVE_PLAYER_API_DATA:
+            case BST_MCRPC.CLIENT_RECEIVE_PLAYER_API_DATA:
                 {
                     Param3<int, string, int> dataAPI;
                     if (!ctx.Read(dataAPI)) { return; }
@@ -106,7 +118,7 @@ class MultiCharactersClientRPCHandler : PluginBase {
                     PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 
                     if (player) {
-                        player.SetMultiCharacterStats(dataAPI.param1, dataAPI.param2, dataAPI.param3);
+                        player.BSTMCSetCharData(dataAPI.param1, dataAPI.param2, dataAPI.param3);
                     }
                     break;
                 }
