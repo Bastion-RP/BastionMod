@@ -27,12 +27,12 @@ modded class PlayerBase
 	void AddRadiationLevel(float rad)
 	{
 		float tempRad = rad;
-		Print("current rad "+ GetRadiationLevel());
+		//Print("current rad "+ GetRadiationLevel());
 		if (GetModifiersManager().IsModifierActive(Rad_eModifiers.MDF_RAD_BLOCK))
 			tempRad *= 0.5;
-		Print("\nAddRadiationLevel rad "+ tempRad);
+		//Print("\nAddRadiationLevel rad "+ tempRad);
 		InsertAgent(BST_Agents.RADIATION, ConvertRadiationAgent(tempRad));
-		Print("after insert rad {"+ GetRadiationLevel()+"}");
+		//Print("after insert rad {"+ GetRadiationLevel()+"}");
 	}
 
 	void DecreaseAgent(int agent, float amount)
