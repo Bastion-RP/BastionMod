@@ -56,8 +56,8 @@ class RadiationHandlerClient
 	{
 		externalRadiation = CalculateRadiationInPlayerPos(zone);
 		innerRadiation = CalculateInnerRadiation(externalRadiation);//externalRadiation - ( externalRadiation * radiationClothingManager.GetPercentProtect(externalRadiation));
-		QuestManager.SelfChatMessage("externalRadiation :"+externalRadiation);
-		QuestManager.SelfChatMessage("innerRadiation :"+innerRadiation);
+		//QuestManager.SelfChatMessage("externalRadiation :"+externalRadiation);
+		//QuestManager.SelfChatMessage("innerRadiation :"+innerRadiation);
 		SendRadiationDataOnServer();
 	}
 

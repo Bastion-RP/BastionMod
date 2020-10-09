@@ -26,7 +26,7 @@ class RadiationRPCClient : PluginBase
 
 	void ApplyData(ParamsReadContext ctx)
 	{
-		Print("Apply data");
+		//Print("Apply data");
 		Param1<ref RadiationConfig> data;
 		if (!ctx.Read(data))
 			return;

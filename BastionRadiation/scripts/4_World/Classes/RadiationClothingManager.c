@@ -92,7 +92,7 @@ class RadiationClothingManager
 			}
 		}
 
-		Print("GetPercentProtectSuit "+protect);
+		//Print("GetPercentProtectSuit "+protect);
 
 		if (protect > 1)
 			protect = 1;

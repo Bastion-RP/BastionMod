@@ -72,8 +72,8 @@ modded class PlayerAgentPool
 	void DecreaseAgent(int agent, float amount)
 	{
 		float currentAgent = GetSingleAgentCount(agent);
-		Print("current Agent "+currentAgent);
+		//Print("current Agent "+currentAgent);
 		SetAgentCount(agent, (currentAgent - amount));
-		Print("rewrite Agent "+GetSingleAgentCount(agent));
+		//Print("rewrite Agent "+GetSingleAgentCount(agent));
 	}
 }
