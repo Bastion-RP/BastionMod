@@ -223,13 +223,13 @@ class BST_ServerCraftingManager : PluginBase {
 
                         if (!ingredient.IsConsumable()) { continue; }
                         string minDestroyPath = CFG_VEHICLESPATH + " " + loweredTypeName + " varQuantityDestroyOnMin";
-                        int itemQuantity = QuantityConversions.GetItemQuantity(InventoryItem.Cast(item));
+                        int itemQuantity = QuantityConversions.GetItemQuantity(item);
                         
                         if (GetGame().ConfigIsExisting(minDestroyPath) && GetGame().ConfigGetInt(minDestroyPath) == 0 && ingredient.GetRequiredAmount() == -1) {
                             GetGame().ObjectDelete(item);
                         } else {
                             if (itemQuantity > ingredient.GetRequiredAmount()) {
-                                SetItemQuantity(ItemBase.Cast(item), itemQuantity - ingredient.GetRequiredAmount());
+                                SetItemQuantity(item, itemQuantity - ingredient.GetRequiredAmount());
                             } else {
                                 GetGame().ObjectDelete(item);
                             }
@@ -263,16 +263,16 @@ class BST_ServerCraftingManager : PluginBase {
                 entityCrafted = player.GetHumanInventory().CreateInInventory(productClassname);
 
                 if (!entityCrafted) {
-                    entityCrafted = EntityAI.Cast(GetGame().CreateObject(productClassname, player.GetPosition()));
+                    entityCrafted = GetGame().CreateObject(productClassname, player.GetPosition());
 
                     entityCrafted.PlaceOnSurface();
                 }
                 if ((loopIterations - 1) != i) {
                     amountCreated += itemMaxCount;
                     
-                    SetItemQuantity(ItemBase.Cast(entityCrafted), itemMaxCount);
+                    SetItemQuantity(entityCrafted, itemMaxCount);
                 } else {
-                    SetItemQuantity(ItemBase.Cast(entityCrafted), (product.GetRequiredAmount() - amountCreated));
+                    SetItemQuantity(entityCrafted, (product.GetRequiredAmount() - amountCreated));
                 }
             }
         }
@@ -310,7 +310,7 @@ class BST_ServerCraftingManager : PluginBase {
             entType.ToLower();
 
             if (mapRequiredIngredients.Contains(entType)) {
-                int entCount = QuantityConversions.GetItemQuantity(InventoryItem.Cast(entity));
+                int entCount = QuantityConversions.GetItemQuantity(entity);
 
                 if (entCount == 0) entCount = 1;
                 mapRequiredIngredients.Set(entType, mapRequiredIngredients.Get(entType) - entCount);

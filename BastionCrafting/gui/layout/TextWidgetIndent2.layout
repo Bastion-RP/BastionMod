@@ -5,7 +5,6 @@ FrameWidgetClass rootFrame {
  vexactpos 0
  hexactsize 0
  vexactsize 1
- font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   TextWidgetClass txtName {
    position 0.16 0
@@ -14,7 +13,6 @@ FrameWidgetClass rootFrame {
    vexactpos 0
    hexactsize 0
    vexactsize 1
-   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
  }
 }

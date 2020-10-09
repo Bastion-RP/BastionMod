@@ -38,11 +38,11 @@ class BST_GUIRecipe : BST_GUIObject {
     }
 
     void Select() {
-        _txtName.SetColor(BST_CraftingMenuWidget.CONST_COLOR_BST_ORANGE);
+        _txtName.SetColor(BST_CraftingMenu.CONST_COLOR_BST_ORANGE);
     }
 
     void Deselect() {
-        _txtName.SetColor(BST_CraftingMenuWidget.CONST_COLOR_WHITE);
+        _txtName.SetColor(BST_CraftingMenu.CONST_COLOR_WHITE);
     }
 
     TextWidget GetText() { return _txtName; }

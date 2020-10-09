@@ -9,7 +9,6 @@ GridSpacerWidgetClass rootFrame {
  Margin 0
  "Size To Content H" 1
  Columns 2
- font "BastionMod/BastionMenu/gui/fonts/ddin22"
  Rows 1
  {
   TextWidgetClass txtItem {
@@ -23,7 +22,6 @@ GridSpacerWidgetClass rootFrame {
    "size to text h" 1
    "size to text v" 0
    "text valign" center
-   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   ImageWidgetClass imgStatus {
    ignorepointer 1
@@ -36,7 +34,6 @@ GridSpacerWidgetClass rootFrame {
    mode blend
    "src alpha" 1
    stretch 1
-   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
  }
 }

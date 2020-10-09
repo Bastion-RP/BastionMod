@@ -24,7 +24,7 @@ class BST_ServerCraftingRPCHandler : PluginBase {
                     if (!ctx.Read(dataCraftItem)) { return; }
 
                     BST_CraftingLoadedRecipe recipe = GetBSTServerCraftingManager().FindRecipeByFileName(dataCraftItem.param1);
-                    benchBase = BRP_CraftingBenchBase.Cast(dataCraftItem.param2);
+                    benchBase = dataCraftItem.param2;
                     player = PlayerBase.Cast(target);
 
                     if (player && recipe) {
