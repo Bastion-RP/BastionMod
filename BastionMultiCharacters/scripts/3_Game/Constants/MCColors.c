@@ -1,4 +1,4 @@
-class BST_MCColors {
+class MCColors {
     const int COLOR_RED = ARGB(255, 255, 0, 0);
     const int COLOR_TRANS_RED = ARGB(140, 255, 0, 0);
     const int COLOR_GREEN = ARGB(255, 0, 255, 0);

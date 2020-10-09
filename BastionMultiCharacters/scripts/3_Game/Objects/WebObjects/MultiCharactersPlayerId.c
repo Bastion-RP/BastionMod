@@ -1,4 +1,4 @@
-class BST_APIPlayerId {
+class MultiCharactersPlayerId {
     private string member_id, name, ip, steam;
     
     string GetMemberId() {

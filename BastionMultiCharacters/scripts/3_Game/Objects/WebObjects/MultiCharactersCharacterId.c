@@ -1,4 +1,4 @@
-class BST_APICharacterId {
+class MultiCharactersCharacterId {
     private string id, member_id, active, first_name, last_name, citizen_class, date_of_birth, sex, race;
     
     string GetCharacterId() {
@@ -38,5 +38,9 @@ class BST_APICharacterId {
             return true;
         }
         return false;
+    }
+
+    void PrintData() {
+        Print(MCConst.debugPrefix + "MultiCharactersCharacterId | id=" + id + " | member_id=" + member_id + " | active=" + active + " | first_name=" + first_name + " | last_name=" + last_name + " | citizen_class=" + citizen_class + " | date_of_birth=" + date_of_birth + " | sex=" + sex + " | race=" + race);
     }
 }

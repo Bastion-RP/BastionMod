@@ -22,21 +22,12 @@ class BST_LibTimestamp : PluginBase {
         _mapGregorianCalender.Insert(12, 31);
     }
 
-    string GetHourTimestampFormatted() {
-        int day, month, year, hour, minute, second;
-
-        GetHourMinuteSecondUTC(hour, minute, second);
-        GetYearMonthDayUTC(year, month, day);
-
-        return "[" + month + "/" + day + "/" + year + "][" + hour + ":" + minute + ":" + second + "]";
-    }
-
     int GetCurrentTimestamp() {
         // Get current time, ignoring seconds. Have to have it as an out var though.
         int month, day, year, hour, minute, second, i, daysPassedTotal, minutesTimestamp;
 
         daysPassedTotal = 0;
-
+        
         GetYearMonthDayUTC(year, month, day);
         GetHourMinuteSecondUTC(hour, minute, second);
 
