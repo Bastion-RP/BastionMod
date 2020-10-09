@@ -11,7 +11,7 @@ class ActionDismantleBase_Almara: ActionContinuousBase
 	void ActionDismantleBase_Almara()
 	{
 		m_CallbackClass = ActionDismantleBase_AlmaraCB;
-		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_DISASSEMBLE;
 		m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT;
 		

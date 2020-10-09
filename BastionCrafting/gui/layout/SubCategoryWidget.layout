@@ -7,6 +7,7 @@ GridSpacerWidgetClass rootFrame {
  Padding 0
  Margin 0
  "Size To Content V" 1
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
  Columns 1
  Rows 100
  {
@@ -16,6 +17,7 @@ GridSpacerWidgetClass rootFrame {
    vexactpos 1
    hexactsize 0
    vexactsize 1
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     TextWidgetClass txtName {
      ignorepointer 1
@@ -26,6 +28,7 @@ GridSpacerWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      "text valign" center
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     TextWidgetClass txtCaret {
      ignorepointer 0
@@ -38,6 +41,7 @@ GridSpacerWidgetClass rootFrame {
      text "^"
      "text halign" center
      "text valign" center
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     TextWidgetClass txtWrap {
      position 0 0
@@ -48,6 +52,7 @@ GridSpacerWidgetClass rootFrame {
      vexactsize 0
      priority 1
      style Normal
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }

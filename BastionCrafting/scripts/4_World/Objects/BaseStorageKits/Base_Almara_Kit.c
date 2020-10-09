@@ -53,16 +53,19 @@ class Base_Almara_Kit extends ItemBase
 		
 	override void OnPlacementComplete( Man player )
 	{
+		super.OnPlacementComplete( player );
+		
+		PlayerBase pb = PlayerBase.Cast( player );
 		if ( GetGame().IsServer() )
 		{
 			PlayerBase player_base = PlayerBase.Cast( player );
 			vector position = player_base.GetLocalProjectionPosition();
 			vector orientation = player_base.GetLocalProjectionOrientation();
 				
-			EntityAI item = EntityAI.Cast(GetGame().CreateObjectEx("Base_Almara", position, ECE_PLACE_ON_SURFACE ));
-			item.SetPosition(position);
-			item.SetOrientation(orientation);
-		}
+			//Base_Almara_Kit1 = GetGame().CreateObject("Base_Almara", pb.GetLocalProjectionPosition(), false );
+			//Base_Almara_Kit1.SetPosition( position );
+			//Base_Almara_Kit1.SetOrientation( orientation );
+		}	
 		
 		SetIsDeploySound( true );
 		SetLifetime(3888000);

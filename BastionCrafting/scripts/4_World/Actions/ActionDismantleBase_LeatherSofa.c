@@ -11,7 +11,7 @@ class ActionDismantleBase_LeatherSofa: ActionContinuousBase
 	void ActionDismantleBase_LeatherSofa()
 	{
 		m_CallbackClass = ActionDismantleBase_LeatherSofaCB;
-		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_DISASSEMBLE;
 		m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH;
 		
@@ -60,7 +60,7 @@ class ActionDismantleBase_LeatherSofa: ActionContinuousBase
 			base_leathersofa.Base_Destroy();
 			
 			//add damage to tool
-			action_data.m_MainItem.DecreaseHealth( 5, false );
+			action_data.m_MainItem.DecreaseHealth( UADamageApplied.DISMANTLE, false );
 			
 			//return materials
 			vector pos = action_data.m_Player.GetPosition();
