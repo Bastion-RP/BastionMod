@@ -154,7 +154,7 @@ class DosimeterBase : ItemBase
 
 	void ShowAzimut()
 	{
-		vector ori = GetGame().GetCurrentCameraDirection();
+		vector ori = owner.GetDirection();
 		float angle = ori.VectorToAngles().GetRelAngles()[0];
 		if (angle < 0)
 			angle += 360;
