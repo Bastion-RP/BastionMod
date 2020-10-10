@@ -20,7 +20,7 @@ class CfgVehicles
 		model = "BastionMod\BastionClothing\GasMask\gasmask_g.p3d";
 		inventorySlot[] = {"Mask"};
 		itemInfo[] = {"Clothing","Mask"};
-		attachments[] = {"GasMaskFilter"};
+//		attachments[] = {"GasMaskFilter"}; uncomment if u want filters to be atachable in future
 		rotationFlags = 2;
 		weight = 730;
 		itemSize[] = {3,3};
@@ -98,9 +98,9 @@ class CfgVehicles
 		absorbency = 0;
 		heatIsolation = 0.6;
 		quantityBar=1;
-		varQuantityInit=60;
+		varQuantityInit=2700;
 		varQuantityMin=0;
-		varQuantityMax=60;
+		varQuantityMax=2700;
 		visibilityModifier = 0.95;
 		hiddenSelections[] = {"camoGround"};
 		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\GasMask\data\gasmask_co.paa"};

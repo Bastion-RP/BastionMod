@@ -25,6 +25,8 @@ class cfgVehicles
 	class PrisonUniformPants;
 	class Hoodie_ColorBase;
 	class SmershVest;
+	class TTSKOPants;
+	class TacticalShirt_Grey;
 //---Head
     class Inventory_base;
     class BRP_Head_admin: Inventory_Base
@@ -486,6 +488,13 @@ class cfgVehicles
 			"BastionMod\BastionClothing\Retextures\data\isff_tacshirt.paa"
 		};
 	};
+	class BRP_TacticalShirt_DART: TacticalShirt_Grey
+    {
+        displayName = "DART Tactical Shirt";
+        scope = 2;
+        visibilityModifier = 0.7;
+        hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\dart_tacshirt.paa","BastionMod\BastionClothing\Retextures\data\dart_tacshirt.paa","BastionMod\BastionClothing\Retextures\data\dart_tacshirt.paa"};
+    };
 
 //---TTSKO Jacket
 	class BRP_TTsKOJacket_Civilian: TTsKOJacket_ColorBase
@@ -629,7 +638,14 @@ class cfgVehicles
 		descriptionShort = "";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\isff_pants.paa","BastionMod\BastionClothing\Retextures\data\isff_pants.paa","BastionMod\BastionClothing\Retextures\data\isff_pants.paa"};
 	};
-
+// TTSKO Pants	
+    class BRP_TTSKOPants_DART: TTSKOPants
+    {    
+        displayName = "DART Tactical Pants";
+        scope = 2;
+        visibilityModifier = 0.7;
+        hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\dart_ttsko.paa","BastionMod\BastionClothing\Retextures\data\dart_ttsko.paa","BastionMod\BastionClothing\Retextures\data\dart_ttsko.paa"};
+    };
 //---NBC Pants
     class NBCPantsBase;
     class BRP_Pants_admin: NBCPantsBase
