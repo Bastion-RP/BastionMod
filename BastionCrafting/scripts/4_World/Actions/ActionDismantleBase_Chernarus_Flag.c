@@ -11,7 +11,7 @@ class ActionDismantleBase_Chernarus_Flag: ActionContinuousBase
 	void ActionDismantleBase_Chernarus_Flag()
 	{
 		m_CallbackClass = ActionDismantleBase_Chernarus_FlagCB;
-		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_DISASSEMBLE;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
 		m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT;
 		
@@ -60,7 +60,7 @@ class ActionDismantleBase_Chernarus_Flag: ActionContinuousBase
 			base_chernarus_flag.Base_Destroy();
 			
 			//add damage to tool
-			action_data.m_MainItem.DecreaseHealth( UADamageApplied.DISMANTLE, false );
+			action_data.m_MainItem.DecreaseHealth( 5, false );
 			
 			//return materials
 			vector pos = action_data.m_Player.GetPosition();

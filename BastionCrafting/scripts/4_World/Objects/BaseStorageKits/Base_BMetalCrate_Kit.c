@@ -53,19 +53,16 @@ class Base_BMetalCrate_Kit extends ItemBase
 		
 	override void OnPlacementComplete( Man player )
 	{
-		super.OnPlacementComplete( player );
-		
-		PlayerBase pb = PlayerBase.Cast( player );
 		if ( GetGame().IsServer() )
 		{
 			PlayerBase player_base = PlayerBase.Cast( player );
 			vector position = player_base.GetLocalProjectionPosition();
 			vector orientation = player_base.GetLocalProjectionOrientation();
 				
-			//Base_BMetalCrate_Kit1 = GetGame().CreateObject("Base_BMetalCrate", pb.GetLocalProjectionPosition(), false );
-			//Base_BMetalCrate_Kit1.SetPosition( position );
-			//Base_BMetalCrate_Kit1.SetOrientation( orientation );
-		}	
+			EntityAI item = EntityAI.Cast(GetGame().CreateObjectEx("Base_BMetalCrate", position, ECE_PLACE_ON_SURFACE ));
+			item.SetPosition(position);
+			item.SetOrientation(orientation);
+		}
 		
 		SetIsDeploySound( true );
 		SetLifetime(3888000);
