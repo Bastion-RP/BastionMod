@@ -24,7 +24,8 @@ modded class JMAnimRegister
 		pType.AddItemInHandsProfileIK("BRP_Mag_PB_8Rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior, "dz/anims/anm/player/ik/attachments/magazines/magazine_ij70.anm");
 		pType.AddItemInHandsProfileIK("Ammo_Taser", "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior, "dz/anims/anm/player/ik/ammunition/22_LooseRounds.anm");
 		pType.AddItemInHandsProfileIK("BRP_Mag_CSSMG45_30Rnd", "dz/anims/workspaces/player/player_main/props/player_main_mp5k_mag.asi", pBehavior, "dz/anims/anm/player/ik/attachments/magazines/magazine_mp5_30rnd.anm");
-		pType.AddItemInHandsProfileIK("BRP_Mag_CSP45_15Rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior,	"dz/anims/anm/player/ik/attachments/magazines/magazine_fnp45.anm");
+		pType.AddItemInHandsProfileIK("BRP_Mag_CSP45_17Rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior,	"dz/anims/anm/player/ik/attachments/magazines/magazine_fnp45.anm");
+		pType.AddItemInHandsProfileIK("BRP_Mag_PX4_20Rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior,	"dz/anims/anm/player/ik/attachments/magazines/magazine_fnp45.anm");
 
 	}
 	
