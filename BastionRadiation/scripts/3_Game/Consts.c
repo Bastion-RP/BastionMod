@@ -39,7 +39,7 @@ class RadConst
 	static const int SICKNESS_VOMIT_EFFECT_TIME = 120;
 
 	// Medicine how much item decrease inner rad level
-	static const float RAD_PILLS_POWER = 5;
+	static const float RAD_PILLS_POWER = 60;
 }
 
 enum RadRPCs
