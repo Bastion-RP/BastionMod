@@ -8,4 +8,6 @@ modded class ParticleList
 	static const int HAZARDZONE_PURPLESPORE = RegisterParticle( "BastionMod/BastionToxic/particles/" , "PurpleSpore");
 	static const int HAZARDZONE_WEIRDGREEN = RegisterParticle( "BastionMod/BastionToxic/particles/" , "WeirdGreenSpore");
 	static const int HAZARDZONE_WEIRDGREEN2 = RegisterParticle( "BastionMod/BastionToxic/particles/" , "WeirdGreenSpore2");
+	static const int HAZARDZONE_WEIRDGREEN_SMALL = RegisterParticle( "BastionMod/BastionToxic/particles/" , "WeirdGreenSporeSmall");
+	static const int HAZARDZONE_WEIRDGREEN_EXTRASMALL = RegisterParticle( "BastionMod/BastionToxic/particles/" , "WeirdGreenSporeExtraSmall");
 }
