@@ -45,6 +45,26 @@ class CfgVehicles
 		itemSize[]={1,1};
 		weight=1000000;
 	};
+	class WeirdGreenSporeExtraSmall: HouseNoDestruct
+	{
+		scope=2;
+		displayName="Spore";
+		forceFarBubble="true";
+		carveNavmesh=1;
+		rotationFlags=2;
+		itemSize[]={1,1};
+		weight=1000000;
+	};
+	class WeirdGreenSporeSmall: HouseNoDestruct
+	{
+		scope=2;
+		displayName="Spore";
+		forceFarBubble="true";
+		carveNavmesh=1;
+		rotationFlags=2;
+		itemSize[]={1,1};
+		weight=1000000;
+	};
 	class BlueSpore: HouseNoDestruct
 	{
 		scope=2;
