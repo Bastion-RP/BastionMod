@@ -1,14 +1,15 @@
 class MultiCharactersServerManager : PluginBase {
     protected ref JsonSerializer jsSerializer;
     protected ref array<string> spawnPoints;
+    protected ref array<string> isfSpawnPoints;
     protected ref array<string> isfSpawnGear;
-    private ref BST_MCConfigSpawnPoints _configSpawnPoints;
     protected ref BST_MCConfig _config;
     protected string clientMemberId;
 
     void MultiCharactersServerManager() {
         jsSerializer = new JsonSerializer();
         spawnPoints = new array<string>();
+        isfSpawnPoints = new array<string>();
 
         CheckDirectories();
     }
@@ -32,11 +33,16 @@ class MultiCharactersServerManager : PluginBase {
         GetBSTMCManager().SetConfig(config);
 
         if (!FileExist(MCConst.spawnPointDir)) {
-            _configSpawnPoints = new BST_MCConfigSpawnPoints();
-
-            JsonFileLoader<BST_MCConfigSpawnPoints>.JsonSaveFile(MCConst.spawnPointDir, _configSpawnPoints);
+            spawnPoints = MultiCharactersDefaultSpawns();
+            JsonFileLoader<array<string>>.JsonSaveFile(MCConst.spawnPointDir, spawnPoints);
         } else {
-            JsonFileLoader<BST_MCConfigSpawnPoints>.JsonLoadFile(MCConst.spawnPointDir, _configSpawnPoints);
+            JsonFileLoader<array<string>>.JsonLoadFile(MCConst.spawnPointDir, spawnPoints);
+        }
+        if (!FileExist(MCConst.isfSpawnPointDir)) {
+            isfSpawnPoints = MultiCharactersDefaultISFSpawns();
+            JsonFileLoader<array<string>>.JsonSaveFile(MCConst.isfSpawnPointDir, isfSpawnPoints);
+        } else {
+            JsonFileLoader<array<string>>.JsonLoadFile(MCConst.isfSpawnPointDir, isfSpawnPoints);
         }
     }
 
@@ -139,9 +145,9 @@ class MultiCharactersServerManager : PluginBase {
 		return forumName == gameName;
 	}
 
-    vector GetRandomSpawnByClass(int charClass) {
-        return _configSpawnPoints.GetRandomSpawnPointbyClass(charClass);
-    }
+    array<string> GetISFSpawnGear() { return isfSpawnGear; }
+    vector GetRandomSpawnpoint() { return spawnPoints.GetRandomElement().ToVector(); }
+    vector GetRandomISFSpawnpoint() { return isfSpawnPoints.GetRandomElement().ToVector(); }
 }
 
 MultiCharactersServerManager GetMultiCharactersServerManager() {
