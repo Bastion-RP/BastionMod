@@ -102,23 +102,18 @@ modded class MissionServer {
 					}
 				}
 				if (!validPlayer) {
-					vector spawnPos;
-
-					if (webCharData.GetCitizenClass().ToInt() >= BastionClasses.ISF_F && webCharData.GetCitizenClass().ToInt() <= BastionClasses.ISF_E) {
-						spawnPos = GetMultiCharactersServerManager().GetRandomISFSpawnpoint();
-					} else {
-						spawnPos = GetMultiCharactersServerManager().GetRandomSpawnpoint();
-					}
+					int charClass = webCharData.GetCitizenClass().ToInt();
+					vector spawnPos = GetMultiCharactersServerManager().GetRandomSpawnByClass(charClass);
 					
 					newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, characterType, spawnPos, 0, "NONE"));
 					
-					if (webCharData.GetCitizenClass().ToInt() >= BastionClasses.ISF_F && webCharData.GetCitizenClass().ToInt() <= BastionClasses.ISF_E) {
-						StartingISFSetup(newPlayer, webCharData.GetCitizenClass().ToInt());
+					if (charClass >= BastionClasses.ISF_F && charClass <= BastionClasses.ISF_E) {
+						StartingISFSetup(newPlayer, charClass);
 					} else {
 						newPlayer.GetInventory().CreateInInventory(topsArray.GetRandomElement());
 						newPlayer.GetInventory().CreateInInventory(pantsArray.GetRandomElement());
 						newPlayer.GetInventory().CreateInInventory(shoesArray.GetRandomElement());
-						StartingEquipSetup(newPlayer, webCharData.GetCitizenClass().ToInt());
+						StartingEquipSetup(newPlayer, charClass);
 					}
 				}
 				newPlayer.SetMultiCharacterStats(characterId, webCharData.GetFirstName() + " " + webCharData.GetLastName(), webCharData.GetCitizenClass().ToInt());
