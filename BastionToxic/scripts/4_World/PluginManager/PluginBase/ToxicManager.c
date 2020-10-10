@@ -109,8 +109,10 @@ class ToxicManager : PluginBase
 	void InitToxicHandler()
 	{
 		if (!toxicHandler)
+		{
 			toxicHandler = new ToxicHandler();
-		toxicHandler.Init();
+			toxicHandler.Init();
+		}
 	}
 
 	void SetConfig(ToxicConfig config)
