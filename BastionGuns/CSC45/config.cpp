@@ -32,7 +32,7 @@ class cfgWeapons
 		chamberSize = 1;
 		chamberedRound = "";
 		chamberableFrom[] = {"Ammo_45ACP"};
-		magazines[] = {"Magazine_CSC45_30Rnd"};
+		magazines[] = {"BRP_Mag_CSC45_30Rnd"};
 		magazineSwitchTime = 0.38;
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
