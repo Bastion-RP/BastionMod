@@ -77,6 +77,7 @@ class Land_Tisy_KitchenRoom:   		BuildingBase { override bool IsRentableHouse() 
 class Land_CementWorks_Hall2_Grey:   	BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_CementWorks_Hall2_Brick:   	BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Village_HealthCare_Enoch:   	BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_City_PoliceStation_Enoch:   	BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Shed_Closed:   				BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Garage_Office:   			BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Garage_Row_Big:   			BuildingBase { override bool IsRentableHouse() {return true;} };
