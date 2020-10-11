@@ -11,7 +11,7 @@ class ActionDismantleBase_SingleBed: ActionContinuousBase
 	void ActionDismantleBase_SingleBed()
 	{
 		m_CallbackClass = ActionDismantleBase_SingleBedCB;
-		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_DISASSEMBLE;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
 		m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH;
 		
@@ -63,7 +63,7 @@ class ActionDismantleBase_SingleBed: ActionContinuousBase
 			base_singlebed.Base_Destroy();
 			
 			//add damage to tool
-			action_data.m_MainItem.DecreaseHealth( UADamageApplied.DISMANTLE, false );
+			action_data.m_MainItem.DecreaseHealth( 5, false );
 			
 			//return materials
 			vector pos = action_data.m_Player.GetPosition();
