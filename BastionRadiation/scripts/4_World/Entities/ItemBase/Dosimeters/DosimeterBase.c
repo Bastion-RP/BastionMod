@@ -55,6 +55,7 @@ class DosimeterBase : ItemBase
 			SetObjectTexture(1, 										DEFAULT_SCREEN_PATH);
 			SetObjectTexture(selectionsMap.Get(BATTERY_SELECTION), 		string.Empty);
 			OffAzimutDisplay();
+			OffDisplayTime();
 			ResetRadDisplay();
 		}
 	}
@@ -150,6 +151,7 @@ class DosimeterBase : ItemBase
 		}
 		ShowRadiation(externalRadiation);
 		ShowAzimut();
+		SetWorldTime();
 	}
 
 	void ShowAzimut()
@@ -181,6 +183,47 @@ class DosimeterBase : ItemBase
 		SetObjectTexture(selectionsMap.Get("cmpDig0"), string.Empty);
 		SetObjectTexture(selectionsMap.Get("cmpDig1"), string.Empty);
 		SetObjectTexture(selectionsMap.Get("cmpDig2"), string.Empty);
+	}
+
+	void SetWorldTime()
+	{
+		int hour, minute;
+		GetGame().GetWorld().GetDate(null, null, null, hour, minute);
+		string time = ConvertTime(hour, minute);
+		DisplayTime(time);
+	}
+
+	string ConvertTime(int hour, int min)
+	{
+		string result;
+		if (hour < 10)
+			result = "0";
+		result += hour.ToString();
+		if (min < 10)
+			result += "0";
+		result += min.ToString();
+
+		return result;
+	}
+
+	void DisplayTime(string time)
+	{
+		int idx, digit;
+		for (int i = 0; i < time.Length(); i++)
+		{
+			idx = time.Length() - i - 1;
+			digit = time.Get(idx).ToInt();
+
+			SetObjectTexture(selectionsMap.Get(String("time"+i)),GetTexturePathByIndex(digit));
+		}
+	}
+
+	void OffDisplayTime()
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			SetObjectTexture(selectionsMap.Get(String("time"+i)), string.Empty);
+		}
 	}
 
 	void ResetAnimTime()
