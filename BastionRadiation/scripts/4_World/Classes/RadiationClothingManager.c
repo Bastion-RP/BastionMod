@@ -69,7 +69,7 @@ class RadiationClothingManager
 		item = player.GetInventory().FindAttachment(slotMask);
 		if (item)
 		{
-			threshold = GetRadiationProtectByItem(item);
+			threshold = GetCriticalTresholdByItem(item);
 		}
 
 		return threshold;
@@ -91,8 +91,6 @@ class RadiationClothingManager
 				protect += GetRadiationProtectByItem(item);
 			}
 		}
-
-		//Print("GetPercentProtectSuit "+protect);
 
 		if (protect > 1)
 			protect = 1;

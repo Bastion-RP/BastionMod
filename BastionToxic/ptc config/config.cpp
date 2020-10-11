@@ -15,7 +15,7 @@ class CfgPatches
 class CfgVehicles
 {
 	class HouseNoDestruct;
-	class GreenSpore: HouseNoDestruct
+	class SporeBase : HouseNoDestruct
 	{
 		scope=2;
 		displayName="Spore";
@@ -24,85 +24,41 @@ class CfgVehicles
 		rotationFlags=2;
 		itemSize[]={1,1};
 		weight=1000000;
+	}
+	class GreenSpore: SporeBase
+	{
+
 	};
-	class WeirdGreenSpore: HouseNoDestruct
+	class WeirdGreenSpore: SporeBase
 	{
-		scope=2;
-		displayName="Spore";
-		forceFarBubble="true";
-		carveNavmesh=1;
-		rotationFlags=2;
-		itemSize[]={1,1};
-		weight=1000000;
+
 	};
-	class WeirdGreenSpore2: HouseNoDestruct
+	class WeirdGreenSpore2: SporeBase
 	{
-		scope=2;
-		displayName="Spore";
-		forceFarBubble="true";
-		carveNavmesh=1;
-		rotationFlags=2;
-		itemSize[]={1,1};
-		weight=1000000;
+		
 	};
-	class WeirdGreenSporeExtraSmall: HouseNoDestruct
+	class BlueSpore: SporeBase
 	{
-		scope=2;
-		displayName="Spore";
-		forceFarBubble="true";
-		carveNavmesh=1;
-		rotationFlags=2;
-		itemSize[]={1,1};
-		weight=1000000;
+		
 	};
-	class WeirdGreenSporeSmall: HouseNoDestruct
+	class RedSpore: SporeBase
 	{
-		scope=2;
-		displayName="Spore";
-		forceFarBubble="true";
-		carveNavmesh=1;
-		rotationFlags=2;
-		itemSize[]={1,1};
-		weight=1000000;
+		
 	};
-	class BlueSpore: HouseNoDestruct
+	class PurpleSpore: SporeBase
 	{
-		scope=2;
-		displayName="Spore";
-		forceFarBubble="true";
-		carveNavmesh=1;
-		rotationFlags=2;
-		itemSize[]={1,1};
-		weight=1000000;
+		
 	};
-	class RedSpore: HouseNoDestruct
+	class WhiteSpore: SporeBase
 	{
-		scope=2;
-		displayName="Spore";
-		forceFarBubble="true";
-		carveNavmesh=1;
-		rotationFlags=2;
-		itemSize[]={1,1};
-		weight=1000000;
+
 	};
-	class PurpleSpore: HouseNoDestruct
+	class WeirdGreenSporeSmall: SporeBase
 	{
-		scope=2;
-		displayName="Spore";
-		forceFarBubble="true";
-		carveNavmesh=1;
-		rotationFlags=2;
-		itemSize[]={1,1};
-		weight=1000000;
+
 	};
-	class WhiteSpore: HouseNoDestruct
+	class WeirdGreenSporeExtraSmall: SporeBase
 	{
-		scope=2;
-		displayName="Spore";
-		forceFarBubble="true";
-		carveNavmesh=1;
-		rotationFlags=2;
-		itemSize[]={1,1};
-		weight=1000000;
+
 	};
 };

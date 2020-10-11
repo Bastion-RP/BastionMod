@@ -151,14 +151,14 @@ class WeirdGreenSporeSmall extends House
 {
 	Particle m_ParticleEfx;
 
-	void WhiteSpore()
+	void WeirdGreenSporeSmall()
 	{
 		if (GetGame().IsClient() || !GetGame().IsMultiplayer()){
 			m_ParticleEfx = Particle.PlayOnObject(ParticleList.HAZARDZONE_WEIRDGREEN_SMALL, this);
 		}
 	}
 
-	void ~WhiteSpore()
+	void ~WeirdGreenSporeSmall()
 	{
 		if (m_ParticleEfx)
 			m_ParticleEfx.Stop();
@@ -169,14 +169,14 @@ class WeirdGreenSporeExtraSmall extends House
 {
 	Particle m_ParticleEfx;
 
-	void WhiteSpore()
+	void WeirdGreenSporeExtraSmall()
 	{
 		if (GetGame().IsClient() || !GetGame().IsMultiplayer()){
 			m_ParticleEfx = Particle.PlayOnObject(ParticleList.HAZARDZONE_WEIRDGREEN_EXTRASMALL, this);
 		}
 	}
 
-	void ~WhiteSpore()
+	void ~WeirdGreenSporeExtraSmall()
 	{
 		if (m_ParticleEfx)
 			m_ParticleEfx.Stop();

@@ -15,6 +15,9 @@ class RadiationManager : PluginBase
 			CheckDirectories();
 			LoadSuits();
 			LoadZones();
+			LoadSettings();
+
+			DebugCheck();
 		}
 	}
 
@@ -64,14 +67,29 @@ class RadiationManager : PluginBase
 			JsonFileLoader<array<ref RadiationAreaData>>.JsonLoadFile( path, defaultData );
 
 			rconfig.SetZones(defaultData);
-
-			DebugCheck();
 		}
+	}
+
+	void LoadSettings()
+	{
+		string path = RadConst.RADIATION_SETTINGS_PATH;
+		RadiationSetting defaultData;
+
+		if (!FileExist(path))
+		{
+			defaultData = new RadiationSetting();
+			JsonFileLoader<RadiationSetting>.JsonSaveFile( path, defaultData );
+		}
+		else
+		{
+			JsonFileLoader<RadiationSetting>.JsonLoadFile( path, defaultData );
+		}
+		rconfig.SetSettings(defaultData);
 	}
 
 	void DebugCheck()
 	{
-		if (GetConfig().IsDebugEnabled())
+		if (GetConfig().GetSettings().IsDebugEnabled())
 			DebugSpawn();
 	}
 
