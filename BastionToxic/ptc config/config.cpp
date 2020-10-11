@@ -24,7 +24,7 @@ class CfgVehicles
 		rotationFlags=2;
 		itemSize[]={1,1};
 		weight=1000000;
-	}
+	};
 	class GreenSpore: SporeBase
 	{
 
