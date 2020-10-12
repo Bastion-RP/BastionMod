@@ -408,6 +408,35 @@ class CfgVehicles
 			};
 		};
 	};
+	class BRP_InternalDosimeter: Inventory_Base
+	{
+		scope = 2;
+		displayName = "Internal Dosimeter";
+		descriptionShort = "Tracks internal exposure to radiation. Measured in microsieverts. Developed by TharmaCorp.";
+		model = "BastionMod\BastionDangerousZone_Data\dosimeter\injector.p3d";
+		rotationFlags = 17;
+		itemSize[] = {1,2};
+		weight = 200;
+		class EnergyManager
+		{
+			hasIcon=1;
+			autoSwitchOff=1;
+			energyUsagePerSecond=0.01;
+			plugType=1;
+			attachmentAction=1;
+			updateInterval=30;
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 50;
+					healthLevels[] = {{1.0,{"BastionMod\BastionDangerousZone_Data\dosimeter\data\injector.rvmat"}},{0.7,{"BastionMod\BastionDangerousZone_Data\dosimeter\data\injector.rvmat"}},{0.5,{"BastionMod\BastionDangerousZone_Data\dosimeter\data\injector_damage.rvmat"}},{0.3,{"BastionMod\BastionDangerousZone_Data\dosimeter\data\injector_damage.rvmat"}},{0.0,{"BastionMod\BastionDangerousZone_Data\dosimeter\data\injector_destruct.rvmat"}}};
+				};
+			};
+		};
+	};	
 };
-
 #include "detectors\sounds\CfgSounds.hpp"

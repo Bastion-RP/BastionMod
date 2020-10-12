@@ -77,7 +77,7 @@ modded class PlayerBase
 		EffectSound sound =	SEffectManager.PlaySoundOnObject( "Radiation_INIT_SoundSet", this );
 		sound.SetSoundAutodestroy( true );
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(PrepareRadSound, 1000, false);
-		BSTShowNotification(innerRadiation.ToString());
+		BSTShowNotification("Your internal exposure is "+innerRadiation.ToString());
 	}
 
 	void PrepareRadSound()
