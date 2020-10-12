@@ -409,3 +409,5 @@ class CfgVehicles
 		};
 	};
 };
+
+#include "detectors\sounds\CfgSounds.hpp"
