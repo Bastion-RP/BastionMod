@@ -1,1 +1,0 @@
-class GP5GasMask_Filter extends ItemBase { }
