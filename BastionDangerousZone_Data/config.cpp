@@ -408,7 +408,8 @@ class CfgVehicles
 			};
 		};
 	};
-	class BRP_InternalDosimeter: Inventory_Base
+	class Morphine;
+	class BRP_InternalDosimeter: Morphine
 	{
 		scope = 2;
 		displayName = "Internal Dosimeter";
