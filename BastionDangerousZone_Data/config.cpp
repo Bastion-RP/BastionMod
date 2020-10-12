@@ -417,6 +417,15 @@ class CfgVehicles
 		rotationFlags = 17;
 		itemSize[] = {1,2};
 		weight = 200;
+		class EnergyManager
+		{
+			hasIcon=1;
+			autoSwitchOff=1;
+			energyUsagePerSecond=0.01;
+			plugType=1;
+			attachmentAction=1;
+			updateInterval=30;
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -430,3 +439,4 @@ class CfgVehicles
 		};
 	};	
 };
+#include "detectors\sounds\CfgSounds.hpp"
