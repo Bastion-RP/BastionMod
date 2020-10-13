@@ -99,3 +99,4 @@ class Land_HouseBlock_3F_Corner1:       BuildingBase { override bool IsRentableH
 class Land_City_PoliceStation:          BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_CementWorks_Hall1:           BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Office_Municipal2:           BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Village_Pub:           BuildingBase { override bool IsRentableHouse() {return true;} };
