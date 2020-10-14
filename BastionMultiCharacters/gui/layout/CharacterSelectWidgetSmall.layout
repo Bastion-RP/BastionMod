@@ -1,0 +1,79 @@
+PanelWidgetClass rootFrame {
+ color 0 0 0 0.6
+ position 0 0
+ size 386 96
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ style rover_sim_colorable
+ {
+  TextWidgetClass txtName {
+   ignorepointer 1
+   position 121 20
+   size 250 18
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Salvatore Moore"
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold20"
+   "text valign" center
+  }
+  TextWidgetClass txtId {
+   ignorepointer 1
+   position 121 45
+   size 48 13
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "ID #: 50301 \ Class: ISF-F"
+   "size to text h" 1
+   "text valign" center
+  }
+  GridSpacerWidgetClass gridCooldown {
+   ignorepointer 1
+   position 121 65
+   size 48 13
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   Padding 0
+   Margin 0
+   "Size To Content H" 1
+   Columns 2
+   Rows 1
+   {
+    TextWidgetClass txtCdStatus {
+     ignorepointer 1
+     color 0.1176 0.8353 0 1
+     position 121 65
+     size 250 13
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "READY "
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold15"
+     "size to text h" 1
+     "text valign" center
+    }
+    TextWidgetClass txtCooldown {
+     ignorepointer 1
+     position 121 65
+     size 250 13
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "TO PLAY"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold15"
+     "size to text h" 1
+     "text valign" center
+    }
+   }
+  }
+ }
+}

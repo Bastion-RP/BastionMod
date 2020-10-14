@@ -1,0 +1,36 @@
+ImageWidgetClass rootFrame {
+ ignorepointer 1
+ position 0 0
+ size 1 1
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ imageTexture "{DFB2C3E5D9B79B43}BastionMod/BastionMultiCharacters/gui/img/bg.edds"
+ mode opaque
+ "no wrap" 0
+ stretch 1
+ "flip u" 0
+ "flip v" 0
+ filter 1
+ nocache 0
+ "Transition width" 0.099
+ {
+  ButtonWidgetClass btnDisconnect {
+   color 1 0.6588 0 1
+   position 45 45
+   size 250 50
+   valign bottom_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style DayZDefaultButtonNoBorder
+   "no focus" 1
+   text "DISCONNECT"
+   text_proportion 0.7
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold22"
+   "text color" 0 0 0 1
+  }
+ }
+}

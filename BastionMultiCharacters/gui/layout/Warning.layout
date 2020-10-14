@@ -1,0 +1,122 @@
+PanelWidgetClass pnlFrame {
+ color 0 0 0 0.502
+ size 1 1
+ hexactpos 1
+ vexactpos 1
+ hexactsize 0
+ vexactsize 0
+ style rover_sim_colorable
+ {
+  PanelWidgetClass pnlConfirmation {
+   color 0.0667 0.0667 0.0667 1
+   size 575 221
+   halign center_ref
+   valign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+   {
+    GridSpacerWidgetClass gridConfirmHeader {
+     ignorepointer 1
+     position 25 25
+     size 48 25
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     Padding 0
+     Margin 0
+     "Size To Content H" 1
+     Columns 2
+     Rows 1
+     {
+      TextWidgetClass txtConfirmHeader {
+       ignorepointer 1
+       position 25 10
+       size 200 27
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "Are you "
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold25"
+       "size to text h" 1
+       "text valign" center
+      }
+      TextWidgetClass txtSure {
+       ignorepointer 1
+       color 1 0.5843 0 1
+       position 25 10
+       size 200 27
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "sure?"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold25"
+       "text color" 1 0.5843 0 1
+       "size to text h" 1
+       "size to text v" 1
+       "text valign" center
+      }
+     }
+    }
+    MultilineTextWidgetClass txtConfirmInfo {
+     ignorepointer 1
+     position 25 75
+     size 525 44
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Once you confirm your character model, you cannot change it afterwards."
+     font "BastionMod/BastionMenu/gui/fonts/ddin20"
+     wrap 1
+    }
+    ButtonWidgetClass btnConfirmConfirm {
+     color 1 0.5843 0 1
+     position 25 25
+     size 250 50
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style DayZDefaultButtonNoBorder
+     text "CONFIRM & PLAY"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold25"
+     "text color" 0 0 0 1
+    }
+    ButtonWidgetClass btnConfirmCancel {
+     color 0 0 0 1
+     position 25 25
+     size 250 50
+     halign right_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Empty
+     text "KEEP EDITING"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold25"
+     "text color" 1 0.5843 0 1
+     {
+      PanelWidgetClass pnlBorder {
+       ignorepointer 1
+       color 1 0.5843 0 1
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       style Outline
+      }
+     }
+    }
+   }
+  }
+ }
+}

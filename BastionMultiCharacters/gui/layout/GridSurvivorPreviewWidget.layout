@@ -1,0 +1,29 @@
+FrameWidgetClass rootFrame {
+ size 384 96
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  GridSpacerWidgetClass grid {
+   size 384 96
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   Padding 0
+   Margin 0
+   Columns 4
+   Rows 1
+  }
+  PanelWidgetClass pnlBG {
+   color 0 0 0 0.6
+   size 384 96
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style rover_sim_colorable
+  }
+ }
+}
