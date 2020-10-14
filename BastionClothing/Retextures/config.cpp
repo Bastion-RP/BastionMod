@@ -43,6 +43,16 @@ class cfgVehicles
         simulation="head";
     };
 
+//---NBC Hood
+	class NBCHoodBase;
+
+	class BRP_NBCHood: NBCHoodBase
+	{
+		displayName = "ISF NBC Hood";
+		scope = 2;
+		visibilityModifier = 0.7;
+		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_hood.paa","BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_hood.paa","BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_hood.paa"};
+	};
 //---Baseball Cap
 	class BRP_ISF_BaseballCap: BaseballCap_ColorBase
 	{
@@ -426,6 +436,35 @@ class cfgVehicles
             female="\DZ\characters\vests\smersh_f.p3d";
         };
 	};
+	
+	class BRP_SmershRig_isf_black: SmershVest
+	{
+		displayName="Smersh Rig - ISF";
+		descriptionShort="";
+		model = "\DZ\characters\vests\smersh_g.p3d";
+		inventorySlot = "Hips";
+		scope=2;
+		visibilityModifier = 0.6;
+		hiddenSelections[] = 
+		{
+			"camoGround",
+            "camoMale",
+            "camoFemale"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_black_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_black_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_black_co.paa"
+		};
+		class ClothingTypes
+        {
+            male="\DZ\characters\vests\smersh_m.p3d";
+            female="\DZ\characters\vests\smersh_f.p3d";
+        };
+	};
+	
+	
 //---Smersh Bag
 	class BRP_SmershBag_isf: SmershBag
 	{
@@ -444,6 +483,26 @@ class cfgVehicles
 			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_co.paa",
 			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_co.paa",
 			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_co.paa"
+        };
+	};
+	
+	class BRP_SmershBag_isf_black: SmershBag
+	{
+		displayName="Smersh Bag - ISF";
+		descriptionShort="";
+		scope=2;
+		visibilityModifier = 0.6;
+		hiddenSelections[] = 
+		{
+			"camoGround",
+            "camoMale",
+            "camoFemale"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_black_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_black_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_SmershRig_isf_black_co.paa"
         };
 	};
 
@@ -477,6 +536,13 @@ class cfgVehicles
 //---There is nothing for a reason
         };
     };
+	class BRP_NBCJacket: NBCJacketBase
+	{
+		displayName = "ISF NBC Jacket";
+		scope = 2;
+		visibilityModifier = 0.7;
+		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_jacket.paa","BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_jacket.paa","BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_jacket.paa"};
+	};
 
 //---Paramedic Jacket
 	class BRP_ParamedicJacket_Light_Blue: ParamedicJacket_ColorBase
@@ -672,6 +738,13 @@ class cfgVehicles
 //---There is nothing here for a reason
         };
     };
+	class BRP_NBCGloves: NBCGloves_Colorbase
+	{
+		displayName = "ISF NBC Gloves";
+		scope = 2;
+		visibilityModifier = 0.7;
+		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_gloves.paa","BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_gloves.paa","BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_gloves.paa"};
+	};
 
 //---BDU Pants
 	class BRP_ISF_Pants: BDUPants
@@ -703,6 +776,13 @@ class cfgVehicles
 //---There is nothing here for a reason
         };
     };
+	class BRP_NBCPants: NBCPantsBase
+	{
+		displayName = "ISF NBC Pants";
+		scope = 2;
+		visibilityModifier = 0.7;
+		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_pants.paa","BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_pants.paa","BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_pants.paa"};
+	};
 
 //---TTSKO Pants	
     class BRP_TTSKOPants_DART: TTSKOPants
@@ -776,4 +856,11 @@ class cfgVehicles
 //---There is nothing for a reason
         };
     };
+	class BRP_NBCBoots: NBCBootsBase
+	{
+		displayName = "ISF NBC Boots";
+		scope = 2;
+		visibilityModifier = 0.7;
+		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_boots.paa","BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_boots.paa","BastionMod\BastionClothing\Retextures\data\pathfinder_nbc_boots.paa"};
+	};
 };
