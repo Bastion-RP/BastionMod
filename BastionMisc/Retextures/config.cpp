@@ -1,6 +1,6 @@
 class CfgPatches
 {
-	class BastionDangerousZone_Data
+	class BastionMisc_Other
 	{
 		units[] = {};
 		weapons[] = {};
