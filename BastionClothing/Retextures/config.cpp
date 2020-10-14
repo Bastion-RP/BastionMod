@@ -15,6 +15,8 @@ class cfgVehicles
 	class BDUPants;	
 	class Mich2001Helmet;
 	class MilitaryBeret_Red;
+	class SurgicalMask;
+	class ParamedicJacket_ColorBase;
 	class TTsKOJacket_ColorBase;
 	class MilitaryBeret_ColorBase;
 	class BaseballCap_ColorBase;
@@ -22,6 +24,7 @@ class cfgVehicles
 	class SmershBag;
 	class AssaultBag_ColorBase;
 	class TortillaBag;
+	class ParamedicPants_ColorBase;
 	class PrisonUniformPants;
 	class Hoodie_ColorBase;
 	class SmershVest;
@@ -258,6 +261,18 @@ class cfgVehicles
 		};
 	};
 
+//---Surgical Mask
+	class BRP_SurgicalMask_Black: SurgicalMask
+	{
+		scope = 2;
+		hiddenSelectionsTextures[] = 
+		{
+			"BastionMod\BastionClothing\Retextures\data\surgical_mask_blackground.paa",
+			"BastionMod\BastionClothing\Retextures\data\surgical_maskblack_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\surgical_maskblack_co.paa"
+		};
+	};
+
 //---Police Vest
 	class BRP_ISF_PoliceVest: PoliceVest
 	{
@@ -463,6 +478,41 @@ class cfgVehicles
         };
     };
 
+//---Paramedic Jacket
+	class BRP_ParamedicJacket_Light_Blue: ParamedicJacket_ColorBase
+	{
+		scope=2;
+		visibilityModifier=0.5;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\paramedic_jacket_light-blue-ground.paa",
+			"BastionMod\BastionClothing\Retextures\data\paramedic_jacket_lightblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\paramedic_jacket_lightblue.paa"
+		};
+	};
+	class BRP_ParamedicJacket_Light_Green: ParamedicJacket_ColorBase
+	{
+		scope=2;
+		visibilityModifier=0.5;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\paramedic_jacket_g_brightgreenground.paa",
+			"BastionMod\BastionClothing\Retextures\data\paramedic_jacket_brightgreen.paa",
+			"BastionMod\BastionClothing\Retextures\data\paramedic_jacket_brightgreen.paa"
+		};
+	};
+	class BRP_ParamedicJacket_Light_Red: ParamedicJacket_ColorBase
+	{
+		scope=2;
+		visibilityModifier=0.5;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\paramedic_jacket_g_red-ground.paa",
+			"BastionMod\BastionClothing\Retextures\data\paramedic_jacket_red.paa",
+			"BastionMod\BastionClothing\Retextures\data\paramedic_jacket_red.paa"
+		};
+	};
+
 //---Tactical Shirt
 	class BRP_ISF_Tacshirt: TacticalShirt_ColorBase
 	{
@@ -638,14 +688,7 @@ class cfgVehicles
 		descriptionShort = "";
 		hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\isff_pants.paa","BastionMod\BastionClothing\Retextures\data\isff_pants.paa","BastionMod\BastionClothing\Retextures\data\isff_pants.paa"};
 	};
-// TTSKO Pants	
-    class BRP_TTSKOPants_DART: TTSKOPants
-    {    
-        displayName = "DART Tactical Pants";
-        scope = 2;
-        visibilityModifier = 0.7;
-        hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\dart_ttsko.paa","BastionMod\BastionClothing\Retextures\data\dart_ttsko.paa","BastionMod\BastionClothing\Retextures\data\dart_ttsko.paa"};
-    };
+
 //---NBC Pants
     class NBCPantsBase;
     class BRP_Pants_admin: NBCPantsBase
@@ -660,6 +703,50 @@ class cfgVehicles
 //---There is nothing here for a reason
         };
     };
+
+//---TTSKO Pants	
+    class BRP_TTSKOPants_DART: TTSKOPants
+    {    
+        displayName = "DART Tactical Pants";
+        scope = 2;
+        visibilityModifier = 0.7;
+        hiddenSelectionsTextures[] = {"BastionMod\BastionClothing\Retextures\data\dart_ttsko.paa","BastionMod\BastionClothing\Retextures\data\dart_ttsko.paa","BastionMod\BastionClothing\Retextures\data\dart_ttsko.paa"};
+    };
+
+//---Paramedic Pants
+	class BRP_ParamedicPants_Light_Blue: ParamedicPants_ColorBase
+	{
+		scope=2;
+		visibilityModifier=0.5;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\paramedic_pants_lightblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\paramedic_pants_lightblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\paramedic_pants_lightblue.paa"
+		};
+	};
+	class BRP_ParamedicPants_Light_Green: ParamedicPants_ColorBase
+	{
+		scope=2;
+		visibilityModifier=0.5;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\paramedic_pants_lightgreen.paa",
+			"BastionMod\BastionClothing\Retextures\data\paramedic_pants_lightgreen.paa",
+			"BastionMod\BastionClothing\Retextures\data\paramedic_pants_lightgreen.paa"
+		};
+	};
+	class BRP_ParamedicPants_Light_Red: ParamedicPants_ColorBase
+	{
+		scope=2;
+		visibilityModifier=0.5;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\paramedic_pants_red.paa",
+			"BastionMod\BastionClothing\Retextures\data\paramedic_pants_red.paa",
+			"BastionMod\BastionClothing\Retextures\data\paramedic_pants_red.paa"
+		};
+	};
 
 //---Prison Pants
 	class BRP_PrisonPants_NCC: PrisonUniformPants
