@@ -6,25 +6,25 @@ modded class JMAnimRegister
               
 		pType.AddItemInHandsProfileIK("BRP_R700_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_winchester70.asi", pBehavior, "dz/anims/anm/player/ik/weapons/winchester70.anm", "dz/anims/anm/player/reloads/Winchester70/w_winchester70_states.anm");
  		pType.AddItemInHandsProfileIK("BRP_CSSMG9_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_m4a1.asi", pBehavior, "dz/anims/anm/player/ik/weapons/m4a1_ik.anm", "dz/anims/anm/player/reloads/M4A1/w_M4A1_states.anm");
-  		pType.AddItemInHandsProfileIK("BRP_SCARH_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_fnfal.asi", pBehavior, "dz/anims/anm/player/ik/weapons/fn_fal.anm",  "dz/anims/anm/player/reloads/FNFal/w_FNFal_states.anm");
+  		pType.AddItemInHandsProfileIK("BRP_SCARH_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_fnfal.asi", pBehavior, "dz/anims/anm/player/ik/weapons/fn_fal.anm", "dz/anims/anm/player/reloads/FNFal/w_FNFal_states.anm");
 		pType.AddItemInHandsProfileIK("BRP_ACR_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_ump45.asi", pBehavior, "dz/anims/anm/player/ik/weapons/ump.anm","dz/anims/anm/player/reloads/UMP45/w_UMP45_states.anm");
 		pType.AddItemInHandsProfileIK("BRP_MP5SD_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_ump45.asi", pBehavior, "dz/anims/anm/player/ik/weapons/ump.anm","dz/anims/anm/player/reloads/UMP45/w_UMP45_states.anm");
 		pType.AddItemInHandsProfileIK("BRP_AR15Hunting_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_ruger1022.asi", pBehavior, "dz/anims/anm/player/ik/weapons/ruger1022.anm", "dz/anims/anm/player/reloads/ruger1022/w_Ruger1022_states.anm");
-
+		pType.AddItemInHandsProfileIK("BRP_CS12G_Base", "BastionMod/BastionGuns/Beneillim/massautoshotty.asi", pBehavior, "dz/anims/anm/player/ik/weapons/mp133.anm", "dz/anims/anm/player/reloads/MP133/w_mp133_states.anm");
 	}
    
-     override void RegisterOneHanded(DayZPlayerType pType, DayzPlayerItemBehaviorCfg pBehavior)
+    override void RegisterOneHanded(DayZPlayerType pType, DayzPlayerItemBehaviorCfg pBehavior)
     {
     	super.RegisterOneHanded(pType, pBehavior);
     	pBehavior.SetToolsOneHanded();
 		
 		pType.AddItemInHandsProfileIK("BRP_Mag_CSSMG9_30Rnd", "dz/anims/workspaces/player/player_main/props/player_main_mp5k_mag.asi", pBehavior, "dz/anims/anm/player/ik/attachments/magazines/magazine_mp5_30rnd.anm");
-		pType.AddItemInHandsProfileIK("BRP_Mag_M9A3_17rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior,	"dz/anims/anm/player/ik/attachments/magazines/magazine_fnp45.anm");
+		pType.AddItemInHandsProfileIK("BRP_Mag_M9A3_17rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior, "dz/anims/anm/player/ik/attachments/magazines/magazine_fnp45.anm");
 		pType.AddItemInHandsProfileIK("BRP_Mag_G18_17rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior, "dz/anims/anm/player/ik/attachments/magazines/magazine_glock19_15rnd.anm");
 		pType.AddItemInHandsProfileIK("BRP_Mag_PB_8Rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior, "dz/anims/anm/player/ik/attachments/magazines/magazine_ij70.anm");
 		pType.AddItemInHandsProfileIK("Ammo_Taser", "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior, "dz/anims/anm/player/ik/ammunition/22_LooseRounds.anm");
 		pType.AddItemInHandsProfileIK("BRP_Mag_CSSMG45_30Rnd", "dz/anims/workspaces/player/player_main/props/player_main_mp5k_mag.asi", pBehavior, "dz/anims/anm/player/ik/attachments/magazines/magazine_mp5_30rnd.anm");
-		pType.AddItemInHandsProfileIK("BRP_Mag_CSP45_17Rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior,	"dz/anims/anm/player/ik/attachments/magazines/magazine_fnp45.anm");
+		pType.AddItemInHandsProfileIK("BRP_Mag_CSP45_17Rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior, "dz/anims/anm/player/ik/attachments/magazines/magazine_fnp45.anm");
 		pType.AddItemInHandsProfileIK("BRP_Mag_PX4_20Rnd", "dz/anims/workspaces/player/player_main/props/player_main_fnp45_mag.asi", pBehavior,	"dz/anims/anm/player/ik/attachments/magazines/magazine_fnp45.anm");
 
 	}
