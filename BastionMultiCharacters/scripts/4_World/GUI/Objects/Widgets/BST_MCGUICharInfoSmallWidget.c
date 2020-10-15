@@ -10,17 +10,18 @@ class BST_MCGUICharInfoSmallWidget : BST_MCGUIWidget {
     private bool _onCooldown;
 
     void Init(ScriptedWidgetEventHandler handler, BST_MCSavePlayerBasic character) {
-        _character = character;
         _root = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionMultiCharacters/gui/layout/CharacterSelectWidgetSmall.layout", _parent);
         _txtName = TextWidget.Cast(_root.FindAnyWidget("txtName"));
         _txtId = TextWidget.Cast(_root.FindAnyWidget("txtId"));
         _txtCDStatus = TextWidget.Cast(_root.FindAnyWidget("txtCdStatus"));
         _txtCooldown = TextWidget.Cast(_root.FindAnyWidget("txtCooldown"));
         _plyPreview = new BST_MCGUIPlyPreviewSmallWidget(_root);
+        _character = character;
+        _handler = handler;
 
         _root.SetHandler(handler);
         _plyPreview.Init(false);
-        _plyPreview.CreatePlayer(_character);
+        _plyPreview.SetFlags(WidgetFlags.IGNOREPOINTER);
         SetInfo();
     }
 
@@ -42,21 +43,25 @@ class BST_MCGUICharInfoSmallWidget : BST_MCGUIWidget {
             _txtCDStatus.SetText("NOT READY ");
             _txtCooldown.SetText("CREATE NEW CHARACTER");
             _txtCDStatus.SetColor(BST_COLOR_RED);
-        } else if (_character.IsDead() && timestampDifference <= respawnTimer) {
-            _onCooldown = true;
-
-            _txtCDStatus.SetText("ON COOLDOWN ");
-
-            if (timestampDifference == respawnTimer) {
-                _txtCooldown.SetText("FOR 1 MINUTE");
-            } else {
-                _txtCooldown.SetText("FOR " + (respawnTimer - timestampDifference) + " MINUTES");
-            }
-            _txtCDStatus.SetColor(BST_COLOR_RED);
+            _plyPreview.ShowPortrait(true);
         } else {
-            _txtCDStatus.SetText("READY ");
-            _txtCooldown.SetText("TO PLAY");
-            _txtCDStatus.SetColor(BST_COLOR_GREEN);
+            if (_character.IsDead() && timestampDifference <= respawnTimer) {
+                _onCooldown = true;
+
+                _txtCDStatus.SetText("ON COOLDOWN ");
+
+                if (timestampDifference == respawnTimer) {
+                    _txtCooldown.SetText("FOR 1 MINUTE");
+                } else {
+                    _txtCooldown.SetText("FOR " + (respawnTimer - timestampDifference) + " MINUTES");
+                }
+                _txtCDStatus.SetColor(BST_COLOR_RED);
+            } else {
+                _txtCDStatus.SetText("READY ");
+                _txtCooldown.SetText("TO PLAY");
+                _txtCDStatus.SetColor(BST_COLOR_GREEN);
+            }
+            _plyPreview.BuildExistingPlayer(_character);
         }
     }
 

@@ -12,5 +12,5 @@ class BST_MCGUIScriptedMenu : ScriptedWidgetEventHandler {
     }
 
     void Init() { }
-    void Init(BST_MCSavePlayerBasic character) { }
+    void SetCharacter(BST_MCSavePlayerBasic character) { }
 }

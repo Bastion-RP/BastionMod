@@ -1,24 +1,57 @@
 class BST_MCGUIPlyPreviewSmallWidget : BST_MCGUIWidget {
-    private ref Widget _pnlBG, _pnlBorder;
+    private const int CONST_SIZE = 96;
+    
+    private ref Widget _pnlBG, _pnlBorder, _pnlPreview;
     private ref PlayerPreviewWidget _preview;
+    private ref ImageWidget _imgNoChar
     private DayZPlayer _player;
     private EntityAI _itemInHands;
 
-    void Init(bool showBG = true) {
+    void Init(bool showBorder = true) {
         _root = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionMultiCharacters/gui/layout/SmallSurvivorPreviewWidget.layout", _parent);
         _pnlBG = _root.FindAnyWidget("pnlBG");
         _pnlBorder = _root.FindAnyWidget("pnlBorder");
+        _pnlPreview = _root.FindAnyWidget("pnlPreview");
         _preview = PlayerPreviewWidget.Cast(_root.FindAnyWidget("plyPreview"));
+        _imgNoChar = ImageWidget.Cast(_root.FindAnyWidget("imgPortrait"));
 
         _pnlBG.Show(false);
-        _pnlBorder.Show(showBG);
+        _imgNoChar.Show(false);
+        _preview.Show(true);
+        _pnlBorder.Show(showBorder);
+
+        if (!showBorder) {
+            _pnlPreview.SetSize(CONST_SIZE, CONST_SIZE);
+            _pnlPreview.SetPos(0, 0);
+        }
     }
 
     void Select(bool isSelected) {
         _pnlBG.Show(isSelected);
+
+        if (isSelected) {
+            _imgNoChar.SetColor(ARGB(255, 255, 255, 255));
+        } else {
+            _imgNoChar.SetColor(ARGB(255, 255, 168, 0))
+        }
     }
 
-    void CreatePlayer(BST_MCSavePlayerBasic character) {
+    void ShowPortrait(bool showPortrait) {
+        _imgNoChar.Show(showPortrait);
+        _preview.Show(!showPortrait);
+    }
+
+    void SetFlags(int flag) {
+        _root.SetFlags(flag);
+    }
+
+    void CreateNewPlayer(string charType) {
+        _player = DayZPlayer.Cast(GetGame().CreateObjectEx(charType, "0 0 0", ECE_LOCAL));
+        
+        _preview.SetPlayer(_player);
+    }
+
+    void BuildExistingPlayer(BST_MCSavePlayerBasic character) {
         array<ref BST_MCSaveObject> arrInventory = character.GetInventory();
         _player = DayZPlayer.Cast(GetGame().CreateObjectEx(character.GetType(), "0 0 0", ECE_LOCAL));
         

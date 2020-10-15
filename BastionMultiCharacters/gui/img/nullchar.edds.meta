@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{A556F8C9731AD397}BastionMod/BastionMultiCharacters/gui/img/nullchar.edds"
+ Author "bryanpc"
+ ChangeDate 25536846
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "nullchar.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

@@ -1,5 +1,5 @@
 FrameWidgetClass rootFrame {
- color 1 0.6588 0 1
+ visible 1
  position 0 0
  size 96 96
  hexactpos 1
@@ -8,6 +8,7 @@ FrameWidgetClass rootFrame {
  vexactsize 1
  {
   PanelWidgetClass pnlBG {
+   visible 1
    ignorepointer 1
    color 1 0.6588 0 0.6
    size 1 1
@@ -17,15 +18,40 @@ FrameWidgetClass rootFrame {
    vexactsize 0
    style rover_sim_colorable
   }
-  PlayerPreviewWidgetClass plyPreview {
+  ImageWidgetClass imgPortrait {
+   visible 1
    ignorepointer 1
-   position 0 -10
-   size 300 500
-   halign center_ref
+   color 1 0.6588 0 1
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   imageTexture "{A556F8C9731AD397}BastionMod/BastionMultiCharacters/gui/img/nullchar.edds"
+   mode blend
+   "src alpha" 1
+   stretch 1
+  }
+  PanelWidgetClass pnlPreview {
+   ignorepointer 1
+   position 2 2
+   size 91 91
    hexactpos 1
    vexactpos 1
    hexactsize 1
    vexactsize 1
+   {
+    PlayerPreviewWidgetClass plyPreview {
+     ignorepointer 1
+     position 0 -10
+     size 300 500
+     halign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+    }
+   }
   }
   PanelWidgetClass pnlBorder {
    ignorepointer 1

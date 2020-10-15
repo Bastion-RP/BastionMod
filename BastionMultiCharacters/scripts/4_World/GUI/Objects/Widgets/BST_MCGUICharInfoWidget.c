@@ -14,6 +14,7 @@ class BST_MCGUICharInfoWidget : BST_MCGUIWidget {
         _txtStatus = TextWidget.Cast(_root.FindAnyWidget("txtStatus"));
         _btnCanPlay = ButtonWidget.Cast(_root.FindAnyWidget("btnPlay"));
         _txtCannotPlay = TextWidget.Cast(_root.FindAnyWidget("btnCannotPlay"));
+        _handler = handler;
 
         _root.SetPos(x, y);
         _root.SetHandler(handler);
@@ -52,6 +53,13 @@ class BST_MCGUICharInfoWidget : BST_MCGUIWidget {
                     _btnCanPlay.Show(false);
                     _txtCannotPlay.Show(true);
                     _txtStatus.SetText("Incapacitated");
+                    break;
+                }
+            case 3:
+                {
+                    _btnCanPlay.Show(false);
+                    _txtCannotPlay.Show(true);
+                    _txtStatus.SetText("Not Selected");
                     break;
                 }
         }

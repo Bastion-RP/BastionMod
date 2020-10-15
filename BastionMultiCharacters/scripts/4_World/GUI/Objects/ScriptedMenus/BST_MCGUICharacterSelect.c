@@ -40,20 +40,39 @@ class BST_MCGUICharacterSelect : BST_MCGUIScriptedMenu {
             }
         }
     }
-    
-	override bool OnMouseButtonUp(Widget w, int x, int y, int button) {
+
+    override bool OnMouseEnter(Widget w, int x, int y) {
+        if (_mapSmallInfoWidgets.Contains(w)) {
+            BST_MCGUICharInfoSmallWidget infoWidget = _mapSmallInfoWidgets.Get(w);
+
+            if (infoWidget != _selectedInfoWidget) {
+                infoWidget.Select(true);
+            }
+        }
+        return true;
+    }
+
+    override bool OnMouseLeave(Widget w, Widget enterW, int x, int y) {
+        if (_mapSmallInfoWidgets.Contains(w)) {
+            BST_MCGUICharInfoSmallWidget infoWidget = _mapSmallInfoWidgets.Get(w);
+
+            if (infoWidget != _selectedInfoWidget) {
+                infoWidget.Select(false);
+            }
+        }
+        return true;
+    }
+
+    override bool OnMouseButtonUp(Widget w, int x, int y, int button) {
         if (button == MouseState.LEFT) {
             if (_mapSmallInfoWidgets.Contains(w)) {
                 BST_MCGUICharInfoSmallWidget infoWidget = _mapSmallInfoWidgets.Get(w);
                 BST_MCSavePlayerBasic character = infoWidget.GetCharacter();
 
-                Print("REEEE " + infoWidget.GetRoot().GetName());
-
                 if (_selectedInfoWidget != infoWidget) {
                     if (_selectedInfoWidget) {
                         _selectedInfoWidget.Select(false);
                     }
-                    Print("REEEE NOT SELECTED" + infoWidget.GetRoot().GetName());
                     if (character.IsDead() && character.GetType() == "") {
                         GetBSTMCClientManager().GetSelectMenu().CreateandShowSurvivorSelector(infoWidget.GetCharacter());
                     } else {
@@ -72,7 +91,6 @@ class BST_MCGUICharacterSelect : BST_MCGUIScriptedMenu {
                         }
                     }
                 } else {
-                    Print("REEEE SELECTED" + infoWidget.GetRoot().GetName());
                     _selectedInfoWidget.Select(false);
                     _pnlPlyPreview.Show(false);
                     _pnlCharInfo.Show(false);

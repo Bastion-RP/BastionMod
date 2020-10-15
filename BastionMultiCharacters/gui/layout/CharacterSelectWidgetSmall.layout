@@ -29,6 +29,7 @@ PanelWidgetClass rootFrame {
    hexactsize 1
    vexactsize 1
    text "ID #: 50301 \ Class: ISF-F"
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold15"
    "size to text h" 1
    "text valign" center
   }
