@@ -12,6 +12,12 @@ modded class WeaponManager
 				if ( (ISFClasses.Find(player.GetMultiCharactersPlayerClass()) != -1) )
 				return super.CanFire(wpn);
 			}
+			if(player)
+			{
+				player.BSTShowNotification("Cannot fire ID locked weapon! Return to an NCC Agent immediately.");
+				EffectSound sound = SEffectManager.PlaySound("ISFW_UnauthorizedAccess_SoundSet", player.GetPosition());
+				sound.SetSoundAutodestroy(true);
+			}
 			return false;
 		}
 		return super.CanFire(wpn);
