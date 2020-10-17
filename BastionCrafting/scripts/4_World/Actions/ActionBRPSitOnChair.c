@@ -48,7 +48,7 @@ class ActionBRPSitOnChair: ActionSingleUseBase
 	override void CreateConditionComponents()  
 	{	
 		m_ConditionItem = new CCINone;
-		m_ConditionTarget = new CCTNonRuined( UAMaxDistances.BASEBUILDING );
+		m_ConditionTarget = new CCTNonRuined( UAMaxDistances.SMALL );
 	}
 	
 	override string GetText()
