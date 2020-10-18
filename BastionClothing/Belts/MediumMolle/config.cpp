@@ -32,6 +32,7 @@ class cfgVehicles
 		visibilityModifier = 1;
 		inventorySlot = "Hips";
 		itemInfo[] = {"Clothing","Hips"};
+		itemsCargoSize[] = {5,3};
 		class ClothingTypes
 		{
 			male = "BastionMod\BastionClothing\Belts\MediumMolle\mediummolleplatform_m.p3d";
