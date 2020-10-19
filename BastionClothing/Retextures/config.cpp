@@ -8,6 +8,7 @@
 		requiredAddons[] = {"DZ_Data"};
 	};
 };
+
 class cfgVehicles
 {
 	class BalaclavaMask_ColorBase;
