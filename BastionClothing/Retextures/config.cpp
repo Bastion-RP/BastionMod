@@ -13,6 +13,7 @@ class cfgVehicles
 {
 	class Shirt_ColorBase;
 	class HuntingBag;
+	class Fingerless_Gloves_Wool;
 	class MiniDress_ColorBase;
 	class BalaclavaMask_ColorBase;
 	class Canvas_Backpack_Base;
@@ -9247,6 +9248,22 @@ class BRP_canvasbackpack_babypink: Canvas_Backpack_Base
 			"BastionMod\BastionClothing\Retextures\data\coda_armband_yellow.paa",
 			"BastionMod\BastionClothing\Retextures\data\coda_armband_yellow.paa",
 			"BastionMod\BastionClothing\Retextures\data\coda_armband_yellow.paa"
+		};
+	};
+	class BRP_fingerlessgloves_armygreen: Fingerless_Gloves_Wool
+	{
+		scope=2;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_fingerlessgloves_armygreen.paa"
+		};
+	};
+	class BRP_fingerlessgloves_white: Fingerless_Gloves_Wool
+	{
+		scope=2;
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_fingerlessgloves_white.paa"
 		};
 	};
 };

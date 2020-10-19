@@ -1,0 +1,1 @@
+These configs allowed for retextures to Windstride's clothing to change appearances when they were suitably wet enough and then changed back when they were dry
