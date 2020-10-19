@@ -32,7 +32,7 @@ class cfgVehicles
 		displayName = "Recruit Rank Insignia";
 		hiddenSelectionsTextures[] = {"\BastionMod\BastionClothing\RankInsignia\data\rankinsignia_rct_ca.paa"};
 	};
-/*
+
 	class BRP_RankInsignia_TR: BRP_RankInsignia_base
 	{
 		scope = 2;
@@ -81,5 +81,5 @@ class cfgVehicles
 		displayName = "Prefect Rank Insignia";
 		hiddenSelectionsTextures[] = {"\BastionMod\BastionClothing\RankInsignia\data\rankinsignia_pre_ca.paa"};
 	};
-*/
+
 };
