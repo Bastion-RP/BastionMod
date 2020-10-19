@@ -138,4 +138,44 @@ class CfgVehicles
 			};
 		};
 	};
+	
+	//--- PINS FOR WINDSTRIDE RETEX
+	class Button_Pin_Radioactive;
+	class Golden_Winged_Pin;
+	class BRP_pin_codarp: Button_Pin_Radioactive
+	{
+		scope=2;
+		hiddenSelectionsTextures[]=
+		{
+			"\BastionMod\BastionMisc\Retextures\data\coda_pin_codarp.paa"
+		};
+	};
+	class BRP_pin_king: Button_Pin_Radioactive
+	{
+		scope=2;
+		hiddenSelectionsTextures[]=
+		{
+			"\BastionMod\BastionMisc\Retextures\data\coda_pin_king.paa"
+		};
+	};
+	class BRP_pin_queen: Button_Pin_Radioactive
+	{
+		scope=2;
+		hiddenSelectionsTextures[]=
+		{
+			"\BastionMod\BastionMisc\Retextures\data\coda_pin_queen.paa"
+		};
+	};
+	class BRP_pin_wings_blue: Golden_Winged_Pin
+	{
+		scope=2;
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"\BastionMod\BastionMisc\Retextures\data\coda_pin_wings_blue.paa"
+		};
+	};
 };

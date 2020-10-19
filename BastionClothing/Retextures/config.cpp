@@ -18,6 +18,7 @@ class cfgVehicles
 	class Canvas_Backpack_Base;
 	class AthleticShoes_ColorBase;
 	class BandanaHead_ColorBase;
+	class Armband_ColorBase;
 	class HunterPants_ColorBase;
 	class BandanaMask_ColorBase;
 	class TacticalShirt_ColorBase;
@@ -8934,6 +8935,318 @@ class BRP_canvasbackpack_babypink: Canvas_Backpack_Base
 			"BastionMod\BastionClothing\Retextures\data\coda_gorka_pants_black.paa",
 			"BastionMod\BastionClothing\Retextures\data\coda_gorka_pants_black.paa",
 			"BastionMod\BastionClothing\Retextures\data\coda_gorka_pants_black.paa"
+		};
+	};
+	class BRP_armband_armygreen: Armband_ColorBase
+	{
+		scope=2;
+		color="armygreen";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_armygreen.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_armygreen.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_armygreen.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_armygreen.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_armygreen.paa"
+		};
+	};
+	class BRP_armband_babyblue: Armband_ColorBase
+	{
+		scope=2;
+		color="babyblue";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_babyblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_babyblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_babyblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_babyblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_babyblue.paa"
+		};
+	};
+	class BRP_armband_babypink: Armband_ColorBase
+	{
+		scope=2;
+		color="babypink";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_babypink.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_babypink.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_babypink.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_babypink.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_babypink.paa"
+		};
+	};
+	class BRP_armband_black: Armband_ColorBase
+	{
+		scope=2;
+		color="black";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_black.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_black.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_black.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_black.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_black.paa"
+		};
+	};
+	class BRP_armband_beige: Armband_ColorBase
+	{
+		scope=2;
+		color="beige";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_beige.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_beige.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_beige.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_beige.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_beige.paa"
+		};
+	};
+	class BRP_armband_burgundy: Armband_ColorBase
+	{
+		scope=2;
+		color="burgundy";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_burgundy.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_burgundy.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_burgundy.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_burgundy.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_burgundy.paa"
+		};
+	};
+	class BRP_armband_candypink: Armband_ColorBase
+	{
+		scope=2;
+		color="candypink";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_candypink.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_candypink.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_candypink.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_candypink.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_candypink.paa"
+		};
+	};
+	class BRP_armband_cream: Armband_ColorBase
+	{
+		scope=2;
+		color="cream";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_cream.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_cream.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_cream.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_cream.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_cream.paa"
+		};
+	};
+	class BRP_armband_cyan: Armband_ColorBase
+	{
+		scope=2;
+		color="cyan";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_cyan.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_cyan.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_cyan.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_cyan.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_cyan.paa"
+		};
+	};
+	class BRP_armband_darkbrown: Armband_ColorBase
+	{
+		scope=2;
+		color="darkbrown";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_darkbrown.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_darkbrown.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_darkbrown.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_darkbrown.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_darkbrown.paa"
+		};
+	};
+	class BRP_armband_darkgrey: Armband_ColorBase
+	{
+		scope=2;
+		color="darkgrey";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_darkgrey.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_darkgrey.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_darkgrey.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_darkgrey.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_darkgrey.paa"
+		};
+	};
+	class BRP_armband_fuchsia: Armband_ColorBase
+	{
+		scope=2;
+		color="fuchsia";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_fuchsia.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_fuchsia.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_fuchsia.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_fuchsia.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_fuchsia.paa"
+		};
+	};
+	class BRP_armband_lavender: Armband_ColorBase
+	{
+		scope=2;
+		color="lavender";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lavender.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lavender.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lavender.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lavender.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lavender.paa"
+		};
+	};
+	class BRP_armband_lightbrown: Armband_ColorBase
+	{
+		scope=2;
+		color="lightbrown";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lightbrown.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lightbrown.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lightbrown.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lightbrown.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lightbrown.paa"
+		};
+	};
+	class BRP_armband_lightgrey: Armband_ColorBase
+	{
+		scope=2;
+		color="lightgrey";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lightgrey.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lightgrey.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lightgrey.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lightgrey.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_lightgrey.paa"
+		};
+	};
+	class BRP_armband_navyblue: Armband_ColorBase
+	{
+		scope=2;
+		color="navyblue";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_navyblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_navyblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_navyblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_navyblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_navyblue.paa"
+		};
+	};
+	class BRP_armband_olivegreen: Armband_ColorBase
+	{
+		scope=2;
+		color="olivegreen";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_olivegreen.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_olivegreen.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_olivegreen.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_olivegreen.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_olivegreen.paa"
+		};
+	};
+	class BRP_armband_orange: Armband_ColorBase
+	{
+		scope=2;
+		color="orange";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_orange.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_orange.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_orange.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_orange.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_orange.paa"
+		};
+	};
+	class BRP_armband_plum: Armband_ColorBase
+	{
+		scope=2;
+		color="plum";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_plum.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_plum.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_plum.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_plum.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_plum.paa"
+		};
+	};
+	class BRP_armband_purple: Armband_ColorBase
+	{
+		scope=2;
+		color="purple";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_purple.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_purple.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_purple.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_purple.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_purple.paa"
+		};
+	};
+	class BRP_armband_red: Armband_ColorBase
+	{
+		scope=2;
+		color="red";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_red.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_red.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_red.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_red.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_red.paa"
+		};
+	};
+	class BRP_armband_royalblue: Armband_ColorBase
+	{
+		scope=2;
+		color="royalblue";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_royalblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_royalblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_royalblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_royalblue.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_royalblue.paa"
+		};
+	};
+	class BRP_armband_white: Armband_ColorBase
+	{
+		scope=2;
+		color="white";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_white.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_white.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_white.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_white.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_white.paa"
+		};
+	};
+	class BRP_armband_yellow: Armband_ColorBase
+	{
+		scope=2;
+		color="yellow";
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_yellow.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_yellow.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_yellow.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_yellow.paa",
+			"BastionMod\BastionClothing\Retextures\data\coda_armband_yellow.paa"
 		};
 	};
 };
