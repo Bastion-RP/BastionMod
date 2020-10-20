@@ -9,7 +9,7 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"DZ_data\",
+			"DZ_data",
 			"DZ_Gear_Optics",
 			"DZ_Weapons_Melee",
 			"DZ_Gear_Tools",

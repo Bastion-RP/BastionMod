@@ -450,11 +450,11 @@ class cfgVehicles
 			"BRPbook32"
 		};
 	};
-	class BRP_bookbase: ItemBook//Baseclass for note compatible books
+	/* class BRP_bookbase: ItemBook //Baseclass for note compatible books
 	{
 		scope=0;
 		//itemsize[]={1,2};
-	};
+	}; */
 	class BRP_journal: BRP_bookbase
 	{
 		scope=2;

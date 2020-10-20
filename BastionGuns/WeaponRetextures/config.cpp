@@ -5,7 +5,7 @@ class CfgPatches
 	{
 		units[]=
 		{
-			"Ruger1022";
+			"Ruger1022",
 			"Ruger1022_Base"
 		};
 		weapons[]={};
@@ -17,7 +17,7 @@ class CfgPatches
 			"DZ_Weapons_Melee",
 			"DZ_Gear_Tools",
 			"DZ_Weapons_Firearms",
-			"DZ_Gear_Crafting";
+			"DZ_Gear_Crafting",
 			"DZ_Weapons_Firearms_Ruger1022"
 		};
 		magazines[]=
