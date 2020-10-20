@@ -39,7 +39,7 @@ class cfgAmmoTypes
 {
 	class Atype_Bullet_22PB
 	{
-		name="Bullet_22PB"
+		name="Bullet_22PB";
 	};
 };
 class CfgAmmo
