@@ -234,6 +234,10 @@ class cfgVehicles
 		displayName = "NCC Military Beret";
         descriptionShort = "Military beret for high-ranking NCC officials.";
 		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
+		headSelectionsToHide[]=
+        {
+            "Clipping_pilotka"
+        };
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_co.paa",
@@ -252,6 +256,10 @@ class cfgVehicles
 		displayName = "NCC Military Beret";
         descriptionShort = "Military beret for high-ranking NCC officials.";
 		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
+		headSelectionsToHide[]=
+        {
+            "Clipping_pilotka"
+        };
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_blue_co.paa",
@@ -270,6 +278,10 @@ class cfgVehicles
 		displayName = "NCC Military Beret";
         descriptionShort = "Military beret for high-ranking NCC officials.";
 		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
+		headSelectionsToHide[]=
+        {
+            "Clipping_pilotka"
+        };
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_black_co.paa",
@@ -288,6 +300,10 @@ class cfgVehicles
 		displayName = "NCC Military Beret";
         descriptionShort = "Military beret for high-ranking NCC officials.";
 		model="\DZ\characters\headgear\MilitaryBeret_g.p3d";
+		headSelectionsToHide[]=
+        {
+            "Clipping_pilotka"
+        };
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\militaryberet_isf_purple_co.paa",
