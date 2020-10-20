@@ -146,9 +146,9 @@ class cfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\DZ\structures\furniture\medical\medical_table\medical_table.paa",
-			"\DZ\structures\furniture\medical\medical_table\medical_table.paa",
-			"\DZ\structures\furniture\medical\medical_table\medical_table.paa"
+			"\DZ\structures\furniture\medical\medical_table\data\medicaltable_co.paa",
+			"\DZ\structures\furniture\medical\medical_table\data\medicaltable_co.paa",
+			"\DZ\structures\furniture\medical\medical_table\data\medicaltable_co.paa"
 		};
 		itemBehaviour=2;
 	};
@@ -164,9 +164,9 @@ class cfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\DZ\structures\furniture\school_equipment\lab_triplebeam.paa",
-			"\DZ\structures\furniture\school_equipment\lab_triplebeam.paa",
-			"\DZ\structures\furniture\school_equipment\lab_triplebeam.paa"
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa"
 		};
 		itemBehaviour=2;
 	};
@@ -182,9 +182,9 @@ class cfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\DZ\structures\furniture\school_equipment\lab_vial.paa",
-			"\DZ\structures\furniture\school_equipment\lab_vial.paa",
-			"\DZ\structures\furniture\school_equipment\lab_vial.paa"
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa"
 		};
 		itemBehaviour=2;
 	};
@@ -200,16 +200,16 @@ class cfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\DZ\structures\furniture\school_equipment\lab_volume_beaker.paa",
-			"\DZ\structures\furniture\school_equipment\lab_volume_beaker.paa",
-			"\DZ\structures\furniture\school_equipment\lab_volume_beaker.paa"
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa"
 		};
 		itemBehaviour=2;
 	};
 	class BRP_lab_bunsen: Inventory_Base
 	{
 		scope=2;
-		model="\DZ\structures\furniture\school_equipment\lab_bunsen.p3d";
+		model="\DZ\structures\furniture\school_equipment\data\lab_bunsen.p3d";
 		itemSize[]={2,2};
 		weight=100;
 		hiddenSelections[]=
@@ -218,9 +218,9 @@ class cfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\DZ\structures\furniture\school_equipment\lab_bunsen.paa",
-			"\DZ\structures\furniture\school_equipment\lab_bunsen.paa",
-			"\DZ\structures\furniture\school_equipment\lab_bunsen.paa"
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa"
 		};
 		itemBehaviour=2;
 	};
@@ -236,9 +236,9 @@ class cfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\DZ\structures\furniture\school_equipment\lab_cylinder_beaker.paa",
-			"\DZ\structures\furniture\school_equipment\lab_cylinder_beaker.paa",
-			"\DZ\structures\furniture\school_equipment\lab_cylinder_beaker.paa"
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa"
 		};
 		itemBehaviour=2;
 	};
@@ -254,9 +254,9 @@ class cfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\DZ\structures\furniture\school_equipment\lab_dropper.paa",
-			"\DZ\structures\furniture\school_equipment\lab_dropper.paa",
-			"\DZ\structures\furniture\school_equipment\lab_dropper.paa"
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa"
 		};
 		itemBehaviour=2;
 	};
@@ -272,9 +272,9 @@ class cfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\DZ\structures\furniture\school_equipment\lab_erlenmeyer_flask.paa",
-			"\DZ\structures\furniture\school_equipment\lab_erlenmeyer_flask.paa",
-			"\DZ\structures\furniture\school_equipment\lab_erlenmeyer_flask.paa"
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa",
+			"\DZ\structures\furniture\school_equipment\data\lab_set_ca.paa"
 		};
 		itemBehaviour=2;
 	};
