@@ -171,9 +171,9 @@ class CfgMagazines
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"BastionMod\BastionClothing\WeaponRetextures\data\coda_22round_red.paa",
-			"BastionMod\BastionClothing\WeaponRetextures\data\coda_22round_red.paa",
-			"BastionMod\BastionClothing\WeaponRetextures\data\coda_22round_red.paa"
+			"BastionMod\BastionGuns\WeaponRetextures\data\coda_22round_red.paa",
+			"BastionMod\BastionGuns\WeaponRetextures\data\coda_22round_red.paa",
+			"BastionMod\BastionGuns\WeaponRetextures\data\coda_22round_red.paa"
 		};
 	};
 	class Mag_Ruger1022_30Rnd: Magazine_Base
@@ -216,7 +216,7 @@ class cfgWeapons
 		itemSize[]={9,3};
 		hiddenSelectionsTextures[]=
 		{
-			"BastionMod\BastionClothing\WeaponRetextures\data\coda_repeater_black.paa"
+			"BastionMod\BastionGuns\WeaponRetextures\data\coda_repeater_black.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
@@ -237,7 +237,7 @@ class cfgWeapons
 		itemSize[]={9,3};
 		hiddenSelectionsTextures[]=
 		{
-			"BastionMod\BastionClothing\WeaponRetextures\data\coda_repeater_black_amelia.paa"
+			"BastionMod\BastionGuns\WeaponRetextures\data\coda_repeater_black_amelia.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
@@ -258,7 +258,7 @@ class cfgWeapons
 		itemSize[]={9,3};
 		hiddenSelectionsTextures[]=
 		{
-			"BastionMod\BastionClothing\WeaponRetextures\data\coda_repeater_hardened.paa"
+			"BastionMod\BastionGuns\WeaponRetextures\data\coda_repeater_hardened.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
@@ -270,7 +270,7 @@ class cfgWeapons
 		scope=2;
 		hiddenSelectionsTextures[]=
 		{
-			"BastionMod\BastionClothing\WeaponRetextures\data\coda_winchester_black.paa"
+			"BastionMod\BastionGuns\WeaponRetextures\data\coda_winchester_black.paa"
 		};
 	};
 	class BRP_sporter_red: Ruger1022
@@ -284,7 +284,7 @@ class cfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"BastionMod\BastionClothing\WeaponRetextures\data\coda_sporter_red.paa"
+			"BastionMod\BastionGuns\WeaponRetextures\data\coda_sporter_red.paa"
 		};
 		chamberableFrom[]=
 		{
@@ -306,7 +306,7 @@ class cfgWeapons
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"BastionMod\BastionClothing\WeaponRetextures\data\coda_sporter_blue.paa"
+			"BastionMod\BastionGuns\WeaponRetextures\data\coda_sporter_blue.paa"
 		};
 		chamberableFrom[]=
 		{
@@ -322,7 +322,7 @@ class cfgWeapons
 		scope=2;
 		hiddenSelectionsTextures[]=
 		{
-			"BastionMod\BastionClothing\WeaponRetextures\data\coda_mosin_black.paa"
+			"BastionMod\BastionGuns\WeaponRetextures\data\coda_mosin_black.paa"
 		};
 	};
 	class Colt1911;
@@ -331,7 +331,7 @@ class cfgWeapons
 		scope=2;
 		hiddenSelectionsTextures[]=
 		{
-			"BastionMod\BastionClothing\WeaponRetextures\data\coda_1911_hiswill.paa"
+			"BastionMod\BastionGuns\WeaponRetextures\data\coda_1911_hiswill.paa"
 		};
 	};
 };
