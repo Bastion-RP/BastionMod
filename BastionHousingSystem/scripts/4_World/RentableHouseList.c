@@ -21,6 +21,7 @@ modded class Land_HouseBlock_2F8                 { override bool IsRentableHouse
 modded class Land_HouseBlock_2F9                 { override bool IsRentableHouse() {return true;} };
 modded class Land_HouseBlock_3F2                 { override bool IsRentableHouse() {return true;} };
 modded class Land_HouseBlock_5F                  { override bool IsRentableHouse() {return true;} };
+modded class Land_Village_Pub					 { override bool IsRentableHouse() {return true;} };
 
 //modded======================================
 class Land_House_1W07 :             BuildingBase { override bool IsRentableHouse() {return true;} };
@@ -99,6 +100,5 @@ class Land_HouseBlock_3F_Corner1:       BuildingBase { override bool IsRentableH
 class Land_City_PoliceStation:          BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_CementWorks_Hall1:           BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Office_Municipal2:           BuildingBase { override bool IsRentableHouse() {return true;} };
-class Land_Village_Pub:           BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Mil_Guardhouse1:           BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Camp_House_brown:           BuildingBase { override bool IsRentableHouse() {return true;} };
