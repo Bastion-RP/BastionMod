@@ -102,3 +102,5 @@ class Land_CementWorks_Hall1:           BuildingBase { override bool IsRentableH
 class Land_Office_Municipal2:           BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Mil_Guardhouse1:           BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Camp_House_brown:           BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Tisy_HQ:           BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_mil_Airfield_HQ:           BuildingBase { override bool IsRentableHouse() {return true;} };
