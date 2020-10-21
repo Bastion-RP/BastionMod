@@ -1,7 +1,14 @@
 modded class MainMenu extends UIScriptedMenu
 {
+	private ref DayZIntroSceneNew   m_IntroScene;
 	protected Widget m_Forums;
 	protected TextWidget m_WelcomeBack;
+
+	void MenuHud()
+	{
+		MissionMainMenu m = MissionMainMenu.Cast( GetGame().GetMission() );
+		m_IntroScene = m.GetIntroScene();
+	}
 
 	override Widget Init()
 	{

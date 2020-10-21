@@ -64,3 +64,31 @@ class CfgSoundShaders
 		volume = 1;
 	};
 };
+
+class cfgLobbyScenes
+{
+    class ChernarusPlus
+    {
+        class scene_1
+        {
+            camPos[]={8809.124023, 218.5, 2860.765625};
+            playerPos[]={8814.236328, 217.137512, 2857.740479};
+            camDir[]={119.999985, 0.000000, 0.000000};
+            playerDir[]={-62.000011, 0.000000, 0.000000};
+            fov=0.5;
+            rain=1;
+            overcast=1;
+        };
+        
+        class scene_2
+        {
+            camPos[]={8809.124023, 218.5, 2860.765625};
+            playerPos[]={8814.236328,217.137512, 2857.740479};
+            camDir[]={119.999985, 0.000000, 0.000000};
+            playerDir[]={-62.000011, 0.000000, 0.000000};
+            fov=0.5;
+            rain=1;
+            overcast=1;
+        };
+    };
+};
