@@ -7,7 +7,8 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]={
 			"DZ_Data",
-			"DZ_Characters"
+			"DZ_Characters",
+			"MSP_Weapons_Data"
 		};
 	};
 };
@@ -36,6 +37,32 @@ class CfgMods
             };
         };
     };
+};
+
+class CfgVehicles
+{
+	class Msp_BlunderBat;
+	class BRP_Msp_BlunderBat: Msp_BlunderBat
+	{
+		class MeleeModes
+		{
+			class Default
+			{
+				ammo = "BRP_MeleeBlunderBat";
+				range = 1.6;
+			};
+			class Heavy
+			{
+				ammo = "BRP_MeleeBlunderBat_Heavy";
+				range = 1.6;
+			};
+			class Sprint
+			{
+				ammo = "BRP_MeleeBlunderBat_Heavy";
+				range = 4.0;
+			};
+		};
+	};	
 };
 
 // Nerf melee:
@@ -74,4 +101,54 @@ class CfgAmmo {
 			};
 		};
 	};
+	
+// -- MSP NERF
+	class MeleeMachete;
+	class MeleeMachete_Heavy;
+	class BRP_MeleeBlunderBat: MeleeMachete
+	{
+		affectSkeleton = 0.2;
+		class DamageApplied
+		{
+			type = "Melee";
+			bleedThreshold = 1;
+			class Health
+			{
+				damage = 20;
+			};
+			class Blood
+			{
+				damage = 60;
+			};
+			class Shock
+			{
+				damage = 15;
+			};
+			additionAnimalMeleeMultiplier = 3;
+		};
+	};
+	class BRP_MeleeBlunderBat_Heavy: MeleeMachete_Heavy
+	{
+		class DamageApplied
+		{
+			type = "Melee";
+			bleedThreshold = 1;
+			class Health
+			{
+				damage = 25;
+			};
+			class Blood
+			{
+				damage = 100;
+			};
+			class Shock
+			{
+				damage = 20;
+			};
+			additionAnimalMeleeMultiplier = 3;
+		};
+		hitAnimation = 1;
+	};
+		
 };
+

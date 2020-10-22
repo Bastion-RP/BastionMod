@@ -36,15 +36,15 @@ class ToxicManager : PluginBase
 		if (!FileExist(path))
 		{
 			defaultData = new array<ref ToxicAreaData>();
-			array<ref ParticlesData> tempData = new array<ref ParticlesData>();
-			tempData.Insert(new ParticlesData("GreenSpore", "0 0 0"));
-			tempData.Insert(new ParticlesData("WeirdGreenSpore", "0 0 0"));
-			tempData.Insert(new ParticlesData("WeirdGreenSpore2", "0 0 0"));
-			tempData.Insert(new ParticlesData("PurpleSpore", "0 0 0"));
-			tempData.Insert(new ParticlesData("BlueSpore", "0 0 0"));
-			tempData.Insert(new ParticlesData("RedSpore", "0 0 0"));
-			tempData.Insert(new ParticlesData("WhiteSpore", "0 0 0"));
-			defaultData.Insert(new ToxicAreaData("100 0 100", 10, tempData));
+			// array<ref ParticlesData> tempData = new array<ref ParticlesData>();
+			// tempData.Insert(new ParticlesData("GreenSpore", "0 0 0"));
+			// tempData.Insert(new ParticlesData("WeirdGreenSpore", "0 0 0"));
+			// tempData.Insert(new ParticlesData("WeirdGreenSpore2", "0 0 0"));
+			// tempData.Insert(new ParticlesData("PurpleSpore", "0 0 0"));
+			// tempData.Insert(new ParticlesData("BlueSpore", "0 0 0"));
+			// tempData.Insert(new ParticlesData("RedSpore", "0 0 0"));
+			// tempData.Insert(new ParticlesData("WhiteSpore", "0 0 0"));
+			// defaultData.Insert(new ToxicAreaData("100 0 100", 10, tempData));
 			JsonFileLoader<array<ref ToxicAreaData>>.JsonSaveFile( path, defaultData );
 		}
 		else
