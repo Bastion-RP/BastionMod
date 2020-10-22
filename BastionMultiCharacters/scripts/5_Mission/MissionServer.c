@@ -100,10 +100,6 @@ modded class MissionServer {
 						}
 					}
 				}
-				GetGame().SelectPlayer(identity, newPlayer);
-				InvokeOnConnect(newPlayer, identity);
-				FinishSpawningClient(identity, newPlayer);
-
 				if (!validPlayer) {
 					vector spawnPos;
 
@@ -127,6 +123,9 @@ modded class MissionServer {
 					LoadPlayer(newPlayer, savePlayer);
 				}
 				newPlayer.BSTMCSetCharData(characterId, webCharData.GetFirstName() + " " + webCharData.GetLastName(), webCharData.GetCitizenClass().ToInt());
+				GetGame().SelectPlayer(identity, newPlayer);
+				InvokeOnConnect(newPlayer, identity);
+				FinishSpawningClient(identity, newPlayer);
 				newPlayer.BSTMCSaveInventory();
 
 				Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Sending API data to client");

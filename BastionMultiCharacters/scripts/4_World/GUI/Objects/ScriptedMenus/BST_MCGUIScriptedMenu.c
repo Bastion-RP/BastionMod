@@ -1,10 +1,10 @@
 class BST_MCGUIScriptedMenu : ScriptedWidgetEventHandler {
     protected ref Widget _root, _parent;
-    protected ref BST_MCGUICharPreviewWidget _pnlPlyPreview;
-    protected ref BST_MCGUICharInfoWidget _pnlCharInfo;
+    protected BST_MCGUIMainMenu _rootMenu;
 
-    void BST_MCGUIScriptedMenu(Widget parent) {
+    void BST_MCGUIScriptedMenu(BST_MCGUIMainMenu rootMenu, Widget parent) {
         _parent = parent;
+        _rootMenu = rootMenu;
     }
 
     void Show(bool show) {

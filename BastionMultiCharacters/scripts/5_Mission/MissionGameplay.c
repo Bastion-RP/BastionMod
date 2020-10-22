@@ -19,4 +19,8 @@ modded class MissionGameplay {
                 SetPlayerRespawning(true);
         }
     }
+
+    void ~MissionGameplay() {
+        BST_MCClientManager._initInvoker.Remove(MCRespawnPlayer);
+    }
 }

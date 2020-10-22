@@ -6,6 +6,7 @@ class BST_MCGUICharPreviewWidget : BST_MCGUIWidget {
         _playerPreview = PlayerPreviewWidget.Cast(_root.FindAnyWidget("prvPlayer"));
         _handler = handler;
 
+        _root.Show(false);
         _root.SetPos(x, y);
     }
 

@@ -21,15 +21,15 @@ class BST_MCServerManager : PluginBase {
         }
         if (!FileExist(BST_MCConst.configDir)) {
             config = new BST_MCConfig();
-
-            JsonFileLoader<BST_MCConfig>.JsonSaveFile(BST_MCConst.configDir, config);
         } else {
             JsonFileLoader<BST_MCConfig>.JsonLoadFile(BST_MCConst.configDir, config);
         }
+        JsonFileLoader<BST_MCConfig>.JsonSaveFile(BST_MCConst.configDir, config);
         GetBSTMCManager().SetConfig(config);
 
         if (!FileExist(BST_MCConst.spawnPointDir)) {
             _arrSpawnPoints = BST_MCDefaultSpawns();
+            
             JsonFileLoader<array<string>>.JsonSaveFile(BST_MCConst.spawnPointDir, _arrSpawnPoints);
         } else {
             JsonFileLoader<array<string>>.JsonLoadFile(BST_MCConst.spawnPointDir, _arrSpawnPoints);

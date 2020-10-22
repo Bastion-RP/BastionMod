@@ -4,6 +4,7 @@ class BST_MCGUICharInfoWidget : BST_MCGUIWidget {
 
     private ref TextWidget _txtNameFirst, _txtNameLast, _txtId, _txtClass, _txtStatus, _txtCannotPlay;
     private ref ButtonWidget _btnCanPlay;
+    private BST_MCSavePlayerBasic _character;
 
     void Init(ScriptedWidgetEventHandler handler, int x, int y) {
         _root = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionMultiCharacters/gui/layout/CharacterSelectWidget.layout", _parent);
@@ -15,7 +16,8 @@ class BST_MCGUICharInfoWidget : BST_MCGUIWidget {
         _btnCanPlay = ButtonWidget.Cast(_root.FindAnyWidget("btnPlay"));
         _txtCannotPlay = TextWidget.Cast(_root.FindAnyWidget("btnCannotPlay"));
         _handler = handler;
-
+        
+        _root.Show(false);
         _root.SetPos(x, y);
         _root.SetHandler(handler);
     }
@@ -24,6 +26,7 @@ class BST_MCGUICharInfoWidget : BST_MCGUIWidget {
         array<string> charName = new array<string>();
 
         character.GetName().Split(" ", charName);
+        _character = character;
         _txtNameFirst.SetText(charName[0] + " ");
         _txtNameLast.SetText(charName[1]);
         _txtId.SetText("" + character.GetCharacterId());
@@ -64,4 +67,7 @@ class BST_MCGUICharInfoWidget : BST_MCGUIWidget {
                 }
         }
     }
+
+    ButtonWidget GetPlayButton() { return _btnCanPlay; }
+    int GetCharacterId() { return _character.GetCharacterId(); }
 }

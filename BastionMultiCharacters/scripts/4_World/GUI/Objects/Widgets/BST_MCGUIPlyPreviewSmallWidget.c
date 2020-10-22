@@ -32,7 +32,7 @@ class BST_MCGUIPlyPreviewSmallWidget : BST_MCGUIWidget {
         if (isSelected) {
             _imgNoChar.SetColor(ARGB(255, 255, 255, 255));
         } else {
-            _imgNoChar.SetColor(ARGB(255, 255, 168, 0))
+            _imgNoChar.SetColor(ARGB(255, 255, 168, 0));
         }
     }
 

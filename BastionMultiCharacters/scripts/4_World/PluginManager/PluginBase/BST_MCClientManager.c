@@ -7,16 +7,15 @@ class BST_MCClientManager : PluginBase {
 	private bool _isInitialized;
 
 	void BST_MCClientManager() {
-		g_Game.BST_MCInitInvoker.Insert(InitClient);
-		g_Game.BST_MCSpawnInvoker.Insert(ContinueSpawn);
 		_initInvoker = new ScriptInvoker();
 
 		Init();
+		GetDayZGame().BST_MCSpawnInvoker.Insert(InitClient);
 	}
 
 	void ~BST_MCClientManager() {
-		g_Game.BST_MCInitInvoker.Remove(InitClient);
-		g_Game.BST_MCSpawnInvoker.Remove(ContinueSpawn);
+		GetDayZGame().BST_MCSpawnInvoker.Remove(InitClient);
+		delete _initInvoker;
 	}
 
 	void Init() {
@@ -72,22 +71,11 @@ class BST_MCClientManager : PluginBase {
 		_isInitialized = isInitialized;
 	}
 
-	void ContinueSpawn() {
-		array<ref Param> arrParams;
-		Param paramCharId, paramSurvivorType, paramInit;
-		int charId;
-		string survivorType;
-
-		/* if (_menuCharSelect.GetSurvivorSelector().GetSelectedPanel()) {
-			charId = _menuCharSelect.GetSurvivorSelector().GetSelectedPanel().GetSavePlayer().GetCharacterId();
-		}
-		if (_menuCharSelect.GetSurvivorCreator().GetSelectedWidget()) {
-			survivorType = _menuCharSelect.GetSurvivorCreator().GetSelectedWidget().GetPlayer().GetType();
-		} */
-		arrParams = new array<ref Param>();
-		paramCharId = new Param1<int>(charId);
-		paramSurvivorType = new Param1<string>(survivorType);
-		paramInit = new Param1<bool>(false);
+	void ContinueSpawn(int characterId, string survivorType) {
+		auto arrParams = new array<ref Param>();
+		auto paramCharId = new Param1<int>(characterId);
+		auto paramSurvivorType = new Param1<string>(survivorType);
+		auto paramInit = new Param1<bool>(false);
 
 		arrParams.Insert(paramCharId);
 		arrParams.Insert(paramSurvivorType);

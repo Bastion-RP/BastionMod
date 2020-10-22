@@ -75,7 +75,7 @@ PanelWidgetClass pnlFrame {
      font "BastionMod/BastionMenu/gui/fonts/ddin20"
      wrap 1
     }
-    ButtonWidgetClass btnConfirmConfirm {
+    ButtonWidgetClass btnConfirm {
      color 1 0.5843 0 1
      position 25 25
      size 250 50
@@ -89,7 +89,7 @@ PanelWidgetClass pnlFrame {
      font "BastionMod/BastionMenu/gui/fonts/ddinbold25"
      "text color" 0 0 0 1
     }
-    ButtonWidgetClass btnConfirmCancel {
+    ButtonWidgetClass btnCancel {
      color 0 0 0 1
      position 25 25
      size 250 50

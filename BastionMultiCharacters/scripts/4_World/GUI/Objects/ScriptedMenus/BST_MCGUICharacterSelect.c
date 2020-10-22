@@ -12,15 +12,9 @@ class BST_MCGUICharacterSelect : BST_MCGUIScriptedMenu {
     void Init() {
         _root = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionMultiCharacters/gui/layout/CharacterMenu.layout", _parent);
         _gridCharacters = GridSpacerWidget.Cast(_root.FindAnyWidget("gridCharacters"));
-        _pnlPlyPreview = new BST_MCGUICharPreviewWidget(_root);
-        _pnlCharInfo = new BST_MCGUICharInfoWidget(_root);
         _arrSmallInfoWidgets = new array<ref BST_MCGUICharInfoSmallWidget>();
         _mapSmallInfoWidgets = new map<Widget, BST_MCGUICharInfoSmallWidget>();
 
-        _pnlPlyPreview.Init(this, CONST_X_SURVIVOR, CONST_Y_SURVIVOR);
-        _pnlCharInfo.Init(this, CONST_X_INFO, CONST_Y_INFO);
-        _pnlPlyPreview.Show(false);
-        _pnlCharInfo.Show(false);
         _root.SetHandler(this);
         BuildWidgets();
     }
@@ -39,6 +33,26 @@ class BST_MCGUICharacterSelect : BST_MCGUIScriptedMenu {
                 _mapSmallInfoWidgets.Insert(newWidget.GetRoot(), newWidget);
             }
         }
+    }
+
+    override void Show(bool show) {
+        super.Show(show);
+
+        if (show) {
+            _rootMenu.GetPlayerPreviewWidget().GetRoot().SetHandler(this);
+            _rootMenu.GetCharacterInfoWidget().GetRoot().SetHandler(this);
+            _rootMenu.GetPlayerPreviewWidget().GetRoot().SetPos(CONST_X_SURVIVOR, CONST_Y_SURVIVOR);
+            _rootMenu.GetCharacterInfoWidget().GetRoot().SetPos(CONST_X_INFO, CONST_Y_INFO);
+            _rootMenu.GetPlayerPreviewWidget().Show(false);
+            _rootMenu.GetCharacterInfoWidget().Show(false);
+        }
+    }
+
+	override bool OnClick(Widget w, int x, int y, int button) {
+        if (w == _rootMenu.GetCharacterInfoWidget().GetPlayButton()) {
+            _rootMenu.StartSpawnCountdown();
+        }
+        return true;
     }
 
     override bool OnMouseEnter(Widget w, int x, int y) {
@@ -79,21 +93,21 @@ class BST_MCGUICharacterSelect : BST_MCGUIScriptedMenu {
                         _selectedInfoWidget = infoWidget;
 
                         infoWidget.GetPlayerPreview().Select(true);
-                        _pnlPlyPreview.SetPlayer(_selectedInfoWidget.GetPlayerPreview().GetPlayer(), _selectedInfoWidget.GetPlayerPreview().GetItemInHands());
-                        _pnlCharInfo.SetCharacter(_selectedInfoWidget.GetCharacter());
-                        _pnlPlyPreview.Show(true);
-                        _pnlCharInfo.Show(true);
+                        _rootMenu.GetPlayerPreviewWidget().SetPlayer(_selectedInfoWidget.GetPlayerPreview().GetPlayer(), _selectedInfoWidget.GetPlayerPreview().GetItemInHands());
+                        _rootMenu.GetCharacterInfoWidget().SetCharacter(_selectedInfoWidget.GetCharacter());
+                        _rootMenu.GetPlayerPreviewWidget().Show(true);
+                        _rootMenu.GetCharacterInfoWidget().Show(true);
 
                         if (_selectedInfoWidget.IsOnCooldown()) {
-                            _pnlCharInfo.ChangeButtons(2);
+                            _rootMenu.GetCharacterInfoWidget().ChangeButtons(2);
                         } else {
-                            _pnlCharInfo.ChangeButtons(1);
+                            _rootMenu.GetCharacterInfoWidget().ChangeButtons(1);
                         }
                     }
                 } else {
                     _selectedInfoWidget.Select(false);
-                    _pnlPlyPreview.Show(false);
-                    _pnlCharInfo.Show(false);
+                    _rootMenu.GetPlayerPreviewWidget().Show(false);
+                    _rootMenu.GetCharacterInfoWidget().Show(false);
 
                     _selectedInfoWidget = null;
                 }
@@ -101,6 +115,8 @@ class BST_MCGUICharacterSelect : BST_MCGUIScriptedMenu {
         }
         return true;
     }
+
+    BST_MCGUICharInfoSmallWidget GetSelectedCharacterWidget() { return _selectedInfoWidget; }
 
     void ~BST_MCGUICharacterSelect() {
         if (_arrSmallInfoWidgets) {
