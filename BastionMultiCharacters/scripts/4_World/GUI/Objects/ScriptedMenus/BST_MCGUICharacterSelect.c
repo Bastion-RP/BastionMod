@@ -24,14 +24,11 @@ class BST_MCGUICharacterSelect : BST_MCGUIScriptedMenu {
 
         foreach (BST_MCSavePlayerBasic character : arrCharacters) {
             if (!character) { continue; }
+            BST_MCGUICharInfoSmallWidget newWidget = new BST_MCGUICharInfoSmallWidget(_gridCharacters);
 
-            for (int i = 0; i < 6; i++) {
-                BST_MCGUICharInfoSmallWidget newWidget = new BST_MCGUICharInfoSmallWidget(_gridCharacters);
-
-                newWidget.Init(this, character);
-                _arrSmallInfoWidgets.Insert(newWidget);
-                _mapSmallInfoWidgets.Insert(newWidget.GetRoot(), newWidget);
-            }
+            newWidget.Init(this, character);
+            _arrSmallInfoWidgets.Insert(newWidget);
+            _mapSmallInfoWidgets.Insert(newWidget.GetRoot(), newWidget);
         }
     }
 
