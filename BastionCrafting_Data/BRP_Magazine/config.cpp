@@ -56,14 +56,14 @@ class CfgVehicles
 			};
 		};
 	};
-	class BRP_ExapleMagazine: BRP_Magazine // we are inherit every parameter from our base class above, we don't need to fill every parameter now
+	class BRP_CraftingBook_ARBible: BRP_Magazine // we are inherit every parameter from our base class above, we don't need to fill every parameter now
 	{
 		scope=2; //2 because it's real item for gameplay
-		displayName="Guide for Cipher"; //name, actually
-		descriptionShort="Few steps about how to become cool modder."; //description
+		displayName="The ArmaLite Bible"; //name, actually
+		descriptionShort="Your one stop shop for all things ARs."; //description
 		hiddenSelectionsTextures[]=
 		{
-			"BastionMod\BastionCrafting_Data\BRP_Magazine\textures\brp_NEWTEXTURE_co.paa" // path to the NEW texture
+			"BastionMod\BastionCrafting_Data\BRP_Magazine\textures\brp_magazine_co.paa" // path to the NEW texture
 		};
 	};	
 };
