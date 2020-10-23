@@ -1,0 +1,218 @@
+PanelWidgetClass rootFrame {
+ color 0.0667 0.0667 0.0667 1
+ position 0 0
+ size 350 286
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ style rover_sim_colorable
+ {
+  GridSpacerWidgetClass gridName {
+   ignorepointer 1
+   position 25 25
+   size 230 27
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   Padding 0
+   Margin 0
+   "Size To Content H" 1
+   Rows 1
+   {
+    TextWidgetClass txtNameFirst {
+     ignorepointer 1
+     position 0 0
+     size 75 27
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "SALVATORE "
+     font "BastionMod/BastionMenu/gui/fonts/ddin25"
+     "size to text h" 1
+     "size to text v" 0
+    }
+    TextWidgetClass txtNameLast {
+     ignorepointer 1
+     position 0 0
+     size 300 27
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "MOORE"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold25"
+     "size to text h" 1
+    }
+   }
+  }
+  GridSpacerWidgetClass gridId {
+   ignorepointer 1
+   position 25 77
+   size 300 22
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   Padding 0
+   Margin 0
+   "Size To Content H" 1
+   Columns 2
+   Rows 1
+   {
+    TextWidgetClass id {
+     ignorepointer 1
+     position 0 0
+     size 104 22
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Citizen ID: "
+     font "BastionMod/BastionMenu/gui/fonts/ddin20"
+     "size to text h" 1
+     "size to text v" 0
+    }
+    TextWidgetClass txtId {
+     ignorepointer 1
+     position 0 0
+     size 150 22
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "50301"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold21"
+     "size to text h" 1
+    }
+   }
+  }
+  GridSpacerWidgetClass gridClass {
+   ignorepointer 1
+   position 25 103
+   size 300 22
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   Padding 0
+   Margin 0
+   "Size To Content H" 1
+   Columns 2
+   Rows 1
+   {
+    TextWidgetClass civClass {
+     ignorepointer 1
+     position 0 0
+     size 134 22
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Citizen Class: "
+     font "BastionMod/BastionMenu/gui/fonts/ddin20"
+     "size to text h" 1
+    }
+    TextWidgetClass txtCivClass {
+     ignorepointer 1
+     position 0 0
+     size 300 22
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "ISF-F"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold20"
+     "size to text h" 1
+    }
+   }
+  }
+  GridSpacerWidgetClass gridStatus {
+   ignorepointer 1
+   position 25 129
+   size 300 22
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   Padding 0
+   Margin 0
+   "Size To Content H" 1
+   Columns 2
+   Rows 1
+   {
+    TextWidgetClass status {
+     ignorepointer 1
+     position 0 0
+     size 75 22
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Status: "
+     font "BastionMod/BastionMenu/gui/fonts/ddin20"
+     "size to text h" 1
+    }
+    TextWidgetClass txtStatus {
+     ignorepointer 1
+     position 0 0
+     size 300 22
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Alive and Well"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold20"
+     "size to text h" 1
+    }
+   }
+  }
+  ButtonWidgetClass btnPlay {
+   visible 0
+   color 1 0.6588 0 1
+   position 25 25
+   size 250 50
+   valign bottom_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style DayZDefaultButtonNoBorder
+   text "PLAY"
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold25"
+   "text color" 0 0 0 1
+  }
+  TextWidgetClass btnCannotPlay {
+   visible 1
+   color 1 0.6588 0 1
+   position 25 25
+   size 250 50
+   valign bottom_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style Normal
+   text "CANNOT PLAY"
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold25"
+   "text color" 1 0.6588 0 1
+   "text halign" center
+   "text valign" center
+   {
+    PanelWidgetClass pnlBtnBorder {
+     visible 1
+     ignorepointer 1
+     color 1 0.6588 0 1
+     size 1 1
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 0
+     style Outline
+    }
+   }
+  }
+ }
+}

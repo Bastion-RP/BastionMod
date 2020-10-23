@@ -1,12 +1,12 @@
 modded class MissionGameplay {
     void MissionGameplay() {
-        MultiCharactersClientManager.BST_testInvoker.Insert(MCRespawnPlayer);
-        GetMultiCharactersClientManager().Init();
+        BST_MCClientManager._initInvoker.Insert(MCRespawnPlayer);
+        GetBSTMCClientManager().Init();
     }
 
     void MCRespawnPlayer() {
-        if (GetMultiCharactersClientManager() && !GetMultiCharactersClientManager().IsInitialized()) {
-                GetMultiCharactersClientManager().SetInitialized(true);
+        if (GetBSTMCClientManager() && !GetBSTMCClientManager().IsInitialized()) {
+                GetBSTMCClientManager().SetInitialized(true);
                 GetGame().GetCallQueue(CALL_CATEGORY_GUI).Call(GetGame().RespawnPlayer);
                 //turns off dead screen, hides HUD for countdown
                 //---------------------------------------------------
@@ -18,5 +18,9 @@ modded class MissionGameplay {
                 DestroyAllMenus();
                 SetPlayerRespawning(true);
         }
+    }
+
+    void ~MissionGameplay() {
+        BST_MCClientManager._initInvoker.Remove(MCRespawnPlayer);
     }
 }

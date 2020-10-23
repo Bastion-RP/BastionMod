@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{C47D76A077A3190A}BastionMod/BastionMultiCharacters/gui/layouts/img/bg.edds"
+ Author "bryanpc"
+ ChangeDate -760420026
+ Configurations {
+  PNGResourceClass PC {
+   SourceFile "bg.png"
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+  PNGResourceClass LINUX : PC {
+  }
+ }
+}

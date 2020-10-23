@@ -1,0 +1,51 @@
+FrameWidgetClass rootFrame {
+ ignorepointer 1
+ position 0 0
+ size 1 1
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ {
+  TextWidgetClass txtHeader {
+   ignorepointer 1
+   color 1 0.6588 0 1
+   position 45 45
+   size 647 65
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "CHARACTER CREATION"
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold60"
+   "size to text h" 1
+   "text valign" center
+  }
+  ScrollWidgetClass scroller {
+   ignorepointer 1
+   position 45 156
+   size 394 651
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style blank
+   "Scrollbar V" 1
+   {
+    GridSpacerWidgetClass gridSurvivors {
+     ignorepointer 0
+     size 384 576
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     Padding 15
+     Margin 0
+     "Size To Content V" 1
+     Columns 1
+     Rows 100
+    }
+   }
+  }
+ }
+}
