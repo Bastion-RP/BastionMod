@@ -1,15 +1,10 @@
 modded class PlayerBase
 {
 	private ref RadiationHandlerClient radiationHandler;
-	private int innerRadiation;
-	private bool shouldSyncRadiation;
 
 	override void Init()
 	{
 		super.Init();
-
-		RegisterNetSyncVariableInt("innerRadiation");
-		RegisterNetSyncVariableBool("shouldSyncRadiation");
 
 		if (!GetGame().IsServer() || !GetGame().IsMultiplayer())
 		{
@@ -32,12 +27,9 @@ modded class PlayerBase
 	void AddRadiationLevel(float rad)
 	{
 		float tempRad = rad;
-		//Print("current rad "+ GetRadiationLevel());
 		if (GetModifiersManager().IsModifierActive(Rad_eModifiers.MDF_RAD_BLOCK))
 			tempRad *= 0.5;
-		//Print("\nAddRadiationLevel rad "+ tempRad);
 		InsertAgent(BST_Agents.RADIATION, ConvertRadiationAgent(tempRad));
-		//Print("after insert rad {"+ GetRadiationLevel()+"}");
 	}
 
 	void DecreaseAgent(int agent, float amount)
@@ -55,51 +47,34 @@ modded class PlayerBase
 		return (GetSingleAgentCount(BST_Agents.RADIATION) * 0.001);
 	}
 
-	void NeedSyncRadiation(bool need)
-	{
-		shouldSyncRadiation = need;
-		if (shouldSyncRadiation)
-			innerRadiation = GetRadiationLevel();
-		SetSynchDirty();
-	}
+	// void SoundRadiation(int innerRadiation)
+	// {
+	// 	EffectSound sound =	SEffectManager.PlaySoundOnObject( "Radiation_INIT_SoundSet", this );
+	// 	sound.SetSoundAutodestroy( true );
+	// 	GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(PrepareRadSound, 1000, false, innerRadiation);
+	// 	BSTShowNotification("Your internal exposure is "+innerRadiation.ToString());
+	// }
 
-	override void OnVariablesSynchronized()
-	{
-		super.OnVariablesSynchronized();
-		if (shouldSyncRadiation)
-		{
-			SoundRadiation();
-		}
-	}
+	// void PrepareRadSound(int innerRadiation)
+	// {
+	// 	string exposure = innerRadiation.ToString();
+	// 	int idx;
+	// 	string digit;
+	// 	for (int i = 0; i < exposure.Length(); i++)
+	// 	{
+	// 		digit = exposure.Get(i);
+	// 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(PlayInnerRadSound, ((i + 1) * 800), false, digit);
+	// 	}
+	// }
 
-	void SoundRadiation()
-	{
-		EffectSound sound =	SEffectManager.PlaySoundOnObject( "Radiation_INIT_SoundSet", this );
-		sound.SetSoundAutodestroy( true );
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(PrepareRadSound, 1000, false);
-		BSTShowNotification("Your internal exposure is "+innerRadiation.ToString());
-	}
+	// void PlayInnerRadSound(string name)
+	// {
+	// 	EffectSound sound =	SEffectManager.PlaySoundOnObject( "Radiation_MR_"+name+"_SoundSet", this );
+	// 	sound.SetSoundAutodestroy( true );
+	// }
 
-	void PrepareRadSound()
-	{
-		string exposure = innerRadiation.ToString();
-		int idx;
-		string digit;
-		for (int i = 0; i < exposure.Length(); i++)
-		{
-			digit = exposure.Get(i);
-			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(PlayInnerRadSound, ((i + 1) * 800), false, digit);
-		}
-	}
-
-	void PlayInnerRadSound(string name)
-	{
-		EffectSound sound =	SEffectManager.PlaySoundOnObject( "Radiation_MR_"+name+"_SoundSet", this );
-		sound.SetSoundAutodestroy( true );
-	}
-
-	void DelaySyncReset()
-	{
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(NeedSyncRadiation, 1000, false, false);
-	}
+	// void DelaySyncReset()
+	// {
+	// 	GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(NeedSyncRadiation, 1000, false, false);
+	// }
 }
