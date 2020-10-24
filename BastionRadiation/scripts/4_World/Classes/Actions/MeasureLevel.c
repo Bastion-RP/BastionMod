@@ -40,8 +40,11 @@ class ActionMeasureRadiationLevel : ActionInjectSelf
 		passedTime = GetGame().GetTime() - passedTime;
 		if (MiscGameplayFunctions.IsValueInRange(passedTime, 1700, 2000))
 		{
-			action_data.m_Player.NeedSyncRadiation(true);
-			action_data.m_Player.DelaySyncReset();
+			BRP_InternalDosimeter doz = BRP_InternalDosimeter.Cast(action_data.m_MainItem);
+			if (doz)
+				doz.SendRadiation(action_data.m_Player.GetIdentity());
+			// action_data.m_Player.NeedSyncRadiation(true);
+			// action_data.m_Player.DelaySyncReset();
 		}
 	}
 	
