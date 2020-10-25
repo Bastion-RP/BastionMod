@@ -80,6 +80,11 @@ class CfgVehicles
 		scope = 1;
 		model = "\BastionMod\BastionMisc_Data\crate\oimncc.p3d";
 	};
+	class BRP_OIMNCCSewing_Crate: BRP_AION_Crate
+	{
+		scope = 1;
+		model = "\BastionMod\BastionMisc_Data\crate\oimncc.p3d";
+	};
 };
 
 class CfgNonAIVehicles

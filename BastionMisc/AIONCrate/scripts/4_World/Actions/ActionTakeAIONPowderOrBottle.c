@@ -66,6 +66,13 @@ class ActionTakeAIONPowderOrBottle: ActionInteractBase
 			m_ToolTipText = "Take Damaged Pants";
 			return true;
 		}
+		
+		BRP_OIMNCCSewing_Crate sewing = BRP_OIMNCCSewing_Crate.Cast(target.GetObject());		
+		if(sewing)
+		{
+			m_ToolTipText = "Take Sewing Kit";
+			return true;
+		}
 
 		BRP_AIONBoxes2 boxes = BRP_AIONBoxes2.Cast(target.GetObject());	
 		if (boxes)
@@ -87,6 +94,7 @@ class ActionTakeAIONPowderOrBottle: ActionInteractBase
 		BRP_OIMVest_Crate oimvest = BRP_OIMVest_Crate.Cast(action_data.m_Target.GetObject());
 		BRP_OIMNCCShirt_Crate nccshirt = BRP_OIMNCCShirt_Crate.Cast(action_data.m_Target.GetObject());
 		BRP_OIMNCCPants_Crate nccpants = BRP_OIMNCCPants_Crate.Cast(action_data.m_Target.GetObject());
+		BRP_OIMNCCSewing_Crate sewing = BRP_OIMNCCSewing_Crate.Cast(action_data.m_Target.GetObject());
 		if (powdercrate)
         {
 		    item = EntityAI.Cast(GetGame().CreateObject("BRP_AIONPowder", pos));
@@ -116,6 +124,10 @@ class ActionTakeAIONPowderOrBottle: ActionInteractBase
         {
 		    item = EntityAI.Cast(GetGame().CreateObject("BRP_PrisonPants_NCC", pos));
 			item.DecreaseHealthCoef(0.7);
+        }
+		else if (sewing)
+        {
+		    item = EntityAI.Cast(GetGame().CreateObject("BRP_PrisonPants_NCC", pos));
         }
 		
 		if (item)

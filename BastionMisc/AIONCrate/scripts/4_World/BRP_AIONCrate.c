@@ -51,3 +51,12 @@ class BRP_OIMNCCPants_Crate: BuildingBase
 		AddAction(ActionTakeAIONPowderOrBottle);
 	}
 };
+
+class BRP_OIMNCCSewing_Crate: BuildingBase 
+{
+	override void SetActions()
+	{
+		super.SetActions();		
+		AddAction(ActionTakeAIONPowderOrBottle);
+	}
+};
