@@ -97,6 +97,9 @@ class SellerManager : PluginBase
 			}
 		}
 
+		if (quantity < sellQuantity)
+			return 0;
+
 		if (quantity > 1)
 		{
 			maxSellStacks = quantity / sellQuantity;
