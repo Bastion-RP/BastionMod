@@ -13,6 +13,7 @@ class CfgPatches
 };
 class CfgVehicles
 {
+	class SeaChest;
 	class Edible_Base;
 	class BRP_PainMedicalBottle: Edible_Base
 	{
@@ -177,5 +178,12 @@ class CfgVehicles
 		{
 			"\BastionMod\BastionMisc\Retextures\data\coda_pin_wings_blue.paa"
 		};
+	};
+	class BRP_SeaChest: SeaChest
+	{
+		scope = 2;
+		displayName = "NCC Chest"
+		hiddenSelections[] = {"camoGround"};
+		hiddenSelectionsTextures[] = {"\dz\gear\camping\data\sea_chest_co.paa"};
 	};
 };
