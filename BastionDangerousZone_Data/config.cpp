@@ -178,23 +178,95 @@ class CfgVehicles
 			};
 		};
 	};
-	class BRP_Dosimeter_Osa : BRP_Dosimeter_Opal
+	class BRP_Dosimeter_Osa : BRP_Dosimeter
 	{
 		scope = 2;
 		displayName = "Dosimeter Osa";
 		model = "BastionMod\BastionDangerousZone_Data\detectors\detector_osa.p3d";
+
+		hiddenSelections[]=
+		{
+			"base",
+			"screen",
+			"dig0",
+			"dig1",
+			"dig2",
+			"cmpDig0",
+			"cmpDig1",
+			"cmpDig2",
+			"battery",
+			"time0",
+			"time1",
+			"time2",
+			"time3"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionDangerousZone_Data\detectors\data\detectors_co.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\data\detectors_screen_co.paa"
+		};
+		digitTexturePaths[]=
+		{
+			"BastionMod\BastionDangerousZone_Data\detectors\tier5\0.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier5\1.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier5\2.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier5\3.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier5\4.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier5\5.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier5\6.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier5\7.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier5\8.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier5\9.paa"
+		};
+		workScreenPath = "BastionMod\BastionDangerousZone_Data\detectors\tier5\screen_t5_co.paa";
 	};
-	class BRP_Dosimeter_Sova : BRP_Dosimeter_Opal
+	class BRP_Dosimeter_Sova : BRP_Dosimeter
 	{
 		scope = 2;
 		displayName = "Dosimeter Sova";
 		model = "BastionMod\BastionDangerousZone_Data\detectors\detector_sova.p3d";
 	};
-	class BRP_Dosimeter_Zov : BRP_Dosimeter_Opal
+	class BRP_Dosimeter_Zov : BRP_Dosimeter
 	{
 		scope = 2;
 		displayName = "Dosimeter Zov";
 		model = "BastionMod\BastionDangerousZone_Data\detectors\detector_zov.p3d";
+
+		hiddenSelections[]=
+		{
+			"base",
+			"screen",
+			"dig0",
+			"dig1",
+			"dig2",
+			"cmpDig0",
+			"cmpDig1",
+			"cmpDig2",
+			"battery",
+			"time0",
+			"time1",
+			"time2",
+			"time3"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionDangerousZone_Data\detectors\data\detectors_co.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\data\detectors_screen_co.paa"
+		};
+		digitTexturePaths[]=
+		{
+			"BastionMod\BastionDangerousZone_Data\detectors\tier4\0.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier4\1.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier4\2.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier4\3.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier4\4.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier4\5.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier4\6.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier4\7.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier4\8.paa",
+			"BastionMod\BastionDangerousZone_Data\detectors\tier4\9.paa"
+		};
+		workScreenPath = "BastionMod\BastionDangerousZone_Data\detectors\tier4\screen_t4_co.paa";
 	};
 	class Container_Base;
 	class BRP_RadiationCase: Container_Base
