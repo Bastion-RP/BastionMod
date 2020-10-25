@@ -7,7 +7,7 @@ modded class PlayerBase {
     }
 
     void BSTBankingStartIncomeLoop() {
-        string debugTxt = BST_ConstGetDebugPrefix() + " Starting UBI on player=" + multicharactersPlayerName + " | id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass;
+        string debugTxt = BST_ConstGetDebugPrefix() + " Starting UBI on player=" + BST_APICharName + " | id=" + BST_APICharID + " | class=" + BST_APICharClass;
         if (!GetIdentity()) {
             Print(debugTxt);
         } else {
@@ -17,7 +17,7 @@ modded class PlayerBase {
     }
 
     void BSTBankingStopIncomeLoop() {
-        string debugTxt = BST_ConstGetDebugPrefix() + " Stopping UBI on player=" + multicharactersPlayerName + " | id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass;
+        string debugTxt = BST_ConstGetDebugPrefix() + " Stopping UBI on player=" + BST_APICharName + " | id=" + BST_APICharID + " | class=" + BST_APICharClass;
         if (!GetIdentity()) {
             Print(debugTxt);
         } else {
@@ -27,7 +27,7 @@ modded class PlayerBase {
     }
 
     void BSTBankingPayPassiveIncome() {
-        string debugSuffix = multicharactersPlayerName + " | id=" + multicharactersPlayerId + " | class=" + multicharactersPlayerClass;
+        string debugSuffix = BST_APICharName + " | id=" + BST_APICharID + " | class=" + BST_APICharClass;
         if (!GetIdentity() || !IsAlive()) {
             if (!IsAlive()) {
                 Print(BST_ConstGetDebugPrefix() + " Error with payment! Player is dead! player=" + debugSuffix + " | pid=" + GetIdentity().GetPlainId());

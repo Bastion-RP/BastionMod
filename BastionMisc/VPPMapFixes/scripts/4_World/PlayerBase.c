@@ -1,8 +1,8 @@
 modded class PlayerBase {
 
     // run set can use map code after the multichar stats are enabled
-	override void SetMultiCharacterStats(int multicharactersPlayerId, string multicharactersPlayerName, int multicharactersPlayerClass) {
-        super.SetMultiCharacterStats(multicharactersPlayerId,multicharactersPlayerName,multicharactersPlayerClass);
+	override void BSTMCSetCharData(int CharID, string charName, int charClass) {
+        super.BSTMCSetCharData(CharID,charName,charClass);
         
         BRP_VPPMapFixes_SetCanUseMap();
 	};
