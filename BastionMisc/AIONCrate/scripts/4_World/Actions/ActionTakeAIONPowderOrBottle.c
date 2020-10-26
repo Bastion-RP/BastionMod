@@ -127,7 +127,7 @@ class ActionTakeAIONPowderOrBottle: ActionInteractBase
         }
 		else if (sewing)
         {
-		    item = EntityAI.Cast(GetGame().CreateObject("BRP_PrisonPants_NCC", pos));
+		    item = EntityAI.Cast(GetGame().CreateObject("SewingKit", pos));
         }
 		
 		if (item)
