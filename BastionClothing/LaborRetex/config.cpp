@@ -28,7 +28,7 @@ class CfgVehicles
             "camoFemale"
         };
     };
-    class PressVest_Labor: PressVest_ColorBase
+    class BRP_PressVest_Labor: PressVest_ColorBase
     {
 		scope=2;
 		visibilityModifier=0.94999999;
