@@ -36,15 +36,15 @@ class CfgVehicles
         descriptionShort="Labor Gang";
         hiddenSelectionsTextures[]=
         {
-            "LaborRetex\Data\LaborVest_co.paa",
-            "LaborRetex\Data\LaborVest_co.paa",
-            "LaborRetex\Data\LaborVest_co.paa",
+            "BastionMod\BastionClothing\LaborRetex\Data\LaborVest_co.paa",
+            "BastionMod\BastionClothing\LaborRetex\Data\LaborVest_co.paa",
+            "BastionMod\BastionClothing\LaborRetex\Data\LaborVest_co.paa",
         };
 		hiddenSelectionsMaterials[]=
         {
-            "LaborRetex\Data\LaborVest.rvmat",
-            "LaborRetex\Data\LaborVest.rvmat",
-            "LaborRetex\Data\LaborVest.rvmat",
+            "BastionMod\BastionClothing\LaborRetex\Data\LaborVest.rvmat",
+            "BastionMod\BastionClothing\LaborRetex\Data\LaborVest.rvmat",
+            "BastionMod\BastionClothing\LaborRetex\Data\LaborVest.rvmat",
         };
     };
 };
