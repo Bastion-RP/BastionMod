@@ -182,7 +182,7 @@ class CfgVehicles
 	class BRP_SeaChest: SeaChest
 	{
 		scope = 2;
-		displayName = "NCC Chest"
+		displayName = "NCC Chest";
 		hiddenSelections[] = {"camoGround"};
 		hiddenSelectionsTextures[] = {"\dz\gear\camping\data\sea_chest_co.paa"};
 	};
