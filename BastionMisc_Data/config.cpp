@@ -92,7 +92,7 @@ class CfgNonAIVehicles
 	class ProxyRetex;
 	class ProxyTTsKO_Jacket_g: ProxyRetex
 	{
-		hiddenSelections[] = {"camo1"};
+		hiddenSelections[] = {"camoground"};
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa",
@@ -103,7 +103,7 @@ class CfgNonAIVehicles
 	};
 	class ProxyPrison_Pants_g: ProxyRetex
 	{
-		hiddenSelections[] = {"camo2"};
+		hiddenSelections[] = {"camoground"};
 		hiddenSelectionsTextures[]=
 		{
 			"BastionMod\BastionClothing\Retextures\data\BRP_PrisonPants_ncc.paa",
