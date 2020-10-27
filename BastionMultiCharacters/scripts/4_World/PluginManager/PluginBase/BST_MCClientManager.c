@@ -72,15 +72,12 @@ class BST_MCClientManager : PluginBase {
 	}
 
 	void ContinueSpawn(int characterId, string survivorType) {
-		auto arrParams = new array<ref Param>();
-		auto paramCharId = new Param1<int>(characterId);
-		auto paramSurvivorType = new Param1<string>(survivorType);
-		auto paramInit = new Param1<bool>(false);
+		ParamsWriteContext ctx = (new ScriptReadWriteContext()).GetWriteContext();
 
-		arrParams.Insert(paramCharId);
-		arrParams.Insert(paramSurvivorType);
-		arrParams.Insert(paramInit);
-		GetDayZGame().StoreLoginData(arrParams);
+		ctx.Write(characterId);
+		ctx.Write(survivorType);
+		ctx.Write(false);
+		GetDayZGame().StoreLoginData(ctx);
 	}
 
 	array<ref BST_MCSavePlayerBasic> GetCharacters() { return _arrCharacters; }

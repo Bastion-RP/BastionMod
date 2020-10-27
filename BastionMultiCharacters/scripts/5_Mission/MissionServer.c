@@ -114,9 +114,6 @@ modded class MissionServer {
 					if (webCharData.GetCitizenClass().ToInt() >= BastionClasses.ISF_F && webCharData.GetCitizenClass().ToInt() <= BastionClasses.ISF_E) {
 						StartingISFSetup(newPlayer);
 					} else {
-						newPlayer.GetInventory().CreateInInventory(topsArray.GetRandomElement());
-						newPlayer.GetInventory().CreateInInventory(pantsArray.GetRandomElement());
-						newPlayer.GetInventory().CreateInInventory(shoesArray.GetRandomElement());
 						StartingEquipSetup(newPlayer, false);
 					}
 				} else {
@@ -304,4 +301,6 @@ modded class MissionServer {
 			}
 		}
 	}
+
+	void BST_SpawnCharacterGear(PlayerBase player, int charClass) { }
 }
