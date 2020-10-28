@@ -117,6 +117,40 @@ class CfgVehicles
 			};
 		};
 	};
+	
+	class BRP_Dosimeter_IDKHOWITSNAMED : BRP_Dosimeter
+	{
+		scope = 2;
+		displayName = "Dosimeter";
+		itemSize[] = {2,3};
+		model = "BastionMod\BastionDangerousZone_Data\dosimeter\sovietdosimeter.p3d";
+		hiddenSelections[]=
+		{
+			"all"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionDangerousZone_Data\dosimeter\data\sovietdosimeter_co.paa"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 60;
+					healthLevels[] =
+					{
+						{1.0,{"BastionMod\BastionDangerousZone_Data\dosimeter\data\sovietdosimeter.rvmat"}},
+						{0.7,{"BastionMod\BastionDangerousZone_Data\dosimeter\data\sovietdosimeter.rvmat"}},
+						{0.5,{"BastionMod\BastionDangerousZone_Data\dosimeter\data\sovietdosimeter_damage.rvmat"}},
+						{0.3,{"BastionMod\BastionDangerousZone_Data\dosimeter\data\sovietdosimeter_damage.rvmat"}},
+						{0.0,{"BastionMod\BastionDangerousZone_Data\dosimeter\data\sovietdosimeter_destruct.rvmat"}}
+					};
+				};
+			};
+		};
+	};	
 
 	class BRP_Dosimeter_Opal : BRP_Dosimeter
 	{
