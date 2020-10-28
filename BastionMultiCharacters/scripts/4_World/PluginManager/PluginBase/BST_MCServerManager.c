@@ -1,11 +1,13 @@
 class BST_MCServerManager : PluginBase {
     protected ref JsonSerializer _jsSerializer;
     protected ref array<string> _arrSpawnPoints, _arrISFSpawnPoints;
+    private ref map<string, ref array<ref BST_APICharacterId>> _mapPlayerAPIData;
 
     void BST_MCServerManager() {
         _jsSerializer = new JsonSerializer();
         _arrSpawnPoints = new array<string>();
         _arrISFSpawnPoints = new array<string>();
+        _mapPlayerAPIData = new map<string, ref array<ref BST_APICharacterId>>();
 
         CheckDirectories();
     }
@@ -47,7 +49,7 @@ class BST_MCServerManager : PluginBase {
     }
 
     void ThreadGetCharactersByPlayerId(PlayerIdentity sender) {
-        array<BST_APICharacterId> arrCharacterData;
+        array<ref BST_APICharacterId> arrCharacterData;
         map<string, string> mapData;
         RestApi core;
         RestContext ctx;
@@ -104,6 +106,7 @@ class BST_MCServerManager : PluginBase {
                                             Param params = new Param1<array<ref BST_MCSavePlayerBasic>>(arrSavePlayers);
                                             Param configParams = new Param1<ref BST_MCConfig>(GetBSTMCManager().GetConfig());
 
+                                            _mapPlayerAPIData.Insert(sender.GetPlainId(), arrCharacterData);
                                             GetGame().RPCSingleParam(null, BST_MCRPC.CLIENT_RECEIVE_CONFIG, configParams, true, sender);
                                             GetGame().RPCSingleParam(null, BST_MCRPC.CLIENT_RECEIVE_CHARACTERS, params, true, sender);
                                         } else {
@@ -135,7 +138,7 @@ class BST_MCServerManager : PluginBase {
         }
     }
 
-    bool NamesMatch(string forumName, string gameName) {
+    private bool NamesMatch(string forumName, string gameName) {
         forumName.ToLower();
         gameName.ToLower();
 
@@ -149,6 +152,27 @@ class BST_MCServerManager : PluginBase {
             GetGame().RPCSingleParam(null, BST_MCRPC.CLIENT_DISCONNECT, params, true, sender);
         }
         GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().DisconnectPlayer, 1000, false, sender);
+    }
+
+    bool HasAPIData(string identity) {
+        if (_mapPlayerAPIData.Contains(identity)) {
+            return true;
+        }
+        return false;
+    }
+
+    BST_APICharacterId GetAPIDataById(string identity, string charId) {
+        array<ref BST_APICharacterId> arrCharData = _mapPlayerAPIData.Get(identity);
+
+        if (arrCharData) {
+            foreach (BST_APICharacterId data : arrCharData) {
+                if (!data) { continue; }
+                if (data.GetCharacterId() == charId) {
+                    return data;
+                }
+            }
+        }
+        return null;
     }
 
     vector GetRandomSpawnpoint() { return _arrSpawnPoints.GetRandomElement().ToVector(); }

@@ -1,9 +1,12 @@
+/*
+	Class written by RoomService
+*/
+
 class BST_MCSavePlayerBasic {
 	protected ref array<ref BST_MCSaveObject> _arrInventory;
 	protected int _charId, _charClass, _deathTimestamp;
 	protected bool _isDead;
     protected string _charName, _survivorType;
-	protected float _health, _blood, _shock, _water, _energy;
 
     void BST_MCSavePlayerBasic() {
 		_arrInventory = new array<ref BST_MCSaveObject>();
@@ -13,14 +16,6 @@ class BST_MCSavePlayerBasic {
 		_charName = charName;
 		_charId = charId;
 		_charClass = charClass;
-	}
-
-	void SetLifeStats(float health, float blood, float shock, float water, float energy) {
-		_health = health;
-		_blood = blood;
-		_shock = shock;
-		_water = water;
-		_energy = energy;
 	}
 
 	void SetDeathTimestamp(int deathTimestamp) {
@@ -38,11 +33,20 @@ class BST_MCSavePlayerBasic {
 	void SetInventory(array<ref BST_MCSaveObject> arrInventory) {
 		_arrInventory = arrInventory;
 	}
-
+	
+	/*
+		Completely clears inventory.
+		Only used for Death... NEVER call otherwise
+	*/
 	void ClearInventory() {
 		_arrInventory = new array<ref BST_MCSaveObject>();
 	}
-
+	
+	/*
+		Purges all inventory items except for root attachments
+		Be EXTREMELY careful when calling this. Should only be called
+		on data being passed to client. NEVER call before saving data.
+	*/
     void PurgeInventoryItems() {
         foreach (BST_MCSaveObject saveObject : _arrInventory) {
             if (!saveObject) { continue; }
@@ -57,9 +61,4 @@ class BST_MCSavePlayerBasic {
 	int GetCharacterClass() { return _charClass; }
 	string GetName() { return _charName; }
 	string GetType() { return _survivorType; }
-	float GetHealth() { return _health; }
-	float GetBlood() { return _blood; }
-	float GetShock() { return _shock; }
-	float GetWater() { return _water; }
-	float GetEnergy() { return _energy; }
 }

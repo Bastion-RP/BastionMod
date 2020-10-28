@@ -1,5 +1,6 @@
 modded class MissionServer {
     protected ref JsonSerializer jsSerializer;
+	string _mcDebugPrefix;
 
 	void MissionServer() {
 		jsSerializer = new JsonSerializer();
@@ -8,267 +9,152 @@ modded class MissionServer {
 	override void OnClientPrepareEvent(PlayerIdentity identity, out bool useDB, out vector pos, out float yaw, out int preloadTimeout) {
 		// Don't use the database for spawning players. This ensures that the game will spawn a new character every single time they spawn in.
 		useDB = false;
-
-		if (!GetHive()) {
-			pos = "1189.3 0.0 5392.48";
-			yaw = 0;
-		}
 	}
 
 	override void OnEvent(EventType eventTypeId, Param params) {
-		switch (eventTypeId) {
-			case ClientNewEventTypeID:
-				{
-					ClientNewEventParams clientSpawnParams = ClientNewEventParams.Cast(params);
+		if (eventTypeId == ClientNewEventTypeID) {
+			// Params < PlayerIdentity, vector, ParamsReadContext
+			ClientNewEventParams newParams = ClientNewEventParams.Cast(params);
 
-					if (clientSpawnParams) {
-						PlayerIdentity identity = clientSpawnParams.param1;
-						ParamsReadContext ctx = clientSpawnParams.param3;
-
-						if (identity && ctx) {
-							Param1<int> dataCharacterId;
-							Param1<string> dataCharacterType;
-							Param1<bool> dataIsInitializing;
-
-							ctx.Read(dataCharacterId);
-							ctx.Read(dataCharacterType);
-							ctx.Read(dataIsInitializing);
-
-							if (dataIsInitializing.param1) {
-								InitializeClient(identity);
-							} else {
-								Print(BST_MCConst.debugPrefix + "MissionServer | OnEvent | ClientNewEventTypeID | Creating new thread to spawn player!");
-								ThreadOnClientNewEvent(identity, dataCharacterId.param1, dataCharacterType.param1);
-							}
-						}
-					}
-					break;
-				}
-			default:
-				{
-					super.OnEvent(eventTypeId, params);
-					break;
-				}
+			BSTMCProcessLogin(newParams.param1, newParams.param3);
+		} else {
+			super.OnEvent(eventTypeId, params);
 		}
 	}
-	
-	void ThreadOnClientNewEvent(PlayerIdentity identity, int characterId, string characterType) {
-		Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | New thread created to spawn player");
 
-		if (characterId != 0) {
-			Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Loading client! id=" + identity.GetPlainId() + " | char id=" + characterId + " | char type=" + characterType);
-			RestApi curlCore;
-			BST_MCAPICallback mcCurl;
-			RestContext curlCtx;
-			BST_APICharacterId webCharData;
-			map<string, string> webSteamData;
-			string error, data;
+	private void BSTMCProcessLogin(PlayerIdentity identity, ParamsReadContext ctx) {
+		Param1<int> paramCharId;
+		Param1<string> paramCharType;
+		string pId, charType;
 
-			curlCore = CreateRestApi();
-			mcCurl = new BST_MCAPICallback();
-			curlCtx = curlCore.GetRestContext("https://bastionrp.com/api/");
-			jsSerializer.ReadFromString(webCharData, curlCtx.GET_now(BST_MCAPIEndpoints.CHARACTER_ID + characterId), error);
-			jsSerializer.ReadFromString(webSteamData, curlCtx.GET_now(BST_MCAPIEndpoints.STEAM_ID + identity.GetPlainId()), error);
+		pId = identity.GetPlainId();
+		_mcDebugPrefix = GetBSTLibTimestamp().GetHourTimestampFormatted() + BST_MCConst.debugPrefix;
 
-			if (webCharData && webSteamData && webSteamData.Contains(BST_APIConst.memberId) && webCharData.GetMemberId().ToInt() != 0 && webCharData.GetMemberId().ToInt() == webSteamData.Get(BST_APIConst.memberId).ToInt()) {
-				Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Data received and validated!");
-				PlayerBase newPlayer;
-				BST_MCSavePlayer savePlayer;
-				Param params;
-				string saveDir;
-				bool validPlayer;
+		ctx.Read(paramCharId);
+		ctx.Read(paramCharType);
 
-				validPlayer = false;
-				params = new Param3<int, string, int>(characterId, webCharData.GetFirstName() + " " + webCharData.GetLastName(), webCharData.GetCitizenClass().ToInt());
-				saveDir = BST_MCConst.loadoutDir + "\\" + identity.GetPlainId() + "\\" + characterId + ".json";
-				
+		charType = paramCharType.param1;
 
-				if (FileExist(saveDir)) {
-					JsonFileLoader<BST_MCSavePlayer>.JsonLoadFile(saveDir, savePlayer);
+		Print(_mcDebugPrefix + "Processing new login, id=" + pId);
 
-					if (savePlayer) {
-						int currentTimestamp = GetBSTLibTimestamp().GetCurrentTimestamp();
+		if (!GetBSTMCServerManager().HasAPIData(pId)) { return; }
+		BST_APICharacterId apiData = GetBSTMCServerManager().GetAPIDataById(pId, paramCharId.param1.ToString());
 
-						if (currentTimestamp - savePlayer.GetDeathTimestamp() <= GetBSTMCManager().GetConfig().GetRespawnTimer()) {
-							// Kick player. Somehow they chose a character they shouldn't have.
-            				GetGame().RPCSingleParam(null, BST_MCRPC.CLIENT_DISCONNECT, null, true, identity);
-							return;
-						}
-						if (!savePlayer.IsDead()) {
-							newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, savePlayer.GetType(), savePlayer.GetPos(), 0, "NONE"));
-							validPlayer = true;
-						}
+		if (!apiData) { return; }
+		Print(_mcDebugPrefix + "Grabbed spawn data! id=" + apiData.GetCharacterId() + " | fname=" + apiData.GetFirstName() + " | lname=" + apiData.GetLastName());
+		Print(_mcDebugPrefix + "Creating new character!");
+
+		string dataDir;
+		BST_MCSavePlayer playerData;
+		PlayerBase newPlayer;
+
+		dataDir = BST_MCConst.loadoutDir + "/" + pId + "/" + apiData.GetCharacterId() + ".json";
+
+		Print(_mcDebugPrefix + "Checking if char file exists");
+
+		if (FileExist(dataDir)) {
+			JsonFileLoader<BST_MCSavePlayer>.JsonLoadFile(dataDir, playerData);
+
+			Print(_mcDebugPrefix + "File exists, loading data");
+
+			if (playerData) {
+				Print(_mcDebugPrefix + "Data exists");
+
+				charType = playerData.GetType();
+
+				if (playerData.IsDead()) {
+					Print(_mcDebugPrefix + "Character is dead, checking timestamp");
+
+					int timestamp = GetBSTLibTimestamp().GetCurrentTimestamp();
+
+					if (timestamp - playerData.GetDeathTimestamp() <= GetBSTMCManager().GetConfig().GetRespawnTimer()) {
+						return;
 					}
+					playerData = null;
 				}
-				if (!validPlayer) {
-					vector spawnPos;
-
-					if (webCharData.GetCitizenClass().ToInt() >= BastionClasses.ISF_F && webCharData.GetCitizenClass().ToInt() <= BastionClasses.ISF_E) {
-						spawnPos = GetBSTMCServerManager().GetRandomISFSpawnpoint();
-					} else {
-						spawnPos = GetBSTMCServerManager().GetRandomSpawnpoint();
-					}
-					
-					newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, characterType, spawnPos, 0, "NONE"));
-					
-					if (webCharData.GetCitizenClass().ToInt() >= BastionClasses.ISF_F && webCharData.GetCitizenClass().ToInt() <= BastionClasses.ISF_E) {
-						StartingISFSetup(newPlayer);
-					} else {
-						newPlayer.GetInventory().CreateInInventory(topsArray.GetRandomElement());
-						newPlayer.GetInventory().CreateInInventory(pantsArray.GetRandomElement());
-						newPlayer.GetInventory().CreateInInventory(shoesArray.GetRandomElement());
-						StartingEquipSetup(newPlayer, false);
-					}
-				} else {
-					LoadPlayer(newPlayer, savePlayer);
-				}
-				newPlayer.BSTMCSetCharData(characterId, webCharData.GetFirstName() + " " + webCharData.GetLastName(), webCharData.GetCitizenClass().ToInt());
-				GetGame().SelectPlayer(identity, newPlayer);
-				InvokeOnConnect(newPlayer, identity);
-				FinishSpawningClient(identity, newPlayer);
-				newPlayer.BSTMCSaveInventory();
-
-				Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Sending API data to client");
-        		GetGame().RPCSingleParam(newPlayer, BST_MCRPC.CLIENT_RECEIVE_PLAYER_API_DATA, params, true, newPlayer.GetIdentity());
-				Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | API Data Sent");
-			} else {
-				Print(BST_MCConst.debugPrefix + "MissionServer | ThreadOnClientNewEvent | Could not validate client! id=" + identity.GetPlainId());
-				GetGame().DisconnectPlayer(identity);
-				GetGame().RPCSingleParam(null, BST_MCRPC.CLIENT_DISCONNECT, null, true, identity);
 			}
 		}
-	}
+		newPlayer = BSTMCCreateNewCharacter(identity, playerData, apiData.GetCitizenClass().ToInt(), charType);
 
-	void StartingISFSetup(PlayerBase player) {}
-
-	void InitializeClient(PlayerIdentity identity) {
-		Print(BST_MCConst.debugPrefix + "MissionServer | InitializeClient | Initializing client! id=" + identity.GetPlainId());
-		PlayerBase player = PlayerBase.Cast(GetGame().CreatePlayer(identity, GetGame().CreateRandomPlayer(), "0 0 0", 0, "NONE"));
-
-		GetGame().SelectPlayer(identity, player);
-		if (player) {
-			player.BSTMCOnConnect();
-		}
-		FinishSpawningClient(identity, player);
-		player.SetHealth("", "Health", 0);
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().ObjectDelete, 5000, false, player);
-		Print(BST_MCConst.debugPrefix + "MissionServer | InitializeClient | Client Initialized! id=" + identity.GetPlainId());
+		newPlayer.BSTMCSetCharData(apiData.GetCharacterId().ToInt(), apiData.GetFirstName() + " " + apiData.GetLastName(), apiData.GetCitizenClass().ToInt());
+		GetGame().SelectPlayer(identity, newPlayer);
+		InvokeOnConnect(newPlayer, identity);
+		FinishSpawningClient(identity, newPlayer);
+		newPlayer.BSTMCSaveInventory();
+		GetGame().RPCSingleParam(newPlayer, BST_MCRPC.CLIENT_RECEIVE_PLAYER_API_DATA, new Param3<int, string, int>(apiData.GetCharacterId().ToInt(), apiData.GetFirstName() + " " + apiData.GetLastName(), apiData.GetCitizenClass().ToInt()), true, newPlayer.GetIdentity());
 	}
 
 	void FinishSpawningClient(PlayerIdentity identity, PlayerBase player) {
-		Print(BST_MCConst.debugPrefix + "MissionServer | FinishSpawningClient | Finishing spawning client! id=" + identity.GetPlainId());
+		Print(_mcDebugPrefix + "Finishing spawning client! id=" + identity.GetPlainId());
 		SyncEvents.SendPlayerList();
 		ControlPersonalLight(player);
 		SyncGlobalLighting(player);
-		Print(BST_MCConst.debugPrefix + "MissionServer | FinishSpawningClient | Finished spawning id=" + identity.GetPlainId());
+		Print(_mcDebugPrefix + "Finished spawning id=" + identity.GetPlainId());
+	}
+	
+	private PlayerBase BSTMCCreateNewCharacter(PlayerIdentity identity, BST_MCSavePlayer playerData, int charClass, string charType) {
+		Print(_mcDebugPrefix + "data=" + playerData + " | class=" + charClass + " | type=" + charType);
+
+		PlayerBase newPlayer;
+
+		if (playerData) {
+			Print(_mcDebugPrefix + "Player is alive!");
+
+			newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, charType, playerData.GetPos(), 0, "NONE"));
+
+			// Set Position
+			newPlayer.SetPosition(playerData.GetPos());
+			newPlayer.SetDirection(playerData.GetDirection());
+			newPlayer.SetOrientation(playerData.GetOrientation());
+			// Set Life, Blood, Shock
+			newPlayer.SetHealth("", "Health", playerData.GetHealth());
+			newPlayer.SetHealth("", "Blood", playerData.GetBlood());
+			newPlayer.SetHealth("GlobalHealth", "Shock", playerData.GetShock());
+			// Load lifespan
+			newPlayer.BSTMCSetLifespan(playerData.GetLifespan());
+			// Load stats
+			BSTMCLoadStats(newPlayer, playerData.GetStats());
+			// Load modifiers
+			BSTMCLoadModifiers(newPlayer, playerData.GetModifiers());
+			// Loag agents
+			BSTMCLoadAgents(newPlayer, playerData.GetAgents());
+			// Load Symptoms
+			BSTMCLoadSymptoms(newPlayer, playerData.GetSymptoms());
+			// Load Bleeding
+			newPlayer.GetBleedingManagerServer().BSTMCLoadBleedingSource(playerData.GetBleeding());
+			// Load Stomach
+				// Not implemented yet
+			// Load broken legs state
+				// This is for when EXP releases
+		} else {
+			Print(_mcDebugPrefix + "Player is dead or null");
+			newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, charType, GetBSTMCServerManager().GetRandomSpawnpoint(), 0, "NONE"));
+		}
+		return newPlayer;
 	}
 
-	void BuildInventory(PlayerBase newPlayer, BST_MCSavePlayer savePlayer) {
-		ref array<ref BST_MCSaveObject> arrayInventory = savePlayer.GetInventory();
+	void BST_MCStartingSetup(PlayerBase player, int playerClass) { }
 
-		foreach (BST_MCSaveObject saveObject : arrayInventory) {
-			if (saveObject) {
-				array<ref BST_MCSaveObject> arrayChildren = saveObject.GetChildren();
-				EntityAI parent;
+	private void BSTMCLoadStats(PlayerBase player, array<float> arrStats) {
+		if (arrStats.Count() <= 0) {
+			Print(_mcDebugPrefix + "Loading stats! Bailing! stats size = 0!");
+			return;
+		}
+		array<ref PlayerStatBase> arrPlayerStats = player.GetPlayerStats().GetPCO(GetGame().SaveVersion()).Get();
+		
+		Print(_mcDebugPrefix + "Loading stats! stats size=" + arrStats.Count() + " | p pstats size=" + arrPlayerStats.Count());
 
-				if (saveObject.IsInHands()) {
-					parent = newPlayer.GetHumanInventory().CreateInHands(saveObject.GetType());
-				} else {
-					parent = newPlayer.GetInventory().CreateAttachmentEx(saveObject.GetType(), saveObject.GetSlot());
-				}
-				if (!parent) { continue; }
-				parent.SetHealth("", "Health", saveObject.GetHealth());
-				SetItemQuantity(parent, saveObject.GetQuantity());
+		for (int i = 0; i < arrPlayerStats.Count(); i++) {
+			PlayerStatBase playerStat = arrPlayerStats[i];
+			PlayerStat<float> castStat = PlayerStat<float>.Cast(playerStat);
+			PlayerStat<int> intStat = PlayerStat<int>.Cast(playerStat);
 
-				foreach (BST_MCSaveObject childObject : arrayChildren) {
-					CreateObjectChildren(newPlayer, parent, childObject);
-				}
+			if (castStat) {
+				castStat.Set(arrStats[i]);
+			} else {
+				intStat.Set(arrStats[i])
 			}
 		}
-		//newPlayer.SpawnMissingMags();
-	}
-
-	void CreateObjectChildren(PlayerBase player, EntityAI parent, BST_MCSaveObject objectToCreate) {
-		array<ref BST_MCSaveObject> children = objectToCreate.GetChildren();
-		Weapon_Base localWeapon;
-		Magazine localAmmo;
-		ItemBase localItem;
-		EntityAI localParent;
-		string type;
-		int quant, slot, index, row, col, flip;
-
-		type = objectToCreate.GetType();
-		quant = objectToCreate.GetQuantity();
-		slot = objectToCreate.GetSlot();
-		index = objectToCreate.GetIndex();
-		row = objectToCreate.GetRow();
-		col = objectToCreate.GetCol();
-		flip = objectToCreate.GetFlip();
-
-		if (slot == -1) {
-			localParent = parent.GetInventory().CreateEntityInCargoEx(type, index, row, col, flip);
-		} else {
-			localParent = parent.GetInventory().CreateAttachmentEx(type, slot);
-		}
-		if (!localParent) { return; }
-		localParent.SetHealth("", "Health", objectToCreate.GetHealth());
-
-		if (slot != -1) {
-			if (Class.CastTo(localAmmo, localParent)) {
-				//localParent.Delete();
-				Print("[SPAWN DEBUG] dropping mag!!!");
-				Param1<Magazine> objectParams = new Param1<Magazine>(localAmmo);
-				player.ServerDropEntity(localAmmo);
-				player.GetWeaponManager().AttachMagazine(localAmmo);
-				GetGame().RPCSingleParam(player, BST_MCRPC.CLIENT_RELOAD_MAG, objectParams, true, player.GetIdentity());
-			}
-		} else {
-			SetItemQuantity(localParent, quant);
-		}
-		foreach (BST_MCSaveObject saveObject : children) {
-			CreateObjectChildren(player, localParent, saveObject);
-		}
-	}
-
-	void SetItemQuantity(EntityAI item, int quant) {
-		ItemBase localItem = ItemBase.Cast(item);
-		Magazine localAmmo = Magazine.Cast(item);
-
-		if (localAmmo) {
-			localAmmo.ServerSetAmmoCount(quant);
-		} else if (localItem && localItem.GetCompEM()) {
-			localItem.GetCompEM().SetEnergy(quant);
-		} else {
-			localItem.SetQuantity(quant);
-		}
-	}
-
-	void LoadPlayer(PlayerBase player, BST_MCSavePlayer savePlayer) {
-		vector position, direction, orientation;
-		float health, blood, shock, water, energy, playerWater, playerEnergy;
-		position = savePlayer.GetPos();
-		direction = savePlayer.GetDirection();
-		orientation = savePlayer.GetOrientation();
-		health = savePlayer.GetHealth();
-		blood = savePlayer.GetBlood();
-		shock = savePlayer.GetShock();
-		water = savePlayer.GetWater();
-		energy = savePlayer.GetEnergy();
-
-		player.SetHealth("", "Health", health);
-		player.SetHealth("", "Blood", blood);
-		player.SetHealth("GlobalHealth", "Shock", shock);
-		player.GetStatWater().Set(water);
-		player.GetStatEnergy().Set(energy);
-		player.SetPosition(savePlayer.GetPos());
-		player.SetDirection(savePlayer.GetDirection());
-		player.SetOrientation(savePlayer.GetOrientation());
-		player.BSTMCSetLifespan(savePlayer.GetLifespanState(), savePlayer.GetLifespanLastShaved(), savePlayer.GetLifespanBloodyHandsVisible(), savePlayer.GetLifespanBloodTypeVisible(), savePlayer.GetLifespanBloodType());
-		player.GetBleedingManagerServer().BSTMCLoadBleedingSource(savePlayer.GetBleeding());
-		BSTMCLoadModifiers(player, savePlayer.GetModifiers());
-		BSTMCLoadAgents(player, savePlayer.GetAgents());
-		BSTMCLoadSymptoms(player, savePlayer.GetSymptoms());
-		BuildInventory(player, savePlayer);
 	}
 
 	private void BSTMCLoadModifiers(PlayerBase player, array<ref BST_MCSaveModifier> arrModifiers) {
