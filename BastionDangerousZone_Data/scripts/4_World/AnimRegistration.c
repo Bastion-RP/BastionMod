@@ -1,4 +1,4 @@
-modded class ModItemRegisterCallbacks
+modded class JMAnimRegister
 {
     override void RegisterOneHanded(DayZPlayerType pType, DayzPlayerItemBehaviorCfg pBehavior)
     {
