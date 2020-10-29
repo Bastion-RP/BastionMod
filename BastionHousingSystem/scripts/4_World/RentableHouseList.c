@@ -80,6 +80,7 @@ class Land_CementWorks_Hall2_Brick:   	BuildingBase { override bool IsRentableHo
 class Land_Village_HealthCare_Enoch:   	BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_City_PoliceStation_Enoch:   	BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Shed_Closed:   				BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Shed_Closed2:   				BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Garage_Office:   			BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Garage_Row_Big:   			BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_CementWorks_MillB:   		BuildingBase { override bool IsRentableHouse() {return true;} };
