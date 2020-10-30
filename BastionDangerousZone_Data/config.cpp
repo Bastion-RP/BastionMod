@@ -118,10 +118,10 @@ class CfgVehicles
 		};
 	};
 	
-	class BRP_Dosimeter_IDKHOWITSNAMED : BRP_Dosimeter
+	class BRP_Dosimeter_TBC3S : BRP_Dosimeter
 	{
 		scope = 2;
-		displayName = "Dosimeter";
+		displayName = "Dosimeter TBC-3S";
 		itemSize[] = {2,3};
 		model = "BastionMod\BastionDangerousZone_Data\dosimeter\sovietdosimeter.p3d";
 		hiddenSelections[]=
