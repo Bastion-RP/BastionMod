@@ -126,14 +126,61 @@ modded class MissionServer {
 				// Not implemented yet
 			// Load broken legs state
 				// This is for when EXP releases
+			// Build inventory
+			foreach (BST_MCSaveObject objData : playerData.GetInventory()) {
+				if (!objData) { continue; }
+				BSTMCCreateItem(newPlayer, newPlayer, objData);
+			}
 		} else {
 			Print(_mcDebugPrefix + "Player is dead or null");
+			// Logic for grabbing a spawnpoint
 			newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, charType, GetBSTMCServerManager().GetRandomSpawnpoint(), 0, "NONE"));
+
+			BST_MCStartingSetup(newPlayer, charClass);
 		}
 		return newPlayer;
 	}
 
 	void BST_MCStartingSetup(PlayerBase player, int playerClass) { }
+
+	private void BSTMCCreateItem(PlayerBase player, EntityAI parent, BST_MCSaveObject objData) {
+		array<ref BST_MCSaveObject> arrChildren;
+		EntityAI newEnt;
+
+		if (player == parent && objData.IsInHands()) {
+			newEnt = player.GetHumanInventory().CreateInHands(objData.GetType());
+		} else if (objData.GetSlot() != -1) {
+			if (Weapon.Cast(parent)) {
+				newEnt = GetGame().CreateObjectEx(type, parent.GetPosition(), ECE_PLACE_ON_SURFACE);
+			} else {
+				newEnt = parent.GetInventory().CreateAttachmentEx(objData.GetType(), objData.GetSlot());
+			}
+		} else {
+			newEnt = parent.GetInventory().CreateEntityInCargoEx(objData.GetType(), objData.GetIndex(), objData.GetRow(), objData.GetCol(), objData.GetFlip());
+		}
+		if (!newEnt) { return; }
+		arrChildren = objData.GetChildren();
+
+		newEnt.SetHealth("", "Health", objData.GetHealth());
+		BSTMCSetItemQuant(newEnt, objData.GetQuantity());
+
+		foreach (BST_MCSaveObject childData : arrChildren) {
+			BSTMCCreateItem(player, newEnt, childData);
+		}
+	}
+
+	private void BSTMCSetItemQuant(EntityAI ent, int quant) {
+		ItemBase item = ItemBase.Cast(ent);
+		Magazine ammo = Magazine.Cast(ent);
+
+		if (ammo) {
+			ammo.ServerSetAmmoCount(quant);
+		} else if (item && item.GetCompEM()) {
+			item.GetCompEM().SetEnergy(quant);
+		} else {
+			item.SetQuantity(quant);
+		}
+	}
 
 	private void BSTMCLoadStats(PlayerBase player, array<float> arrStats) {
 		if (arrStats.Count() <= 0) {
