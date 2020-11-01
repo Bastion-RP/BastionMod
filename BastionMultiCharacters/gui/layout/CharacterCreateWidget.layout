@@ -47,5 +47,20 @@ FrameWidgetClass rootFrame {
     }
    }
   }
+  ButtonWidgetClass btnBack {
+   color 1 0.6588 0 1
+   position 320 45
+   size 119 50
+   valign bottom_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   style DayZDefaultButtonNoBorder
+   "no focus" 1
+   text "BACK"
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold22"
+   "text color" 0 0 0 1
+  }
  }
 }

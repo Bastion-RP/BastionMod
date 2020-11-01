@@ -18,7 +18,6 @@ class BST_MCGUIWidget {
     Widget GetParent() { return _parent; }
 
     void ~BST_MCGUIWidget() {
-        Print("[DEBUG] BST_MCGUIWidget | Destructor");
         _root.Unlink();
     }
 }

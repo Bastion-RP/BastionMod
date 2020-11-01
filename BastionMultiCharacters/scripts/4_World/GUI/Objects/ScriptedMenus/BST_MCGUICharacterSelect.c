@@ -85,7 +85,7 @@ class BST_MCGUICharacterSelect : BST_MCGUIScriptedMenu {
                         _selectedInfoWidget.Select(false);
                     }
                     if (character.IsDead() && character.GetType() == "") {
-                        GetBSTMCClientManager().GetSelectMenu().CreateandShowSurvivorSelector(infoWidget.GetCharacter());
+                        GetBSTMCClientManager().GetSelectMenu().ShowSurvivorSelector(infoWidget.GetCharacter());
                     } else {
                         _selectedInfoWidget = infoWidget;
 
