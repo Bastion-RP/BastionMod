@@ -1,3 +1,7 @@
+/*
+	Class modifications written by RoomService
+*/
+
 modded class PlayerBase {
 	private ref FileSerializer m_FileSerializer;
 	private ref array<ref BST_MCMagObject> m_MagsToReload;
@@ -17,7 +21,9 @@ modded class PlayerBase {
 	}
 
 	void BSTMCSaveInventory() {
-		Print(BST_MCConst.debugPrefix + "Saving player inventory! playerId=" + this.GetIdentity().GetPlainId() + " | playerIndex=" + BST_APICharID);
+		if (GetIdentity()) {
+			Print(BST_MCConst.debugPrefix + "Saving player inventory! playerId=" + GetIdentity().GetPlainId() + " | playerIndex=" + BST_APICharID);
+		}
 
 		BST_MCSavePlayer m_SavePlayer = new BST_MCSavePlayer();
 		array<EntityAI> m_EnumeratedInventory = new array<EntityAI>();
@@ -117,14 +123,16 @@ modded class PlayerBase {
 				tempObject.SetQuantity(localItem.GetQuantity());
 			}
 		}
-
 		// Set needed values for the player
 		m_SavePlayer.SetAPIData(BST_APICharName, BST_APICharID, BST_APICharClass);
+		// Save Location
 		m_SavePlayer.SetLocation(GetPosition(), GetDirection(), GetOrientation());
-		m_SavePlayer.SetLifeStats(GetHealth("", "Health"), GetHealth("", "Blood"), GetHealth("GlobalHealth", "Shock"), GetStatWater().Get(), GetStatEnergy().Get());
-
+		// Save Life
+		m_SavePlayer.WriteLife(GetHealth("", "Health"), GetHealth("", "Blood"), GetHealth("GlobalHealth", "Shock"));
+		// Save Stats
+		m_SavePlayer.WriteStats(GetPlayerStats().GetPCO(GetGame().SaveVersion()).Get());
 		// Save lifespan
-		m_SavePlayer.SetLifespan(m_LifeSpanState, m_LastShavedSeconds, m_HasBloodyHandsVisible, m_HasBloodTypeVisible, m_BloodType);
+		m_SavePlayer.WriteLifespan(m_LifeSpanState, m_LastShavedSeconds, m_HasBloodyHandsVisible, m_HasBloodTypeVisible, m_BloodType);
 		// Save modifiers
 		m_SavePlayer.WriteModifiers(m_ModifiersManager.m_ModifierList);
 		// Save agents
@@ -177,12 +185,12 @@ modded class PlayerBase {
 		super.EEKilled(killer);
 	}
 	
-	void BSTMCSetLifespan(int state, int lastShaved, bool bloodHands, bool bloodVisible, int bloodType) {
-		m_LifeSpanState = state;
-		m_LastShavedSeconds = lastShaved;
-		m_HasBloodyHandsVisible = bloodHands;
-		m_HasBloodTypeVisible = bloodVisible;
-		m_BloodType = bloodType;
+	void BSTMCSetLifespan(BST_MCLifespan lifespan) {
+		m_LifeSpanState = lifespan.GetState();
+		m_LastShavedSeconds = lifespan.GetLastShaved();
+		m_BloodType = lifespan.GetBloodType();
+		m_HasBloodyHandsVisible = lifespan.IsBloodyHandsVisible();
+		m_HasBloodTypeVisible = lifespan.IsBloodTypeVisible();
 	}
 
 	// Function identical to OnConnect, just no other mod relies on it. So I can initialize a client without worrying about mods calling OnConnect to data that doesn't exist.

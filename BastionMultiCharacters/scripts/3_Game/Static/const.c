@@ -1,9 +1,8 @@
 class BST_MCConst {
-    static const string modDir = "$profile:\\Bastion\\MultiCharacters";
-    static const string configDir = modDir + "\\Config.json";
-    static const string loadoutDir = modDir + "\\Characters";
-    static const string spawnPointDir = modDir + "\\SpawnPoints.json";
-    static const string isfSpawnPointDir = modDir + "\\ISFSpawnPoints.json";
+    static const string modDir = "$profile:/Bastion/MultiCharacters";
+    static const string configDir = modDir + "/Config.json";
+    static const string loadoutDir = modDir + "/Characters";
+    static const string spawnConfigDir = modDir + "/SpawnConfig.json";
     static const string debugPrefix = "[MC DEBUG] ";
 }
 
