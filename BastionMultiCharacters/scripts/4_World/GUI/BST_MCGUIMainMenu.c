@@ -29,6 +29,7 @@ class BST_MCGUIMainMenu : UIScriptedMenu {
 
     override void OnShow() {
         super.OnShow();
+        layoutRoot.Show(true);
 
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
         GetGame().GetMission().GetHud().Show(false);
@@ -38,6 +39,7 @@ class BST_MCGUIMainMenu : UIScriptedMenu {
 
     override void OnHide() {
         super.OnHide();
+        layoutRoot.Show(false);
 
         if (GetGame().GetMission() && GetGame().GetMission().GetHud()) {
             GetGame().GetMission().GetHud().Show(true);
