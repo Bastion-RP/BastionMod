@@ -70,9 +70,6 @@ class BST_MCGUICharInfoSmallWidget : BST_MCGUIWidget {
     BST_MCGUIPlyPreviewSmallWidget GetPlayerPreview() { return _plyPreview; }
 
     void ~BST_MCGUICharInfoSmallWidget() {
-        if (_root) {
-            _root.Unlink();
-        }
         if (_plyPreview) {
             delete _plyPreview;
         }

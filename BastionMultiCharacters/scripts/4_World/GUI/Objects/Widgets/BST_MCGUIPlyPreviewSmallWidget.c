@@ -46,7 +46,7 @@ class BST_MCGUIPlyPreviewSmallWidget : BST_MCGUIWidget {
     }
 
     void CreateNewPlayer(string charType) {
-        _player = DayZPlayer.Cast(GetGame().CreateObject(charType, "0 0 0", true, false, false));
+        _player = DayZPlayer.Cast(GetGame().CreateObject(charType, "0 0 0", true));
         
         _preview.SetPlayer(_player);
     }

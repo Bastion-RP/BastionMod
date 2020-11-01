@@ -74,7 +74,7 @@ class BST_MCGUISurvivorSelect : BST_MCGUIScriptedMenu {
         switch (w) {
             case _rootMenu.GetCharacterInfoWidget().GetPlayButton():
                 {
-                    _rootMenu.GetCharacterInfoWidget().GetPlayButton().SetState(false);
+                    SetFocus(null);
                     _pnlConfirmation.Show(true);
                     break;
                 }
