@@ -82,6 +82,7 @@ modded class MissionServer {
 		FinishSpawningClient(identity, newPlayer);
 		newPlayer.BSTMCSaveInventory();
 		GetGame().RPCSingleParam(newPlayer, BST_MCRPC.CLIENT_RECEIVE_PLAYER_API_DATA, new Param3<int, string, int>(apiData.GetCharacterId().ToInt(), apiData.GetFirstName() + " " + apiData.GetLastName(), apiData.GetCitizenClass().ToInt()), true, newPlayer.GetIdentity());
+		GetBSTMCServerManager().RemoveAPIDataById(pId);
 	}
 
 	void FinishSpawningClient(PlayerIdentity identity, PlayerBase player) {
@@ -134,7 +135,11 @@ modded class MissionServer {
 		} else {
 			Print(_mcDebugPrefix + "Player is dead or null");
 			// Logic for grabbing a spawnpoint
-			newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, charType, GetBSTMCServerManager().GetRandomSpawnpoint(), 0, "NONE"));
+			vector randomSpawn = GetBSTMCServerManager().GetRandomSpawnPointByClass(charClass);
+			
+			Print(_mcDebugPrefix + "Grabbed random spawn point=" + randomSpawn);
+			
+			newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, charType, randomSpawn, 0, "NONE"));
 
 			BST_MCStartingSetup(newPlayer, charClass);
 		}
@@ -151,7 +156,7 @@ modded class MissionServer {
 			newEnt = player.GetHumanInventory().CreateInHands(objData.GetType());
 		} else if (objData.GetSlot() != -1) {
 			if (Weapon.Cast(parent)) {
-				newEnt = GetGame().CreateObjectEx(type, parent.GetPosition(), ECE_PLACE_ON_SURFACE);
+				newEnt = EntityAI.Cast(GetGame().CreateObjectEx(objData.GetType(), parent.GetPosition(), ECE_PLACE_ON_SURFACE));
 			} else {
 				newEnt = parent.GetInventory().CreateAttachmentEx(objData.GetType(), objData.GetSlot());
 			}
@@ -199,7 +204,7 @@ modded class MissionServer {
 			if (castStat) {
 				castStat.Set(arrStats[i]);
 			} else {
-				intStat.Set(arrStats[i])
+				intStat.Set(arrStats[i]);
 			}
 		}
 	}

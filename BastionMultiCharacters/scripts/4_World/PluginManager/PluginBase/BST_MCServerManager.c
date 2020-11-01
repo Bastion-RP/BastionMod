@@ -1,13 +1,13 @@
 class BST_MCServerManager : PluginBase {
     protected ref JsonSerializer _jsSerializer;
-    protected ref array<string> _arrSpawnPoints, _arrISFSpawnPoints;
     private ref map<string, ref array<ref BST_APICharacterId>> _mapPlayerAPIData;
+    private ref map<string, ref array<string>> _mapSpawnPoints;
+    private ref BST_MCSpawnConfig _spawnConfig;
 
     void BST_MCServerManager() {
         _jsSerializer = new JsonSerializer();
-        _arrSpawnPoints = new array<string>();
-        _arrISFSpawnPoints = new array<string>();
         _mapPlayerAPIData = new map<string, ref array<ref BST_APICharacterId>>();
+        _mapSpawnPoints = new map<string, ref array<string>>();
 
         CheckDirectories();
     }
@@ -26,22 +26,17 @@ class BST_MCServerManager : PluginBase {
         } else {
             JsonFileLoader<BST_MCConfig>.JsonLoadFile(BST_MCConst.configDir, config);
         }
+        if (!FileExist(BST_MCConst.spawnConfigDir)) {
+            _spawnConfig = new BST_MCSpawnConfig();
+        } else {
+            JsonFileLoader<BST_MCSpawnConfig>.JsonLoadFile(BST_MCConst.spawnConfigDir, _spawnConfig);
+            _spawnConfig.Validate();
+        }
+        _mapSpawnPoints = _spawnConfig.GetSpawnGroupMap();
+
+        JsonFileLoader<BST_MCSpawnConfig>.JsonSaveFile(BST_MCConst.spawnConfigDir, _spawnConfig);
         JsonFileLoader<BST_MCConfig>.JsonSaveFile(BST_MCConst.configDir, config);
         GetBSTMCManager().SetConfig(config);
-
-        if (!FileExist(BST_MCConst.spawnPointDir)) {
-            _arrSpawnPoints = BST_MCDefaultSpawns();
-            
-            JsonFileLoader<array<string>>.JsonSaveFile(BST_MCConst.spawnPointDir, _arrSpawnPoints);
-        } else {
-            JsonFileLoader<array<string>>.JsonLoadFile(BST_MCConst.spawnPointDir, _arrSpawnPoints);
-        }
-        if (!FileExist(BST_MCConst.isfSpawnPointDir)) {
-            _arrISFSpawnPoints = BST_MCDefaultSpawns();
-            JsonFileLoader<array<string>>.JsonSaveFile(BST_MCConst.isfSpawnPointDir, _arrISFSpawnPoints);
-        } else {
-            JsonFileLoader<array<string>>.JsonLoadFile(BST_MCConst.isfSpawnPointDir, _arrISFSpawnPoints);
-        }
     }
 
     void GetCharactersByPlayerId(PlayerIdentity sender) {
@@ -98,15 +93,19 @@ class BST_MCServerManager : PluginBase {
                                                 savePlayer = new BST_MCSavePlayerBasic();
 
                                                 savePlayer.SetDead(true);
-                                                savePlayer.SetAPIData(characterData.GetFirstName() + " " + characterData.GetLastName(), characterData.GetCharacterId().ToInt(), characterData.GetCitizenClass().ToInt());
                                             }
+                                            savePlayer.SetAPIData(characterData.GetFirstName() + " " + characterData.GetLastName(), characterData.GetCharacterId().ToInt(), characterData.GetCitizenClass().ToInt());
                                             arrSavePlayers.Insert(savePlayer);
                                         }
                                         if (arrSavePlayers.Count() > 0) {
                                             Param params = new Param1<array<ref BST_MCSavePlayerBasic>>(arrSavePlayers);
                                             Param configParams = new Param1<ref BST_MCConfig>(GetBSTMCManager().GetConfig());
 
-                                            _mapPlayerAPIData.Insert(sender.GetPlainId(), arrCharacterData);
+                                            if (_mapPlayerAPIData.Contains(sender.GetPlainId())) {
+                                                _mapPlayerAPIData.Set(sender.GetPlainId(), arrCharacterData);
+                                            } else {
+                                                _mapPlayerAPIData.Insert(sender.GetPlainId(), arrCharacterData);
+                                            }
                                             GetGame().RPCSingleParam(null, BST_MCRPC.CLIENT_RECEIVE_CONFIG, configParams, true, sender);
                                             GetGame().RPCSingleParam(null, BST_MCRPC.CLIENT_RECEIVE_CHARACTERS, params, true, sender);
                                         } else {
@@ -154,11 +153,30 @@ class BST_MCServerManager : PluginBase {
         GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().DisconnectPlayer, 1000, false, sender);
     }
 
+    void RemoveAPIDataById(string identity) {
+        _mapPlayerAPIData.Remove(identity);
+    }
+
     bool HasAPIData(string identity) {
         if (_mapPlayerAPIData.Contains(identity)) {
             return true;
         }
         return false;
+    }
+
+    vector GetRandomSpawnPointByClass(int charClass) {
+        string strCharClass;
+        array<string> arrSpawns;
+
+        strCharClass = GetBSTAPIHandler().GetClassNameFromInt(charClass);
+
+        strCharClass.ToUpper();
+
+        if (_mapSpawnPoints.Contains(strCharClass)) {
+            return _mapSpawnPoints.Get(strCharClass).GetRandomElement().ToVector();
+        } else {
+            return _mapSpawnPoints.Get(BST_MCSpawnGroup.CONST_DEFAULT_CLASS).GetRandomElement().ToVector();
+        }
     }
 
     BST_APICharacterId GetAPIDataById(string identity, string charId) {
@@ -174,9 +192,6 @@ class BST_MCServerManager : PluginBase {
         }
         return null;
     }
-
-    vector GetRandomSpawnpoint() { return _arrSpawnPoints.GetRandomElement().ToVector(); }
-    vector GetRandomISFSpawnpoint() { return _arrISFSpawnPoints.GetRandomElement().ToVector(); }
 }
 
 BST_MCServerManager GetBSTMCServerManager() {
