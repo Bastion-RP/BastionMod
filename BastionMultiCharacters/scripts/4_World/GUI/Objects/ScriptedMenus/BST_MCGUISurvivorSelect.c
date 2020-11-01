@@ -6,6 +6,7 @@ class BST_MCGUISurvivorSelect : BST_MCGUIScriptedMenu {
     private const int CONST_MAX_CHILDREN = 4;
 
     private ref GridSpacerWidget _gridRoot;
+    private ref ButtonWidget _btnBack;
     private ref BST_MCGUIWarningWidget _pnlConfirmation;
     private ref BST_MCSavePlayerBasic _character;
     private ref array<ref BST_MCGUIGridSurvivorWidget> _arrCharGrids;
@@ -21,8 +22,10 @@ class BST_MCGUISurvivorSelect : BST_MCGUIScriptedMenu {
     void Init() {
         _root = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionMultiCharacters/gui/layout/CharacterCreateWidget.layout", _parent);
         _gridRoot = GridSpacerWidget.Cast(_root.FindAnyWidget("gridSurvivors"));
+        _btnBack = ButtonWidget.Cast(_root.FindAnyWidget("btnBack"));
         _pnlConfirmation = new BST_MCGUIWarningWidget(_root);
 
+        _root.SetHandler(this);
         _pnlConfirmation.Init(this);
         BuildCharPreviews();
     }
@@ -87,6 +90,10 @@ class BST_MCGUISurvivorSelect : BST_MCGUIScriptedMenu {
                 {
                     _pnlConfirmation.Show(false);
                     break;
+                }
+            case _btnBack:
+                {
+                    _rootMenu.ShowCharacterSelector();
                 }
         }
         return true;

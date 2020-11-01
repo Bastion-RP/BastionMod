@@ -48,10 +48,15 @@ class BST_MCGUIMainMenu : UIScriptedMenu {
 
     }
 
-    void CreateandShowSurvivorSelector(BST_MCSavePlayerBasic character) {
+    void ShowSurvivorSelector(BST_MCSavePlayerBasic character) {
         _rootSurvivorSelect.SetCharacter(character);
         _rootCharacterSelect.Show(false);
         _rootSurvivorSelect.Show(true);
+    }
+
+    void ShowCharacterSelector() {
+        _rootCharacterSelect.Show(true);
+        _rootSurvivorSelect.Show(false);
     }
 
 	override bool OnClick(Widget w, int x, int y, int button) {
