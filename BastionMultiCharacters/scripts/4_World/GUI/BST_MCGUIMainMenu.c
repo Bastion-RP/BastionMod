@@ -27,6 +27,25 @@ class BST_MCGUIMainMenu : UIScriptedMenu {
         return layoutRoot;
     }
 
+    override void OnShow() {
+        super.OnShow();
+
+        GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
+        GetGame().GetMission().GetHud().Show(false);
+        GetGame().GetUIManager().ShowCursor(true);
+        GetGame().GetUIManager().ScreenFadeOut(0);
+    }
+
+    override void OnHide() {
+        super.OnHide();
+
+        if (GetGame().GetMission() && GetGame().GetMission().GetHud()) {
+            GetGame().GetMission().GetHud().Show(true);
+        }
+        GetGame().GetUIManager().ShowCursor(false);
+
+    }
+
     void CreateandShowSurvivorSelector(BST_MCSavePlayerBasic character) {
         _rootSurvivorSelect.SetCharacter(character);
         _rootCharacterSelect.Show(false);
