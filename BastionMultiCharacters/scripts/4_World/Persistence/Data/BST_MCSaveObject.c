@@ -2,7 +2,7 @@ class BST_MCSaveObject {
 	private ref array<ref BST_MCSaveObject> _arrChildren;
 	private string _type;
 	private float _health = 100;
-	private int _quant, _slot, _idx, _row, _col;
+	private int _quant, _slot, _idx, _row, _col, _qBarSlot;
 	private bool _flip, _inHands;
 
 	void BST_MCSaveObject() {
@@ -40,6 +40,10 @@ class BST_MCSaveObject {
 		_flip = flip;
 	}
 
+	void SetQuickbarSlot(int slot) {
+		_qBarSlot = slot;
+	}
+
 	void SetHands() {
 		_inHands = true;
 	}
@@ -65,6 +69,7 @@ class BST_MCSaveObject {
 	int GetIndex() { return _idx; }
 	int GetRow() { return _row; }
 	int GetCol() { return _col; }
+	int GetQuickbarSlot() { return _qBarSlot; }
 	bool GetFlip() { return _flip; }
 	bool IsInHands() { return _inHands; }
 

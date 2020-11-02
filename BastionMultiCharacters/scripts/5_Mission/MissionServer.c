@@ -74,7 +74,8 @@ modded class MissionServer {
 				}
 			}
 		}
-		newPlayer = BSTMCCreateNewCharacter(identity, playerData, apiData.GetCitizenClass().ToInt(), charType);
+		map<EntityAI, int> mapSetQuickbar = new map<EntityAI, int>();
+		newPlayer = BSTMCCreateNewCharacter(identity, playerData, apiData.GetCitizenClass().ToInt(), charType, mapSetQuickbar);
 
 		newPlayer.BSTMCSetCharData(apiData.GetCharacterId().ToInt(), apiData.GetFirstName() + " " + apiData.GetLastName(), apiData.GetCitizenClass().ToInt());
 		GetGame().SelectPlayer(identity, newPlayer);
@@ -83,6 +84,11 @@ modded class MissionServer {
 		newPlayer.BSTMCSaveInventory();
 		GetGame().RPCSingleParam(newPlayer, BST_MCRPC.CLIENT_RECEIVE_PLAYER_API_DATA, new Param3<int, string, int>(apiData.GetCharacterId().ToInt(), apiData.GetFirstName() + " " + apiData.GetLastName(), apiData.GetCitizenClass().ToInt()), true, newPlayer.GetIdentity());
 		GetBSTMCServerManager().RemoveAPIDataById(pId);
+
+		// Set player quickbar. Has to be done after player has been set to identity, so client player != null
+		for (int i = 0; i < mapSetQuickbar.Count(); i++) {
+			newPlayer.SetQuickBarEntityShortcut(mapSetQuickbar.GetKey(i), mapSetQuickbar.GetElement(i));
+		}
 	}
 
 	void FinishSpawningClient(PlayerIdentity identity, PlayerBase player) {
@@ -93,7 +99,7 @@ modded class MissionServer {
 		Print(_mcDebugPrefix + "Finished spawning id=" + identity.GetPlainId());
 	}
 	
-	private PlayerBase BSTMCCreateNewCharacter(PlayerIdentity identity, BST_MCSavePlayer playerData, int charClass, string charType) {
+	private PlayerBase BSTMCCreateNewCharacter(PlayerIdentity identity, BST_MCSavePlayer playerData, int charClass, string charType, out map<EntityAI, int> mapSetQuickbar) {
 		Print(_mcDebugPrefix + "data=" + playerData + " | class=" + charClass + " | type=" + charType);
 
 		PlayerBase newPlayer;
@@ -130,7 +136,7 @@ modded class MissionServer {
 			// Build inventory
 			foreach (BST_MCSaveObject objData : playerData.GetInventory()) {
 				if (!objData) { continue; }
-				BSTMCCreateItem(newPlayer, newPlayer, objData);
+				BSTMCCreateItem(newPlayer, newPlayer, objData, mapSetQuickbar);
 			}
 		} else {
 			Print(_mcDebugPrefix + "Player is dead or null");
@@ -148,7 +154,7 @@ modded class MissionServer {
 
 	void BST_MCStartingSetup(PlayerBase player, int playerClass) { }
 
-	private void BSTMCCreateItem(PlayerBase player, EntityAI parent, BST_MCSaveObject objData) {
+	private void BSTMCCreateItem(PlayerBase player, EntityAI parent, BST_MCSaveObject objData, out map<EntityAI, int> mapSetQuickbar) {
 		array<ref BST_MCSaveObject> arrChildren;
 		EntityAI newEnt;
 
@@ -166,11 +172,14 @@ modded class MissionServer {
 		if (!newEnt) { return; }
 		arrChildren = objData.GetChildren();
 
+		if (objData.GetQuickbarSlot() != -1) {
+			mapSetQuickbar.Insert(newEnt, objData.GetQuickbarSlot());
+		}
 		newEnt.SetHealth("", "Health", objData.GetHealth());
 		BSTMCSetItemQuant(newEnt, objData.GetQuantity());
 
 		foreach (BST_MCSaveObject childData : arrChildren) {
-			BSTMCCreateItem(player, newEnt, childData);
+			BSTMCCreateItem(player, newEnt, childData, mapSetQuickbar);
 		}
 	}
 
