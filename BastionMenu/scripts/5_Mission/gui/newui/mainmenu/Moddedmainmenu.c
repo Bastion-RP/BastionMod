@@ -1,14 +1,7 @@
 modded class MainMenu extends UIScriptedMenu
 {
-	private ref DayZIntroSceneNew   m_IntroScene;
 	protected Widget m_Forums;
 	protected TextWidget m_WelcomeBack;
-
-	void MenuHud()
-	{
-		MissionMainMenu m = MissionMainMenu.Cast( GetGame().GetMission() );
-		m_IntroScene = m.GetIntroScene();
-	}
 
 	override Widget Init()
 	{
@@ -78,7 +71,7 @@ modded class MainMenu extends UIScriptedMenu
 		g_Game.SetLoadState( DayZLoadState.MAIN_MENU_CONTROLLER_SELECT );
 		
 		return layoutRoot;
-	}
+	};
 
 	void SetPlayerName()
 	{
@@ -89,14 +82,14 @@ modded class MainMenu extends UIScriptedMenu
 			if (!name) name = "Survivor";
 
 			m_PlayerName.SetText(name);
-		}
-	}
+		};
+	};
 
-	override void OnChangeCharacter()
+	override void OnChangeCharacter(bool create_character = true)
 	{
 		super.OnChangeCharacter();
 		SetPlayerName();
-	}
+	};
 	
 	override bool OnClick(Widget w, int x, int y, int button)
 	{
@@ -105,58 +98,39 @@ modded class MainMenu extends UIScriptedMenu
 			GetGame().OpenURL("https://bastionrp.com/forums/");
 			return true;
 		}
-
 		return super.OnClick(w, x, y, button);
-	}
+	};
 	
 	override bool IsFocusable( Widget w )
 	{
 		if( w )
 		{
-			if( w == m_Play || w == m_ChooseServer || w == m_CustomizeCharacter || w == m_TutorialButton || w == m_MessageButton || w == m_SettingsButton || w == m_Forums );
-			{
-				return true;
-			}
-			
-			if( w == m_Exit || w == m_PlayVideo );
-			{
-				return true;
-			}
-			
-			if( w == m_NewsMain || w == m_NewsSec1 || w == m_NewsSec2 || w == m_PrevCharacter || w == m_NextCharacter );
+			if( w == m_Play || w == m_ChooseServer || w == m_CustomizeCharacter || w == m_SettingsButton || w == m_Exit || w == m_Forums);
 			{
 				return true;
 			}
 		}
 		return false;
-	}
+	};
 	
 	override void Play()
 	{
 		g_Game.ConnectFromServerBrowser("51.81.48.230", 2302, "rainsofafrica");
-	}
-		
-	//Coloring functions (Until WidgetStyles are useful)
+	};
+	
 	override void ColorHighlight( Widget w )
 	{
 		if( !w )
 			return;
 		
-		//SetFocus( w );
-		
 		int color_pnl = ARGB(255, 0, 0, 0);
 		int color_lbl = ARGB(255, 255, 168, 0);
 		int color_img = ARGB(255, 255, 168, 0);
 		
-		#ifdef PLATFORM_CONSOLE
-			color_pnl = ARGB(255, 255, 168, 0);
-			color_lbl = ARGB(255, 255, 168, 0);
-		#endif
-		
 		ButtonSetColor(w, color_pnl);
 		ButtonSetTextColor(w, color_lbl);
 		ImagenSetColor(w, color_img);
-	}
+	};
 	
 	override void ButtonSetText( Widget w, string text )
 	{
@@ -168,7 +142,6 @@ modded class MainMenu extends UIScriptedMenu
 		if( label )
 		{
 			label.SetText( text );
-		}
-		
-	}
-}
+		};
+	};
+};
