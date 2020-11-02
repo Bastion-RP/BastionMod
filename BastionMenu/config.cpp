@@ -65,30 +65,70 @@ class CfgSoundShaders
 	};
 };
 
-class cfgLobbyScenes
+class CfgWorlds
 {
-    class ChernarusPlus
-    {
-        class scene_1
-        {
-            camPos[]={8809.124023, 218.5, 2860.765625};
-            playerPos[]={8814.236328, 217.137512, 2857.740479};
-            camDir[]={119.999985, 0.000000, 0.000000};
-            playerDir[]={-62.000011, 0.000000, 0.000000};
-            fov=0.5;
-            rain=1;
-            overcast=1;
-        };
-        
-        class scene_2
-        {
-            camPos[]={8809.124023, 218.5, 2860.765625};
-            playerPos[]={8814.236328,217.137512, 2857.740479};
-            camDir[]={119.999985, 0.000000, 0.000000};
-            playerDir[]={-62.000011, 0.000000, 0.000000};
-            fov=0.5;
-            rain=1;
-            overcast=1;
-        };
-    };
+	initWorld="Korolgrad";
+};
+
+class cfgCharacterScenes
+{
+	class Korolgrad
+	{
+		class loc1
+		{
+			target[] = {5198.702637, 4430.287598, 1.980000};
+			position[] = {5204.604492, 4433.385742, 1};
+			fov = 1;
+			date[] = {2020,06,21,12,00};
+			overcast = 0;
+			rain = 0;
+			fog = 0;
+			windspeed = 0;
+		};
+
+		class loc2
+		{
+			target[] = {5198.702637, 4430.287598, 1.980000};
+			position[] = {5204.604492, 4433.385742, 1};
+			fov = 1;
+			date[] = {2020,06,21,12,00};
+			overcast = 0;
+			rain = 0;
+			fog = 0;
+			windspeed = 0;
+		};
+		class loc3
+		{
+			target[] = {5198.702637, 4430.287598, 1.980000};
+			position[] = {5204.604492, 4433.385742, 1};
+			fov = 1;
+			date[] = {2020,06,21,12,00};
+			overcast = 0;
+			rain = 0;
+			fog = 0;
+			windspeed = 0;
+		};
+		class loc4
+		{
+			target[] = {5198.702637, 4430.287598, 1.980000};
+			position[] = {5204.604492, 4433.385742, 1};
+			fov = 1;
+			date[] = {2020,06,21,12,00};
+			overcast = 0;
+			rain = 0;
+			fog = 0;
+			windspeed = 0;
+		};
+		class loc5
+		{
+			target[] = {5198.702637, 4430.287598, 1.980000};
+			position[] = {5204.604492, 4433.385742, 1};
+			fov = 1;
+			date[] = {2020,06,21,12,00};
+			overcast = 0;
+			rain = 0;
+			fog = 0;
+			windspeed = 0;
+		};
+	};
 };
