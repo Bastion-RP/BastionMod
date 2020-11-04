@@ -27,3 +27,26 @@ void UnfoldOpticsBRP(EntityAI ParentItem)
 	ParentItem.SetSimpleHiddenSelectionState(foldingOpticRaisedId,true);
 	ParentItem.SetSimpleHiddenSelectionState(foldingOpticLoweredId,false);
 };
+
+void HideIronSightsBRP (EntityAI ParentItem)
+{
+	protected int hideIronsightsId = -1;
+	TStringArray selectionNames = new TStringArray;
+	
+	ParentItem.ConfigGetTextArray("simpleHiddenSelections",selectionNames);
+	hideIronsightsId = selectionNames.Find("hide_ironsights");
+		
+	ParentItem.SetSimpleHiddenSelectionState(hideIronsightsId,false);
+};
+
+void ShowIronSightsBRP (EntityAI ParentItem)
+{
+	protected int hideIronsightsId = -1;
+	TStringArray selectionNames = new TStringArray;
+
+	ParentItem.ConfigGetTextArray("simpleHiddenSelections",selectionNames);
+
+	hideIronsightsId = selectionNames.Find("hide_ironsights");
+
+	ParentItem.SetSimpleHiddenSelectionState(hideIronsightsId,true);
+};
