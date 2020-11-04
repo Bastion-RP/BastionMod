@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{EFA12A1FF9A4711F}DayZCasinoV2/data/cards/karo_sechs.edds"
+ Author "desktop-en33qro"
+ ChangeDate 339437363
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "karo_sechs.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

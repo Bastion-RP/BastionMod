@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{7D85330424932B33}DayZCasinoV2/data/cards/kreuz_acht.edds"
+ Author "desktop-en33qro"
+ ChangeDate 540763955
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "kreuz_acht.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

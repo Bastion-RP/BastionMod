@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{3EE97D73B3001DDB}unpacked/DayZCasinoV2/data/ratrace/rat.edds"
+ Author "laptop-100u5pjt"
+ ChangeDate 1068705682
+ Configurations {
+  PNGResourceClass PC {
+   SourceFile "rat.png"
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+  PNGResourceClass LINUX : PC {
+  }
+ }
+}

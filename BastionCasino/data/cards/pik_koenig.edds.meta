@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{226D06A972C62EC7}DayZCasinoV2/data/cards/pik_koenig.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1211852595
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "pik_koenig.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

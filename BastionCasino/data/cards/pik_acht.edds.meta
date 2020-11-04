@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{4886C125203700B8}DayZCasinoV2/data/cards/pik_acht.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1010526003
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "pik_acht.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{D2AD2836E692AF21}DayZCasinoV2/data/cards/pik_ass.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1044080435
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "pik_ass.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

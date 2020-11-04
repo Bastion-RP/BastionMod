@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{31193772EE2E58AF}DayZCasinoV2/data/cards/pik_dame.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1111189299
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "pik_dame.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

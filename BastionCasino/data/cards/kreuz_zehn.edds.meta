@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{FC77D621FD9AF0BF}DayZCasinoV2/data/cards/kreuz_zehn.edds"
+ Author "desktop-en33qro"
+ ChangeDate 943417139
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "kreuz_zehn.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

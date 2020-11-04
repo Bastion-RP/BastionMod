@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{027B6B4668FC06BA}DayZCasinoV2/data/cards/kreuz_vier.edds"
+ Author "desktop-en33qro"
+ ChangeDate 909862707
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "kreuz_vier.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

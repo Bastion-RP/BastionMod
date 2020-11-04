@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{D9941FA06B829316}Develop/DayZCasinoV2/Addons/DayZCasinoV2/data/luckywheel/luckywheel.edds"
+ Author "laptop-100u5pjt"
+ ChangeDate 407136062
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "luckywheel.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

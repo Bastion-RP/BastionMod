@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{04EB7DF09C62B6DA}DayZCasinoV2/data/cards/herz_sechs.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1915971379
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "herz_sechs.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

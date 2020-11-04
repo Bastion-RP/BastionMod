@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{041AC553EA8A7324}DayZCasinoV2/data/cards/kreuz_dame.edds"
+ Author "desktop-en33qro"
+ ChangeDate 641427251
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "kreuz_dame.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

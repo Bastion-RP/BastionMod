@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{552AA2211E58BEF3}DayZCasinoV2/data/cards/kreuz_drei.edds"
+ Author "desktop-en33qro"
+ ChangeDate 674981683
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "kreuz_drei.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}
