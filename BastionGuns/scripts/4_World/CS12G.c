@@ -264,5 +264,9 @@ class BRP_CS12G : AutoShotGunScript
 		
 		return chanceToJam;
 	}
+    	override bool IsISFWeapon() 
+	{
+		return true;	
+	}
 };
 		
