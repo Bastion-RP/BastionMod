@@ -29,7 +29,7 @@ class cfgWeapons
 		WeaponLength = 0.6;
 		chamberSize = 1;
 		chamberedRound = "";
-		magazines[] = {"BRP_Mag_M9A3_17rnd"};
+		magazines[] = {"BRP_Mag_BerettaM9_15rnd","BRP_Mag_M9A3_17rnd"};
 		chamberableFrom[] = {"Ammo_9x19"};
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
