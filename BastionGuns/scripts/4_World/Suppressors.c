@@ -1,0 +1,1 @@
+class BRP_Vector_Suppressor extends SuppressorBase {};
