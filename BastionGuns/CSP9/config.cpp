@@ -1,11 +1,11 @@
 ﻿class CfgPatches
 {
-	class BastionRP_Pistols_CSP9
+	class BastionRP_CSP9
 	{
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = {"DZ_Pistols_CZ75"};
+		requiredAddons[] = {"DZ_Pistols"};
 		magazines[] = {};
 	};
 };
@@ -16,8 +16,8 @@ class Mode_FullAuto;
 class OpticsInfoPistol;
 class cfgWeapons
 {
-	class CZ75;
-	class CSP9_Base: CZ75
+	class Pistol_Base;
+	class CSP9_Base: Pistol_Base
 	{
 		scope = 0;
 		model = "BastionMod\BastionGuns\CSP9\CSP9.p3d";
@@ -25,17 +25,18 @@ class cfgWeapons
 		itemSize[] = {3,2};		
 		weight = 950;
 		absorbency = 0;
-		repairableWithKits[] = {5,1};
+		repairableWithKits[] = {1};
 		repairCosts[] = {30,25};
 		PPDOFProperties[] = {1,0.5,10,250,4,10};
-		ironsightsExcludingOptics[] = {"FNP45_MRDSOptic"};
 		WeaponLength = 0.634148;
+		barrelArmor = 2.018;		
 		chamberSize = 1;
 		chamberedRound = "";
 		magazines[] = {"BRP_Mag_CSP9_17Rnd"};
 		chamberableFrom[] = {"Ammo_9x19"};
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {1.2,1.2,0.8};		
 		modes[] = {"SemiAuto"};
 		class SemiAuto: Mode_SemiAuto
 		{
