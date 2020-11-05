@@ -1,0 +1,58 @@
+FrameWidgetClass rootFrame {
+ visible 1
+ position -73.2039 -468.841
+ size 516.17999 115.815
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  PanelWidgetClass background {
+   ignorepointer 1
+   color 0 0 0 0.651
+   position 13.2515 13.2515
+   size 489.677 89.312
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   draggable 0
+   style DayZDefaultPanel
+   "no focus" 0
+   {
+    PanelWidgetClass boarder {
+     ignorepointer 1
+     color 0 0 0 0.7843
+     position 7.7473 7.3239
+     size 468.67801 68.7366
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style editor_selection
+     {
+      MultilineTextWidgetClass message {
+       ignorepointer 1
+       position 13.2515 13.2515
+       size 450.22 42.2336
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style DayZNormal
+       text "#hint_can_open_game"
+       "exact text" 0
+       "text halign" center
+       "text valign" center
+       wrap 1
+       "condense whitespace" 1
+       "strip newlines" 1
+      }
+     }
+    }
+   }
+  }
+ }
+}

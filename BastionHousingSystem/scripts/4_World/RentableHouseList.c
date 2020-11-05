@@ -21,6 +21,7 @@ modded class Land_HouseBlock_2F8                 { override bool IsRentableHouse
 modded class Land_HouseBlock_2F9                 { override bool IsRentableHouse() {return true;} };
 modded class Land_HouseBlock_3F2                 { override bool IsRentableHouse() {return true;} };
 modded class Land_HouseBlock_5F                  { override bool IsRentableHouse() {return true;} };
+modded class Land_Village_Pub					 { override bool IsRentableHouse() {return true;} };
 
 //modded======================================
 class Land_House_1W07 :             BuildingBase { override bool IsRentableHouse() {return true;} };
@@ -77,7 +78,9 @@ class Land_Tisy_KitchenRoom:   		BuildingBase { override bool IsRentableHouse() 
 class Land_CementWorks_Hall2_Grey:   	BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_CementWorks_Hall2_Brick:   	BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Village_HealthCare_Enoch:   	BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_City_PoliceStation_Enoch:   	BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Shed_Closed:   				BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Shed_Closed2:   				BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Garage_Office:   			BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_Garage_Row_Big:   			BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_CementWorks_MillB:   		BuildingBase { override bool IsRentableHouse() {return true;} };
@@ -90,3 +93,16 @@ class Land_Workshop5:   				BuildingBase { override bool IsRentableHouse() {retu
 class Land_Workshop_FuelStation:   		BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_CementWorks_ExpeditionA:     BuildingBase { override bool IsRentableHouse() {return true;} };
 class Land_CementWorks_MillC:           BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Factory_Lathes:              BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Mil_Barracks2:               BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Mil_Barracks_Round:          BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_HouseBlock_3F_Corner2:       BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_HouseBlock_3F_Corner1:       BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_City_PoliceStation:          BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_CementWorks_Hall1:           BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Office_Municipal2:           BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Mil_Guardhouse1:           BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Camp_House_brown:           BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Tisy_HQ:           BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_mil_Airfield_HQ:           BuildingBase { override bool IsRentableHouse() {return true;} };
+class Land_Prison_Main:                 BuildingBase { override bool IsRentableHouse() {return true;} };

@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{AC6D2E26C302BDAC}DayZCasinoV2/data/cards/kreuz_zwei.edds"
+ Author "desktop-en33qro"
+ ChangeDate 976971571
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "kreuz_zwei.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

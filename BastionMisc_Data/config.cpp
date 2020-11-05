@@ -60,4 +60,56 @@ class CfgVehicles
 		scope = 1;
 		model = "\BastionMod\BastionMisc_Data\crate\crate_aionbottles.p3d";
 	};
+	class BRP_OIMHat_Crate: BRP_AION_Crate
+	{
+		scope = 1;
+		model = "\BastionMod\BastionMisc_Data\crate\oimcrate.p3d";
+	};
+	class BRP_OIMVest_Crate: BRP_AION_Crate
+	{
+		scope = 1;
+		model = "\BastionMod\BastionMisc_Data\crate\oimvest.p3d";
+	};
+	class BRP_OIMNCCShirt_Crate: BRP_AION_Crate
+	{
+		scope = 1;
+		model = "\BastionMod\BastionMisc_Data\crate\oimncc.p3d";
+	};
+	class BRP_OIMNCCPants_Crate: BRP_AION_Crate
+	{
+		scope = 1;
+		model = "\BastionMod\BastionMisc_Data\crate\oimncc.p3d";
+	};
+	class BRP_OIMNCCSewing_Crate: BRP_AION_Crate
+	{
+		scope = 1;
+		model = "\BastionMod\BastionMisc_Data\crate\oimncc.p3d";
+	};
+};
+
+class CfgNonAIVehicles
+{
+	class ProxyRetex;
+	class ProxyTTsKO_Jacket_g: ProxyRetex
+	{
+		hiddenSelections[] = {"camoground"};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa",
+			"BastionMod\BastionClothing\Retextures\data\ttsko_jacket_brpcivilian_co.paa"
+		};
+		model = "\DZ\characters\tops\TTsKO_Jacket_g.p3d";
+	};
+	class ProxyPrison_Pants_g: ProxyRetex
+	{
+		hiddenSelections[] = {"camoground"};
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionClothing\Retextures\data\BRP_PrisonPants_ncc.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_PrisonPants_ncc.paa",
+			"BastionMod\BastionClothing\Retextures\data\BRP_PrisonPants_ncc.paa"
+		};
+		model = "\DZ\characters\pants\prison_pants_g.p3d";
+	};
 };

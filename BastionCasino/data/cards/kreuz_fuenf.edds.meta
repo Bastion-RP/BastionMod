@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{43C560DCA38DB73D}DayZCasinoV2/data/cards/kreuz_fuenf.edds"
+ Author "desktop-en33qro"
+ ChangeDate 708536115
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "kreuz_fuenf.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

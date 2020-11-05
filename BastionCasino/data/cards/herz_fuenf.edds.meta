@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{EB0BE05DC181FC4F}DayZCasinoV2/data/cards/herz_fuenf.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1781753651
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "herz_fuenf.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

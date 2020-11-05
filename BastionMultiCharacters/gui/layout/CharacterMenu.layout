@@ -1,0 +1,43 @@
+FrameWidgetClass rootFrame {
+ ignorepointer 1
+ position 0 0
+ size 1 1
+ halign center_ref
+ valign center_ref
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ {
+  TextWidgetClass txtHeader {
+   ignorepointer 1
+   color 1 0.6588 0 1
+   position 45 45
+   size 386 65
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "CHARACTERS"
+   font "BastionMod/BastionMenu/gui/fonts/ddinbold65"
+   "size to text h" 1
+   "size to text v" 1
+   "text valign" center
+  }
+  GridSpacerWidgetClass gridCharacters {
+   ignorepointer 1
+   position 45 156
+   size 386 651
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   Padding 15
+   Margin 0
+   "Size To Content H" 1
+   "Size To Content V" 1
+   Columns 1
+   Rows 100
+  }
+ }
+}

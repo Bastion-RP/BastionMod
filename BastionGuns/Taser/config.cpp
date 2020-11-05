@@ -35,7 +35,7 @@ class cfgWeapons
 		class SemiAuto: Mode_SemiAuto
 		{
 			soundSetShot[] = {"Shockpistol_Shot_SoundSet","Shockpistol_Tail_SoundSet","Shockpistol_InteriorTail_SoundSet"};
-			reloadTime = 0.125;
+			reloadTime = 0.3;
 			recoil = "recoil_cz75";
 			recoilProne = "recoil_cz75_prone";
 			dispersion = 0.006;
@@ -46,7 +46,7 @@ class cfgWeapons
 			class OnOverheating
 			{
 				shotsToStartOverheating = 1;
-				maxOverheatingValue = 7;
+				maxOverheatingValue = 3;
 				overheatingDecayInterval = 1;
 				class OpenChamberSmoke
 				{
@@ -172,18 +172,18 @@ class cfgAmmo
 		casing = "FxCartridge_22";
 		round = "FxRound_22";
 		spawnPileType="Ammo_Taser";
-		hit=3;
+		hit=4.5;
 		indirectHit=0;
 		indirectHitRange=0;
-		tracerScale=1;
-		caliber=0.1;
+		tracerScale=0.6;
+		caliber=0.7;
 		deflecting=30;
 		typicalSpeed=200;
 		airFriction=-0.1;
 		supersonicCrackNear[]={};
 		supersonicCrackFar[]={};
 		initSpeed=500;
-		weight=0.1;
+		weight=0.0025;
 		class DamageApplied 
 		{
 			type = "Projectile";

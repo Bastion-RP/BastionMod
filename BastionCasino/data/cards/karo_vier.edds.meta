@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{48F56D9C4E5EF1A3}DayZCasinoV2/data/cards/karo_vier.edds"
+ Author "desktop-en33qro"
+ ChangeDate 440100659
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "karo_vier.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

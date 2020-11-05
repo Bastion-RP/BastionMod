@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{377899676C582D31}DayZCasinoV2/data/cards/pik_vier.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1379624755
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "pik_vier.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

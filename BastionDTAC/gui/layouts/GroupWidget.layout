@@ -10,6 +10,7 @@ GridSpacerWidgetClass rootFrame {
  "Size To Content V" 1
  Columns 1
  Rows 100
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   PanelWidgetClass pnlHeader {
    ignorepointer 1
@@ -20,6 +21,7 @@ GridSpacerWidgetClass rootFrame {
    hexactsize 1
    vexactsize 1
    style rover_sim_colorable
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     TextWidgetClass txtHeader {
      ignorepointer 1
@@ -34,6 +36,7 @@ GridSpacerWidgetClass rootFrame {
      "size to text h" 1
      "text halign" center
      "text valign" center
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }

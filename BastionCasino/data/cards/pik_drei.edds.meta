@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{602950001AFC9578}DayZCasinoV2/data/cards/pik_drei.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1144743731
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "pik_drei.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

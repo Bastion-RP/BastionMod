@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{8D4522249003955F}DayZCasinoV2/data/cards/herz_koenig.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1848862515
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "herz_koenig.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

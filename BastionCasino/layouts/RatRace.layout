@@ -1,0 +1,1100 @@
+FrameWidgetClass rootFrame {
+ visible 1
+ position 0.00003 0
+ size 1411.19995 1051.19995
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  PanelWidgetClass background {
+   ignorepointer 1
+   color 0 0 0 0.651
+   position 14.4 14.4
+   size 1382.40002 1022.40002
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   draggable 0
+   style DayZDefaultPanel
+   "no focus" 0
+   {
+    PanelWidgetClass boarder {
+     ignorepointer 1
+     color 0 0 0 0.7843
+     position 14.364 9.38239
+     size 1360 1000
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style editor_selection
+     {
+      PanelWidgetClass PanelWidget1 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 9.69698 9.69697
+       size 1266.58997 70
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        TextWidgetClass TextWidget0 {
+         ignorepointer 1
+         position 8.26005 8.26003
+         size 1248.90002 53.4799
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Bold
+         text "#rate_race"
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass boarderReport {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 13.2515 91.5116
+       size 254.024 70
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        MultilineTextWidgetClass TextWidget1 {
+         ignorepointer 1
+         position 6.60655 8.25965
+         size 236.617 53.4799
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         style DayZNormal
+         text "#bet_on_rat"
+         "text halign" right
+         "text valign" center
+         wrap 1
+        }
+       }
+      }
+      PanelWidgetClass boarderCancel {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 13.2515 914.55896
+       size 391.24301 79.3289
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ButtonWidgetClass cancel {
+         color 0.502 0 0 1
+         position 8.25999 8.26005
+         size 374.72299 62.8088
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style MenuDefault
+         text "#close_game"
+        }
+       }
+      }
+      PanelWidgetClass boarderReport0 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 612.66498 92.66
+       size 243.74699 70
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        MultilineTextWidgetClass TextWidget2 {
+         ignorepointer 1
+         position 6.60655 8.25965
+         size 226.34 53.4799
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         text "#chips_use"
+         "text halign" center
+         "text valign" center
+         wrap 1
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget0 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 14.4 829.10797
+       size 1334.80005 71.0508
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        MultilineTextWidgetClass TextWidget4 {
+         ignorepointer 1
+         position 947.66498 10.8
+         size 152.985 46.8325
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         text "#chips"
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        MultilineTextWidgetClass countChips {
+         ignorepointer 1
+         position 1111.45007 10.8
+         size 212.549 46.8325
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        MultilineTextWidgetClass TextWidget5 {
+         ignorepointer 1
+         position 13.2515 13.2515
+         size 155.43599 46.9993
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         text "#last_win"
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        MultilineTextWidgetClass lastWin {
+         ignorepointer 1
+         position 179.48799 13.2515
+         size 101.77299 46.9993
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        MultilineTextWidgetClass message {
+         ignorepointer 1
+         position 292.061 10.8
+         size 644.80402 46.8325
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+       }
+      }
+      PanelWidgetClass boarderReport1 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 12.0108 172.312
+       size 1331.19995 146.196
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        MultilineTextWidgetClass TextWidget6 {
+         ignorepointer 1
+         position 507.845 12.6
+         size 812.55499 120.99599
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         style DayZNormal
+         text "#rate_race_desc"
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "strip newlines" 1
+        }
+        TextWidgetClass TextWidget3 {
+         ignorepointer 1
+         position 67.17599 10.8
+         size 338.73001 35.8056
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         text "#quotas"
+         "text halign" center
+         "text valign" center
+        }
+        TextWidgetClass TextWidget7 {
+         ignorepointer 1
+         position 10.8 57.4056
+         size 64.368 30.7944
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         text "1 = "
+         "text halign" right
+         "text valign" center
+        }
+        TextWidgetClass quota1 {
+         ignorepointer 1
+         position 85.968 57.4056
+         size 64.368 30.7944
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         "text halign" left
+         "text valign" center
+        }
+        TextWidgetClass TextWidget8 {
+         ignorepointer 1
+         position 10.8 97.3608
+         size 64.368 30.7944
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         text "2 = "
+         "text halign" right
+         "text valign" center
+        }
+        TextWidgetClass quota2 {
+         ignorepointer 1
+         position 85.968 97.3608
+         size 64.368 30.7944
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         "text halign" left
+         "text valign" center
+        }
+        TextWidgetClass TextWidget9 {
+         ignorepointer 1
+         position 160.935 57.4056
+         size 64.368 30.7944
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         text "3 = "
+         "text halign" right
+         "text valign" center
+        }
+        TextWidgetClass quota3 {
+         ignorepointer 1
+         position 236.10301 57.4056
+         size 64.368 30.7944
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         "text halign" left
+         "text valign" center
+        }
+        TextWidgetClass quota4 {
+         ignorepointer 1
+         position 236.10301 97.3608
+         size 64.368 30.7944
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         "text halign" left
+         "text valign" center
+        }
+        TextWidgetClass TextWidget16 {
+         ignorepointer 1
+         position 160.935 97.3608
+         size 64.368 30.7944
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         text "4 = "
+         "text halign" right
+         "text valign" center
+        }
+        TextWidgetClass TextWidget17 {
+         ignorepointer 1
+         position 310.168 56.3026
+         size 64.368 30.7944
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         text "5 = "
+         "text halign" right
+         "text valign" center
+        }
+        TextWidgetClass quota5 {
+         ignorepointer 1
+         position 384.233 56.3026
+         size 64.368 30.7944
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         "text halign" left
+         "text valign" center
+        }
+        TextWidgetClass quota6 {
+         ignorepointer 1
+         position 384.233 97.897
+         size 64.368 30.7944
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         "text halign" left
+         "text valign" center
+        }
+        TextWidgetClass TextWidget18 {
+         ignorepointer 1
+         position 310.168 97.897
+         size 64.368 30.7944
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Normal
+         text "6 = "
+         "text halign" right
+         "text valign" center
+        }
+        TextWidgetClass goal6 {
+         ignorepointer 1
+         position 151.23799 47.7086
+         size 7.49998 57.24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "|"
+         "text color" 0.502 0 0 1
+         "size to text h" 0
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+        TextWidgetClass goal7 {
+         ignorepointer 1
+         position 151.23799 73.098
+         size 7.49998 57.24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "|"
+         "text color" 0.502 0 0 1
+         "size to text h" 0
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+        TextWidgetClass goal8 {
+         ignorepointer 1
+         position 300.47101 73.098
+         size 7.49998 57.24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "|"
+         "text color" 0.502 0 0 1
+         "size to text h" 0
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+        TextWidgetClass goal9 {
+         ignorepointer 1
+         position 300.47101 47.7086
+         size 7.49998 57.24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "|"
+         "text color" 0.502 0 0 1
+         "size to text h" 0
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget2 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 15.588 332.944
+       size 1331.19995 78.84
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ImageWidgetClass ratImage1 {
+         ignorepointer 1
+         position 10.8 10.8
+         size 120 55
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         stretch 1
+         {
+          MultilineTextWidgetClass TextWidget12 {
+           ignorepointer 1
+           color 0.0078 0.0078 0.0078 1
+           position 60 9.69699
+           size 36.9246 42.5045
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           style DayZNormal
+           text "1"
+           "text color" 0 0.502 0.0941 1
+           "exact text" 0
+           "text halign" center
+           "text valign" center
+           wrap 1
+           "condense whitespace" 1
+           "strip newlines" 1
+          }
+         }
+        }
+        TextWidgetClass goal1 {
+         ignorepointer 1
+         color 0.502 0 0 1
+         position 1185.8501 10.8
+         size 7.49998 57.24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "|"
+         "text color" 0.502 0 0 1
+         "size to text h" 0
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass boarderCancel1 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 963.01599 910.95898
+       size 391.24301 79.3289
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ButtonWidgetClass newRace {
+         color 0 1 0.251 1
+         position 8.25999 8.26005
+         size 374.72299 62.8088
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style MenuDefault
+         text "#new_race"
+        }
+        ButtonWidgetClass startRace {
+         visible 0
+         color 0 1 0.251 1
+         position 8.25999 8.26005
+         size 374.72299 62.8088
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style MenuDefault
+         text "#start_race"
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget3 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 15.552 409.84601
+       size 1331.19995 78.84
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ImageWidgetClass ratImage2 {
+         ignorepointer 1
+         position 10.8 10.8
+         size 120 55
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         stretch 1
+         {
+          MultilineTextWidgetClass TextWidget10 {
+           ignorepointer 1
+           color 0.0078 0.0078 0.0078 1
+           position 60 9.69699
+           size 36.9246 42.5045
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           style DayZNormal
+           text "2"
+           "text color" 0 0.502 0.0941 1
+           "exact text" 0
+           "text halign" center
+           "text valign" center
+           wrap 1
+           "condense whitespace" 1
+           "strip newlines" 1
+          }
+         }
+        }
+        TextWidgetClass goal2 {
+         ignorepointer 1
+         color 0.502 0 0 1
+         position 1185.8501 10.8
+         size 7.49998 57.24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "|"
+         "text color" 0.502 0 0 1
+         "size to text h" 0
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass boarderChipsUse {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 863.84998 92.66
+       size 481.75 70
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ButtonWidgetClass sub100ChipsBet {
+         position 60.0068 13.2515
+         size 45.1102 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "<<<"
+         text_proportion 0.5
+        }
+        ButtonWidgetClass sub10ChipsBet {
+         position 106.672 13.2515
+         size 37.2515 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "<<"
+         text_proportion 0.5
+        }
+        ButtonWidgetClass add100ChipsBet {
+         position 377.28 13.2515
+         size 46.2013 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text ">>>"
+         text_proportion 0.5
+        }
+        ButtonWidgetClass add10ChipsBet {
+         position 338.099 13.2515
+         size 37.7337 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text ">>"
+         text_proportion 0.5
+        }
+        TextWidgetClass chipsBet {
+         ignorepointer 1
+         position 182.64101 13.2515
+         size 116.22299 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         "text halign" center
+         "text valign" center
+        }
+        ButtonWidgetClass add1ChipsBet {
+         position 302.21802 13.2515
+         size 34.7485 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text ">"
+         text_proportion 0.5
+        }
+        ButtonWidgetClass sub1ChipsBet {
+         position 146.02701 13.2515
+         size 33.092 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "<"
+         text_proportion 0.5
+        }
+        ButtonWidgetClass add1000ChipsBet {
+         position 424.99799 13.2515
+         size 46.2013 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text ">>>>"
+         text_proportion 0.5
+        }
+        ButtonWidgetClass sub1000ChipsBet {
+         position 13.2515 13.2515
+         size 44.3004 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "<<<<"
+         text_proportion 0.5
+        }
+       }
+      }
+      MultilineTextWidgetClass countDownWidget {
+       ignorepointer 1
+       position 632.255 510.79999
+       size 95.48991 144.709
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style DayZNormal
+       text "0"
+       "text halign" center
+       "text valign" center
+      }
+      PanelWidgetClass boarderNumber {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 278.07501 92.66
+       size 323.79001 70
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ButtonWidgetClass sub10Number {
+         position 10.8 10.8
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "<<"
+         text_proportion 0.5
+        }
+        ButtonWidgetClass add10Number {
+         position 268.32297 10.8
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text ">>"
+         text_proportion 0.5
+        }
+        ButtonWidgetClass sub1Number {
+         position 69.6 10.8
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "<"
+         text_proportion 0.5
+        }
+        ButtonWidgetClass add1Number {
+         position 209.52301 10.8
+         size 48 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text ">"
+         text_proportion 0.5
+        }
+        TextWidgetClass ratNumber {
+         ignorepointer 1
+         position 128.39999 10.8
+         size 70.323 48
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget4 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 15.552 486.686
+       size 1331.19995 78.84
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ImageWidgetClass ratImage3 {
+         ignorepointer 1
+         position 10.8 10.8
+         size 120 55
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         stretch 1
+         {
+          MultilineTextWidgetClass TextWidget11 {
+           ignorepointer 1
+           color 0.0078 0.0078 0.0078 1
+           position 60 9.69699
+           size 36.9246 42.5045
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           style DayZNormal
+           text "3"
+           "text color" 0 0.502 0.0941 1
+           "exact text" 0
+           "text halign" center
+           "text valign" center
+           wrap 1
+           "condense whitespace" 1
+           "strip newlines" 1
+          }
+         }
+        }
+        TextWidgetClass goal0 {
+         ignorepointer 1
+         color 0.502 0 0 1
+         position 1185.8501 10.8
+         size 7.49998 57.24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "|"
+         "text color" 0.502 0 0 1
+         "size to text h" 0
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget5 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 15.0372 564.58301
+       size 1330.97998 78.84
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ImageWidgetClass ratImage4 {
+         ignorepointer 1
+         position 10.8 10.8
+         size 120 55
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         stretch 1
+         {
+          MultilineTextWidgetClass TextWidget13 {
+           ignorepointer 1
+           color 0.0078 0.0078 0.0078 1
+           position 60 9.69699
+           size 36.9246 42.5045
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           style DayZNormal
+           text "4"
+           "text color" 0 0.502 0.0941 1
+           "exact text" 0
+           "text halign" center
+           "text valign" center
+           wrap 1
+           "condense whitespace" 1
+           "strip newlines" 1
+          }
+         }
+        }
+        TextWidgetClass goal3 {
+         ignorepointer 1
+         color 0.502 0 0 1
+         position 1185.8501 10.8
+         size 7.49998 57.24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "|"
+         "text color" 0.502 0 0 1
+         "size to text h" 0
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget6 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 15.0012 718.32501
+       size 1330.97998 78.84
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ImageWidgetClass ratImage6 {
+         ignorepointer 1
+         position 10.8 10.8
+         size 120 55
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         stretch 1
+         {
+          MultilineTextWidgetClass TextWidget15 {
+           ignorepointer 1
+           color 0.0078 0.0078 0.0078 1
+           position 60 9.69695
+           size 36.9246 42.5045
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           style DayZNormal
+           text "6"
+           "text color" 0 0.502 0.0941 1
+           "exact text" 0
+           "text halign" center
+           "text valign" center
+           wrap 1
+           "condense whitespace" 1
+           "strip newlines" 1
+          }
+         }
+        }
+        TextWidgetClass goal4 {
+         ignorepointer 1
+         color 0.502 0 0 1
+         position 1185.8501 10.8
+         size 7.49998 57.24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "|"
+         "text color" 0.502 0 0 1
+         "size to text h" 0
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget7 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 15.282 642.32703
+       size 1330.97998 78.84
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ImageWidgetClass ratImage5 {
+         ignorepointer 1
+         position 10.8 10.8
+         size 120 55
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         stretch 1
+         {
+          MultilineTextWidgetClass TextWidget14 {
+           ignorepointer 1
+           color 0.0078 0.0078 0.0078 1
+           position 60 9.69695
+           size 36.9246 42.5045
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           style DayZNormal
+           text "5"
+           "text color" 0 0.502 0.0941 1
+           "exact text" 0
+           "text halign" center
+           "text valign" center
+           wrap 1
+           "condense whitespace" 1
+           "strip newlines" 1
+          }
+         }
+        }
+        TextWidgetClass goal5 {
+         ignorepointer 1
+         color 0.502 0 0 1
+         position 1185.8501 10.8
+         size 7.49998 57.24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         text "|"
+         "text color" 0.502 0 0 1
+         "size to text h" 0
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass boarderCancel0 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 1285.97998 19.8577
+       size 40.892 49.6786
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ButtonWidgetClass info {
+         color 0 1 0.251 1
+         position 9.69699 9.69697
+         size 21.981 31.7216
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style MenuDefault
+         text "i"
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

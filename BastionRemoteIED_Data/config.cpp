@@ -35,3 +35,46 @@ class CfgVehicles
 		model = "\BastionMod\BastionRemoteIED_Data\c4.p3d";
 	};
 };
+
+class cfgAmmo
+{
+	class DefaultAmmo;
+	class IED_Ammo: DefaultAmmo
+	{
+		indirectHit=1;
+		indirectHitRange=7;
+		explosive=1;
+		typicalSpeed=3;
+		initSpeed=3;
+		simulation="shotShell";
+		simulationStep=0.050000001;
+		particle="explosion_landmine_01";
+		soundSetExplosion[]=
+		{
+			"Landmine_Explosion_SoundSet",
+			"Landmine_Explosion_Tail_SoundSet"
+		};
+		class DamageApplied
+		{
+			type="FragGrenade";
+			bleedThreshold=0.40000001;
+			class Health
+			{
+				damage=40;
+			};
+			class Blood
+			{
+				damage=0;
+			};
+			class Shock
+			{
+				damage=0;
+			};
+		};
+		class NoiseExplosion
+		{
+			strength=100;
+			type="shot";
+		};
+	};
+};

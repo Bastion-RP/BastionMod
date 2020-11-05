@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{13F069C5F39FB1EA}TH_Bastion/gui/data/bastionlogo.edds"
+ Author "desktop-3up08te"
+ ChangeDate 741648681
+ Configurations {
+  PNGResourceClass PC {
+   SourceFile "bastionlogo.png"
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+  PNGResourceClass LINUX : PC {
+  }
+ }
+}

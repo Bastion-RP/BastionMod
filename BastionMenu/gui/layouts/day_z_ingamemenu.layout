@@ -1,0 +1,262 @@
+FrameWidgetClass FrameWidget {
+ ignorepointer 0
+ position 0 0
+ size 1 1
+ halign center_ref
+ valign center_ref
+ priority 995
+ {
+  ImageWidgetClass vignette {
+   visible 0
+   ignorepointer 1
+   color 0 0 0 0.7843
+   position 0 0
+   size 1.6 1
+   halign center_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   priority 1
+   image0 ""
+   imageTexture "{E6B3EF816E067499}Gui/textures/inventory_bgvignette.edds"
+   mode blend
+   "src alpha" 1
+   "no wrap" 1
+   stretch 1
+   filter 0
+   nocache 1
+  }
+  GridSpacerWidgetClass ButtonsFrame {
+   ignorepointer 1
+   position 0.05 0.05
+   size 400 300
+   valign bottom_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   style Empty
+   Padding 0
+   Margin 0
+   Columns 1
+   Rows 5
+   {
+    ButtonWidgetClass exitbtn {
+     ignorepointer 0
+     position 0 0
+     size 1 38
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style Empty
+     text_offset 50 0
+     text_halign left
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+     {
+      TextWidgetClass exitbtn_label {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "#exit"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass restartbtn {
+     visible 0
+     ignorepointer 0
+     position 0 0
+     size 1 38
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style Empty
+     text_offset 50 0
+     text_halign left
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+     {
+      TextWidgetClass restartbtn_label {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "#respawn"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass optionsbtn {
+     ignorepointer 0
+     position 0 0
+     size 1 38
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style Empty
+     text_offset 50 0
+     text_halign left
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+     {
+      TextWidgetClass optionsbtn_label {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "#settings"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass forumsbtn {
+     ignorepointer 0
+     position 0 0
+     size 1 38
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style Empty
+     text_offset 50 0
+     text_halign left
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+     {
+      TextWidgetClass forumsbtn_label {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "#forums"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass continuebtn {
+     ignorepointer 0
+     position 0 0
+     size 1 90
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style Empty
+     text_offset 50 0
+     text_halign left
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+     {
+      TextWidgetClass continuebtn_label {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "#continue"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass restartdeadbtn {
+     visible 1
+     ignorepointer 0
+     position 0 0
+     size 1 90
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style Empty
+     text_offset 50 0
+     text_halign left
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+     {
+      TextWidgetClass restartdeadbtn_label {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       halign center_ref
+       valign center_ref
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       text "Respawn"
+       font "BastionMod/BastionMenu/gui/fonts/ddinbold26"
+       "text valign" center
+      }
+     }
+    }
+   }
+  }
+  FrameWidgetClass hint_frame {
+   visible 0
+   clipchildren 0
+   ignorepointer 1
+   position 100 173.75
+   size 1 1
+   halign right_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  ImageWidgetClass dayz_logo {
+   visible 1
+   ignorepointer 1
+   position 0.05 0.05
+   size 400 75
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   priority 2
+   image0 "BastionMod/BastionMenu/gui/data/bastionlogo.edds"
+   imageTexture "{13F069C5F39FB1EA}BastionMod/BastionMenu/gui/data/bastionlogo.edds"
+   mode blend
+   "src alpha" 1
+   stretch 1
+  }
+  TextWidgetClass ModdedWarning {
+   visible 0
+   ignorepointer 1
+   position 0 0
+   size 5 5
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+ }
+}

@@ -11,4 +11,5 @@ WrapSpacerWidgetClass rootFrame {
  Padding 0
  Margin 0
  "Size To Content V" 1
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
 }

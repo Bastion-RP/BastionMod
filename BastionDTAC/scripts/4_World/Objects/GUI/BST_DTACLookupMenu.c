@@ -1,11 +1,11 @@
-class BST_DTACLookupMenu {
+class BST_DTACLookupMenu : BST_ScriptedWidget {
 	private static const int KEYCODE_MIN_NUM = 48;
 	private static const int KEYCODE_MAX_NUM = 57;
     const static float CONST_FLOAT_ALPHA_200 = 0.7843;
     const static float CONST_FLOAT_ALPHA_100 = 0.3921;
 
     protected ref JsonSerializer _jsSerializer;
-    protected ref Widget _root, _parent, _pnlInput, _pnlCiv, _pnlCivData, _pnlCivExpandedData, _pnlExpandedRecord;
+    protected ref Widget _pnlInput, _pnlCiv, _pnlCivData, _pnlCivExpandedData, _pnlExpandedRecord;
     protected ref Widget _pnlCreateGeneralRecord, _pnlCreateCriminalRecord;
     protected ref EditBoxWidget _edtInputId;
     protected ref EditBoxWidget _edtCriminalCrime, _edtCriminalPunishment, _edtCriminalDate;
@@ -28,10 +28,40 @@ class BST_DTACLookupMenu {
     private ref map<Widget, BST_GUIRecord> _mapGUIObjects;
     private bool _isRateLimited;
 
-    void BST_DTACLookupMenu(Widget parent) {
-        _parent = parent;
+    void BST_DTACLookupMenu() {
         _jsSerializer = new JsonSerializer();
+        _btnText = "dtac records";
+
+        BST_DTACCivGeneralDataCallback._civGeneralDataInvoker.Insert(FillGeneralData);
+        BST_DTACGeneralRecordCallback._dtacGeneralRecordInvoker.Insert(BuildGeneralRecords);
+        BST_DTACCriminalRecordCallBack._dtacCriminalRecordInvoker.Insert(BuildCriminalRecords);
+    }
+
+    void Init() {
+        if (_generalRecords) {
+            delete _generalRecords;
+        }
+        if (_criminalRecords) {
+            delete _criminalRecords;
+        }
+        _generalRecords = new BST_GUIRecords(_gridGeneralRecords);
+        _criminalRecords = new BST_GUIRecords(_gridCriminalRecords);
         _mapGUIObjects = new map<Widget, BST_GUIRecord>();
+
+        _scrollerGeneralRecords.Show(true);
+        _scrollerCriminalRecords.Show(false);
+        _btnShowGeneralRecords.SetState(true);
+        _btnShowCriminalRecords.SetState(false);
+        _pnlInput.Show(true);
+        _pnlCiv.Show(false);
+        _pnlCivExpandedData.Show(false);
+        _pnlExpandedRecord.Show(false);
+        _pnlCreateGeneralRecord.Show(false);
+        _pnlCreateCriminalRecord.Show(false);
+    }
+
+    void Init(Widget parent) {
+        _parent = parent;
         _root = GetGame().GetWorkspace().CreateWidgets("BastionMod\\BastionDTAC\\gui\\layouts\\CivLookupMenu.layout", _parent);
         _pnlInput = _root.FindAnyWidget("pnlInput");
         _pnlCiv = _root.FindAnyWidget("pnlCiv");
@@ -97,41 +127,11 @@ class BST_DTACLookupMenu {
         _gridGeneralRecords = GridSpacerWidget.Cast(_root.FindAnyWidget("gridGeneralRecords"));
         _gridCriminalRecords = GridSpacerWidget.Cast(_root.FindAnyWidget("gridCriminalRecords"));
 
-        _scrollerGeneralRecords.Show(true);
-        _scrollerCriminalRecords.Show(false);
-        _btnShowGeneralRecords.SetState(true);
-        _btnShowCriminalRecords.SetState(false);
-        _pnlInput.Show(true);
-        _pnlCiv.Show(false);
-        _pnlCivExpandedData.Show(false);
-        _pnlExpandedRecord.Show(false);
-        _pnlCreateGeneralRecord.Show(false);
-        _pnlCreateCriminalRecord.Show(false);
+        Init();
+        _root.SetHandler(this);
         // Hide zone text since it's not exposed atm
         _txtInfoZone.Show(false);
         //
-
-        if (!GetDTACManager().IsRequiredClass(GetDTACClientManager().GetConfig().GetRequiredAPIClasses(), PlayerBase.Cast(GetGame().GetPlayer()).GetMultiCharactersPlayerClass())) {
-            _pnlInput.Show(false);
-            _scrollerGeneralRecords.Show(false);
-            _btnShowGeneralRecords.SetState(false);
-            return;
-        }
-        _generalRecords = new BST_GUIRecords(_gridGeneralRecords);
-        _criminalRecords = new BST_GUIRecords(_gridCriminalRecords);
-
-        BST_DTACCivGeneralDataCallback._civGeneralDataInvoker.Insert(FillGeneralData);
-        BST_DTACGeneralRecordCallback._dtacGeneralRecordInvoker.Insert(BuildGeneralRecords);
-        BST_DTACCriminalRecordCallBack._dtacCriminalRecordInvoker.Insert(BuildCriminalRecords);
-    }
-
-    void ~BST_DTACLookupMenu() {
-        if (_root) {
-            _root.Unlink();
-        }
-        BST_DTACCivGeneralDataCallback._civGeneralDataInvoker.Remove(FillGeneralData);
-        BST_DTACGeneralRecordCallback._dtacGeneralRecordInvoker.Remove(BuildGeneralRecords);
-        BST_DTACCriminalRecordCallBack._dtacCriminalRecordInvoker.Remove(BuildCriminalRecords);
     }
 
     void FillGeneralData(string data) {
@@ -208,7 +208,7 @@ class BST_DTACLookupMenu {
         BST_GUIRecord newRecord;
         
         if (data.Length() <= 0) {
-            newRecord = _generalRecords.AddRecord(null, 0);
+            newRecord = _criminalRecords.AddRecord(null, 0);
             return;
         }
         array<ref BST_DTAC_CURL_CriminalRecord> arrRecords;
@@ -227,7 +227,13 @@ class BST_DTACLookupMenu {
         }
     }
 
-	bool OnKeyPress(Widget w, int x, int y, int key) {
+    override void OnShow() {
+        super.OnShow();
+
+        Init();
+    }
+
+	override bool OnKeyPress(Widget w, int x, int y, int key) {
         if (w == _edtInputId) {
             string boxText = _edtInputId.GetText();
 
@@ -239,7 +245,7 @@ class BST_DTACLookupMenu {
         return false;
     }
 
-    void OnMouseEnter(Widget w, int x, int y) {
+    override bool OnMouseEnter(Widget w, int x, int y) {
         if (w == _pnlCivData) {
             w.SetAlpha(CONST_FLOAT_ALPHA_100);
         } else if (_mapGUIObjects.Contains(w)) {
@@ -247,9 +253,10 @@ class BST_DTACLookupMenu {
 
             guiRecord.MouseEnter();
         }
+        return true;
     }
 
-    void OnMouseLeave(Widget w, Widget enterW, int x, int y) {
+    override bool OnMouseLeave(Widget w, Widget enterW, int x, int y) {
         if (w == _pnlCivData) {
             w.SetAlpha(CONST_FLOAT_ALPHA_200);
         } else if (_mapGUIObjects.Contains(w)) {
@@ -257,32 +264,10 @@ class BST_DTACLookupMenu {
 
             guiRecord.MouseLeave();
         }
-    }
-    
-    void HideAllPanels() {
-        HideExpandedRecord();
-        HideCreateRecordPanels();
-        _pnlCivExpandedData.Show(false);
+        return true;
     }
 
-    void HideRecordPanels() {
-        HideExpandedRecord();
-        HideCreateRecordPanels();
-    }
-
-    void HideCreateRecordPanels() {
-        _pnlCreateGeneralRecord.Show(false);
-        _pnlCreateCriminalRecord.Show(false);
-        _btnAddCriminalRecord.SetState(false);
-        _btnAddGeneralRecord.SetState(false);
-    }
-
-    void HideExpandedRecord() {
-        _pnlExpandedRecord.Show(false);
-        _activeCriminalRecord = null;
-    }
-
-    void OnMouseButtonUp(Widget w, int x, int y, int button) {
+    override bool OnMouseButtonUp(Widget w, int x, int y, int button) {
         if (w == _pnlCivData) {
             HideRecordPanels();
 
@@ -320,9 +305,10 @@ class BST_DTACLookupMenu {
                 }
             }
         }
+        return true;
     }
 
-    void OnClick(Widget w, int x, int y, int button) {
+    override bool OnClick(Widget w, int x, int y, int button) {
         switch (w) {
             case _btnLookupId:
                 {
@@ -389,7 +375,7 @@ class BST_DTACLookupMenu {
                     txtCrimePunishment = _edtCriminalPunishment.GetText().Trim();
                     txtCrimeDate = _edtCriminalDate.GetText().Trim();
 
-                    if (IsRateLimited() || txtCrime.Length() <= 0 || txtCrimeDescription.Length() <= 0 || txtCrimePunishment.Length() <= 0 || txtCrimeDate.Length() <= 0) { return; }
+                    if (IsRateLimited() || txtCrime.Length() <= 0 || txtCrimeDescription.Length() <= 0 || txtCrimePunishment.Length() <= 0 || txtCrimeDate.Length() <= 0) { break; }
                     Param paramsPostCriminal = new Param5<string, string, string, string, string>(txtCrime, txtCrimeDescription, txtCrimePunishment, txtCrimeDate, _civGeneralData.GetId());
 
                     SetRateLimited();
@@ -424,14 +410,38 @@ class BST_DTACLookupMenu {
                     break;
                 }
         }
+        return true;
+    }
+    
+    void HideAllPanels() {
+        HideExpandedRecord();
+        HideCreateRecordPanels();
+        _pnlCivExpandedData.Show(false);
+    }
+
+    void HideRecordPanels() {
+        HideExpandedRecord();
+        HideCreateRecordPanels();
+    }
+
+    void HideCreateRecordPanels() {
+        _pnlCreateGeneralRecord.Show(false);
+        _pnlCreateCriminalRecord.Show(false);
+        _btnAddCriminalRecord.SetState(false);
+        _btnAddGeneralRecord.SetState(false);
+    }
+
+    void HideExpandedRecord() {
+        _pnlExpandedRecord.Show(false);
+        _activeCriminalRecord = null;
     }
 
 	void SetRateLimited() {
 		if (_isRateLimited) { return; }
 		_isRateLimited = true;
 
-		GetGame().GetCallQueue(CALL_CATEGORY_GUI).RemoveByName(this, "RemoveRateLimit");
-		GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLaterByName(this, "RemoveRateLimit", 1000, true);
+		GetGame().GetCallQueue(CALL_CATEGORY_GUI).Remove(this.RemoveRateLimit);
+		GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(this.RemoveRateLimit, 1000);
 	}
 
 	void RemoveRateLimit() {
@@ -458,5 +468,21 @@ class BST_DTACLookupMenu {
         ctx.GET(criminalRecords, "criminalrecords.php?criminalCharacterId=" + civId);
     }
 
+    bool IsTyping() {
+        if (EditBoxWidget.Cast(GetFocus()) || MultilineEditBoxWidget.Cast(GetFocus())) {
+            return true;
+        }
+        return false;
+    }
+
 	bool IsRateLimited() { return _isRateLimited; }
+
+    void ~BST_DTACLookupMenu() {
+        if (_root) {
+            _root.Unlink();
+        }
+        BST_DTACCivGeneralDataCallback._civGeneralDataInvoker.Remove(FillGeneralData);
+        BST_DTACGeneralRecordCallback._dtacGeneralRecordInvoker.Remove(BuildGeneralRecords);
+        BST_DTACCriminalRecordCallBack._dtacCriminalRecordInvoker.Remove(BuildCriminalRecords);
+    }
 }

@@ -38,6 +38,48 @@ class ActionTakeAIONPowderOrBottle: ActionInteractBase
 			m_ToolTipText = "Take AION Bottle";
 			return true;
 		}
+		
+		BRP_OIMHat_Crate oimhat = BRP_OIMHat_Crate.Cast(target.GetObject());		
+		if(oimhat)
+		{
+			m_ToolTipText = "Take White Hardhat";
+			return true;
+		}
+		
+		BRP_OIMVest_Crate oimvest = BRP_OIMVest_Crate.Cast(target.GetObject());		
+		if(oimvest)
+		{
+			m_ToolTipText = "Take Reflective Vest";
+			return true;
+		}
+
+		BRP_OIMNCCShirt_Crate nccshirt = BRP_OIMNCCShirt_Crate.Cast(target.GetObject());		
+		if(nccshirt)
+		{
+			m_ToolTipText = "Take Damaged Shirt";
+			return true;
+		}
+
+		BRP_OIMNCCPants_Crate nccpants = BRP_OIMNCCPants_Crate.Cast(target.GetObject());		
+		if(nccpants)
+		{
+			m_ToolTipText = "Take Damaged Pants";
+			return true;
+		}
+		
+		BRP_OIMNCCSewing_Crate sewing = BRP_OIMNCCSewing_Crate.Cast(target.GetObject());		
+		if(sewing)
+		{
+			m_ToolTipText = "Take Sewing Kit";
+			return true;
+		}
+
+		BRP_AIONBoxes2 boxes = BRP_AIONBoxes2.Cast(target.GetObject());	
+		if (boxes)
+		{
+			m_ToolTipText = "Take AION box";
+			return true;
+		}
 		return false;
 	}
 
@@ -46,18 +88,49 @@ class ActionTakeAIONPowderOrBottle: ActionInteractBase
 		vector pos = action_data.m_Player.GetPosition();
 		EntityAI item;
 		BRP_AIONPowder_Crate powdercrate = BRP_AIONPowder_Crate.Cast(action_data.m_Target.GetObject());
-		if(powdercrate)
+		BRP_AIONBottle_Crate bottlecrate = BRP_AIONBottle_Crate.Cast(action_data.m_Target.GetObject());
+		BRP_AIONBoxes2 boxes = BRP_AIONBoxes2.Cast(action_data.m_Target.GetObject());
+		BRP_OIMHat_Crate oimhat = BRP_OIMHat_Crate.Cast(action_data.m_Target.GetObject());
+		BRP_OIMVest_Crate oimvest = BRP_OIMVest_Crate.Cast(action_data.m_Target.GetObject());
+		BRP_OIMNCCShirt_Crate nccshirt = BRP_OIMNCCShirt_Crate.Cast(action_data.m_Target.GetObject());
+		BRP_OIMNCCPants_Crate nccpants = BRP_OIMNCCPants_Crate.Cast(action_data.m_Target.GetObject());
+		BRP_OIMNCCSewing_Crate sewing = BRP_OIMNCCSewing_Crate.Cast(action_data.m_Target.GetObject());
+		if (powdercrate)
         {
 		    item = EntityAI.Cast(GetGame().CreateObject("BRP_AIONPowder", pos));
         }
-
-		BRP_AIONBottle_Crate bottlecrate = BRP_AIONBottle_Crate.Cast(action_data.m_Target.GetObject());
-		if(bottlecrate)
+		else if (bottlecrate)
         {
 		    item = EntityAI.Cast(GetGame().CreateObject("BRP_AION_Empty", pos));
         }
+		else if (boxes)
+		{
+			item = EntityAI.Cast(GetGame().CreateObject("BRP_AIONBox_Empty", pos));
+		}
+		else if (oimhat)
+        {
+		    item = EntityAI.Cast(GetGame().CreateObject("ConstructionHelmet_White", pos));
+        }
+		else if (oimvest)
+        {
+		    item = EntityAI.Cast(GetGame().CreateObject("ReflexVest", pos));
+        }
+		else if (nccshirt)
+        {
+		    item = EntityAI.Cast(GetGame().CreateObject("BRP_TTsKOJacket_Civilian", pos));
+			item.DecreaseHealthCoef(0.7);
+        }
+		else if (nccpants)
+        {
+		    item = EntityAI.Cast(GetGame().CreateObject("BRP_PrisonPants_NCC", pos));
+			item.DecreaseHealthCoef(0.7);
+        }
+		else if (sewing)
+        {
+		    item = EntityAI.Cast(GetGame().CreateObject("SewingKit", pos));
+        }
 		
-		if(item)
+		if (item)
 		{
             if ( !GetGame().IsMultiplayer() )
             {

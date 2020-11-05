@@ -10,9 +10,8 @@ FrameWidgetClass rootFrame {
    clipchildren 0
    ignorepointer 1
    color 0 0 0 0.7843
-   position 50 0
+   position 50 110
    size 400 0.8
-   valign center_ref
    hexactpos 1
    vexactpos 1
    hexactsize 1
@@ -55,6 +54,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "BLUEPRINTS"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold50"
      "size to text h" 1
      "size to text v" 0
      "text valign" center
@@ -72,6 +72,7 @@ FrameWidgetClass rootFrame {
      text "Search for blueprints"
      "Use default text" 0
      "exact text" 0
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass pnlUnderline {
        ignorepointer 1
@@ -94,9 +95,8 @@ FrameWidgetClass rootFrame {
    clipchildren 0
    ignorepointer 1
    color 0 0 0 0.7843
-   position 500 0
+   position 500 110
    size 600 600
-   valign center_ref
    hexactpos 1
    vexactpos 1
    hexactsize 1
@@ -113,6 +113,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "CRAFTING"
+     font "BastionMod/BastionMenu/gui/fonts/ddinbold50"
      "size to text h" 1
      "size to text v" 0
      "text valign" center
@@ -135,6 +136,7 @@ FrameWidgetClass rootFrame {
      vexactpos 1
      hexactsize 1
      vexactsize 1
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "size to text h" 1
      "size to text v" 0
      "text valign" center
@@ -147,6 +149,7 @@ FrameWidgetClass rootFrame {
      vexactpos 1
      hexactsize 1
      vexactsize 1
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "size to text h" 1
      "size to text v" 0
      "text valign" center
@@ -160,6 +163,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "YOU'LL NEED"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "size to text h" 1
      "size to text v" 0
      "text valign" center
@@ -199,6 +203,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "CRAFTABLE USING"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "size to text h" 1
      "size to text v" 0
      "text valign" center
@@ -225,6 +230,7 @@ FrameWidgetClass rootFrame {
      hexactsize 1
      vexactsize 1
      text "TIME TO CRAFT"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "size to text h" 1
      "size to text v" 0
      "text valign" center
@@ -237,6 +243,7 @@ FrameWidgetClass rootFrame {
      vexactpos 1
      hexactsize 1
      vexactsize 1
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "size to text h" 1
      "size to text v" 0
      "text valign" center
@@ -253,6 +260,7 @@ FrameWidgetClass rootFrame {
      vexactsize 1
      style DayZDefaultButton
      text_proportion 0.8
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      {
       PanelWidgetClass pnlProgress {
        visible 0
@@ -275,6 +283,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "CRAFT"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "text halign" center
        "text valign" center
       }

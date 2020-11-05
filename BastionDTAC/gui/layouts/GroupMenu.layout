@@ -6,6 +6,7 @@ FrameWidgetClass rootFrame {
  vexactpos 1
  hexactsize 1
  vexactsize 1
+ font "BastionMod/BastionMenu/gui/fonts/ddin22"
  {
   PanelWidgetClass pnlBG {
    ignorepointer 1
@@ -17,6 +18,7 @@ FrameWidgetClass rootFrame {
    hexactsize 0
    vexactsize 0
    style rover_sim_colorable
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   PanelWidgetClass pnlBorder {
    ignorepointer 1
@@ -28,6 +30,7 @@ FrameWidgetClass rootFrame {
    hexactsize 0
    vexactsize 0
    style Outline
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
   }
   PanelWidgetClass pnlHeader {
    ignorepointer 1
@@ -39,6 +42,7 @@ FrameWidgetClass rootFrame {
    hexactsize 1
    vexactsize 1
    style rover_sim_colorable
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     TextWidgetClass txtHeader {
      ignorepointer 1
@@ -53,6 +57,7 @@ FrameWidgetClass rootFrame {
      text "Bastion DTAC"
      "size to text h" 1
      "text valign" center
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }
@@ -65,6 +70,7 @@ FrameWidgetClass rootFrame {
    hexactsize 1
    vexactsize 1
    "Scrollbar V" 1
+   font "BastionMod/BastionMenu/gui/fonts/ddin22"
    {
     GridSpacerWidgetClass rootGrid {
      ignorepointer 1
@@ -79,6 +85,7 @@ FrameWidgetClass rootFrame {
      "Size To Content V" 1
      Columns 1
      Rows 100
+	 font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
    }
   }

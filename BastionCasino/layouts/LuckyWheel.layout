@@ -1,0 +1,371 @@
+FrameWidgetClass rootFrame {
+ visible 1
+ position -0.00008 0
+ size 1338.57996 977.81299
+ halign center_ref
+ valign center_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  PanelWidgetClass background {
+   ignorepointer 1
+   color 0 0 0 0.651
+   position 13.2515 13.2515
+   size 1312.07996 951.31
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   draggable 0
+   style DayZDefaultPanel
+   "no focus" 0
+   {
+    PanelWidgetClass boarder {
+     ignorepointer 1
+     color 0 0 0 0.7843
+     position 13.2515 13.2515
+     size 1288.91003 924.80701
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style editor_selection
+     {
+      PanelWidgetClass PanelWidget1 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 8.26006 8.26004
+       size 1208.56006 70
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        TextWidgetClass TextWidget0 {
+         ignorepointer 1
+         position 8.26005 8.26003
+         size 1190.59998 53.4799
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Bold
+         text "#lucky_wheel_head_line"
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass boarderCancel {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 13.2515 832.22705
+       size 391.24301 79.3289
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ButtonWidgetClass cancel {
+         color 0.502 0 0 1
+         position 8.25999 8.26005
+         size 374.72299 62.8088
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style MenuDefault
+         text "#close_game"
+        }
+       }
+      }
+      PanelWidgetClass boarderCancel0 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 884.41602 832.22705
+       size 391.24301 79.3284
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ButtonWidgetClass rotate {
+         color 0 1 0.251 1
+         position 8.25999 8.26005
+         size 374.72299 62.8088
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style MenuDefault
+         text "#roll_wheel"
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget0 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 13.2515 91.5116
+       size 1262.41003 727.46301
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        MultilineTextWidgetClass TextWidget3 {
+         ignorepointer 1
+         position 13.2515 13.2515
+         size 604.70203 405.10699
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         text "#desc_lucky_wheel"
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        MultilineTextWidgetClass TextWidget4 {
+         ignorepointer 1
+         position 13.2516 496.66299
+         size 152.985 51.8018
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         text "#chips"
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        MultilineTextWidgetClass countChips {
+         ignorepointer 1
+         position 179.48799 496.66299
+         size 212.549 51.8018
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        MultilineTextWidgetClass TextWidget5 {
+         ignorepointer 1
+         position 13.2515 561.716
+         size 152.985 51.8018
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         text "#last_win"
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        MultilineTextWidgetClass lastWin {
+         ignorepointer 1
+         position 179.48799 561.716
+         size 212.549 51.8018
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        ImageWidgetClass luckyWheel {
+         disabled 0
+         inheritalpha 0
+         ignorepointer 1
+         position 631.20502 91.8224
+         size 600 600
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         draggable 0
+         mode blend
+         "src alpha" 1
+         stretch 1
+        }
+        MultilineTextWidgetClass message {
+         ignorepointer 1
+         position 405.289 745.05701
+         size 453.11203 67.2796
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        ImageWidgetClass arrow {
+         ignorepointer 1
+         position 916.20502 38.5709
+         size 30 80
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         mode blend
+         "src alpha" 1
+         stretch 1
+        }
+        MultilineTextWidgetClass TextWidget1 {
+         ignorepointer 1
+         position 13.2516 431.61002
+         size 152.985 51.8018
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         text "#jackpot"
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        MultilineTextWidgetClass jackpot {
+         ignorepointer 1
+         position 179.48799 431.61002
+         size 212.549 51.8018
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        MultilineTextWidgetClass TextWidget2 {
+         ignorepointer 1
+         position 13.2516 626.76898
+         size 152.985 51.8018
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         text "#bet_per_roll"
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+        MultilineTextWidgetClass betPerRoll {
+         ignorepointer 1
+         position 179.48799 626.76898
+         size 212.549 51.8018
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style DayZNormal
+         "exact text" 0
+         "text halign" center
+         "text valign" center
+         wrap 1
+         "condense whitespace" 1
+         "strip newlines" 1
+        }
+       }
+      }
+      PanelWidgetClass PanelWidget2 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 830.5 645.06403
+       size 227.09399 68.3461
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        TextWidgetClass winView {
+         ignorepointer 1
+         position 13.2515 13.2516
+         size 200.59 50.1721
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style Bold
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass boarderCancel1 {
+       ignorepointer 1
+       color 0 0 0 0.7843
+       position 1226.52002 18.4207
+       size 40.892 49.6786
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style editor_selection
+       {
+        ButtonWidgetClass info {
+         color 0 1 0.251 1
+         position 9.69699 9.69697
+         size 21.981 31.7216
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         style MenuDefault
+         text "i"
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

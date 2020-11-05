@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{7623487578856579}DayZCasinoV2/data/cards/blank_a.edds"
+ Author "desktop-en33qro"
+ ChangeDate 942892851
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "blank_a.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

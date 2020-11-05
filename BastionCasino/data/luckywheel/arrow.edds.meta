@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{4E9A6D41AEE21723}Develop/DayZCasinoV2/Addons/DayZCasinoV2/data/luckyweel/arrow.edds"
+ Author "laptop-100u5pjt"
+ ChangeDate -1640831173
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "arrow.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

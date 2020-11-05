@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{AFBC8C8826460C96}DayZCasinoV2/data/cards/kreuz_bauer.edds"
+ Author "desktop-en33qro"
+ ChangeDate 607872819
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "kreuz_bauer.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

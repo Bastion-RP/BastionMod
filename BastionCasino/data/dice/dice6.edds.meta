@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{30644AB63DE39B61}DayZCasinoV2/data/dice/dice6.edds"
+ Author "laptop-100u5pjt"
+ ChangeDate 541402920
+ Configurations {
+  PNGResourceClass PC {
+   SourceFile "dice6.png"
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+  PNGResourceClass LINUX : PC {
+  }
+ }
+}

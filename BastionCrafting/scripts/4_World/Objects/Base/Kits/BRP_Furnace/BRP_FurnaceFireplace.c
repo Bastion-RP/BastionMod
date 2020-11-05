@@ -149,9 +149,9 @@ class BRP_Furnace_Fireplace : FireplaceBase
 		return true;
 	}
 
-	override bool CanReceiveItemIntoCargo(EntityAI cargo)
+	override bool CanReceiveItemIntoCargo(EntityAI item)
 	{
-		if (GetHierarchyParent() || cargo.GetInventory().GetCargo())
+		if (GetHierarchyParent() || item.GetInventory().GetCargo())
 		{
 			return false;
 		}

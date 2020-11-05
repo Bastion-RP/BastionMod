@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{07720C09444A47E4}DayZCasinoV2/data/cards/herz_bauer.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1681090355
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "herz_bauer.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

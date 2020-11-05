@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{CB3A65DA8BEC123D}DayZCasinoV2/data/cards/pik_neun.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1278961459
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "pik_neun.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

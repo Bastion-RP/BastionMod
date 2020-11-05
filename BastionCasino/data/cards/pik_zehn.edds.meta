@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{C9742400F93EDB34}DayZCasinoV2/data/cards/pik_zehn.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1413179187
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "pik_zehn.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

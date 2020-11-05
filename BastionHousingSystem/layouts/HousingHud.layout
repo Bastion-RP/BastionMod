@@ -43,6 +43,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style MenuDefault
      text "Switch To Map"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     ButtonWidgetClass BtnSwitchTo3D {
      visible 0
@@ -56,6 +57,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style MenuDefault
      text "Switch to 3D"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     MapWidgetClass MapHousePos {
      visible 0
@@ -100,6 +102,7 @@ FrameWidgetClass rootFrame {
        priority 3
        style MenuDefault
        text "Select all"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       GridSpacerWidgetClass PanelWidget19 {
        ignorepointer 1
@@ -125,6 +128,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "[0]"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         CheckBoxWidgetClass SEC1 {
          color 1 0.502 0.0314 1
@@ -137,6 +141,7 @@ FrameWidgetClass rootFrame {
          vexactsize 1
          userID 1
          text "[1]"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         CheckBoxWidgetClass SEC2 {
          color 1 0.502 0.0314 1
@@ -149,6 +154,7 @@ FrameWidgetClass rootFrame {
          vexactsize 1
          userID 2
          text "[2]"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         CheckBoxWidgetClass SEC3 {
          color 1 0.502 0.0314 1
@@ -161,6 +167,7 @@ FrameWidgetClass rootFrame {
          vexactsize 1
          userID 3
          text "[3]"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         CheckBoxWidgetClass SEC4 {
          color 1 0.502 0.0314 1
@@ -173,6 +180,7 @@ FrameWidgetClass rootFrame {
          vexactsize 1
          userID 4
          text "[4]"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         CheckBoxWidgetClass SEC5 {
          color 1 0.502 0.0314 1
@@ -185,6 +193,7 @@ FrameWidgetClass rootFrame {
          vexactsize 1
          userID 5
          text "[5]"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -197,6 +206,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Sector"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -233,6 +243,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Adding a house for rent"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -281,6 +292,7 @@ FrameWidgetClass rootFrame {
        userID 22
        style Default
        text "Need admin approval"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        checked 0
       }
       MultilineEditBoxWidgetClass Description {
@@ -294,6 +306,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        priority 1
        style DayZBold
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "size to text h" 0
        "size to text v" 0
@@ -311,6 +324,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Description"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "text halign" center
        "text valign" center
       }
@@ -361,6 +375,7 @@ FrameWidgetClass rootFrame {
          vexactsize 1
          userID 1
          text "A"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         CheckBoxWidgetClass CLB {
          color 1 0.502 0.0314 1
@@ -372,6 +387,7 @@ FrameWidgetClass rootFrame {
          vexactsize 1
          userID 2
          text "B"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         CheckBoxWidgetClass CLC {
          color 1 0.502 0.0314 1
@@ -384,6 +400,7 @@ FrameWidgetClass rootFrame {
          vexactsize 1
          userID 3
          text "C"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         CheckBoxWidgetClass CLD {
          color 1 0.502 0.0314 1
@@ -396,6 +413,7 @@ FrameWidgetClass rootFrame {
          vexactsize 1
          userID 4
          text "D"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         CheckBoxWidgetClass CLS {
          color 1 0.502 0.0314 1
@@ -408,6 +426,7 @@ FrameWidgetClass rootFrame {
          vexactsize 1
          userID 5
          text "S"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -420,6 +439,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Allow doors"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "text halign" center
        "text valign" center
       }
@@ -432,6 +452,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Allow classes"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -448,6 +469,7 @@ FrameWidgetClass rootFrame {
        "no focus" 0
        text "Lease Time(in hours)"
        "exact text" 1
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         ButtonWidgetClass PlaceHolder3 {
          position 0 0
@@ -460,6 +482,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          userID 20
          style Empty
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -475,6 +498,7 @@ FrameWidgetClass rootFrame {
        "no focus" 0
        text "Rent Price"
        "exact text" 1
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         ButtonWidgetClass PlaceHolder2 {
          position 0 0
@@ -487,6 +511,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          userID 20
          style Empty
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -503,6 +528,7 @@ FrameWidgetClass rootFrame {
        text "Building Name"
        "Use default text" 0
        "exact text" 1
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        {
         ButtonWidgetClass PlaceHolder1 {
          size 1 1
@@ -514,6 +540,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          userID 20
          style Empty
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -529,6 +556,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        style MenuDefault
        text "Cancel"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       ButtonWidgetClass Btn_Save {
        color 1 0.502 0.0314 1
@@ -541,6 +569,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        style MenuDefault
        text "Save"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -562,6 +591,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "List of requests"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -611,6 +641,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Info about requester"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -659,6 +690,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            text "Name"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -685,6 +717,7 @@ FrameWidgetClass rootFrame {
            vexactpos 0
            hexactsize 0
            vexactsize 0
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -712,6 +745,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            text "ID"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -738,6 +772,7 @@ FrameWidgetClass rootFrame {
            vexactpos 0
            hexactsize 0
            vexactsize 0
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -765,6 +800,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            text "Class"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -791,6 +827,7 @@ FrameWidgetClass rootFrame {
            vexactpos 0
            hexactsize 0
            vexactsize 0
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -812,6 +849,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        style MenuDefault
        text "Allow"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       ButtonWidgetClass PCHBtnDeny {
        disabled 1
@@ -826,6 +864,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        style MenuDefault
        text "Deny"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -847,7 +886,7 @@ FrameWidgetClass rootFrame {
    {
     GridSpacerWidgetClass InfoGridMainWrap {
      ignorepointer 1
-     color 0 0 0 1
+     color 0 0 0 0
      position -0.1 0.18
      size 0.5 0.11
      halign center_ref
@@ -857,8 +896,8 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      style outline
-     Padding 0
-     Margin 0
+     Padding 5
+     Margin 5
      Rows 2
      {
       PanelWidgetClass PanelWidget0 {
@@ -884,6 +923,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style Bold
          text "Price"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -913,6 +953,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style Bold
          text "Time"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -942,6 +983,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style Bold
          text "Classes"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -970,6 +1012,7 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Bold
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -998,6 +1041,7 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Bold
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -1026,6 +1070,7 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Bold
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -1056,6 +1101,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style MenuDefault
      text "Switch To Map"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     ButtonWidgetClass InfoBtnSwitchTo3D {
      visible 0
@@ -1069,6 +1115,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style MenuDefault
      text "Switch to 3D"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     ItemPreviewWidgetClass InfoHousePreview {
      ignorepointer 0
@@ -1091,6 +1138,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style Bold
      text "House Kactet"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "exact text" 1
      "text halign" center
      "text valign" center
@@ -1106,6 +1154,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style Bold
      text "The terms of the lease"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "exact text" 1
      "text halign" center
      "text valign" center
@@ -1124,6 +1173,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style MenuDefault
      text "Rent"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "disabled text color" 0.7882 0.7882 0.7882 1
     }
     ButtonWidgetClass InfoBtnApproval {
@@ -1139,6 +1189,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style MenuDefault
      text "Submit a request"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     TextWidgetClass TextWidget01 {
      ignorepointer 1
@@ -1150,6 +1201,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style Light
      text "Description"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "exact text" 1
      "text halign" center
      "text valign" center
@@ -1164,6 +1216,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style DayZNormal
      text "zdarova pizda y korovi"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "text offset" 10 0
      "exact text" 1
      "size to text v" 0
@@ -1230,6 +1283,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        style Bold
        text "Doors"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -1302,6 +1356,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style MenuDefault
      text "Door groups"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     ButtonWidgetClass MHBtnInfo {
      disabled 1
@@ -1313,6 +1368,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style MenuDefault
      text "House Info"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     ButtonWidgetClass MHBtnDoorsControl {
      color 1 0.502 0.0314 1
@@ -1324,6 +1380,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style MenuDefault
      text "Groups control"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     ButtonWidgetClass MHBtnRequests {
      visible 1
@@ -1336,6 +1393,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style MenuDefault
      text "Requests"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     PanelWidgetClass MHPanelInfo {
      visible 1
@@ -1356,7 +1414,7 @@ FrameWidgetClass rootFrame {
        vexactpos 0
        hexactsize 0
        vexactsize 0
-       Padding 0
+       Padding 5
        Margin 0
        Columns 2
        Rows 6
@@ -1384,6 +1442,7 @@ FrameWidgetClass rootFrame {
            vexactsize 0
            style Bold
            text "Start rent"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1411,6 +1470,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            style Bold
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1439,6 +1499,7 @@ FrameWidgetClass rootFrame {
            vexactsize 0
            style Bold
            text "Time left"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1466,6 +1527,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            style Bold
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1494,6 +1556,7 @@ FrameWidgetClass rootFrame {
            vexactsize 0
            style Bold
            text "Rent price"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1521,6 +1584,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            style Bold
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1549,6 +1613,7 @@ FrameWidgetClass rootFrame {
            vexactsize 0
            style Bold
            text "Guest number"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1576,6 +1641,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            style Bold
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1605,6 +1671,7 @@ FrameWidgetClass rootFrame {
            vexactsize 0
            style Bold
            text "Groups count"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1633,6 +1700,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            style Bold
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1662,6 +1730,7 @@ FrameWidgetClass rootFrame {
            vexactsize 0
            style Bold
            text "Doors count"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1690,6 +1759,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            style Bold
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -1708,6 +1778,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        style Bold
        text "Kactet House"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -1733,6 +1804,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        style Light
        text "Description"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -1746,6 +1818,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        style DayZNormal
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "text offset" 10 0
        "exact text" 1
        "size to text v" 0
@@ -1777,6 +1850,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        style MenuDefault
        text "Pay lease"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       ButtonWidgetClass MHBtnCancelLease {
        color 1 0.502 0.0314 1
@@ -1790,6 +1864,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        style MenuDefault
        text "Cancel lease"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -1873,6 +1948,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style Bold
          text "George Bush"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -1932,6 +2008,7 @@ FrameWidgetClass rootFrame {
                vexactsize 0
                style Bold
                text "ID"
+               font "BastionMod/BastionMenu/gui/fonts/ddin22"
                "exact text" 1
                "text halign" center
                "text valign" center
@@ -1960,6 +2037,7 @@ FrameWidgetClass rootFrame {
                vexactsize 0
                style Bold
                text "125324"
+               font "BastionMod/BastionMenu/gui/fonts/ddin22"
                "exact text" 1
                "text halign" center
                "text valign" center
@@ -1999,6 +2077,7 @@ FrameWidgetClass rootFrame {
                vexactsize 0
                style Bold
                text "Class"
+               font "BastionMod/BastionMenu/gui/fonts/ddin22"
                "exact text" 1
                "text halign" center
                "text valign" center
@@ -2027,6 +2106,7 @@ FrameWidgetClass rootFrame {
                vexactsize 0
                style Bold
                text "B"
+               font "BastionMod/BastionMenu/gui/fonts/ddin22"
                "exact text" 1
                "text halign" center
                "text valign" center
@@ -2049,6 +2129,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style MenuDefault
          text "Accept"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
         ButtonWidgetClass MHBtnDeny {
          color 1 0.502 0.0314 1
@@ -2062,6 +2143,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style MenuDefault
          text "Deny"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -2074,6 +2156,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Group list"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -2087,6 +2170,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Rental requests"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -2100,6 +2184,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Requester info"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -2187,6 +2272,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style Bold
          text "George Bush"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -2247,6 +2333,7 @@ FrameWidgetClass rootFrame {
                vexactsize 0
                style Bold
                text "ID"
+               font "BastionMod/BastionMenu/gui/fonts/ddin22"
                "exact text" 1
                "text halign" center
                "text valign" center
@@ -2275,6 +2362,7 @@ FrameWidgetClass rootFrame {
                vexactsize 0
                style Bold
                text "125324"
+               font "BastionMod/BastionMenu/gui/fonts/ddin22"
                "exact text" 1
                "text halign" center
                "text valign" center
@@ -2314,6 +2402,7 @@ FrameWidgetClass rootFrame {
                vexactsize 0
                style Bold
                text "Since"
+               font "BastionMod/BastionMenu/gui/fonts/ddin22"
                "exact text" 1
                "text halign" center
                "text valign" center
@@ -2342,6 +2431,7 @@ FrameWidgetClass rootFrame {
                vexactsize 0
                style Bold
                text "05/07/2040"
+               font "BastionMod/BastionMenu/gui/fonts/ddin22"
                "exact text" 1
                "text halign" center
                "text valign" center
@@ -2381,6 +2471,7 @@ FrameWidgetClass rootFrame {
                vexactsize 0
                style Bold
                text "Class"
+               font "BastionMod/BastionMenu/gui/fonts/ddin22"
                "exact text" 1
                "text halign" center
                "text valign" center
@@ -2409,6 +2500,7 @@ FrameWidgetClass rootFrame {
                vexactsize 0
                style Bold
                text "B"
+               font "BastionMod/BastionMenu/gui/fonts/ddin22"
                "exact text" 1
                "text halign" center
                "text valign" center
@@ -2431,6 +2523,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style MenuDefault
          text "Evict"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
         }
        }
       }
@@ -2443,6 +2536,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Group list"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -2456,6 +2550,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Guest list"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -2469,6 +2564,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Guest info"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -2512,6 +2608,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            text "Group Name"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text valign" center
           }
@@ -2525,6 +2622,7 @@ FrameWidgetClass rootFrame {
            style ServerBrowser
            text "text"
            "exact text" 1
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
           }
           TextWidgetClass TextWidget18 {
            ignorepointer 1
@@ -2535,6 +2633,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            text "Group Description"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text valign" center
           }
@@ -2546,6 +2645,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            text "very long text "
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "text offset" 4 2
            "exact text" 1
            "size to text h" 0
@@ -2576,6 +2676,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            text "Group Rent Price"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text valign" center
           }
@@ -2589,6 +2690,7 @@ FrameWidgetClass rootFrame {
            style ServerBrowser
            text "text"
            "exact text" 1
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
           }
           TextWidgetClass TextWidget111 {
            ignorepointer 1
@@ -2599,6 +2701,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            text "Group Lease Time"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text valign" center
           }
@@ -2612,6 +2715,7 @@ FrameWidgetClass rootFrame {
            style ServerBrowser
            text "text"
            "exact text" 1
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
           }
           TextWidgetClass TextWidget113 {
            ignorepointer 1
@@ -2623,6 +2727,7 @@ FrameWidgetClass rootFrame {
            hexactsize 0
            vexactsize 0
            text "Group Doors"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -2677,6 +2782,7 @@ FrameWidgetClass rootFrame {
            vexactsize 0
            style MenuDefault
            text "Save group"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
           }
           ButtonWidgetClass MHDGBtnCancel {
            visible 1
@@ -2691,6 +2797,7 @@ FrameWidgetClass rootFrame {
            vexactsize 0
            style MenuDefault
            text "Cancel"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
           }
           PanelWidgetClass OrngLine11 {
            ignorepointer 1
@@ -2783,6 +2890,7 @@ FrameWidgetClass rootFrame {
            vexactsize 0
            style Bold
            text "List of groups"
+           font "BastionMod/BastionMenu/gui/fonts/ddin22"
            "exact text" 1
            "text halign" center
            "text valign" center
@@ -2812,6 +2920,7 @@ FrameWidgetClass rootFrame {
              vexactsize 0
              style MenuDefault
              text "Delete group"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
             }
             ButtonWidgetClass MHDGEditBtnSaveGroup {
              visible 1
@@ -2826,6 +2935,7 @@ FrameWidgetClass rootFrame {
              vexactsize 0
              style MenuDefault
              text "Save group"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
             }
             ButtonWidgetClass MHDGEditBtnCancel {
              visible 1
@@ -2841,6 +2951,7 @@ FrameWidgetClass rootFrame {
              vexactsize 0
              style MenuDefault
              text "Cancel"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
             }
             EditBoxWidgetClass MHDGEditName {
              position 0.05 0.0905
@@ -2853,6 +2964,7 @@ FrameWidgetClass rootFrame {
              text "Name"
              "limit visible" 1
              "exact text" 1
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
             }
             EditBoxWidgetClass MHDGEditPrice {
              position 0.05 0.2705
@@ -2865,6 +2977,7 @@ FrameWidgetClass rootFrame {
              text "Price"
              "limit visible" 1
              "exact text" 1
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
             }
             EditBoxWidgetClass MHDGEditTime {
              position 0.05 0.4505
@@ -2877,6 +2990,7 @@ FrameWidgetClass rootFrame {
              text "Lease time"
              "limit visible" 1
              "exact text" 1
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
             }
             MultilineEditBoxWidgetClass MHDGEditDescription {
              position 0.05 0.55987
@@ -2887,6 +3001,7 @@ FrameWidgetClass rootFrame {
              vexactsize 0
              style DayZNormal
              text "Lease time"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "text offset" 4 2
              "exact text" 1
              "limit visible" 1
@@ -2914,6 +3029,7 @@ FrameWidgetClass rootFrame {
              hexactsize 0
              vexactsize 0
              text "Allow Doors"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "exact text" 1
              "text halign" center
              "text valign" center
@@ -2964,6 +3080,7 @@ FrameWidgetClass rootFrame {
              hexactsize 0
              vexactsize 0
              text "Name"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "exact text" 1
              "text halign" center
              "text valign" center
@@ -2988,6 +3105,7 @@ FrameWidgetClass rootFrame {
              hexactsize 0
              vexactsize 0
              text "Price"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "exact text" 1
              "text halign" center
              "text valign" center
@@ -3012,6 +3130,7 @@ FrameWidgetClass rootFrame {
              hexactsize 0
              vexactsize 0
              text "Lease time"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "exact text" 1
              "text halign" center
              "text valign" center
@@ -3048,6 +3167,7 @@ FrameWidgetClass rootFrame {
              vexactsize 0
              style Normal
              text "Name"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "exact text" 1
              "text halign" center
              "text valign" center
@@ -3061,6 +3181,7 @@ FrameWidgetClass rootFrame {
              vexactsize 0
              style Normal
              text "Price"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "exact text" 1
              "text halign" center
              "text valign" center
@@ -3074,6 +3195,7 @@ FrameWidgetClass rootFrame {
              vexactsize 0
              style Normal
              text "Lease time"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "exact text" 1
              "text halign" center
              "text valign" center
@@ -3088,6 +3210,7 @@ FrameWidgetClass rootFrame {
              vexactsize 0
              style DayZNormal
              text "Lease time"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "text offset" 4 2
              "exact text" 1
              wrap 1
@@ -3116,6 +3239,7 @@ FrameWidgetClass rootFrame {
              hexactsize 0
              vexactsize 0
              text "Group Doors"
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "exact text" 1
              "text halign" center
              "text valign" center
@@ -3167,6 +3291,7 @@ FrameWidgetClass rootFrame {
              vexactpos 0
              hexactsize 0
              vexactsize 0
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "exact text" 1
              "text halign" center
              "text valign" center
@@ -3179,6 +3304,7 @@ FrameWidgetClass rootFrame {
              vexactpos 0
              hexactsize 0
              vexactsize 0
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "exact text" 1
              "text halign" center
              "text valign" center
@@ -3191,6 +3317,7 @@ FrameWidgetClass rootFrame {
              vexactpos 0
              hexactsize 0
              vexactsize 0
+             font "BastionMod/BastionMenu/gui/fonts/ddin22"
              "exact text" 1
              "text halign" center
              "text valign" center
@@ -3246,6 +3373,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        style MenuDefault
        text "Create group"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       ButtonWidgetClass MHBtnDoorGroupsEdit {
        visible 1
@@ -3261,6 +3389,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        style MenuDefault
        text "Edit group"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -3291,6 +3420,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style Bold
      text "Kactet House"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "exact text" 1
      "text halign" center
      "text valign" center
@@ -3309,7 +3439,7 @@ FrameWidgetClass rootFrame {
     }
     GridSpacerWidgetClass InfoGridMainWrap0 {
      ignorepointer 1
-     color 0 0 0 1
+     color 0 0 0 0
      position -0.1 0.2
      size 0.45 0.25
      halign center_ref
@@ -3318,8 +3448,8 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      style outline
-     Padding 0
-     Margin 0
+     Padding 5
+     Margin 5
      Columns 2
      {
       PanelWidgetClass PanelWidget24 {
@@ -3345,6 +3475,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style Bold
          text "Price"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -3373,6 +3504,7 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Bold
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -3402,6 +3534,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style Bold
          text "Time"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -3430,6 +3563,7 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Bold
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -3459,6 +3593,7 @@ FrameWidgetClass rootFrame {
          vexactsize 0
          style Bold
          text "Classes"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -3487,6 +3622,7 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          style Bold
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "exact text" 1
          "text halign" center
          "text valign" center
@@ -3505,6 +3641,7 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      style DayZNormal
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "text offset" 10 0
      "exact text" 1
      "size to text v" 0
@@ -3537,6 +3674,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style MenuDefault
      text "Send request"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
     }
     PanelWidgetClass PanelWidget37 {
      ignorepointer 1
@@ -3562,6 +3700,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        style Bold
        text "Doors"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -3617,6 +3756,7 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      style Bold
      text "Description"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "exact text" 1
      "text halign" center
      "text valign" center
@@ -3660,6 +3800,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        text "Are you"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "text offset" 70 0
        "exact text" 1
        "text valign" center
@@ -3674,6 +3815,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 1
        text "sure?"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "text offset" 165 0
        "exact text" 1
        "text valign" center
@@ -3698,6 +3840,7 @@ FrameWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        text "Yes"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "text color" 1 0.502 0.0314 1
       }
       ButtonWidgetClass ModalBtnNo {
@@ -3711,6 +3854,7 @@ FrameWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        text "No"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
      }
     }
@@ -3747,6 +3891,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Search"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -3760,6 +3905,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        style ServerBrowser
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
       }
       PanelWidgetClass OrngLine1 {
        ignorepointer 1
@@ -3782,6 +3928,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Allow classes"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -3810,6 +3957,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "A"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
         CheckBoxWidgetClass SchCheckBoxB {
@@ -3821,6 +3969,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "B"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
         CheckBoxWidgetClass SchCheckBoxC {
@@ -3832,6 +3981,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "C"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
         CheckBoxWidgetClass SchCheckBoxD {
@@ -3843,6 +3993,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "D"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
         CheckBoxWidgetClass SchCheckBoxS {
@@ -3854,6 +4005,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "S"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
        }
@@ -3867,6 +4019,7 @@ FrameWidgetClass rootFrame {
        hexactsize 0
        vexactsize 0
        text "Sectors"
+       font "BastionMod/BastionMenu/gui/fonts/ddin22"
        "exact text" 1
        "text halign" center
        "text valign" center
@@ -3893,6 +4046,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "0"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
         CheckBoxWidgetClass SchChBSec1 {
@@ -3904,6 +4058,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "1"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
         CheckBoxWidgetClass SchChBSec2 {
@@ -3915,6 +4070,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "2"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
         CheckBoxWidgetClass SchChBSec3 {
@@ -3926,6 +4082,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "3"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
         CheckBoxWidgetClass SchChBSec4 {
@@ -3937,6 +4094,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "4"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
         CheckBoxWidgetClass SchChBSec5 {
@@ -3948,6 +4106,7 @@ FrameWidgetClass rootFrame {
          hexactsize 1
          vexactsize 1
          text "5"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
        }
@@ -3970,6 +4129,7 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          text "Already rentable"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
        }
@@ -3992,6 +4152,7 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          text "My buildings"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
        }
@@ -4014,6 +4175,7 @@ FrameWidgetClass rootFrame {
          hexactsize 0
          vexactsize 0
          text "Admin requests"
+         font "BastionMod/BastionMenu/gui/fonts/ddin22"
          "text color" 1 0.502 0.0314 1
         }
        }
@@ -4066,6 +4228,7 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      text "Houses"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "exact text" 1
      "text halign" center
      "text valign" center
@@ -4081,6 +4244,7 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      text "Refresh"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "text color" 1 0.502 0.0314 1
     }
    }
@@ -4109,6 +4273,7 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      text "House has owner"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "exact text" 1
      "text halign" center
      "text valign" center
@@ -4124,6 +4289,7 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      text "Joseph Colombo"
+     font "BastionMod/BastionMenu/gui/fonts/ddin22"
      "exact text" 1
      "text halign" center
      "text valign" center

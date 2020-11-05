@@ -17,6 +17,18 @@ class BRP_LeatherWeaponBelt_ColorBase extends Clothing
 		}	
 		return true;		
         return super.CanReceiveAttachment(attachment, slotId);			
+	}	
+
+	override void OnMovedInsideCargo(EntityAI container)
+	{
+		super.OnMovedInsideCargo(container);
+		GetInventory().LockInventory(HIDE_INV_FROM_SCRIPT);		
+	}	
+	
+	override void OnRemovedFromCargo(EntityAI container)
+	{
+		super.OnRemovedFromCargo(container);
+		GetInventory().UnlockInventory(HIDE_INV_FROM_SCRIPT);		
 	}		
 };
 

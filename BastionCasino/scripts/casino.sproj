@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project>
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/collections/cardCollection.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/collections/gameMenu.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/EventHandler/Client/betDiceClientEventHandler.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/EventHandler/Client/blackJackClientEventHandler.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/EventHandler/Server/betDiceClientEventHandler.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/EventHandler/Server/blackJackServerEventHandler.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/menu/baseMenu.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/menu/betDiceMenu.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/menu/blackJackMenu.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/models/card.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/models/casinoConfig.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/models/DayZCasinoPlayerInventory.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/helper.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/missionGameplay.c" />
+    <file path="Develop/DayZCasinoV2/Addons/DayZCasinoV2/scripts/5_Mission/missionServer.c" />
+</project>

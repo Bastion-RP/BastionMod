@@ -1,0 +1,128 @@
+FrameWidgetClass rootFrame {
+ visible 1
+ clipchildren 0
+ inheritalpha 0
+ keepsafezone 0
+ position 9.69698 9.69697
+ size 1020.41003 434.504
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ scaled 1
+ {
+  PanelWidgetClass PanelWidget1 {
+   ignorepointer 1
+   color 0.0078 0.0078 0.0078 1
+   position 9.69697 9.69697
+   size 1004.03003 415.11002
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   scaled 1
+   style editor_selection
+   {
+    TextWidgetClass TextWidget0 {
+     ignorepointer 1
+     position 8.26005 8.26003
+     size 983.74597 63.166
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Bold
+     text "Thanks for using DayZCasinoV2"
+     "text halign" center
+     "text valign" center
+    }
+    MultilineTextWidgetClass text1 {
+     visible 1
+     clipchildren 1
+     ignorepointer 1
+     position 9.69697 81.12299
+     size 981.63 246.194
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     scaled 1
+     text "I investigate a lot of time to develop this mod. If you find a bug or you have something that can be improved let me know on steam. It will be also great if you give me a thump up for my mod at steam. If you want to support the mod development you can also give me a small donation. Thanks for reading and enjoy the game. TheBuster"
+     wrap 1
+    }
+    PanelWidgetClass boarderCancel1 {
+     ignorepointer 1
+     color 0 0 0 0.7843
+     position 778.10095 337.01401
+     size 216.23199 67.3031
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style editor_selection
+     {
+      ButtonWidgetClass closeInfo {
+       color 0 1 0.251 1
+       position 9.69698 9.69697
+       size 196.838 49.3461
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style MenuDefault
+       text "Okay"
+      }
+     }
+    }
+    PanelWidgetClass boarderCancel0 {
+     ignorepointer 1
+     color 0 0 0 0.7843
+     position 9.69697 337.01401
+     size 216.23199 67.3031
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style editor_selection
+     {
+      ButtonWidgetClass steam {
+       color 0 1 0.251 1
+       position 9.69697 9.69697
+       size 196.838 49.3461
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style MenuDefault
+       text "Steam"
+      }
+     }
+    }
+    PanelWidgetClass boarderCancel2 {
+     ignorepointer 1
+     color 0 0 0 0.7843
+     position 391.64502 337.01401
+     size 220.741 65.8
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style editor_selection
+     {
+      ButtonWidgetClass donate {
+       color 0 1 0.251 1
+       position 9.69698 9.69697
+       size 200.757 49.3461
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style MenuDefault
+       text "Donate"
+      }
+     }
+    }
+   }
+  }
+ }
+}

@@ -35,6 +35,9 @@ class BST_CraftingManager : PluginBase {
 
             ingredientClassname.ToLower();
 
+            if (ingredientRequirement == -1) {
+                ingredientRequirement = 1;
+            }
             if (mapIngredients.Contains(ingredientClassname)) {
                 mapIngredients.Set(ingredientClassname, ingredient.GetRequiredAmount() + mapIngredients.Get(ingredientClassname));
             } else {

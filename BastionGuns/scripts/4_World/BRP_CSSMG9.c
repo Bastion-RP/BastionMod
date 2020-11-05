@@ -6,3 +6,4 @@ class BRP_CSSMG9_Base : RifleBoltLock_Base
 	}
 };
 class BRP_CSSMG9 : BRP_CSSMG9_Base{};
+class BRP_CSSMG45 : BRP_CSSMG9_Base{};

@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{F3EC62D47BA7FDC7}DayZCasinoV2/data/cards/rueckseite.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1480288051
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "rueckseite.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

@@ -35,25 +35,29 @@ class ActionHackBRPDoor: ActionContinuousBase
 		return "Hack door";
 	}
 	
-	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item ) //it's terrible I'll change that later
 	{
 		if( !target ) return false;
 		if( !IsBuilding(target) ) return false;
 		if( !IsInReach(player, target, UAMaxDistances.DEFAULT) ) return false;
 
 		BuildingBase brpbuilding;
+		HackHouseToolBase hackTool;
+		int playerClass;
 		if( Class.CastTo(brpbuilding, target.GetObject()) )
 		{
 			if (GetGame().IsClient())
 			{
 				int doorIdx = brpbuilding.GetDoorIndex(target.GetComponentIndex());
+				hackTool = HackHouseToolBase.Cast(item);
+				playerClass = player.GetMultiCharactersPlayerClass();
 				if (!brpbuilding.m_HouseData)
 				{return false;}
 				if (!brpbuilding.m_HouseData.LeaseTime)
 				{return false;}
 				if (!g_HM.IsDoorOwner(player, brpbuilding, doorIdx))
 				{
-					return true;
+					return hackTool.CheckPlayerClass(playerClass);
 				}
 			}
 			return true;
@@ -64,11 +68,13 @@ class ActionHackBRPDoor: ActionContinuousBase
 			if (GetGame().IsClient())
 			{
 				int dIdx = building.GetDoorIndex(target.GetComponentIndex());
+				playerClass = player.GetMultiCharactersPlayerClass();
 				LockDoorStorage fix;
 				vector doorPos = brpbuilding.GetDoorSoundPos(dIdx);
+				hackTool = HackHouseToolBase.Cast(item);
 				if (GetLockedDoorsManager().IsDoorExist(doorPos, fix) )
 				{
-					return true;
+					return hackTool.CheckPlayerClass(playerClass);
 				}
 				else
 				{

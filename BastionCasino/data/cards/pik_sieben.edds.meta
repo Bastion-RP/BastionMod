@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{0E1D2E7B6233DC46}DayZCasinoV2/data/cards/pik_sieben.edds"
+ Author "desktop-en33qro"
+ ChangeDate 1346070323
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "pik_sieben.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

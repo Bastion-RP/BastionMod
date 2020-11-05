@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<modded_inputs>
+	<inputs>
+		<actions>
+			<input name="UAInputPlayCasinoGame" loc="Key to open casino game" />
+		</actions>
+	</inputs>
+	<preset>
+		<input name="UAInputPlayCasinoGame">
+			<btn name="kF" />
+		</input>
+	</preset>
+</modded_inputs>

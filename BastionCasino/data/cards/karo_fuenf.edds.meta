@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{0041B7B2A4473B8A}DayZCasinoV2/data/cards/karo_fuenf.edds"
+ Author "desktop-en33qro"
+ ChangeDate 238774067
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "karo_fuenf.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

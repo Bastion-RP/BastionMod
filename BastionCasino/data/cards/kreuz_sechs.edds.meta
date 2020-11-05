@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{AC25FD71FE6EFDA8}DayZCasinoV2/data/cards/kreuz_sechs.edds"
+ Author "desktop-en33qro"
+ ChangeDate 809199411
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "kreuz_sechs.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}
