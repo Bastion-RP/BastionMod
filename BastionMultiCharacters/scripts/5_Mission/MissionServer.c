@@ -75,7 +75,8 @@ modded class MissionServer {
 			}
 		}
 		map<EntityAI, int> mapSetQuickbar = new map<EntityAI, int>();
-		newPlayer = BSTMCCreateNewCharacter(identity, playerData, apiData.GetCitizenClass().ToInt(), charType, mapSetQuickbar);
+		int magCount = 0;
+		newPlayer = BSTMCCreateNewCharacter(identity, playerData, apiData.GetCitizenClass().ToInt(), charType, mapSetQuickbar, magCount);
 
 		newPlayer.BSTMCSetCharData(apiData.GetCharacterId().ToInt(), apiData.GetFirstName() + " " + apiData.GetLastName(), apiData.GetCitizenClass().ToInt());
 		GetGame().SelectPlayer(identity, newPlayer);
@@ -89,6 +90,9 @@ modded class MissionServer {
 		for (int i = 0; i < mapSetQuickbar.Count(); i++) {
 			newPlayer.SetQuickBarEntityShortcut(mapSetQuickbar.GetKey(i), mapSetQuickbar.GetElement(i));
 		}
+		if (magCount > 0) {
+			NotificationSystem.SendNotificationToPlayerIdentityExtended(identity, 5, "Magazines Moved!", "" + magCount + " mags were moved to your inventory or the ground! Don't forget to pick them up!");
+		}
 	}
 
 	void FinishSpawningClient(PlayerIdentity identity, PlayerBase player) {
@@ -99,14 +103,15 @@ modded class MissionServer {
 		Print(_mcDebugPrefix + "Finished spawning id=" + identity.GetPlainId());
 	}
 	
-	private PlayerBase BSTMCCreateNewCharacter(PlayerIdentity identity, BST_MCSavePlayer playerData, int charClass, string charType, out map<EntityAI, int> mapSetQuickbar) {
+	private PlayerBase BSTMCCreateNewCharacter(PlayerIdentity identity, BST_MCSavePlayer playerData, int charClass, string charType, out map<EntityAI, int> mapSetQuickbar, out int magCount) {
 		Print(_mcDebugPrefix + "data=" + playerData + " | class=" + charClass + " | type=" + charType);
-
+		
 		PlayerBase newPlayer;
 
 		if (playerData) {
 			Print(_mcDebugPrefix + "Player is alive!");
 
+			array<ref BST_MCSaveObject> arrMagazines = new array<ref BST_MCSaveObject>();
 			newPlayer = PlayerBase.Cast(GetGame().CreatePlayer(identity, charType, playerData.GetPos(), 0, "NONE"));
 
 			// Set Position
@@ -136,7 +141,21 @@ modded class MissionServer {
 			// Build inventory
 			foreach (BST_MCSaveObject objData : playerData.GetInventory()) {
 				if (!objData) { continue; }
-				BSTMCCreateItem(newPlayer, newPlayer, objData, mapSetQuickbar);
+				BSTMCCreateItem(newPlayer, newPlayer, objData, mapSetQuickbar, arrMagazines);
+			}
+			foreach (BST_MCSaveObject magData : arrMagazines) {
+				if (!magData) { continue; }
+				EntityAI newMag = newPlayer.CreateInInventory(magData.GetType());
+
+				Print("[DEBUG][DEBUG] Is the mag in the player inventory??? " + newMag);
+			
+				if (!newMag) {
+					newMag = GetGame().CreateObjectEx(magData.GetType(), newPlayer.GetPosition(), ECE_PLACE_ON_SURFACE);
+					Print("[DEBUG][DEBUG] Mag not found, spawning on the ground! " + newMag);
+				}
+				newMag.SetHealth("", "Health", magData.GetHealth());
+				BSTMCSetItemQuant(newMag, magData.GetQuantity());
+				magCount++;
 			}
 		} else {
 			Print(_mcDebugPrefix + "Player is dead or null");
@@ -154,17 +173,20 @@ modded class MissionServer {
 
 	void BST_MCStartingSetup(PlayerBase player, int playerClass) { }
 
-	private void BSTMCCreateItem(PlayerBase player, EntityAI parent, BST_MCSaveObject objData, out map<EntityAI, int> mapSetQuickbar) {
+	private void BSTMCCreateItem(PlayerBase player, EntityAI parent, BST_MCSaveObject objData, out map<EntityAI, int> mapSetQuickbar, out array<ref BST_MCSaveObject> arrMagazines) {
 		array<ref BST_MCSaveObject> arrChildren;
 		EntityAI newEnt;
 
 		if (player == parent && objData.IsInHands()) {
 			newEnt = player.GetHumanInventory().CreateInHands(objData.GetType());
 		} else if (objData.GetSlot() != -1) {
-			if (Weapon.Cast(parent)) {
-				newEnt = EntityAI.Cast(GetGame().CreateObjectEx(objData.GetType(), parent.GetPosition(), ECE_PLACE_ON_SURFACE));
-			} else {
-				newEnt = parent.GetInventory().CreateAttachmentEx(objData.GetType(), objData.GetSlot());
+			newEnt = parent.GetInventory().CreateAttachmentEx(objData.GetType(), objData.GetSlot());
+
+			if (Weapon.Cast(parent) && Magazine.Cast(newEnt)) {
+				GetGame().ObjectDelete(newEnt);
+
+				arrMagazines.Insert(objData);
+				return;
 			}
 		} else {
 			newEnt = parent.GetInventory().CreateEntityInCargoEx(objData.GetType(), objData.GetIndex(), objData.GetRow(), objData.GetCol(), objData.GetFlip());
@@ -179,7 +201,7 @@ modded class MissionServer {
 		BSTMCSetItemQuant(newEnt, objData.GetQuantity());
 
 		foreach (BST_MCSaveObject childData : arrChildren) {
-			BSTMCCreateItem(player, newEnt, childData, mapSetQuickbar);
+			BSTMCCreateItem(player, newEnt, childData, mapSetQuickbar, arrMagazines);
 		}
 	}
 
