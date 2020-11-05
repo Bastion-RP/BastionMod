@@ -30,6 +30,7 @@ modded class PlayerBase {
 		array<ref BST_MCSaveObject> m_SaveObjects = new array<ref BST_MCSaveObject>();
 		array<ref BST_MCSaveObject> m_RootChildren = new array<ref BST_MCSaveObject>();
 		array<ref BST_MCSaveObject> m_ChildChildren = new array<ref BST_MCSaveObject>();
+		map<EntityAI, int> mapQuickbarEnts = m_QuickBarBase.GetQuickBarEntsInMap();
 		EntityAI m_Root;
 		EntityAI m_ChildRoot;
 
@@ -113,6 +114,12 @@ modded class PlayerBase {
 				tempObject.SetRow(il.GetRow());
 				tempObject.SetCol(il.GetCol());
 				tempObject.SetFlip(il.GetFlip());
+
+				if (mapQuickbarEnts.Contains(localEntity)) {
+					tempObject.SetQuickbarSlot(mapQuickbarEnts.Get(localEntity));
+				} else {
+					tempObject.SetQuickbarSlot(-1);
+				}
 			}
 
 			if (Class.CastTo(localAmmo, localItem)) {
@@ -146,6 +153,7 @@ modded class PlayerBase {
 		m_SavePlayer.SetInventory(m_SaveObjects);
 
 		string playerDir = BST_MCConst.loadoutDir + "\\" + GetIdentity().GetPlainId();
+
 		if (!FileExist(playerDir))
 			MakeDirectory(playerDir);
 
