@@ -26,7 +26,7 @@ modded class BRP_Compactor
     }
 }
 
-modded class SeaChest
+modded class BRP_HolocomBooth
 {
 	override bool IsSeller()
 	{
