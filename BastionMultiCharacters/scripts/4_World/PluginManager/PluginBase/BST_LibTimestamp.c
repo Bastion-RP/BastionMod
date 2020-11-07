@@ -24,11 +24,43 @@ class BST_LibTimestamp : PluginBase {
 
     string GetHourTimestampFormatted() {
         int day, month, year, hour, minute, second;
+        string strDay, strMonth, strHour, strMinute, strSecond;
 
         GetHourMinuteSecondUTC(hour, minute, second);
         GetYearMonthDayUTC(year, month, day);
 
-        return "[" + month + "/" + day + "/" + year + "][" + hour + ":" + minute + ":" + second + "]";
+        // Set leading zero
+        if (day < 10) {
+            strDay = "0" + day;
+        } else {
+            strDay = "" + day;
+        }
+        // Set leading zero
+        if (month < 10) {
+            strMonth = "0" + month;
+        } else {
+            strMonth = "" + month;
+        }
+        // Set leading zero
+        if (hour < 10) {
+            strHour = "0" + hour;
+        } else {
+            strHour = "" + hour;
+        }
+        // Set leading zero
+        if (minute < 10) {
+            strMinute = "0" + minute;
+        } else {
+            strMinute = "" + minute;
+        }
+        // Set leading zero
+        if (second < 10) {
+            strSecond = "0" + second;
+        } else {
+            strSecond = "" + second;
+        }
+
+        return "[" + strMonth + "/" + strDay + "/" + year + "][" + strHour + ":" + strMinute + ":" + strSecond + "]";
     }
 
     int GetCurrentTimestamp() {

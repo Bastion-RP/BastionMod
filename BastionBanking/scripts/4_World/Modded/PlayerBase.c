@@ -1,4 +1,7 @@
 modded class PlayerBase {
+    private float bst_BankLastPayTick = 0.0;
+    private bool bst_BankIsPaying = false;
+
     void ~PlayerBase() {
         // Remove income loop
         if (GetGame().IsServer() && GetGame().IsMultiplayer()) {
@@ -7,36 +10,50 @@ modded class PlayerBase {
     }
 
     void BSTBankingStartIncomeLoop() {
-        string debugTxt = BST_ConstGetDebugPrefix() + " Starting UBI on player=" + BST_APICharName + " | id=" + BST_APICharID + " | class=" + BST_APICharClass;
+        if (bst_BankIsPaying) { return; }
+        string debugTxt = GetBSTLibTimestamp().GetHourTimestampFormatted() + "[BANK DEBUG] Starting UBI on player=" + BST_APICharName + " | id=" + BST_APICharID + " | class=" + BST_APICharClass;
+
         if (!GetIdentity()) {
             Print(debugTxt);
         } else {
             Print(debugTxt + " | pid=" + GetIdentity().GetPlainId());
         }
-        GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.BSTBankingPayPassiveIncome, 60 * 1000, true); // Loop every minute
+		GetGame().GetUpdateQueue(CALL_CATEGORY_SYSTEM).Insert(this.BSTBankingPayPassiveIncome);
+
+        bst_BankIsPaying = true;
     }
 
     void BSTBankingStopIncomeLoop() {
-        string debugTxt = BST_ConstGetDebugPrefix() + " Stopping UBI on player=" + BST_APICharName + " | id=" + BST_APICharID + " | class=" + BST_APICharClass;
+        string debugTxt = GetBSTLibTimestamp().GetHourTimestampFormatted() + "[BANK DEBUG] Stopping UBI on player=" + BST_APICharName + " | id=" + BST_APICharID + " | class=" + BST_APICharClass;
+
         if (!GetIdentity()) {
             Print(debugTxt);
         } else {
             Print(debugTxt + " | pid=" + GetIdentity().GetPlainId());
         }
-        GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(this.BSTBankingPayPassiveIncome);
+		GetGame().GetUpdateQueue(CALL_CATEGORY_SYSTEM).Remove(this.BSTBankingPayPassiveIncome);
+
+        bst_BankIsPaying = false;
     }
 
-    void BSTBankingPayPassiveIncome() {
-        string debugSuffix = BST_APICharName + " | id=" + BST_APICharID + " | class=" + BST_APICharClass;
+    void BSTBankingPayPassiveIncome(float tDelta) {
         if (!GetIdentity() || !IsAlive()) {
+            string debugPrefix = GetBSTLibTimestamp().GetHourTimestampFormatted() + "[BANK DEBUG]";
+            string debugSuffix = BST_APICharName + " | id=" + BST_APICharID + " | class=" + BST_APICharClass;
+
             if (!IsAlive()) {
-                Print(BST_ConstGetDebugPrefix() + " Error with payment! Player is dead! player=" + debugSuffix + " | pid=" + GetIdentity().GetPlainId());
+                Print(debugPrefix + " Error with payment! Player is dead! player=" + debugSuffix + " | pid=" + GetIdentity().GetPlainId());
             } else {
-                Print(BST_ConstGetDebugPrefix() + " Error with payment! Something went wrong! player=" + debugSuffix);
+                Print(debugPrefix + " Error with payment! Something went wrong! player=" + debugSuffix);
             }
             BSTBankingStopIncomeLoop();
             return;
         }
+        bst_BankLastPayTick += tDelta;
+
+        if (bst_BankLastPayTick < 60.0) { return; }
+        bst_BankLastPayTick = 0.0;
+        
         GetBSTBankingAccountManager().PayUBI(this);
     }
 

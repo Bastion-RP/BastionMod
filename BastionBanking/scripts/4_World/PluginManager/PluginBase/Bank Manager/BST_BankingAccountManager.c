@@ -1,13 +1,3 @@
-// This is temporary
-static string BST_ConstGetDebugPrefix() {
-        int day, month, year, hour, minute, second;
-
-        GetHourMinuteSecondUTC(hour, minute, second);
-        GetYearMonthDayUTC(year, month, day);
-        
-        return "[" + month + "/" + day + "/" + year + "][" + hour + ":" + minute + ":" + second + "][BANK DEBUG]";
-}
-
 class BST_BankingAccountManager : PluginBase {
     void BST_BankingAccountManager() {
         CheckDirectories();
@@ -80,7 +70,7 @@ class BST_BankingAccountManager : PluginBase {
     }
 
     void PayUBI(PlayerBase player) {
-        string debugPrefix = BST_ConstGetDebugPrefix();
+        string debugPrefix = GetBSTLibTimestamp().GetHourTimestampFormatted() + "[BANK DEBUG]";
         string debugSuffix = player.GetMultiCharactersPlayerName() + " | id=" + player.GetMultiCharactersPlayerId() + " | class=" + player.GetMultiCharactersPlayerClass();
 
         Print(debugPrefix + " Checking UBI on player=" + debugSuffix + " | pid=" + player.GetIdentity().GetPlainId());
