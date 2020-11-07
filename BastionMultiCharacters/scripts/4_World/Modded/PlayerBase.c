@@ -24,7 +24,6 @@ modded class PlayerBase {
 		if (GetIdentity()) {
 			Print(BST_MCConst.debugPrefix + "Saving player inventory! playerId=" + GetIdentity().GetPlainId() + " | playerIndex=" + BST_APICharID);
 		}
-
 		BST_MCSavePlayer m_SavePlayer = new BST_MCSavePlayer();
 		array<EntityAI> m_EnumeratedInventory = new array<EntityAI>();
 		array<ref BST_MCSaveObject> m_SaveObjects = new array<ref BST_MCSaveObject>();
@@ -130,6 +129,8 @@ modded class PlayerBase {
 				tempObject.SetQuantity(localItem.GetQuantity());
 			}
 		}
+		// Set steam id
+		m_SavePlayer.SetPlayerId(GetIdentity().GetPlainId());
 		// Set needed values for the player
 		m_SavePlayer.SetAPIData(BST_APICharName, BST_APICharID, BST_APICharClass);
 		// Save Location

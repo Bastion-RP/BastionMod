@@ -6,11 +6,15 @@ class BST_MCSavePlayerBasic {
 	protected ref array<ref BST_MCSaveObject> _arrInventory;
 	protected int _charId, _charClass, _deathTimestamp;
 	protected bool _isDead;
-    protected string _charName, _survivorType;
+    protected string _charName, _survivorType, _playerId;
 
     void BST_MCSavePlayerBasic() {
 		_arrInventory = new array<ref BST_MCSaveObject>();
     }
+
+	void SetPlayerId(string playerId) {
+		_playerId = playerId;
+	}
 
 	void SetAPIData(string charName, int charId, int charClass) {
 		_charName = charName;
@@ -61,4 +65,5 @@ class BST_MCSavePlayerBasic {
 	int GetCharacterClass() { return _charClass; }
 	string GetName() { return _charName; }
 	string GetType() { return _survivorType; }
+	string GetPlayerId() { return _playerId; }
 }
