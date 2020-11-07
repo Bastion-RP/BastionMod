@@ -5,25 +5,14 @@ modded class BRP_Compactor
         RegisterNetSyncVariableBool("m_IsSoundSynchRemote");
     }
 
-	override void SetActions() 
-    {
-        super.SetActions();
-        AddAction(ActionSellItem);
-    }
-
     override bool IsInventoryVisible()
     {
 		return true;
 	}
 
-    override bool CanPutInCargo (EntityAI parent)
+	override bool IsSeller()
 	{
-		return false;
-	}
-
-    override bool CanPutIntoHands (EntityAI parent)
-	{
-		return false;
+		return true;
 	}
 
     override void OnVariablesSynchronized()
@@ -35,4 +24,12 @@ modded class BRP_Compactor
 			//[COMPACTOR] trade sound here
 		}
     }
+}
+
+modded class SeaChest
+{
+	override bool IsSeller()
+	{
+		return true;
+	}
 }

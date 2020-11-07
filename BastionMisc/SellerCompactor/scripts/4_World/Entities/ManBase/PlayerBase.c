@@ -26,7 +26,9 @@ modded class PlayerBase
 	override bool CanSwapItemInCargo (EntityAI child_entity, EntityAI new_entity)
 	{
 		if (!super.CanSwapItemInCargo(child_entity, new_entity)) { return false; }
-		if (child_entity.IsInherited(BRP_Compactor) || new_entity.IsInherited(BRP_Compactor))
+		ItemBase oldEnt = ItemBase.Cast(child_entity);
+		ItemBase newEnt = ItemBase.Cast(new_entity);
+		if (oldEnt.IsSeller() || newEnt.IsSeller())
 		{ return false; }
 
 		return true;

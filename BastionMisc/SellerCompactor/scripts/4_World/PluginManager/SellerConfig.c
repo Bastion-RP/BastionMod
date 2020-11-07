@@ -16,25 +16,30 @@ class SellItemData
 	int GetPrice() { return Price; }
 }
 
-class SellerConfig
+class SellerObjData
 {
-	private float PercentagePriceDecreaseByHelthLevel;
+	private string Type;
 	private ref array<ref SellItemData> ArrayItemsData;
 
-	void SellerConfig()
+	void SellerObjData()
 	{
 		ArrayItemsData = new array<ref SellItemData>();
 	}
 
-	void Validate()
+	ref array<ref SellItemData> GetDataArray() { return ArrayItemsData; }
+	string GetType() { return Type; }
+}
+
+class SellerConfig
+{
+	private float PercentagePriceDecreaseByHelthLevel;
+	private ref array<ref SellerObjData> SellersObjData;
+
+	void SellerConfig()
 	{
-		if (ArrayItemsData.Count() == 0)
-		{
-			ArrayItemsData.Insert(new SellItemData("WaterBottle", 1, 10));
-			ArrayItemsData.Insert(new SellItemData("Rice", 1, 20));
-		}
+		SellersObjData = new array<ref SellerObjData>();
 	}
 
 	float GetPPDBHL() { return PercentagePriceDecreaseByHelthLevel; }
-	ref array<ref SellItemData> GetDataArray() { return ArrayItemsData; }
+	ref array<ref SellerObjData> GetSellersData() { return SellersObjData; }
 }
