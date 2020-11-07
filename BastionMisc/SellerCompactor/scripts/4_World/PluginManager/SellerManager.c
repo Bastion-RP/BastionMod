@@ -18,7 +18,7 @@ class SellerManager : PluginBase
 		if (!FileExist(SellerConst.CONFIG_DIR))
 		{
 			config = new SellerConfig();
-			config.Validate();
+			//config.Validate();
 			JsonFileLoader<SellerConfig>.JsonSaveFile(SellerConst.CONFIG_DIR, config);
 		}
 		else
@@ -33,9 +33,9 @@ class SellerManager : PluginBase
 
 	void SetConfig(SellerConfig cong) { config = cong; }
 
-	bool CanSellItem(string type)
+	bool CanSellItem(string type, string sellerType)
 	{
-		if (GetItemData(type))
+		if (GetItemData(type, sellerType))
 		{
 			return true;
 		}
@@ -43,9 +43,12 @@ class SellerManager : PluginBase
 		return false;
 	}
 
-	ref SellItemData GetItemData(string type)
+	ref SellItemData GetItemData(string type, string sellerType)
 	{
-		array<ref SellItemData> allData = config.GetDataArray();
+		SellerObjData sellerData = GetSellerDataByType(sellerType);
+		if (!sellerData)
+			return NULL;
+		array<ref SellItemData> allData = sellerData.GetDataArray();
 		foreach (SellItemData data : allData)
 		{
 			if (data.GetClassname() == type)
@@ -55,7 +58,18 @@ class SellerManager : PluginBase
 		return NULL;
 	}
 
-	int GetTotalSum(ItemBase itm, out int delQuant)
+	SellerObjData GetSellerDataByType(string type)
+	{
+		array<ref SellerObjData> allSellers = config.GetSellersData();
+		foreach(SellerObjData seller : allSellers)
+		{
+			if (seller.GetType() == type)
+				return seller;
+		}
+		return null;
+	}
+
+	int GetTotalSum(ItemBase itm, out int delQuant, string sellerType)
 	{
 		ItemBase item;
 		Magazine pile;
@@ -74,7 +88,7 @@ class SellerManager : PluginBase
 		item = itm;
 		type = item.GetType();
 		itemHealthLevel = item.GetHealthLevel();
-		sellData = GetItemData(type);
+		sellData = GetItemData(type, sellerType);
 
 		sellQuantity = sellData.GetQuantity();
 		price = sellData.GetPrice();
@@ -125,7 +139,7 @@ class SellerManager : PluginBase
 		return totalSum;
 	}
 
-	void SellItem(ItemBase itm, BRP_Compactor compactor)
+	void SellItem(ItemBase itm, ItemBase seller)
 	{
 		ItemBase item;
 		Magazine pile;
@@ -140,7 +154,7 @@ class SellerManager : PluginBase
 		quantityType = QuantityConversions.HasItemQuantity(item);
 
 		pile = Magazine.Cast(item);
-		price = GetTotalSum(item, deleteCount);
+		price = GetTotalSum(item, deleteCount, seller.GetType());
 
 		if (quantityType == 0 || quantityType == 2)
 		{
@@ -159,10 +173,10 @@ class SellerManager : PluginBase
 			}
 		}
 
-		PayCredits(price, compactor);
+		PayCredits(price, seller);
 	}
 
-	void PayCredits(int sum, BRP_Compactor compactor)
+	void PayCredits(int sum, ItemBase seller)
 	{
 		ItemBase money;
 		vector spawnPoint;
@@ -174,7 +188,7 @@ class SellerManager : PluginBase
 
 		moneyType = GetBSTBankingConfigHandler().GetConfig().GetCurrencyClassName();
 		finishSum = sum;
-		spawnPoint = compactor.GetPosition() + (compactor.GetDirection() * 1.5);
+		spawnPoint = seller.GetPosition() + (seller.GetDirection() * 1.5);
 		money = ItemBase.Cast( GetGame().CreateObject(moneyType, vector.Zero, false) );
 		quantMax = money.GetQuantityMax();
 		spawnIterations = sum / quantMax;
@@ -182,7 +196,7 @@ class SellerManager : PluginBase
 
 		money.Delete();
 
-		money = compactor.GetInventory().CreateEntityInCargo(moneyType);
+		money = seller.GetInventory().CreateEntityInCargo(moneyType);
 
 		if (money == null)
 		{
@@ -198,7 +212,7 @@ class SellerManager : PluginBase
 		{
 			money = null;
 
-			money = compactor.GetInventory().CreateEntityInCargo(moneyType);
+			money = seller.GetInventory().CreateEntityInCargo(moneyType);
 
 			if (money == null)
 			{
@@ -213,7 +227,7 @@ class SellerManager : PluginBase
 			spawnIterations--;
 		}
 
-		compactor.SoundSynchRemote();
+		seller.SoundSynchRemote();
 	}
 
 }

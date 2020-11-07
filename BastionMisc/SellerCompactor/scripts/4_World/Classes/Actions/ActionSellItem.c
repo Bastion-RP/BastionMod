@@ -28,9 +28,12 @@ class ActionSellItem : ActionInteractBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		BRP_Compactor compactor = BRP_Compactor.Cast( target.GetObject() );
+		ItemBase sellerObj = ItemBase.Cast( target.GetObject() );
 		InventoryLocation loc;
-		if (!player.GetHumanInventory().GetEntityInHands()) return false;
+		if (!player.GetHumanInventory().GetEntityInHands()) 
+			return false;
+		if (!sellerObj.IsSeller())
+			return false;
 		ItemBase plItem = ItemBase.Cast(player.GetHumanInventory().GetEntityInHands());
 
 		string itemType = plItem.GetType();
@@ -38,11 +41,11 @@ class ActionSellItem : ActionInteractBase
 		sum = "Sale for ";
 		int placeholder;
 		int price;
-		if ( compactor && GetGame().IsClient())
+		if ( sellerObj && GetGame().IsClient())
 		{
-			if (GetSellerManager().CanSellItem(itemType))
+			if (GetSellerManager().CanSellItem(itemType, sellerObj.GetType()))
 			{
-				price = GetSellerManager().GetTotalSum(plItem, placeholder);
+				price = GetSellerManager().GetTotalSum(plItem, placeholder, sellerObj.GetType());
 				if (price == 0) return false;
 				sum = sum + price;
 				return true;
@@ -58,21 +61,21 @@ class ActionSellItem : ActionInteractBase
 
 	override void OnStartServer( ActionData action_data )
 	{
-		BRP_Compactor compactor = BRP_Compactor.Cast( action_data.m_Target.GetObject() );
+		ItemBase sellerObj = ItemBase.Cast( action_data.m_Target.GetObject() );
 		PlayerBase player = PlayerBase.Cast(action_data.m_Player);
 		ItemBase item = ItemBase.Cast(player.GetHumanInventory().GetEntityInHands());
 
 		if (!item) return;
 
-		GetSellerManager().SellItem(item, compactor);
+		GetSellerManager().SellItem(item, sellerObj);
 	}
 
 	override void OnEndServer( ActionData action_data )
 	{
-		BRP_Compactor compactor = BRP_Compactor.Cast( action_data.m_Target.GetObject() );
-		if( compactor )
+		ItemBase sellerObj = ItemBase.Cast( action_data.m_Target.GetObject() );
+		if( sellerObj )
 		{
-			compactor.SoundSynchRemoteReset();
+			sellerObj.SoundSynchRemoteReset();
 		}
 	}
 }
