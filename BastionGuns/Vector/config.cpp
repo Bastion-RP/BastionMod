@@ -271,7 +271,7 @@ class cfgVehicles
 		dispersionModifier = -0.0001;
 		noiseShootModifier = -0.95;
 		dispersionCondition = "true";
-		barrelArmor = 2500.0;
+		barrelArmor = 3281.25;
 		recoilModifier[] = {0.95,0.95,0.95};
 		swayModifier[] = {1.05,1.05,1};
 		soundIndex = 1;

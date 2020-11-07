@@ -28,6 +28,7 @@ class cfgWeapons
 		absorbency = 0.0;
 		repairableWithKits[] = {5,1};
 		repairCosts[] = {30.0,50.0};
+		barrelArmor = 4.444;		
 		PPDOFProperties[] = {};
 		WeaponLength = 0.929067;
 		chamberSize = 1;
