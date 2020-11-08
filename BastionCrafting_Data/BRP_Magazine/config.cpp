@@ -83,7 +83,7 @@ class CfgVehicles
 		descriptionShort="INTERPOL guide that provides schematics and instructions on the construction and maintenance of service pistols used by police and special forces across Europe and the United States."; //description
 		hiddenSelectionsTextures[]=
 		{
-			"BastionMod\BastionCrafting_Data\BRP_Magazine\textures\brp_magazine_co_kalashnikov.paa" // path to the NEW texture
+			"BastionMod\BastionCrafting_Data\BRP_Magazine\textures\brp_magazine_co_interpolpistols.paa" // path to the NEW texture
 		};
 	};
 };
