@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<modded_inputs>
+
+	<!-- declarations -->
+	<inputs>
+
+		<actions>
+			<input name="ADVGPSTOGGLE" loc="Toggle GPS" />
+			<input name="ADVGPSZOOMIN" loc="GPS Zoom In" />
+			<input name="ADVGPSZOOMOUT" loc="GPS Zoom Out" />
+			<input name="ADVGPSMOVEHORUP" loc="GPS Move Left" />
+			<input name="ADVGPSMOVEHORDW" loc="GPS Move Right" />
+			<input name="ADVGPSMOVEVERTUP" loc="GPS Move Up" />
+			<input name="ADVGPSMOVEVERTDW" loc="GPS Move Down" />
+		</actions>
+
+	</inputs>
+
+</modded_inputs>
