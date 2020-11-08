@@ -1971,16 +1971,5 @@ class CfgNonAIVehicles
 		inventorySlot[] = { "Wire3" };
 		model="\BastionMod\BastionCrafting_Data\proxies\tools\wire3.p3d";
 	};
-	class ItemBook;
-	class BRP_CraftingBook_INTERPOL: ItemBook
-    {
-        scope = 2;
-        title = "INTERPOL Armorer's Guide, Volume 2"; //name
-        author = "Mack Nelson"; //author
-        displayName = "INTERPOL Armorer's Guide, Volume 2"; //item name
-        descriptionShort = "Armorer's Guide, distributed to INTERPOL member states."; //item description
-        rotationFlags = 1; //rotation of object after item was dropped/spawned
-        hiddenSelectionsTextures[] = {"\BastionMod\BastionCrafting_Data\Retextures\data\"}; // texture of book
-    };
 };
 

@@ -76,4 +76,14 @@ class CfgVehicles
 			"BastionMod\BastionCrafting_Data\BRP_Magazine\textures\brp_magazine_co_kalashnikov.paa" // path to the NEW texture
 		};
 	};
+	class BRP_CraftingBook_INTERPOLPistols: BRP_Magazine // we are inherit every parameter from our base class above, we don't need to fill every parameter now
+	{
+		scope=2; //2 because it's real item for gameplay
+		displayName="INTERPOL Armorer's Guide - Vol. 1"; //name, actually
+		descriptionShort="INTERPOL guide that provides schematics and instructions on the construction and maintenance of service pistols used by police and special forces across Europe and the United States."; //description
+		hiddenSelectionsTextures[]=
+		{
+			"BastionMod\BastionCrafting_Data\BRP_Magazine\textures\brp_magazine_co_kalashnikov.paa" // path to the NEW texture
+		};
+	};
 };
