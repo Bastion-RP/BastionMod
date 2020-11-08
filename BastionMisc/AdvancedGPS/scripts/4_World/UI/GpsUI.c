@@ -112,8 +112,11 @@ class GpsUI
 
 	void SetMapPos()
 	{
-		vector pos = player.GetPosition();
-		gpsMap.SetMapPos(GetMapPos(pos));
+		if (player)
+		{
+			vector pos = player.GetPosition();
+			gpsMap.SetMapPos(GetMapPos(pos));
+		}
 	}
 
 	vector GetMapPos(vector pos)
