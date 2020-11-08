@@ -144,16 +144,16 @@ class GameMenu
 	}
 	
 	void CloseAllMenu(){
-		if (betDiceMenu) {
+		if (betDiceMenu && betDiceMenu.isMenuOpen) {
 			betDiceMenu.Close();
 		}
-		if (blackJackMenu) {
+		if (blackJackMenu && blackJackMenu.isMenuOpen) {
 			blackJackMenu.Close();
 		}
-		if (luckyWheelMenu) {
+		if (luckyWheelMenu && luckyWheelMenu.isMenuOpen) {
             luckyWheelMenu.Close();
 		}
-		if (ratRaceMenu) {
+		if (ratRaceMenu && ratRaceMenu.isMenuOpen) {
             ratRaceMenu.Close();
 		}
 	}
