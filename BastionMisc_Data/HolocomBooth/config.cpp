@@ -11,10 +11,18 @@ class CfgPatches
 
 class CfgVehicles 
 {
-    class HouseNoDestruct;	
-	class BRP_HolocomBooth : HouseNoDestruct 
+    class Inventory_Base;	
+	class BRP_HolocomBooth : Inventory_Base 
 	{
-		scope=1;
+		scope = 2;
+		displayName = "OIM Automated Booth";		
 		model="BastionMod\BastionMisc_Data\HolocomBooth\booth.p3d";		
+		physLayer = "item_large";
+		class Cargo
+		{
+			itemsCargoSize[] = {};
+			openable = 0;
+			allowOwnedCargoManipulation = 1;
+		};		
 	};
 };

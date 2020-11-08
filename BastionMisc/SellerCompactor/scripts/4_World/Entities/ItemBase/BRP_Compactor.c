@@ -26,7 +26,7 @@ modded class BRP_Compactor
     }
 }
 
-modded class BRP_HolocomBooth
+class BRP_HolocomBooth : ItemBase 
 {
 	override bool IsSeller()
 	{
