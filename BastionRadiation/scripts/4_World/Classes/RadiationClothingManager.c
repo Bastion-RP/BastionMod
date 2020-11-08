@@ -69,7 +69,7 @@ class RadiationClothingManager
 		item = player.GetInventory().FindAttachment(slotMask);
 		if (item)
 		{
-			threshold = GetCriticalTresholdByItem(item);
+			threshold = GetRadiationTresholdByItem(item);
 		}
 
 		return threshold;
@@ -132,6 +132,23 @@ class RadiationClothingManager
 			return criticalThreshold;
 
 		criticalThreshold = itemConfig.GetCritical();
+
+		return criticalThreshold;
+	}
+
+	float GetRadiationTresholdByItem(EntityAI item)
+	{
+		float criticalThreshold;
+		string itemType;
+		ItemProtectionRad itemConfig;
+		
+		itemType = item.GetType();
+		itemConfig = SuitProtectLevels.Get(itemType);
+
+		if (!itemConfig)
+			return criticalThreshold;
+
+		criticalThreshold = itemConfig.GetRadiation();
 
 		return criticalThreshold;
 	}
