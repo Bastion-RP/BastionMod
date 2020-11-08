@@ -20,9 +20,9 @@ class CfgVehicles
 		physLayer = "item_large";
 		class Cargo
 		{
-			itemsCargoSize[] = {};
+			itemsCargoSize[] = {9,1};
 			openable = 0;
 			allowOwnedCargoManipulation = 1;
-		};		
+		};	
 	};
 };
