@@ -16,7 +16,7 @@ class GameHint extends UIScriptedMenu
 
         super.Init();
 
-        hintWidget = GetGame().GetWorkspace().CreateWidgets("BastionCasino/layouts/GameHint.layout");
+        hintWidget = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionCasino/layouts/GameHint.layout");
         message = MultilineTextWidget.Cast( hintWidget.FindAnyWidget( "message" ));
         message.SetText("#hint_can_open_game");
 

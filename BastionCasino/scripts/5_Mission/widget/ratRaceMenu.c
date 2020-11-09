@@ -43,7 +43,7 @@ class RatRaceMenu extends GameBetBaseMenu
 			return layoutRoot;
 		}
 
-        widgetPath = "BastionCasino/layouts/RatRace.layout";
+        widgetPath = "BastionMod/BastionCasino/layouts/RatRace.layout";
 		super.Init();
 		
 		ratImages = new array<ImageWidget>;
@@ -56,7 +56,7 @@ class RatRaceMenu extends GameBetBaseMenu
 		for(int n = 0; n < DAYZ_CASINO_RAT_RACE_COUNT_RAT; n++) {
 			int imageNumber = n + 1;
 			ImageWidget ratImage = ImageWidget.Cast(layoutRoot.FindAnyWidget("ratImage" + imageNumber.ToString()));
-        	ratImage.LoadImageFile(0, "BastionCasino/data/ratrace/rat.edds");
+        	ratImage.LoadImageFile(0, "BastionMod/BastionCasino/data/ratrace/rat.edds");
 			ratImage.SetImage(0);
 			ratImage.GetPos(initialPositionX, initialPositionY);
 			ratImages.Insert(ratImage);
