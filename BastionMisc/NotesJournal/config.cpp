@@ -386,7 +386,7 @@ class cfgVehicles
 		rotationFlags=1;
 		hiddenSelectionsTextures[]=
 		{
-			"BRP_gear\Data\BRP_gear\BRP_journal.paa"
+			"BastionMod\BastionMisc\NotesJournal\data\BRP_journal.paa"
 		};
 		attachments[]=
 		{
