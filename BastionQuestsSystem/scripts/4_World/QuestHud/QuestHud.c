@@ -104,7 +104,7 @@ class QuestHud extends UIScriptedMenu
 		int applIDs = applBox.GetText().ToInt();
 		int finishIDs = finishBox.GetText().ToInt();
 		string textBoxs = textBox.GetText();
-		string teleportPos = textBox.GetText();
+		string teleportPos = teleportBox.GetText();
 		if (moveIDs == "-123") g_QM.CloseMenu();
 		if (moveIDs)
 		{
@@ -142,7 +142,7 @@ class QuestHud extends UIScriptedMenu
 				g_QM.TakeQuest(qt);
 			}
 		}
-		if (teleportPos)
+		if ((teleportPos != string.Empty) && (teleportPos.ToVector() != vector.Zero))
 		{
 			m_Player.RPCSingleParam(QRPC.REQUEST_TELEPORT_PLAYER, new Param1<string>(teleportPos), true, null);
 			Close();
