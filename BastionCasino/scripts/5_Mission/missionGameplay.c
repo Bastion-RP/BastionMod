@@ -27,7 +27,10 @@ modded class MissionGameplay
 				casinoConfig = casinoConfigParam.param1;
 				DebugMessageCasino("player load config");
 				gameMenu = new GameMenu(casinoConfig);
-
+				Man player = GetGame().GetPlayer();
+				PlayerBase playerPB = PlayerBase.Cast(GetGame().GetPlayer());
+				if(casinoConfig && playerPB)
+					playerPB.casinoConfig = casinoConfig;
                 blackJackClientEventHandler = new BlackJackClientEventHandler();
                 betDiceClientEventHandler = new BetDiceClientEventHandler();
                 luckyWheelClientEventHandler = new LuckyWheelClientEventHandler();
@@ -46,28 +49,40 @@ modded class MissionGameplay
 	override void OnUpdate(float timeslice)
 	{
 		super.OnUpdate(timeslice);
-		autoptr DayZPlayer player = GetGame().GetPlayer();
-
+		ref PlayerBase player = GetGame().GetPlayer();
+		
         if(player) {
-            UAInput localInput = GetUApi().GetInputByName("UAInputPlayCasinoGame");
-            if (localInput.LocalClick()){
+        	if(!player.casinoConfig)
+        	{
+        		if(gameMenu.GetCasinoConfig())
+        		{
+        			player.casinoConfig = gameMenu.GetCasinoConfig();
+        		}
+        	}
+            /*UAInput localInput = GetUApi().GetInputByName("UAInputPlayCasinoGame");
+            if (localInput && localInput.LocalClick()){*/
+        	Print("playerPB.actionOpenCasinoMenu = " + player.GetActionOpenCasinoMenu());
+        	if (player.GetActionOpenCasinoMenu())
+        	{
 				BaseMenu currentGameMenu = gameMenu.GetGameMenu(player);
-				if (GetGame().GetUIManager().GetMenu() == null && currentGameMenu && !currentGameMenu.isMenuOpen && player.IsAlive()) {
+				if (currentGameMenu && !currentGameMenu.isMenuOpen && player.IsAlive()) {
 					DebugMessageCasino("key press open");
                     currentGameMenu.Init();
 					currentGameMenu.OnShow();
+					player.SetActionOpenCasinoMenu(false);
 				}
 			}
+			
 			if (!player.IsAlive() && gameMenu){
 				gameMenu.CloseAllMenu();
 			}
 
-			if (gameMenu && gameMenu.CanOpenHintToOpenGameMenu(player)){
-                gameMenu.GetGameHintMenu().Init();
-                gameMenu.GetGameHintMenu().OnShow();
+			/*if (gameMenu && gameMenu.CanOpenHintToOpenGameMenu(player)){
+                //gameMenu.GetGameHintMenu().Init();
+                //gameMenu.GetGameHintMenu().OnShow();
 			} else if (gameMenu) {
-                gameMenu.GetGameHintMenu().OnHide();
-			}
+                //gameMenu.GetGameHintMenu().OnHide();
+			}*/
 		}
 	}
 
