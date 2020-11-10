@@ -56,6 +56,9 @@ class GpsBase : ItemBase
 		else
 			owner = PlayerBase.Cast(GetHierarchyRootPlayer());
 	
+		if (GetGame().GetPlayer() != owner)
+			return;
+			
 		if (owner)
 		{
 			if (owner.HasWorkingGps() && !type)

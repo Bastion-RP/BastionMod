@@ -111,7 +111,7 @@ class QuestHud extends UIScriptedMenu
 			int moveID = moveIDs.ToInt();
 			if (!moveID)
 			{
-				AddDialogMessage(1, textBoxs, m_Player.GetIdentity().GetName());
+				AddDialogMessage(1, textBoxs, GetMulticharacterName());
 				ClearChoices();
 				AddChoice("(Close the dialog)", -123, 0);
 			}
@@ -122,7 +122,7 @@ class QuestHud extends UIScriptedMenu
 					QuestDialog qd = m_CurNPC.Dialogues.Get(i);
 					if (qd.ID == moveID)
 					{
-						AddDialogMessage(1, textBoxs, m_Player.GetIdentity().GetName());
+						AddDialogMessage(1, textBoxs, GetMulticharacterName());
 						ClearChoices();
 						UpdateDialogContent(qd);
 						break;
@@ -167,6 +167,15 @@ class QuestHud extends UIScriptedMenu
 			break;
 		}
 		return true;
+	}
+
+	string GetMulticharacterName()
+	{
+		if (m_Player)
+		{
+			return m_Player.GetMultiCharactersPlayerName();
+		}
+		return string.Empty;
 	}
 
 	void DeliveryQuest(Quest temp)
