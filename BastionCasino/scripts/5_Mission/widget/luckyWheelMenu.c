@@ -29,7 +29,7 @@ class LuckyWheelMenu extends BaseMenu
 			return layoutRoot;
 		}
 
-        widgetPath = "BastionCasino/layouts/LuckyWheel.layout";
+        widgetPath = "BastionMod/BastionCasino/layouts/LuckyWheel.layout";
 		super.Init();
 
         rotate = ButtonWidget.Cast(layoutRoot.FindAnyWidget( "rotate" ));
@@ -39,9 +39,9 @@ class LuckyWheelMenu extends BaseMenu
         betPerRoll = MultilineTextWidget.Cast(layoutRoot.FindAnyWidget( "betPerRoll" ));
         winView = TextWidget.Cast(layoutRoot.FindAnyWidget( "winView" ));
         arrow = ImageWidget.Cast(layoutRoot.FindAnyWidget( "arrow" ));
-        arrow.LoadImageFile(0, "BastionCasino/data/luckywheel/arrow.edds");
+        arrow.LoadImageFile(0, "BastionMod/BastionCasino/data/luckywheel/arrow.edds");
         luckyWheel = ImageWidget.Cast(layoutRoot.FindAnyWidget( "luckyWheel" ));
-        luckyWheel.LoadImageFile(0, "BastionCasino/data/luckywheel/luckywheel.edds");
+        luckyWheel.LoadImageFile(0, "BastionMod/BastionCasino/data/luckywheel/luckywheel.edds");
 
 		return layoutRoot;
 	}

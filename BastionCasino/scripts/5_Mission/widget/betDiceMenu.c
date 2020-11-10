@@ -33,7 +33,7 @@ class BetDiceMenu extends GameBetBaseMenu
 			return layoutRoot;
 		}
 
-        widgetPath = "BastionCasino/layouts/BetDice.layout";
+        widgetPath = "BastionMod/BastionCasino/layouts/BetDice.layout";
 		super.Init();
 
 		shuffle = ButtonWidget.Cast(layoutRoot.FindAnyWidget( "shuffle" ));
@@ -54,20 +54,20 @@ class BetDiceMenu extends GameBetBaseMenu
 		winFactor = TextWidget.Cast( layoutRoot.FindAnyWidget( "winFactor" ));
 
         diceImage1 = ImageWidget.Cast(layoutRoot.FindAnyWidget( "diceImage1" ));
-        diceImage1.LoadImageFile(0, "BastionCasino/data/dice/dice1.edds");
-        diceImage1.LoadImageFile(1, "BastionCasino/data/dice/dice2.edds");
-        diceImage1.LoadImageFile(2, "BastionCasino/data/dice/dice3.edds");
-        diceImage1.LoadImageFile(3, "BastionCasino/data/dice/dice4.edds");
-        diceImage1.LoadImageFile(4, "BastionCasino/data/dice/dice5.edds");
-        diceImage1.LoadImageFile(5, "BastionCasino/data/dice/dice6.edds");
+        diceImage1.LoadImageFile(0, "BastionMod/BastionCasino/data/dice/dice1.edds");
+        diceImage1.LoadImageFile(1, "BastionMod/BastionCasino/data/dice/dice2.edds");
+        diceImage1.LoadImageFile(2, "BastionMod/BastionCasino/data/dice/dice3.edds");
+        diceImage1.LoadImageFile(3, "BastionMod/BastionCasino/data/dice/dice4.edds");
+        diceImage1.LoadImageFile(4, "BastionMod/BastionCasino/data/dice/dice5.edds");
+        diceImage1.LoadImageFile(5, "BastionMod/BastionCasino/data/dice/dice6.edds");
 
         diceImage2 = ImageWidget.Cast(layoutRoot.FindAnyWidget( "diceImage2" ));
-        diceImage2.LoadImageFile(0, "BastionCasino/data/dice/dice1.edds");
-        diceImage2.LoadImageFile(1, "BastionCasino/data/dice/dice2.edds");
-        diceImage2.LoadImageFile(2, "BastionCasino/data/dice/dice3.edds");
-        diceImage2.LoadImageFile(3, "BastionCasino/data/dice/dice4.edds");
-        diceImage2.LoadImageFile(4, "BastionCasino/data/dice/dice5.edds");
-        diceImage2.LoadImageFile(5, "BastionCasino/data/dice/dice6.edds");
+        diceImage2.LoadImageFile(0, "BastionMod/BastionCasino/data/dice/dice1.edds");
+        diceImage2.LoadImageFile(1, "BastionMod/BastionCasino/data/dice/dice2.edds");
+        diceImage2.LoadImageFile(2, "BastionMod/BastionCasino/data/dice/dice3.edds");
+        diceImage2.LoadImageFile(3, "BastionMod/BastionCasino/data/dice/dice4.edds");
+        diceImage2.LoadImageFile(4, "BastionMod/BastionCasino/data/dice/dice5.edds");
+        diceImage2.LoadImageFile(5, "BastionMod/BastionCasino/data/dice/dice6.edds");
 		
 		diceImage1.SetImage(0);
 		diceImage2.SetImage(0);

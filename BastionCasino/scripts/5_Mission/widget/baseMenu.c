@@ -55,7 +55,7 @@ class BaseMenu extends UIScriptedMenu
 		
 		WidgetEventHandler.GetInstance().RegisterOnMouseButtonDown( info,  this, "OnClick" );
 		
-		infoWidget = GetGame().GetWorkspace().CreateWidgets("BastionCasino/layouts/Info.layout");
+		infoWidget = GetGame().GetWorkspace().CreateWidgets("BastionMod/BastionCasino/layouts/Info.layout");
 		infoWidget.Show(false);
 		
 		closeInfo = ButtonWidget.Cast( infoWidget.FindAnyWidget( "closeInfo" ));

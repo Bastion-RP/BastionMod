@@ -32,7 +32,7 @@ class BlackJackMenu extends GameBetBaseMenu
 			return layoutRoot;
 		}
 		
-        widgetPath = "BastionCasino/layouts/BlackJack.layout";
+        widgetPath = "BastionMod/BastionCasino/layouts/BlackJack.layout";
 		super.Init();
 
 		holdCard = ButtonWidget.Cast( layoutRoot.FindAnyWidget( "holdCard" ));
@@ -46,7 +46,7 @@ class BlackJackMenu extends GameBetBaseMenu
         WidgetEventHandler.GetInstance().RegisterOnMouseButtonDown( nextCard,  this, "OnClick" );
 
         cards = ImageWidget.Cast(layoutRoot.FindAnyWidget( "cards" ));
-        cards.LoadImageFile(0, "BastionCasino/data/cards/rueckseite.edds");
+        cards.LoadImageFile(0, "BastionMod/BastionCasino/data/cards/rueckseite.edds");
         cards.SetImage(0);
 		
 		pointBank = MultilineTextWidget.Cast( layoutRoot.FindAnyWidget("pointBank"));
@@ -154,7 +154,7 @@ class BlackJackMenu extends GameBetBaseMenu
         bankCard0.LoadImageFile(0, firstCardBank.GetImagePath());
         bankCard0.SetImage(0);
         bankCard0.Show(true);
-        bankCard1.LoadImageFile(0, "BastionCasino/data/cards/rueckseite.edds");
+        bankCard1.LoadImageFile(0, "BastionMod/BastionCasino/data/cards/rueckseite.edds");
         bankCard1.SetImage(0);
         bankCard1.Show(true);
         if (false == effect_sound.SoundPlay()) {

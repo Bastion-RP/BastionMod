@@ -128,9 +128,9 @@ class cfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\DZ\structures\furniture\medical\patient_monitor\data\patient_monitor.paa",
-			"\DZ\structures\furniture\medical\patient_monitor\data\patient_monitor.paa",
-			"\DZ\structures\furniture\medical\patient_monitor\data\patient_monitor.paa"
+			"\DZ\structures\furniture\medical\patient_monitor\data\patient_monitor_co.paa",
+			"\DZ\structures\furniture\medical\patient_monitor\data\patient_monitor_nohq.paa",
+			"\DZ\structures\furniture\medical\patient_monitor\data\patient_monitor_smdi.paa"
 		};
 		itemBehaviour=2;
 	};
@@ -209,7 +209,7 @@ class cfgVehicles
 	class BRP_lab_bunsen: Inventory_Base
 	{
 		scope=2;
-		model="\DZ\structures\furniture\school_equipment\data\lab_bunsen.p3d";
+		model="\DZ\structures\furniture\school_equipment\lab_bunsen.p3d";
 		itemSize[]={2,2};
 		weight=100;
 		hiddenSelections[]=
