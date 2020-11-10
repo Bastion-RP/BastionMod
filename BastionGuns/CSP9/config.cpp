@@ -54,7 +54,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 170;
 					healthLevels[] = 
 					{
 						{1.0,{"BastionMod\BastionGuns\CSP9\data\csp9.rvmat"}},
