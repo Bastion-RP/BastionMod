@@ -157,4 +157,9 @@ class GameMenu
             ratRaceMenu.Close();
 		}
 	}
+	
+	CasinoConfig GetCasinoConfig()
+	{
+		return casinoConfig;
+	}
 }
