@@ -21,6 +21,7 @@ class ADVCGpsPCClient : PluginBase
 		switch (rpc_type)
 		{
 			case -999777722: SetConfig(ctx); break;
+			case -999777724: SetChildren(ctx); break;
 		}
 
 	}
@@ -33,4 +34,13 @@ class ADVCGpsPCClient : PluginBase
 		GetADVCGps().SetConfig(data.param1);
 	}
 
+	void SetChildren(ParamsReadContext ctx)
+	{
+		Param2<GpsBase, array<int>> data;
+		if (!ctx.Read(data))
+			return;
+		GpsBase gps = data.param1;
+		if (gps)
+			gps.SetChildrenBits(data.param2);
+	}
 }

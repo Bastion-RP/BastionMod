@@ -1,6 +1,7 @@
 modded class PlayerBase
 {
 	private bool hasWorkingGps;
+	private GpsBase mainGPS;
 
 	override void OnConnect()
 	{
@@ -19,7 +20,7 @@ modded class PlayerBase
 		hasWorkingGps = val;
 	}
 
-	bool HasWorkingGps()
+	GpsBase GetWorkingGps()
 	{
 		GpsBase gpsItem;
 		array<EntityAI> itemsArray = new array<EntityAI>;
@@ -29,9 +30,22 @@ modded class PlayerBase
 		{
 			if (Class.CastTo(gpsItem, itemsArray.Get(i)) && gpsItem.IsWorking())
 			{
-				return true;
+				return gpsItem;
 			}
 		}
-		return false;
+		return null;
+	}
+
+	void SetMainGps()
+	{
+		if (mainGPS && mainGPS.IsWorking() && mainGPS.GetHierarchyRootPlayer() == GetGame().GetPlayer())
+			return;
+		mainGPS = GetWorkingGps();
+		GetGame().RPCSingleParam(null, -999777723, new Param1<GpsBase>(mainGPS), true, null);
+	}
+
+	GpsBase GetMainGps()
+	{
+		return mainGPS;
 	}
 }

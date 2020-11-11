@@ -26,13 +26,13 @@ modded class MissionServer {
             }
             else
             {
-                objects.Insert( new ConfigObject("4963.054199 10.000120 4313.844238", "69.0 0.0 0.0") );
+                objects.Insert( new ConfigObject("BRP_Compactor", "4963.054199 10.000120 4313.844238", "69.0 0.0 0.0") );
                 JsonFileLoader<array<ref ConfigObject>>.JsonSaveFile( BastionBodyBagConst.config, objects );
             }
 
             foreach( auto object : objects )
             {
-				CreateConfigObject( "BRP_Compactor", object.GetPosition(), object.GetDirection() );
+				CreateConfigObject( object.GetType(), object.GetPosition(), object.GetDirection() );
             }
         }
     }

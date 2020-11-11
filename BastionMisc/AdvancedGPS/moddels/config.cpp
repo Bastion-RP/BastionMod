@@ -56,6 +56,7 @@ class CfgVehicles
 		descriptionShort = "GPS (Global Positioning System) глобальная позиционирующая система — спутниковая система навигации, обеспечивающая измерение расстояния, времени и определяющая местоположение во всемирной системе координат WGS 84. Позволяет почти при любой погоде определять местоположение в любом месте земли.";
 		model = "BastionMod\BastionMisc\AdvancedGPS\moddels\gpsname_2\RC.p3d";
 		weight = 260;
+		forceFarBubble="true";
 		//oldpower = 0;
 		absorbency = 0.5;
 		itemSize[] = {2, 2};

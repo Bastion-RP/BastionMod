@@ -7,6 +7,7 @@ class GpsUI
 	private TextWidget azimutValue;
 	private TextWidget coordsWrap;
 	private TextWidget timeValue;
+	private TextWidget idValue;
 
 	private PlayerBase player;
 
@@ -16,6 +17,8 @@ class GpsUI
 	private float scale, offsetx, offsety, posx, posy;
 	private float defoffsetx = 642;
 	private float defoffsety = -421;
+	private int timePassed;
+	private int updateChildrenInterval = 1000; //1 sec
 
 
 	void GpsUI()
@@ -27,12 +30,14 @@ class GpsUI
 		azimutValue = TextWidget.Cast(root.FindAnyWidget("azimutValue"));
 		coordsWrap = TextWidget.Cast(root.FindAnyWidget("coordsWrap"));
 		timeValue = TextWidget.Cast(root.FindAnyWidget("timeValue"));
+		idValue = TextWidget.Cast(root.FindAnyWidget("IDValue"));
 		pDir.LoadImageFile(0, "BastionMod/BastionMisc/AdvancedGPS/assets/img/cursor_pl.edds");
 		bgdImg.LoadImageFile(0, "BastionMod/BastionMisc/AdvancedGPS/assets/img/gps.edds");
 
 		player = PlayerBase.Cast(GetGame().GetPlayer());
 		InitMap();
 		LoadSettings();
+		UpdateGpsID();
 	}
 
 	void ~GpsUI()
@@ -91,6 +96,7 @@ class GpsUI
 	{	
 		UpdateMap();
 		UpdateDisplay();
+		UpdateOtherDevices();
 	}
 
 	void UpdateMap()
@@ -202,5 +208,36 @@ class GpsUI
 	{
 		offsetx += val;
 		ADVCGps.Mess("offsetx "+offsetx.ToString());
+	}
+
+	void UpdateOtherDevices()
+	{
+		timePassed += 10;
+		if (timePassed >= updateChildrenInterval)
+		{
+			timePassed = 0;
+			DisplayChildrenOnMap();
+		}
+	}
+
+	void UpdateGpsID()
+	{
+		if (player && player.GetMainGps())
+			idValue.SetText(String("ID:"+ player.GetMainGps().GetLowBits().ToString()));
+		else
+			idValue.SetText(String("ID:Error"));
+	}
+
+	void DisplayChildrenOnMap()
+	{
+		if (!IsVisible() || !player || !player.IsAlive())
+			return;
+		
+		gpsMap.ClearUserMarks();
+		array<ref Param2<vector, int>> allChildren = player.GetMainGps().GetWorkingChildrenPositions();
+		for (int i = 0; i < allChildren.Count(); i++)
+		{
+			gpsMap.AddUserMark(allChildren.Get(i).param1, allChildren.Get(i).param2.ToString() , ARGB(255,0,0,255), "\\dz\\gear\\navigation\\data\\map_tree_ca.paa");
+		}
 	}
 }
