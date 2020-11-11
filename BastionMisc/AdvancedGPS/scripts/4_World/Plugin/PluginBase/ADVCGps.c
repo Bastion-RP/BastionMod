@@ -138,6 +138,12 @@ class ADVCGps : PluginBase
 			ToogleGPS(false);
 		}
 	}
+
+	void UpdateGpsID()
+	{
+		if (gpsUI)
+			gpsUI.UpdateGpsID();
+	}
 }
 ADVCGps GetADVCGps()
 {
