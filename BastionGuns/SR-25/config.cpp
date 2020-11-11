@@ -27,6 +27,7 @@ class cfgWeapons
 		itemSize[] = {8,3};
 		repairableWithKits[] = {5,1};
 		repairCosts[] = {30,25};
+		barrelArmor = 4.0;
 		PPDOFProperties[] = {1,0.75,40,180,4,10};
 		dexterity = 3.0;
 		discreteDistance[] = {25,50,100,200,300,1000};
@@ -105,7 +106,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0,{}}};
 				};
 			};
