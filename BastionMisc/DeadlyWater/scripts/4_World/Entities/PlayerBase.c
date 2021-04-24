@@ -76,7 +76,7 @@ modded class PlayerBase
 			m_VignetteValue -= 0.005;
 		}
 
-		PPEffects.SetVignette(m_VignetteValue, 0, 0, 0);
+		PPEffects.SetVignette(m_VignetteValue, 0, 0, 0, 1);
 
 		if (m_VignetteValue < 0)
 		{

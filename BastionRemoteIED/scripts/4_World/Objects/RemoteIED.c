@@ -1,18 +1,18 @@
 class BRP_RemoteIED : TrapBase
 {
-	bool m_Disarmed;
+	bool disarmed;
 
 	void BRP_RemoteIED()
 	{
-		m_Disarmed = false;
-		RegisterNetSyncVariableBool( "m_Disarmed" );
+		disarmed = false;
+		RegisterNetSyncVariableBool( "disarmed" );
 	}
 
 	override void OnStoreSave( ParamsWriteContext ctx )
 	{
 		super.OnStoreSave( ctx );
 
-		ctx.Write( m_Disarmed );
+		ctx.Write( disarmed );
 	}
 
 	override bool OnStoreLoad( ParamsReadContext ctx, int version )
@@ -20,7 +20,7 @@ class BRP_RemoteIED : TrapBase
 		if ( !super.OnStoreLoad(ctx, version) )
 			return false;
 
-		if ( !ctx.Read( m_Disarmed ) )
+		if ( !ctx.Read( disarmed ) )
 			return false;
 
 		return true;
@@ -28,18 +28,18 @@ class BRP_RemoteIED : TrapBase
 
 	bool IsDisarmed()
 	{
-		return m_Disarmed;
+		return disarmed;
 	}
 
 	void ArmIED()
 	{
-		m_Disarmed = false;
+		disarmed = false;
 		SetSynchDirty();
 	}
 
 	void DisarmIED()
 	{
-		m_Disarmed = true;
+		disarmed = true;
 		SetSynchDirty();
 	}
 
@@ -72,7 +72,7 @@ class BRP_RemoteIED : TrapBase
 		}
 	}
 
-	override void OnPlacementComplete( Man player ) 
+	override void OnPlacementComplete( Man player, vector position = "0 0 0", vector orientation = "0 0 0" ) 
 	{		
 		if ( GetGame().IsServer() )
 		{

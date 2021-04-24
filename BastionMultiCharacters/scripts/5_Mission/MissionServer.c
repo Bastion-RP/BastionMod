@@ -23,8 +23,8 @@ modded class MissionServer {
 	}
 
 	private void BSTMCProcessLogin(PlayerIdentity identity, ParamsReadContext ctx) {
-		Param1<int> paramCharId;
-		Param1<string> paramCharType;
+		int paramCharId;
+		string paramCharType;
 		string pId, charType;
 
 		pId = identity.GetPlainId();
@@ -33,12 +33,12 @@ modded class MissionServer {
 		ctx.Read(paramCharId);
 		ctx.Read(paramCharType);
 
-		charType = paramCharType.param1;
+		charType = paramCharType;
 
 		Print(_mcDebugPrefix + "Processing new login, id=" + pId);
 
 		if (!GetBSTMCServerManager().HasAPIData(pId)) { return; }
-		BST_APICharacterId apiData = GetBSTMCServerManager().GetAPIDataById(pId, paramCharId.param1.ToString());
+		BST_APICharacterId apiData = GetBSTMCServerManager().GetAPIDataById(pId, paramCharId.ToString());
 
 		if (!apiData) { return; }
 		Print(_mcDebugPrefix + "Grabbed spawn data! id=" + apiData.GetCharacterId() + " | fname=" + apiData.GetFirstName() + " | lname=" + apiData.GetLastName());
