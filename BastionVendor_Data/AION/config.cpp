@@ -187,7 +187,7 @@ class CfgVehicles
 					{
 						
 						{
-							1,
+							1.0,
 							
 							{
 								"DZ\gear\food\data\powdered_milk.rvmat"
@@ -219,7 +219,7 @@ class CfgVehicles
 						},
 						
 						{
-							0,
+							0.0,
 							
 							{
 								"DZ\gear\food\data\powdered_milk_destruct.rvmat"
