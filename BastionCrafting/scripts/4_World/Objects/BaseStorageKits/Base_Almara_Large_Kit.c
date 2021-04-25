@@ -51,14 +51,10 @@ class Base_Almara_Large_Kit extends ItemBase
 	// ADVANCED PLACEMENT
 	//================================================================			
 		
-	override void OnPlacementComplete( Man player )
+	override void OnPlacementComplete( Man player, vector position = "0 0 0", vector orientation = "0 0 0" )
 	{
 		if ( GetGame().IsServer() )
-		{
-			PlayerBase player_base = PlayerBase.Cast( player );
-			vector position = player_base.GetLocalProjectionPosition();
-			vector orientation = player_base.GetLocalProjectionOrientation();
-				
+		{	
 			EntityAI item = EntityAI.Cast(GetGame().CreateObjectEx("Base_Almara_Large", position, ECE_PLACE_ON_SURFACE ));
 			item.SetPosition(position);
 			item.SetOrientation(orientation);

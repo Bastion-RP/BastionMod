@@ -51,14 +51,10 @@ class Base_GMetalCrate_Kit extends ItemBase
 	// ADVANCED PLACEMENT
 	//================================================================			
 		
-	override void OnPlacementComplete( Man player )
+	override void OnPlacementComplete( Man player, vector position = "0 0 0", vector orientation = "0 0 0" )
 	{
 		if ( GetGame().IsServer() )
-		{
-			PlayerBase player_base = PlayerBase.Cast( player );
-			vector position = player_base.GetLocalProjectionPosition();
-			vector orientation = player_base.GetLocalProjectionOrientation();
-				
+		{	
 			EntityAI item = EntityAI.Cast(GetGame().CreateObjectEx("Base_GMetalCrate", position, ECE_PLACE_ON_SURFACE ));
 			item.SetPosition(position);
 			item.SetOrientation(orientation);

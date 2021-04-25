@@ -12,7 +12,7 @@ modded class DayZGame {
 		return;
 	}
 
-	override void StoreLoginData() {
+	override void StoreLoginDataPrepare() {
 		BST_MCSpawnInvoker.Invoke();
 	}
 
