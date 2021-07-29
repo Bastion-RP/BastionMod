@@ -17,7 +17,7 @@ PixelShaderID = "Super";
 VertexShaderID = "Super";
 class Stage1
 {
-	texture = "\BastionMod\BastionGuns\Ammo\Bullets\9x19\data\9x19_nohq.paa";
+	texture = "BastionMod\BastionGuns\Ammo\Bullets\9x19\data\9x19_nohq.paa";
 	uvSource = "tex";
 	class uvTransform
 	{
@@ -65,7 +65,7 @@ class Stage4
 };
 class Stage5
 {
-	texture = "\BastionMod\BastionGuns\Ammo\Bullets\9x19\data\9x19_smdi.paa";
+	texture = "BastionMod\BastionGuns\Ammo\Bullets\9x19\data\9x19_smdi.paa";
 	uvSource = "tex";
 	class uvTransform
 	{

@@ -8,7 +8,7 @@ PixelShaderID = "Super";
 VertexShaderID = "Super";
 class Stage1
 {
-	texture = "\BastionMod\BastionGuns\Remington700\data\rem700_nohq.paa";
+	texture = "BastionMod\BastionGuns\Remington700\data\rem700_nohq.paa";
 	uvSource = "tex";
 	class uvTransform
 	{
@@ -56,7 +56,7 @@ class Stage4
 };
 class Stage5
 {
-	texture = "\BastionMod\BastionGuns\Remington700\data\rem700_smdi.paa";
+	texture = "BastionMod\BastionGuns\Remington700\data\rem700_smdi.paa";
 	uvSource = "tex";
 	class uvTransform
 	{

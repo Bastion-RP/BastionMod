@@ -14,7 +14,7 @@ modded class DayZGame {
         };
     };
 
-    override void TempToggleAll3dMarkers() {
+    void TempToggleAll3dMarkers() {
         if (!BRP_VPPMapFixes_Is3dMarkerAllowed) {
             return;
         };
